@@ -1,0 +1,60 @@
+replicate_id,output,condition,model_id,model_label
+0,"**Internal Report – Improving Delivery Efficiency**  
+*Prepared by: OR Analyst – Logistics Operations*  
+*Audience: Senior Management*  
+*Length: 350 words*  
+
+---
+
+### 1. Data to Collect & Validation  
+
+| Data Element | Source | Validation Method |
+|--------------|--------|-------------------|
+| **Route travel times** (planned vs. actual) | GPS logs, driver mobile app | Cross‑check with traffic‑historical datasets; flag >10 % deviation for outliers |
+| **Vehicle utilization** (miles, load factor, idle time) | Fleet telematics | Reconcile mileage with depot dispatch records; variance analysis per vehicle |
+| **Demand forecasts per store** (units, SKU mix) | ERP demand planning module | Compare 4‑week rolling forecast vs. actual sales; use Mean Absolute Percentage Error (MAPE) ≤ 10 % as acceptance |
+| **Warehouse inventory positions** (on‑hand, safety stock) | WMS | Cycle‑count audit on a random 5 % sample each week |
+| **Fuel consumption & price** | Fuel card statements | Spot‑check receipts; regression of consumption vs. miles to detect anomalies |
+| **Service‑level agreements (SLAs)** (delivery windows, penalties) | Contract database | Verify against order‑commit timestamps; ensure 95 % of windows are recorded |
+
+Data will be ingested nightly into a central relational store. Automated scripts will run the above validation checks and generate a “data‑quality scorecard” (green/yellow/red) before any analysis proceeds.
+
+---
+
+### 2. Analytical / Optimization Framework  
+
+1. **Pre‑processing** – Cleaned data feeds into a **scenario generator** that creates:
+   * Alternative delivery‑day patterns (e.g., 5‑day vs. 6‑day cycles)  
+   * Candidate warehouse‑store allocation matrices (regional vs. hub‑centric)
+
+2. **Model Core** – A **Mixed‑Integer Linear Program (MILP)**:  
+   * **Decision variables** – binary assignment of store to depot, continuous load per vehicle, departure times.  
+   * **Objective** – minimize total cost = fuel + driver overtime + penalty cost, subject to:  
+     * Vehicle capacity & driver‑hour limits  
+     * SLA delivery‑window constraints  
+     * Inventory balance (no stock‑out risk)  
+
+3. **Simulation Layer** – Monte‑Carlo runs (10 000 iterations) on the MILP solution to stress‑test against demand volatility and traffic disruption, yielding confidence intervals for on‑time performance.
+
+Software can be built in Python (PuLP/GLPK) or CPLEX‑free open‑source solvers; no external commercial packages required.
+
+---
+
+### 3. Recommended Practical Solutions  
+
+| Solution | What It Changes | Expected Gains | Trade‑offs & Risks |
+|----------|----------------|----------------|--------------------|
+| **Dynamic Route Consolidation** – Re‑optimize routes weekly using the MILP, allowing “flex‑drops” where low‑volume stores are served from a nearer hub on off‑peak days. | Reduces average miles per vehicle (≈ 12 %); improves load factor (≈ 8 %). | Requires driver re‑training & real‑time dispatch updates; risk of temporary SLA breaches during transition. |
+| **Strategic Warehouse Re‑allocation** – Shift 15 % of high‑turn SKUs to a “mid‑point” cross‑dock near the densest store cluster, creating a two‑tier distribution network. | Cuts last‑mile distance (≈ 9 % fuel saving) and buffers demand spikes (stock‑out risk ↓ 5 %). | Capital outlay for cross‑dock setup; inventory holding cost ↑; must monitor safety‑stock levels closely. |
+
+Both solutions can be phased: pilot dynamic consolidation in Region A (3 months) while simultaneously evaluating cross‑dock feasibility in Region B.
+
+---
+
+### 4. KPIs & Communication  
+
+| KPI | Target | Measurement Frequency |
+|-----|--------|------------------------|
+| On‑time Delivery Rate | ≥ 96 % | Daily |
+| Cost per Drop (fuel + labor) | ↓ 10 % YoY | Weekly |
+| Vehicle Utilization (load % & hours) | ≥",GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B

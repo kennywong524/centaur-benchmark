@@ -1,0 +1,168 @@
+slug: counselling
+title: Counseling session (Anthropic Econ Index)
+default_worker: gpt-3.5-turbo
+default_evaluator: gpt-5
+replicates: 1
+scaffold_model_max_tokens: null
+automation_model_max_tokens: 4096
+automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
+remote_inference_visibility: private
+task_prompt: '
+
+  You are a licensed counselor providing a single-session consultation to a client who feels emotionally drained, anxious about work, and uncertain about their direction in life.
+
+
+  In one comprehensive response, demonstrate professional counseling skills:
+
+  - Acknowledge and validate the client’s emotional state with empathy and warmth.
+
+  - Identify possible psychological patterns (e.g., burnout, perfectionism, low self-efficacy).
+
+  - Offer an integrative, evidence-based analysis using elements of CBT, motivational interviewing, and positive psychology.
+
+  - Provide realistic, actionable recommendations for stress management, mindset reframing, and goal clarification.
+
+  - Conclude with an encouraging summary that reinforces self-awareness, hope, and next steps for personal growth or mental well-being.
+
+
+  The tone should be compassionate, insightful, and empowering — similar to what a skilled therapist, coach, or mentor would say in a single supportive session.
+
+  '
+scaffold_prompt_template: '
+
+  You are a planning coach helping another model prepare to complete a task.
+
+
+  Your role is to provide PROCESS guidance only, not task content.
+
+
+  Write a short 200–250 word guidance message that gives a three-phase workflow:
+
+
+  1. Requirements Check
+
+  - identify the deliverable, audience, tone, and constraints
+
+  - note what a strong answer must include
+
+
+  2. Plan & Structure
+
+  - suggest a general response structure or sequence of sections
+
+  - suggest how to balance completeness, clarity, and tone
+
+
+  3. Draft -> Self-Review -> Finalize
+
+  - suggest a brief checklist for revising the answer before submission
+
+
+  Important rules:
+
+  - Do NOT solve the task
+
+  - Do NOT provide topic-specific content, examples, or recommendations
+
+  - Do NOT write sentences that could be copied into the final answer
+
+  - Do NOT restate the task as a completed outline with filled-in content
+
+  - Keep the guidance generic and process-focused
+
+
+  Format in Markdown under the heading:
+
+  **Assistant Guidance: Three-Phase Workflow**
+
+  '
+worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+pairwise_task_context: '
+
+  You are acting as a Counseling Psychologist providing a one-time consultation to a client who feels emotionally drained, anxious about work, and uncertain about their direction in life.
+
+
+  In a single, self-contained response, demonstrate professional counseling and therapeutic communication skills by:
+
+  • Acknowledging and validating the client’s emotional state with empathy and warmth.
+
+  • Identifying possible psychological patterns (e.g., burnout, perfectionism, low self-efficacy).
+
+  • Offering an integrative, evidence-based perspective that draws on CBT, motivational interviewing, or positive psychology.
+
+  • Providing realistic, actionable recommendations for stress management, mindset reframing, and goal clarification.
+
+  • Concluding with an encouraging summary that reinforces the client’s self-awareness, hope, and next steps for well-being.
+
+
+  The response should sound natural, compassionate, and professional — as if written by a skilled therapist or coach offering a single supportive session.
+
+  '
+pairwise_eval_prompt: '
+
+  You are an expert evaluator simulating a thoughtful human reviewing practical work.
+
+
+  You will receive:
+
+  1. The original task request (the Counseling Psychologist consultation)
+
+  2. Two candidate consultation responses
+
+
+  Choose the one that is better overall for actual use.
+
+
+  Consider silently:
+
+  - Does it establish a genuinely warm, empathetic, and professional tone that validates the client''s emotional state?
+
+  - Does it gently and appropriately identify potential psychological patterns (like burnout or perfectionism) without over-diagnosing?
+
+  - Does it effectively integrate evidence-based concepts (e.g., CBT, motivational interviewing, or positive psychology) in an accessible way?
+
+  - Are the recommendations for stress management and goal clarification practical, realistic, and actionable?
+
+  - Does it close with an encouraging summary that fosters hope and clear next steps?
+
+  - Which response feels more authentic and helpful, reading like a skilled session from a real therapist or coach?
+
+
+  Return only:
+
+  - option_1
+
+  or
+
+  - option_2
+
+
+  No reasoning. No extra text.
+
+  '
+pairwise:
+  n_evals_per_pair: 3
+  n_outer_runs: 5
+models:
+  assistants:
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: GPT-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+  automation:
+    gpt-3.5-turbo: GPT-3.5-Turbo
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: gpt-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+rubric_prompt: null

@@ -1,0 +1,277 @@
+slug: tax_prep
+title: Tax preparation discrepancy spotting
+default_worker: gpt-3.5-turbo
+default_evaluator: gpt-5
+replicates: 1
+scaffold_model_max_tokens: null
+automation_model_max_tokens: 4096
+automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
+remote_inference_visibility: private
+task_prompt: '
+
+  A client brings you their partially completed federal and state tax returns.
+
+
+  They provide the following information and documents:
+
+
+  W-2 income: $68,500
+
+
+  Freelance/contract income: $4,200 reported on 1099-NEC
+
+
+  Mortgage interest paid: $9,800
+
+
+  One dependent listed: a 22-year-old full-time college student who earned $18,000 last year
+
+
+  Filing status they selected: Single
+
+
+  Pre-filled portions of their Form 1040 and state return:
+
+
+  Form 1040 already has their freelance income entered as $2,400
+
+
+  A standard deduction amount is already typed into Line 12
+
+
+  Their state tax form shows a computed tax liability that does not match the AGI shown
+
+
+  All calculations were done by the client before coming to you
+
+
+  Your task: In one comprehensive response, behave exactly like a professional tax preparer and do ALL of the following:
+
+
+  1. Explain Applicable Federal & State Tax Rules
+
+
+  Explain the federal and state tax laws relevant to:
+
+  - reporting self-employment income
+
+  - deductibility of mortgage interest
+
+  - who qualifies as a dependent under IRS rules
+
+  - the correct standard deduction for their filing status
+
+
+  2. Review Their Forms and Check for Accuracy
+
+
+  Examine all numbers they have provided
+
+  - Verify arithmetic and data entry
+
+  - Spot and explain any errors, inconsistencies, or misreported amounts
+
+  - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax
+
+  (Do NOT assume their entries are correct. You must detect mistakes yourself.)
+
+
+  3. Provide Guidance for Correct Form Completion
+
+
+  Identify which forms and schedules they actually need (e.g., Schedule C, Schedule SE, Schedule A)
+
+  - Tell them where each item should be entered
+
+  - Explain how to correct any issues you spotted
+
+  - Clarify whether they should itemize or take the standard deduction
+
+
+  4. Answer Client Questions and Give Preventative Advice
+
+
+  Provide personalized guidance, such as:
+
+  - whether they can legally claim the dependent
+
+  - why federal and state figures may differ
+
+  - how to avoid similar issues next year
+
+  - recommendations for recordkeeping, estimated tax payments, etc.
+
+  '
+scaffold_prompt_template: '
+
+  You are a planning coach helping another model prepare to complete a task.
+
+
+  Your role is to provide PROCESS guidance only, not task content.
+
+
+  Write a short 200–250 word guidance message that gives a three-phase workflow:
+
+
+  1. Requirements Check
+
+  - identify the deliverable, audience, tone, and constraints
+
+  - note what a strong answer must include
+
+
+  2. Plan & Structure
+
+  - suggest a general response structure or sequence of sections
+
+  - suggest how to balance completeness, clarity, and tone
+
+
+  3. Draft -> Self-Review -> Finalize
+
+  - suggest a brief checklist for revising the answer before submission
+
+
+  Important rules:
+
+  - Do NOT solve the task
+
+  - Do NOT provide topic-specific content, examples, or recommendations
+
+  - Do NOT write sentences that could be copied into the final answer
+
+  - Do NOT restate the task as a completed outline with filled-in content
+
+  - Keep the guidance generic and process-focused
+
+
+  Format in Markdown under the heading:
+
+  **Assistant Guidance: Three-Phase Workflow**
+
+  '
+worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+pairwise_task_context: '
+
+  A client brings you their partially completed federal and state tax returns.
+
+
+  They provide the following information and documents:
+
+
+  W-2 income: $68,500
+
+
+  Freelance/contract income: $4,200 reported on 1099-NEC
+
+
+  Mortgage interest paid: $9,800
+
+
+  One dependent listed: a 22-year-old full-time college student who earned $18,000 last year
+
+
+  Filing status they selected: Single
+
+
+  Pre-filled portions of their Form 1040 and state return:
+
+
+  Form 1040 already has their freelance income entered as $2,400
+
+
+  A standard deduction amount is already typed into Line 12
+
+
+  Their state tax form shows a computed tax liability that does not match the AGI shown
+
+
+  All calculations were done by the client before coming to you
+
+
+  Your task: In one comprehensive response, behave exactly like a professional tax preparer and do ALL of the following:
+
+
+  1. Explain Applicable Federal & State Tax Rules
+
+
+  Explain the federal and state tax laws relevant to:
+
+  - reporting self-employment income
+
+  - deductibility of mortgage interest
+
+  - who qualifies as a dependent under IRS rules
+
+  - the correct standard deduction for their filing status
+
+
+  2. Review Their Forms and Check for Accuracy
+
+
+  Examine all numbers they have provided
+
+  - Verify arithmetic and data entry
+
+  - Spot and explain any errors, inconsistencies, or misreported amounts
+
+  - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax
+
+  (Do NOT assume their entries are correct. You must detect mistakes yourself.)
+
+
+  3. Provide Guidance for Correct Form Completion
+
+
+  Identify which forms and schedules they actually need (e.g., Schedule C, Schedule SE, Schedule A)
+
+  - Tell them where each item should be entered
+
+  - Explain how to correct any issues you spotted
+
+  - Clarify whether they should itemize or take the standard deduction
+
+
+  4. Answer Client Questions and Give Preventative Advice
+
+
+  Provide personalized guidance, such as:
+
+  - whether they can legally claim the dependent
+
+  - why federal and state figures may differ
+
+  - how to avoid similar issues next year
+
+  - recommendations for recordkeeping, estimated tax payments, etc.
+
+  '
+pairwise_eval_prompt: "\nYou are an expert evaluator simulating a thoughtful human reviewing practical work.\n\nThe client provided:\n- W-2 income: $68,500\n- Freelance/contract income: $4,200 reported on 1099-NEC\n- Mortgage interest paid: $9,800\n- One dependent listed: a 22-year-old full-time college student who earned $18,000 last year\n- Filing status: Single\n- Pre-filled Form 1040 with errors (freelance income shown as $2,400 instead of $4,200, standard deduction on Line 12, state tax mismatch)\n\nThe tax preparer was required to do ALL of the following in one comprehensive response:\n\n(1) Explain applicable federal & state tax rules for:\n    - Reporting self-employment income\n    - Deductibility of mortgage interest\n    - Who qualifies as a dependent under IRS rules\n    - Correct standard deduction for their filing status\n\n(2) Review forms and check for accuracy:\n    - Verify arithmetic and data entry\n    - Spot and explain errors, inconsistencies, or misreported amounts\n\
+  \    - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax\n\n(3) Provide guidance for correct form completion:\n    - Identify which forms and schedules they need (Schedule C, Schedule SE, Schedule A, etc.)\n    - Tell them where each item should be entered\n    - Explain how to correct issues\n    - Clarify whether they should itemize or take the standard deduction\n\n(4) Answer client questions and give preventative advice:\n    - Whether they can legally claim the dependent\n    - Why federal and state figures may differ\n    - How to avoid similar issues next year\n    - Recommendations for recordkeeping, estimated tax payments, etc.\n\nYou will receive:\n1. The original tax preparation request and client data\n2. Two candidate tax preparer responses\n\nChoose the one that is better overall for actual use.\n\nConsider silently:\n- Does it accurately explain the relevant tax rules (self-employment reporting, mortgage interest deductibility, standard\
+  \ deduction, and the specific nuances of claiming a 22-year-old student with $18k income)?\n- Does it successfully catch the errors in the pre-filled 1040 (e.g., the $2,400 vs. $4,200 discrepancy) and recalculate the correct figures?\n- Does it provide explicit, step-by-step guidance on which forms to use (Schedule C, Schedule SE, Schedule A vs. Standard Deduction) and where to enter the data?\n- Does it definitively advise whether the client should itemize or take the standard deduction based on the $9,800 mortgage interest?\n- Does it offer sound preventative advice (recordkeeping, estimated taxes) in a highly professional, trustworthy, and clear tone?\n- Which response provides the most accurate, actionable, and comprehensive guidance for the client to confidently correct and file their taxes?\n\nReturn only:\n- option_1\nor\n- option_2\n\nNo reasoning. No extra text.\n"
+pairwise:
+  n_evals_per_pair: 3
+  n_outer_runs: 5
+models:
+  assistants:
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: GPT-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+  automation:
+    gpt-3.5-turbo: GPT-3.5-Turbo
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: gpt-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+rubric_prompt: null

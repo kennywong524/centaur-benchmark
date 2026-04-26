@@ -1,0 +1,73 @@
+replicate_id,output,condition,model_id,model_label
+0,"**Prepared for:** [Client Name]  
+**Prepared by:** [Your Name], CPA – Tax Preparation Services  
+**Date:** [Today’s Date]  
+
+---
+
+## 1.  Applicable Federal & State Tax Rules  
+
+Below is a concise “rule‑book” that applies to every line you will be reporting on the 2023 (or 2022, if you are filing for that year) federal Form 1040 and a typical state return.  If you live in a state with its own quirks (e.g., California, New York, Illinois, etc.), the concepts are the same; only the rates/credits differ.
+
+| Topic | Federal Rule (IRS) | Typical State Rule (most states) |
+|-------|--------------------|----------------------------------|
+| **Self‑employment (freelance) income** | • Must be reported on **Schedule C** (Profit or Loss from Business).  <br>• Net profit (gross receipts – allowable expenses) flows to **Form 1040, line 3** (Other Income). <br>• You also owe **self‑employment (SE) tax** on the net profit (Schedule SE).  The SE tax rate is 15.3 % (12.4 % Social Security + 2.9 % Medicare) on **92.35 %** of net profit.  <br>• Half of the SE tax is an “above‑the‑line” deduction on **Form 1040, line 10** (Adjusted Gross Income). | • Most states start with the same federal AGI (or a slightly modified version).  <br>• Some states **do not allow the half‑SE‑tax deduction**; they tax the full net profit.  <br>• A few states have a separate “self‑employment tax” (e.g., California’s LLC fee). |
+| **Mortgage interest** | • Deductible on **Schedule A** (Itemized Deductions) if the loan is a qualified residence loan.  <br>• The amount reported on Form 1098 is the limit; you cannot exceed $750,000 of acquisition debt (or $1 million for older loans).  <br>• If you **take the standard deduction**, you **cannot** also claim mortgage interest. | • Most states mirror the federal treatment (interest is allowed if you itemize).  <br>• Some states **add‑back** a portion of mortgage interest (e.g., New York). |
+| **Who qualifies as a dependent?** | Two categories: **Qualifying Child** or **Qualifying Relative**.  <br>• *Qualifying Child* – must be under **age 24** and a **full‑time student**, must have lived with you > 6 months, and **must not have provided more than half of his/her own support**.  <br>• *Qualifying Relative* – any age, must have **gross income ≤ $4,700** (2023) and you must provide **more than half of support**.  <br>• The dependent must have a valid SSN (or ITIN) and you must be able to claim the **Child Tax Credit** (if under 17) or the **Credit for Other Dependents** ($500) if older.  <br>• The personal exemption was eliminated by the TCJA, so there is no “exemption amount” to subtract. | • Most states use the same federal definition.  <br>• A few states (e.g., Illinois) have **additional dependent credits** that follow the federal definition. |
+| **Standard deduction** | For **2023**: <br>• **Single** – $13,850 <br>• **Married Filing Jointly** – $27,700 <br>• **Head of Household** – $20,800  <br>These amounts are **indexed for inflation** each year.  <br>If you **itemize** (Schedule A) you must compare the total of your itemized deductions to the standard amount and use the larger of the two. | • Most states have their own standard deduction (often a percentage of the federal amount).  <br>• Some states **do not allow itemized deductions** at all (e.g., Colorado).  <br>• The state may have a “personal exemption” that still exists even though the federal one does not. |
+
+---
+
+## 2.  Review of Your Current Forms & Numbers  
+
+Below is a step‑by‑step audit of the figures you supplied.  I have **re‑calculated** everything from scratch, so any discrepancy you see is a genuine error that needs correction.
+
+| # | Item | What you gave | What the law says / correct figure | Comment / Error |
+|---|------|---------------|-----------------------------------|-----------------|
+| 1 | **W‑2 wages** | $68,500 | Correct (line 1 of Form 1040) | No issue |
+| 2 | **Freelance/contract income (1099‑NEC)** | $4,200 (gross) | Must be reported on **Schedule C**. Net profit = $4,200 **unless** you have deductible business expenses (you reported none). | **Error:** You entered **$2,400** on Form 1040 line 3. That understates income by **$1,800**. |
+| 3 | **Schedule C – Net profit** | (not provided) | $4,200 (gross) – $0 expenses = **$4,200** | Must flow to Form 1040 line 3 (Other Income). |
+| 4 | **Self‑Employment Tax (Schedule SE)** | (not provided) | Net earnings = $4,200 × 92.35 % = **$3,879**. <br>SE tax = $3,879 × 15.3 % = **$593** (rounded). | Not on your return yet. |
+| 5 | **Deduction for half of SE tax** | (not provided) | $593 ÷ 2 = **$296.5** (above‑the‑line deduction on Form 1040 line 10). | Missing – reduces AGI. |
+| 6 | **Mortgage interest (Form 1098)** | $9,800 | Deductible **only if you itemize** on Schedule A. | Since the standard deduction ($13,850) is larger, you should **take the standard deduction** and **not** itemize. |
+| 7 | **Standard deduction** | “Typed into line 12” (amount not shown) | For a **single** filer in 2023: **$13,850**. | Verify that the amount entered equals $13,850. |
+| 8 | **Dependent (22‑yr‑old college student)** | Listed as a dependent | Must meet **qualifying child** test: <br>• Age < 24 and full‑time student – **yes**. <br>• Lived with you > 6 months – **assume yes**. <br>• **Did not provide > ½ of own support** – **questionable** because earned $18,000.  <br>Support test: if you paid > $9,000 toward his/her living expenses (rent, food, tuition, etc.) you can claim the dependent; otherwise you cannot. | You **cannot automatically claim** the dependent.  You need to calculate the support you provided.  If you **did not** provide > ½ support, you must **remove the dependent** from the return. |
+| 9 | **State AGI vs. Federal AGI mismatch** | “State tax form shows a computed tax liability that does not match the AGI shown.” | Most states start with the **same AGI** you report on the federal return, **unless** they add back items (e.g., the half‑SE‑tax deduction).  If you omitted the half‑SE‑tax deduction on the federal return, the state AGI will be **higher** than the federal AGI, causing the mismatch you observed. | You need to **re‑calculate AGI** correctly on the federal return first; the state AGI will then line up (or you will know exactly what the state adds back). |
+
+### Re‑calculated Numbers (2023)
+
+| Calculation | Amount |
+|-------------|--------|
+| **Total Income** (W‑2 + freelance) | $68,500 + $4,200 = **$72,700** |
+| **Above‑the‑line adjustments** | Half SE tax = **$296.5** |
+| **Adjusted Gross Income (AGI)** | $72,700 – $296.5 = **$72,403.5** |
+| **Standard deduction (single)** | **$13,850** |
+| **Taxable income** | $72,403.5 – $13,850 = **$58,553.5** |
+| **Federal income tax** (2023 brackets) | 10 % of $11,000 = $1,100 <br>12 % of $33,725 = $4,047 <br>22 % of $13,828.5 = $3,042.27 <br>**Total = $8,189.27** |
+| **Self‑employment tax** | **$593** |
+| **Total federal tax liability** | $8,189.27 + $593 = **$8,782.27** |
+| **Withholding (W‑2)** | *You need to supply the amount shown on your W‑2 box 2.*  Subtract that from $8,782.27 to get the balance due or refund. |
+| **State taxable income** (typical) | Start with $72,403.5 (AGI).  If the state **does not allow** the half‑SE‑tax deduction, add back $296.5 → $72,700.  Then subtract the state’s standard deduction (often ~$5,000‑$6,000 for single filers).  The exact tax will depend on your state’s rates. |
+
+---
+
+## 3.  Guidance for Correct Form Completion  
+
+Below is a “to‑do list” that tells you exactly which forms/schedules you must file and where each figure belongs.
+
+| Form / Schedule | What belongs on it | Where to put the numbers you provided |
+|-----------------|--------------------|----------------------------------------|
+| **Form 1040** (2023) | – Line 1: **W‑2 wages** $68,500 <br>– Line 3: **Other income** (Schedule C net profit) $4,200 <br>– Line 4a: **IRA deduction** (if any – none reported) <br>– Line 4b: **Student loan interest** (if any – none reported) <br>– Line 6: **Adjusted Gross Income** – will be calculated automatically after you attach Schedule C and Schedule SE. <br>– Line 10: **Above‑the‑line deduction** – half of SE tax $296.5 (enter on the “Adjustments to Income” worksheet, then it appears on line 10). <br>– Line 12: **Standard deduction** – $13,850 (or the amount the software prints). <br>– Line 15: **Taxable income** – $58,553.5 (auto‑calculated). <br>– Line 16: **Tax** – $8,189.27 (auto‑calculated). <br>– Line 23: **Self‑employment tax** – $593 (from Schedule SE). <br>– Line 24: **Total tax** – $8,782.27 (auto‑calc). <br>– Line 25: **Federal income tax withheld** – copy from your W‑2 box 2. | Fill in exactly as shown.  The numbers for SE tax and half‑SE‑tax deduction **must be attached** via Schedule SE and the “Additional Income and Adjustments” worksheet. |
+| **Schedule C** (Profit or Loss from Business) | – Part I, line 1: Gross receipts = **$4,200**. <br>– Part II: Expenses – you reported none, so all expense lines stay **0**. <br>– Part III, line 31: **Net profit** = $4,200. | This net profit flows to Form 1040 line 3. |
+| **Schedule SE** (Self‑Employment Tax) | – Line 2: Net earnings from self‑employment = $4,200 × 92.35 % = **$3,879**. <br>– Line 4: SE tax = $3,879 × 15.3 % = **$593**. <br>– Line 10: **Deduction for one‑half of SE tax** = $296.5 (this amount goes to Form 1040 line 10). | Attach Schedule SE to the return. |
+| **Schedule A** (Itemized Deductions) – **optional** | If you decide to itemize, you would list: <br>• Line 5: Mortgage interest $9,800. <br>• Any other deductible expenses (state tax, charitable contributions, medical > 7.5 % AGI, etc.). | **Do NOT file Schedule A** because the standard deduction ($13,850) is larger than the $9,800 mortgage interest you could claim. |
+| **Form 8863** (Education Credits) – *only if you paid qualified tuition* | If you paid tuition for the student, you may be eligible for the **American Opportunity Credit** (up to $2,500) or the **Lifetime Learning Credit** (up to $2,000). | Provide Form 8863 with the tuition statements (Form 1098‑T).  This is a *tax credit*, not a deduction, and it can be claimed even if the student is not a dependent **provided you meet the support test**. |
+| **State Return (e.g., Form [State] 540, 1040, etc.)** | – Start with **Federal AGI** (or the state‑specific AGI if the state adds back half‑SE tax). <br>– Subtract the **state standard deduction** (or itemized deductions if you elect to itemize). <br>– Apply the state tax brackets. | Because you are taking the **standard deduction** federally, you will most likely also take the **state standard deduction**.  Enter the same $4,200 self‑employment profit (or $4,200 + any state‑specific adjustments) on the appropriate line for “business income.” |
+
+### Quick Checklist
+
+1. **Schedule C** – report $4,200 gross receipts, $0 expenses → Net profit $4,200.  
+2. **Schedule SE** – compute $593 SE tax; half ($296.5) goes to Form 1040 line 10.  
+3. **Form 1040** – use **standard deduction $13,850** (single). Do **not** file Schedule A.  
+4. **Dependent** – verify support test; if you cannot prove you provided > ½ support, delete the dependent from the return.  
+5. **State return** – start with the correct federal AGI ($",GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B

@@ -1,0 +1,147 @@
+slug: market_trends
+title: Market trends analysis
+default_worker: gpt-3.5-turbo
+default_evaluator: gpt-5
+replicates: 1
+scaffold_model_max_tokens: null
+automation_model_max_tokens: 4096
+automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
+remote_inference_visibility: private
+task_prompt: '
+
+  Imagine you are briefing a client on the US energy market in 2026.
+
+  Identify three positive trends and three negative trends likely to influence natural gas prices this year.
+
+  Discuss briefly how factors like supply, demand, weather, and policy interact to shape these trends.
+
+  Conclude with 2–3 sentences summarizing the overall outlook for investors or companies in the energy sector.
+
+
+  '
+scaffold_prompt_template: '
+
+  You are a planning coach helping another model prepare to complete a task.
+
+
+  Your role is to provide PROCESS guidance only, not task content.
+
+
+  Write a short 200–250 word guidance message that gives a three-phase workflow:
+
+
+  1. Requirements Check
+
+  - identify the deliverable, audience, tone, and constraints
+
+  - note what a strong answer must include
+
+
+  2. Plan & Structure
+
+  - suggest a general response structure or sequence of sections
+
+  - suggest how to balance completeness, clarity, and tone
+
+
+  3. Draft -> Self-Review -> Finalize
+
+  - suggest a brief checklist for revising the answer before submission
+
+
+  Important rules:
+
+  - Do NOT solve the task
+
+  - Do NOT provide topic-specific content, examples, or recommendations
+
+  - Do NOT write sentences that could be copied into the final answer
+
+  - Do NOT restate the task as a completed outline with filled-in content
+
+  - Keep the guidance generic and process-focused
+
+
+  Format in Markdown under the heading:
+
+  **Assistant Guidance: Three-Phase Workflow**
+
+  '
+worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+pairwise_task_context: '
+
+  Imagine you are briefing a client on the US energy market in 2026.
+
+  Identify three positive trends and three negative trends likely to influence natural gas prices this year.
+
+  Discuss briefly how factors like supply, demand, weather, and policy interact to shape these trends.
+
+  Conclude with 2–3 sentences summarizing the overall outlook for investors or companies in the energy sector.
+
+  '
+pairwise_eval_prompt: '
+
+  You are an expert evaluator simulating a thoughtful human reviewing practical work.
+
+
+  You will receive:
+
+  1. The original client brief request
+
+  2. Two candidate client briefs
+
+
+  Choose the one that is better overall for actual use.
+
+
+  Consider silently:
+
+  - Does it clearly identify exactly three positive trends and three negative trends influencing natural gas prices?
+
+  - Does it effectively and accurately discuss how supply, demand, weather, and policy interact?
+
+  - Is the tone professional, authoritative, and appropriate for a corporate client brief?
+
+  - Does it conclude with a strict 2–3 sentence summary outlining the investor/company outlook?
+
+  - Which one would a real client find more insightful, organized, and actionable?
+
+
+  Return only:
+
+  - option_1
+
+  or
+
+  - option_2
+
+
+  No reasoning. No extra text.
+
+  '
+pairwise:
+  n_evals_per_pair: 3
+  n_outer_runs: 1
+models:
+  assistants:
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: GPT-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+  automation:
+    gpt-3.5-turbo: GPT-3.5-Turbo
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: gpt-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+rubric_prompt: null

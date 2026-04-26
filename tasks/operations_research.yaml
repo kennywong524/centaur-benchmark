@@ -1,0 +1,144 @@
+slug: operations_research
+title: Operations research analyst memo
+default_worker: gpt-3.5-turbo
+default_evaluator: gpt-5
+replicates: 1
+scaffold_model_max_tokens: null
+automation_model_max_tokens: 4096
+automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
+remote_inference_visibility: private
+task_prompt: '
+
+  You are an Operations Research (OR) Analyst at a national logistics firm that manages inventory and delivery for hundreds of retail stores.
+
+
+  Delivery delays and rising fuel costs are worrying senior management. They’ve asked you to identify the key operational bottlenecks and propose data-driven strategies to improve overall efficiency.
+
+
+  Your deliverable: a concise internal report (300–400 words) for executives that:
+
+  1) Defines the data to collect and how you’d validate it (e.g., route times, vehicle utilization, demand forecasts).
+
+  2) Outlines an analytical/optimization framework to evaluate alternate delivery schedules or warehouse allocations (e.g., linear/mixed-integer programming, simulation).
+
+  3) Recommends at least two practical solutions that balance cost, service levels, and resource constraints. Show trade-offs and risks.
+
+  4) Specifies KPIs to monitor (e.g., on-time rate, cost per drop, utilization), and how you’d communicate results to management.
+
+
+  Write clearly, with headings and bullet points where useful. Do not assume external tools; keep it self-contained.
+
+  '
+scaffold_prompt_template: '
+
+  You are a helpful planning coach for professionals. Your goal is to help someone think clearly and systematically before performing a complex task.
+
+
+  Write a short, 250–300 word guidance message that provides a **three-phase workflow**:
+
+  1. Requirements Check — identify what''s being asked and key constraints.
+
+  2. Plan & Structure — outline a clear step-by-step plan or sections.
+
+  3. Draft → Self-Review → Finalize — encourage polish and reflection.
+
+
+  Keep tone professional and supportive. Do not solve the task—only guide.
+
+
+  Format cleanly in Markdown under the heading:
+
+  **Assistant Guidance: Three-Phase Workflow**
+
+  '
+worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+pairwise_task_context: '
+
+  You are an Operations Research (OR) Analyst at a national logistics firm that manages inventory and delivery for hundreds of retail stores.
+
+
+  Delivery delays and rising fuel costs are worrying senior management. They’ve asked you to identify the key operational bottlenecks and propose data-driven strategies to improve overall efficiency.
+
+
+  Your deliverable: a concise internal report (300–400 words) for executives that:
+
+  1) Defines the data to collect and how you’d validate it (e.g., route times, vehicle utilization, demand forecasts).
+
+  2) Outlines an analytical/optimization framework to evaluate alternate delivery schedules or warehouse allocations (e.g., linear/mixed-integer programming, simulation).
+
+  3) Recommends at least two practical solutions that balance cost, service levels, and resource constraints. Show trade-offs and risks.
+
+  4) Specifies KPIs to monitor (e.g., on-time rate, cost per drop, utilization), and how you’d communicate results to management.
+
+
+  Write clearly, with headings and bullet points where useful. Do not assume external tools; keep it self-contained.'
+pairwise_eval_prompt: '
+
+  You are an expert evaluator simulating a thoughtful human reviewing practical work.
+
+
+  You will receive:
+
+  1. The original task request (the OR Analyst report prompt)
+
+  2. Two candidate internal reports
+
+
+  Choose the one that is better overall for actual use.
+
+
+  Consider silently:
+
+  - Does it stay within the concise 300–400 word limit?
+
+  - Does it clearly define data collection/validation and an appropriate analytical framework (e.g., MIP, simulation)?
+
+  - Does it propose exactly two (or more) practical solutions, explicitly detailing the trade-offs and risks for each?
+
+  - Are relevant KPIs identified along with a clear communication plan for management?
+
+  - Is the tone professional, authoritative, and suitable for an executive audience?
+
+  - Does it effectively use headings and bullet points for readability?
+
+  - Which report feels like a more realistic, data-driven deliverable from an experienced OR Analyst?
+
+
+  Return only:
+
+  - option_1
+
+  or
+
+  - option_2
+
+
+  No reasoning. No extra text.
+
+  '
+pairwise:
+  n_evals_per_pair: 3
+  n_outer_runs: 1
+models:
+  assistants:
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: GPT-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+  automation:
+    gpt-3.5-turbo: GPT-3.5-Turbo
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: gpt-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+rubric_prompt: null

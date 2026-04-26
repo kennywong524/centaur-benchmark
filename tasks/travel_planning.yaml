@@ -1,0 +1,164 @@
+slug: travel_planning
+title: Travel agent itinerary
+default_worker: gpt-3.5-turbo
+default_evaluator: gpt-5
+replicates: 1
+scaffold_model_max_tokens: null
+automation_model_max_tokens: 4096
+automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
+remote_inference_visibility: private
+task_prompt: '
+
+  A customer tells you they want to take a 5-day trip to Tokyo next month with a $2,500 budget.
+
+
+  In one comprehensive response, do ALL of the following:
+
+
+  (1) Ask any missing clarifying questions needed to finalize plans.
+
+
+  (2) Compute estimated costs for flights, hotels, local transportation, and activities.
+
+
+  (3) Provide 2–3 hotel options with nightly rates.
+
+
+  (4) Suggest a transportation plan (airline choices, rail passes, transit tips).
+
+
+  (5) Provide brochures-style info: local customs, key points of interest, cultural etiquette, necessary regulations, passport/visa notes.
+
+
+  (6) Create a detailed 5-day itinerary with morning/afternoon/evening activities.
+
+
+  (7) Offer at least one promotional package or bundled tour option.
+
+
+  (8) Present a clear cost breakdown and confirm whether the trip fits the budget.
+
+
+  Respond exactly as a professional travel agent would. Be thorough, professional, and customer-focused. Provide realistic and practical recommendations that fit within the customer''s budget.
+
+  '
+scaffold_prompt_template: '
+
+  You are a planning coach helping another model prepare to complete a task.
+
+
+  Your role is to provide PROCESS guidance only, not task content.
+
+
+  Write a short 200–250 word guidance message that gives a three-phase workflow:
+
+
+  1. Requirements Check
+
+  - identify the deliverable, audience, tone, and constraints
+
+  - note what a strong answer must include
+
+
+  2. Plan & Structure
+
+  - suggest a general response structure or sequence of sections
+
+  - suggest how to balance completeness, clarity, and tone
+
+
+  3. Draft -> Self-Review -> Finalize
+
+  - suggest a brief checklist for revising the answer before submission
+
+
+  Important rules:
+
+  - Do NOT solve the task
+
+  - Do NOT provide topic-specific content, examples, or recommendations
+
+  - Do NOT write sentences that could be copied into the final answer
+
+  - Do NOT restate the task as a completed outline with filled-in content
+
+  - Keep the guidance generic and process-focused
+
+
+  Format in Markdown under the heading:
+
+  **Assistant Guidance: Three-Phase Workflow**
+
+  '
+worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+pairwise_task_context: '
+
+  A customer tells you they want to take a 5-day trip to Tokyo next month with a $2,500 budget.
+
+
+  In one comprehensive response, do ALL of the following:
+
+
+  (1) Ask any missing clarifying questions needed to finalize plans.
+
+  (2) Compute estimated costs for flights, hotels, local transportation, and activities.
+
+  (3) Provide 2–3 hotel options with nightly rates.
+
+  (4) Suggest a transportation plan (airline choices, rail passes, transit tips).
+
+  (5) Provide brochures-style info: local customs, key points of interest, cultural etiquette, necessary regulations, passport/visa notes.
+
+  (6) Create a detailed 5-day itinerary with morning/afternoon/evening activities.
+
+  (7) Offer at least one promotional package or bundled tour option.
+
+  (8) Present a clear cost breakdown and confirm whether the trip fits the budget.
+
+
+  Respond exactly as a professional travel agent would.
+
+  '
+pairwise_eval_prompt: '
+
+  You are an expert evaluator simulating a thoughtful human reviewing practical work.
+
+
+  Choose the better response overall.
+
+
+  Return only:
+
+  - option_1
+
+  or
+
+  - option_2
+
+  '
+pairwise:
+  n_evals_per_pair: 3
+  n_outer_runs: 5
+models:
+  assistants:
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: GPT-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+  automation:
+    gpt-3.5-turbo: GPT-3.5-Turbo
+    gpt-4.1: GPT-4.1
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+    o4-mini-2025-04-16: GPT-O4-Mini
+    o3-mini-2025-01-31: GPT-O3-Mini
+    openai/gpt-oss-120b: GPT-OSS-120B
+    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
+    gpt-5.4: gpt-5.4
+    claude-opus-4-6: Claude-Opus-4.6
+    gemini-3.1-pro-preview: Gemini-3.1-Pro
+rubric_prompt: null
