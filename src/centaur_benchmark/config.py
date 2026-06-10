@@ -25,6 +25,7 @@ class TaskConfig:
     replicates: int = 3
     assistants: dict[str, str] = field(default_factory=dict)
     automation_models: dict[str, str] | None = None
+    evaluator_models: dict[str, str] = field(default_factory=dict)
     scaffold_model_max_tokens: int | None = None
     pairwise_n_evals: int = 3
     pairwise_n_outer_runs: int = 1
@@ -53,6 +54,7 @@ class TaskConfig:
             replicates=int(data.get("replicates", 3)),
             assistants=dict(assistants),
             automation_models=dict(automation) if automation else None,
+            evaluator_models=dict(models.get("evaluators") or {}),
             scaffold_model_max_tokens=data.get("scaffold_model_max_tokens"),
             pairwise_n_evals=int(data.get("pairwise", {}).get("n_evals_per_pair", 3)),
             pairwise_n_outer_runs=int(data.get("pairwise", {}).get("n_outer_runs", 1)),

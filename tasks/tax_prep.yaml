@@ -1,116 +1,65 @@
 slug: tax_prep
 title: Tax preparation discrepancy spotting
 default_worker: gpt-3.5-turbo
-default_evaluator: gpt-5
+default_evaluator: gpt-4.1
 replicates: 1
-scaffold_model_max_tokens: null
-automation_model_max_tokens: 4096
+scaffold_model_max_tokens: 6000
+automation_model_max_tokens: 6000
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
-task_prompt: '
-
-  A client brings you their partially completed federal and state tax returns.
+task_prompt: 'Assume tax year 2025 and state: California. A client brings partially completed federal and California returns. Review the provided data, identify discrepancies, explain the applicable federal/state rules, recalculate key figures using stated assumptions, and explain what forms/schedules need correction. If information is insufficient for an exact tax liability, state what is missing and provide a reasonable estimate or calculation framework.
 
 
-  They provide the following information and documents:
+  Client-provided facts:
+
+  - W-2 wages: $68,500.
+
+  - Freelance/contract income: $4,200 reported on Form 1099-NEC.
+
+  - Business expenses for freelance work: not yet provided.
+
+  - Mortgage interest paid on Form 1098: $9,800.
+
+  - California property tax paid: $4,800.
+
+  - California income tax withheld: $2,900.
+
+  - One dependent listed: a 22-year-old full-time college student who lived with the client for 9 months. The student earned $18,000 from a part-time job; the client says the student used most earnings for savings and personal expenses, and the client paid more than half of household costs and more than half of the student''s total support.
+
+  - Filing status selected by the client: Single.
 
 
-  W-2 income: $68,500
+  Pre-filled portions of the client''s federal and California returns:
+
+  - Form 1040 includes W-2 wages of $68,500.
+
+  - Form 1040 includes freelance income of $2,400 instead of the $4,200 shown on the 1099-NEC.
+
+  - No Schedule C has been prepared.
+
+  - No Schedule SE has been prepared, and no self-employment tax appears on Schedule 2.
+
+  - Form 1040 Line 12 shows a deduction of $9,800 labeled as the standard deduction.
+
+  - No Schedule A has been prepared even though mortgage interest, property tax, and state tax withholding are available.
+
+  - The dependent is claimed as qualifying for the Child Tax Credit.
+
+  - The return does not analyze whether Head of Household filing status is available.
+
+  - California Form 540 shows federal AGI carried over as $62,000.
+
+  - California tax was computed using the uncorrected federal income figures.
 
 
-  Freelance/contract income: $4,200 reported on 1099-NEC
-
-
-  Mortgage interest paid: $9,800
-
-
-  One dependent listed: a 22-year-old full-time college student who earned $18,000 last year
-
-
-  Filing status they selected: Single
-
-
-  Pre-filled portions of their Form 1040 and state return:
-
-
-  Form 1040 already has their freelance income entered as $2,400
-
-
-  A standard deduction amount is already typed into Line 12
-
-
-  Their state tax form shows a computed tax liability that does not match the AGI shown
-
-
-  All calculations were done by the client before coming to you
-
-
-  Your task: In one comprehensive response, behave exactly like a professional tax preparer and do ALL of the following:
-
-
-  1. Explain Applicable Federal & State Tax Rules
-
-
-  Explain the federal and state tax laws relevant to:
-
-  - reporting self-employment income
-
-  - deductibility of mortgage interest
-
-  - who qualifies as a dependent under IRS rules
-
-  - the correct standard deduction for their filing status
-
-
-  2. Review Their Forms and Check for Accuracy
-
-
-  Examine all numbers they have provided
-
-  - Verify arithmetic and data entry
-
-  - Spot and explain any errors, inconsistencies, or misreported amounts
-
-  - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax
-
-  (Do NOT assume their entries are correct. You must detect mistakes yourself.)
-
-
-  3. Provide Guidance for Correct Form Completion
-
-
-  Identify which forms and schedules they actually need (e.g., Schedule C, Schedule SE, Schedule A)
-
-  - Tell them where each item should be entered
-
-  - Explain how to correct any issues you spotted
-
-  - Clarify whether they should itemize or take the standard deduction
-
-
-  4. Answer Client Questions and Give Preventative Advice
-
-
-  Provide personalized guidance, such as:
-
-  - whether they can legally claim the dependent
-
-  - why federal and state figures may differ
-
-  - how to avoid similar issues next year
-
-  - recommendations for recordkeeping, estimated tax payments, etc.
-
-  '
-scaffold_prompt_template: '
-
-  You are a planning coach helping another model prepare to complete a task.
+  All calculations were done by the client before coming to you. Do not assume the pre-filled entries are correct.'
+scaffold_prompt_template: 'You are a planning coach helping another model prepare to complete a task.
 
 
   Your role is to provide PROCESS guidance only, not task content.
 
 
-  Write a short 200–250 word guidance message that gives a three-phase workflow:
+  Write a short 200-250 word guidance message that gives a three-phase workflow:
 
 
   1. Requirements Check
@@ -147,131 +96,139 @@ scaffold_prompt_template: '
 
   Format in Markdown under the heading:
 
-  **Assistant Guidance: Three-Phase Workflow**
-
-  '
+  **Assistant Guidance: Three-Phase Workflow**'
 worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
-pairwise_task_context: '
-
-  A client brings you their partially completed federal and state tax returns.
+pairwise_task_context: 'Assume tax year 2025 and state: California. A client brings partially completed federal and California returns. Review the provided data, identify discrepancies, explain the applicable federal/state rules, recalculate key figures using stated assumptions, and explain what forms/schedules need correction. If information is insufficient for an exact tax liability, state what is missing and provide a reasonable estimate or calculation framework.
 
 
-  They provide the following information and documents:
+  Client-provided facts:
+
+  - W-2 wages: $68,500.
+
+  - Freelance/contract income: $4,200 reported on Form 1099-NEC.
+
+  - Business expenses for freelance work: not yet provided.
+
+  - Mortgage interest paid on Form 1098: $9,800.
+
+  - California property tax paid: $4,800.
+
+  - California income tax withheld: $2,900.
+
+  - One dependent listed: a 22-year-old full-time college student who lived with the client for 9 months. The student earned $18,000 from a part-time job; the client says the student used most earnings for savings and personal expenses, and the client paid more than half of household costs and more than half of the student''s total support.
+
+  - Filing status selected by the client: Single.
 
 
-  W-2 income: $68,500
+  Pre-filled portions of the client''s federal and California returns:
+
+  - Form 1040 includes W-2 wages of $68,500.
+
+  - Form 1040 includes freelance income of $2,400 instead of the $4,200 shown on the 1099-NEC.
+
+  - No Schedule C has been prepared.
+
+  - No Schedule SE has been prepared, and no self-employment tax appears on Schedule 2.
+
+  - Form 1040 Line 12 shows a deduction of $9,800 labeled as the standard deduction.
+
+  - No Schedule A has been prepared even though mortgage interest, property tax, and state tax withholding are available.
+
+  - The dependent is claimed as qualifying for the Child Tax Credit.
+
+  - The return does not analyze whether Head of Household filing status is available.
+
+  - California Form 540 shows federal AGI carried over as $62,000.
+
+  - California tax was computed using the uncorrected federal income figures.
 
 
-  Freelance/contract income: $4,200 reported on 1099-NEC
+  All calculations were done by the client before coming to you. Do not assume the pre-filled entries are correct.'
+pairwise_eval_prompt: 'You are an expert evaluator comparing two candidate responses to the same task.
 
 
-  Mortgage interest paid: $9,800
+  First, score each option from 1-10 on each rubric dimension below. A score of 1 means the response fails that dimension; 10 means it satisfies it excellently. Use the task-specific dimensions as primary criteria and the general dimensions as tie-breakers.
 
 
-  One dependent listed: a 22-year-old full-time college student who earned $18,000 last year
+  Primary rule: prefer the response that would be more useful, accurate, complete, and reliable for the intended user. Do not reward verbosity unless it improves usefulness.
 
 
-  Filing status they selected: Single
+  Task-specific rubric:
+
+  Score each of the 6 task-specific dimensions out of 10, with 1 being the lowest and 10 being the highest:
 
 
-  Pre-filled portions of their Form 1040 and state return:
+  1. Rule accuracy: respects federal and California tax rules and does not invent loopholes for self-employment income, dependent rules, mortgage interest, standard/itemized deductions, filing status, and state/federal differences.
+
+  2. Error detection: there are 10 expected discrepancies/issues. Score according to how many are detected, with 10 issues detected = 10; 2-9 issues detected = that number; 0 or 1 issue detected = 1. Expected issues: (a) catches the $2,400 vs. $4,200 freelance mismatch; (b) identifies missing Schedule C; (c) identifies missing Schedule SE/self-employment tax; (d) identifies that $9,800 mortgage interest is not the standard deduction; (e) identifies missing Schedule A/itemization comparison; (f) identifies improper Child Tax Credit treatment for a 22-year-old; (g) analyzes possible Credit for Other Dependents instead; (h) analyzes whether Single should be changed to Head of Household if the dependent and household-cost facts qualify; (i) catches California AGI carryover inconsistency; (j) catches California tax computed from uncorrected federal figures.
+
+  3. Calculation quality: provides income, AGI, deductions, taxable income, self-employment tax/tax estimates where possible and clearly labels assumptions or missing information.
+
+  4. Form guidance: provides clear, easy-to-follow guidance on Schedule C, Schedule SE, Schedule A vs. standard deduction, Form 1040 placement, Schedule 2, dependent credits, filing status, and California Form 540 corrections.
+
+  5. Dependent analysis: handles the 22-year-old full-time student with $18,000 income cautiously and correctly, including support, residency, student status, age, filing status implications, and dependent credit implications.
+
+  6. Clear communication: translates dense tax rules into plain English so the client understands what they are paying, what must be corrected, and why.
 
 
-  Form 1040 already has their freelance income entered as $2,400
+  General rubric:
+
+  1. Instruction following: satisfies all explicit requirements and constraints.
+
+  2. Accuracy and specificity: avoids false claims, vague filler, and unsupported assumptions.
+
+  3. Practical usefulness: gives concrete, usable guidance or outputs.
+
+  4. Organization and readability: clear structure, easy to scan, appropriate formatting.
+
+  5. Tone and audience fit: matches the role, user need, and professional context.
 
 
-  A standard deduction amount is already typed into Line 12
+  After scoring, choose the better option overall based on the average score across all rubric dimensions for both options. If both are flawed, choose the one with fewer serious errors. If one response violates a hard safety, legal, medical, or dietary constraint, strongly prefer the other response unless it has an equally serious issue.
 
 
-  Their state tax form shows a computed tax liability that does not match the AGI shown
-
-
-  All calculations were done by the client before coming to you
-
-
-  Your task: In one comprehensive response, behave exactly like a professional tax preparer and do ALL of the following:
-
-
-  1. Explain Applicable Federal & State Tax Rules
-
-
-  Explain the federal and state tax laws relevant to:
-
-  - reporting self-employment income
-
-  - deductibility of mortgage interest
-
-  - who qualifies as a dependent under IRS rules
-
-  - the correct standard deduction for their filing status
-
-
-  2. Review Their Forms and Check for Accuracy
-
-
-  Examine all numbers they have provided
-
-  - Verify arithmetic and data entry
-
-  - Spot and explain any errors, inconsistencies, or misreported amounts
-
-  - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax
-
-  (Do NOT assume their entries are correct. You must detect mistakes yourself.)
-
-
-  3. Provide Guidance for Correct Form Completion
-
-
-  Identify which forms and schedules they actually need (e.g., Schedule C, Schedule SE, Schedule A)
-
-  - Tell them where each item should be entered
-
-  - Explain how to correct any issues you spotted
-
-  - Clarify whether they should itemize or take the standard deduction
-
-
-  4. Answer Client Questions and Give Preventative Advice
-
-
-  Provide personalized guidance, such as:
-
-  - whether they can legally claim the dependent
-
-  - why federal and state figures may differ
-
-  - how to avoid similar issues next year
-
-  - recommendations for recordkeeping, estimated tax payments, etc.
-
-  '
-pairwise_eval_prompt: "\nYou are an expert evaluator simulating a thoughtful human reviewing practical work.\n\nThe client provided:\n- W-2 income: $68,500\n- Freelance/contract income: $4,200 reported on 1099-NEC\n- Mortgage interest paid: $9,800\n- One dependent listed: a 22-year-old full-time college student who earned $18,000 last year\n- Filing status: Single\n- Pre-filled Form 1040 with errors (freelance income shown as $2,400 instead of $4,200, standard deduction on Line 12, state tax mismatch)\n\nThe tax preparer was required to do ALL of the following in one comprehensive response:\n\n(1) Explain applicable federal & state tax rules for:\n    - Reporting self-employment income\n    - Deductibility of mortgage interest\n    - Who qualifies as a dependent under IRS rules\n    - Correct standard deduction for their filing status\n\n(2) Review forms and check for accuracy:\n    - Verify arithmetic and data entry\n    - Spot and explain errors, inconsistencies, or misreported amounts\n\
-  \    - Recalculate income, AGI, deductions, taxable income, and estimated federal & state tax\n\n(3) Provide guidance for correct form completion:\n    - Identify which forms and schedules they need (Schedule C, Schedule SE, Schedule A, etc.)\n    - Tell them where each item should be entered\n    - Explain how to correct issues\n    - Clarify whether they should itemize or take the standard deduction\n\n(4) Answer client questions and give preventative advice:\n    - Whether they can legally claim the dependent\n    - Why federal and state figures may differ\n    - How to avoid similar issues next year\n    - Recommendations for recordkeeping, estimated tax payments, etc.\n\nYou will receive:\n1. The original tax preparation request and client data\n2. Two candidate tax preparer responses\n\nChoose the one that is better overall for actual use.\n\nConsider silently:\n- Does it accurately explain the relevant tax rules (self-employment reporting, mortgage interest deductibility, standard\
-  \ deduction, and the specific nuances of claiming a 22-year-old student with $18k income)?\n- Does it successfully catch the errors in the pre-filled 1040 (e.g., the $2,400 vs. $4,200 discrepancy) and recalculate the correct figures?\n- Does it provide explicit, step-by-step guidance on which forms to use (Schedule C, Schedule SE, Schedule A vs. Standard Deduction) and where to enter the data?\n- Does it definitively advise whether the client should itemize or take the standard deduction based on the $9,800 mortgage interest?\n- Does it offer sound preventative advice (recordkeeping, estimated taxes) in a highly professional, trustworthy, and clear tone?\n- Which response provides the most accurate, actionable, and comprehensive guidance for the client to confidently correct and file their taxes?\n\nReturn only:\n- option_1\nor\n- option_2\n\nNo reasoning. No extra text.\n"
+  Return valid JSON only. Include the final choice, scores for each rubric dimension for both options, the average score for both options, and a short rationale grounded in the rubric.'
 pairwise:
   n_evals_per_pair: 3
   n_outer_runs: 5
 models:
   assistants:
     gpt-4.1: GPT-4.1
+    gpt-5-mini-2025-08-07: GPT-5-Mini
     deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
     o4-mini-2025-04-16: GPT-O4-Mini
     o3-mini-2025-01-31: GPT-O3-Mini
     openai/gpt-oss-120b: GPT-OSS-120B
-    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
-    gpt-5.4: GPT-5.4
-    claude-opus-4-6: Claude-Opus-4.6
-    gemini-3.1-pro-preview: Gemini-3.1-Pro
+    anthropic/claude-sonnet-4-6: Claude-Sonnet-4.6
+    anthropic/claude-opus-4-8: Claude-Opus-4.8
+    google/gemini-3.1-pro: Gemini-3.1-Pro
   automation:
     gpt-3.5-turbo: GPT-3.5-Turbo
     gpt-4.1: GPT-4.1
+    gpt-5-mini-2025-08-07: GPT-5-Mini
     deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
     o4-mini-2025-04-16: GPT-O4-Mini
     o3-mini-2025-01-31: GPT-O3-Mini
     openai/gpt-oss-120b: GPT-OSS-120B
-    anthropic.claude-3-5-sonnet-20240620-v1:0: Claude-3.5-Sonnet
-    gpt-5.4: gpt-5.4
-    claude-opus-4-6: Claude-Opus-4.6
-    gemini-3.1-pro-preview: Gemini-3.1-Pro
-rubric_prompt: null
+    anthropic/claude-sonnet-4-6: Claude-Sonnet-4.6
+    anthropic/claude-opus-4-8: Claude-Opus-4.8
+    google/gemini-3.1-pro: Gemini-3.1-Pro
+  evaluators:
+    gpt-4.1: GPT-4.1
+    anthropic/claude-opus-4-8: Claude-Opus-4.8
+    google/gemini-3.1-pro: Gemini-3.1-Pro
+    deepseek-ai/DeepSeek-V3.1: DeepSeek-V3.1
+rubric_prompt: 'Score each of the 6 task-specific dimensions out of 10, with 1 being the lowest and 10 being the highest:
+
+
+  1. Rule accuracy: respects federal and California tax rules and does not invent loopholes for self-employment income, dependent rules, mortgage interest, standard/itemized deductions, filing status, and state/federal differences.
+
+  2. Error detection: there are 10 expected discrepancies/issues. Score according to how many are detected, with 10 issues detected = 10; 2-9 issues detected = that number; 0 or 1 issue detected = 1. Expected issues: (a) catches the $2,400 vs. $4,200 freelance mismatch; (b) identifies missing Schedule C; (c) identifies missing Schedule SE/self-employment tax; (d) identifies that $9,800 mortgage interest is not the standard deduction; (e) identifies missing Schedule A/itemization comparison; (f) identifies improper Child Tax Credit treatment for a 22-year-old; (g) analyzes possible Credit for Other Dependents instead; (h) analyzes whether Single should be changed to Head of Household if the dependent and household-cost facts qualify; (i) catches California AGI carryover inconsistency; (j) catches California tax computed from uncorrected federal figures.
+
+  3. Calculation quality: provides income, AGI, deductions, taxable income, self-employment tax/tax estimates where possible and clearly labels assumptions or missing information.
+
+  4. Form guidance: provides clear, easy-to-follow guidance on Schedule C, Schedule SE, Schedule A vs. standard deduction, Form 1040 placement, Schedule 2, dependent credits, filing status, and California Form 540 corrections.
+
+  5. Dependent analysis: handles the 22-year-old full-time student with $18,000 income cautiously and correctly, including support, residency, student status, age, filing status implications, and dependent credit implications.
+
+  6. Clear communication: translates dense tax rules into plain English so the client understands what they are paying, what must be corrected, and why.'

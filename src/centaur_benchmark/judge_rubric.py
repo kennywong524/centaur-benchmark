@@ -7,6 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from centaur_benchmark.config import TaskConfig
+from centaur_benchmark.edsl_runtime import edsl_run_kwargs
 
 _RUBRIC_Q = """
 Task / evaluation context:
@@ -69,7 +70,15 @@ def grade_outputs_rubric(
         survey.by(scenarios)
         .by(agent)
         .by(Model(eval_model))
-        .run(n=1, progress_bar=True, verbose=True, print_exceptions=True)
+        .run(
+            **edsl_run_kwargs(
+                description=f"centaur-rubric-{task.slug}-{subset}",
+                visibility=task.remote_inference_visibility,
+                progress_bar=True,
+                verbose=True,
+                n=1,
+            ),
+        )
     )
     out = results.select("scenario.row_id", "answer.score").to_pandas()
     out.columns = ["row_id", "rubric_score_raw"]

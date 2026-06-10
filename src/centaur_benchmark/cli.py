@@ -95,7 +95,12 @@ def cmd_run(args: argparse.Namespace) -> None:
 
 
 def cmd_judge(args: argparse.Namespace) -> None:
-    from centaur_benchmark.judge_pairwise import judge_augmentation, judge_automation
+    from centaur_benchmark.judge_pairwise import (
+        judge_augmentation,
+        judge_augmentation_panel,
+        judge_automation,
+        judge_automation_panel,
+    )
 
     task_path = _resolve_task_path(args.task)
     task = load_task(task_path)
@@ -104,25 +109,50 @@ def cmd_judge(args: argparse.Namespace) -> None:
     subset = args.subset
     aug_csv = root / "augmentation" / "outputs.csv"
     auto_csv = root / "automation" / "outputs.csv"
+    eval_models = None
+    if args.eval_models:
+        wanted = [x.strip() for x in args.eval_models.split(",") if x.strip()]
+        source = task.evaluator_models or {task.default_evaluator: task.default_evaluator}
+        eval_models = {k: source.get(k, k) for k in wanted}
+    elif args.panel:
+        eval_models = task.evaluator_models or {task.default_evaluator: task.default_evaluator}
 
     if subset in ("augmentation", "both"):
         if not aug_csv.exists():
             if subset == "augmentation":
                 raise FileNotFoundError(f"Missing {aug_csv}")
         else:
-            judge_augmentation(
-                task,
-                root,
-                eval_model=args.eval_model,
-                n_evals=args.n_evals,
-                n_outer_runs=args.n_outer_runs,
-            )
+            if eval_models:
+                judge_augmentation_panel(
+                    task,
+                    root,
+                    eval_models=eval_models,
+                    n_evals=args.n_evals,
+                    exclude_self_family=not args.include_self_family,
+                )
+            else:
+                judge_augmentation(
+                    task,
+                    root,
+                    eval_model=args.eval_model,
+                    n_evals=args.n_evals,
+                    n_outer_runs=args.n_outer_runs,
+                )
     if subset in ("automation", "both"):
         if not auto_csv.exists():
             if subset == "automation":
                 raise FileNotFoundError(f"Missing {auto_csv}")
         else:
-            judge_automation(task, root, eval_model=args.eval_model, n_evals=args.n_evals)
+            if eval_models:
+                judge_automation_panel(
+                    task,
+                    root,
+                    eval_models=eval_models,
+                    n_evals=args.n_evals,
+                    exclude_self_family=not args.include_self_family,
+                )
+            else:
+                judge_automation(task, root, eval_model=args.eval_model, n_evals=args.n_evals)
 
 
 def cmd_rubric(args: argparse.Namespace) -> None:
@@ -147,6 +177,17 @@ def cmd_summarize(args: argparse.Namespace) -> None:
         args.run,
         dest=Path(args.to) if args.to else None,
         plot=not args.no_plot,
+    )
+
+
+def cmd_summarize_all(args: argparse.Namespace) -> None:
+    from centaur_benchmark.summarize import export_cross_task_matrices
+
+    tasks = [x.strip() for x in args.tasks.split(",") if x.strip()] if args.tasks else None
+    export_cross_task_matrices(
+        args.run,
+        task_slugs=tasks,
+        dest=Path(args.to) if args.to else None,
     )
 
 
@@ -189,6 +230,17 @@ def build_parser() -> argparse.ArgumentParser:
     pj.add_argument("--run", required=True, help="Run id folder under results/<task>/")
     pj.add_argument("--subset", choices=["augmentation", "automation", "both"], default="both")
     pj.add_argument("--eval-model", default=None)
+    pj.add_argument(
+        "--eval-models",
+        default=None,
+        help="Comma-separated evaluator model ids for panel judging (overrides --eval-model).",
+    )
+    pj.add_argument("--panel", action="store_true", help="Use all evaluator models configured in the task YAML.")
+    pj.add_argument(
+        "--include-self-family",
+        action="store_true",
+        help="Do not exclude same-family judge/output comparisons in panel mode.",
+    )
     pj.add_argument("--n-evals", type=int, default=None, help="Pairwise repeats per pair")
     pj.add_argument(
         "--n-outer-runs",
@@ -211,6 +263,12 @@ def build_parser() -> argparse.ArgumentParser:
     ps.add_argument("--to", default=None, help="Destination directory (default: artifacts/<task>/<run>)")
     ps.add_argument("--no-plot", action="store_true")
     ps.set_defaults(func=cmd_summarize)
+
+    psa = sub.add_parser("summarize-all", help="Build cross-task model matrices for a shared run id.")
+    psa.add_argument("--run", required=True, help="Run id shared across results/<task>/<run>/ folders")
+    psa.add_argument("--tasks", default=None, help="Comma-separated task slugs (default: all task YAMLs)")
+    psa.add_argument("--to", default=None, help="Destination directory (default: artifacts/cross_task/<run>)")
+    psa.set_defaults(func=cmd_summarize_all)
 
     return p
 
