@@ -1,5 +1,19 @@
-# Local experiment outputs (large / private)
-results/
+# Local experiment outputs (canonical v2 run is force-tracked; see results/README.md)
+results/*
+!results/README.md
+!results/audit_20260609_stable_frontier_v2.json
+!results/judging_notes_20260609_stable_frontier_v2.md
+!results/judge_validation_20260609_stable_frontier_v2.json
+!results/logs/
+!results/counselling/
+!results/market_trends/
+!results/meal_plan/
+!results/operations_research/
+!results/tax_prep/
+!results/travel_planning/
+!results/tutoring/
+results/*/*
+!results/*/20260609_stable_frontier_v2/
 
 # Python
 __pycache__/

@@ -41,6 +41,12 @@ Validation before summarize:
 
 Expect `ready_for_summarize=true` and 14 complete task/mode folders.
 
+## Drive handoff bundle
+
+[`drive_handoff/20260609_stable_frontier_v2/`](drive_handoff/20260609_stable_frontier_v2/) contains an xlsx workbook, full zip of raw results, navigation HTML, and judging notes for sharing outside the repo.
+
+Raw per-task CSVs and scaffolds live under [`results/`](../results/) (same run id).
+
 ## Per-task artifacts (CLI)
 
 For a single task via the CLI:

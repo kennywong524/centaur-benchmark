@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Centaur Benchmark Results Navigation</title>
+<style>body{font-family:Arial,sans-serif;line-height:1.45;max-width:900px;margin:40px auto;color:#1f2937} table{border-collapse:collapse;width:100%;margin:12px 0 24px} td,th{border:1px solid #ddd;padding:6px 8px} th{background:#f3f4f6} code{background:#f3f4f6;padding:1px 4px}</style></head>
+<body>
+<h1>Centaur Benchmark Results Navigation</h1>
+<p><b>Run:</b> <code>20260609_stable_frontier_v2</code></p>
+<p>This handoff summarizes the completed judging run. The full local results remain in <code>results/&lt;task&gt;/20260609_stable_frontier_v2/{augmentation,automation}</code>. The cross-task summary artifacts are in <code>artifacts/cross_task/20260609_stable_frontier_v2/</code>.</p>
+<h2>What Is Complete</h2>
+<p>All 14 task/mode folders completed judging: seven tasks in automation mode and seven tasks in augmentation mode. Aggregate rankings use GPT-4.1, Claude-Opus-4.8, and DeepSeek-V3.1. Gemini-3.1-Pro was excluded from every aggregate leaderboard because its rubric JSON parse pass rate was below the 90% threshold.</p>
+<h2>How To Navigate The Workbook</h2>
+<ul>
+<li><b>README_index</b>: map of each task/mode to its local source files and judge inclusion notes.</li>
+<li><b>rank_aug_aggregate</b> and <b>rank_auto_aggregate</b>: main paper-facing model ranks by task. Lower rank is better.</li>
+<li><b>win_aug_aggregate</b> and <b>win_auto_aggregate</b>: aggregate pairwise win rates by task. Higher is better.</li>
+<li><b>all_leaderboards</b>: long-format cross-task table used to build aggregate heatmaps.</li>
+<li><b>leaderboards_by_judge</b>: same as above but separated by judge.</li>
+<li><b>per_task_aggregate</b>: each task/mode aggregate leaderboard stacked together.</li>
+<li><b>rubric_scores_summary</b>: dimension-level scores by judge, model, task, and mode.</li>
+</ul>
+<h2>Headline Reading</h2>
+<p>The framework produces model profiles rather than one universal leaderboard. Automation and augmentation rankings diverge, which supports the paper's central claim that direct task completion and scaffolding ability are empirically distinct capabilities.</p>
+<h3>Average Augmentation Ranks</h3>
+<table><tr><th>Model/condition</th><th>Average rank, lower better</th></tr><tr><td>GPT-4.1</td><td>3.21</td></tr><tr><td>DeepSeek-V3.1</td><td>3.36</td></tr><tr><td>Claude-Opus-4.8</td><td>4.00</td></tr><tr><td>GPT-O4-Mini</td><td>4.00</td></tr><tr><td>GPT-OSS-120B</td><td>4.43</td></tr><tr><td>GPT-5-Mini</td><td>4.86</td></tr><tr><td>Claude-Sonnet-4.6</td><td>7.14</td></tr><tr><td>GPT-O3-Mini</td><td>7.57</td></tr><tr><td>Gemini-3.1-Pro</td><td>7.93</td></tr><tr><td>plain</td><td>8.50</td></tr></table>
+<h3>Average Automation Ranks</h3>
+<table><tr><th>Model</th><th>Average rank, lower better</th></tr><tr><td>DeepSeek-V3.1</td><td>2.43</td></tr><tr><td>GPT-OSS-120B</td><td>3.71</td></tr><tr><td>Claude-Sonnet-4.6</td><td>4.00</td></tr><tr><td>GPT-O4-Mini</td><td>4.86</td></tr><tr><td>GPT-5-Mini</td><td>5.29</td></tr><tr><td>Claude-Opus-4.8</td><td>5.43</td></tr><tr><td>Gemini-3.1-Pro</td><td>5.86</td></tr><tr><td>GPT-4.1</td><td>6.00</td></tr><tr><td>GPT-O3-Mini</td><td>7.57</td></tr><tr><td>GPT-3.5-Turbo</td><td>9.86</td></tr></table>
+<h2>What To Make Of It</h2>
+<ul>
+<li><b>Augmentation:</b> DeepSeek-V3.1, GPT-4.1, Claude-Opus-4.8, and GPT-O4-Mini are the strongest average performers, but task-level winners vary a lot.</li>
+<li><b>Automation:</b> DeepSeek-V3.1 has the strongest average rank in this run, followed by GPT-OSS-120B and Claude-Sonnet-4.6. GPT-3.5-Turbo is consistently weak as a direct automator, which is expected for the baseline worker.</li>
+<li><b>Task specificity matters:</b> model rankings move substantially across counseling, market trends, menu planning, OR, tax, travel, and tutoring. This is exactly why the results should be presented as a taxonomy/profile rather than a single score.</li>
+<li><b>Judge caveat:</b> these are n_evals=1 panel results with Gemini excluded for parse reliability. They are good for analysis and paper drafting, but a future robustness run should repeat pairwise judging and/or repair Gemini parsing.</li>
+</ul>
+<h2>Local File Map</h2>
+<p>Raw outputs, scaffolds, pairwise judgments, rubrics, validation reports, and leaderboards are stored under each per-task results folder. The most important per-task file is <code>leaderboard_aggregate.csv</code>; the most important cross-task files are the four aggregate rank/win-rate matrices.</p>
+</body></html>

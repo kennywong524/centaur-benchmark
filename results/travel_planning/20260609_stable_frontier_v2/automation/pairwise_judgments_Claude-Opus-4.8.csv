@@ -1,0 +1,897 @@
+left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
+1,0,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 follows the prompt's explicit structure (clarifying questions and assumptions BEFORE the plan), labels all costs as estimates, and includes a full budget covering flights/lodging/transport with a contingency buffer. Option 2 omits flights from its daily-but-incomplete totals, mislabels few estimates, places clarifying questions after the plan, and never reconciles to the $2,500 budget including airfare."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 4.8
+}",option_1,"Option 1 follows the prompt's explicit structure (clarifying questions and assumptions BEFORE the plan), labels all costs as estimates, and includes a full budget covering flights/lodging/transport with a contingency buffer. Option 2 omits flights from its daily-but-incomplete totals, mislabels few estimates, places clarifying questions after the plan, and never reconciles to the $2,500 budget including airfare.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 4, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 3}",8.3,4.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,0,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""The original request explicitly asked for assumptions AND clarifying questions BEFORE a provisional plan, with realistic estimates labeled as such and a budget-aware plan tied to the $2,500 cap. Option 1 follows this sequence, labels estimates, and builds a full budget that fits within $2,500 with a buffer; Option 2 jumps to a plan, omits major required costs (return airfare, airport transfers, daily transit, insurance), and its $1,645 total is misleadingly incomplete relative to the stated budget."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.4
+}",option_1,"The original request explicitly asked for assumptions AND clarifying questions BEFORE a provisional plan, with realistic estimates labeled as such and a budget-aware plan tied to the $2,500 cap. Option 1 follows this sequence, labels estimates, and builds a full budget that fits within $2,500 with a buffer; Option 2 jumps to a plan, omits major required costs (return airfare, airport transfers, daily transit, insurance), and its $1,645 total is misleadingly incomplete relative to the stated budget.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 4}",8.0,5.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 better follows the explicit instructions: it places clarifying questions and assumptions BEFORE the plan, fits the full $2,500 budget realistically, and uses a more accurate flight estimate (~$1,100 vs the unrealistically low $800). Option 1 leaves ~$855 unexplained, underestimates the flight, and lacks airport transfers, making it less budget-aware and less accurate despite a cleaner day-by-day flow."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 7.9
+}",option_2,"Option 2 better follows the explicit instructions: it places clarifying questions and assumptions BEFORE the plan, fits the full $2,500 budget realistically, and uses a more accurate flight estimate (~$1,100 vs the unrealistically low $800). Option 1 leaves ~$855 unexplained, underestimates the flight, and lacks airport transfers, making it less budget-aware and less accurate despite a cleaner day-by-day flow.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",5.9,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,4,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""The request explicitly asked for clarifying questions BEFORE a provisional plan, clearly labeled estimates, stated assumptions, and budget-awareness. Option 2 leads with assumptions and clarifying questions, labels estimates, and builds in buffers/insurance, matching the instructions far better, while Option 1 jumps straight to a plan with under-detailed costs (notably omitting return flight realism, transit, and lodging for all nights) and puts assumptions/questions only at the end."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.6,
+  ""option_2_average"": 8.2
+}",option_2,"The request explicitly asked for clarifying questions BEFORE a provisional plan, clearly labeled estimates, stated assumptions, and budget-awareness. Option 2 leads with assumptions and clarifying questions, labels estimates, and builds in buffers/insurance, matching the instructions far better, while Option 1 jumps straight to a plan with under-detailed costs (notably omitting return flight realism, transit, and lodging for all nights) and puts assumptions/questions only at the end.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.6,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+7,0,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 explicitly states assumptions and clarifying questions before the plan as requested, labels all figures as estimates, includes the critical flight cost realistically (~$1,200 SFO-Tokyo), and accounts for travel across the date line. Option 2 violates the budget-awareness requirement with an unrealistic $800 flight estimate, omits assumptions/questions before the plan structure, and ignores the flight return cost, making its $1,645 total misleading."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 5.2
+}",option_1,"Option 1 explicitly states assumptions and clarifying questions before the plan as requested, labels all figures as estimates, includes the critical flight cost realistically (~$1,200 SFO-Tokyo), and accounts for travel across the date line. Option 2 violates the budget-awareness requirement with an unrealistic $800 flight estimate, omits assumptions/questions before the plan structure, and ignores the flight return cost, making its $1,645 total misleading.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 4, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 5}",8.2,5.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,8,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 better satisfies the explicit request to state assumptions and clarifying questions BEFORE the plan, presents a full $2,500 budget breakdown with realistic estimates clearly labeled, and offers richer, more practical detail. Option 1 places assumptions/questions after the plan, underspends the budget by ~$855 without acknowledging it, and double-counts hotel nights inconsistently."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 4,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.3,
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 better satisfies the explicit request to state assumptions and clarifying questions BEFORE the plan, presents a full $2,500 budget breakdown with realistic estimates clearly labeled, and offers richer, more practical detail. Option 1 places assumptions/questions after the plan, underspends the budget by ~$855 without acknowledging it, and double-counts hotel nights inconsistently.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 6, ""task_dimension_3"": 4, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.3,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""The original request explicitly asked for clarifying questions AND a provisional plan with realistic, labeled estimates and budget awareness. Option 1 delivers a complete, organized, budget-aware plan with assumptions and clarifying questions, while Option 2 follows the requested structure well but is cut off mid-sentence and never delivers the actual itinerary, making it incomplete and far less useful."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.3,
+  ""option_2_average"": 4.8
+}",option_1,"The original request explicitly asked for clarifying questions AND a provisional plan with realistic, labeled estimates and budget awareness. Option 1 delivers a complete, organized, budget-aware plan with assumptions and clarifying questions, while Option 2 follows the requested structure well but is cut off mid-sentence and never delivers the actual itinerary, making it incomplete and far less useful.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 8, ""task_dimension_3"": 3, ""task_dimension_4"": 7, ""task_dimension_5"": 3, ""task_dimension_6"": 3}",7.3,4.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""The prompt explicitly asks for clarifying questions AND a provisional plan; Option 1 only provides assumptions and questions without the actual itinerary, failing the core deliverable. Option 2 delivers both clarifying questions, labeled assumptions/estimates, and a complete budget-aware day-by-day plan, though it errs by assuming 'next month = July' and uses 5 nights vs 4-night logic inconsistently."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 2,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 8.0
+}",option_2,"The prompt explicitly asks for clarifying questions AND a provisional plan; Option 1 only provides assumptions and questions without the actual itinerary, failing the core deliverable. Option 2 delivers both clarifying questions, labeled assumptions/estimates, and a complete budget-aware day-by-day plan, though it errs by assuming 'next month = July' and uses 5 nights vs 4-night logic inconsistently.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 2, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 7}",5.9,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options satisfy the structural requirements (clarifying questions, labeled assumptions, estimates, day-by-day plan), but Option 2 is more genuinely budget-aware: its estimates are more realistic for a single traveler, it builds in a meaningful buffer, and it correctly flags 'next month' as July with seasonal implications. Option 1 forces its totals to exactly hit $2,500 with optimistic per-night and meal figures and shows a clearer math/buffer weakness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.8,
+  ""option_2_average"": 7.9
+}",option_2,"Both options satisfy the structural requirements (clarifying questions, labeled assumptions, estimates, day-by-day plan), but Option 2 is more genuinely budget-aware: its estimates are more realistic for a single traveler, it builds in a meaningful buffer, and it correctly flags 'next month' as July with seasonal implications. Option 1 forces its totals to exactly hit $2,500 with optimistic per-night and meal figures and shows a clearer math/buffer weakness.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",6.8,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""The request asked for clarifying questions AND a provisional plan; Option 2 delivers both with a complete day-by-day itinerary plus labeled estimates, while Option 1 only provides assumptions and questions without any provisional itinerary, failing a core deliverable. Option 2's July date assumption is more accurate to 'next month' than Option 1's May guess."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 7.9
+}",option_2,"The request asked for clarifying questions AND a provisional plan; Option 2 delivers both with a complete day-by-day itinerary plus labeled estimates, while Option 1 only provides assumptions and questions without any provisional itinerary, failing a core deliverable. Option 2's July date assumption is more accurate to 'next month' than Option 1's May guess.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 4}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.5,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+1,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is complete (full 5-day plan with summary table, contingency line, and explicit estimate labeling) and stays budget-aware with a clear buffer, while Option 2 is cut off mid-sentence on Day 4 and never finishes the itinerary, making it incomplete despite stronger per-day detail and a more realistic exchange-rate/flight estimate."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.8,
+  ""option_2_average"": 6.7
+}",option_1,"Option 1 is complete (full 5-day plan with summary table, contingency line, and explicit estimate labeling) and stays budget-aware with a clear buffer, while Option 2 is cut off mid-sentence on Day 4 and never finishes the itinerary, making it incomplete despite stronger per-day detail and a more realistic exchange-rate/flight estimate.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.8,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+1,8,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options follow the structure (clarifying questions, labeled assumptions, estimates), but Option 1 contradicts the request by assuming July ('next month') and produces a $1,900 plan that leaves $600 unused, underutilizing the stated $2,500 budget. Option 2 better matches the actual budget, gives a realistic flight estimate, includes an exchange rate, more accurate accommodation pricing (4 nights for a 5-day trip), and offers practical budget-aware tips, making it more accurate and useful."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.9,
+  ""option_2_average"": 7.9
+}",option_2,"Both options follow the structure (clarifying questions, labeled assumptions, estimates), but Option 1 contradicts the request by assuming July ('next month') and produces a $1,900 plan that leaves $600 unused, underutilizing the stated $2,500 budget. Option 2 better matches the actual budget, gives a realistic flight estimate, includes an exchange rate, more accurate accommodation pricing (4 nights for a 5-day trip), and offers practical budget-aware tips, making it more accurate and useful.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.9,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Although Option 1 has strong clarifying questions and assumptions, it is truncated mid-sentence and delivers no actual itinerary or complete budget, failing the core task. Option 2 fully satisfies the request with clarifying questions, labeled assumptions, a labeled estimate budget, a complete day-by-day plan, and budget awareness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 2,
+    ""task_dimension_4"": 2,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.0,
+  ""option_2_average"": 8.0
+}",option_2,"Although Option 1 has strong clarifying questions and assumptions, it is truncated mid-sentence and delivers no actual itinerary or complete budget, failing the core task. Option 2 fully satisfies the request with clarifying questions, labeled assumptions, a labeled estimate budget, a complete day-by-day plan, and budget awareness.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 2, ""task_dimension_4"": 2, ""task_dimension_5"": 7, ""task_dimension_6"": 3}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.0,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,2,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 delivers a complete provisional itinerary with day-by-day plans, labeled estimates, and a budget recap that ties to $2,500, fully satisfying the request; Option 2 stops at assumptions and questions without ever providing the requested provisional plan. Option 2 does use a more realistic exchange rate (145 JPY) and includes travel insurance, but its core deliverable is missing."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.7,
+  ""option_2_average"": 5.3
+}",option_1,"Option 1 delivers a complete provisional itinerary with day-by-day plans, labeled estimates, and a budget recap that ties to $2,500, fully satisfying the request; Option 2 stops at assumptions and questions without ever providing the requested provisional plan. Option 2 does use a more realistic exchange rate (145 JPY) and includes travel insurance, but its core deliverable is missing.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 7, ""task_dimension_3"": 3, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 4}",7.7,5.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,2,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options correctly front-load assumptions and clarifying questions as requested, but Option 1 provides a far more complete and clearly labeled budget breakdown, more thorough assumptions, richer clarifying questions, and an explicit buffer with next steps, making it more useful and budget-aware. Option 2 is competent and more concise but less detailed and its flight estimate plus total leaves a tighter, less-justified buffer."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 6.4
+}",option_1,"Both options correctly front-load assumptions and clarifying questions as requested, but Option 1 provides a far more complete and clearly labeled budget breakdown, more thorough assumptions, richer clarifying questions, and an explicit buffer with next steps, making it more useful and budget-aware. Option 2 is competent and more concise but less detailed and its flight estimate plus total leaves a tighter, less-justified buffer.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 6}",8.1,6.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,7,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""The request explicitly asked for assumptions, clarifying questions, AND a provisional plan; Option 1 omits the actual itinerary while Option 2 delivers assumptions, clarifying questions, a budget that totals the full $2,500, and a detailed day-by-day plan with labeled estimates. Option 2's only weaknesses are a truncated Day 4 ending and an internal inconsistency on nights (4 vs 6), but it far better satisfies the core deliverable."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 8.0
+}",option_2,"The request explicitly asked for assumptions, clarifying questions, AND a provisional plan; Option 1 omits the actual itinerary while Option 2 delivers assumptions, clarifying questions, a budget that totals the full $2,500, and a detailed day-by-day plan with labeled estimates. Option 2's only weaknesses are a truncated Day 4 ending and an internal inconsistency on nights (4 vs 6), but it far better satisfies the core deliverable.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 3, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",6.5,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,8,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options state assumptions and ask clarifying questions, but Option 2 fully satisfies the request by delivering a complete provisional day-by-day itinerary with a labeled, balanced budget breakdown, while Option 1 stops before providing any plan. Option 2 is more practically useful and complete while still budget-aware."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.0,
+  ""option_2_average"": 8.3
+}",option_2,"Both options state assumptions and ask clarifying questions, but Option 2 fully satisfies the request by delivering a complete provisional day-by-day itinerary with a labeled, balanced budget breakdown, while Option 1 stops before providing any plan. Option 2 is more practically useful and complete while still budget-aware.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 3, ""task_dimension_4"": 7, ""task_dimension_5"": 4, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.0,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 delivers a complete, line-item budget that fits under $2,500 with a labeled buffer and states assumptions plus clarifying questions, fully satisfying the request. Option 2 asks good clarifying questions but cuts off mid-sentence and never delivers the promised provisional plan or full budget, leaving the core deliverable incomplete."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 3,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 2,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 4.4
+}",option_1,"Option 1 delivers a complete, line-item budget that fits under $2,500 with a labeled buffer and states assumptions plus clarifying questions, fully satisfying the request. Option 2 asks good clarifying questions but cuts off mid-sentence and never delivers the promised provisional plan or full budget, leaving the core deliverable incomplete.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 4, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 3, ""task_dimension_3"": 6, ""task_dimension_4"": 3, ""task_dimension_5"": 6, ""task_dimension_6"": 2}",7.5,4.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options state assumptions and ask clarifying questions as required, but Option 2 actually delivers the requested provisional day-by-day plan while labeling estimates, whereas Option 1 defers the itinerary entirely. The request explicitly asked for clarifying questions AND a provisional plan, so Option 2 satisfies the core deliverable better despite a slightly less accurate exchange rate."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.3,
+  ""option_2_average"": 7.5
+}",option_2,"Both options state assumptions and ask clarifying questions as required, but Option 2 actually delivers the requested provisional day-by-day plan while labeling estimates, whereas Option 1 defers the itinerary entirely. The request explicitly asked for clarifying questions AND a provisional plan, so Option 2 satisfies the core deliverable better despite a slightly less accurate exchange rate.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 9, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",7.3,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is complete with a full 5-day plan, a balanced budget that reconciles to $2,500, clarifying questions placed before the plan, and consistent estimate labeling. Option 2 has stronger specificity (named venues, realistic exchange rate, accurate free observatory note) but is critically truncated mid-sentence on Day 4 and never delivers Day 5, leaving the core deliverable incomplete."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.6,
+  ""option_2_average"": 6.5
+}",option_1,"Option 1 is complete with a full 5-day plan, a balanced budget that reconciles to $2,500, clarifying questions placed before the plan, and consistent estimate labeling. Option 2 has stronger specificity (named venues, realistic exchange rate, accurate free observatory note) but is critically truncated mid-sentence on Day 4 and never delivers Day 5, leaving the core deliverable incomplete.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 4, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 8, ""task_dimension_6"": 5}",7.6,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 has a more accurate exchange rate (1:150 vs Option 2's outdated 1:110-115), a coherent budget that actually sums to $2,500 with explicit estimate labeling, and clearer assumptions/clarifying-questions structure. Option 2's budget is internally inconsistent (5 nights at $150 = $750 plus $1,100 flight plus $250 transport already nears $2,100, leaving little buffer) and uses a stale exchange rate, undermining accuracy."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.9
+}",option_1,"Option 1 has a more accurate exchange rate (1:150 vs Option 2's outdated 1:110-115), a coherent budget that actually sums to $2,500 with explicit estimate labeling, and clearer assumptions/clarifying-questions structure. Option 2's budget is internally inconsistent (5 nights at $150 = $750 plus $1,100 flight plus $250 transport already nears $2,100, leaving little buffer) and uses a stale exchange rate, undermining accuracy.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.0,5.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 is truncated mid-sentence and never delivers the actual itinerary or a complete budget, failing the core task despite a strong start. Option 2 is complete: it provides clarifying questions, labeled assumptions, a full 5-day plan with estimated costs, and a budget recap that nets to $2,500, satisfying every part of the request."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 2,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 4.8,
+  ""option_2_average"": 7.8
+}",option_2,"Option 1 is truncated mid-sentence and never delivers the actual itinerary or a complete budget, failing the core task despite a strong start. Option 2 is complete: it provides clarifying questions, labeled assumptions, a full 5-day plan with estimated costs, and a budget recap that nets to $2,500, satisfying every part of the request.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 2, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 3}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",4.8,7.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,7,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""The request asked for assumptions and clarifying questions BEFORE a provisional plan, and Option 2 delivers all three (assumptions, questions, and a budget-aware day-by-day itinerary), while Option 1 only stops at the pre-planning stage and never provides the actual itinerary that was explicitly requested. Option 2 better satisfies the core task despite a slightly cut-off ending."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 7.6
+}",option_2,"The request asked for assumptions and clarifying questions BEFORE a provisional plan, and Option 2 delivers all three (assumptions, questions, and a budget-aware day-by-day itinerary), while Option 1 only stops at the pre-planning stage and never provides the actual itinerary that was explicitly requested. Option 2 better satisfies the core task despite a slightly cut-off ending.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",6.5,7.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""The request explicitly asked to state assumptions and clarifying questions BEFORE the provisional plan, then deliver the plan. Option 1 does both: it includes assumptions, questions, AND a complete budget-aware itinerary. Option 2 stops at assumptions and questions, deferring the actual plan, which fails the core deliverable."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.1
+}",option_1,"The request explicitly asked to state assumptions and clarifying questions BEFORE the provisional plan, then deliver the plan. Option 1 does both: it includes assumptions, questions, AND a complete budget-aware itinerary. Option 2 stops at assumptions and questions, deferring the actual plan, which fails the core deliverable.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 5}",8.2,6.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 fully satisfies the request by stating assumptions, asking clarifying questions, AND delivering a complete budget-aware provisional plan with labeled estimates totaling ~$2,078 under the $2,500 ceiling. Option 2 asks good questions and lists assumptions but is truncated mid-sentence, never delivering the promised itinerary or completed budget, making it incomplete against the core ask."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 4.6
+}",option_1,"Option 1 fully satisfies the request by stating assumptions, asking clarifying questions, AND delivering a complete budget-aware provisional plan with labeled estimates totaling ~$2,078 under the $2,500 ceiling. Option 2 asks good questions and lists assumptions but is truncated mid-sentence, never delivering the promised itinerary or completed budget, making it incomplete against the core ask.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 3, ""task_dimension_4"": 3, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.1,4.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options follow the requested structure (assumptions, clarifying questions, labeled estimates, budget-aware plan), but Option 1 is complete with all five days fully detailed and a coherent budget, whereas Option 2 is truncated mid-sentence on Day 4 and never delivers a full 5-day plan, undermining its usefulness and completeness despite its slightly stronger flight/exchange-rate realism."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.9,
+  ""option_2_average"": 6.5
+}",option_1,"Both options follow the requested structure (assumptions, clarifying questions, labeled estimates, budget-aware plan), but Option 1 is complete with all five days fully detailed and a coherent budget, whereas Option 2 is truncated mid-sentence on Day 4 and never delivers a full 5-day plan, undermining its usefulness and completeness despite its slightly stronger flight/exchange-rate realism.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 5, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 5}",7.9,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+7,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options correctly lead with assumptions and clarifying questions as requested, but Option 1 delivers a complete, budget-balanced breakdown summing to exactly $2,500 plus a detailed day-by-day plan with labeled estimates, while Option 2 is cut off mid-sentence in the budget section and never delivers the actual itinerary."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 3,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 4.9
+}",option_1,"Both options correctly lead with assumptions and clarifying questions as requested, but Option 1 delivers a complete, budget-balanced breakdown summing to exactly $2,500 plus a detailed day-by-day plan with labeled estimates, while Option 2 is cut off mid-sentence in the budget section and never delivers the actual itinerary.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 3, ""task_dimension_4"": 3, ""task_dimension_5"": 6, ""task_dimension_6"": 3}",8.0,4.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,8,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 is truncated mid-sentence and never delivers the requested itinerary or complete budget, failing the core task despite good clarifying questions and assumptions. Option 2 is complete, provides labeled estimates, a full budget table that sums to $2,500, a day-by-day plan, and budget-aware tips, fully satisfying the request structure."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 2,
+    ""task_dimension_4"": 2,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.1,
+  ""option_2_average"": 8.0
+}",option_2,"Option 1 is truncated mid-sentence and never delivers the requested itinerary or complete budget, failing the core task despite good clarifying questions and assumptions. Option 2 is complete, provides labeled estimates, a full budget table that sums to $2,500, a day-by-day plan, and budget-aware tips, fully satisfying the request structure.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 2, ""task_dimension_4"": 2, ""task_dimension_5"": 3, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.1,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8

@@ -1,0 +1,15 @@
+Thank you for sharing how you’re feeling right now—I can hear how heavy things feel, and it makes sense that you’re emotionally drained and anxious, especially with so much uncertainty about your work and life direction. It’s completely valid to feel overwhelmed in these circumstances, and you’re not alone in struggling with these kinds of feelings.
+
+From what you describe, it sounds like you might be experiencing a lot of pressure and possibly even some burnout. Sometimes, when we care deeply about doing well, perfectionism can creep in, or we may find ourselves avoiding difficult decisions or doubting our abilities. It’s also possible that some of the things you’re doing day-to-day might not fully match what matters most to you, which can add to the sense of being lost or stuck. These are common patterns, and noticing them is an important first step toward making changes.
+
+One thing that can help is to gently check in with your thoughts and feelings. For example, in cognitive-behavioral approaches, we look at how our thoughts about work or the future can shape our emotions and actions. Sometimes our minds tell us things like “I’m not doing enough” or “I should have it all figured out by now,” which can add to anxiety. When you notice these thoughts, try asking yourself: “Is this thought helpful? Is it true? What would I say to a friend in my shoes?” This can help make space for more balanced, compassionate thinking.
+
+It can also be useful to take small steps to care for yourself and manage stress in the moment. This might include setting aside a few minutes each day for something grounding, like deep breathing, a walk, or even just a short break to stretch. These small acts can help replenish your energy and give you a sense of control.
+
+When it comes to clarifying your direction, you might try reflecting on your values—what really matters to you, both at work and in life more broadly. Ask yourself: “What kinds of activities or relationships feel meaningful to me? When have I felt most engaged or fulfilled?” Writing down a few of these can help guide your next steps.
+
+For now, consider setting just one or two small, achievable goals for the week ahead—something like reaching out to a supportive friend, blocking off time for self-care, or jotting down your values and priorities. Achieving even small goals can help rebuild your sense of agency and momentum.
+
+If you find that your distress is getting worse, feels unmanageable, or is interfering with your ability to function, please consider reaching out to a mental health professional. Support is available, and you deserve to feel better.
+
+Remember, it’s okay not to have everything figured out right now. The fact that you’re reaching out and reflecting on these issues shows real strength and self-awareness. With time and support, things can get better, and you have the ability to move toward a life that feels more manageable and meaningful.
