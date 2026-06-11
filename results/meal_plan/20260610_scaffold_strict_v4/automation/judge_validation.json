@@ -1,0 +1,254 @@
+{
+  "judges": {
+    "GPT-4.1": {
+      "judge_model": "gpt-4.1",
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 66,
+      "n_passing": 66,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": "",
+      "failed_rows": []
+    },
+    "Claude-Opus-4.8": {
+      "judge_model": "anthropic/claude-opus-4-8",
+      "batch_ok": true,
+      "row_pass_rate": 0.9927536231884058,
+      "n_rows": 276,
+      "n_passing": 274,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": "",
+      "failed_rows": [
+        {
+          "row_index": 132,
+          "ok": false,
+          "issues": [
+            "option_1_missing_dimensions:6",
+            "option_2_missing_dimensions:6"
+          ]
+        },
+        {
+          "row_index": 162,
+          "ok": false,
+          "issues": [
+            "option_1_missing_dimensions:6",
+            "option_2_missing_dimensions:6"
+          ]
+        }
+      ]
+    },
+    "Gemini-3.1-Pro": {
+      "judge_model": "google/gemini-3.1-pro",
+      "batch_ok": false,
+      "row_pass_rate": 0.4444444444444444,
+      "n_rows": 351,
+      "n_passing": 156,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": "row_pass_rate=0.44<0.90",
+      "failed_rows": [
+        {
+          "row_index": 2,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 3,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 20,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 21,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 22,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 23,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 25,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 29,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 36,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 37,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 45,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 46,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 47,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 48,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 53,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 60,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 69,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 70,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 71,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        },
+        {
+          "row_index": 77,
+          "ok": false,
+          "issues": [
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        }
+      ]
+    },
+    "DeepSeek-V3.1": {
+      "judge_model": "deepseek-ai/DeepSeek-V3.1",
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 351,
+      "n_passing": 351,
+      "suspicious_all_ones_rate": 0.017094017094017096,
+      "exclude_reason": "",
+      "failed_rows": []
+    }
+  },
+  "excluded_from_aggregate": [
+    {
+      "judge_label": "Gemini-3.1-Pro",
+      "judge_model": "google/gemini-3.1-pro",
+      "reason": "row_pass_rate=0.44<0.90"
+    }
+  ],
+  "aggregate_judges": [
+    "Claude-Opus-4.8",
+    "DeepSeek-V3.1",
+    "GPT-4.1"
+  ]
+}

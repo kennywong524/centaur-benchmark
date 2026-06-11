@@ -1,6 +1,33 @@
 # Results (raw runs)
 
-This directory is **gitignored by default** except the published reference run below, which is force-tracked for reproducibility.
+This directory is **gitignored by default** except the published reference/current runs below, which are force-tracked for reproducibility.
+
+## Current clean run: `20260610_scaffold_strict_v4`
+
+Use this run for current dashboard analysis and paper-facing results. It is the cleaned v4 run after the scaffold-generation bug was fixed: augmentation scaffolds were regenerated with the stricter process-only schema, audited before judging, and then judged with the panel pipeline.
+
+Per task (`counselling`, `market_trends`, `meal_plan`, `operations_research`, `tax_prep`, `travel_planning`, `tutoring`):
+
+```
+results/<task>/20260610_scaffold_strict_v4/
+  augmentation/
+    outputs.csv
+    scaffolds/*.md
+    scaffolds.csv
+    pairwise_judgments_*.csv
+    leaderboard_*.csv
+    rubric_scores_*.csv
+    judge_validation.json
+  automation/
+    outputs.csv
+    pairwise_judgments_*.csv
+    leaderboard_*.csv
+    rubric_scores_*.csv
+    judge_validation.json
+  config.json
+```
+
+Cross-task matrices and dashboard-ready judge agreement artifacts are in [`artifacts/cross_task/20260610_scaffold_strict_v4/`](../artifacts/cross_task/20260610_scaffold_strict_v4/).
 
 ## Committed reference run: `20260609_stable_frontier_v2`
 

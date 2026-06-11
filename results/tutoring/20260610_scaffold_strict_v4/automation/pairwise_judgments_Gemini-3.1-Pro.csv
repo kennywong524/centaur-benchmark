@@ -1,0 +1,1381 @@
+left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
+1,0,0,"<think>
+**Evaluating Lesson Options**
+
+I've assessed two draft lesson segments for improper fractions and mixed numbers. Both were incomplete, but Option 2 provided more of the requested components, including worked examples, before being cut off. I've assigned scores to each section and overall for both options.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options are incomplete and cut off before finishing the prompt's requirements. Option 2 is chosen because it manages to include more of the requested elements (worked examples and the start of common misconceptions) before cutting off, whereas Option 1 cuts off during the analogy."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 0,
+    ""task_dimension_5"": 0,
+    ""task_dimension_6"": 0,
+    ""general_instruction_following"": 3,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 0,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 8",option_2,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,0,0,"<think>
+**Selecting Best Option**
+
+I'm focusing on completing the lesson plan generation. Both options were incomplete, but Option 1 provided more of the required elements before cutting off, making it the more promising choice to proceed with, despite the shared generation limitation.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options unfortunately cut off before completing all the requested elements. However, Option 1 gets further along in the prompt's requirements, completing the misconception section and starting the interactive activity, whereas Option 2 cuts off during the misconceptions and misses the activity entirely."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 0,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 8.09,
+  ""option_2_average"": 6.81
+}",option_1,"Both options unfortunately cut off before completing all the requested elements. However, Option 1 gets further along in the prompt's requirements, completing the misconception section and starting the interactive activity, whereas Option 2 cuts off during the misconceptions and misses the activity entirely.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 3, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 9}",8.09,6.81,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+0,4,0,"<think>
+**Evaluating Lesson Options**
+
+I've reviewed the two lesson options, prioritizing completeness and adherence to constraints. Option 1, while featuring age-appropriate language and a strong analogy, is unfortunately incomplete, missing crucial sections like activities and wrap-up. Option 2, though fully formed, falters by introducing abstract notation without adequate visual support, a key negative constraint for this age group. After careful consideration, I'm leaning towards Option 2 as the more viable starting point, despite its limitations.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 is written with an excellent, age-appropriate tone and includes great visual scaffolding, but it cuts off abruptly and is missing several required sections (interactive activity, checks for understanding, wrap-up). Option 2 includes all required sections, though it unfortunately violates the negative constraint to avoid abstract notation without visual support."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 5,
+    ""task_dimension_",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+5,0,0,"<think>
+**Selecting the Best Approach**
+
+I've evaluated the options, and Option 1 is the superior choice as it fully addresses all requirements for the Grade 3 lesson segment, including a complete structure with examples, activities, and checks for understanding. Option 2 remains incomplete.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is complete and includes all the requested elements of the lesson plan. Option 2 cuts off abruptly in the middle of the 'Common Misconceptions' section and is missing several required components."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 9.9,
+  ""option_2_average"": 6.0
+}",option_1,Option 1 is complete and includes all the requested elements of the lesson plan. Option 2 cuts off abruptly in the middle of the 'Common Misconceptions' section and is missing several required components.,"{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 5, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 1}",9.9,6.0,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+0,6,0,"<think>
+**Refining Lesson Plan**
+
+I'm currently evaluating two potential lesson plan structures for teaching improper fractions and mixed numbers to third graders. Option 2 appears significantly more complete, incorporating all requested components like an interactive activity and checks for understanding, whereas Option 1 is abruptly truncated, missing these key elements.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 includes all the requested elements (activity, checks for understanding, wrap-up), whereas Option 1 cuts off halfway through and is missing several key components of the prompt."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 5.7,
+  ""option_2_average"": 8.9
+}",option_2,"Option 2 includes all the requested elements (activity, checks for understanding, wrap-up), whereas Option 1 cuts off halfway through and is missing several key components of the prompt.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.7,8.9,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+7,0,0,"<think>
+**Evaluating Lesson Plan Options**
+
+My focus has been on dissecting and comparing two provided lesson plan options for teaching improper fractions and mixed numbers to third graders. I've determined that Option 1 is significantly more robust, fulfilling all stipulated requirements, including a clear objective, analogy, examples, and an interactive activity. Option 2, conversely, appears truncated and therefore incomplete. My assessment leans heavily towards Option 1's superiority.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is a complete, well-structured lesson plan that follows all instructions and uses age-appropriate language. Option 2 is incomplete and cuts off abruptly in the middle of the Common Misconceptions section, missing several required elements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 4,
+    ""task_dimension_4"": 1,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 9.7,
+  ""option_2_average"": 5.1
+}",option_1,"Option 1 is a complete, well-structured lesson plan that follows all instructions and uses age-appropriate language. Option 2 is incomplete and cuts off abruptly in the middle of the Common Misconceptions section, missing several required elements.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 4, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 8}",9.7,5.1,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+0,8,0,"<think>
+**Selecting the Best Approach**
+
+I've evaluated two distinct options for the Grade 3 lesson segment. Option 1, while containing core elements, appears incomplete based on the provided information. Option 2, however, successfully incorporates all required components, from learning objectives and analogies to interactive activities and checks for understanding, making it the superior choice.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is complete and includes all requested elements, whereas Option 1 cuts off abruptly in the middle of the 'Common Misconceptions' section and is missing the interactive activity, checks for understanding, and wrap-up."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 6.45,
+  ""option_2_average"": 9.09
+}",option_2,"Option 2 is complete and includes all requested elements, whereas Option 1 cuts off abruptly in the middle of the 'Common Misconceptions' section and is missing the interactive activity, checks for understanding, and wrap-up.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 3, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.45,9.09,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+0,9,0,"<think>
+**Evaluating Lesson Options**
+
+I'm currently assessing two lesson plan options for Grade 3, focusing on improper fractions and mixed numbers. Option 1 is incomplete, lacking an interactive activity and wrap-up. Option 2 is much more comprehensive, fulfilling all requirements, though I've noted a minor inconsistency in one example.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete lesson plan that includes all requested elements, whereas Option 1 cuts off mid-sentence during the misconceptions section and is missing the interactive activity, checks for understanding, and wrap-up."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_1_average"": 5.2,
+  ""option_2_average"":",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,1,0,"<think>
+**Evaluating Options**
+
+I've assessed both provided options against the requirements for the Grade 3 lesson. Option 1, though incomplete, covers a greater number of requested elements, including the objective, explanation, analogy, worked examples, and a common misconception. It even begins an interactive activity, making it the more robust choice.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options are cut off due to length limits, but Option 1 includes far more of the requested elements (worked examples, common misconceptions, and the start of an activity) before cutting off. Option 2 cuts off during the direct instruction phase and misses the majority of the prompt's requirements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 2,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 2,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 3,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.9,
+  ""option_2_average"": 4.9
+}",option_1,"Both options are cut off due to length limits, but Option 1 includes far more of the requested elements (worked examples, common misconceptions, and the start of an activity) before cutting off. Option 2 cuts off during the direct instruction phase and misses the majority of the prompt's requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 4, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 3, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 6, ""task_dimension_4"": 2, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",6.9,4.9,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,1,0,"<think>
+**Evaluating Lesson Plan Quality**
+
+My primary focus has been on thoroughly assessing both provided lesson plan options. I've noted that Option 1, while brief and lacking visual aids for abstract concepts, does fulfill all requested components. Conversely, Option 2 offers a more engaging and detailed start but is significantly truncated, omitting crucial sections like worked examples, misconceptions, and interactive elements. Consequently, Option 1 is currently the more viable complete solution, despite its qualitative shortcomings.
+
+ 
+</think>
+
+```json
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Although Option 2 starts off much stronger with excellent formatting, visual support, and age-appropriate tone, it cuts off halfway through and fails to include the worked examples, common misconceptions, interactive activity, checks for understanding, and wrap-up. Option 1 is very brief and lacks the requested visual support for abstract notation, but it successfully includes all required elements of the prompt."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+1,5,0,"<think>
+**Choosing the Best Approach**
+
+I've evaluated two potential lesson segment options for Grade 3 students learning about improper fractions and mixed numbers. Option 1 was incomplete, lacking crucial elements like examples and activities. Option 2, however, successfully incorporates all the required components with age-appropriate language and visual aids, making it the superior choice. Therefore, I'll proceed with developing the lesson based on Option 2.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 cuts off abruptly in the middle of the lesson and fails to include most of the requested elements. Option 2 provides a complete, well-structured lesson segment that includes all requested components with age-appropriate language."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 1,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 3,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 2,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 4.45,
+  ""option_2_average"": 9.09
+}",option_2,"Option 1 cuts off abruptly in the middle of the lesson and fails to include most of the requested elements. Option 2 provides a complete, well-structured lesson segment that includes all requested components with age-appropriate language.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 3, ""general_organization_readability"": 6, ""general_practical_usefulness"": 2, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 5, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",4.45,9.09,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+6,1,0,"<think>
+**Selecting Best Option**
+
+I'm focusing on finalizing the lesson plan. Option 1 appears robust, meeting all criteria with its clear objective, simple explanations, relatable pizza analogy, and interactive elements. Option 2, however, is incomplete and therefore unsuitable. I'm moving forward with Option 1.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a complete and well-structured lesson plan that includes all requested elements. Option 2 is incomplete and cuts off abruptly in the middle of the direct instruction section."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 1,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 3,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 2,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 4.5
+}",option_1,Option 1 provides a complete and well-structured lesson plan that includes all requested elements. Option 2 is incomplete and cuts off abruptly in the middle of the direct instruction section.,"{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 3, ""general_organization_readability"": 5, ""general_practical_usefulness"": 2, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",10.0,4.5,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+1,7,0,"<think>
+**Evaluating Lesson Options**
+
+I'm assessing two lesson segments on improper fractions and mixed numbers for Grade 3. Option 1 is incomplete, missing crucial elements like examples and activities. Option 2 is fully developed, addressing all criteria, making it the clear superior choice for this task.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is the clear winner because Option 1 is cut off mid-sentence and fails to include most of the requested elements (worked examples, misconceptions, activity, checks for understanding, wrap-up). Option 2 successfully includes all requested components in an age-appropriate and practical format."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 1,
+    ""task_dimension_4"": 1,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 3,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 2,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 4.4,
+  ""option_2_average"": 9.0
+}",option_2,"Option 2 is the clear winner because Option 1 is cut off mid-sentence and fails to include most of the requested elements (worked examples, misconceptions, activity, checks for understanding, wrap-up). Option 2 successfully includes all requested components in an age-appropriate and practical format.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 3, ""general_organization_readability"": 6, ""general_practical_usefulness"": 2, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 1, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",4.4,9.0,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+1,8,0,"<think>
+**Evaluating Lesson Plan Options**
+
+I've reviewed the two provided lesson plan options for teaching improper fractions and mixed numbers to third graders. Option 2 is clearly the superior choice as it completely addresses all requirements, including a full analogy, examples, activities, and checks for understanding. Option 1, while promising in its initial approach, is unfortunately incomplete, cutting off before crucial sections.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete lesson segment that includes all the requested elements. Option 1, while highly engaging and well-formatted initially, cuts off abruptly and is missing more than half of the required components."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 1,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 4.8,
+  ""option_2_average"": 9.7
+}",option_2,"Option 2 provides a complete lesson segment that includes all the requested elements. Option 1, while highly engaging and well-formatted initially, cuts off abruptly and is missing more than half of the required components.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 9, ""task_dimension_3"": 5, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}",4.8,9.7,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+9,1,0,"<think>
+**Selecting the Best Plan**
+
+I've reviewed the available options and am leaning heavily towards Option 1. It appears to be a complete and well-structured plan, addressing all the requirements for a Grade 3 lesson on improper fractions and mixed numbers. Option 2, unfortunately, cuts off mid-analogy, making it less useful.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a complete, well-structured lesson plan that includes all requested elements, whereas Option 2 cuts off abruptly in the middle of the direct instruction section."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 0,
+    ""task_dimension_5"": 0,
+    ""task_dimension_6"": 0,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 4.1
+}",option_1,"Option 1 provides a complete, well-structured lesson plan that includes all requested elements, whereas Option 2 cuts off abruptly in the middle of the direct instruction section.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 5, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 5, ""task_dimension_4"": 1, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",10.0,4.1,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,2,0,"<think>
+**Selecting Best Option**
+
+I've been evaluating the two provided lesson options. While Option 2 offers superior engagement and age-appropriateness, its abrupt cutoff means it misses crucial instructional components. Option 1, though more basic and less visually supported in its examples, fulfills all required sections, making it the more complete, albeit less ideal, choice for classroom readiness.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 includes all the requested sections, whereas Option 2 cuts off mid-sentence and is missing the checks for understanding and wrap-up. Although Option 1 is quite brief and fails to include visual support for its abstract notation, it is a complete response."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_read",option_2,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,5,0,"<think>
+**Selecting Best Option**
+
+I'm focusing on evaluating the two proposed lesson segment options. Option 1 was incomplete, abruptly cutting off, which significantly impacted its utility and adherence to the requirements. Option 2, however, is fully developed and successfully incorporates all necessary elements, from learning objectives to checks for understanding, making it the superior choice for a Grade 3 lesson.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete, well-structured lesson plan that includes all requested elements and maintains an age-appropriate tone. Option 1 is incomplete and cuts off mid-sentence during the interactive activity section."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 2,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 6.09,
+  ""option_2_average"": 9.09
+}",option_2,"Option 2 provides a complete, well-structured lesson plan that includes all requested elements and maintains an age-appropriate tone. Option 1 is incomplete and cuts off mid-sentence during the interactive activity section.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.09,9.09,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,6,0,"<think>
+**Choosing the Best Approach**
+
+I've analyzed both provided options for the Grade 3 lesson segment. Option 2 stands out as more comprehensive, fulfilling nearly all requirements with only a minor cut-off in supplementary teacher prompts. Option 1, conversely, omits crucial elements like checks for understanding and a wrap-up.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete lesson plan that includes all requested elements, whereas Option 1 cuts off halfway through the interactive activity and misses the checks for understanding and wrap-up entirely."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 2,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 6.36,
+  ""option_2_average"": 8.90
+}",option_2,"Option 2 provides a complete lesson plan that includes all requested elements, whereas Option 1 cuts off halfway through the interactive activity and misses the checks for understanding and wrap-up entirely.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 4, ""task_dimension_5"": 2, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.36,8.9,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,7,0,"<think>
+**Selecting Best Option**
+
+I'm focusing on selecting the most complete and instruction-aligned option. Option 2 appears to fully meet all requirements, unlike Option 1 which was cut short. Therefore, I'm prioritizing Option 2 for its completeness.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is the better choice because Option 1 is incomplete and cuts off mid-sentence during the interactive activity, missing the checks for understanding and wrap-up. Option 2 provides a complete, well-structured lesson plan that meets all the user's requirements with age-appropriate language."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 7.45,
+  ""option_2_average"": 9.09
+}",option_2,"Option 2 is the better choice because Option 1 is incomplete and cuts off mid-sentence during the interactive activity, missing the checks for understanding and wrap-up. Option 2 provides a complete, well-structured lesson plan that meets all the user's requirements with age-appropriate language.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 4}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.45,9.09,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,8,0,"<think>
+**Selecting Best Option**
+
+My focus has been on evaluating the two provided options against the user's detailed requirements for a Grade 3 lesson on improper fractions and mixed numbers. I've determined that Option 2 is superior due to its completeness, encompassing all requested components including checks for understanding and a wrap-up, unlike the truncated Option 1.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete lesson segment that includes all requested elements, whereas Option 1 cuts off mid-sentence during the interactive activity and is missing the checks for understanding and wrap-up."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 7.4,
+  ""option_2_average"": 9.0
+}",option_2,"Option 2 provides a complete lesson segment that includes all requested elements, whereas Option 1 cuts off mid-sentence during the interactive activity and is missing the checks for understanding and wrap-up.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 3, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.4,9.0,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+2,9,0,"<think>
+**Selecting the Best Approach**
+
+I've reviewed the provided lesson segment options. Option 2 appears significantly more comprehensive, containing all the necessary components like checks for understanding and a wrap-up, which Option 1 lacks due to its abrupt ending. Option 2 also emphasizes visual support, aligning perfectly with the requirements for this age group.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a complete, well-structured lesson plan that includes all requested elements, whereas Option 1 cuts off mid-sentence during the interactive activity and is missing the checks for understanding and wrap-up."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 6.6,
+  ""option_2_average"": 9.2
+}",option_2,"Option 2 provides a complete, well-structured lesson plan that includes all requested elements, whereas Option 1 cuts off mid-sentence during the interactive activity and is missing the checks for understanding and wrap-up.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 10, ""task_dimension_6"": 9}",6.6,9.2,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,5,0,"<think>
+**Selecting Best Approach**
+
+I've evaluated two options for the Grade 3 lesson segment. Option 2 stands out significantly due to its inclusion of visual aids, a relatable pizza analogy, and a hands-on activity using paper circles, all presented in age-appropriate language. This approach aligns perfectly with the requirement to avoid abstract notation without visual support.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 perfectly follows the prompt by providing a highly engaging, age-appropriate lesson plan. It specifically adheres to the negative constraint of avoiding abstract notation without visual support by incorporating drawings and hands-on manipulatives (pizza slices) in the examples and activities."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_1_average"": 6.0,
+  ""option_2_average"": 10.0
+}",option_2,"Option 2 perfectly follows the prompt by providing a highly engaging, age-appropriate lesson plan. It specifically adheres to the negative constraint of avoiding abstract notation without visual support by incorporating drawings and hands-on manipulatives (pizza slices) in the examples and activities.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 8, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}",6.0,10.0,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,6,0,"<think>
+**Evaluating Lesson Plan Options**
+
+I've been sifting through the provided options for a Grade 3 lesson on improper fractions and mixed numbers. Option 2 stands out as the stronger contender due to its age-appropriate language, focus on visual aids, and adherence to the constraint of avoiding abstract notation without visual support. It seems to be a more robust and classroom-ready choice.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is highly detailed, classroom-ready, and strictly follows the negative constraint to avoid abstract notation without visual support. Option 1 is too brief and uses abstract fractions without visual grounding, which is inappropriate for 8-year-olds."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 4,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 3,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 4
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_1_average"": 4.18,
+  ""option_2_average"": 9.63
+}",option_2,"Option 2 is highly detailed, classroom-ready, and strictly follows the negative constraint to avoid abstract notation without visual support. Option 1 is too brief and uses abstract fractions without visual grounding, which is inappropriate for 8-year-olds.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 3, ""general_tone_audience_fit"": 4, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 3, ""task_dimension_5"": 4, ""task_dimension_6"": 4}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 10}",4.18,9.63,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,7,0,"<think>
+**Refining Lesson Options**
+
+My focus has been on evaluating two distinct lesson segment options for teaching improper fractions and mixed numbers to third graders. Option 2 clearly excels, offering a comprehensive, visually-grounded, and age-appropriate approach that directly addresses common misconceptions and includes an engaging activity, unlike Option 1's more abstract and less practical presentation. I am now finalizing the JSON structure for the evaluation.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is highly tailored to an 8-year-old audience, using concrete visual examples and avoiding abstract notation without support. It provides a truly classroom-ready, practical lesson plan, whereas Option 1 is far too brief and abstract."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_1_average"": 5.0,
+  ""option_2_average"": 9.7
+}",option_2,"Option 2 is highly tailored to an 8-year-old audience, using concrete visual examples and avoiding abstract notation without support. It provides a truly classroom-ready, practical lesson plan, whereas Option 1 is far too brief and abstract.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 3, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 10}",5.0,9.7,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+8,4,0,"<think>
+**Selecting the Best Approach**
+
+I've thoroughly reviewed both lesson segment options against the Grade 3 learning objectives for improper fractions and mixed numbers. Option 1 clearly excels, adhering to all constraints, particularly in its use of visual aids and age-appropriate language. Option 2, unfortunately, falters by relying too heavily on abstract notation, which is unsuitable for this age group without strong visual support.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 perfectly follows all instructions, including the negative constraint to avoid abstract notation without visual support. It uses age-appropriate language, clear visual examples, and a highly engaging, practical activity for 8-year-olds. Option 2 relies heavily on abstract notation and its analogy is poorly phrased."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 4,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 4.9
+}",option_1,"Option 1 perfectly follows all instructions, including the negative constraint to avoid abstract notation without visual support. It uses age-appropriate language, clear visual examples, and a highly engaging, practical activity for 8-year-olds. Option 2 relies heavily on abstract notation and its analogy is poorly phrased.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 4, ""task_dimension_4"": 3, ""task_dimension_5"": 5, ""task_dimension_6"": 4}",10.0,4.9,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+4,9,0,"<think>
+**Evaluating Options**
+
+I've reviewed both provided options for the lesson segment. Option 2 stands out as significantly more comprehensive and aligned with the requirements, particularly regarding visual support and age-appropriateness for Grade 3 learners. Option 1 lacks the necessary detail and visual aids.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 is a highly detailed, classroom-ready lesson plan that perfectly aligns with the needs of 8-year-olds. It strictly follows the negative constraint to avoid abstract notation without visual support, whereas Option 1 fails this constraint in its worked examples."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 2,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_1_average"": 5.5,
+  ""option_2_average"": 9.9
+}",option_2,"Option 2 is a highly detailed, classroom-ready lesson plan that perfectly aligns with the needs of 8-year-olds. It strictly follows the negative constraint to avoid abstract notation without visual support, whereas Option 1 fails this constraint in its worked examples.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 8, ""task_dimension_2"": 6, ""task_dimension_3"": 2, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}",5.5,9.9,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+6,5,0,"<think>
+**Selecting Best Option**
+
+I've analyzed the two lesson plan options based on your requirements, prioritizing the avoidance of abstract notation without visual support for an 8-year-old audience. Option 1 excels in this area, integrating visual descriptions and word-based fraction representation, making it a more suitable choice.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 follows all instructions, including the negative constraint to avoid abstract notation without visual support, by using word forms and emphasizing pictures. It provides a highly practical, age-appropriate lesson plan, despite a minor cut-off at the very end of the text."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 9.6,
+  ""option_2_average"": 8.5
+}",option_1,"Option 1 follows all instructions, including the negative constraint to avoid abstract notation without visual support, by using word forms and emphasizing pictures. It provides a highly practical, age-appropriate lesson plan, despite a minor cut-off at the very end of the text.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 7, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",9.6,8.5,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+5,7,0,"<think>
+**Selecting Best Option**
+
+I've thoroughly evaluated both lesson plan options for teaching improper fractions and mixed numbers to third graders. Option 1 clearly excels due to its concise learning objective, superior examples demonstrating both conversion directions, and more practical, varied checks for understanding. It feels significantly more classroom-ready and age-appropriate.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more concise, classroom-ready structure with highly practical checks for understanding and worked examples that cover converting in both directions. Its language is perfectly tailored for 8-year-olds, avoiding overly wordy explanations."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+8,5,0,"<think>
+**Evaluating Lesson Segments**
+
+I'm refining my assessment of the two lesson segments for Grade 3 students. Option 1 appears to be a stronger contender, particularly in its adherence to the ""avoid abstract notation without visual support"" constraint by emphasizing drawing throughout its examples.
+
+**Comparing Lesson Approaches**
+
+My current focus is on how well each lesson segment addresses the constraints. Option 1 consistently prioritizes visual representation, making it more accessible for young learners. Option 2, while good, leans slightly towards abstract notation in one of its examples.
+
+**Prioritizing Visual Learning**
+
+I've concluded that Option 1 better serves the age group by sticking to visual methods for converting fractions, avoiding early introduction of multiplication for conversions which could be a misconception point.
+
+**Selecting the Best Option**
+
+I'm leaning towards Option 1 as the superior choice due to its explicit visual guidance in worked examples and its adherence to age-appropriateness for the target audience.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 better adheres to the constraint of avoiding abstract notation without visual support, explicitly guiding the teacher to draw the fractions. Option 2 introduces multiplication to convert mixed numbers to improper fractions, which is slightly too abstract for an introductory 8-year-old lesson."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 9.3
+}",option_1,"Option 1 better adheres to the constraint of avoiding abstract notation without visual support, explicitly guiding the teacher to draw the fractions. Option 2 introduces multiplication to convert mixed numbers to improper fractions, which is slightly too abstract for an introductory 8-year-old lesson.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 10, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 8, ""task_dimension_5"": 10, ""task_dimension_6"": 10}",10.0,9.3,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+9,5,0,"<think>
+**Selecting Best Option**
+
+I've evaluated two approaches for the Grade 3 lesson on improper fractions and mixed numbers. Option 1 stands out for its detailed structure, excellent pizza analogy, and age-appropriate visual focus, directly addressing the learning objective for 8-year-olds. Option 2, while covering the requirements, leans towards more abstract mathematical notation too early. I've decided to proceed with Option 1.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is highly detailed, engaging, and perfectly tailored to 8-year-olds. It strictly avoids abstract algorithms, relying instead on visual and concrete methods, whereas Option 2 introduces multiplication and addition algorithms that are too abstract for an introductory Grade 3 lesson."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 7.5
+}",option_1,"Option 1 is highly detailed, engaging, and perfectly tailored to 8-year-olds. It strictly avoids abstract algorithms, relying instead on visual and concrete methods, whereas Option 2 introduces multiplication and addition algorithms that are too abstract for an introductory Grade 3 lesson.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 6}",10.0,7.5,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+7,6,0,"<think>
+**Selecting Best Option**
+
+I'm leaning towards Option 1 due to its completeness, despite its script-like delivery. Option 2, while better structured for a teacher, is unfortunately cut off. I'm prioritizing a usable, finished product.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a complete, engaging, and age-appropriate lesson segment that fulfills all the prompt's requirements. Option 2 is well-structured as a teacher-facing lesson plan but cuts off mid-sentence at the very end."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 9.09,
+  ""option_2_average"": 8.72
+}",option_1,"Option 1 provides a complete, engaging, and age-appropriate lesson segment that fulfills all the prompt's requirements. Option 2 is well-structured as a teacher-facing lesson plan but cuts off mid-sentence at the very end.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",9.09,8.72,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+6,8,0,"<think>
+**Refining Lesson Design**
+
+I've analyzed two lesson options, leaning towards Option 1 for its age-appropriateness and hands-on approach, despite a minor incompleteness. It better addresses the need to avoid abstract notation for young learners. I've scored and compared both options based on various criteria and am now proceeding to format the JSON output.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is much better suited for 8-year-olds, utilizing hands-on manipulatives and explicitly avoiding heavy abstract notation in favor of word forms and visuals. Option 2 relies too heavily on standard fraction notation and asks students to draw fifths, which is developmentally difficult for this age group."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"":",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+6,9,0,"<think>
+**Evaluating Lesson Options**
+
+I'm currently assessing two lesson segments for 3rd graders on improper fractions and mixed numbers. My focus is on how well each option incorporates visual aids and avoids abstract notation, as requested. I've noted that Option 1 excels in this area, maintaining a strong visual approach throughout. Option 2, however, includes a quick reference card with an abstract algorithm that seems to contradict the goal of avoiding purely symbolic representation for this age group. I am leaning towards Option 1 as the stronger candidate due to its consistent adherence to age-appropriate, visually driven instruction.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 strictly adheres to the constraint of avoiding abstract notation without visual support, keeping the focus entirely on conceptual visual understanding suitable for 8-year-olds. Option 2 includes a teacher reference card with abstract algorithmic steps (e.g., subtracting whole × denominator from the numerator) which contradicts the pedagogical approach requested."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 7",option_1,,{},{},,,False,google/gemini-3.1-pro,Gemini-3.1-Pro
+8,7,0,"<think>
+**Selecting Best Option**
+
+I'm leaning towards Option 1. It offers a more structured, teacher-friendly plan with clear visual integrations and straightforward examples. The approach feels more practical for direct classroom application, aligning well with all the specified requirements for a Grade 3 lesson.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a highly structured, classroom-ready lesson plan that is easy for a teacher to follow. It consistently emphasizes visual support over abstract notation and uses clear, age-appropriate language throughout."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 9.72,
+  ""option_2_average"": 8.54
+}",option_1,"Option 1 provides a highly structured, classroom-ready lesson plan that is easy for a teacher to follow. It consistently emphasizes visual support over abstract notation and uses clear, age-appropriate language throughout.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",9.72,8.54,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+7,9,0,"<think>
+**Choosing the Best Lesson**
+
+I've analyzed both lesson plan options for teaching improper fractions and mixed numbers to third graders. Option 1 is clearly superior, boasting mathematical accuracy throughout its explanations and examples. Option 2 unfortunately contains a significant error in its direct teaching section, which would be detrimental to student understanding.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 is mathematically accurate, uses excellent age-appropriate language, and seamlessly integrates visuals with the concepts. Option 2 contains a glaring mathematical error in its direct teaching section (stating that 5 slices of a 4-slice pizza results in 1 1/2 instead of 1 1/4)."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 4,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 3,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 9.81,
+  ""option_2_average"": 7.63
+}",option_1,"Option 1 is mathematically accurate, uses excellent age-appropriate language, and seamlessly integrates visuals with the concepts. Option 2 contains a glaring mathematical error in its direct teaching section (stating that 5 slices of a 4-slice pizza results in 1 1/2 instead of 1 1/4).","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 9, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 3, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 4, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",9.81,7.63,True,google/gemini-3.1-pro,Gemini-3.1-Pro
+9,8,0,"<think>
+**Selecting Best Option**
+
+I'm leaning towards Option 1 for the Grade 3 lesson. Its detailed structure, pizza analogy, and concrete activity with pre-cut slices seem most effective for teaching improper fractions and mixed numbers to 8-year-olds. The language and visual support are spot on.
+
+ 
+</think>
+
+{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a highly engaging, well-structured lesson plan that perfectly targets 8-year-olds. It uses concrete manipulatives rather than relying on students to draw equal parts (which is developmentally challenging), and its formatting makes it incredibly easy for a teacher to read and implement."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 10,
+    ""task_dimension_2"": 10,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 10,
+    ""task_dimension_6"": 10,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 10,
+    ""general_tone_audience_fit"": 10
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 10.0,
+  ""option_2_average"": 8.2
+}",option_1,"Option 1 provides a highly engaging, well-structured lesson plan that perfectly targets 8-year-olds. It uses concrete manipulatives rather than relying on students to draw equal parts (which is developmentally challenging), and its formatting makes it incredibly easy for a teacher to read and implement.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 10, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 10, ""task_dimension_1"": 10, ""task_dimension_2"": 10, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 10}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",10.0,8.2,True,google/gemini-3.1-pro,Gemini-3.1-Pro

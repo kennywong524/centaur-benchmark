@@ -63,6 +63,23 @@ export EDSL_MAX_ATTEMPTS=8
 
 ---
 
+## Current clean run (`20260610_scaffold_strict_v4`)
+
+Use `20260610_scaffold_strict_v4` for current analysis, dashboard figures, and paper results. This run supersedes `20260609_stable_frontier_v2` for the scaffold/augmentation analysis because it fixes the earlier scaffold-generation bug where some augmentation scaffolds were too answer-like or were truncated/stubbed. In v4, scaffolds were regenerated with the strict process-only scaffold schema, audited before judging, and then judged with the panel pipeline.
+
+Key status:
+
+| Item | Value |
+|------|--------|
+| **Run ID** | `20260610_scaffold_strict_v4` |
+| **Status** | Clean audited run; no known bad scaffold/worker-output rows before judging |
+| **Use for** | Current dashboard, judge-agreement diagnostics, and paper-facing v4 results |
+| **Raw outputs** | `results/<task>/20260610_scaffold_strict_v4/` |
+| **Cross-task artifacts** | `artifacts/cross_task/20260610_scaffold_strict_v4/` |
+| **Dashboard bundle** | `dashboard/dashboard-data.json` |
+
+The previous `20260609_stable_frontier_v2` run remains in the repository for comparison and reproducibility, but it should be treated as an older run when interpreting augmentation results.
+
 ## Reproducing the stable frontier run (`20260609_stable_frontier_v2`)
 
 This is the reference multi-task run committed in [`artifacts/cross_task/20260609_stable_frontier_v2/`](artifacts/cross_task/20260609_stable_frontier_v2/).

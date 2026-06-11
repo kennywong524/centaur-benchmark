@@ -4,6 +4,17 @@ This directory holds **small, publishable** outputs copied or exported from `res
 
 Raw model outputs, pairwise judgment dumps, and per-task leaderboards stay under `results/` (gitignored) unless you choose to commit them.
 
+## Current cross-task run: `20260610_scaffold_strict_v4`
+
+The current paper/dashboard run is in [`cross_task/20260610_scaffold_strict_v4/`](cross_task/20260610_scaffold_strict_v4/). Use this for current result analysis. This v4 run fixes the prior scaffold issue by using stricter process-only scaffolds, auditing the regenerated augmentation outputs before judging, and exporting judge-agreement diagnostics for the dashboard.
+
+Additional dashboard diagnostics:
+
+| File pattern | Meaning |
+|--------------|---------|
+| `judge_rank_scatter_points.csv` | One model-task-mode row with per-judge rank columns for agreement plots |
+| `judge_rank_correlation_summary.csv` | Spearman/Pearson rank agreement summaries across judge pairs |
+
 ## Cross-task run: `20260609_stable_frontier_v2`
 
 The reference stable-frontier run is in [`cross_task/20260609_stable_frontier_v2/`](cross_task/20260609_stable_frontier_v2/).
