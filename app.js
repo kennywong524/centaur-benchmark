@@ -388,12 +388,13 @@ function renderLeaderboard() {
   const rows = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   document.getElementById("rankTitle").textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
   const maxScore = Math.max(...rows.map(d => Number(d.score)), 1);
-  document.getElementById("leaderboard").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Bars show pairwise win rate. A value of 0.00 means the model lost all judged pairwise comparisons in this task/mode/judge slice, not rank zero.</p>` + rows
+  document.getElementById("leaderboard").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Rank badges order candidates by average output rank; bars show pairwise win rate. In replicated tasks these can diverge when one model has uneven replicates.</p>` + rows
     .sort((a, b) => a.display_rank - b.display_rank)
     .map(d => {
       const rank = Number(d.display_rank);
       const win = Number(d.score);
-      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}</span></span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
+      const rawRank = num(d.rank_value);
+      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
     })
     .join("");
   document.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
