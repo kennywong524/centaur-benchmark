@@ -116,6 +116,71 @@ def _matrix_from_records(records: pd.DataFrame, mode: str, *, judge: str | None 
     return rank_matrix, score_matrix
 
 
+def _judge_display_label(judge_model: str) -> str:
+    labels = {
+        "gpt-4.1": "GPT-4.1",
+        "anthropic/claude-opus-4-8": "Claude-Opus-4.8",
+        "deepseek-ai/DeepSeek-V3.1": "DeepSeek-V3.1",
+    }
+    return labels.get(judge_model, judge_model)
+
+
+def _write_judge_alignment_tables(judge_df: pd.DataFrame, dest: Path) -> None:
+    """
+    Export pairwise judge-alignment diagnostics for the static dashboard.
+
+    Each scatter row is one model-task-mode entry, with one rank column per
+    judge. Missing values are expected when leave-family-out masking excludes a
+    judge from scoring a model family.
+    """
+    if judge_df.empty:
+        return
+
+    index_cols = ["task_slug", "task_title", "mode", "model_id", "model_label", "condition"]
+    pivot = (
+        judge_df.pivot_table(
+            index=index_cols,
+            columns="judge_model",
+            values="rank_value",
+            aggfunc="mean",
+        )
+        .reset_index()
+        .rename(columns={"task_slug": "task"})
+    )
+    pivot.to_csv(dest / "judge_rank_scatter_points.csv", index=False)
+
+    judges = [c for c in pivot.columns if c not in {"task", "task_title", "mode", "model_id", "model_label", "condition"}]
+    rows: list[dict] = []
+    scopes: list[tuple[str, pd.DataFrame]] = [("all", pivot)]
+    scopes.extend((mode, pivot[pivot["mode"] == mode]) for mode in sorted(pivot["mode"].dropna().unique()))
+
+    for scope, scoped in scopes:
+        for i, judge_a in enumerate(judges):
+            for judge_b in judges[i + 1 :]:
+                pair = scoped[[judge_a, judge_b]].dropna()
+                n_pairs = int(len(pair))
+                if n_pairs >= 2:
+                    spearman = float(pair[judge_a].corr(pair[judge_b], method="spearman"))
+                    pearson = float(pair[judge_a].corr(pair[judge_b], method="pearson"))
+                    mean_abs_gap = float((pair[judge_a] - pair[judge_b]).abs().mean())
+                    within_one_share = float(((pair[judge_a] - pair[judge_b]).abs() <= 1).mean())
+                else:
+                    spearman = pearson = mean_abs_gap = within_one_share = float("nan")
+
+                base = {
+                    "scope": scope,
+                    "judge_a": _judge_display_label(judge_a),
+                    "judge_b": _judge_display_label(judge_b),
+                    "n_pairs": n_pairs,
+                    "mean_abs_gap": mean_abs_gap,
+                    "within_one_share": within_one_share,
+                }
+                rows.append({**base, "method": "spearman", "correlation": spearman})
+                rows.append({**base, "method": "pearson", "correlation": pearson})
+
+    pd.DataFrame(rows).to_csv(dest / "judge_rank_correlation_summary.csv", index=False)
+
+
 def export_cross_task_matrices(
     run_id: str,
     *,
@@ -196,6 +261,7 @@ def export_cross_task_matrices(
     if judge_records:
         judge_df = pd.concat(judge_records, ignore_index=True)
         judge_df.to_csv(dest / "all_leaderboards_by_judge_long.csv", index=False)
+        _write_judge_alignment_tables(judge_df, dest)
         judges = sorted(judge_df["judge_model"].dropna().unique())
         for judge in judges:
             judge_slug = judge.replace("/", "_").replace(":", "_")
