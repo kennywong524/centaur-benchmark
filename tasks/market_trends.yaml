@@ -3,8 +3,7 @@ title: Market trends analysis
 default_worker: gpt-3.5-turbo
 default_evaluator: gpt-4.1
 replicates: 1
-scaffold_model_max_tokens: 1200
-automation_model_max_tokens: 2500
+scaffold_model_max_tokens: 700
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
 task_prompt: Imagine you are briefing a client on the U.S. energy market in 2026. Identify exactly three positive or bullish trends and exactly three negative or bearish trends likely to influence natural gas prices this year. Discuss briefly how factors like supply, demand, weather, storage, LNG exports, infrastructure, and policy interact to shape these trends. Conclude with 2-3 sentences summarizing the overall outlook for investors or companies in the energy sector.
@@ -52,7 +51,7 @@ scaffold_prompt_template: 'You are a planning coach helping another model prepar
   Format in Markdown under the heading:
 
   **Assistant Guidance: Three-Phase Workflow**'
-worker_instruction: 'If the task prompt includes an ''Assistant Guidance: Three-Phase Workflow'' section at the top, read it carefully first and follow its planning and self-review steps before producing your response. Then complete the task itself clearly and professionally. Return only the final deliverable — do not restate the guidance.'
+worker_instruction: 'You receive internal assistant guidance plus a client task. Use the guidance for planning only; never copy or restate it. Complete the client task fully and return only the complete final deliverable.'
 pairwise_task_context: Imagine you are briefing a client on the U.S. energy market in 2026. Identify exactly three positive or bullish trends and exactly three negative or bearish trends likely to influence natural gas prices this year. Discuss briefly how factors like supply, demand, weather, storage, LNG exports, infrastructure, and policy interact to shape these trends. Conclude with 2-3 sentences summarizing the overall outlook for investors or companies in the energy sector.
 pairwise_eval_prompt: 'You are an expert evaluator comparing two candidate responses to the same task.
 

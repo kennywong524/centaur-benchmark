@@ -14,13 +14,15 @@ All seven tasks share the same assistant, automation, and evaluator lists (see a
 
 `gpt-5-pro` was replaced with **`gpt-5-mini-2025-08-07`** (label `GPT-5-Mini`) after format-stub failures on long prompts.
 
-Token limits (override defaults when long prompts truncate):
+Token limits:
 
-| Task | `scaffold_model_max_tokens` | `automation_model_max_tokens` |
-|------|----------------------------|-------------------------------|
-| Most tasks | 1200 | 4096 |
-| `meal_plan` | 4096 | 4096 |
-| `tax_prep` | 6000 | 6000 |
+| Role | `max_tokens` |
+|------|----------------|
+| Scaffold generation | `700` on all tasks (process-only; keep short) |
+| Augmentation worker (`gpt-3.5-turbo`) | **omitted** — use model default |
+| Automation (frontier models) | **omitted** — use model default |
+
+Optional overrides: `scaffold_model_max_tokens`, `worker_model_max_tokens`, `automation_model_max_tokens` in YAML only if you need an explicit cap.
 
 ## YAML fields
 
@@ -31,8 +33,9 @@ Token limits (override defaults when long prompts truncate):
 | `scaffold_prompt_template` | Assistant instruction (process-only scaffold) |
 | `worker_instruction` | System instruction for the worker under augmentation |
 | `automation_worker_instruction` | Shorter instruction when a model solves the task alone |
-| `scaffold_model_max_tokens` | Max tokens for scaffold generation per assistant |
-| `automation_model_max_tokens` | Max tokens for automation runs |
+| `scaffold_model_max_tokens` | Optional cap for scaffold generation (default: omitted except YAML `700`) |
+| `worker_model_max_tokens` | Optional cap for augmentation worker (default: omitted) |
+| `automation_model_max_tokens` | Optional cap for automation runs (default: omitted) |
 | `pairwise_task_context` | Text shown to the judge as “the request” |
 | `pairwise_eval_prompt` | Judge agent instruction for JSON pairwise choice, rubric scores, averages, and rationale |
 | `models.assistants` | Map of `model_id: display_label` for scaffold generators |

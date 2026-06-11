@@ -10,7 +10,29 @@ from pathlib import Path
 
 from centaur_benchmark.config import default_tasks_dir, load_task
 from centaur_benchmark.io import ensure_run_dir, results_base
-from centaur_benchmark.runner import patch_augmentation_models, patch_automation_models
+from centaur_benchmark.runner import (
+    patch_augmentation_models,
+    patch_augmentation_plain_outputs,
+    patch_augmentation_worker_outputs,
+    patch_automation_models,
+)
+
+PLAIN_RETRY_TASKS = {"meal_plan", "tax_prep"}
+
+RETRYABLE_KINDS = {
+    "empty_output",
+    "format_stub",
+    "empty_scaffold",
+    "missing_model",
+    "meta_scaffold_echo",
+    "likely_hard_truncation",
+    "incomplete_meal_plan_days<7(max=1)",
+    "incomplete_meal_plan_days<7(max=2)",
+    "incomplete_meal_plan_days<7(max=3)",
+    "incomplete_meal_plan_days<7(max=4)",
+    "incomplete_meal_plan_days<7(max=5)",
+    "incomplete_meal_plan_days<7(max=6)",
+}
 
 import sys
 
@@ -30,33 +52,63 @@ def _load_dotenv() -> None:
         os.environ.setdefault(key.strip(), value.strip())
 
 
-def retry_from_audit(run_id: str, audit: dict) -> list[dict]:
+def retry_from_audit(
+    run_id: str,
+    audit: dict,
+    *,
+    modes: set[str] | None = None,
+) -> list[dict]:
     """Retry each failure; returns list of actions taken."""
     actions: list[dict] = []
-    by_task_mode: dict[tuple[str, str], set[str]] = {}
+    by_task_mode: dict[tuple[str, str], dict[str, set[str]]] = {}
     for f in audit.get("failures", []):
+        if modes and str(f.get("mode", "")) not in modes:
+            continue
         kind = str(f.get("kind", ""))
-        if kind not in {"empty_output", "format_stub", "empty_scaffold", "missing_model"} and not kind.startswith("short<"):
+        if (
+            kind not in RETRYABLE_KINDS
+            and not kind.startswith("short<")
+            and not kind.startswith("short_scaffold_output<")
+            and not kind.startswith("missing_terms:")
+            and not kind.startswith("incomplete_meal_plan_days")
+        ):
             continue
         key = (f["task"], f["mode"])
-        by_task_mode.setdefault(key, set()).add(f["model_id"])
-
-    for (task_slug, mode), model_ids in sorted(by_task_mode.items()):
-        if mode == "augmentation":
-            # empty_scaffold / missing assistant -> patch augmentation (not plain)
-            model_ids = {m for m in model_ids if m != "plain"}
-        if not model_ids:
+        bucket = by_task_mode.setdefault(key, {"scaffold": set(), "worker": set()})
+        mid = str(f.get("model_id", ""))
+        if mid == "plain":
             continue
+        if kind in {"empty_scaffold", "missing_model"}:
+            bucket["scaffold"].add(mid)
+        else:
+            bucket["worker"].add(mid)
+
+    for (task_slug, mode), buckets in sorted(by_task_mode.items()):
         task_path = default_tasks_dir() / f"{task_slug}.yaml"
         task = load_task(task_path)
         root = ensure_run_dir(task.slug, run_id)
-        ids = sorted(model_ids)
-        print(f"=== RETRY {task_slug} {mode} models={ids} ===")
         if mode == "augmentation":
-            patch_augmentation_models(task, root, ids)
+            scaffold_ids = sorted(buckets["scaffold"])
+            worker_ids = sorted(buckets["worker"] - buckets["scaffold"])
+            if scaffold_ids:
+                print(f"=== RETRY {task_slug} augmentation scaffold models={scaffold_ids} ===")
+                patch_augmentation_models(task, root, scaffold_ids)
+                actions.append({"task": task_slug, "mode": mode, "model_ids": scaffold_ids, "patch": "scaffold"})
+            if worker_ids:
+                print(f"=== RETRY {task_slug} augmentation worker models={worker_ids} ===")
+                patch_augmentation_worker_outputs(task, root, worker_ids)
+                actions.append({"task": task_slug, "mode": mode, "model_ids": worker_ids, "patch": "worker"})
+            if task_slug in PLAIN_RETRY_TASKS:
+                print(f"=== RETRY {task_slug} augmentation plain baseline ===")
+                patch_augmentation_plain_outputs(task, root)
+                actions.append({"task": task_slug, "mode": mode, "model_ids": ["plain"], "patch": "plain"})
         else:
+            ids = sorted(buckets["scaffold"] | buckets["worker"])
+            if not ids:
+                continue
+            print(f"=== RETRY {task_slug} {mode} models={ids} ===")
             patch_automation_models(task, root, ids)
-        actions.append({"task": task_slug, "mode": mode, "model_ids": ids})
+            actions.append({"task": task_slug, "mode": mode, "model_ids": ids})
     return actions
 
 
@@ -70,7 +122,13 @@ def main() -> None:
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--audit-json", default=None, help="Use existing audit file")
     parser.add_argument("--max-rounds", type=int, default=3)
+    parser.add_argument(
+        "--modes",
+        default=None,
+        help="Comma-separated modes to retry (augmentation,automation). Default: both.",
+    )
     args = parser.parse_args()
+    mode_filter = {m.strip() for m in args.modes.split(",") if m.strip()} if args.modes else None
 
     audit_path = Path(args.audit_json) if args.audit_json else results_base() / f"audit_{args.run_id}.json"
     for round_i in range(1, args.max_rounds + 1):
@@ -90,7 +148,7 @@ def main() -> None:
             return
 
         print(f"=== RETRY ROUND {round_i}/{args.max_rounds} ({len(failures)} failures) ===")
-        retry_from_audit(args.run_id, audit)
+        retry_from_audit(args.run_id, audit, modes=mode_filter)
         audit = audit_run(args.run_id)
         audit_path.write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
         if audit.get("ready_for_judging"):

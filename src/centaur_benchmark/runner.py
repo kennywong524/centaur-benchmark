@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,27 @@ import pandas as pd
 from centaur_benchmark.config import TaskConfig
 from centaur_benchmark.edsl_runtime import edsl_run_kwargs
 from centaur_benchmark.io import write_json
+
+MIN_SCAFFOLD_CHARS = 250
+MAX_SCAFFOLD_CHARS = 2600
+
+
+def _strip_reasoning_wrappers(text: str) -> str:
+    t = str(text or "")
+    t = re.sub(r"(?is)<think>.*?</think>\s*", "", t)
+    t = re.sub(r"(?is)<think>.*\Z", "", t)
+    return t.strip()
+
+
+def _compose_worker_prompt(scaffold: str, task_prompt: str) -> str:
+    return (
+        "INTERNAL ASSISTANT GUIDANCE (planning only — do not copy or restate in your output):\n"
+        f"{scaffold}\n\n"
+        "---\n\n"
+        "CLIENT TASK (write the complete final deliverable for this request only):\n"
+        f"{task_prompt}"
+    )
+
 
 def _safe_slug(s: str) -> str:
     return (
@@ -22,6 +44,35 @@ def _safe_slug(s: str) -> str:
     )
 
 
+def _scaffold_validation_errors(text: str) -> list[str]:
+    out = _strip_reasoning_wrappers(text)
+    if not out:
+        return ["empty"]
+
+    errors: list[str] = []
+    low = (
+        out.lower()
+        .replace("\u2010", "-")
+        .replace("\u2011", "-")
+        .replace("\u2012", "-")
+        .replace("\u2013", "-")
+        .replace("\u2014", "-")
+    )
+    if out.startswith("{'format':") or out.startswith('{"format":'):
+        errors.append("format_stub")
+    if len(out) < MIN_SCAFFOLD_CHARS:
+        errors.append(f"short<{MIN_SCAFFOLD_CHARS}")
+    if len(out) > MAX_SCAFFOLD_CHARS:
+        errors.append(f"too_long>{MAX_SCAFFOLD_CHARS}")
+    normalized_start = low.lstrip("*# \n")
+    if "assistant guidance: three-phase workflow" not in low:
+        errors.append("missing_required_heading")
+    elif not normalized_start.startswith("assistant guidance: three-phase workflow"):
+        errors.append("heading_not_first")
+
+    return errors
+
+
 def _generate_scaffold(
     task: TaskConfig,
     task_prompt: str,
@@ -30,23 +81,81 @@ def _generate_scaffold(
     from edsl import Agent, Model, Scenario, Survey, QuestionFreeText
 
     assistant_agent = Agent(instruction=task.scaffold_prompt_template)
-    q = QuestionFreeText("scaffold", "{{ scenario.task_prompt }}")
+    scaffold_question = """
+You are NOT being asked to complete the task.
+
+Your job is to write PROCESS-ONLY scaffold guidance for another worker model.
+The task below is provided only so you can help the worker plan its approach.
+
+Hard constraints:
+- Do NOT solve the task.
+- Do NOT draft the final answer.
+- Do NOT provide task-specific facts, calculations, examples, recommendations, itineraries, menus, counseling language, lesson text, market trends, tax findings, or memo content.
+- Do NOT copy sentences that could appear in the final answer.
+- Do NOT restate the task as a filled-in outline.
+- Keep the scaffold to roughly 200-250 words.
+
+Return only a generic three-phase workflow under this exact heading:
+**Assistant Guidance: Three-Phase Workflow**
+
+The three phases must be:
+1. Requirements Check
+2. Plan & Structure
+3. Draft -> Self-Review -> Finalize
+
+Task to plan for, not solve:
+{{ scenario.task_prompt }}
+"""
+    if "gemini" in assistant_model:
+        scaffold_question += """
+Gemini-specific constraints:
+- Do NOT output <think> tags or any hidden reasoning blocks.
+- Your response must begin with exactly: **Assistant Guidance: Three-Phase Workflow**
+- Finish all three phases completely before stopping.
+"""
+    q = QuestionFreeText("scaffold", scaffold_question)
     survey = Survey([q])
     scenario = Scenario({"task_prompt": task_prompt})
     kwargs: dict[str, Any] = {}
-    if task.scaffold_model_max_tokens is not None:
+    # EDSL currently returns a format-parameter stub for GPT-5-style models when
+    # max_tokens is supplied through Model(...). Let those models use defaults;
+    # the scaffold validator still rejects overlong or malformed outputs.
+    if "gpt-5" in assistant_model:
+        pass  # GPT-5 returns format stubs when max_tokens is set via Model(...)
+    elif "gemini" in assistant_model:
+        kwargs["max_tokens"] = 1200  # headroom after occasional thinking wrappers
+    elif task.scaffold_model_max_tokens is not None:
         kwargs["max_tokens"] = int(task.scaffold_model_max_tokens)
     model = Model(assistant_model, **kwargs)
     print(f"Generating scaffold from {assistant_model}...")
-    results = survey.by(scenario).by(assistant_agent).by(model).run(
-        **edsl_run_kwargs(
-            description=f"centaur-scaffold-{assistant_model}",
-            visibility=task.remote_inference_visibility,
-        ),
+    last_text = ""
+    last_errors: list[str] = []
+    max_attempts = 5 if "gemini" in assistant_model else 3
+    for attempt in range(1, max_attempts + 1):
+        results = survey.by(scenario).by(assistant_agent).by(model).run(
+            **edsl_run_kwargs(
+                description=f"centaur-scaffold-{assistant_model}-attempt-{attempt}",
+                visibility=task.remote_inference_visibility,
+            ),
+        )
+        scaffold_text = _strip_reasoning_wrappers(results.select("scaffold").to_list()[0] or "")
+        errors = _scaffold_validation_errors(scaffold_text)
+        if not errors:
+            print(f"Scaffold OK ({len(scaffold_text or '')} chars)")
+            return scaffold_text
+
+        last_text = scaffold_text
+        last_errors = errors
+        print(
+            f"Scaffold rejected from {assistant_model} attempt={attempt} "
+            f"chars={len(scaffold_text or '')} errors={errors}"
+        )
+
+    preview = str(last_text or "").strip().replace("\n", " ")[:200]
+    raise RuntimeError(
+        f"Failed to generate valid scaffold from {assistant_model}; "
+        f"errors={last_errors}; preview={preview!r}"
     )
-    scaffold_text = results.select("scaffold").to_list()[0] or ""
-    print(f"Scaffold OK ({len(scaffold_text or '')} chars)")
-    return scaffold_text
 
 
 def _run_worker_batch(
@@ -75,11 +184,14 @@ def _run_worker_batch(
     q = QuestionFreeText("output", "{{ scenario.task_prompt }}")
     survey = Survey([q])
     worker = Agent(instruction=task.worker_instruction)
+    wkwargs: dict[str, Any] = {}
+    if task.worker_model_max_tokens is not None:
+        wkwargs["max_tokens"] = int(task.worker_model_max_tokens)
     print(f"Running worker={worker_model} condition={condition} n={len(full_prompts)}...")
     results = (
         survey.by(scenarios)
         .by(worker)
-        .by(Model(worker_model))
+        .by(Model(worker_model, **wkwargs))
         .run(
             **edsl_run_kwargs(
                 description=remote_description,
@@ -157,7 +269,7 @@ def run_augmentation(
                 "n_chars": len(scaffold),
             }
         )
-        full_prompts = [f"{scaffold}\n\n{task.task_prompt}"] * n_rep
+        full_prompts = [_compose_worker_prompt(scaffold, task.task_prompt)] * n_rep
         cond = f"scaffold_{_safe_slug(model_label)}"
         sdf = _run_worker_batch(
             task,
@@ -210,7 +322,7 @@ def _run_automation_single_model(
     )
     worker = Agent(instruction=auto_instr)
     mkwargs: dict[str, Any] = {}
-    if task.automation_model_max_tokens is not None:
+    if task.automation_model_max_tokens is not None and "gpt-5" in model_id:
         mkwargs["max_tokens"] = task.automation_model_max_tokens
     print(f"Running automation model={model_id} n={len(prompts)}...")
     results = (
@@ -312,7 +424,7 @@ def patch_augmentation_models(
         scaffolds_records = [r for r in scaffolds_records if r.get("model_id") != model_id]
         scaffolds_records.append(rec)
 
-        full_prompts = [f"{scaffold}\n\n{task.task_prompt}"] * n_rep
+        full_prompts = [_compose_worker_prompt(scaffold, task.task_prompt)] * n_rep
         cond = f"scaffold_{_safe_slug(model_label)}"
         sdf = _run_worker_batch(
             task,
@@ -338,6 +450,96 @@ def patch_augmentation_models(
     if scaffolds_records:
         pd.DataFrame(scaffolds_records).to_csv(run_root / "augmentation" / "scaffolds.csv", index=False)
     print(f"Patched augmentation models {model_ids} -> {out_csv}")
+    return out_csv
+
+
+def patch_augmentation_worker_outputs(
+    task: TaskConfig,
+    run_root: Path,
+    model_ids: list[str],
+    *,
+    worker_model: str | None = None,
+    replicates: int | None = None,
+) -> Path:
+    """Re-run worker only, keeping existing scaffolds on disk."""
+    worker_model = worker_model or task.default_worker
+    n_rep = replicates if replicates is not None else task.replicates
+    out_csv = run_root / "augmentation" / "outputs.csv"
+    if not out_csv.exists():
+        raise FileNotFoundError(f"Missing {out_csv}")
+    existing = pd.read_csv(out_csv)
+    scaffolds_dir = run_root / "augmentation" / "scaffolds"
+
+    new_parts: list[pd.DataFrame] = []
+    for model_id in model_ids:
+        model_label = task.assistants.get(model_id)
+        if not model_label:
+            raise ValueError(f"Unknown assistant model_id: {model_id}")
+        scaffold_path = scaffolds_dir / f"{_safe_slug(model_label)}.md"
+        if not scaffold_path.is_file():
+            raise FileNotFoundError(f"Missing scaffold {scaffold_path}")
+        scaffold = scaffold_path.read_text(encoding="utf-8")
+        scaffold_sha256 = hashlib.sha256(scaffold.encode("utf-8")).hexdigest()
+        full_prompts = [_compose_worker_prompt(scaffold, task.task_prompt)] * n_rep
+        cond = f"scaffold_{_safe_slug(model_label)}"
+        sdf = _run_worker_batch(
+            task,
+            worker_model=worker_model,
+            condition=cond,
+            full_prompts=full_prompts,
+            remote_description=f"{task.slug}-worker-retry-{worker_model}-{cond}",
+            remote_visibility=task.remote_inference_visibility,
+        )
+        sdf["assistant_model"] = model_label
+        sdf["worker_model"] = worker_model
+        sdf["model_id"] = model_id
+        sdf["model_label"] = model_label
+        sdf["scaffold_path"] = str(scaffold_path)
+        sdf["scaffold_sha256"] = scaffold_sha256
+        sdf["scaffold_text"] = scaffold
+        new_parts.append(sdf)
+
+    patched = existing[~existing["model_id"].isin(model_ids)].copy()
+    if new_parts:
+        patched = pd.concat([patched, *new_parts], ignore_index=True)
+    patched.to_csv(out_csv, index=False)
+    print(f"Patched augmentation worker outputs for {model_ids} -> {out_csv}")
+    return out_csv
+
+
+def patch_augmentation_plain_outputs(
+    task: TaskConfig,
+    run_root: Path,
+    *,
+    worker_model: str | None = None,
+    replicates: int | None = None,
+) -> Path:
+    """Re-run plain baseline worker outputs (no scaffold)."""
+    worker_model = worker_model or task.default_worker
+    n_rep = replicates if replicates is not None else task.replicates
+    out_csv = run_root / "augmentation" / "outputs.csv"
+    if not out_csv.exists():
+        raise FileNotFoundError(f"Missing {out_csv}")
+    existing = pd.read_csv(out_csv)
+    plain_df = _run_worker_batch(
+        task,
+        worker_model=worker_model,
+        condition="plain",
+        full_prompts=[task.task_prompt] * n_rep,
+        remote_description=f"{task.slug}-plain-retry-{worker_model}",
+        remote_visibility=task.remote_inference_visibility,
+    )
+    plain_df["assistant_model"] = "plain"
+    plain_df["worker_model"] = worker_model
+    plain_df["model_id"] = "plain"
+    plain_df["model_label"] = "plain"
+    plain_df["scaffold_path"] = ""
+    plain_df["scaffold_sha256"] = ""
+    plain_df["scaffold_text"] = ""
+    patched = existing[existing["model_id"] != "plain"].copy()
+    patched = pd.concat([patched, plain_df], ignore_index=True)
+    patched.to_csv(out_csv, index=False)
+    print(f"Patched augmentation plain baseline -> {out_csv}")
     return out_csv
 
 

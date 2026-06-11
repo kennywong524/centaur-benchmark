@@ -149,7 +149,7 @@ def main() -> None:
             "default_evaluator": "gpt-5",
             "replicates": n_rep,
             "scaffold_model_max_tokens": None,
-            "automation_model_max_tokens": 4096,
+            "automation_model_max_tokens": None,
             "automation_worker_instruction": (
                 "Complete the task clearly and professionally. Return only the final deliverable."
             ),

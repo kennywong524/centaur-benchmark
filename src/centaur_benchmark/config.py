@@ -32,7 +32,8 @@ class TaskConfig:
     rubric_prompt: str | None = None
     remote_inference_visibility: str = "private"
     automation_worker_instruction: str | None = None
-    automation_model_max_tokens: int | None = 4096
+    automation_model_max_tokens: int | None = None
+    worker_model_max_tokens: int | None = None
 
     @staticmethod
     def from_dict(data: dict[str, Any]) -> TaskConfig:
@@ -61,7 +62,8 @@ class TaskConfig:
             rubric_prompt=data.get("rubric_prompt"),
             remote_inference_visibility=data.get("remote_inference_visibility", "private"),
             automation_worker_instruction=data.get("automation_worker_instruction"),
-            automation_model_max_tokens=data.get("automation_model_max_tokens", 4096),
+            automation_model_max_tokens=data.get("automation_model_max_tokens"),
+            worker_model_max_tokens=data.get("worker_model_max_tokens"),
         )
 
 
