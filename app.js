@@ -26,6 +26,7 @@ const judgeLabels = {
   "gpt-4.1": "GPT-4.1",
   "anthropic/claude-opus-4-8": "Claude-Opus-4.8",
   "deepseek-ai/DeepSeek-V3.1": "DeepSeek-V3.1",
+  "google/gemini-3.1-pro": "Gemini-3.1-Pro",
 };
 const modelShort = {
   "GPT-5-Mini": "G5M",
@@ -418,7 +419,7 @@ function renderRubric() {
   const grouped = new Map();
   if (output) {
     run.judgments
-      .filter(j => state.judge === "aggregate" ? j.judge_label !== "Gemini-3.1-Pro" : j.judge_model === state.judge)
+      .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
       .forEach(j => {
         const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
         if (!scores) return;
@@ -597,7 +598,7 @@ function renderRationales(out) {
   const byIdx = new Map(run.outputs.map(o => [o.idx, o]));
   const rows = run.judgments
     .filter(j => j.left_idx === out.idx || j.right_idx === out.idx)
-    .filter(j => state.judge === "aggregate" ? j.judge_label !== "Gemini-3.1-Pro" : j.judge_model === state.judge)
+    .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
     .slice(0, 24);
   const dims = [
     ...Object.keys(rubricLabels[state.task] || {}),
@@ -640,7 +641,7 @@ function populateControls() {
   document.getElementById("taskSelect").innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
   document.getElementById("taskSelect").value = state.task;
   document.getElementById("modeSelect").value = state.mode;
-  const judges = ["aggregate", ...new Set(state.data.by_judge.map(d => d.judge_model).filter(j => j !== "google/gemini-3.1-pro"))];
+  const judges = ["aggregate", ...new Set(state.data.by_judge.map(d => d.judge_model))];
   document.getElementById("judgeSelect").innerHTML = judges.map(j => `<option value="${j}">${judgeLabels[j] || j}</option>`).join("");
   document.getElementById("judgeSelect").value = state.judge;
 }
