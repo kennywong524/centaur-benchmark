@@ -644,7 +644,80 @@ function populateControls() {
   document.getElementById("judgeSelect").value = state.judge;
 }
 
+const methodologyDetails = {
+  input: {
+    title: "Input: seven professional tasks",
+    body: "Every condition starts from the same fixed task prompt for each of seven professional tasks: counseling, market trends analysis, weekly menu planning, operations research, tax preparation, travel planning, and tutoring. Prompts, rubrics, and model rosters are versioned in task YAML files, so every model sees identical inputs.",
+    action: { label: "Read the exact task prompts", run: () => { state.textTab = "prompt"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
+  },
+  worker: {
+    title: "Worker model: the fixed executor",
+    body: "In augmentation, a single low-cost worker — GPT-3.5-Turbo — always produces the final deliverable. Because the worker never changes, the only thing that varies between augmentation conditions is the guidance it receives, which isolates the value added by each assistant's scaffold. A plain, no-scaffold worker run serves as the baseline.",
+    action: { label: "See worker deliverables", run: () => { setMode("augmentation"); state.textTab = "output"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
+  },
+  assistant: {
+    title: "Assistant model: the model under test",
+    body: "Each frontier model writes a process-only scaffold — a 'Three-Phase Workflow' of roughly 200-250 words covering requirements checks, planning, and self-review. Scaffolds are validated automatically (no task content leakage, no stubs, length caps) and regenerated when they fail. The scaffold, not the assistant's own answer, is what reaches the worker.",
+    action: { label: "Browse real scaffolds", run: () => { setMode("augmentation"); state.textTab = "scaffold"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
+  },
+  automation: {
+    title: "Automation regime: the model solves alone",
+    body: "Each focal model receives the task prompt directly and produces the deliverable end-to-end. This measures innate capability: no scaffold, no intermediary. These outputs then compete against each other in the automation tournament.",
+    action: { label: "View automation rankings", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
+  },
+  augmentation: {
+    title: "Augmentation regime: the model guides a fixed worker",
+    body: "The focal model acts as an assistant: it writes a process scaffold, which is handed to the fixed GPT-3.5-Turbo worker as internal guidance alongside the client task. The worker's deliverable is what gets judged — so a model wins this regime by making its worker better, mirroring how AI assistance augments a human professional.",
+    action: { label: "View augmentation rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
+  },
+  evaluator: {
+    title: "Evaluator panel: blind pairwise judging",
+    body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
+    action: { label: "Inspect judge agreement", run: () => goTab("judges") },
+  },
+  results: {
+    title: "Results aggregation",
+    body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank-of-ranks heat maps (Figure 1) and the role-swap scatter (Figure 2) — so every model can be compared as a direct solver versus as an augmenting assistant.",
+    action: { label: "Jump to Figure 1", run: () => { goTab("overview"); setTimeout(() => document.getElementById("heatAug")?.scrollIntoView({ behavior: "smooth", block: "center" }), 60); } },
+  },
+};
+
+function setMode(mode) {
+  if (state.mode === mode) return;
+  state.mode = mode;
+  state.selectedModel = null;
+  state.rubricFocus = null;
+}
+
+function syncTextTabs() {
+  document.querySelectorAll("[data-texttab]").forEach(x => x.classList.toggle("active", x.dataset.texttab === state.textTab));
+}
+
+function goTab(tab) {
+  state.tab = tab;
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.tab === tab));
+  document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function bindMethodology() {
+  const detail = document.getElementById("methodDetail");
+  if (!detail) return;
+  const blocks = document.querySelectorAll(".method-card [data-stage]");
+  const show = key => {
+    const d = methodologyDetails[key];
+    if (!d) return;
+    blocks.forEach(b => b.classList.toggle("active", b.dataset.stage === key));
+    detail.innerHTML = `<b>${esc(d.title)}</b><p>${esc(d.body)}</p>${d.action ? `<button class="pill" type="button">${esc(d.action.label)} &#8594;</button>` : ""}`;
+    const act = detail.querySelector("button");
+    if (act && d.action) act.addEventListener("click", d.action.run);
+  };
+  blocks.forEach(b => b.addEventListener("click", () => show(b.dataset.stage)));
+  show("augmentation");
+}
+
 function bind() {
+  bindMethodology();
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
     state.tab = b.dataset.tab;
     document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x === b));

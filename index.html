@@ -46,13 +46,100 @@
       </section>
 
       <section id="overview" class="panel active">
+        <div class="viz-card method-card" id="methodology">
+          <div class="method-head">
+            <h2>Methodology at a Glance</h2>
+            <p>Click any block to see exactly what happens at that stage of the benchmark.</p>
+          </div>
+
+          <div class="method-top">
+            <div class="method-block">
+              <div class="method-block-title title-roles">Core models</div>
+              <div class="role-rows">
+                <button class="role-row" data-stage="worker" type="button">
+                  <span class="role-icon icon-worker" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.2"/><path d="M5.5 19.5c.8-3.6 3.4-5.4 6.5-5.4s5.7 1.8 6.5 5.4"/></svg>
+                  </span>
+                  <span class="role-copy"><b>Worker model</b><small>Produces the final output for a task — directly, or after receiving assistant scaffolding. Fixed to GPT-3.5-Turbo in augmentation.</small></span>
+                </button>
+                <button class="role-row" data-stage="assistant" type="button">
+                  <span class="role-icon icon-assistant" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 3.5 8 12 12.5 20.5 8 12 3.5Z"/><path d="m3.5 12.5 8.5 4.5 8.5-4.5"/><path d="m3.5 17 8.5 4.5 8.5-4.5"/></svg>
+                  </span>
+                  <span class="role-copy"><b>Assistant model</b><small>Provides process scaffolding — plans, checklists, self-review steps — to the worker model. This is the model under test in augmentation.</small></span>
+                </button>
+                <button class="role-row" data-stage="evaluator" type="button">
+                  <span class="role-icon icon-evaluator" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15"/><path d="M8.5 20h7"/><path d="M5 7h14"/><path d="M5 7l-2.6 5.2a3 3 0 0 0 5.2 0L5 7Z"/><path d="M19 7l-2.6 5.2a3 3 0 0 0 5.2 0L19 7Z"/></svg>
+                  </span>
+                  <span class="role-copy"><b>Evaluator model</b><small>Judges outputs with blind pairwise comparisons and task-specific rubric scoring, under leave-one-family-out masking.</small></span>
+                </button>
+              </div>
+            </div>
+            <div class="method-block">
+              <div class="method-block-title title-regimes">Regimes</div>
+              <div class="regime-cols">
+                <button class="regime regime-auto" data-stage="automation" type="button">
+                  <b>Automation</b>
+                  <small>Focal models are tested as workers and directly solve tasks end-to-end.</small>
+                </button>
+                <button class="regime regime-aug" data-stage="augmentation" type="button">
+                  <b>Augmentation</b>
+                  <small>Focal models provide scaffolds to a fixed worker model, which then produces the final task output.</small>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-title">Experiment &amp; evaluation pipeline</div>
+          <div class="pipeline">
+            <button class="pipe-node input-node" data-stage="input" type="button">
+              <b>Input / tasks</b>
+              <span>7 professional tasks, one fixed prompt each</span>
+            </button>
+            <div class="pipe-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pipe-lanes">
+              <button class="pipe-node lane lane-auto" data-stage="automation" type="button">
+                <span class="lane-tag">Automation</span>
+                <span class="lane-flow">
+                  <span class="mini-chip">Focal model</span>
+                  <span class="mini-arrow" aria-hidden="true">&#8594;</span>
+                  <span class="mini-chip ghost">solves the task end-to-end</span>
+                </span>
+                <span class="lane-note">Innate capability — no scaffold, no intermediary</span>
+              </button>
+              <button class="pipe-node lane lane-aug" data-stage="augmentation" type="button">
+                <span class="lane-tag">Augmentation</span>
+                <span class="lane-flow">
+                  <span class="mini-chip">Focal model writes scaffold</span>
+                  <span class="mini-arrow" aria-hidden="true">&#8594;</span>
+                  <span class="mini-chip">Fixed worker (GPT-3.5-Turbo) delivers</span>
+                </span>
+                <span class="lane-note">Worker's deliverable is judged · plain worker = baseline</span>
+              </button>
+            </div>
+            <div class="pipe-arrow labeled" aria-hidden="true"><em>outputs</em><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <button class="pipe-node eval-node" data-stage="evaluator" type="button">
+              <b>Evaluator panel</b>
+              <span>Blind pairwise A/B with rubric scores; judges never score their own model family</span>
+            </button>
+            <div class="pipe-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <button class="pipe-node results-node" data-stage="results" type="button">
+              <b>Results aggregation</b>
+              <span>Win rates &#8594; task ranks &#8594; rank-of-ranks heat maps &amp; role-swap view</span>
+            </button>
+          </div>
+
+          <div class="method-detail" id="methodDetail"></div>
+        </div>
+
         <div class="guide-card">
           <h2>How To Use This Dashboard</h2>
           <div class="guide-grid">
-            <p><b>1. Choose a rank universe.</b> Use <i>Exclude baselines</i> for paper-ready 1-9 rank-of-ranks figures, or <i>All candidates</i> to audit the full run.</p>
-            <p><b>2. Read aggregate patterns.</b> Use the heat maps and role-swap scatter to compare automation and augmentation profiles.</p>
-            <p><b>3. Drill into a task.</b> In <i>Rankings</i>, click a model row to update rubric scores for that selected response.</p>
-            <p><b>4. Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</p>
+            <div class="guide-step"><span class="step-num">1</span><div><b>Choose a rank universe.</b> Use <i>Exclude baselines</i> for paper-ready 1-9 rank-of-ranks figures, or <i>All candidates</i> to audit the full run.</div></div>
+            <div class="guide-step"><span class="step-num">2</span><div><b>Read aggregate patterns.</b> Use the heat maps and role-swap scatter to compare automation and augmentation profiles.</div></div>
+            <div class="guide-step"><span class="step-num">3</span><div><b>Drill into a task.</b> In <i>Rankings</i>, click a model row to update rubric scores for that selected response.</div></div>
+            <div class="guide-step"><span class="step-num">4</span><div><b>Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</div></div>
           </div>
         </div>
         <div class="metric-row" id="metricRow"></div>
