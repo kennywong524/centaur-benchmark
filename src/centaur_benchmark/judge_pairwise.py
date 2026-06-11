@@ -119,6 +119,8 @@ def _build_scenarios_augmentation(
     for i, j in item_pairs:
         if pd.isna(df.loc[i].get("output")) or pd.isna(df.loc[j].get("output")):
             continue
+        if str(df.loc[i].get("condition", "")) == str(df.loc[j].get("condition", "")):
+            continue
         for replicate_id in range(n_evals):
             opt_left, opt_right = _pair_order(int(i), int(j), int(replicate_id))
             row_left = df.loc[opt_left]
@@ -154,6 +156,8 @@ def _build_scenarios_automation(df: pd.DataFrame, task_text: str, n_evals: int) 
     item_pairs = list(itertools.combinations(df.index.tolist(), 2))
     for i, j in item_pairs:
         if pd.isna(df.loc[i].get("output")) or pd.isna(df.loc[j].get("output")):
+            continue
+        if str(df.loc[i].get("condition", "")) == str(df.loc[j].get("condition", "")):
             continue
         for replicate_id in range(n_evals):
             opt_left, opt_right = _pair_order(int(i), int(j), int(replicate_id))
