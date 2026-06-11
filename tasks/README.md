@@ -43,7 +43,7 @@ Optional overrides: `scaffold_model_max_tokens`, `worker_model_max_tokens`, `aut
 | `models.evaluators` | Map of evaluator models used for multi-judge panel evaluation |
 | `pairwise.n_evals_per_pair` | Repeated blind judgments per pair (default 3; committed run used 1 via CLI override) |
 | `pairwise.n_outer_runs` | Repeat full tournament N times (stability; counselling uses 5) |
-| `replicates` | Output replicates per model (`meal_plan`: 3; others: 1) |
+| `replicates` | Output replicates per model (default: 1; keep fixed across tasks for comparable tournaments) |
 | `rubric_prompt` | Optional free-text rubric block for `centaur-benchmark rubric` |
 
 ## Regenerate from legacy notebooks

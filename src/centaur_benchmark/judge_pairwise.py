@@ -218,13 +218,16 @@ Compare OPTION 1 and OPTION 2 using the rubric in your evaluator instructions.
 Score each option independently on every dimension before choosing.
 Replace the placeholder integers below with your real 1-10 scores. Do not copy the example values.
 
-Return JSON only. No Markdown. No prose outside JSON. Use exactly this schema:
+Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reasoning, chain-of-thought, analysis tags, or <think> blocks. Use exactly this schema:
 """ + _PAIRWISE_JSON_SCHEMA + """
 """,
     )
     survey = Survey([q])
     agent = Agent(instruction=eval_prompt)
-    evaluator = Model(eval_model)
+    model_kwargs = {}
+    if "gemini" in eval_model.lower() or "google" in eval_model.lower():
+        model_kwargs["max_tokens"] = 4096
+    evaluator = Model(eval_model, **model_kwargs)
     results = (
         survey.by(scenarios)
         .by(agent)

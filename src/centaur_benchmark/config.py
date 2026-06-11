@@ -22,7 +22,7 @@ class TaskConfig:
     pairwise_eval_prompt: str
     default_worker: str = "gpt-3.5-turbo"
     default_evaluator: str = "gpt-5"
-    replicates: int = 3
+    replicates: int = 1
     assistants: dict[str, str] = field(default_factory=dict)
     automation_models: dict[str, str] | None = None
     evaluator_models: dict[str, str] = field(default_factory=dict)
@@ -52,7 +52,7 @@ class TaskConfig:
             pairwise_eval_prompt=data["pairwise_eval_prompt"],
             default_worker=data.get("default_worker", "gpt-3.5-turbo"),
             default_evaluator=data.get("default_evaluator", "gpt-5"),
-            replicates=int(data.get("replicates", 3)),
+            replicates=int(data.get("replicates", 1)),
             assistants=dict(assistants),
             automation_models=dict(automation) if automation else None,
             evaluator_models=dict(models.get("evaluators") or {}),
