@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Centaur Results Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Centaur Benchmark</div>
+        <h1>Results Explorer</h1>
+        <p class="paper-title">Decoding Human-AI Augmentation: Measuring the Value of LLM Assistance on Professional Tasks Using Simulation</p>
+        <p class="authors">Pattaraphon Kenny Wongchamcharoen, Kris Gulati, Min Min Fong, Abhishek Nagaraj · Data Innovation and AI Lab, Haas School of Business, UC Berkeley</p>
+      </div>
+      <nav class="tabs" aria-label="Dashboard sections">
+        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab" data-tab="rankings">Rankings</button>
+        <button class="tab" data-tab="judges">Judges</button>
+        <button class="tab" data-tab="qualitative">Qualitative</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="control-band">
+        <label>
+          Rank universe
+          <select id="modelSet"></select>
+        </label>
+        <label>
+          Task
+          <select id="taskSelect"></select>
+        </label>
+        <label>
+          Mode
+          <select id="modeSelect">
+            <option value="augmentation">Augmentation</option>
+            <option value="automation">Automation</option>
+          </select>
+        </label>
+        <label>
+          Judge
+          <select id="judgeSelect"></select>
+        </label>
+      </section>
+
+      <section id="overview" class="panel active">
+        <div class="guide-card">
+          <h2>How To Use This Dashboard</h2>
+          <div class="guide-grid">
+            <p><b>1. Choose a rank universe.</b> Use <i>Exclude baselines</i> for paper-ready 1-9 rank-of-ranks figures, or <i>All candidates</i> to audit the full run.</p>
+            <p><b>2. Read aggregate patterns.</b> Use the heat maps and role-swap scatter to compare automation and augmentation profiles.</p>
+            <p><b>3. Drill into a task.</b> In <i>Rankings</i>, click a model row to update rubric scores for that selected response.</p>
+            <p><b>4. Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</p>
+          </div>
+        </div>
+        <div class="metric-row" id="metricRow"></div>
+        <div class="section-heading">
+          <h2>Figure 1: Aggregate Rank Heat Map</h2>
+          <p>Rank-of-ranks recomputed within the selected model universe. Lower is better.</p>
+        </div>
+        <div class="two-col">
+          <div class="viz-card">
+            <h3>Augmentation</h3>
+            <div id="heatAug"></div>
+          </div>
+          <div class="viz-card">
+            <h3>Automation</h3>
+            <div id="heatAuto"></div>
+          </div>
+        </div>
+        <div class="section-heading">
+          <h2>Figure 2: Role-Swap View</h2>
+          <p>Average rank in automation versus augmentation. Points far from the diagonal indicate role-specific model profiles.</p>
+        </div>
+        <div class="viz-card compact-figure">
+          <div id="roleScatter"></div>
+        </div>
+      </section>
+
+      <section id="rankings" class="panel">
+        <div class="section-heading">
+          <h2>Task-Level Rankings</h2>
+          <p>Inspect winners, win rates, and rank movement for each task and regime.</p>
+        </div>
+        <div class="two-col">
+          <div class="viz-card">
+            <h3 id="rankTitle">Aggregate Leaderboard</h3>
+            <div id="leaderboard"></div>
+          </div>
+          <div class="viz-card">
+            <h3>Rubric Dimension Scores</h3>
+            <div id="rubricChart"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="judges" class="panel">
+        <div class="section-heading">
+          <h2>Judge Agreement</h2>
+          <p>These diagnostics ask whether evaluator models produce broadly similar rankings after leave-family-out masking.</p>
+        </div>
+        <div class="guide-card judge-guide">
+          <h2>How To Read Judge Agreement</h2>
+          <div class="guide-grid">
+            <p><b>Spearman.</b> Rank correlation between two judges. Higher means they order models more similarly; 1.0 would be identical ranking.</p>
+            <p><b>Within one rank.</b> Share of shared model-task entries where two judges place the model no more than one rank apart.</p>
+            <p><b>Mean gap.</b> Average absolute rank difference. Lower means closer agreement.</p>
+            <p><b>Disagreements.</b> The table below surfaces specific model-task cases where judges diverged most.</p>
+          </div>
+        </div>
+        <div class="metric-row" id="judgeAgreementCards"></div>
+        <div class="viz-card">
+          <div id="judgeScatter"></div>
+        </div>
+        <div class="viz-card">
+          <h3>Rank Correlations</h3>
+          <div id="corrTable"></div>
+        </div>
+      </section>
+
+      <section id="qualitative" class="panel">
+        <div class="section-heading">
+          <h2>Qualitative Browser</h2>
+          <p>Read the exact scaffold, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
+        </div>
+        <div class="qual-grid">
+          <aside class="model-list" id="modelList"></aside>
+          <article class="text-pane">
+            <div class="text-toolbar">
+              <h3 id="qualTitle">Select a model</h3>
+              <div class="content-tabs">
+                <button class="content-tab active" data-texttab="output">
+                  <span>Final Output</span>
+                  <small>Worker deliverable</small>
+                </button>
+                <button class="content-tab" data-texttab="scaffold">
+                  <span>Scaffold</span>
+                  <small>Assistant guidance</small>
+                </button>
+                <button class="content-tab" data-texttab="scaffoldPrompt">
+                  <span>Scaffold Prompt</span>
+                  <small>Generation instruction</small>
+                </button>
+                <button class="content-tab" data-texttab="prompt">
+                  <span>Prompt & Rubric</span>
+                  <small>Task and judge spec</small>
+                </button>
+              </div>
+            </div>
+            <div class="role-strip" id="roleStrip"></div>
+            <pre id="qualText"></pre>
+          </article>
+          <aside class="rationale-list">
+            <h3>Pairwise Judge Rationales</h3>
+            <div id="rationales"></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

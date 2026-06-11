@@ -1,0 +1,686 @@
+const state = {
+  data: null,
+  tab: "overview",
+  modelSet: "no_baseline",
+  task: "tax_prep",
+  mode: "augmentation",
+  judge: "aggregate",
+  selectedModel: null,
+  textTab: "output",
+  rubricFocus: null,
+};
+
+const taskOrder = ["counselling", "market_trends", "meal_plan", "operations_research", "tax_prep", "travel_planning", "tutoring"];
+const taskLabels = {
+  counselling: "Counseling",
+  market_trends: "Market Trends",
+  meal_plan: "Menu Planning",
+  operations_research: "Operations Research",
+  tax_prep: "Tax Prep",
+  travel_planning: "Travel Agent",
+  tutoring: "Tutoring",
+};
+const modeLabels = { augmentation: "Augmentation", automation: "Automation" };
+const judgeLabels = {
+  aggregate: "Aggregate",
+  "gpt-4.1": "GPT-4.1",
+  "anthropic/claude-opus-4-8": "Claude-Opus-4.8",
+  "deepseek-ai/DeepSeek-V3.1": "DeepSeek-V3.1",
+};
+const modelShort = {
+  "GPT-5-Mini": "G5M",
+  "GPT-4.1": "G4.1",
+  "GPT-O4-Mini": "O4",
+  "GPT-O3-Mini": "O3",
+  "GPT-OSS-120B": "OSS",
+  "DeepSeek-V3.1": "DS",
+  "Claude-Opus-4.8": "Opus",
+  "Claude-Sonnet-4.6": "Sonnet",
+  "Gemini-3.1-Pro": "Gemini",
+  "plain": "Plain",
+  "GPT-3.5-Turbo": "3.5",
+};
+const rubricLabels = {
+  counselling: {
+    task_dimension_1: "Empathy and therapeutic tone",
+    task_dimension_2: "Pattern recognition without overdiagnosis",
+    task_dimension_3: "Evidence-informed psychological framing",
+    task_dimension_4: "Actionable coping and goal-setting",
+    task_dimension_5: "Ethical boundaries and escalation",
+    task_dimension_6: "Coherence, warmth, and usefulness",
+  },
+  market_trends: {
+    task_dimension_1: "Trend identification",
+    task_dimension_2: "Economic mechanism quality",
+    task_dimension_3: "Coverage of market drivers",
+    task_dimension_4: "Analytical balance and nuance",
+    task_dimension_5: "Client usefulness and actionability",
+    task_dimension_6: "Conclusion quality",
+  },
+  meal_plan: {
+    task_dimension_1: "Dietary safety",
+    task_dimension_2: "Preference fit",
+    task_dimension_3: "Affordability",
+    task_dimension_4: "Nutritional adequacy and variety",
+    task_dimension_5: "Simplicity and usability",
+    task_dimension_6: "Completeness",
+  },
+  operations_research: {
+    task_dimension_1: "Data and validation",
+    task_dimension_2: "Analytical framework",
+    task_dimension_3: "Recommendations",
+    task_dimension_4: "Trade-offs and risks",
+    task_dimension_5: "KPIs and communication",
+    task_dimension_6: "Executive memo quality",
+  },
+  tax_prep: {
+    task_dimension_1: "Rule accuracy",
+    task_dimension_2: "Error detection",
+    task_dimension_3: "Calculation quality",
+    task_dimension_4: "Form guidance",
+    task_dimension_5: "Dependent analysis",
+    task_dimension_6: "Clear communication",
+  },
+  travel_planning: {
+    task_dimension_1: "Completeness",
+    task_dimension_2: "Cost realism and arithmetic",
+    task_dimension_3: "Hotel and transport practicality",
+    task_dimension_4: "Itinerary quality",
+    task_dimension_5: "Travel-agent professionalism",
+    task_dimension_6: "Handling uncertainty",
+  },
+  tutoring: {
+    task_dimension_1: "Mathematical correctness",
+    task_dimension_2: "Age-appropriate explanation and pacing",
+    task_dimension_3: "Analogy quality",
+    task_dimension_4: "Misconception handling",
+    task_dimension_5: "Classroom practicality and engagement",
+    task_dimension_6: "Assessment/checks for understanding",
+  },
+};
+const rubricDetails = {
+  counselling: {
+    task_dimension_1: "How well the response validates the client's feelings, uses supportive language, and avoids minimizing distress.",
+    task_dimension_2: "Whether it cautiously identifies possible patterns such as burnout, perfectionism, avoidance, low self-efficacy, or value mismatch without diagnosing.",
+    task_dimension_3: "Whether it uses CBT, motivational interviewing, or positive psychology accurately and in plain language.",
+    task_dimension_4: "Whether it gives concrete next steps for regulation, reframing, values clarification, and near-term goals.",
+    task_dimension_5: "Whether it includes appropriate limits and encourages professional support if distress is severe or persistent.",
+    task_dimension_6: "Whether the full single-session response is coherent, warm, useful, and appropriately bounded.",
+  },
+  market_trends: {
+    task_dimension_1: "Exactly three bullish and exactly three bearish trends, clearly categorized.",
+    task_dimension_2: "Causal mechanisms linking each trend to natural-gas prices through supply, demand, storage, LNG, infrastructure, policy, or expectations.",
+    task_dimension_3: "Meaningful coverage of supply, demand, weather, and policy/regulation, including interactions among them.",
+    task_dimension_4: "Nuance around uncertainty, competing forces, conditional scenarios, weather variability, production response, and policy/geopolitical risk.",
+    task_dimension_5: "Usefulness to investors or energy firms through implications for risk management, timing, hedging, capacity, or strategy.",
+    task_dimension_6: "A clear 2-3 sentence synthesis of the overall client-facing outlook.",
+  },
+  meal_plan: {
+    task_dimension_1: "Strictly avoids shellfish, gluten, lactose-containing dairy, and onion.",
+    task_dimension_2: "Fits meat, potatoes, Mexican, Thai, and Indian flavor preferences while avoiding very salty/sweet foods and strong seasoning.",
+    task_dimension_3: "Uses affordable, common grocery-store ingredients.",
+    task_dimension_4: "Provides variety and adequate proteins, carbs, fats, vegetables, fruits, and micronutrient coverage.",
+    task_dimension_5: "Easy to follow, clearly structured, simple enough for the target user.",
+    task_dimension_6: "Includes breakfast, lunch, dinner, snacks for all seven days, grocery list, and prep notes.",
+  },
+  operations_research: {
+    task_dimension_1: "Identifies route, demand, fleet, warehouse, service, and cost data plus collection and validation methods.",
+    task_dimension_2: "Uses suitable OR methods such as MILP, simulation, scenario analysis, routing, or allocation optimization.",
+    task_dimension_3: "At least two feasible practical solutions with clear lines of action.",
+    task_dimension_4: "Explicit cost, service, resource, implementation, and risk trade-offs.",
+    task_dimension_5: "Clear KPIs and executive communication plan for both technical and non-technical audiences.",
+    task_dimension_6: "Concise, self-contained 300-400 word executive memo with appropriate tone and structure.",
+  },
+  tax_prep: {
+    task_dimension_1: "Correct federal and California tax rules for self-employment income, dependent rules, mortgage interest, deductions, and state/federal differences.",
+    task_dimension_2: "Detects the known filing mistakes, including income mismatch, missing schedules, deduction errors, dependent-credit issues, and CA inconsistencies.",
+    task_dimension_3: "Provides income, AGI, deductions, taxable income, self-employment tax, or tax-estimate calculations where possible.",
+    task_dimension_4: "Gives clear guidance on Schedule C, Schedule SE, Schedule A vs. standard deduction, Form 1040, and California corrections.",
+    task_dimension_5: "Handles the 22-year-old full-time student with $18k income cautiously and correctly.",
+    task_dimension_6: "Explains dense tax rules in plain English so the client understands what changes and why.",
+  },
+  travel_planning: {
+    task_dimension_1: "Covers clarifying questions, costs, hotels, transport, customs/regulations, itinerary, package logic, and budget confirmation.",
+    task_dimension_2: "Flight, lodging, transport, food/activity estimates are plausible and correctly summed without exceeding budget.",
+    task_dimension_3: "Provides viable hotel options, airport/transit guidance, and practical rail/pass advice.",
+    task_dimension_4: "Five days of morning/afternoon/evening plans that are geographically sensible and fatigue-aware.",
+    task_dimension_5: "Clear, customer-focused, travel-agent style with appropriate caveats around estimates.",
+    task_dimension_6: "Asks clarifying questions for missing info while still providing a useful provisional plan.",
+  },
+  tutoring: {
+    task_dimension_1: "Mathematically accurate treatment of improper fractions and mixed numbers with no concept/example errors.",
+    task_dimension_2: "Clear Grade 3 pacing and language, avoiding abstract notation without visual support.",
+    task_dimension_3: "Analogy is concrete and understandable for 8-year-olds.",
+    task_dimension_4: "Identifies and corrects common misconceptions, ideally with a memorable check or trick.",
+    task_dimension_5: "Immediately usable classroom segment with overt student participation and engagement.",
+    task_dimension_6: "Specific formative checks such as thumbs, exit ticket, visual problem, or think-pair-share.",
+  },
+};
+const generalRubricLabels = {
+  general_instruction_following: "General: instruction following",
+  general_accuracy_specificity: "General: accuracy and specificity",
+  general_practical_usefulness: "General: practical usefulness",
+  general_organization_readability: "General: organization and readability",
+  general_tone_audience_fit: "General: tone and audience fit",
+};
+const generalRubricDetails = {
+  general_instruction_following: "Satisfies explicit requirements and constraints in the task prompt.",
+  general_accuracy_specificity: "Avoids false claims, vague filler, and unsupported assumptions.",
+  general_practical_usefulness: "Gives concrete, usable guidance or outputs.",
+  general_organization_readability: "Clear structure, easy to scan, appropriate formatting.",
+  general_tone_audience_fit: "Matches the role, user need, and professional context.",
+};
+
+function modelAllowed(label) {
+  const set = state.data.model_sets[state.modelSet];
+  if (set.include) return set.include.includes(label);
+  if (set.exclude) return !set.exclude.includes(label);
+  return true;
+}
+
+function cleanTaskTitle(slug) {
+  return taskLabels[slug] || slug;
+}
+
+function displayModel(label, mode = state.mode) {
+  if (mode === "augmentation" && label === "plain") return "GPT-3.5-Turbo (plain)";
+  return label || "";
+}
+
+function isOwnFamily(judge, modelLabel) {
+  if (!judge || judge === "aggregate") return false;
+  if (judge.startsWith("gpt-") || judge.includes("openai")) {
+    return modelLabel === "plain" || modelLabel === "GPT-3.5-Turbo" || modelLabel.startsWith("GPT-");
+  }
+  if (judge.includes("claude") || judge.includes("anthropic")) {
+    return modelLabel.startsWith("Claude-");
+  }
+  if (judge.includes("DeepSeek")) {
+    return modelLabel.startsWith("DeepSeek");
+  }
+  if (judge.includes("gemini") || judge.includes("google")) {
+    return modelLabel.startsWith("Gemini");
+  }
+  return false;
+}
+
+function visibleModels(mode) {
+  return [...new Set(state.data.aggregate
+    .filter(d => d.mode === mode && modelAllowed(d.model_label))
+    .map(d => d.model_label))];
+}
+
+function num(x) {
+  return typeof x === "number" ? x : Number(x);
+}
+
+function esc(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function rubricName(dim) {
+  return rubricLabels[state.task]?.[dim] || generalRubricLabels[dim] || dim;
+}
+
+function rubricTip(dim) {
+  return rubricDetails[state.task]?.[dim] || generalRubricDetails[dim] || rubricName(dim);
+}
+
+function scoreColor(score) {
+  const t = Math.max(0, Math.min(1, Number(score) / 10));
+  if (t < 0.5) {
+    const f = t / 0.5;
+    const r = Math.round(185 + (228 - 185) * f);
+    const g = Math.round(75 + (197 - 75) * f);
+    const b = Math.round(72 + (90 - 72) * f);
+    return `rgb(${r},${g},${b})`;
+  }
+  const f = (t - 0.5) / 0.5;
+  const r = Math.round(228 + (37 - 228) * f);
+  const g = Math.round(197 + (127 - 197) * f);
+  const b = Math.round(90 + (99 - 90) * f);
+  return `rgb(${r},${g},${b})`;
+}
+
+function records(mode, judge = "aggregate") {
+  const source = judge === "aggregate" ? state.data.aggregate : state.data.by_judge;
+  return source.filter(d =>
+    d.mode === mode &&
+    modelAllowed(d.model_label) &&
+    (judge === "aggregate" || d.judge_model === judge) &&
+    !isOwnFamily(judge, d.model_label)
+  );
+}
+
+function rankOfRanks(mode, judge = "aggregate") {
+  const rows = [];
+  for (const task of taskOrder) {
+    const sub = records(mode, judge)
+      .filter(d => d.task_slug === task)
+      .sort((a, b) => num(a.rank_value) - num(b.rank_value) || num(b.score) - num(a.score) || a.model_label.localeCompare(b.model_label));
+    sub.forEach((d, i) => rows.push({ ...d, display_rank: i + 1 }));
+  }
+  return rows;
+}
+
+function averageRanks(judge = "aggregate") {
+  const out = {};
+  for (const mode of ["augmentation", "automation"]) {
+    for (const d of rankOfRanks(mode, judge)) {
+      out[d.model_label] ||= {};
+      out[d.model_label][mode] ||= [];
+      out[d.model_label][mode].push(d.display_rank);
+    }
+  }
+  return Object.entries(out).map(([model, v]) => ({
+    model,
+    augmentation: v.augmentation ? avg(v.augmentation) : null,
+    automation: v.automation ? avg(v.automation) : null,
+  })).filter(d => d.augmentation !== null && d.automation !== null);
+}
+
+function avg(xs) {
+  return xs.reduce((a, b) => a + b, 0) / xs.length;
+}
+
+function heatColor(rank, maxRank) {
+  if (!rank) return "#f2f4f7";
+  const t = (rank - 1) / Math.max(1, maxRank - 1);
+  const stops = [
+    [37, 127, 99],
+    [210, 232, 207],
+    [244, 221, 124],
+    [222, 105, 72],
+    [158, 35, 42],
+  ];
+  const p = t * (stops.length - 1);
+  const i = Math.min(stops.length - 2, Math.floor(p));
+  const f = p - i;
+  const c = stops[i].map((v, k) => Math.round(v + (stops[i + 1][k] - v) * f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+function renderHeatmap(el, mode) {
+  const rows = rankOfRanks(mode, state.judge);
+  const models = visibleModels(mode).sort((a, b) => {
+    const avs = rows.filter(d => d.model_label === a).map(d => d.display_rank);
+    const bvs = rows.filter(d => d.model_label === b).map(d => d.display_rank);
+    const av = avs.length ? avg(avs) : 999;
+    const bv = bvs.length ? avg(bvs) : 999;
+    return av - bv;
+  });
+  const maxRank = models.length;
+  const byKey = new Map(rows.map(d => [`${d.task_slug}|${d.model_label}`, d]));
+  let html = `<table class="heat-table"><thead><tr><th>Task</th>${models.map(m => `<th>${displayModel(m, mode)}</th>`).join("")}</tr></thead><tbody>`;
+  for (const task of taskOrder) {
+    html += `<tr><td>${cleanTaskTitle(task)}</td>`;
+    for (const model of models) {
+      const d = byKey.get(`${task}|${model}`);
+      const r = d?.display_rank;
+      if (isOwnFamily(state.judge, model)) {
+        html += `<td class="heat-na" title="${displayModel(model, mode)} is excluded from ${judgeLabels[state.judge] || state.judge} judging by leave-family-out.">N/A</td>`;
+      } else {
+        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)}: win rate ${d ? Number(d.score).toFixed(3) : "NA"}" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "white" : "#172033"}">${r || ""}</td>`;
+      }
+    }
+    html += `</tr>`;
+  }
+  html += `<tr><td>Average</td>`;
+  for (const model of models) {
+    if (isOwnFamily(state.judge, model)) {
+      html += `<td class="heat-na" title="Excluded by leave-family-out.">N/A</td>`;
+    } else {
+      const vals = rows.filter(d => d.model_label === model).map(d => d.display_rank);
+      const av = vals.length ? avg(vals) : null;
+      html += av ? `<td style="background:${heatColor(av, maxRank)}">${av.toFixed(1)}</td>` : `<td class="heat-na">N/A</td>`;
+    }
+  }
+  html += `</tr></tbody></table>`;
+  el.innerHTML = html;
+}
+
+function renderRoleScatter() {
+  const data = averageRanks(state.judge);
+  const size = 460, pad = 56;
+  const maxRank = Math.max(...data.flatMap(d => [d.augmentation, d.automation]), 9);
+  const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
+  const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
+  const offsets = [[9, -8], [9, 13], [-36, -8], [-36, 13], [8, 1], [-36, 1], [0, -18], [0, 23], [13, -18], [-42, 22]];
+  const points = data.map((d, i) => {
+    const [dx, dy] = offsets[i % offsets.length];
+    const cx = x(d.automation);
+    const cy = y(d.augmentation);
+    const short = modelShort[d.model] || d.model.slice(0, 6);
+    const w = Math.max(22, short.length * 6 + 6);
+    return `<g><circle cx="${cx}" cy="${cy}" r="5.5" fill="#2f6fcb" opacity=".86"><title>${displayModel(d.model)}: automate ${d.automation.toFixed(2)}, augment ${d.augmentation.toFixed(2)}</title></circle><rect x="${cx + dx - 3}" y="${cy + dy - 9}" width="${w}" height="14" rx="3" fill="white" opacity=".9"/><text x="${cx + dx}" y="${cy + dy + 1}" font-size="8" font-weight="800">${short}</text></g>`;
+  }).join("");
+  const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
+  const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
+  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Distance from the diagonal indicates role specialization.</p><div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img">
+    <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
+    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#e7ebf0"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#e7ebf0"/><text x="${x(t)}" y="${size-pad+20}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-14}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
+    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#111" stroke-dasharray="6 5" stroke-width="1.6"/>
+    ${points}
+    <text x="${size/2}" y="${size-10}" text-anchor="middle" font-size="12" font-weight="700">Automation avg rank</text>
+    <text x="16" y="${size/2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size/2})">Augmentation avg rank</text>
+  </svg></div><div class="role-legend">${legend}</div>`;
+}
+
+function renderMetrics() {
+  const tasks = state.data.tasks.length;
+  const outputs = Object.values(state.data.runs).reduce((s, r) => s + r.outputs.length, 0);
+  const judgments = Object.values(state.data.runs).reduce((s, r) => s + r.judgments.filter(j => j.judge_label !== "Gemini-3.1-Pro").length, 0);
+  const models = new Set(state.data.aggregate.map(d => d.model_label)).size;
+  document.getElementById("metricRow").innerHTML = [
+    [`${tasks}`, "tasks"],
+    [`${models}`, "candidate conditions"],
+    [`${outputs}`, "saved outputs"],
+    [`${judgments.toLocaleString()}`, "included pairwise judgments"],
+  ].map(([v, l]) => `<div class="metric"><b>${v}</b><span>${l}</span></div>`).join("");
+}
+
+function renderLeaderboard() {
+  const rows = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  document.getElementById("rankTitle").textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
+  const maxScore = Math.max(...rows.map(d => Number(d.score)), 1);
+  document.getElementById("leaderboard").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Bars show pairwise win rate. A value of 0.00 means the model lost all judged pairwise comparisons in this task/mode/judge slice, not rank zero.</p>` + rows
+    .sort((a, b) => a.display_rank - b.display_rank)
+    .map(d => {
+      const rank = Number(d.display_rank);
+      const win = Number(d.score);
+      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}</span></span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
+    })
+    .join("");
+  document.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
+    state.selectedModel = b.dataset.rankmodel;
+    renderAll();
+  }));
+}
+
+function renderRubric() {
+  const dims = [
+    ...Object.keys(rubricLabels[state.task] || {}),
+    ...Object.keys(generalRubricLabels),
+  ];
+  const run = currentRun();
+  const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  const allowed = new Set(ranked.map(d => d.model_label));
+  const outputs = run.outputs.filter(o => allowed.has(o.model_label));
+  const models = [...new Set(outputs.map(d => d.model_label))];
+  const model = state.selectedModel && models.includes(state.selectedModel) ? state.selectedModel : models[0];
+  const output = outputs.find(o => o.model_label === model);
+  const grouped = new Map();
+  if (output) {
+    run.judgments
+      .filter(j => state.judge === "aggregate" ? j.judge_label !== "Gemini-3.1-Pro" : j.judge_model === state.judge)
+      .forEach(j => {
+        const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
+        if (!scores) return;
+        dims.forEach(dim => {
+          if (scores[dim] === undefined || scores[dim] === null) return;
+          const arr = grouped.get(dim) || [];
+          arr.push(Number(scores[dim]));
+          grouped.set(dim, arr);
+        });
+      });
+  }
+  const sub = dims
+    .filter(d => grouped.has(d))
+    .map(d => ({ dimension: d, mean_score: avg(grouped.get(d)) }));
+  const max = 10;
+  const nScores = grouped.size && sub.length ? grouped.get(sub[0].dimension)?.length || 0 : 0;
+  const intro = `<h3>${displayModel(model || "", state.mode)}</h3><p style="color:var(--muted);font-size:12px;margin:6px 0 12px">Click any leaderboard model to inspect that selected response's rubric profile. Values average its pairwise appearances across ${state.judge === "aggregate" ? "included judges" : judgeLabels[state.judge] || state.judge}${nScores ? ` (n=${nScores})` : ""}.</p>`;
+  const body = sub.length
+    ? sub.map(d => `<div class="bar-row" data-rubricdim="${d.dimension}"><div><span class="rubric-label">${esc(rubricName(d.dimension))}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Number(d.mean_score) / max * 100}%;background:${scoreColor(d.mean_score)}"></div></div><div>${Number(d.mean_score).toFixed(1)}</div></div>`).join("")
+    : `<p style="color:var(--muted);font-size:13px">No rubric-score rows found for this response under the current judge filter. Try Aggregate or another judge.</p>`;
+  const focus = state.rubricFocus && sub.some(d => d.dimension === state.rubricFocus) ? state.rubricFocus : sub[0]?.dimension;
+  document.getElementById("rubricChart").innerHTML = intro + body + (focus ? `<div class="rubric-detail"><b>${esc(rubricName(focus))}</b><p>${esc(rubricTip(focus))}</p></div>` : "");
+  document.querySelectorAll("[data-rubricdim]").forEach(el => {
+    const setFocus = () => {
+      state.rubricFocus = el.dataset.rubricdim;
+      const detail = document.querySelector("#rubricChart .rubric-detail");
+      if (detail) detail.innerHTML = `<b>${esc(rubricName(state.rubricFocus))}</b><p>${esc(rubricTip(state.rubricFocus))}</p>`;
+    };
+    el.addEventListener("mouseenter", setFocus);
+    el.addEventListener("click", setFocus);
+  });
+}
+
+function renderJudgeScatter() {
+  const pairs = [["gpt-4.1", "anthropic/claude-opus-4-8"], ["gpt-4.1", "deepseek-ai/DeepSeek-V3.1"], ["anthropic/claude-opus-4-8", "deepseek-ai/DeepSeek-V3.1"]];
+  const size = 420, pad = 50, maxRank = 10;
+  const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
+  const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
+  const stat = (pts, a, b) => {
+    const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
+    const within1 = diffs.filter(d => d <= 1).length / Math.max(1, diffs.length);
+    const meanDiff = diffs.reduce((s, d) => s + d, 0) / Math.max(1, diffs.length);
+    const corr = state.data.correlations.find(d => d.scope === "all" && d.method === "spearman" && ((d.judge_a === judgeLabels[a] && d.judge_b === judgeLabels[b]) || (d.judge_b === judgeLabels[a] && d.judge_a === judgeLabels[b])));
+    return { within1, meanDiff, rho: corr ? Number(corr.correlation) : null };
+  };
+  const cardHtml = pairs.map(([a, b]) => {
+    const pts = state.data.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    const s = stat(pts, a, b);
+    return `<div class="metric"><b>${s.rho === null ? "NA" : s.rho.toFixed(2)}</b><span>${judgeLabels[a]} × ${judgeLabels[b]} rank correlation<br>${Math.round(s.within1 * 100)}% close calls within 1 rank<br>average rank gap ${s.meanDiff.toFixed(1)}</span></div>`;
+  }).join("");
+  document.getElementById("judgeAgreementCards").innerHTML = cardHtml;
+  const panels = pairs.map(([a, b]) => {
+    const pts = state.data.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    return `<svg viewBox="0 0 ${size} ${size}">
+      <rect width="${size}" height="${size}" fill="white"/>
+      <text x="${size/2}" y="24" text-anchor="middle" font-weight="700">${judgeLabels[a]} vs ${judgeLabels[b]}</text>
+      <text x="${size/2}" y="42" text-anchor="middle" font-size="11" fill="#657083">One point = one model in one task/mode</text>
+      ${[1,5,10].map(t => `<text x="${x(t)}" y="${size-pad+22}" text-anchor="middle" font-size="11">${t}</text><text x="${pad-12}" y="${y(t)+4}" text-anchor="end" font-size="11">${t}</text>`).join("")}
+      ${Array.from({ length: 10 }, (_, i) => i + 1).map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#e6e9ee"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#e6e9ee"/>`).join("")}
+      <polygon points="${x(1)},${y(2)} ${x(9)},${y(10)} ${x(10)},${y(9)} ${x(2)},${y(1)}" fill="#2f6fcb" opacity=".08"/>
+      <line x1="${x(1)}" y1="${y(1)}" x2="${x(10)}" y2="${y(10)}" stroke="#111" stroke-dasharray="7 6"/>
+      ${pts.map((d, i) => `<circle cx="${x(d[a]) + ((i % 7) - 3) * 1.8}" cy="${y(d[b]) + (((i / 7) | 0) % 7 - 3) * 1.8}" r="3.8" fill="${d.mode === "augmentation" ? "#2f6fcb" : "#d96f31"}" opacity=".52"><title>${cleanTaskTitle(d.task)} ${d.mode}: ${displayModel(d.model_label, d.mode)}</title></circle>`).join("")}
+      <text x="${size/2}" y="${size-10}" text-anchor="middle" font-size="12">${judgeLabels[a]} rank</text>
+      <text x="14" y="${size/2}" text-anchor="middle" font-size="12" transform="rotate(-90 14 ${size/2})">${judgeLabels[b]} rank</text>
+    </svg>`;
+  }).join("");
+  document.getElementById("judgeScatter").innerHTML = `<p style="color:var(--muted);font-size:13px;margin:0 0 12px">Dots near the dashed diagonal mean the two judges assigned similar ranks. The pale blue band marks rankings within one rank of each other. Blue dots are augmentation entries; orange dots are automation entries.</p><div class="two-col judge-grid">${panels}</div><h3 style="margin-top:18px">Task-Level Agreement Summary</h3><div id="judgeAgreementTable"></div><h3 style="margin-top:18px">Largest Individual Rank Disagreements</h3><div id="judgeDisagreementTable"></div>`;
+  renderJudgeAgreementTable(pairs);
+  renderJudgeDisagreementTable(pairs);
+  renderCorrTable();
+}
+
+function renderJudgeAgreementTable(pairs) {
+  const rows = [];
+  for (const task of taskOrder) {
+    for (const mode of ["augmentation", "automation"]) {
+      const cells = pairs.map(([a, b]) => {
+        const pts = state.data.scatter_points.filter(d => d.task === task && d.mode === mode && d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+        if (!pts.length) return "N/A";
+        const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
+        const meanGap = diffs.reduce((s, d) => s + d, 0) / diffs.length;
+        const within1 = diffs.filter(d => d <= 1).length / diffs.length;
+        return `${meanGap.toFixed(1)} gap / ${Math.round(within1 * 100)}% close`;
+      });
+      rows.push({ task, mode, cells });
+    }
+  }
+  const headers = pairs.map(([a, b]) => `${judgeLabels[a]} × ${judgeLabels[b]}`);
+  document.getElementById("judgeAgreementTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:6px 0 10px">Each cell reports average absolute rank difference, then the share of model ranks within one position of each other. Lower gap and higher close-share indicate better agreement.</p><table class="heat-table"><thead><tr><th>Task / Mode</th>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr><td>${cleanTaskTitle(r.task)} / ${modeLabels[r.mode]}</td>${r.cells.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+}
+
+function renderJudgeDisagreementTable(pairs) {
+  const rows = [];
+  for (const [a, b] of pairs) {
+    state.data.scatter_points
+      .filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label))
+      .forEach(d => {
+        rows.push({
+          pair: `${judgeLabels[a]} × ${judgeLabels[b]}`,
+          task: d.task,
+          mode: d.mode,
+          model: d.model_label,
+          aRank: Number(d[a]),
+          bRank: Number(d[b]),
+          gap: Math.abs(Number(d[a]) - Number(d[b])),
+        });
+      });
+  }
+  rows.sort((a, b) => b.gap - a.gap || a.task.localeCompare(b.task));
+  const top = rows.slice(0, 12);
+  document.getElementById("judgeDisagreementTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:6px 0 10px">These are the individual model-task-mode entries where two judges disagreed most about rank. Useful for targeted qualitative audit.</p><table class="heat-table"><thead><tr><th>Pair</th><th>Task / Mode</th><th>Model</th><th>Ranks</th><th>Gap</th></tr></thead><tbody>${top.map(r => `<tr><td>${r.pair}</td><td>${cleanTaskTitle(r.task)} / ${modeLabels[r.mode]}</td><td>${displayModel(r.model, r.mode)}</td><td>${r.aRank} vs ${r.bRank}</td><td>${r.gap}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function renderCorrTable() {
+  const rows = state.data.correlations.filter(d => d.method === "spearman");
+  document.getElementById("corrTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Spearman is a rank-order correlation. It is computed only on entries both judges were eligible to score after leave-family-out exclusions.</p><table class="heat-table"><thead><tr><th>Scope</th><th>Pair</th><th>Spearman</th><th>Shared ranks</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.scope}</td><td>${d.judge_a} × ${d.judge_b}</td><td>${Number(d.correlation).toFixed(3)}</td><td>${d.n_pairs}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function runKey() {
+  return `${state.task}/${state.mode}`;
+}
+
+function currentRun() {
+  return state.data.runs[runKey()];
+}
+
+function renderQualitative() {
+  const run = currentRun();
+  const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  const allowed = new Set(ranked.map(d => d.model_label));
+  const outputs = run.outputs.filter(o => allowed.has(o.model_label));
+  if (!state.selectedModel || !outputs.some(o => o.model_label === state.selectedModel)) state.selectedModel = outputs[0]?.model_label;
+  document.getElementById("modelList").innerHTML = outputs.map(o => {
+    const r = ranked.find(d => d.model_label === o.model_label);
+    const role = state.mode === "augmentation"
+      ? `assistant/scaffold: ${displayModel(o.assistant_model || o.model_label, state.mode)} · worker: ${displayModel(o.worker_model || "gpt-3.5-turbo", state.mode)}`
+      : `worker/direct solver: ${displayModel(o.model_label, state.mode)}`;
+    return `<button class="model-button ${o.model_label === state.selectedModel ? "active" : ""}" data-model="${o.model_label}"><span>${displayModel(o.model_label, state.mode)}<small class="model-role">${esc(role)}</small></span><span>rank ${r?.display_rank || "?"}</span></button>`;
+  }).join("");
+  document.querySelectorAll(".model-button").forEach(b => b.addEventListener("click", () => {
+    state.selectedModel = b.dataset.model;
+    renderAll();
+  }));
+  const out = outputs.find(o => o.model_label === state.selectedModel) || outputs[0];
+  document.getElementById("qualTitle").textContent = out ? `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} · ${displayModel(out.model_label, state.mode)}` : "No output";
+  const assistant = state.mode === "augmentation" ? displayModel(out?.assistant_model || out?.model_label, state.mode) : "N/A";
+  const worker = state.mode === "augmentation" ? displayModel(out?.worker_model || "gpt-3.5-turbo", state.mode) : displayModel(out?.model_label, state.mode);
+  const condition = out?.condition || "";
+  document.getElementById("roleStrip").innerHTML = out ? [
+    ["Mode", modeLabels[state.mode]],
+    [state.mode === "augmentation" ? "Assistant / Scaffold Model" : "Assistant", assistant],
+    [state.mode === "augmentation" ? "Worker / Final Output Model" : "Worker / Direct Solver", worker],
+    ["Condition", condition],
+  ].map(([k, v]) => `<div class="role-chip"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join("") : "";
+  let text = "";
+  if (state.textTab === "output") text = out?.output || "";
+  if (state.textTab === "scaffold") text = out?.scaffold_text || "No scaffold in automation/plain condition.";
+  if (state.textTab === "scaffoldPrompt") {
+    const task = state.data.tasks.find(t => t.slug === state.task);
+    text = `SCAFFOLD PROMPT USED FOR THIS TASK\n\n${task?.scaffold_prompt || "No scaffold prompt found in dashboard data."}\n\n\nWORKER INSTRUCTION THAT CONSUMES THE SCAFFOLD\n\n${task?.worker_instruction || "No worker instruction found in dashboard data."}`;
+  }
+  if (state.textTab === "prompt") {
+    const task = state.data.tasks.find(t => t.slug === state.task);
+    text = `TASK PROMPT\n\n${task?.task_prompt || ""}\n\n\nSCAFFOLD PROMPT USED IN AUGMENTATION\n\n${task?.scaffold_prompt || "No scaffold prompt found in dashboard data."}\n\n\nWORKER INSTRUCTION\n\n${task?.worker_instruction || "No worker instruction found in dashboard data."}\n\n\nJUDGE RUBRIC / PROMPT\n\n${task?.rubric || ""}`;
+  }
+  document.getElementById("qualText").textContent = text;
+  renderRationales(out);
+}
+
+function renderRationales(out) {
+  if (!out) {
+    document.getElementById("rationales").innerHTML = "";
+    return;
+  }
+  const run = currentRun();
+  const byIdx = new Map(run.outputs.map(o => [o.idx, o]));
+  const rows = run.judgments
+    .filter(j => j.left_idx === out.idx || j.right_idx === out.idx)
+    .filter(j => state.judge === "aggregate" ? j.judge_label !== "Gemini-3.1-Pro" : j.judge_model === state.judge)
+    .slice(0, 24);
+  const dims = [
+    ...Object.keys(rubricLabels[state.task] || {}),
+    ...Object.keys(generalRubricLabels),
+  ];
+  const scoreTable = scores => `<div class="score-inline"><table class="mini-score">${dims
+    .filter(dim => scores && scores[dim] !== undefined && scores[dim] !== null)
+    .map(dim => {
+      const score = Number(scores[dim]);
+      return `<tr><td><span class="rubric-label" title="${esc(rubricTip(dim))}">${esc(rubricName(dim))}</span></td><td><div class="mini-track"><div class="mini-fill" style="width:${score * 10}%;background:${scoreColor(score)}"></div></div></td><td>${score.toFixed(1)}</td></tr>`;
+    })
+    .join("")}</table></div>`;
+  document.getElementById("rationales").innerHTML = rows.map(j => {
+    const left = byIdx.get(j.left_idx);
+    const right = byIdx.get(j.right_idx);
+    const selected = j.winner === "option_1" ? left : right;
+    const leftWinner = selected?.idx === left?.idx;
+    const rightWinner = selected?.idx === right?.idx;
+    return `<div class="rationale">
+      <div class="meta">${j.judge_label} · ${displayModel(left?.model_label, state.mode)} vs ${displayModel(right?.model_label, state.mode)}</div>
+      <div class="contestants">
+        <details class="contestant-detail ${leftWinner ? "winner" : ""}" ${leftWinner ? "open" : ""}>
+          <summary><span>Option 1: ${esc(displayModel(left?.model_label, state.mode))}</span><span class="score-chip">avg ${Number(j.option_1_average).toFixed(1)}</span></summary>
+          ${scoreTable(j.option_1_scores)}
+        </details>
+        <details class="contestant-detail ${rightWinner ? "winner" : ""}" ${rightWinner ? "open" : ""}>
+          <summary><span>Option 2: ${esc(displayModel(right?.model_label, state.mode))}</span><span class="score-chip">avg ${Number(j.option_2_average).toFixed(1)}</span></summary>
+          ${scoreTable(j.option_2_scores)}
+        </details>
+      </div>
+      <p>${esc(j.short_rationale)}</p>
+    </div>`;
+  }).join("");
+}
+
+function populateControls() {
+  const modelSet = document.getElementById("modelSet");
+  modelSet.innerHTML = Object.entries(state.data.model_sets).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join("");
+  modelSet.value = state.modelSet;
+  document.getElementById("taskSelect").innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
+  document.getElementById("taskSelect").value = state.task;
+  document.getElementById("modeSelect").value = state.mode;
+  const judges = ["aggregate", ...new Set(state.data.by_judge.map(d => d.judge_model).filter(j => j !== "google/gemini-3.1-pro"))];
+  document.getElementById("judgeSelect").innerHTML = judges.map(j => `<option value="${j}">${judgeLabels[j] || j}</option>`).join("");
+  document.getElementById("judgeSelect").value = state.judge;
+}
+
+function bind() {
+  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+    state.tab = b.dataset.tab;
+    document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x === b));
+    document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === state.tab));
+  }));
+  document.getElementById("modelSet").addEventListener("change", e => { state.modelSet = e.target.value; renderAll(); });
+  document.getElementById("taskSelect").addEventListener("change", e => { state.task = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
+  document.getElementById("modeSelect").addEventListener("change", e => { state.mode = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
+  document.getElementById("judgeSelect").addEventListener("change", e => { state.judge = e.target.value; state.rubricFocus = null; renderAll(); });
+  document.querySelectorAll("[data-texttab]").forEach(b => b.addEventListener("click", () => {
+    state.textTab = b.dataset.texttab;
+    document.querySelectorAll("[data-texttab]").forEach(x => x.classList.toggle("active", x === b));
+    renderQualitative();
+  }));
+}
+
+function renderAll() {
+  populateControls();
+  renderMetrics();
+  renderHeatmap(document.getElementById("heatAug"), "augmentation");
+  renderHeatmap(document.getElementById("heatAuto"), "automation");
+  renderRoleScatter();
+  renderLeaderboard();
+  renderRubric();
+  renderJudgeScatter();
+  renderQualitative();
+}
+
+fetch("dashboard-data.json")
+  .then(r => r.json())
+  .then(data => {
+    state.data = data;
+    populateControls();
+    bind();
+    renderAll();
+  })
+  .catch(err => {
+    document.body.innerHTML = `<main><div class="viz-card"><h1>Dashboard data failed to load</h1><pre>${err}</pre></div></main>`;
+  });
