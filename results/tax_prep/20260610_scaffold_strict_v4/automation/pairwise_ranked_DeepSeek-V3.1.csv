@@ -130,7 +130,7 @@ Client entered **$62,000**. The corrected federal AGI is **~$72,403**. The $62,0
 
 ### Key CA differences:
 - **CA does not conform** to the federal SALT cap, but CA disallows the deduction of **state income taxes** entirely on the CA Schedule CA (subtraction). Property tax and mortgage interest are generally allowed.
-- CA standard",automation_Claude-Opus-4.8,anthropic/claude-opus-4-8,Claude-Opus-4.8,0,6,8,0.75,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+- CA standard",automation_Claude-Opus-4.8,anthropic/claude-opus-4-8,Claude-Opus-4.8,0,7,8,0.875,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"# Comprehensive Federal and California Tax Return Review
 ## Tax Year 2025 | Filing Status Analysis Required
 
@@ -307,7 +307,7 @@ The return claims the 22-year-old as a dependent qualifying for the **Child Tax 
 
 #### Problem 5A: Does the 22-Year-Old Qualify as a Dependent at All?
 
-There are two pathways to claim a dependent: **Qualifying Child",automation_Claude-Sonnet-4.6,anthropic/claude-sonnet-4-6,Claude-Sonnet-4.6,1,6,8,0.75,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+There are two pathways to claim a dependent: **Qualifying Child",automation_Claude-Sonnet-4.6,anthropic/claude-sonnet-4-6,Claude-Sonnet-4.6,1,7,8,0.875,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Short answer summary (action items)
 - The federal return is incorrect in multiple ways. The 1099-NEC income is underreported, Schedule C + Schedule SE are missing, the “standard deduction” entry is wrong, Schedule A was not prepared (itemization vs standard needs analysis), the dependent was mischaracterized for the Child Tax Credit, and filing status may be wrong (Head of Household likely available).
 - The California return used an incorrect federal AGI and must be recalculated after the federal return is corrected (Form 540 and Schedule CA need updates).
@@ -416,7 +416,27 @@ If you want me to run the numbers to final federal and California tax liability 
 - Federal tax withheld on the W‑2,
 - Any other income or withholding,
 - Documentation or at least a summary showing how much support you provided to the student (or confirm you can substantiate >50% support),
-and I will recalculate final tax figures and list exact line numbers/forms to correct.",automation_GPT-5-Mini,gpt-5-mini-2025-08-07,GPT-5-Mini,6,6,8,0.75,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+and I will recalculate final tax figures and list exact line numbers/forms to correct.",automation_GPT-5-Mini,gpt-5-mini-2025-08-07,GPT-5-Mini,6,7,8,0.875,2.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"## 1. What the client gave you vs what the law requires  
+
+| Item | Client’s entry (as shown on the draft) | What the tax code says must be reported | Why the client’s entry is wrong (or incomplete) |
+|------|----------------------------------------|------------------------------------------|------------------------------------------------|
+| **W‑2 wages** | $68,500 (on Form 1040) | Correct – must be on line 1 of Form 1040 | ✅ |
+| **1099‑NEC income** | $2,400 (on Form 1040) | Must report the **full** $4,200 on Schedule C (profit‑or‑loss) and carry the net profit to Form 1040 line 3 | The $2,400 figure is a typo or an incomplete copy of the 1099‑NEC. |
+| **Schedule C** | Not prepared | Required for any self‑employment (1099‑NEC) income. Net profit = 1099‑NEC amount – business expenses. | No Schedule C → no self‑employment (SE) tax, no deduction for half of SE tax. |
+| **Schedule SE** | Not prepared | Required when net self‑employment earnings ≥ $400. Calculates the 15.3 % SE tax and the “deduction for one‑half of SE tax” (line 10 of Form 1040). | Missing → AGI is understated and SE tax is not paid. |
+| **Standard vs. Itemized deduction** | $9,800 claimed as “standard deduction” (line 12) | 2025 standard deduction for **Single** = **$14,150** (≈ inflation‑adjusted from 2024 $13,850).  The client also has $9,800 mortgage interest, $4,800 CA property tax and $2,900 state‑tax withholding → total possible itemized = $17,500 (subject to the $10,000 SALT cap). | The amount shown is not the standard deduction and it is far too low. The client should either (a) claim the correct standard deduction **or** (b) file Schedule A and itemize, which is more beneficial. |
+| **Dependent claim** | Child Tax Credit (CTC) for a 22‑year‑old college student | CTC is only for children **under 17** at the end of the year. A 22‑year‑old can only be claimed as a **qualifying relative** for the **Other Dependent Credit** ($500) **if** the support test is met. | Claiming CTC is illegal; must be changed to the $500 credit (or removed if the support test fails). |
+| **Filing status** | Single (checked) | If the client paid > ½ of the household expenses and the student lived with the client > 6 months, the client **qualifies for Head‑of‑Household (HOH)**. HOH gives a larger standard deduction and wider tax brackets. | Not evaluating HOH could increase tax liability. |
+| **CA Form 540 – Federal AGI** | $62,000 (copied from the draft) | Federal AGI should be **$72,404** (see calculations below). The CA return must use the correct federal AGI as its starting point. | Wrong AGI → all CA tax calculations are off. |
+| **State‑tax withholding** | $2,900 shown on CA Form 540 (line 17) | This amount is a credit against CA tax, not a deduction on the federal return. | No problem, but the client must not treat it as a federal deduction. |
+
+---
+
+## 2. Federal Return – Re‑calculation (using the information we **do** have)
+
+> **Assumptions**  
+> • No business expenses are supplied – we will",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,4,8,0.5,4.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Below is an overview of the problems found in the “partially completed” returns, the relevant tax‐law concepts behind each, and a discussion of how to “re‐calculate” and what forms/schedules must be corrected. (Because some necessary facts – such as the amount of any allowable business expenses – are missing, we give a framework for an estimate rather than a single “final” tax liability number.)
 
 ─────────────────────────────  
@@ -496,27 +516,42 @@ B. Required Correction
 ─────────────────────────────  
 5. RECAP & CALCULATION FRAMEWORK
 
-Because some information is still missing (most notably the allowable business expenses",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,7,5,8,0.625,4.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"## 1. What the client gave you vs what the law requires  
+Because some information is still missing (most notably the allowable business expenses",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,7,3,8,0.375,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"Below is a summary of the discrepancies we found, the correct treatment under 2025 federal and California law, the recalculations (using reasonable assumptions where data are missing), and the forms/schedules that must be added or corrected. Where exact numbers cannot be determined, we point out what’s missing and show you how to slot it into your numbers.
 
-| Item | Client’s entry (as shown on the draft) | What the tax code says must be reported | Why the client’s entry is wrong (or incomplete) |
-|------|----------------------------------------|------------------------------------------|------------------------------------------------|
-| **W‑2 wages** | $68,500 (on Form 1040) | Correct – must be on line 1 of Form 1040 | ✅ |
-| **1099‑NEC income** | $2,400 (on Form 1040) | Must report the **full** $4,200 on Schedule C (profit‑or‑loss) and carry the net profit to Form 1040 line 3 | The $2,400 figure is a typo or an incomplete copy of the 1099‑NEC. |
-| **Schedule C** | Not prepared | Required for any self‑employment (1099‑NEC) income. Net profit = 1099‑NEC amount – business expenses. | No Schedule C → no self‑employment (SE) tax, no deduction for half of SE tax. |
-| **Schedule SE** | Not prepared | Required when net self‑employment earnings ≥ $400. Calculates the 15.3 % SE tax and the “deduction for one‑half of SE tax” (line 10 of Form 1040). | Missing → AGI is understated and SE tax is not paid. |
-| **Standard vs. Itemized deduction** | $9,800 claimed as “standard deduction” (line 12) | 2025 standard deduction for **Single** = **$14,150** (≈ inflation‑adjusted from 2024 $13,850).  The client also has $9,800 mortgage interest, $4,800 CA property tax and $2,900 state‑tax withholding → total possible itemized = $17,500 (subject to the $10,000 SALT cap). | The amount shown is not the standard deduction and it is far too low. The client should either (a) claim the correct standard deduction **or** (b) file Schedule A and itemize, which is more beneficial. |
-| **Dependent claim** | Child Tax Credit (CTC) for a 22‑year‑old college student | CTC is only for children **under 17** at the end of the year. A 22‑year‑old can only be claimed as a **qualifying relative** for the **Other Dependent Credit** ($500) **if** the support test is met. | Claiming CTC is illegal; must be changed to the $500 credit (or removed if the support test fails). |
-| **Filing status** | Single (checked) | If the client paid > ½ of the household expenses and the student lived with the client > 6 months, the client **qualifies for Head‑of‑Household (HOH)**. HOH gives a larger standard deduction and wider tax brackets. | Not evaluating HOH could increase tax liability. |
-| **CA Form 540 – Federal AGI** | $62,000 (copied from the draft) | Federal AGI should be **$72,404** (see calculations below). The CA return must use the correct federal AGI as its starting point. | Wrong AGI → all CA tax calculations are off. |
-| **State‑tax withholding** | $2,900 shown on CA Form 540 (line 17) | This amount is a credit against CA tax, not a deduction on the federal return. | No problem, but the client must not treat it as a federal deduction. |
+1. Filing Status and Dependency  
+  – Client selected “Single,” but the 22-year-old full-time student who lived with them 9 months, on whom they provided over 50% support, is a “qualifying child” for both Head-of-Household (HOH) status and dependency.  
+  – Federal: under IRC §2(b), a child <24 in full-time school qualifies. HOH filing status applies because the child is not married and lived with the client >6 months.  
+  – State: California follows the federal definition for HOH and dependency.  
+  – Action: Amend both returns to HOH and claim the student as a dependent.  
+  – Credit: The child is too old for the Child Tax Credit (max age 17) but qualifies for the $500 Credit for Other Dependents (IRC §24(b)).
 
----
+2. Wage and Self-Employment Income  
+  – Client reported W-2 wages ($68,500) correctly.  
+  – 1099-NEC of $4,200 was only",automation_GPT-O4-Mini,o4-mini-2025-04-16,GPT-O4-Mini,8,3,8,0.375,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"<think>
+**Reviewing Client's 2025 Tax Data**
 
-## 2. Federal Return – Re‑calculation (using the information we **do** have)
+I'm currently analyzing the provided 2025 tax data for California. My focus is on reconciling the reported freelance income with the W-2 wages, ensuring the correct self-employment tax is calculated, and determining the optimal filing status. I'm also assessing whether itemized deductions or the standard deduction will yield a better outcome, considering mortgage interest and property taxes. The dependent's eligibility for credits is also under review.
 
-> **Assumptions**  
-> • No business expenses are supplied – we will",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,4,8,0.5,5.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+ 
+</think>
+
+Here is a comprehensive review of your client’s partially completed 2025 federal and California tax returns, including identified discrepancies, applicable tax rules, a recalculated framework, and the necessary corrections.
+
+### 1. Discrepancies & Applicable Tax Rules
+
+**Filing Status: Single vs. Head of Household (HOH)**
+*   **Discrepancy:** The client selected ""Single,"" but they likely qualify for the highly advantageous ""Head of Household"" status.
+*   **Rule:** To qualify for HOH, a taxpayer must be unmarried, pay more than half the cost of keeping up a home for the year, and have a ""qualifying child"" or dependent live with them for more than half the year. Because the 22-year-old is a full-time student, lives with the client for 9 months, and the client provides more than 50% of their support, the student is a ""Qualifying Child."" The student's $18,000 income does not disqualify them, as the gross income test does not apply to a Qualifying Child who is a full-time student under age 24.
+
+**Dependent Credits: Child Tax Credit (CTC) vs. Credit for Other Dependents (ODC)**
+*   **Discrepancy:** The client claimed the Child Tax Credit.
+*   **Rule:** The CTC is only available for dependents *under age 17* at the end of the tax year. Because the dependent is 22, they do not qualify for the CTC. Instead, the client qualifies for the **$500 Credit for Other Dependents (ODC)**.
+
+**Freelance Income & Self-Employment Tax**
+*   **Discrepancy:** Only $2,400 of freelance income is reported instead of the $4,200 shown on the 1099-NEC. Furthermore, no Schedule C or Schedule SE was prepared.
+*   **Rule:** All 1099-NEC income must be reported on Schedule C. Because net self-employment earnings exceed $400, the client is subject to a 15.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,3,2,8,0.25,7.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Let's break down your client's returns step by step, identify discrepancies, explain the correct rules, and outline what needs to be fixed for both **federal** and **California** tax returns for **tax year 2025**.
 
 ---
@@ -610,42 +645,7 @@ Because some information is still missing (most notably the allowable business e
 
 ---
 
-## 7. **",automation_GPT-4.1,gpt-4.1,GPT-4.1,5,3,8,0.375,6.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"Below is a summary of the discrepancies we found, the correct treatment under 2025 federal and California law, the recalculations (using reasonable assumptions where data are missing), and the forms/schedules that must be added or corrected. Where exact numbers cannot be determined, we point out what’s missing and show you how to slot it into your numbers.
-
-1. Filing Status and Dependency  
-  – Client selected “Single,” but the 22-year-old full-time student who lived with them 9 months, on whom they provided over 50% support, is a “qualifying child” for both Head-of-Household (HOH) status and dependency.  
-  – Federal: under IRC §2(b), a child <24 in full-time school qualifies. HOH filing status applies because the child is not married and lived with the client >6 months.  
-  – State: California follows the federal definition for HOH and dependency.  
-  – Action: Amend both returns to HOH and claim the student as a dependent.  
-  – Credit: The child is too old for the Child Tax Credit (max age 17) but qualifies for the $500 Credit for Other Dependents (IRC §24(b)).
-
-2. Wage and Self-Employment Income  
-  – Client reported W-2 wages ($68,500) correctly.  
-  – 1099-NEC of $4,200 was only",automation_GPT-O4-Mini,o4-mini-2025-04-16,GPT-O4-Mini,8,3,8,0.375,6.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"<think>
-**Reviewing Client's 2025 Tax Data**
-
-I'm currently analyzing the provided 2025 tax data for California. My focus is on reconciling the reported freelance income with the W-2 wages, ensuring the correct self-employment tax is calculated, and determining the optimal filing status. I'm also assessing whether itemized deductions or the standard deduction will yield a better outcome, considering mortgage interest and property taxes. The dependent's eligibility for credits is also under review.
-
- 
-</think>
-
-Here is a comprehensive review of your client’s partially completed 2025 federal and California tax returns, including identified discrepancies, applicable tax rules, a recalculated framework, and the necessary corrections.
-
-### 1. Discrepancies & Applicable Tax Rules
-
-**Filing Status: Single vs. Head of Household (HOH)**
-*   **Discrepancy:** The client selected ""Single,"" but they likely qualify for the highly advantageous ""Head of Household"" status.
-*   **Rule:** To qualify for HOH, a taxpayer must be unmarried, pay more than half the cost of keeping up a home for the year, and have a ""qualifying child"" or dependent live with them for more than half the year. Because the 22-year-old is a full-time student, lives with the client for 9 months, and the client provides more than 50% of their support, the student is a ""Qualifying Child."" The student's $18,000 income does not disqualify them, as the gross income test does not apply to a Qualifying Child who is a full-time student under age 24.
-
-**Dependent Credits: Child Tax Credit (CTC) vs. Credit for Other Dependents (ODC)**
-*   **Discrepancy:** The client claimed the Child Tax Credit.
-*   **Rule:** The CTC is only available for dependents *under age 17* at the end of the tax year. Because the dependent is 22, they do not qualify for the CTC. Instead, the client qualifies for the **$500 Credit for Other Dependents (ODC)**.
-
-**Freelance Income & Self-Employment Tax**
-*   **Discrepancy:** Only $2,400 of freelance income is reported instead of the $4,200 shown on the 1099-NEC. Furthermore, no Schedule C or Schedule SE was prepared.
-*   **Rule:** All 1099-NEC income must be reported on Schedule C. Because net self-employment earnings exceed $400, the client is subject to a 15.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,3,2,8,0.25,8.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+## 7. **",automation_GPT-4.1,gpt-4.1,GPT-4.1,5,2,8,0.25,7.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Discrepancies and corrections needed:
 
 1. Freelance/contract income: The client reported $4,200 on Form 1099-NEC, but only $2,400 is reflected on the federal return. The missing $1,800 needs to be included in the federal return as additional income.

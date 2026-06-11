@@ -1,26 +1,26 @@
 left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
 3,2,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with strong factor interactions, but Option 2 demonstrates superior analytical nuance (e.g., capital discipline reducing associated gas, basis differentials, JKM linkage) and a more honest, defensible outlook (range-bound volatility) without the internal tension Option 1 has, where pipeline constraints are listed bullish while production glut and storage are bearish in ways that partly conflict."",
+  ""short_rationale"": ""Both options fulfill the structural requirements (exactly three bullish/three bearish trends plus a summary), but Option 2 is more analytically sophisticated and accurate: it names specific facilities (Golden Pass, Plaquemines), references real benchmarks (JKM, Dominion South, basis differentials), and correctly explains nuanced supply dynamics like capital discipline reducing associated gas. Option 1 contains a subtle internal tension (treating associated gas growth as bearish while elsewhere implying robust supply) and is more generic, whereas Option 2 better integrates the requested interacting factors with concrete specificity."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 7,
+    ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 9,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
@@ -28,12 +28,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
-  ""option_2_average"": 8.4
-}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends with strong factor interactions, but Option 2 demonstrates superior analytical nuance (e.g., capital discipline reducing associated gas, basis differentials, JKM linkage) and a more honest, defensible outlook (range-bound volatility) without the internal tension Option 1 has, where pipeline constraints are listed bullish while production glut and storage are bearish in ways that partly conflict.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.5,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 8.2
+}",option_2,"Both options fulfill the structural requirements (exactly three bullish/three bearish trends plus a summary), but Option 2 is more analytically sophisticated and accurate: it names specific facilities (Golden Pass, Plaquemines), references real benchmarks (JKM, Dominion South, basis differentials), and correctly explains nuanced supply dynamics like capital discipline reducing associated gas. Option 1 contains a subtle internal tension (treating associated gas growth as bearish while elsewhere implying robust supply) and is more generic, whereas Option 2 better integrates the requested interacting factors with concrete specificity.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.0,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,2,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides specific, named evidence (Golden Pass/Plaquemines terminals, Permian associated gas dynamics, JKM linkage, basis differentials) and explains the interaction of supply/demand/weather/LNG/infrastructure/policy with analytical depth, while Option 1 is generic and largely interchangeable across years. Both satisfy the format requirements, but Option 2 is markedly more accurate, specific, and useful for a client briefing."",
+  ""short_rationale"": ""Option 2 fully satisfies the prompt with exactly three bullish and three bearish trends backed by specific facilities (Golden Pass, Plaquemines), named hubs (Henry Hub, JKM, Dominion South), and concrete interactions among supply, demand, weather, storage, LNG, infrastructure, and policy. Option 1 is generic, offers no specifics or named assets, and reads as boilerplate; both meet the structural count requirement, but Option 2 is far stronger on accuracy, specificity, and practical usefulness."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 6,
@@ -51,8 +51,8 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
@@ -62,17 +62,17 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 5.8,
   ""option_2_average"": 8.8
-}",option_2,"Option 2 provides specific, named evidence (Golden Pass/Plaquemines terminals, Permian associated gas dynamics, JKM linkage, basis differentials) and explains the interaction of supply/demand/weather/LNG/infrastructure/policy with analytical depth, while Option 1 is generic and largely interchangeable across years. Both satisfy the format requirements, but Option 2 is markedly more accurate, specific, and useful for a client briefing.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.8,8.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 fully satisfies the prompt with exactly three bullish and three bearish trends backed by specific facilities (Golden Pass, Plaquemines), named hubs (Henry Hub, JKM, Dominion South), and concrete interactions among supply, demand, weather, storage, LNG, infrastructure, and policy. Option 1 is generic, offers no specifics or named assets, and reads as boilerplate; both meet the structural count requirement, but Option 2 is far stronger on accuracy, specificity, and practical usefulness.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.8,8.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options satisfy the structural requirements of exactly three bullish and three bearish trends plus a summary, but Option 1 provides far greater specificity (named facilities like Golden Pass and Plaquemines, trading hubs like Dominion South, JKM linkage, basis differentials) and more sophisticated explanation of how supply, demand, weather, storage, LNG, infrastructure, and policy interact. Option 2 is accurate and well-organized but more generic and shallow in its analysis."",
+  ""short_rationale"": ""Both options satisfy the structural requirements of exactly three bullish and three bearish trends with a concluding outlook, but Option 1 provides more specific, named evidence (Golden Pass, Plaquemines, Dominion South, Appalachian basis differentials) and demonstrates deeper analysis of factor interactions, making it more useful and credible for a client briefing."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 8,
@@ -82,8 +82,8 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 8,
@@ -92,16 +92,16 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.7,
+  ""option_1_average"": 8.6,
   ""option_2_average"": 6.9
-}",option_1,"Both options satisfy the structural requirements of exactly three bullish and three bearish trends plus a summary, but Option 1 provides far greater specificity (named facilities like Golden Pass and Plaquemines, trading hubs like Dominion South, JKM linkage, basis differentials) and more sophisticated explanation of how supply, demand, weather, storage, LNG, infrastructure, and policy interact. Option 2 is accurate and well-organized but more generic and shallow in its analysis.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.7,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Both options satisfy the structural requirements of exactly three bullish and three bearish trends with a concluding outlook, but Option 1 provides more specific, named evidence (Golden Pass, Plaquemines, Dominion South, Appalachian basis differentials) and demonstrates deeper analysis of factor interactions, making it more useful and credible for a client briefing.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.6,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,6,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with the requested integration of supply, demand, weather, storage, LNG, infrastructure, and policy. Option 1 wins on accuracy and specificity (naming real facilities like Golden Pass and Plaquemines, and specific hubs like Dominion South) and on its clear briefing tone fitting a client audience, whereas Option 2 has a notable internal inconsistency by listing weather/electrification demand as bullish while also citing electrification and milder weather as bearish, and somewhat muddles the supply-discipline argument across both lists."",
+  ""short_rationale"": ""Both options satisfy the structural requirements (exactly three bullish, three bearish trends, factor interaction, and a short outlook), but Option 1 demonstrates stronger specificity with named facilities (Golden Pass, Plaquemines), trading hubs (Dominion South, Henry Hub/JKM), and more coherent factor interplay, while maintaining a polished client-briefing tone. Option 2 is solid and well-organized but slightly less specific and contains a minor internal tension (listing electrification as both bullish and bearish)."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
@@ -112,28 +112,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 7,
     ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 7
   },
   ""option_1_average"": 8.5,
-  ""option_2_average"": 6.9
-}",option_1,"Both options correctly deliver exactly three bullish and three bearish trends with the requested integration of supply, demand, weather, storage, LNG, infrastructure, and policy. Option 1 wins on accuracy and specificity (naming real facilities like Golden Pass and Plaquemines, and specific hubs like Dominion South) and on its clear briefing tone fitting a client audience, whereas Option 2 has a notable internal inconsistency by listing weather/electrification demand as bullish while also citing electrification and milder weather as bearish, and somewhat muddles the supply-discipline argument across both lists.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.5,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 7.5
+}",option_1,"Both options satisfy the structural requirements (exactly three bullish, three bearish trends, factor interaction, and a short outlook), but Option 1 demonstrates stronger specificity with named facilities (Golden Pass, Plaquemines), trading hubs (Dominion South, Henry Hub/JKM), and more coherent factor interplay, while maintaining a polished client-briefing tone. Option 2 is solid and well-organized but slightly less specific and contains a minor internal tension (listing electrification as both bullish and bearish).","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides specific, named facts (Golden Pass, Plaquemines, Dominion South Point, JKM, associated gas dynamics) and clearly explains the interaction of supply, demand, weather, storage, LNG, infrastructure, and policy, while Option 2 stays generic and contains internal tension (treating weather as both bullish and bearish without distinct trends). Both follow the structure, but Option 1 is more accurate, specific, and useful for a client briefing."",
+  ""short_rationale"": ""Option 1 provides specific, named projects (Golden Pass, Plaquemines), concrete hubs (Dominion South), and clearly distinct bullish/bearish trends with deeper interaction analysis, whereas Option 2 is more generic, occasionally overlaps trends (weather appears on both sides), and offers less specificity and practical guidance."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
@@ -146,54 +146,22 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 6,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 6
   },
   ""option_1_average"": 8.5,
-  ""option_2_average"": 5.7
-}",option_1,"Option 1 provides specific, named facts (Golden Pass, Plaquemines, Dominion South Point, JKM, associated gas dynamics) and clearly explains the interaction of supply, demand, weather, storage, LNG, infrastructure, and policy, while Option 2 stays generic and contains internal tension (treating weather as both bullish and bearish without distinct trends). Both follow the structure, but Option 1 is more accurate, specific, and useful for a client briefing.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.5,5.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 6.0
+}",option_1,"Option 1 provides specific, named projects (Golden Pass, Plaquemines), concrete hubs (Dominion South), and clearly distinct bullish/bearish trends with deeper interaction analysis, whereas Option 2 is more generic, occasionally overlaps trends (weather appears on both sides), and offers less specificity and practical guidance.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.5,6.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,8,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with a concluding outlook, but Option 1 provides deeper analytical explanation of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, with more specificity (named facilities, basins, hubs, basis differentials) and a more nuanced investor takeaway. Option 2 is admirably concise and accurate but thinner on mechanism and interaction analysis."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 7.2
-}",option_1,"Both options correctly deliver exactly three bullish and three bearish trends with a concluding outlook, but Option 1 provides deeper analytical explanation of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, with more specificity (named facilities, basins, hubs, basis differentials) and a more nuanced investor takeaway. Option 2 is admirably concise and accurate but thinner on mechanism and interaction analysis.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,7.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-2,9,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 delivers exactly three bullish and three bearish trends with sound, defensible reasoning about how supply, demand, weather, LNG, infrastructure, and policy interact, without fabricating precise figures. Option 2 is more visually polished and specific, but its specificity relies on numerous invented details (named projects, exact Tcf/MMcf/d figures, FSRU capacity) that are likely inaccurate, and it contains unit/scale errors that undermine reliability for a client briefing."",
+  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with a closing outlook, but Option 1 provides deeper analysis of how supply, demand, weather, storage, LNG, infrastructure, and policy interact within each trend and offers a more actionable investor conclusion. Option 2 is concise and accurate with concrete figures but treats factor interactions more superficially in a separate paragraph rather than weaving them into each trend."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
@@ -202,7 +170,39 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 7.0
+}",option_1,"Both options correctly deliver exactly three bullish and three bearish trends with a closing outlook, but Option 1 provides deeper analysis of how supply, demand, weather, storage, LNG, infrastructure, and policy interact within each trend and offers a more actionable investor conclusion. Option 2 is concise and accurate with concrete figures but treats factor interactions more superficially in a separate paragraph rather than weaving them into each trend.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.0,7.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options follow the structure well, but Option 1 presents more accurate, defensible claims while Option 2 invents specific fabricated figures (e.g., '3 MMcf/d' export capacity, named pipeline projects, precise storage numbers) that are implausible and risk misleading the client. Option 1's analysis of factor interactions is sound and its outlook is appropriately hedged, giving it the edge on accuracy and practical usefulness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
@@ -210,28 +210,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
+    ""task_dimension_3"": 6,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 4,
-    ""task_dimension_6"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.0,
+  ""option_1_average"": 7.9,
   ""option_2_average"": 6.5
-}",option_1,"Option 1 delivers exactly three bullish and three bearish trends with sound, defensible reasoning about how supply, demand, weather, LNG, infrastructure, and policy interact, without fabricating precise figures. Option 2 is more visually polished and specific, but its specificity relies on numerous invented details (named projects, exact Tcf/MMcf/d figures, FSRU capacity) that are likely inaccurate, and it contains unit/scale errors that undermine reliability for a client briefing.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 4, ""task_dimension_6"": 7}",8.0,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Both options follow the structure well, but Option 1 presents more accurate, defensible claims while Option 2 invents specific fabricated figures (e.g., '3 MMcf/d' export capacity, named pipeline projects, precise storage numbers) that are implausible and risk misleading the client. Option 1's analysis of factor interactions is sound and its outlook is appropriately hedged, giving it the edge on accuracy and practical usefulness.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.9,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 delivers specific, current, and well-substantiated 2026 trends (LNG buildout, data center demand, associated gas, storage levels, battery penetration) with clear explanation of how supply, demand, infrastructure, and policy interact, whereas Option 1 is generic and largely interchangeable with any year. Despite an exposed think tag, Option 2 better fulfills the briefing task across nearly every rubric dimension."",
+  ""short_rationale"": ""Option 2 delivers far greater specificity (LNG Gulf Coast terminals, Permian associated gas, data center baseload demand, Appalachian bottlenecks) and properly explains the interaction of supply, demand, storage, and policy, while Option 1 is generic and partly violates the prompt by listing 'increased demand' and 'competition from renewables' as vague catch-alls. Both follow the exactly-three structure, but Option 2 is more accurate, actionable, and audience-appropriate for a client briefing."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
+    ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 5,
@@ -244,84 +244,20 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.0,
-  ""option_2_average"": 8.5
-}",option_2,"Option 2 delivers specific, current, and well-substantiated 2026 trends (LNG buildout, data center demand, associated gas, storage levels, battery penetration) with clear explanation of how supply, demand, infrastructure, and policy interact, whereas Option 1 is generic and largely interchangeable with any year. Despite an exposed think tag, Option 2 better fulfills the briefing task across nearly every rubric dimension.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",6.0,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-3,5,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options satisfy the exact structural requirements (3 bullish, 3 bearish, factor interaction, summary), but Option 1 provides deeper, more specific analysis with clearer mechanisms (associated gas dynamics, baseload data center demand, battery peaker displacement), making it more useful for a client briefing despite being longer."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 7.0
-}",option_1,"Both options satisfy the exact structural requirements (3 bullish, 3 bearish, factor interaction, summary), but Option 1 provides deeper, more specific analysis with clearer mechanisms (associated gas dynamics, baseload data center demand, battery peaker displacement), making it more useful for a client briefing despite being longer.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.4,7.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-6,3,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options satisfy the structural requirements (exactly three bullish, three bearish trends, factor interaction, and a summary), but Option 2 offers more specific, current, and realistic 2026 drivers—data center baseload demand, Permian associated gas, and Appalachian takeaway constraints—plus a cleaner client-briefing format and tone. Option 1 is solid and analytically balanced but more generic and slightly contradictory (electrification appears as both bullish and bearish)."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.8,
-  ""option_2_average"": 7.8
-}",option_2,"Both options satisfy the structural requirements (exactly three bullish, three bearish trends, factor interaction, and a summary), but Option 2 offers more specific, current, and realistic 2026 drivers—data center baseload demand, Permian associated gas, and Appalachian takeaway constraints—plus a cleaner client-briefing format and tone. Option 1 is solid and analytically balanced but more generic and slightly contradictory (electrification appears as both bullish and bearish).","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",6.8,7.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-3,7,0,"{
+  ""option_1_average"": 5.8,
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 delivers far greater specificity (LNG Gulf Coast terminals, Permian associated gas, data center baseload demand, Appalachian bottlenecks) and properly explains the interaction of supply, demand, storage, and policy, while Option 1 is generic and partly violates the prompt by listing 'increased demand' and 'competition from renewables' as vague catch-alls. Both follow the exactly-three structure, but Option 2 is more accurate, actionable, and audience-appropriate for a client briefing.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.8,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with a conclusion, but Option 1 provides far more specific, current, and analytically grounded trends (LNG buildout, AI/data center demand, Permian associated gas, renewables/battery displacement) with clearer cause-and-effect reasoning across the required factors, whereas Option 2 is more generic and partially contradicts itself by labeling weather as both bullish and bearish."",
+  ""short_rationale"": ""Both options correctly identify exactly three bullish and three bearish trends, discuss factor interactions, and close with a summary, but Option 1 provides greater specificity (Permian associated gas, Appalachian bottlenecks, data center baseload, battery peaker displacement) and richer factor interplay, while Option 2 is accurate but more generic. Option 1's only minor weakness is the visible reasoning leakage in a <think> block, but the substantive briefing is stronger."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
@@ -329,38 +265,102 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 6
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 6.0
-}",option_1,"Both options correctly deliver exactly three bullish and three bearish trends with a conclusion, but Option 1 provides far more specific, current, and analytically grounded trends (LNG buildout, AI/data center demand, Permian associated gas, renewables/battery displacement) with clearer cause-and-effect reasoning across the required factors, whereas Option 2 is more generic and partially contradicts itself by labeling weather as both bullish and bearish.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.6,6.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-8,3,0,"{
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.5
+}",option_1,"Both options correctly identify exactly three bullish and three bearish trends, discuss factor interactions, and close with a summary, but Option 1 provides greater specificity (Permian associated gas, Appalachian bottlenecks, data center baseload, battery peaker displacement) and richer factor interplay, while Option 2 is accurate but more generic. Option 1's only minor weakness is the visible reasoning leakage in a <think> block, but the substantive briefing is stronger.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.5,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with strong factor interaction analysis. Option 2 incorporates the most material 2026-specific drivers (data center/AI baseload demand, battery storage displacement) that Option 1 omits, and provides richer explanatory depth, though it leaks an internal reasoning block. Option 1 is more concise but misses the data-center demand story that is central to the 2026 outlook."",
+  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with solid factor interaction, but Option 2 provides more specific, current, and accurate market drivers (data center baseload demand, Permian associated gas, Appalachian takeaway constraints) and reads as a polished client briefing, despite leaking a <think> block. Option 1 is well-structured but somewhat generic and slightly misclassifies electrification as both bullish and bearish without reconciling the tension."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 6,
     ""task_dimension_4"": 7,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.8,
+  ""option_2_average"": 7.9
+}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends with solid factor interaction, but Option 2 provides more specific, current, and accurate market drivers (data center baseload demand, Permian associated gas, Appalachian takeaway constraints) and reads as a polished client briefing, despite leaking a <think> block. Option 1 is well-structured but somewhat generic and slightly misclassifies electrification as both bullish and bearish without reconciling the tension.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.8,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options satisfy the structural requirements (3 bullish, 3 bearish, factor interactions, summary), but Option 1 offers more specific, concrete, and current trends (LNG capacity build-out, data center demand, Permian associated gas, battery displacement) that better reflect 2026 dynamics, whereas Option 2 is more generic and somewhat contradictory (citing weather both ways). Option 1's depth, specificity, and audience-appropriate framing make it the stronger client briefing despite the unnecessary visible reasoning preamble."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.5
+}",option_1,"Both options satisfy the structural requirements (3 bullish, 3 bearish, factor interactions, summary), but Option 1 offers more specific, concrete, and current trends (LNG capacity build-out, data center demand, Permian associated gas, battery displacement) that better reflect 2026 dynamics, whereas Option 2 is more generic and somewhat contradictory (citing weather both ways). Option 1's depth, specificity, and audience-appropriate framing make it the stronger client briefing despite the unnecessary visible reasoning preamble.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.5,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with sound factor interaction, but Option 2 offers more current, specific, and decision-relevant drivers (data center baseload demand, associated gas dynamics, battery displacement of peakers) and a clearer client-briefing tone. Option 1 is tighter and accurate but more generic; Option 2's only flaw is the leaked think block, which is content-irrelevant."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
@@ -369,42 +369,138 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 7.4,
-  ""option_2_average"": 8.1
-}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends with strong factor interaction analysis. Option 2 incorporates the most material 2026-specific drivers (data center/AI baseload demand, battery storage displacement) that Option 1 omits, and provides richer explanatory depth, though it leaks an internal reasoning block. Option 1 is more concise but misses the data-center demand story that is central to the 2026 outlook.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.4,8.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 8.5
+}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends with sound factor interaction, but Option 2 offers more current, specific, and decision-relevant drivers (data center baseload demand, associated gas dynamics, battery displacement of peakers) and a clearer client-briefing tone. Option 1 is tighter and accurate but more generic; Option 2's only flaw is the leaked think block, which is content-irrelevant.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",7.4,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options follow the structure (3 bullish, 3 bearish, interaction discussion, summary), but Option 2 uses far more accurate and current 2026-relevant trends (LNG export ramp, data center demand, Permian associated gas), while Option 1 contains numerous fabricated specifics and unit errors (e.g., '3 MMcf/d of export capacity' and '2 Tcf' described as flow rates, invented project names like 'Eagle-North' and 'FSRU' export terminals which are import infrastructure). Option 1's polished tables mask material factual inaccuracies that would mislead a client."",
+  ""short_rationale"": ""Option 2 cites more realistic and current 2026 market drivers (LNG export ramp, data center demand, Permian associated gas, storage overhang, battery displacement) with accurate directionality, whereas Option 1 contains several specific but dubious or unit-error figures (e.g., '3 MMcf/d' of LNG export capacity, '2 Tcf' added by 0.8 MMcf/d, FSRUs as primary US export mode) that undermine its accuracy despite stronger formatting."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 6,
+    ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 3,
-    ""general_practical_usefulness"": 5,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.9,
+  ""option_2_average"": 7.6
+}",option_2,"Option 2 cites more realistic and current 2026 market drivers (LNG export ramp, data center demand, Permian associated gas, storage overhang, battery displacement) with accurate directionality, whereas Option 1 contains several specific but dubious or unit-error figures (e.g., '3 MMcf/d' of LNG export capacity, '2 Tcf' added by 0.8 MMcf/d, FSRUs as primary US export mode) that undermine its accuracy despite stronger formatting.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 4, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",6.9,7.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,5,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 better fulfills the prompt with specific, current market reasoning (storage above five-year average, fuel switching, basin-level pipeline constraints) and an explicit section explaining how the factors interact, whereas Option 1 is generic and lists weather as bearish despite volatility being a price driver. Option 2's specificity and analytical depth make it more useful to a client, even though Option 1 is slightly more concise."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.2,
+  ""option_2_average"": 8.2
+}",option_2,"Option 2 better fulfills the prompt with specific, current market reasoning (storage above five-year average, fuel switching, basin-level pipeline constraints) and an explicit section explaining how the factors interact, whereas Option 1 is generic and lists weather as bearish despite volatility being a price driver. Option 2's specificity and analytical depth make it more useful to a client, even though Option 1 is slightly more concise.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.2,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 demonstrates deeper mechanistic analysis of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, provides specific and distinct bullish/bearish trends, and offers more actionable investor guidance (export-connected/midstream assets, hedging). Option 1 is accurate but generic and somewhat surface-level, with overlap between its bearish factors."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 8.6
+}",option_2,"Option 2 demonstrates deeper mechanistic analysis of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, provides specific and distinct bullish/bearish trends, and offers more actionable investor guidance (export-connected/midstream assets, hedging). Option 1 is accurate but generic and somewhat surface-level, with overlap between its bearish factors.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",6.5,8.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,7,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 better satisfies the core task by explicitly explaining how the interacting factors (supply, demand, weather, storage, LNG, infrastructure, policy) produce each specific trend, and it correctly treats restrictive policy and weather as directionally bullish/bearish rather than vague 'volatility,' showing stronger analytical specificity for a client briefing."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
@@ -413,113 +509,17 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 8
   },
   ""option_1_average"": 6.1,
-  ""option_2_average"": 7.8
-}",option_2,"Both options follow the structure (3 bullish, 3 bearish, interaction discussion, summary), but Option 2 uses far more accurate and current 2026-relevant trends (LNG export ramp, data center demand, Permian associated gas), while Option 1 contains numerous fabricated specifics and unit errors (e.g., '3 MMcf/d of export capacity' and '2 Tcf' described as flow rates, invented project names like 'Eagle-North' and 'FSRU' export terminals which are import infrastructure). Option 1's polished tables mask material factual inaccuracies that would mislead a client.","{""general_accuracy_specificity"": 3, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",6.1,7.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-4,5,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better fulfills the prompt by grounding trends in specific 2026 market dynamics (storage above five-year average, fuel switching, methane rules) and includes a dedicated section explaining how factors interact, which the prompt explicitly required. Option 1 is generic, somewhat repetitive between sections (weather and policy appear underdeveloped), and never explicitly addresses the requested factor-interaction discussion."",
+  ""option_2_average"": 7.9
+}",option_2,"Option 2 better satisfies the core task by explicitly explaining how the interacting factors (supply, demand, weather, storage, LNG, infrastructure, policy) produce each specific trend, and it correctly treats restrictive policy and weather as directionally bullish/bearish rather than vague 'volatility,' showing stronger analytical specificity for a client briefing.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",6.1,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides specific, named examples (Calcasieu, Plaquemines, Haynesville, Powder River Basin), quantified figures (2-3 bcfd), and concrete storage data, demonstrating superior accuracy and analytical depth that fits the client-briefing audience. Option 2 is generic, lists vague trends without specifics, and reads like boilerplate that could apply to any year."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.2
-}",option_2,"Option 2 better fulfills the prompt by grounding trends in specific 2026 market dynamics (storage above five-year average, fuel switching, methane rules) and includes a dedicated section explaining how factors interact, which the prompt explicitly required. Option 1 is generic, somewhat repetitive between sections (weather and policy appear underdeveloped), and never explicitly addresses the requested factor-interaction discussion.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.8,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-4,6,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better satisfies the prompt by clearly labeling exactly three bullish and three bearish trends, explicitly weaving in supply, demand, weather, storage, LNG, infrastructure, and policy interactions, and offering concrete, actionable investor guidance. Option 1 is more generic, somewhat blurs cause-and-effect, and provides less specificity and depth for a client briefing."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.5
-}",option_2,"Option 2 better satisfies the prompt by clearly labeling exactly three bullish and three bearish trends, explicitly weaving in supply, demand, weather, storage, LNG, infrastructure, and policy interactions, and offering concrete, actionable investor guidance. Option 1 is more generic, somewhat blurs cause-and-effect, and provides less specificity and depth for a client briefing.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.8,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-4,7,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better fulfills the prompt by explicitly framing trends as bullish/bearish and demonstrating the requested interaction among supply, demand, weather, storage, LNG, infrastructure, and policy within each trend; Option 1 lists generic factors but often conflates volatility with directional pressure (e.g., weather as purely negative) and shows weaker analytic integration."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.0,
-  ""option_2_average"": 7.9
-}",option_2,"Option 2 better fulfills the prompt by explicitly framing trends as bullish/bearish and demonstrating the requested interaction among supply, demand, weather, storage, LNG, infrastructure, and policy within each trend; Option 1 lists generic factors but often conflates volatility with directional pressure (e.g., weather as purely negative) and shows weaker analytic integration.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",6.0,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-8,4,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides specific, quantified, and concrete trends (named terminals, bcfd figures, basin-level detail, storage decile data) that fulfill the brief's request for distinct bullish/bearish drivers and their interactions, whereas Option 2 stays generic and partly miscategorizes (e.g., weather volatility and policy uncertainty are not clearly bearish trends). Both meet the structural requirements, but Option 1 delivers far greater analytical depth and client value."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
@@ -529,29 +529,29 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 5,
-    ""task_dimension_2"": 5,
+    ""task_dimension_2"": 4,
     ""task_dimension_3"": 5,
-    ""task_dimension_4"": 5,
+    ""task_dimension_4"": 4,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 5.4
-}",option_1,"Option 1 provides specific, quantified, and concrete trends (named terminals, bcfd figures, basin-level detail, storage decile data) that fulfill the brief's request for distinct bullish/bearish drivers and their interactions, whereas Option 2 stays generic and partly miscategorizes (e.g., weather volatility and policy uncertainty are not clearly bearish trends). Both meet the structural requirements, but Option 1 delivers far greater analytical depth and client value.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.6,5.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 5.1
+}",option_1,"Option 1 provides specific, named examples (Calcasieu, Plaquemines, Haynesville, Powder River Basin), quantified figures (2-3 bcfd), and concrete storage data, demonstrating superior accuracy and analytical depth that fits the client-briefing audience. Option 2 is generic, lists vague trends without specifics, and reads like boilerplate that could apply to any year.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.5,5.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully satisfies the task with exactly three bullish and three bearish trends, explains how supply, demand, weather, storage, LNG, infrastructure, and policy interact with specific figures, and delivers an investor-focused conclusion; Option 1 is generic, lacks specificity, and reads like boilerplate. Option 2's quantitative claims should be treated as illustrative, but its structure and analytical depth far better match the briefing request."",
+  ""short_rationale"": ""Option 2 fulfills the briefing format with specificity (quantified drivers, explicit factor interactions, actionable investor guidance) far better than Option 1's generic bullet points, though some figures are fabricated/illustrative and should be flagged. Option 2 better satisfies the task's demand for showing how supply, demand, weather, storage, LNG, infrastructure, and policy interact."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 6,
-    ""task_dimension_3"": 4,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
@@ -563,97 +563,97 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
+    ""task_dimension_4"": 9,
     ""task_dimension_5"": 7,
-    ""task_dimension_6"": 9,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.5,
+  ""option_1_average"": 5.6,
   ""option_2_average"": 8.5
-}",option_2,"Option 2 fully satisfies the task with exactly three bullish and three bearish trends, explains how supply, demand, weather, storage, LNG, infrastructure, and policy interact with specific figures, and delivers an investor-focused conclusion; Option 1 is generic, lacks specificity, and reads like boilerplate. Option 2's quantitative claims should be treated as illustrative, but its structure and analytical depth far better match the briefing request.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 4, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}",5.5,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 fulfills the briefing format with specificity (quantified drivers, explicit factor interactions, actionable investor guidance) far better than Option 1's generic bullet points, though some figures are fabricated/illustrative and should be flagged. Option 2 better satisfies the task's demand for showing how supply, demand, weather, storage, LNG, infrastructure, and policy interact.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",5.6,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options fulfill the structural requirements (exactly three bullish and three bearish trends, factor interaction, and a short outlook), but Option 1 provides deeper analytical mechanism—explaining how each trend transmits to prices via supply, storage, and infrastructure—and offers more actionable, specific investor guidance (flexible/export-connected/midstream assets, hedging). Option 2 is accurate and clear but more surface-level and generic."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 6.7
-}",option_1,"Both options fulfill the structural requirements (exactly three bullish and three bearish trends, factor interaction, and a short outlook), but Option 1 provides deeper analytical mechanism—explaining how each trend transmits to prices via supply, storage, and infrastructure—and offers more actionable, specific investor guidance (flexible/export-connected/midstream assets, hedging). Option 2 is accurate and clear but more surface-level and generic.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.4,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-5,7,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 cleanly separates bullish and bearish trends without overlap, provides a dedicated 'Interaction of Factors' section that explicitly shows how supply, demand, weather, storage, LNG, infrastructure, and policy interplay, and offers a clear investor-focused summary. Option 2 has an internal inconsistency (it lists 'limited storage buffers' as bullish while a separate bearish point cites 'expanded storage infrastructure'), weakening its coherence and accuracy."",
+  ""short_rationale"": ""Option 1 provides deeper analytical specificity, clearer mechanistic explanation of how supply/demand/storage/policy interact, and more actionable investor guidance (flexible, export-connected, midstream assets, hedging), better fulfilling the briefing's requirements. Option 2 is competent and well-structured but more generic and less specific in both trend analysis and the concluding outlook."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 7.9,
-  ""option_2_average"": 6.7
-}",option_1,"Option 1 cleanly separates bullish and bearish trends without overlap, provides a dedicated 'Interaction of Factors' section that explicitly shows how supply, demand, weather, storage, LNG, infrastructure, and policy interplay, and offers a clear investor-focused summary. Option 2 has an internal inconsistency (it lists 'limited storage buffers' as bullish while a separate bearish point cites 'expanded storage infrastructure'), weakening its coherence and accuracy.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.9,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-8,5,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 demonstrates superior specificity with named terminals (Calcasieu, Plaquemines), quantified figures (2-3 bcfd), and named basins (Haynesville, Powder River, Marcellus, Permian), satisfying the accuracy/specificity dimension more strongly than Option 2's generic claims. Both follow the structural requirements, but Option 1's concrete detail and tighter prose make it more useful for a client briefing."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 provides deeper analytical specificity, clearer mechanistic explanation of how supply/demand/storage/policy interact, and more actionable investor guidance (flexible, export-connected, midstream assets, hedging), better fulfilling the briefing's requirements. Option 2 is competent and well-structured but more generic and less specific in both trend analysis and the concluding outlook.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.2,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+5,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends, but Option 1 provides a dedicated 'Interaction of Factors' section that explicitly addresses the prompt's request to discuss how factors interact, plus a clearer client-facing structure with bolded headers. Option 2 embeds interactions less explicitly and contains a minor internal tension (treating storage drawdowns as bullish while infrastructure expansion is bearish without reconciling), making it slightly weaker on specificity and integration."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.9,
+  ""option_2_average"": 6.6
+}",option_1,"Both options correctly deliver exactly three bullish and three bearish trends, but Option 1 provides a dedicated 'Interaction of Factors' section that explicitly addresses the prompt's request to discuss how factors interact, plus a clearer client-facing structure with bolded headers. Option 2 embeds interactions less explicitly and contains a minor internal tension (treating storage drawdowns as bullish while infrastructure expansion is bearish without reconciling), making it slightly weaker on specificity and integration.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.9,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides more specific, concrete detail (named terminals, basins, bcfd figures, storage percentiles) that demonstrates stronger accuracy and practical usefulness for a client briefing, while still meeting all structural requirements. Option 2 is competent and well-organized but relies on more generic claims, slightly weakening its specificity and decision-relevance."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
@@ -666,46 +666,46 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.8
-}",option_1,"Option 1 demonstrates superior specificity with named terminals (Calcasieu, Plaquemines), quantified figures (2-3 bcfd), and named basins (Haynesville, Powder River, Marcellus, Permian), satisfying the accuracy/specificity dimension more strongly than Option 2's generic claims. Both follow the structural requirements, but Option 1's concrete detail and tighter prose make it more useful for a client briefing.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.5,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 provides more specific, concrete detail (named terminals, basins, bcfd figures, storage percentiles) that demonstrates stronger accuracy and practical usefulness for a client briefing, while still meeting all structural requirements. Option 2 is competent and well-organized but relies on more generic claims, slightly weakening its specificity and decision-relevance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.0,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,5,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 1 is more detailed and well-organized but fabricates numerous specific figures (e.g., '3 MMcf/d of export capacity', '2 Tcf of new supply', '0.8 MMcf/d') that are unit-inconsistent and implausible, undermining accuracy for a client briefing. Option 2 is less granular but its claims are directionally accurate and defensible, and it correctly covers all required elements without inventing false precision."",
+  ""short_rationale"": ""Option 1 is more detailed and better organized but contains fabricated, precise-sounding figures and a critical unit error (LNG capacity in MMcf/d rather than Bcf/d, and storage figures stated in Tcf that are implausibly low), which undermines accuracy for a client briefing. Option 2 is less granular but factually safer, correctly identifies real trends, and avoids invented specifics, making it more trustworthy for an investor audience."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 4,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 4,
-    ""general_practical_usefulness"": 6,
+    ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
   },
   ""option_1_average"": 7.4,
-  ""option_2_average"": 7.5
-}",option_2,"Option 1 is more detailed and well-organized but fabricates numerous specific figures (e.g., '3 MMcf/d of export capacity', '2 Tcf of new supply', '0.8 MMcf/d') that are unit-inconsistent and implausible, undermining accuracy for a client briefing. Option 2 is less granular but its claims are directionally accurate and defensible, and it correctly covers all required elements without inventing false precision.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 4, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.4,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 7.0
+}",option_2,"Option 1 is more detailed and better organized but contains fabricated, precise-sounding figures and a critical unit error (LNG capacity in MMcf/d rather than Bcf/d, and storage figures stated in Tcf that are implausibly low), which undermines accuracy for a client briefing. Option 2 is less granular but factually safer, correctly identifies real trends, and avoids invented specifics, making it more trustworthy for an investor audience.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 4, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.4,7.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better satisfies the task's requirement to explain how the specific factors (supply, demand, weather, storage, LNG, infrastructure, policy) interact, offers more specific and structurally distinct trends, and provides a more actionable, audience-appropriate investor conclusion. Option 1 is solid and well-organized but more generic and slightly internally inconsistent (weather appears as both a bullish and bearish symmetric pair without much added insight)."",
+  ""short_rationale"": ""Option 2 demonstrates deeper mechanistic understanding of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, offers more specific and actionable investor guidance (export-connected/midstream assets, basis spreads, hedging), and provides a more realistic 2026 outlook; Option 1 is competent but more generic and contains weaker reasoning (e.g., labeling restrictive policy purely bullish without nuance)."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
@@ -716,7 +716,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
@@ -732,19 +732,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 6.7,
+  ""option_1_average"": 6.6,
   ""option_2_average"": 8.2
-}",option_2,"Option 2 better satisfies the task's requirement to explain how the specific factors (supply, demand, weather, storage, LNG, infrastructure, policy) interact, offers more specific and structurally distinct trends, and provides a more actionable, audience-appropriate investor conclusion. Option 1 is solid and well-organized but more generic and slightly internally inconsistent (weather appears as both a bullish and bearish symmetric pair without much added insight).","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.7,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 demonstrates deeper mechanistic understanding of how supply, demand, weather, storage, LNG, infrastructure, and policy interact, offers more specific and actionable investor guidance (export-connected/midstream assets, basis spreads, hedging), and provides a more realistic 2026 outlook; Option 1 is competent but more generic and contains weaker reasoning (e.g., labeling restrictive policy purely bullish without nuance).","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.6,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends with solid factor-interaction analysis, but Option 2 provides more concrete, verifiable specificity (named terminals like Plaquemines and Calcasieu, quantified 2-3 bcfd demand, named basins, storage-percentile references) that better fits a client briefing, while Option 1 is more abstract and somewhat overlapping across its bearish points (electrification appears in both demand items)."",
+  ""short_rationale"": ""Both options satisfy the structural requirements (exactly three bullish and three bearish trends, factor interaction discussion, and a brief outlook), but Option 2 is more concrete and verifiable, citing specific terminals (Plaquemines, Calcasieu), basins (Haynesville, Marcellus, Permian), quantified demand (2-3 bcfd), and storage positioning, which better fits a client briefing requiring accuracy and specificity. Option 1 is well-organized and analytically nuanced but leans on generic, structural narratives without the granular, data-anchored detail that makes a market briefing actionable."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 7,
@@ -766,10 +766,10 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 7.1,
   ""option_2_average"": 8.0
-}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends with solid factor-interaction analysis, but Option 2 provides more concrete, verifiable specificity (named terminals like Plaquemines and Calcasieu, quantified 2-3 bcfd demand, named basins, storage-percentile references) that better fits a client briefing, while Option 1 is more abstract and somewhat overlapping across its bearish points (electrification appears in both demand items).","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",7.1,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options satisfy the structural requirements (exactly three bullish and three bearish trends, factor interaction discussion, and a brief outlook), but Option 2 is more concrete and verifiable, citing specific terminals (Plaquemines, Calcasieu), basins (Haynesville, Marcellus, Permian), quantified demand (2-3 bcfd), and storage positioning, which better fits a client briefing requiring accuracy and specificity. Option 1 is well-organized and analytically nuanced but leans on generic, structural narratives without the granular, data-anchored detail that makes a market briefing actionable.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",7.1,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,9,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 satisfies the prompt's structure (exactly 3 bullish, 3 bearish, interaction discussion, 2-3 sentence conclusion) with credible, defensible claims and no fabricated specifics. Option 2 is better formatted and more vivid, but it invents fake projects, contracts, and numbers (e.g., '3 MMcf/d' export capacity is implausibly tiny, '2 Tcf of new supply' conflated with flow rates, named projects like 'Eagle-North'), creating high accuracy risk in a client briefing."",
+  ""short_rationale"": ""Option 1 satisfies all task requirements with accurate, defensible trends and a clear factor-interaction synthesis, while Option 2 is better formatted but undermined by fabricated-precision figures (e.g., '3 MMcf/d of export capacity', specific FSRU/pipeline project names, '1.2 Tcf' inventories) that risk misleading a client. Option 1's specificity is realistic and its outlook is more credible despite plainer presentation."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
@@ -784,30 +784,30 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 7,
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 4,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
   },
   ""option_1_average"": 7.9,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 satisfies the prompt's structure (exactly 3 bullish, 3 bearish, interaction discussion, 2-3 sentence conclusion) with credible, defensible claims and no fabricated specifics. Option 2 is better formatted and more vivid, but it invents fake projects, contracts, and numbers (e.g., '3 MMcf/d' export capacity is implausibly tiny, '2 Tcf of new supply' conflated with flow rates, named projects like 'Eagle-North'), creating high accuracy risk in a client briefing.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 4, ""task_dimension_6"": 7}",7.9,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 satisfies all task requirements with accurate, defensible trends and a clear factor-interaction synthesis, while Option 2 is better formatted but undermined by fabricated-precision figures (e.g., '3 MMcf/d of export capacity', specific FSRU/pipeline project names, '1.2 Tcf' inventories) that risk misleading a client. Option 1's specificity is realistic and its outlook is more credible despite plainer presentation.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.9,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides concrete, specific examples (named terminals, basins, bcfd figures, storage percentiles) and cleanly separates exactly three bullish and three bearish trends without overlap, fully satisfying the prompt. Option 2 is more generic, internally inconsistent (it places infrastructure and LNG/weather on both sides and lists restrictive policy as bullish while infrastructure expansion appears bearish), and lacks quantitative specificity."",
+  ""short_rationale"": ""Option 1 provides specific, named examples (Calcasieu, Plaquemines terminals, Marcellus/Permian/Haynesville basins, quantified bcfd figures, storage percentiles) and maintains clean logical consistency, whereas Option 2 is vaguer and contains a category error—listing restrictive policy and weather as bullish while also citing milder weather and expanded infrastructure as bearish without crisp differentiation."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
@@ -821,7 +821,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
-    ""task_dimension_6"": 7,
+    ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 6,
@@ -829,19 +829,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 7
   },
   ""option_1_average"": 8.4,
-  ""option_2_average"": 6.2
-}",option_1,"Option 1 provides concrete, specific examples (named terminals, basins, bcfd figures, storage percentiles) and cleanly separates exactly three bullish and three bearish trends without overlap, fully satisfying the prompt. Option 2 is more generic, internally inconsistent (it places infrastructure and LNG/weather on both sides and lists restrictive policy as bullish while infrastructure expansion appears bearish), and lacks quantitative specificity.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.4,6.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 6.1
+}",option_1,"Option 1 provides specific, named examples (Calcasieu, Plaquemines terminals, Marcellus/Permian/Haynesville basins, quantified bcfd figures, storage percentiles) and maintains clean logical consistency, whereas Option 2 is vaguer and contains a category error—listing restrictive policy and weather as bullish while also citing milder weather and expanded infrastructure as bearish without crisp differentiation.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,6.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fulfills the prompt more completely with exactly three bullish and three bearish trends backed by specific data, clearer factor interactions, and concrete investor guidance, despite some fabricated-precision risk. Option 1 is accurate and clean but generic and lacks specificity in supply/demand/storage figures."",
+  ""short_rationale"": ""Both options correctly deliver exactly three bullish and three bearish trends and a concluding outlook, but Option 2 provides far greater specificity (quantified figures, named projects, policy references) and richer factor interactions, making it more useful and credible for a client briefing despite some invented specifics. Option 1 is accurate and clear but generic and less actionable."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 7,
@@ -849,23 +849,23 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 6.6,
-  ""option_2_average"": 7.9
-}",option_2,"Option 2 fulfills the prompt more completely with exactly three bullish and three bearish trends backed by specific data, clearer factor interactions, and concrete investor guidance, despite some fabricated-precision risk. Option 1 is accurate and clean but generic and lacks specificity in supply/demand/storage figures.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",6.6,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 6.8,
+  ""option_2_average"": 8.3
+}",option_2,"Both options correctly deliver exactly three bullish and three bearish trends and a concluding outlook, but Option 2 provides far greater specificity (quantified figures, named projects, policy references) and richer factor interactions, making it more useful and credible for a client briefing despite some invented specifics. Option 1 is accurate and clear but generic and less actionable.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}",6.8,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 is more factually grounded and uses realistic units and reasonable figures, while Option 1, though more detailed and better organized, contains serious numerical errors (e.g., '3 MMcf/d' and '0.8 MMcf/d' of production, '2 Tcf' as a flow) and fabricated specifics that undermine accuracy. Both satisfy the structural requirements, but accuracy and practical reliability tip the balance toward Option 2."",
+  ""short_rationale"": ""Option 2 is more factually grounded and credible (real terminals like Plaquemines/Calcasieu, plausible bcfd figures), whereas Option 1 contains fabricated specifics and unit errors (e.g., '3 MMcf/d' of LNG export capacity and '2 Tcf' of new daily supply are wrong by orders of magnitude), which undermines accuracy despite its richer formatting. Both satisfy the structural requirements of exactly three bullish and three bearish trends plus a summary, but accuracy and practical usefulness favor Option 2."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
@@ -874,8 +874,8 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 4,
-    ""general_practical_usefulness"": 7,
+    ""general_accuracy_specificity"": 3,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
@@ -886,12 +886,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 7.3,
+  ""option_1_average"": 7.1,
   ""option_2_average"": 7.5
-}",option_2,"Option 2 is more factually grounded and uses realistic units and reasonable figures, while Option 1, though more detailed and better organized, contains serious numerical errors (e.g., '3 MMcf/d' and '0.8 MMcf/d' of production, '2 Tcf' as a flow) and fabricated specifics that undermine accuracy. Both satisfy the structural requirements, but accuracy and practical reliability tip the balance toward Option 2.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 4, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.3,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 is more factually grounded and credible (real terminals like Plaquemines/Calcasieu, plausible bcfd figures), whereas Option 1 contains fabricated specifics and unit errors (e.g., '3 MMcf/d' of LNG export capacity and '2 Tcf' of new daily supply are wrong by orders of magnitude), which undermines accuracy despite its richer formatting. Both satisfy the structural requirements of exactly three bullish and three bearish trends plus a summary, but accuracy and practical usefulness favor Option 2.","{""general_accuracy_specificity"": 3, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 4, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.1,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8

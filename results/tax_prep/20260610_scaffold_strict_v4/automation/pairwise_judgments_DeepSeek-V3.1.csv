@@ -1,41 +1,71 @@
 left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
-1,0,0,"```json
-{
+1,0,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis, better addresses California-specific rules, offers clearer calculation frameworks, and demonstrates superior organization and accuracy across all rubric dimensions."",
+  ""short_rationale"": ""Option 1 provides a more thorough, accurate, and client-focused analysis with superior detail on tax rules, calculations, and missing information, while Option 2 contains significant errors like incorrect standard deduction amounts and incomplete California analysis."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
   },
   ""option_1_average"": 8.4,
-  ""option_2_average"": 6.4
-}
-```",option_1,"Option 1 provides more comprehensive analysis, better addresses California-specific rules, offers clearer calculation frameworks, and demonstrates superior organization and accuracy across all rubric dimensions.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,6.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_2_average"": 6.0
+}",option_1,"Option 1 provides a more thorough, accurate, and client-focused analysis with superior detail on tax rules, calculations, and missing information, while Option 2 contains significant errors like incorrect standard deduction amounts and incomplete California analysis.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,3,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more comprehensive, accurate, and actionable review by systematically identifying all discrepancies, explaining tax rules in detail, offering a clear calculation framework, and specifying missing information. Option 2 is less organized, omits key details like the SALT cap and AGI reconciliation, and provides less practical guidance."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, accurate, and actionable review. It correctly identifies all discrepancies, offers a detailed recalculation framework, and clearly states missing information. Option 2 contains significant errors, such as misstating the SALT cap and failing to address California-specific rules, making it less accurate and useful."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.4
+}",option_1,"Option 1 provides a more comprehensive, accurate, and actionable review. It correctly identifies all discrepancies, offers a detailed recalculation framework, and clearly states missing information. Option 2 contains significant errors, such as misstating the SALT cap and failing to address California-specific rules, making it less accurate and useful.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 4}",8.4,5.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more detailed, actionable, and accurate analysis with specific calculations, form references, and tax rule explanations, while Option 2 is vague and lacks practical specificity."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -44,7 +74,71 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 5.5
+}",option_1,"Option 1 provides a more detailed, actionable, and accurate analysis with specific calculations, form references, and tax rule explanations, while Option 2 is vague and lacks practical specificity.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.1,5.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+5,0,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more accurate and specific calculations, correctly identifies the 2025 standard deduction amounts, offers a more thorough analysis of the dependent's support test, and delivers superior practical usefulness with clearer action items."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 8.4
+}",option_2,"Option 2 provides more accurate and specific calculations, correctly identifies the 2025 standard deduction amounts, offers a more thorough analysis of the dependent's support test, and delivers superior practical usefulness with clearer action items.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.5,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,6,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in accuracy, specificity, and practical usefulness by providing clear calculations, detailed issue analysis, and actionable steps. Option 2 is less organized, contains errors like using 2024 proxies, and is less precise in its recommendations."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
@@ -60,25 +154,88 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 5.9
+}",option_1,"Option 1 excels in accuracy, specificity, and practical usefulness by providing clear calculations, detailed issue analysis, and actionable steps. Option 2 is less organized, contains errors like using 2024 proxies, and is less precise in its recommendations.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.3,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,0,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides superior organization with a summary table, more accurate California tax analysis including SALT non-conformity, clearer calculation framework with estimated tax ranges, and better addresses missing information needs."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 5.9
-}",option_1,"Option 1 provides a more comprehensive, accurate, and actionable review by systematically identifying all discrepancies, explaining tax rules in detail, offering a clear calculation framework, and specifying missing information. Option 2 is less organized, omits key details like the SALT cap and AGI reconciliation, and provides less practical guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.0,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,4,0,"```json
-{
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.9,
+  ""option_2_average"": 8.4
+}",option_2,"Option 2 provides superior organization with a summary table, more accurate California tax analysis including SALT non-conformity, clearer calculation framework with estimated tax ranges, and better addresses missing information needs.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.9,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,8,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides detailed calculations, specific tax form references, and addresses California-specific rules, while Option 2 offers only generic recommendations without actionable specifics."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, detailed, and actionable analysis across all task dimensions, including specific calculations, missing information identification, and clear form/schedule corrections, while Option 2 is incomplete and lacks depth."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 3,
+    ""task_dimension_3"": 4,
+    ""task_dimension_4"": 3,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 3,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 4,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 4.2
+}",option_1,"Option 1 provides a more comprehensive, detailed, and actionable analysis across all task dimensions, including specific calculations, missing information identification, and clear form/schedule corrections, while Option 2 is incomplete and lacks depth.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 7, ""general_organization_readability"": 5, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 4, ""task_dimension_2"": 3, ""task_dimension_3"": 4, ""task_dimension_4"": 3, ""task_dimension_5"": 3, ""task_dimension_6"": 3}",8.3,4.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, accurate, and actionable analysis with superior organization, clearer explanations of tax rules, and better practical guidance for correcting returns."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
@@ -87,249 +244,84 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.8
+}",option_1,"Option 1 provides a more comprehensive, accurate, and actionable analysis with superior organization, clearer explanations of tax rules, and better practical guidance for correcting returns.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides a more comprehensive, detailed, and actionable analysis across all task dimensions, including specific calculations, missing information identification, and form-level corrections, while Option 1 is too brief and lacks practical depth."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 4,
     ""task_dimension_6"": 5,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 5.5
-}
-```",option_1,"Option 1 provides detailed calculations, specific tax form references, and addresses California-specific rules, while Option 2 offers only generic recommendations without actionable specifics.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.0,5.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-5,0,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis of filing status, correctly identifies the SALT cap implications, offers clearer California-specific guidance, and presents information in a more organized, practitioner-friendly format."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 7.7,
-  ""option_2_average"": 5.8
-}
-```",option_1,"Option 1 provides more comprehensive analysis of filing status, correctly identifies the SALT cap implications, offers clearer California-specific guidance, and presents information in a more organized, practitioner-friendly format.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",7.7,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,6,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 is more concise, better organized, and provides clearer action items and calculations. It excels in task-specific dimensions like identifying discrepancies and explaining rules, and is more practically useful for a tax professional."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 5,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 8.3,
-  ""option_2_average"": 6.2
-}",option_1,"Option 1 is more concise, better organized, and provides clearer action items and calculations. It excels in task-specific dimensions like identifying discrepancies and explaining rules, and is more practically useful for a tax professional.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.3,6.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,0,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides more specific calculations, clearer organization with tables, and better addresses California-specific tax rules, making it more practically useful for a tax professional."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 7.0,
-  ""option_2_average"": 8.5
-}",option_2,"Option 2 provides more specific calculations, clearer organization with tables, and better addresses California-specific tax rules, making it more practically useful for a tax professional.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",7.0,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,8,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a comprehensive, well-organized analysis that addresses all discrepancies systematically, offers practical calculations with clear assumptions, and demonstrates superior accuracy and completeness compared to Option 2's incomplete and less detailed response."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 4,
-    ""task_dimension_2"": 3,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 4,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 4,
-    ""general_practical_usefulness"": 4,
-    ""general_organization_readability"": 5,
-    ""general_tone_audience_fit"": 5
-  },
-  ""option_1_average"": 8.3,
-  ""option_2_average"": 4.5
-}
-```",option_1,"Option 1 provides a comprehensive, well-organized analysis that addresses all discrepancies systematically, offers practical calculations with clear assumptions, and demonstrates superior accuracy and completeness compared to Option 2's incomplete and less detailed response.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 4, ""task_dimension_2"": 3, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 4}",8.3,4.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,9,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more comprehensive, accurate, and actionable analysis. It correctly identifies all discrepancies, explains tax rules thoroughly, provides a detailed recalculation framework, and clearly states missing information. Option 2 contains factual errors, lacks depth in analysis, and is less organized."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 5.9
-}",option_1,"Option 1 provides a more comprehensive, accurate, and actionable analysis. It correctly identifies all discrepancies, explains tax rules thoroughly, provides a detailed recalculation framework, and clearly states missing information. Option 2 contains factual errors, lacks depth in analysis, and is less organized.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,1,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 comprehensively addresses all task dimensions with superior accuracy, specificity, and practical usefulness, while Option 2 is incomplete, omits critical analyses, and contains formatting errors."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 4,
-    ""task_dimension_2"": 3,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 4,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 5
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 4.4
-}",option_1,"Option 1 comprehensively addresses all task dimensions with superior accuracy, specificity, and practical usefulness, while Option 2 is incomplete, omits critical analyses, and contains formatting errors.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 4, ""task_dimension_2"": 3, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 4}",8.5,4.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 5.5,
+  ""option_2_average"": 8.9
+}",option_2,"Option 2 provides a more comprehensive, detailed, and actionable analysis across all task dimensions, including specific calculations, missing information identification, and form-level corrections, while Option 1 is too brief and lacks practical depth.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 4, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.5,8.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 4,1,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides a comprehensive, detailed analysis with specific calculations, applicable tax code references, and actionable frameworks for missing information, making it far more practically useful and accurate for a tax professional."",
+  ""short_rationale"": ""Option 2 provides superior accuracy, specificity, and practical usefulness by detailing exact calculations, tax code references, and actionable steps, while Option 1 offers only generic advice without depth or precision."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 6,
+    ""task_dimension_3"": 4,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 5,
-    ""general_instruction_following"": 8,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 10,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 10,
-    ""task_dimension_4"": 10,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 10,
-    ""general_practical_usefulness"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.7,
-  ""option_2_average"": 9.4
-}",option_2,"Option 2 provides a comprehensive, detailed analysis with specific calculations, applicable tax code references, and actionable frameworks for missing information, making it far more practically useful and accurate for a tax professional.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 10, ""task_dimension_2"": 9, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.7,9.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 5.5,
+  ""option_2_average"": 9.0
+}",option_2,"Option 2 provides superior accuracy, specificity, and practical usefulness by detailing exact calculations, tax code references, and actionable steps, while Option 1 offers only generic advice without depth or precision.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 4, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.5,9.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 1,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides superior accuracy, specificity, and practical usefulness by thoroughly analyzing each discrepancy with detailed IRC citations, precise calculations, and clear explanations of missing information. Option 2 lacks depth, contains factual errors like the standard deduction amount, and fails to properly address key issues like SE tax calculations."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, detailed, and accurate analysis across all task dimensions, including thorough explanations of tax rules, precise calculations, and clear identification of missing information. Option 2 is less detailed, contains inaccuracies like the standard deduction estimate, and lacks depth in critical areas like self-employment tax and dependent analysis."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -349,7 +341,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
+    ""task_dimension_6"": 5,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 6,
@@ -357,11 +349,75 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 6
   },
   ""option_1_average"": 8.3,
-  ""option_2_average"": 5.8
-}",option_1,"Option 1 provides superior accuracy, specificity, and practical usefulness by thoroughly analyzing each discrepancy with detailed IRC citations, precise calculations, and clear explanations of missing information. Option 2 lacks depth, contains factual errors like the standard deduction amount, and fails to properly address key issues like SE tax calculations.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.3,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_2_average"": 5.7
+}",option_1,"Option 1 provides a more comprehensive, detailed, and accurate analysis across all task dimensions, including thorough explanations of tax rules, precise calculations, and clear identification of missing information. Option 2 is less detailed, contains inaccuracies like the standard deduction estimate, and lacks depth in critical areas like self-employment tax and dependent analysis.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.3,5.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 6,1,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more comprehensive and actionable summary, correctly identifies all key discrepancies, offers a clear calculation framework, and is better organized for practical use by a tax professional. Option 2 is overly verbose, contains formatting errors, and is less focused on providing immediately usable guidance."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive and practical analysis, correctly identifying all key discrepancies, offering clear recalculations with stated assumptions, and structuring actionable next steps for the client. Option 2 is less organized, contains factual errors (e.g., incorrect 2025 standard deduction), and is less user-friendly."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.0
+}",option_1,"Option 1 provides a more comprehensive and practical analysis, correctly identifying all key discrepancies, offering clear recalculations with stated assumptions, and structuring actionable next steps for the client. Option 2 is less organized, contains factual errors (e.g., incorrect 2025 standard deduction), and is less user-friendly.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+1,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, detailed, and accurate analysis across all task dimensions, including precise calculations, clear explanations of tax rules, and better identification of missing information, making it more practically useful for a tax professional."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.3
+}",option_1,"Option 1 provides a more comprehensive, detailed, and accurate analysis across all task dimensions, including precise calculations, clear explanations of tax rules, and better identification of missing information, making it more practically useful for a tax professional.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.5,6.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+1,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a comprehensive, detailed analysis of each discrepancy with clear explanations of tax rules, calculations using assumptions, and identifies missing information. Option 2 is less thorough, omits key issues like Schedule SE and Schedule C expenses, and lacks depth in analysis."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -376,448 +432,29 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 7,
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 5,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 6
   },
   ""option_1_average"": 8.3,
-  ""option_2_average"": 6.2
-}",option_1,"Option 1 provides a more comprehensive and actionable summary, correctly identifies all key discrepancies, offers a clear calculation framework, and is better organized for practical use by a tax professional. Option 2 is overly verbose, contains formatting errors, and is less focused on providing immediately usable guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.3,6.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-1,7,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis with detailed calculations, specific IRC citations, and clearer organization of issues. It better addresses all required dimensions including California-specific considerations and provides more practical guidance for correcting returns."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.2,
-  ""option_2_average"": 6.4
-}
-```",option_1,"Option 1 provides more comprehensive analysis with detailed calculations, specific IRC citations, and clearer organization of issues. It better addresses all required dimensions including California-specific considerations and provides more practical guidance for correcting returns.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,6.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-1,8,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a comprehensive, detailed analysis of all issues with specific calculations and references to tax code sections, while Option 2 is incomplete and contains significant factual errors about tax credits and filing status eligibility."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 5,
-    ""task_dimension_2"": 4,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 5,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 4,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 4.9
-}",option_1,"Option 1 provides a comprehensive, detailed analysis of all issues with specific calculations and references to tax code sections, while Option 2 is incomplete and contains significant factual errors about tax credits and filing status eligibility.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 5}",8.4,4.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_2_average"": 5.8
+}",option_1,"Option 1 provides a comprehensive, detailed analysis of each discrepancy with clear explanations of tax rules, calculations using assumptions, and identifies missing information. Option 2 is less thorough, omits key issues like Schedule SE and Schedule C expenses, and lacks depth in analysis.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.3,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 9,1,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides superior accuracy, specificity, and practical usefulness by correctly identifying the 2025 standard deduction ($15,000), thoroughly analyzing dependent eligibility, and providing detailed calculation frameworks for missing expense data."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.3,
-  ""option_2_average"": 8.4
-}",option_2,"Option 2 provides superior accuracy, specificity, and practical usefulness by correctly identifying the 2025 standard deduction ($15,000), thoroughly analyzing dependent eligibility, and providing detailed calculation frameworks for missing expense data.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.3,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 comprehensively addresses all task dimensions, providing specific, actionable corrections and identifying missing information like business expenses. Option 2 is less organized, omits key details like the California SALT cap, and provides less practical guidance."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 7.8,
-  ""option_2_average"": 6.0
-}",option_1,"Option 1 comprehensively addresses all task dimensions, providing specific, actionable corrections and identifying missing information like business expenses. Option 2 is less organized, omits key details like the California SALT cap, and provides less practical guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",7.8,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,5,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more accurate and comprehensive analysis, correctly identifying the Head of Household filing status, Credit for Other Dependents, and self-employment tax requirements, while Option 2 contains critical errors like misstating the standard deduction and omitting key California-specific rules."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 4,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 7.8,
-  ""option_2_average"": 5.8
-}",option_1,"Option 1 provides a more accurate and comprehensive analysis, correctly identifying the Head of Household filing status, Credit for Other Dependents, and self-employment tax requirements, while Option 2 contains critical errors like misstating the standard deduction and omitting key California-specific rules.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 4}",7.8,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more comprehensive and accurate analysis, covering all required dimensions with greater specificity, practical usefulness, and adherence to the original request's instructions. Option 2 is less detailed, omits key calculations like self-employment tax, and fails to address California-specific adjustments adequately."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 6.0
-}",option_1,"Option 1 provides a more comprehensive and accurate analysis, covering all required dimensions with greater specificity, practical usefulness, and adherence to the original request's instructions. Option 2 is less detailed, omits key calculations like self-employment tax, and fails to address California-specific adjustments adequately.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,7,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 comprehensively addresses all six task dimensions with superior accuracy, specificity, and practical usefulness, providing a detailed calculation framework and clear form/schedule corrections. Option 1 is less thorough, omits key details like the SALT cap, and lacks the structured clarity of Option 2."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 5,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 6.0,
-  ""option_2_average"": 8.7
-}",option_2,"Option 2 comprehensively addresses all six task dimensions with superior accuracy, specificity, and practical usefulness, providing a detailed calculation framework and clear form/schedule corrections. Option 1 is less thorough, omits key details like the SALT cap, and lacks the structured clarity of Option 2.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.0,8.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more complete, accurate, and actionable analysis. It correctly identifies all major discrepancies (HOH status, ODC credit, SE tax), provides a clear calculation framework, and explicitly lists required forms. Option 2 is incomplete, contains a critical error regarding the dependent's income, and lacks specificity in its recommendations."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 5,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.0
-}",option_1,"Option 1 provides a more complete, accurate, and actionable analysis. It correctly identifies all major discrepancies (HOH status, ODC credit, SE tax), provides a clear calculation framework, and explicitly lists required forms. Option 2 is incomplete, contains a critical error regarding the dependent's income, and lacks specificity in its recommendations.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.5,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a more comprehensive and structured analysis, directly addressing all discrepancies with clear tables and calculations, while Option 2 is less organized and misses key details like the SALT cap and California-specific implications."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 6.3
-}",option_1,"Option 1 provides a more comprehensive and structured analysis, directly addressing all discrepancies with clear tables and calculations, while Option 2 is less organized and misses key details like the SALT cap and California-specific implications.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,6.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,5,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides specific calculations, correct standard deduction values, detailed dependent analysis, and clear filing status recommendations, making it more accurate and practically useful than Option 1's general statements."",
+  ""short_rationale"": ""Option 2 provides superior accuracy, specificity, and practical usefulness by detailing exact calculations, identifying missing information, and structuring analysis clearly for a tax professional audience."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 5,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.4
-}",option_2,"Option 2 provides specific calculations, correct standard deduction values, detailed dependent analysis, and clear filing status recommendations, making it more accurate and practically useful than Option 1's general statements.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.8,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,6,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides superior accuracy with detailed calculations, comprehensive form/schedule identification, and actionable missing information requests, while Option 1 offers only generic recommendations without numerical analysis."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 5.7,
-  ""option_2_average"": 8.8
-}",option_2,"Option 2 provides superior accuracy with detailed calculations, comprehensive form/schedule identification, and actionable missing information requests, while Option 1 offers only generic recommendations without numerical analysis.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.7,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,7,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides significantly more detailed calculations, specific tax law references, and actionable correction steps, making it more practically useful and accurate for tax preparation purposes."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.7,
-  ""option_2_average"": 8.7
-}",option_2,"Option 2 provides significantly more detailed calculations, specific tax law references, and actionable correction steps, making it more practically useful and accurate for tax preparation purposes.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.7,8.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,4,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides specific, actionable calculations and corrections based on tax law, while Option 2 offers generic recommendations without applying the rules to the client's data."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 5.7
-}",option_1,"Option 1 provides specific, actionable calculations and corrections based on tax law, while Option 2 offers generic recommendations without applying the rules to the client's data.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.5,5.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,9,0,"```json
-{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides specific calculations, dollar amounts, and tax form references, while Option 1 remains vague and lacks numerical precision. Option 2 demonstrates superior accuracy, specificity, and practical usefulness for tax preparation."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
@@ -841,30 +478,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 5.9,
   ""option_2_average"": 8.5
-}
-```",option_2,"Option 2 provides specific calculations, dollar amounts, and tax form references, while Option 1 remains vague and lacks numerical precision. Option 2 demonstrates superior accuracy, specificity, and practical usefulness for tax preparation.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.9,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,5,0,"```json
-{
+}",option_2,"Option 2 provides superior accuracy, specificity, and practical usefulness by detailing exact calculations, identifying missing information, and structuring analysis clearly for a tax professional audience.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.9,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,3,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis, identifies more discrepancies, offers detailed calculations with assumptions clearly stated, and gives practical next steps for the client. Option 2 is less thorough, misses key issues like the SE tax adjustment, and provides less actionable guidance."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive and actionable review by systematically listing discrepancies, explaining rules, and detailing required forms, whereas Option 2 is less structured and misses key details like the SALT cap and California-specific implications."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
@@ -873,17 +508,15 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.2,
+  ""option_1_average"": 7.7,
   ""option_2_average"": 5.9
-}
-```",option_1,"Option 1 provides more comprehensive analysis, identifies more discrepancies, offers detailed calculations with assumptions clearly stated, and gives practical next steps for the client. Option 2 is less thorough, misses key issues like the SE tax adjustment, and provides less actionable guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-5,7,0,"```json
-{
+}",option_1,"Option 1 provides a more comprehensive and actionable review by systematically listing discrepancies, explaining rules, and detailing required forms, whereas Option 2 is less structured and misses key details like the SALT cap and California-specific implications.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",7.7,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis with better organization, clearer explanations of tax rules, and more practical guidance on California-specific issues, while Option 2 contains formatting issues and less structured content."",
+  ""short_rationale"": ""Option 1 provides a more structured, comprehensive, and professionally formatted response that better addresses all task dimensions, including California-specific rules, while Option 2 is less organized and omits key details like the SALT cap's impact on the federal return."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
@@ -897,35 +530,129 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.3
+}",option_1,"Option 1 provides a more structured, comprehensive, and professionally formatted response that better addresses all task dimensions, including California-specific rules, while Option 2 is less organized and omits key details like the SALT cap's impact on the federal return.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.0,5.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a comprehensive, actionable, and highly detailed analysis across all task dimensions, correctly identifying discrepancies, explaining rules, and outlining a clear calculation framework. Option 2 is significantly less thorough, omits key details like the SALT cap and SE tax adjustment, and provides a less useful, more generic summary."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 4,
-    ""general_tone_audience_fit"": 6
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 7.8,
+  ""option_1_average"": 8.8,
   ""option_2_average"": 5.9
-}
-```",option_1,"Option 1 provides more comprehensive analysis with better organization, clearer explanations of tax rules, and more practical guidance on California-specific issues, while Option 2 contains formatting issues and less structured content.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 4, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",7.8,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,5,0,"```json
-{
+}",option_1,"Option 1 provides a comprehensive, actionable, and highly detailed analysis across all task dimensions, correctly identifying discrepancies, explaining rules, and outlining a clear calculation framework. Option 2 is significantly less thorough, omits key details like the SALT cap and SE tax adjustment, and provides a less useful, more generic summary.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.8,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more accurate legal citations, correctly identifies the SALT cap limitation, offers precise calculations, and better addresses California-specific rules, while Option 2 contains factual errors about standard deduction amounts and fails to properly analyze the dependent's support contribution."",
+  ""short_rationale"": ""Option 1 provides a more accurate, specific, and actionable analysis, correctly identifying the Head of Household filing status and Credit for Other Dependents, while Option 2 contains significant errors like misapplying the SALT cap and incorrectly labeling the dependent."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 6.3
+}",option_1,"Option 1 provides a more accurate, specific, and actionable analysis, correctly identifying the Head of Household filing status and Credit for Other Dependents, while Option 2 contains significant errors like misapplying the SALT cap and incorrectly labeling the dependent.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 6}",8.4,6.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more complete and accurate analysis, correctly identifying the Head of Household filing status, the Credit for Other Dependents, and the self-employment tax requirement, while Option 2 is incomplete and contains a significant error regarding the dependent's eligibility."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
+    ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 4,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.0
+}",option_1,"Option 1 provides a more complete and accurate analysis, correctly identifying the Head of Household filing status, the Credit for Other Dependents, and the self-employment tax requirement, while Option 2 is incomplete and contains a significant error regarding the dependent's eligibility.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.0,5.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more comprehensive and structured analysis, clearly identifying discrepancies, explaining tax rules, and offering a detailed recalculation framework. It excels in accuracy, specificity, and practical usefulness, while Option 2 is less organized and misses key details like the SALT cap and California-specific rules."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
@@ -936,90 +663,119 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 5,
     ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.7
+}",option_1,"Option 1 provides a more comprehensive and structured analysis, clearly identifying discrepancies, explaining tax rules, and offering a detailed recalculation framework. It excels in accuracy, specificity, and practical usefulness, while Option 2 is less organized and misses key details like the SALT cap and California-specific rules.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.4,5.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,5,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides specific calculations, corrects key errors like the standard deduction amount and Head of Household status, and offers actionable steps with greater accuracy and practical usefulness for tax preparation."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 7.6,
-  ""option_2_average"": 5.7
-}
-```",option_1,"Option 1 provides more accurate legal citations, correctly identifies the SALT cap limitation, offers precise calculations, and better addresses California-specific rules, while Option 2 contains factual errors about standard deduction amounts and fails to properly analyze the dependent's support contribution.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",7.6,5.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,5,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis with specific calculations, better addresses all required dimensions including California-specific rules, and offers superior organization with clear tables and structured explanations."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
+  ""option_1_average"": 6.7,
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 provides specific calculations, corrects key errors like the standard deduction amount and Head of Household status, and offers actionable steps with greater accuracy and practical usefulness for tax preparation.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.7,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides superior accuracy, specificity, and practical usefulness by offering detailed calculations, specific form references, and actionable next steps, while Option 1 remains too general and lacks actionable guidance."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
   ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 10,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 10,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 7.1,
+  ""option_2_average"": 9.2
+}",option_2,"Option 2 provides superior accuracy, specificity, and practical usefulness by offering detailed calculations, specific form references, and actionable next steps, while Option 1 remains too general and lacks actionable guidance.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 10, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.1,9.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,7,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more detailed, specific, and actionable guidance with accurate tax calculations, clear form references, and better addresses all required dimensions including California-specific rules."",
+  ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
+    ""task_dimension_6"": 5,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 5.9
-}
-```",option_1,"Option 1 provides more comprehensive analysis with specific calculations, better addresses all required dimensions including California-specific rules, and offers superior organization with clear tables and structured explanations.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.0,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,6,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides superior organization, clearer separation of issues, and more accurate legal analysis, particularly regarding the SALT deduction limit and Head of Household eligibility. Option 2 contains calculation errors and is less structured."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 6.4
-}",option_1,"Option 1 provides superior organization, clearer separation of issues, and more accurate legal analysis, particularly regarding the SALT deduction limit and Head of Household eligibility. Option 2 contains calculation errors and is less structured.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.0,6.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,8,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 comprehensively addresses all discrepancies, provides detailed calculations with clear assumptions, identifies missing information, and offers practical next steps. Option 2 is incomplete, lacks critical details, and fails to address key issues like self-employment tax and California return corrections."",
-  ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 provides more detailed, specific, and actionable guidance with accurate tax calculations, clear form references, and better addresses all required dimensions including California-specific rules.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.9,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides specific, actionable tax code references and calculations, while Option 2 offers generic advice without applying the facts to the client's situation."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
@@ -1028,35 +784,67 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 5,
-    ""task_dimension_2"": 4,
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 4,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 4,
-    ""general_practical_usefulness"": 4,
-    ""general_organization_readability"": 5,
-    ""general_tone_audience_fit"": 5
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 4.4
-}",option_1,"Option 1 comprehensively addresses all discrepancies, provides detailed calculations with clear assumptions, identifies missing information, and offers practical next steps. Option 2 is incomplete, lacks critical details, and fails to address key issues like self-employment tax and California return corrections.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 4}",8.6,4.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,9,0,"{
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.5
+}",option_1,"Option 1 provides specific, actionable tax code references and calculations, while Option 2 offers generic advice without applying the facts to the client's situation.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.4,5.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,9,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides superior accuracy with specific calculations, detailed tax code references, and clear actionable corrections, while Option 1 lacks specificity and contains errors like misstating the standard deduction."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 8.8
+}",option_2,"Option 2 provides superior accuracy with specific calculations, detailed tax code references, and clear actionable corrections, while Option 1 lacks specificity and contains errors like misstating the standard deduction.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.9,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides a comprehensive, detailed analysis covering all required dimensions including federal/state discrepancies, rule explanations, calculations with assumptions, and missing information documentation. Option 2 uses an incomplete table format that lacks depth in explanations, calculations, and practical guidance."",
+  ""short_rationale"": ""Option 1 provides a more comprehensive and accurate analysis, correctly addressing all discrepancies, applying tax rules precisely, offering detailed calculations with clear assumptions, and outlining specific forms and missing information needed for finalization. Option 2 contains inaccuracies, such as incorrect standard deduction estimates and incomplete handling of self-employment tax adjustments."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
@@ -1070,64 +858,30 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.2,
+  ""option_1_average"": 8.4,
   ""option_2_average"": 5.9
-}",option_1,"Option 1 provides a comprehensive, detailed analysis covering all required dimensions including federal/state discrepancies, rule explanations, calculations with assumptions, and missing information documentation. Option 2 uses an incomplete table format that lacks depth in explanations, calculations, and practical guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,7,0,"```json
-{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides more comprehensive analysis with detailed calculations, addresses all six task dimensions thoroughly, offers practical guidance on missing information, and maintains better organization and readability compared to Option 1's incomplete and less detailed response."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 5,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.0,
-  ""option_2_average"": 8.4
-}
-```",option_2,"Option 2 provides more comprehensive analysis with detailed calculations, addresses all six task dimensions thoroughly, offers practical guidance on missing information, and maintains better organization and readability compared to Option 1's incomplete and less detailed response.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.0,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,9,0,"{
+}",option_1,"Option 1 provides a more comprehensive and accurate analysis, correctly addressing all discrepancies, applying tax rules precisely, offering detailed calculations with clear assumptions, and outlining specific forms and missing information needed for finalization. Option 2 contains inaccuracies, such as incorrect standard deduction estimates and incomplete handling of self-employment tax adjustments.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.4,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+5,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis, clearer explanations of tax rules, and better addresses all required dimensions including California-specific implications. Option 2 contains factual errors like incorrect standard deduction amounts and lacks depth in explaining tax concepts."",
+  ""short_rationale"": ""Option 1 provides more accurate and specific calculations, correctly identifies Head of Household filing status, and offers clearer organization and practical guidance for the client."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
@@ -1138,24 +892,151 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.1,
-  ""option_2_average"": 6.0
-}",option_1,"Option 1 provides more comprehensive analysis, clearer explanations of tax rules, and better addresses all required dimensions including California-specific implications. Option 2 contains factual errors like incorrect standard deduction amounts and lacks depth in explaining tax concepts.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.1,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,8,0,"```json
-{
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 6.2
+}",option_1,"Option 1 provides more accurate and specific calculations, correctly identifies Head of Household filing status, and offers clearer organization and practical guidance for the client.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.0,6.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive analysis with specific calculations, clearly identifies all discrepancies including the SALT cap, offers practical guidance on missing business expenses, and maintains better organization with a structured table format."",
+  ""short_rationale"": ""Option 1 provides a more structured and comprehensive analysis, correctly identifying all key discrepancies including filing status, dependency, income reporting, and deductions with clear references to tax code sections. Option 2 is less organized, contains incomplete sections, and makes incorrect assumptions about standard deduction amounts."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 7.8,
+  ""option_2_average"": 5.1
+}",option_1,"Option 1 provides a more structured and comprehensive analysis, correctly identifying all key discrepancies including filing status, dependency, income reporting, and deductions with clear references to tax code sections. Option 2 is less organized, contains incomplete sections, and makes incorrect assumptions about standard deduction amounts.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 5, ""general_organization_readability"": 5, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 4}",7.8,5.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides more comprehensive and accurate calculations, correctly identifies all discrepancies with specific tax code references, and offers superior organization through structured tables and clear explanations."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.5
+}",option_1,"Option 1 provides more comprehensive and accurate calculations, correctly identifies all discrepancies with specific tax code references, and offers superior organization through structured tables and clear explanations.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.5,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more detailed calculations, practical next steps, and addresses all discrepancies with greater specificity and actionable guidance, making it more useful for a tax professional."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 provides more detailed calculations, practical next steps, and addresses all discrepancies with greater specificity and actionable guidance, making it more useful for a tax professional.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",7.0,8.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 comprehensively addresses all discrepancies, provides detailed calculations with clear assumptions, identifies missing information, and offers actionable next steps. Option 2 is incomplete and lacks critical details like self-employment tax treatment and itemized deduction analysis."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 4,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 5
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 4.8
+}",option_1,"Option 1 comprehensively addresses all discrepancies, provides detailed calculations with clear assumptions, identifies missing information, and offers actionable next steps. Option 2 is incomplete and lacks critical details like self-employment tax treatment and itemized deduction analysis.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.3,4.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more comprehensive and accurate analysis, clearly identifying discrepancies, explaining tax rules, recalculating figures with stated assumptions, and detailing missing information needed for final tax liability. Option 2 is less thorough, contains formatting issues, and omits key details like self-employment tax calculations and California return implications."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
@@ -1168,10 +1049,105 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.2,
-  ""option_2_average"": 6.1
-}
-```",option_1,"Option 1 provides more comprehensive analysis with specific calculations, clearly identifies all discrepancies including the SALT cap, offers practical guidance on missing business expenses, and maintains better organization with a structured table format.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,6.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 6.0
+}",option_1,"Option 1 provides a more comprehensive and accurate analysis, clearly identifying discrepancies, explaining tax rules, recalculating figures with stated assumptions, and detailing missing information needed for final tax liability. Option 2 is less thorough, contains formatting issues, and omits key details like self-employment tax calculations and California return implications.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.3,6.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,7,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more comprehensive and detailed analysis across all task dimensions, including specific calculations for self-employment tax and itemized deductions, while Option 1 is incomplete and lacks critical details."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 3,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 4,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 4.6,
+  ""option_2_average"": 8.4
+}",option_2,"Option 2 provides more comprehensive and detailed analysis across all task dimensions, including specific calculations for self-employment tax and itemized deductions, while Option 1 is incomplete and lacks critical details.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 4, ""task_dimension_2"": 3, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 4}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",4.6,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides a more comprehensive, accurate, and professionally structured analysis that better addresses all tax issues, clearly explains applicable rules, and offers a practical calculation framework, while Option 2 contains factual errors and is less organized."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.9
+}",option_1,"Option 1 provides a more comprehensive, accurate, and professionally structured analysis that better addresses all tax issues, clearly explains applicable rules, and offers a practical calculation framework, while Option 2 contains factual errors and is less organized.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 5}",8.4,5.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides more comprehensive and actionable analysis with specific calculations, clear discrepancy tables, and better addresses missing information like business expenses. Option 2 is incomplete and lacks practical detail."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.4
+}",option_1,"Option 1 provides more comprehensive and actionable analysis with specific calculations, clear discrepancy tables, and better addresses missing information like business expenses. Option 2 is incomplete and lacks practical detail.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 4, ""task_dimension_6"": 5}",8.0,5.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1

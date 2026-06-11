@@ -1,7 +1,7 @@
 left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
 3,2,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options fulfill all six required elements well, but Option 2 better embodies motivational interviewing through collaborative, permission-seeking language ('would it be okay if'), names the client as expert on their own life, and provides concrete safety resources (988 Lifeline, therapist finder). Option 1 is strong and well-organized but its safety note lacks specific resources and its MI framing is thinner; Option 2 edges ahead on evidence-informed fidelity and practical usefulness despite a couple minor typos."",
+  ""short_rationale"": ""Both options fulfill all six required elements well, but Option 2 better embodies motivational interviewing through collaborative language ('would it be okay if', 'you are the expert on your own life'), provides concrete safety resources (988 lifeline, therapist finder), and explicitly explains the CBT cognitive cycle. Option 1 is strong and slightly cleaner in prose, but is more directive and omits specific crisis resources."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
@@ -11,7 +11,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
+    ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
@@ -20,24 +20,24 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
+    ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
-  ""option_2_average"": 8.0
-}",option_2,"Both options fulfill all six required elements well, but Option 2 better embodies motivational interviewing through collaborative, permission-seeking language ('would it be okay if'), names the client as expert on their own life, and provides concrete safety resources (988 Lifeline, therapist finder). Option 1 is strong and well-organized but its safety note lacks specific resources and its MI framing is thinner; Option 2 edges ahead on evidence-informed fidelity and practical usefulness despite a couple minor typos.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.5,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.6,
+  ""option_2_average"": 8.2
+}",option_2,"Both options fulfill all six required elements well, but Option 2 better embodies motivational interviewing through collaborative language ('would it be okay if', 'you are the expert on your own life'), provides concrete safety resources (988 lifeline, therapist finder), and explicitly explains the CBT cognitive cycle. Option 1 is strong and slightly cleaner in prose, but is more directive and omits specific crisis resources.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.6,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,2,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 delivers richer empathic validation, plain-language CBT/MI/positive psychology framing, and concrete, well-differentiated next steps across all four required action areas, plus a specific safety note with crisis resources. Option 1 covers the elements but is generic, name-drops modalities without explaining them, and offers vague steps."",
+  ""short_rationale"": ""Option 2 fulfills every rubric dimension with depth: specific empathic validation, cautious non-diagnostic pattern identification, plain-language CBT/MI/positive-psychology framing, four concrete and actionable next steps, an explicit safety note with real resources (988), and an agency-affirming close. Option 1 addresses all elements only superficially, asks questions rather than offering concrete steps, and lacks specificity."",
   ""option_1_scores"": {
     ""task_dimension_1"": 5,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 4,
+    ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
@@ -57,19 +57,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.1,
-  ""option_2_average"": 9.0
-}",option_2,"Option 2 delivers richer empathic validation, plain-language CBT/MI/positive psychology framing, and concrete, well-differentiated next steps across all four required action areas, plus a specific safety note with crisis resources. Option 1 covers the elements but is generic, name-drops modalities without explaining them, and offers vague steps.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 4, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.1,9.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 5.2,
+  ""option_2_average"": 8.8
+}",option_2,"Option 2 fulfills every rubric dimension with depth: specific empathic validation, cautious non-diagnostic pattern identification, plain-language CBT/MI/positive-psychology framing, four concrete and actionable next steps, an explicit safety note with real resources (988), and an agency-affirming close. Option 1 addresses all elements only superficially, asks questions rather than offering concrete steps, and lacks specificity.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.2,8.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both responses cover all six required elements competently, but Option 1 provides more concrete, specific tools (4-7-8 breathing, named resources like 988 and a therapist finder, explicit safety language about self-harm) and richer values-clarification framing, giving it a usefulness and safety edge despite a minor typo ('isn')."",
+  ""short_rationale"": ""Both options fulfill all six required elements competently, but Option 1 is more specific and actionable (concrete techniques like 4-7-8 breathing, value-based goal examples, named crisis resources including 988 and a therapist finder), giving it an edge in specificity, usefulness, and safety/limits. Option 2 is solid and slightly cleaner in tone but is more generic and omits concrete crisis resources; it also has the minor 'isn'/typo issue in Option 1's favor, though Option 1's depth outweighs that."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
@@ -81,40 +81,40 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
+    ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 7.7
-}",option_1,"Both responses cover all six required elements competently, but Option 1 provides more concrete, specific tools (4-7-8 breathing, named resources like 988 and a therapist finder, explicit safety language about self-harm) and richer values-clarification framing, giving it a usefulness and safety edge despite a minor typo ('isn').","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.6,7.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.4
+}",option_1,"Both options fulfill all six required elements competently, but Option 1 is more specific and actionable (concrete techniques like 4-7-8 breathing, value-based goal examples, named crisis resources including 988 and a therapist finder), giving it an edge in specificity, usefulness, and safety/limits. Option 2 is solid and slightly cleaner in tone but is more generic and omits concrete crisis resources; it also has the minor 'isn'/typo issue in Option 1's favor, though Option 1's depth outweighs that.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.5,7.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options fulfill all six required elements competently, but Option 2 provides more explicit and comprehensive pattern identification (naming all five suggested patterns), more concrete and varied techniques (5-4-3-2-1 grounding, thought records, SMART goals, sleep hygiene), and a more robust safety note specifying emergency services and immediate danger. Option 1 is warm and well-written but slightly less specific and contains minor typos ('isn a luxury')."",
+  ""short_rationale"": ""Both options fulfill all six required elements well, but Option 2 more explicitly and completely names the cautious pattern possibilities (burnout, perfectionism, avoidance, low self-efficacy, value mismatch) as requested, offers more concrete and varied evidence-informed techniques (thought record, behavioral experiment, 5-4-3-2-1 grounding, SMART goals), and provides clearer safety guidance including emergency services. Option 1 is warm and well-written but has a typo ('isn'), slightly thinner pattern coverage, and less actionable specificity."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
@@ -124,15 +124,15 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.7,
-  ""option_2_average"": 8.5
-}",option_2,"Both options fulfill all six required elements competently, but Option 2 provides more explicit and comprehensive pattern identification (naming all five suggested patterns), more concrete and varied techniques (5-4-3-2-1 grounding, thought records, SMART goals, sleep hygiene), and a more robust safety note specifying emergency services and immediate danger. Option 1 is warm and well-written but slightly less specific and contains minor typos ('isn a luxury').","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.7,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.9,
+  ""option_2_average"": 8.6
+}",option_2,"Both options fulfill all six required elements well, but Option 2 more explicitly and completely names the cautious pattern possibilities (burnout, perfectionism, avoidance, low self-efficacy, value mismatch) as requested, offers more concrete and varied evidence-informed techniques (thought record, behavioral experiment, 5-4-3-2-1 grounding, SMART goals), and provides clearer safety guidance including emergency services. Option 1 is warm and well-written but has a typo ('isn'), slightly thinner pattern coverage, and less actionable specificity.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.9,8.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fulfills every rubric dimension more thoroughly: it offers richer empathic validation, explicitly and cautiously names patterns without diagnosing, clearly attributes each evidence-based framework, provides concrete labeled next steps with specific techniques, includes a robust safety note with actual resources (988, therapist finder), and closes with strong agency-affirming language. Option 2 covers the same elements but more thinly, names patterns somewhat more directly, lacks concrete crisis resources, and is less organized."",
+  ""short_rationale"": ""Option 1 fulfills every rubric dimension more completely: it offers cautious non-diagnostic pattern identification, names all three frameworks in plain language, provides four clearly labeled concrete next steps covering each required domain, and includes specific safety resources (988, therapist finder). Option 2 covers similar ground but is vaguer, omits explicit crisis resources, and presents steps in dense prose with less actionable specificity."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
@@ -140,7 +140,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
@@ -150,18 +150,18 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
+    ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 fulfills every rubric dimension more thoroughly: it offers richer empathic validation, explicitly and cautiously names patterns without diagnosing, clearly attributes each evidence-based framework, provides concrete labeled next steps with specific techniques, includes a robust safety note with actual resources (988, therapist finder), and closes with strong agency-affirming language. Option 2 covers the same elements but more thinly, names patterns somewhat more directly, lacks concrete crisis resources, and is less organized.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.7,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.9,
+  ""option_2_average"": 6.5
+}",option_1,"Option 1 fulfills every rubric dimension more completely: it offers cautious non-diagnostic pattern identification, names all three frameworks in plain language, provides four clearly labeled concrete next steps covering each required domain, and includes specific safety resources (988, therapist finder). Option 2 covers similar ground but is vaguer, omits explicit crisis resources, and presents steps in dense prose with less actionable specificity.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.9,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options satisfy all six required elements with warmth and evidence-informed framing, but Option 2 is cleaner, more concise, and explicitly names the requested patterns and frameworks (SMART goals, EAP, crisis line) without the typos and verbosity that weaken Option 1 (e.g., 'This isn a luxury'). Option 2's tighter organization and equally strong content give it a slight edge in readability and practical usefulness."",
+  ""short_rationale"": ""Both options fulfill all six required elements competently, but Option 2 is cleaner, better organized with clearly labeled technique categories, and free of the typos and slightly preachy phrasing found in Option 1 ('This isn a luxury', 'I'm confident you can navigate this'). Option 2 also more explicitly enumerates the cautious pattern identification and uses SMART framing, edging it ahead on accuracy and readability."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
@@ -172,15 +172,15 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 6,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
@@ -188,53 +188,53 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
+  ""option_1_average"": 7.6,
   ""option_2_average"": 8.0
-}",option_2,"Both options satisfy all six required elements with warmth and evidence-informed framing, but Option 2 is cleaner, more concise, and explicitly names the requested patterns and frameworks (SMART goals, EAP, crisis line) without the typos and verbosity that weaken Option 1 (e.g., 'This isn a luxury'). Option 2's tighter organization and equally strong content give it a slight edge in readability and practical usefulness.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.5,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options fulfill all six required elements competently, but Option 2 is cleaner, better organized with clearly labeled technique categories, and free of the typos and slightly preachy phrasing found in Option 1 ('This isn a luxury', 'I'm confident you can navigate this'). Option 2 also more explicitly enumerates the cautious pattern identification and uses SMART framing, edging it ahead on accuracy and readability.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.6,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,9,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 is complete and fulfills all six required elements, including the safety/limits note and an encouraging close, in a warm, conversational counseling voice. Option 2 is well-organized but cut off mid-sentence during values clarification, leaving the values, goal-setting, safety note, and encouraging close entirely missing, which fails multiple required dimensions."",
+  ""short_rationale"": ""Option 1 is complete, fully addressing all six required elements including the safety/limits note and an encouraging close that reinforces agency, while integrating CBT, MI, and positive psychology in plain language. Option 2 is truncated mid-sentence in the values clarification section, missing near-term goal setting, the safety note, and the encouraging close, making it incomplete despite strong structure."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
+    ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 4,
     ""task_dimension_5"": 1,
     ""task_dimension_6"": 1,
     ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 5.3
-}",option_1,"Option 1 is complete and fulfills all six required elements, including the safety/limits note and an encouraging close, in a warm, conversational counseling voice. Option 2 is well-organized but cut off mid-sentence during values clarification, leaving the values, goal-setting, safety note, and encouraging close entirely missing, which fails multiple required dimensions.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 4, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",8.5,5.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 5.1
+}",option_1,"Option 1 is complete, fully addressing all six required elements including the safety/limits note and an encouraging close that reinforces agency, while integrating CBT, MI, and positive psychology in plain language. Option 2 is truncated mid-sentence in the values clarification section, missing near-term goal setting, the safety note, and the encouraging close, making it incomplete despite strong structure.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 4, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",8.4,5.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 delivers deeper empathic validation, names specific patterns with careful non-diagnostic framing, applies CBT/MI/positive psychology in plain language, and provides four concrete, well-labeled next steps plus a clear safety note and an agency-affirming close. Option 1 covers the same checklist but stays generic, poses questions rather than offering actionable steps, and lacks specificity."",
+  ""short_rationale"": ""Option 2 delivers deeper empathic validation, names possible patterns without diagnosing, clearly frames CBT/MI/positive psychology in plain language, and gives four labeled concrete next steps plus a strong safety note and hopeful close. Option 1 covers the same requirements but only in vague, generic terms with no actionable specificity."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 6,
+    ""task_dimension_1"": 5,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
+    ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 6
@@ -249,18 +249,18 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.5,
-  ""option_2_average"": 9.0
-}",option_2,"Option 2 delivers deeper empathic validation, names specific patterns with careful non-diagnostic framing, applies CBT/MI/positive psychology in plain language, and provides four concrete, well-labeled next steps plus a clear safety note and an agency-affirming close. Option 1 covers the same checklist but stays generic, poses questions rather than offering actionable steps, and lacks specificity.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.5,9.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 5.3,
+  ""option_2_average"": 8.8
+}",option_2,"Option 2 delivers deeper empathic validation, names possible patterns without diagnosing, clearly frames CBT/MI/positive psychology in plain language, and gives four labeled concrete next steps plus a strong safety note and hopeful close. Option 1 covers the same requirements but only in vague, generic terms with no actionable specificity.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.3,8.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 3,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options meet all six required elements, but Option 1 provides richer empathic validation, more vivid and concrete next steps (named techniques like Box Breathing, 48-hour micro-goals), and clearer connection between identified patterns and rationale. Option 2 is solid and well-balanced but slightly more generic and less specific in its actionable guidance."",
+  ""short_rationale"": ""Both options fully satisfy all six task requirements with strong empathic validation, cautious pattern identification, evidence-informed framing, and concrete steps. Option 1 edges ahead with more specific, vivid techniques (named box breathing parameters, 48-hour micro-goal, fact-vs-fear framing) and clearer headed structure, while Option 2 is solid but slightly more generic."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
@@ -280,28 +280,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
+    ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 7.7
-}",option_1,"Both options meet all six required elements, but Option 1 provides richer empathic validation, more vivid and concrete next steps (named techniques like Box Breathing, 48-hour micro-goals), and clearer connection between identified patterns and rationale. Option 2 is solid and well-balanced but slightly more generic and less specific in its actionable guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.5,7.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.6,
+  ""option_2_average"": 7.8
+}",option_1,"Both options fully satisfy all six task requirements with strong empathic validation, cautious pattern identification, evidence-informed framing, and concrete steps. Option 1 edges ahead with more specific, vivid techniques (named box breathing parameters, 48-hour micro-goal, fact-vs-fear framing) and clearer headed structure, while Option 2 is solid but slightly more generic.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.6,7.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,3,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options meet all six task requirements well, but Option 1 provides more concrete, specific, and actionable tools (thought records, behavioral experiments, SMART goals, sleep hygiene) across each domain, while Option 2 leaked an internal reasoning/meta block ('<think>') that breaks the counseling frame and signals an instruction-following lapse. Option 2 is warmer and more readable but less specific."",
+  ""short_rationale"": ""Both options meet all six task requirements with warm, evidence-informed, non-diagnostic guidance, but Option 1 is more specific and complete (full thought record, behavioral experiment, SMART goals, broader pattern list, emergency-services note). Option 2 is slightly leaked a visible reasoning/<think> block, which violates clean-output expectations and reduces professionalism."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
@@ -311,28 +311,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 6,
+    ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
+  ""option_1_average"": 9.0,
   ""option_2_average"": 7.5
-}",option_1,"Both options meet all six task requirements well, but Option 1 provides more concrete, specific, and actionable tools (thought records, behavioral experiments, SMART goals, sleep hygiene) across each domain, while Option 2 leaked an internal reasoning/meta block ('<think>') that breaks the counseling frame and signals an instruction-following lapse. Option 2 is warmer and more readable but less specific.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",8.5,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Both options meet all six task requirements with warm, evidence-informed, non-diagnostic guidance, but Option 1 is more specific and complete (full thought record, behavioral experiment, SMART goals, broader pattern list, emergency-services note). Option 2 is slightly leaked a visible reasoning/<think> block, which violates clean-output expectations and reduces professionalism.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",9.0,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 3,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fulfills every rubric dimension more thoroughly: richer empathic validation, careful non-diagnostic pattern naming, clearly labeled CBT/MI/positive-psychology framing, four distinct concrete action steps with specific techniques, an explicit safety note with crisis-line guidance, and an agency-affirming close. Option 2 covers the same requirements adequately but with less specificity, weaker organization, and a thinner safety note."",
+  ""short_rationale"": ""Option 1 more thoroughly addresses every required element with clearly labeled, concrete next steps across all four intervention domains, a distinct safety note, and richer empathic validation, while Option 2 covers similar ground more briefly and less specifically. Option 1's organization (labeled steps, italicized safety note) aids readability and practical use, though it exposed a stray internal reasoning block at the top."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
@@ -340,90 +340,90 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 fulfills every rubric dimension more thoroughly: richer empathic validation, careful non-diagnostic pattern naming, clearly labeled CBT/MI/positive-psychology framing, four distinct concrete action steps with specific techniques, an explicit safety note with crisis-line guidance, and an agency-affirming close. Option 2 covers the same requirements adequately but with less specificity, weaker organization, and a thinner safety note.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.6,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-8,3,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options fulfill all six required elements competently, but Option 2 offers richer empathic validation, smoother integration of the evidence-informed frameworks in plain language, and a more clearly delineated safety note, while maintaining a warm, agency-affirming close. Option 1 is solid and well-structured but slightly more formulaic, and its leaked '<think>' block is the main flaw in Option 2 that prevents a larger margin."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 more thoroughly addresses every required element with clearly labeled, concrete next steps across all four intervention domains, a distinct safety note, and richer empathic validation, while Option 2 covers similar ground more briefly and less specifically. Option 1's organization (labeled steps, italicized safety note) aids readability and practical use, though it exposed a stray internal reasoning block at the top.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.5,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+8,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both options fulfill all six required elements well, but Option 2 violated an explicit instruction by including a <think> reasoning block, which weighs against its instruction-following score; Option 1 is cleaner, well-organized, and fully compliant while covering all rubric dimensions thoroughly."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 7,
+    ""general_instruction_following"": 5,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 7.9,
-  ""option_2_average"": 8.2
-}",option_2,"Both options fulfill all six required elements competently, but Option 2 offers richer empathic validation, smoother integration of the evidence-informed frameworks in plain language, and a more clearly delineated safety note, while maintaining a warm, agency-affirming close. Option 1 is solid and well-structured but slightly more formulaic, and its leaked '<think>' block is the main flaw in Option 2 that prevents a larger margin.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.9,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.9,
+  ""option_2_average"": 8.0
+}",option_1,"Both options fulfill all six required elements well, but Option 2 violated an explicit instruction by including a <think> reasoning block, which weighs against its instruction-following score; Option 1 is cleaner, well-organized, and fully compliant while covering all rubric dimensions thoroughly.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",8.9,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 1 is more detailed in places but is truncated mid-sentence in the values clarification section, leaving it incomplete and missing required elements (full next steps, safety note, and encouraging close). Option 2 is complete and fully satisfies all six required components with warm, plain-language framing."",
+  ""short_rationale"": ""Option 2 is complete and fulfills all six required elements—including the safety/limits note and an encouraging close reinforcing agency and hope—while Option 1 is truncated mid-sentence in the values clarification section, missing safety notes, goal-setting, and the close. Option 1 has stronger structure and more detailed evidence-informed framing where present, but incompleteness substantially undermines its usefulness."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 1,
     ""task_dimension_6"": 1,
     ""general_instruction_following"": 4,
-    ""general_accuracy_specificity"": 7,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.5,
+  ""option_1_average"": 5.9,
   ""option_2_average"": 8.2
-}",option_2,"Option 1 is more detailed in places but is truncated mid-sentence in the values clarification section, leaving it incomplete and missing required elements (full next steps, safety note, and encouraging close). Option 2 is complete and fully satisfies all six required components with warm, plain-language framing.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.5,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 is complete and fulfills all six required elements—including the safety/limits note and an encouraging close reinforcing agency and hope—while Option 1 is truncated mid-sentence in the values clarification section, missing safety notes, goal-setting, and the close. Option 1 has stronger structure and more detailed evidence-informed framing where present, but incompleteness substantially undermines its usefulness.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.9,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,5,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 outperforms on every rubric dimension: it offers deeper empathic validation, cautiously frames multiple patterns without diagnosing, explains CBT/MI/positive psychology in plain language, and gives concrete, actionable steps across all four requested domains. Option 1 covers the requirements only superficially, asks questions rather than providing guidance, and lacks specificity."",
+  ""short_rationale"": ""Option 2 outperforms across every rubric dimension: it offers richer empathic validation, cautiously frames patterns without diagnosing, explains CBT/MI/positive psychology in plain language, and provides concrete, actionable steps for each required domain. Option 1 covers the requirements only superficially and partly asks questions rather than giving usable guidance."",
   ""option_1_scores"": {
     ""task_dimension_1"": 5,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 4,
@@ -444,21 +444,21 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.3,
+  ""option_1_average"": 5.2,
   ""option_2_average"": 8.7
-}",option_2,"Option 2 outperforms on every rubric dimension: it offers deeper empathic validation, cautiously frames multiple patterns without diagnosing, explains CBT/MI/positive psychology in plain language, and gives concrete, actionable steps across all four requested domains. Option 1 covers the requirements only superficially, asks questions rather than providing guidance, and lacks specificity.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.3,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 outperforms across every rubric dimension: it offers richer empathic validation, cautiously frames patterns without diagnosing, explains CBT/MI/positive psychology in plain language, and provides concrete, actionable steps for each required domain. Option 1 covers the requirements only superficially and partly asks questions rather than giving usable guidance.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.2,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fulfills every rubric requirement with concrete, actionable depth—specific stress techniques, a CBT thought record, values questions, SMART goals, and a robust safety note including crisis escalation—while maintaining warm, non-diagnosing validation. Option 1 covers the same categories but only generically, asking questions rather than providing usable steps and offering a thinner safety note."",
+  ""short_rationale"": ""Option 2 fully satisfies every rubric dimension with empathic validation, cautious non-diagnostic pattern naming, plain-language CBT/MI/positive psychology framing, and highly concrete actionable steps across all four required domains, plus a thorough safety note and an agency-affirming close. Option 1 covers the same checklist superficially but offers no concrete techniques (it asks whether the client has tried strategies rather than providing them) and lacks specificity."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 6,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
+    ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
@@ -478,18 +478,18 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 5.6,
   ""option_2_average"": 9.3
-}",option_2,"Option 2 fulfills every rubric requirement with concrete, actionable depth—specific stress techniques, a CBT thought record, values questions, SMART goals, and a robust safety note including crisis escalation—while maintaining warm, non-diagnosing validation. Option 1 covers the same categories but only generically, asking questions rather than providing usable steps and offering a thinner safety note.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.6,9.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 fully satisfies every rubric dimension with empathic validation, cautious non-diagnostic pattern naming, plain-language CBT/MI/positive psychology framing, and highly concrete actionable steps across all four required domains, plus a thorough safety note and an agency-affirming close. Option 1 covers the same checklist superficially but offers no concrete techniques (it asks whether the client has tried strategies rather than providing them) and lacks specificity.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.6,9.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,7,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 outperforms on nearly every rubric dimension: it offers deeper empathic validation, names patterns more cautiously and specifically, illustrates CBT/MI/positive psychology in plain language with concrete examples, and gives actionable next steps (mindful breathing, reframing all-or-nothing thoughts, a 15-minute values-aligned goal). Option 1 covers the required elements but stays generic, often asking questions rather than providing concrete guidance."",
+  ""short_rationale"": ""Option 2 delivers deeper empathic validation, concrete and specific next steps (mindful breathing, reframing 'I'm failing' examples, a 15-minute values-aligned goal), and explicit self-efficacy framing, fulfilling all six required elements more fully than Option 1, which is generic and partly poses questions instead of offering actionable guidance."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
+    ""task_dimension_2"": 6,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
+    ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 7,
@@ -498,28 +498,28 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 6.0,
-  ""option_2_average"": 8.4
-}",option_2,"Option 2 outperforms on nearly every rubric dimension: it offers deeper empathic validation, names patterns more cautiously and specifically, illustrates CBT/MI/positive psychology in plain language with concrete examples, and gives actionable next steps (mindful breathing, reframing all-or-nothing thoughts, a 15-minute values-aligned goal). Option 1 covers the required elements but stays generic, often asking questions rather than providing concrete guidance.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 9}",6.0,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 8.5
+}",option_2,"Option 2 delivers deeper empathic validation, concrete and specific next steps (mindful breathing, reframing 'I'm failing' examples, a 15-minute values-aligned goal), and explicit self-efficacy framing, fulfilling all six required elements more fully than Option 1, which is generic and partly poses questions instead of offering actionable guidance.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.0,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,4,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fully satisfies all six task requirements with rich empathic validation, careful non-diagnostic pattern naming, plain-language CBT/MI/positive psychology framing, and concrete actionable steps with clear structure. Option 2 addresses the same dimensions superficially, relies on questions rather than concrete guidance, and lacks specific examples."",
+  ""short_rationale"": ""Option 1 fulfills every rubric requirement with specific, evidence-informed techniques, named patterns without diagnosing, concrete SMART steps, and a clear safety note, while Option 2 is generic, asks questions rather than providing actionable steps, and offers thinner coverage of values clarification and concrete goal setting."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
@@ -528,24 +528,24 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 5,
+    ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
-    ""general_instruction_following"": 6,
+    ""general_instruction_following"": 5,
     ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.9,
+  ""option_1_average"": 9.0,
   ""option_2_average"": 5.2
-}",option_1,"Option 1 fully satisfies all six task requirements with rich empathic validation, careful non-diagnostic pattern naming, plain-language CBT/MI/positive psychology framing, and concrete actionable steps with clear structure. Option 2 addresses the same dimensions superficially, relies on questions rather than concrete guidance, and lacks specific examples.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.9,5.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Option 1 fulfills every rubric requirement with specific, evidence-informed techniques, named patterns without diagnosing, concrete SMART steps, and a clear safety note, while Option 2 is generic, asks questions rather than providing actionable steps, and offers thinner coverage of values clarification and concrete goal setting.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",9.0,5.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides richer empathic validation, concrete evidence-informed techniques (4-7-8 breathing, thought records, values sort), and clearer structure, despite being cut off mid-sentence. Option 1 covers all rubric elements but stays generic and offers no concrete, actionable steps."",
+  ""short_rationale"": ""Option 2 provides richer empathic validation, specific non-diagnostic pattern exploration, plain-language evidence-based framing, and concrete actionable steps (breathing protocols, thought records, values sort), making it substantially more useful despite being truncated. Option 1 covers all required elements but remains generic, vague, and lacks concrete detail."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
@@ -553,7 +553,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 4,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 4,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
@@ -565,19 +565,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 3,
-    ""task_dimension_6"": 4,
+    ""task_dimension_6"": 5,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.5,
+  ""option_1_average"": 5.6,
   ""option_2_average"": 7.5
-}",option_2,"Option 2 provides richer empathic validation, concrete evidence-informed techniques (4-7-8 breathing, thought records, values sort), and clearer structure, despite being cut off mid-sentence. Option 1 covers all rubric elements but stays generic and offers no concrete, actionable steps.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 4}",5.5,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 provides richer empathic validation, specific non-diagnostic pattern exploration, plain-language evidence-based framing, and concrete actionable steps (breathing protocols, thought records, values sort), making it substantially more useful despite being truncated. Option 1 covers all required elements but remains generic, vague, and lacks concrete detail.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 5}",5.6,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options meet all six required elements with appropriate tone and evidence-informed framing, but Option 1 is more specific and actionable—offering concrete techniques (timed breathing ratios, structured thought records, behavioral experiments, SMART goals with scheduled first steps) and a stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is warm and well-written but stays more general and its safety note is softer."",
+  ""short_rationale"": ""Both options satisfy all six required elements with warm, validating tone, but Option 1 is more specific and actionable—offering concrete techniques (4-2-6 breathing, full thought records with belief ratings, behavioral experiments, SMART goals with scheduled first steps) and a stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is solid and slightly more concise but offers less specific, less operationalized guidance."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
@@ -596,24 +596,24 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 8.7,
-  ""option_2_average"": 7.2
-}",option_1,"Both options meet all six required elements with appropriate tone and evidence-informed framing, but Option 1 is more specific and actionable—offering concrete techniques (timed breathing ratios, structured thought records, behavioral experiments, SMART goals with scheduled first steps) and a stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is warm and well-written but stays more general and its safety note is softer.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.7,7.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 7.4
+}",option_1,"Both options satisfy all six required elements with warm, validating tone, but Option 1 is more specific and actionable—offering concrete techniques (4-2-6 breathing, full thought records with belief ratings, behavioral experiments, SMART goals with scheduled first steps) and a stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is solid and slightly more concise but offers less specific, less operationalized guidance.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,7.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 5,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 satisfies every rubric dimension more fully: it offers richer empathic validation, explicitly frames patterns as tentative ('it seems possible') without diagnosing, names all three evidence-informed approaches in plain language, and provides clearly labeled concrete next steps for each required domain. Option 2 covers similar ground but is more compressed, blends patterns into dense paragraphs, gives less distinct next steps (e.g., no explicit grounding technique), and its safety note is briefer."",
+  ""short_rationale"": ""Option 1 fulfills all six required elements with greater clarity and concrete, well-organized next steps separated by category, plus explicit non-diagnostic framing and a clear safety note. Option 2 covers similar ground competently but bundles patterns more assertively, offers less structured action steps, and has a slightly weaker, less explicit safety/limits statement."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
@@ -625,10 +625,10 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 7,
@@ -636,12 +636,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 7.1
-}",option_1,"Option 1 satisfies every rubric dimension more fully: it offers richer empathic validation, explicitly frames patterns as tentative ('it seems possible') without diagnosing, names all three evidence-informed approaches in plain language, and provides clearly labeled concrete next steps for each required domain. Option 2 covers similar ground but is more compressed, blends patterns into dense paragraphs, gives less distinct next steps (e.g., no explicit grounding technique), and its safety note is briefer.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,7.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.6,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 fulfills all six required elements with greater clarity and concrete, well-organized next steps separated by category, plus explicit non-diagnostic framing and a clear safety note. Option 2 covers similar ground competently but bundles patterns more assertively, offers less structured action steps, and has a slightly weaker, less explicit safety/limits statement.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.6,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options are strong and cover all six required elements, but Option 1 edges ahead with more concrete, specific techniques (exact breathing counts, SMART goal with a named day/time, explicit five-values exercise) and clearer structure, while Option 2 is slightly warmer but more general and less actionable."",
+  ""short_rationale"": ""Both options fully satisfy the rubric, but Option 1 offers more concrete, specific techniques (exact breathing counts, SMART example with a day, explicit value-listing) and a tighter mapping of each modality to its step, giving it a slight edge in specificity and practical usefulness. Option 2 is warm and complete but somewhat more general in its action steps."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
@@ -652,43 +652,11 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 8.0
-}",option_1,"Both options are strong and cover all six required elements, but Option 1 edges ahead with more concrete, specific techniques (exact breathing counts, SMART goal with a named day/time, explicit five-values exercise) and clearer structure, while Option 2 is slightly warmer but more general and less actionable.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",8.7,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-9,5,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully addresses all six required elements—including values clarification, near-term goal setting, a clear safety note, and an encouraging close—in a complete, coherent response. Option 1 is more detailed and well-formatted but is truncated mid-sentence in the values section, leaving requirements 4 (partially), 5, and 6 unmet, which is a critical failure for a single-session response."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 1,
-    ""task_dimension_6"": 1,
-    ""general_instruction_following"": 4,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
   ""option_2_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
@@ -700,12 +668,44 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 6.0,
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 8.3
+}",option_1,"Both options fully satisfy the rubric, but Option 1 offers more concrete, specific techniques (exact breathing counts, SMART example with a day, explicit value-listing) and a tighter mapping of each modality to its step, giving it a slight edge in specificity and practical usefulness. Option 2 is warm and complete but somewhat more general in its action steps.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",8.7,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,5,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 is more detailed and well-structured but is truncated mid-sentence, leaving values clarification incomplete and omitting both near-term goal setting and the required safety/limits note and encouraging close. Option 2 is complete, covers all six required elements including safety and a hopeful agency-reinforcing close, making it the more reliable response to the full prompt."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 1,
+    ""task_dimension_6"": 1,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.1,
   ""option_2_average"": 8.0
-}",option_2,"Option 2 fully addresses all six required elements—including values clarification, near-term goal setting, a clear safety note, and an encouraging close—in a complete, coherent response. Option 1 is more detailed and well-formatted but is truncated mid-sentence in the values section, leaving requirements 4 (partially), 5, and 6 unmet, which is a critical failure for a single-session response.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.0,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 1 is more detailed and well-structured but is truncated mid-sentence, leaving values clarification incomplete and omitting both near-term goal setting and the required safety/limits note and encouraging close. Option 2 is complete, covers all six required elements including safety and a hopeful agency-reinforcing close, making it the more reliable response to the full prompt.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.1,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options satisfy all six required elements, but Option 2 delivers markedly more concrete, actionable steps (specific breathing counts, 5-4-3-2-1 grounding, thought records, SMART goals), explicitly names each evidence-based framework in plain language, and includes a stronger safety note covering self-harm and crisis resources. Option 1 is warm and well-written but more general and less specific in its next steps and safety guidance."",
+  ""short_rationale"": ""Both options meet all six task requirements, but Option 2 provides more concrete, specific, and actionable techniques (named breathing ratios, 5-4-3-2-1 grounding, thought records, SMART goals, explicit crisis guidance) while maintaining strong empathy and clear organization. Option 1 is warm and well-written but stays more general and vague on the safety note and concrete steps."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
@@ -734,10 +734,10 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 7.0,
   ""option_2_average"": 8.6
-}",option_2,"Both options satisfy all six required elements, but Option 2 delivers markedly more concrete, actionable steps (specific breathing counts, 5-4-3-2-1 grounding, thought records, SMART goals), explicitly names each evidence-based framework in plain language, and includes a stronger safety note covering self-harm and crisis resources. Option 1 is warm and well-written but more general and less specific in its next steps and safety guidance.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.0,8.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options meet all six task requirements, but Option 2 provides more concrete, specific, and actionable techniques (named breathing ratios, 5-4-3-2-1 grounding, thought records, SMART goals, explicit crisis guidance) while maintaining strong empathy and clear organization. Option 1 is warm and well-written but stays more general and vague on the safety note and concrete steps.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.0,8.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,8,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Both options meet all six required elements with warm, non-diagnostic, evidence-informed framing, but Option 1 is more thorough and concrete (thought records, behavioral experiments, 5-4-3-2-1 grounding, sleep hygiene, SMART goals split into first steps, daily win-tracking) and includes a stronger safety note covering self-harm and emergency services. Option 2 is solid and slightly more concise but offers thinner actionable detail and a less specific safety/limits section."",
+  ""short_rationale"": ""Both options fulfill all six required elements with warmth and evidence-informed framing, but Option 1 is more thorough and clinically robust: it includes concrete tools like the 5-4-3-2-1 grounding technique, a structured thought record with belief ratings, a behavioral experiment, sleep hygiene, and a notably stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is clean and effective but somewhat lighter on actionable specifics and has a less comprehensive safety/limits section."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
@@ -756,20 +756,20 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 8.7,
   ""option_2_average"": 7.6
-}",option_1,"Both options meet all six required elements with warm, non-diagnostic, evidence-informed framing, but Option 1 is more thorough and concrete (thought records, behavioral experiments, 5-4-3-2-1 grounding, sleep hygiene, SMART goals split into first steps, daily win-tracking) and includes a stronger safety note covering self-harm and emergency services. Option 2 is solid and slightly more concise but offers thinner actionable detail and a less specific safety/limits section.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,7.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Both options fulfill all six required elements with warmth and evidence-informed framing, but Option 1 is more thorough and clinically robust: it includes concrete tools like the 5-4-3-2-1 grounding technique, a structured thought record with belief ratings, a behavioral experiment, sleep hygiene, and a notably stronger safety note that explicitly addresses self-harm and emergency services. Option 2 is clean and effective but somewhat lighter on actionable specifics and has a less comprehensive safety/limits section.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 9}",8.7,7.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,9,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 is complete and fulfills all six required elements including the safety/limits note and an encouraging, agency-reinforcing close, whereas Option 2 is truncated mid-sentence in the values clarification section and omits near-term goal setting, the safety note, and the closing—failing several mandatory requirements."",
+  ""short_rationale"": ""Option 1 is complete, fulfilling all six required components including the safety/limits note and an encouraging close that reinforces agency, while Option 2 is truncated mid-sentence in the values clarification section and omits the safety note and encouraging close entirely. Both have strong empathic validation and evidence-informed framing, but Option 1's completeness and concrete, actionable next steps make it clearly superior."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
@@ -787,40 +787,40 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 4,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 1,
     ""task_dimension_6"": 1,
-    ""general_instruction_following"": 3,
+    ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
   ""option_1_average"": 8.7,
-  ""option_2_average"": 5.3
-}",option_1,"Option 1 is complete and fulfills all six required elements including the safety/limits note and an encouraging, agency-reinforcing close, whereas Option 2 is truncated mid-sentence in the values clarification section and omits near-term goal setting, the safety note, and the closing—failing several mandatory requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 3, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 4, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",8.7,5.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 5.5
+}",option_1,"Option 1 is complete, fulfilling all six required components including the safety/limits note and an encouraging close that reinforces agency, while Option 2 is truncated mid-sentence in the values clarification section and omits the safety note and encouraging close entirely. Both have strong empathic validation and evidence-informed framing, but Option 1's completeness and concrete, actionable next steps make it clearly superior.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 5, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",8.7,5.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 satisfies all six required elements with greater specificity, including clearly labeled sections, concrete techniques with exact parameters (breathing counts, SMART goal example), and an explicit safety note naming EAP and crisis lines. Option 2 covers similar ground in well-written prose but is less actionable, omits explicit safety resources like crisis lines, and blends patterns together more vaguely."",
+  ""short_rationale"": ""Option 1 fully satisfies all six task requirements with clearly labeled, actionable sections (stress regulation, CBT reframing, values clarification, SMART goals), explicit non-diagnosis language, and strong organization, while Option 2 covers similar ground in less structured prose with fewer concrete, scannable steps."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
+    ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
@@ -828,30 +828,30 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 satisfies all six required elements with greater specificity, including clearly labeled sections, concrete techniques with exact parameters (breathing counts, SMART goal example), and an explicit safety note naming EAP and crisis lines. Option 2 covers similar ground in well-written prose but is less actionable, omits explicit safety resources like crisis lines, and blends patterns together more vaguely.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.5,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 fully satisfies all six task requirements with clearly labeled, actionable sections (stress regulation, CBT reframing, values clarification, SMART goals), explicit non-diagnosis language, and strong organization, while Option 2 covers similar ground in less structured prose with fewer concrete, scannable steps.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,9,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 is a complete, cohesive response that satisfies all six required elements—including the safety note and an encouraging close that reinforces agency. Option 2 is more detailed and better organized in places, but it is truncated mid-sentence in the values-clarification section, leaving the safety/limits note and encouraging close entirely missing, which are explicit task requirements."",
+  ""short_rationale"": ""Option 1 fully satisfies all six required components (validation, cautious pattern identification, evidence-informed framing, concrete steps across all four domains, safety note, and encouraging close) in a complete, cohesive response. Option 2 is well-structured and detailed but is truncated mid-section (values clarification incomplete) and entirely omits the required safety/limits note and encouraging close, leaving mandatory dimensions unmet."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 1,
     ""task_dimension_6"": 1,
     ""general_instruction_following"": 4,
@@ -860,12 +860,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
-  ""option_2_average"": 5.9
-}",option_1,"Option 1 is a complete, cohesive response that satisfies all six required elements—including the safety note and an encouraging close that reinforces agency. Option 2 is more detailed and better organized in places, but it is truncated mid-sentence in the values-clarification section, leaving the safety/limits note and encouraging close entirely missing, which are explicit task requirements.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",7.5,5.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.9,
+  ""option_2_average"": 6.1
+}",option_1,"Option 1 fully satisfies all six required components (validation, cautious pattern identification, evidence-informed framing, concrete steps across all four domains, safety note, and encouraging close) in a complete, cohesive response. Option 2 is well-structured and detailed but is truncated mid-section (values clarification incomplete) and entirely omits the required safety/limits note and encouraging close, leaving mandatory dimensions unmet.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 1, ""task_dimension_6"": 1}",7.9,6.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 1 is well-structured and detailed but is truncated mid-sentence in the values clarification section, meaning it fails to deliver required elements 4 (full next steps including near-term goal setting), 5 (safety/limits note), and 6 (encouraging close). Option 2 is complete and addresses all six required components, making it the only fully responsive answer despite Option 1's richer depth in the portions it covers."",
+  ""short_rationale"": ""Option 2 fully satisfies all six required elements—including near-term goal setting, the safety/limits note, and an encouraging close—while Option 1 is truncated mid-section and omits values completion, goals, safety, and the hopeful close. Despite Option 1's richer detail in its early sections, an incomplete response fails the core task requirements."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 9,
@@ -882,16 +882,16 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.0
-}",option_2,"Option 1 is well-structured and detailed but is truncated mid-sentence in the values clarification section, meaning it fails to deliver required elements 4 (full next steps including near-term goal setting), 5 (safety/limits note), and 6 (encouraging close). Option 2 is complete and addresses all six required components, making it the only fully responsive answer despite Option 1's richer depth in the portions it covers.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 4, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.8,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 6.0,
+  ""option_2_average"": 8.4
+}",option_2,"Option 2 fully satisfies all six required elements—including near-term goal setting, the safety/limits note, and an encouraging close—while Option 1 is truncated mid-section and omits values completion, goals, safety, and the hopeful close. Despite Option 1's richer detail in its early sections, an incomplete response fails the core task requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 4, ""task_dimension_5"": 1, ""task_dimension_6"": 1}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.0,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8

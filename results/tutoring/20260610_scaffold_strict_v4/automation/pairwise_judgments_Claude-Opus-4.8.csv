@@ -1,15 +1,15 @@
 left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
 3,2,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 is complete and classroom-ready, addressing every requested component (objective, analogy, worked examples, misconceptions, interactive activity, checks for understanding, and wrap-up) with age-appropriate language and visual support. Option 2 is truncated mid-sentence in the interactive activity and omits the checks for understanding and wrap-up entirely, making it unusable as delivered."",
+  ""short_rationale"": ""Option 1 is complete and includes every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks for understanding, and wrap-up/exit ticket), while Option 2 is cut off mid-sentence in the interactive activity and omits checks for understanding and a wrap-up. Both use age-appropriate language and visual support, but Option 1 is fully classroom-ready."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 10,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
@@ -19,64 +19,64 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 3,
-    ""task_dimension_6"": 2,
+    ""task_dimension_6"": 3,
     ""general_instruction_following"": 4,
-    ""general_accuracy_specificity"": 6,
+    ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
   ""option_1_average"": 8.9,
-  ""option_2_average"": 5.3
-}",option_1,"Option 1 is complete and classroom-ready, addressing every requested component (objective, analogy, worked examples, misconceptions, interactive activity, checks for understanding, and wrap-up) with age-appropriate language and visual support. Option 2 is truncated mid-sentence in the interactive activity and omits the checks for understanding and wrap-up entirely, making it unusable as delivered.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 3, ""task_dimension_6"": 2}",8.9,5.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 5.5
+}",option_1,"Option 1 is complete and includes every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks for understanding, and wrap-up/exit ticket), while Option 2 is cut off mid-sentence in the interactive activity and omits checks for understanding and a wrap-up. Both use age-appropriate language and visual support, but Option 1 is fully classroom-ready.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 3, ""task_dimension_6"": 3}",8.9,5.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,2,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better satisfies the request for age-appropriate language, visual support, and a vivid analogy woven throughout, with stronger worked examples and a more concrete misconception clarification; despite being cut off mid-activity, it remains more classroom-ready and engaging for 8-year-olds than the abstract, notation-heavy Option 1."",
+  ""short_rationale"": ""Option 2 better meets the prompt's age-appropriateness and visual-support requirements with concrete pizza models, a strong analogy, and an addressed misconception, despite being cut off mid-activity. Option 1 is complete but generic, uses abstract notation without visual support, and lacks engaging child-friendly language."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 6,
+    ""task_dimension_1"": 7,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 5,
-    ""task_dimension_4"": 4,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 5,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 4
+    ""general_tone_audience_fit"": 5
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 9,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.3,
-  ""option_2_average"": 8.2
-}",option_2,"Option 2 better satisfies the request for age-appropriate language, visual support, and a vivid analogy woven throughout, with stronger worked examples and a more concrete misconception clarification; despite being cut off mid-activity, it remains more classroom-ready and engaging for 8-year-olds than the abstract, notation-heavy Option 1.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 4, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",5.3,8.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 6.0,
+  ""option_2_average"": 8.0
+}",option_2,"Option 2 better meets the prompt's age-appropriateness and visual-support requirements with concrete pizza models, a strong analogy, and an addressed misconception, despite being cut off mid-activity. Option 1 is complete but generic, uses abstract notation without visual support, and lacks engaging child-friendly language.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 6}",6.0,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,5,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 1 is engaging and pedagogically rich but is cut off mid-sentence in the interactive activity and entirely omits the required checks for understanding and wrap-up sections. Option 2 is complete, covers every requested component, uses age-appropriate language with visual support, and is fully classroom-ready despite being less vivid."",
+  ""short_rationale"": ""Option 1 is engaging and pedagogically rich but is cut off mid-sentence in the interactive activity and omits the required checks for understanding and wrap-up sections, leaving the lesson incomplete. Option 2 is complete, fulfills every requested component, and keeps notation visually supported, making it classroom-ready."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 7,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 2,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 3,
     ""task_dimension_6"": 2,
     ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
@@ -92,20 +92,20 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 6.0,
+  ""option_1_average"": 6.2,
   ""option_2_average"": 7.5
-}",option_2,"Option 1 is engaging and pedagogically rich but is cut off mid-sentence in the interactive activity and entirely omits the required checks for understanding and wrap-up sections. Option 2 is complete, covers every requested component, uses age-appropriate language with visual support, and is fully classroom-ready despite being less vivid.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 5, ""task_dimension_5"": 2, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.0,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 1 is engaging and pedagogically rich but is cut off mid-sentence in the interactive activity and omits the required checks for understanding and wrap-up sections, leaving the lesson incomplete. Option 2 is complete, fulfills every requested component, and keeps notation visually supported, making it classroom-ready.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 3, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.2,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully delivers every required component (objective, explanation, analogy, worked examples both directions, misconceptions, interactive activity, checks for understanding, exit ticket, and wrap-up), while Option 1 is truncated mid-sentence and never completes the activity, checks for understanding, or wrap-up. Despite Option 1's slightly more engaging prose, completeness and classroom-readiness make Option 2 the stronger deliverable."",
+  ""short_rationale"": ""Option 2 fully satisfies every requested component (objective, explanation, analogy, worked examples both directions, misconceptions, interactive activity, checks for understanding, and wrap-up) as a complete, ready-to-teach segment, while Option 1 is truncated mid-sentence and omits the explicit checks for understanding and wrap-up."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 4,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 5,
     ""task_dimension_5"": 3,
-    ""task_dimension_6"": 3,
-    ""general_instruction_following"": 4,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 7,
@@ -113,10 +113,10 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
@@ -124,19 +124,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.0
-}",option_2,"Option 2 fully delivers every required component (objective, explanation, analogy, worked examples both directions, misconceptions, interactive activity, checks for understanding, exit ticket, and wrap-up), while Option 1 is truncated mid-sentence and never completes the activity, checks for understanding, or wrap-up. Despite Option 1's slightly more engaging prose, completeness and classroom-readiness make Option 2 the stronger deliverable.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 3}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.8,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 6.5,
+  ""option_2_average"": 8.3
+}",option_2,"Option 2 fully satisfies every requested component (objective, explanation, analogy, worked examples both directions, misconceptions, interactive activity, checks for understanding, and wrap-up) as a complete, ready-to-teach segment, while Option 1 is truncated mid-sentence and omits the explicit checks for understanding and wrap-up.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 5, ""task_dimension_5"": 3, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",6.5,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,7,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 1 is engaging and pedagogically strong but is truncated mid-sentence in the interactive activity and omits the required checks for understanding and wrap-up sections, failing key instruction-following requirements. Option 2 is complete, covers every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks, wrap-up), and stays age-appropriate, making it the more classroom-ready deliverable."",
+  ""short_rationale"": ""Although Option 1 is engaging and pedagogically strong, it is truncated mid-sentence in the interactive activity and entirely omits the required Checks for Understanding and Wrap-Up sections. Option 2 is complete, covering every requested component with accurate content, clear visuals, and age-appropriate language."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 4,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 2,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 5,
@@ -144,24 +144,24 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 7,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
   ""option_1_average"": 6.5,
-  ""option_2_average"": 7.5
-}",option_2,"Option 1 is engaging and pedagogically strong but is truncated mid-sentence in the interactive activity and omits the required checks for understanding and wrap-up sections, failing key instruction-following requirements. Option 2 is complete, covers every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks, wrap-up), and stays age-appropriate, making it the more classroom-ready deliverable.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 3, ""task_dimension_6"": 4}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.5,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 7.7
+}",option_2,"Although Option 1 is engaging and pedagogically strong, it is truncated mid-sentence in the interactive activity and entirely omits the required Checks for Understanding and Wrap-Up sections. Option 2 is complete, covering every requested component with accurate content, clear visuals, and age-appropriate language.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 4, ""task_dimension_5"": 2, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",6.5,7.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 is complete and fully satisfies every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks for understanding, and wrap-up), whereas Option 1 is truncated mid-sentence in the interactive activity and omits checks for understanding and the wrap-up entirely. Although Option 1 has slightly warmer prose, its incompleteness makes it unusable as a classroom-ready segment."",
+  ""short_rationale"": ""Option 2 fully delivers every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks for understanding, and wrap-up) in a complete, classroom-ready form, while Option 1 is truncated mid-sentence and omits checks for understanding and a wrap-up entirely, making it not deployable as-is."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 8,
@@ -173,12 +173,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 8
+    ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
@@ -188,55 +188,55 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 5.8,
-  ""option_2_average"": 8.1
-}",option_2,"Option 2 is complete and fully satisfies every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks for understanding, and wrap-up), whereas Option 1 is truncated mid-sentence in the interactive activity and omits checks for understanding and the wrap-up entirely. Although Option 1 has slightly warmer prose, its incompleteness makes it unusable as a classroom-ready segment.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 3, ""task_dimension_5"": 2, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",5.8,8.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 6.0,
+  ""option_2_average"": 8.0
+}",option_2,"Option 2 fully delivers every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks for understanding, and wrap-up) in a complete, classroom-ready form, while Option 1 is truncated mid-sentence and omits checks for understanding and a wrap-up entirely, making it not deployable as-is.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 3, ""task_dimension_5"": 2, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.0,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 2,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 is complete and delivers every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks for understanding, wrap-up) with strong visual support, while Option 1 is truncated mid-sentence and never finishes the interactive activity or includes checks for understanding and wrap-up."",
+  ""short_rationale"": ""Option 1 is truncated mid-sentence during the interactive activity and never delivers checks for understanding or a wrap-up, leaving the lesson incomplete despite strong content. Option 2 fully satisfies every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks, wrap-up) with grade-appropriate visual scaffolding and is classroom-ready."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 7,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 3,
     ""task_dimension_6"": 2,
     ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 4,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 9
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 9,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 6.3,
-  ""option_2_average"": 8.5
-}",option_2,"Option 2 is complete and delivers every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks for understanding, wrap-up) with strong visual support, while Option 1 is truncated mid-sentence and never finishes the interactive activity or includes checks for understanding and wrap-up.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.3,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 8.4
+}",option_2,"Option 1 is truncated mid-sentence during the interactive activity and never delivers checks for understanding or a wrap-up, leaving the lesson incomplete despite strong content. Option 2 fully satisfies every requested component (objective, explanation, analogy, worked examples, misconceptions, activity, checks, wrap-up) with grade-appropriate visual scaffolding and is classroom-ready.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 3, ""task_dimension_6"": 2}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.9,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully satisfies every requested component with grade-appropriate language, concrete visual support for all notation, teacher scripts, and a hands-on activity, while Option 1 is generic, uses unsupported abstract notation, and omits visuals the prompt explicitly required."",
+  ""short_rationale"": ""Option 2 fully satisfies every requested component with age-appropriate language, concrete visual supports for all notation, teacher scripts, and a hands-on activity, whereas Option 1 is generic, introduces abstract notation (13/4, 3 1/4) without visual scaffolding, and lacks depth in misconceptions and interactivity."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 4,
     ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 5
   },
   ""option_2_scores"": {
@@ -252,21 +252,21 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.5,
+  ""option_1_average"": 5.3,
   ""option_2_average"": 9.2
-}",option_2,"Option 2 fully satisfies every requested component with grade-appropriate language, concrete visual support for all notation, teacher scripts, and a hands-on activity, while Option 1 is generic, uses unsupported abstract notation, and omits visuals the prompt explicitly required.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.5,9.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 fully satisfies every requested component with age-appropriate language, concrete visual supports for all notation, teacher scripts, and a hands-on activity, whereas Option 1 is generic, introduces abstract notation (13/4, 3 1/4) without visual scaffolding, and lacks depth in misconceptions and interactivity.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.3,9.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 3,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 better fulfills all requested components with richer teacher scripting, explicit visual support for every example, addresses the prompt's requirement to avoid abstract notation without visuals, and uses more age-appropriate engaging language. Option 2 is accurate and complete but thinner, presents notation with less visual scaffolding, and includes a slightly advanced reverse-conversion example for 8-year-olds."",
+  ""short_rationale"": ""Option 1 better meets the brief with age-appropriate scripted language, teacher visual notes, varied analogies, explicit misconception corrections, and an exit ticket, while keeping notation visually supported. Option 2 is accurate and organized but more abstract, leads with formal notation, and is less classroom-ready for 8-year-olds."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
@@ -278,33 +278,33 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
-    ""general_instruction_following"": 7,
+    ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 better fulfills all requested components with richer teacher scripting, explicit visual support for every example, addresses the prompt's requirement to avoid abstract notation without visuals, and uses more age-appropriate engaging language. Option 2 is accurate and complete but thinner, presents notation with less visual scaffolding, and includes a slightly advanced reverse-conversion example for 8-year-olds.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.7,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.9,
+  ""option_2_average"": 6.4
+}",option_1,"Option 1 better meets the brief with age-appropriate scripted language, teacher visual notes, varied analogies, explicit misconception corrections, and an exit ticket, while keeping notation visually supported. Option 2 is accurate and organized but more abstract, leads with formal notation, and is less classroom-ready for 8-year-olds.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.9,6.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options cover all required components accurately, but Option 2 is better tailored to 8-year-olds with vivid analogies, age-appropriate language, and a clean, complete structure, while Option 1 is solid but drier and is cut off mid-sentence at the end, leaving the teacher prompts incomplete."",
+  ""short_rationale"": ""Both options fully cover the required components with strong visual grounding, but Option 2 is more classroom-ready: it uses consistently age-appropriate language, vivid and concrete analogies, a tighter interactive activity, and explicitly addresses the key denominator-addition misconception. Option 1 is solid and thorough but is cut off mid-sentence at the end and reads more like teacher notes than a ready-to-deliver script."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
+    ""task_dimension_4"": 7,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 9,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
@@ -316,21 +316,21 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 7.6,
-  ""option_2_average"": 8.4
-}",option_2,"Both options cover all required components accurately, but Option 2 is better tailored to 8-year-olds with vivid analogies, age-appropriate language, and a clean, complete structure, while Option 1 is solid but drier and is cut off mid-sentence at the end, leaving the teacher prompts incomplete.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.6,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 8.5
+}",option_2,"Both options fully cover the required components with strong visual grounding, but Option 2 is more classroom-ready: it uses consistently age-appropriate language, vivid and concrete analogies, a tighter interactive activity, and explicitly addresses the key denominator-addition misconception. Option 1 is solid and thorough but is cut off mid-sentence at the end and reads more like teacher notes than a ready-to-deliver script.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.5,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 3,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fully addresses every requested component (objective, analogy, worked examples, misconceptions, interactive activity, checks, wrap-up) with consistent concrete visuals, teacher scripts, and an exit ticket, and uses warm age-appropriate language with strong visual support. Option 2 is solid but covers the improper-to-mixed conversion only one direction, uses denominators (5 cookies) that are harder for 8-year-olds, and offers less detailed scaffolding and formatting."",
+  ""short_rationale"": ""Option 1 fully covers every requested component with strong age-appropriate language, consistent visual support, explicit misconception corrections, and a concrete hands-on activity plus exit ticket; Option 2 is solid but mixes denominators across examples, omits some requested elements like clearly distinguishing improper fraction notation alongside mixed numbers, and is less classroom-ready."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 10,
-    ""general_accuracy_specificity"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
@@ -339,128 +339,96 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 6,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 9.0,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 fully addresses every requested component (objective, analogy, worked examples, misconceptions, interactive activity, checks, wrap-up) with consistent concrete visuals, teacher scripts, and an exit ticket, and uses warm age-appropriate language with strong visual support. Option 2 is solid but covers the improper-to-mixed conversion only one direction, uses denominators (5 cookies) that are harder for 8-year-olds, and offers less detailed scaffolding and formatting.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",9.0,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 6.4
+}",option_1,"Option 1 fully covers every requested component with strong age-appropriate language, consistent visual support, explicit misconception corrections, and a concrete hands-on activity plus exit ticket; Option 2 is solid but mixes denominators across examples, omits some requested elements like clearly distinguishing improper fraction notation alongside mixed numbers, and is less classroom-ready.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.7,6.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options are pedagogically strong and complete, but Option 2 better fits the 8-year-old audience with warmer, more concrete language, clearer scaffolding of common misconceptions (e.g., 'improper' doesn't mean 'wrong'), hands-on manipulatives, and a more engaging tone. Option 1 is solid and accurate but slightly drier, and one of its check questions ('2 0/4') introduces awkward notation that may confuse young learners."",
+  ""short_rationale"": ""Both options are complete and pedagogically sound, but Option 2 has stronger age-appropriate tone, more vivid hands-on activity (paper pizza manipulatives), and reframes 'improper' to reduce confusion. Option 1 is solid but slightly drier and includes a check-for-understanding answer (2 0/4) that introduces awkward notation for 8-year-olds; Option 2's exposed think-block is a minor instruction-following flaw."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 7,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 9,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 7.6,
-  ""option_2_average"": 8.7
-}",option_2,"Both options are pedagogically strong and complete, but Option 2 better fits the 8-year-old audience with warmer, more concrete language, clearer scaffolding of common misconceptions (e.g., 'improper' doesn't mean 'wrong'), hands-on manipulatives, and a more engaging tone. Option 1 is solid and accurate but slightly drier, and one of its check questions ('2 0/4') introduces awkward notation that may confuse young learners.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.6,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.7,
+  ""option_2_average"": 8.3
+}",option_2,"Both options are complete and pedagogically sound, but Option 2 has stronger age-appropriate tone, more vivid hands-on activity (paper pizza manipulatives), and reframes 'improper' to reduce confusion. Option 1 is solid but slightly drier and includes a check-for-understanding answer (2 0/4) that introduces awkward notation for 8-year-olds; Option 2's exposed think-block is a minor instruction-following flaw.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.7,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options are strong and grade-appropriate, but Option 2 is more tightly scoped for an 8-year-old attention span, keeps notation consistently tied to visuals, and includes a sharper, more pedagogically valuable misconception (adding denominators). Option 1 is more comprehensive but contains a notation slip (treating 1¾ as 'one and a half' in the analogy section) and risks cognitive overload with denser tables."",
+  ""short_rationale"": ""Both options are strong and accurate, but Option 2 is better calibrated for actual Grade 3 implementation: more concise, tighter visual support, and crucially it teaches improper-to-mixed conversion concretely without abstract division notation. Option 1's teacher 'Quick Reference Card' introduces the algorithm (whole × denominator, remainder) which is above grade level and contradicts the prompt's request to avoid abstract notation without visual support; it is also longer than realistic for 8-year-olds."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 9,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 7.7,
-  ""option_2_average"": 8.7
-}",option_2,"Both options are strong and grade-appropriate, but Option 2 is more tightly scoped for an 8-year-old attention span, keeps notation consistently tied to visuals, and includes a sharper, more pedagogically valuable misconception (adding denominators). Option 1 is more comprehensive but contains a notation slip (treating 1¾ as 'one and a half' in the analogy section) and risks cognitive overload with denser tables.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.7,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 8.5
+}",option_2,"Both options are strong and accurate, but Option 2 is better calibrated for actual Grade 3 implementation: more concise, tighter visual support, and crucially it teaches improper-to-mixed conversion concretely without abstract division notation. Option 1's teacher 'Quick Reference Card' introduces the algorithm (whole × denominator, remainder) which is above grade level and contradicts the prompt's request to avoid abstract notation without visual support; it is also longer than realistic for 8-year-olds.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.5,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,5,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better satisfies the prompt's requirements by using consistent pizza visuals, step-by-step worked examples with drawing prompts, multiple concrete misconceptions, a hands-on manipulative activity, and varied checks for understanding, all in age-appropriate language that avoids unsupported abstract notation. Option 1 is accurate but thin, with no visual support and an example error (3 1/4 equals 13/4, correct, but it offers no visuals as explicitly required)."",
+  ""short_rationale"": ""Option 2 better meets the prompt requirements by using consistent visual/pizza support, hands-on manipulatives, age-appropriate language, and explicit step-by-step conversions, while Option 1 relies on abstract notation without visual support and uses more advanced vocabulary. Note: improper fractions/mixed numbers are typically Grade 4 standards, but Option 2 scaffolds them more appropriately for 8-year-olds."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
+    ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 5.6,
-  ""option_2_average"": 9.0
-}",option_2,"Option 2 better satisfies the prompt's requirements by using consistent pizza visuals, step-by-step worked examples with drawing prompts, multiple concrete misconceptions, a hands-on manipulative activity, and varied checks for understanding, all in age-appropriate language that avoids unsupported abstract notation. Option 1 is accurate but thin, with no visual support and an example error (3 1/4 equals 13/4, correct, but it offers no visuals as explicitly required).","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.6,9.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-4,6,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully satisfies the request by grounding all concepts in visual, hands-on representations and avoiding abstract notation without picture support, which Option 1 fails to do (e.g., it states 13/4 conversions with no visual scaffolding). Option 2 is more age-appropriate, classroom-ready, and complete despite a cut-off final sentence."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
-    ""general_instruction_following"": 5,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 5
   },
   ""option_2_scores"": {
@@ -468,6 +436,38 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 5.4,
+  ""option_2_average"": 8.8
+}",option_2,"Option 2 better meets the prompt requirements by using consistent visual/pizza support, hands-on manipulatives, age-appropriate language, and explicit step-by-step conversions, while Option 1 relies on abstract notation without visual support and uses more advanced vocabulary. Note: improper fractions/mixed numbers are typically Grade 4 standards, but Option 2 scaffolds them more appropriately for 8-year-olds.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.4,8.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 fully meets the request with strong visual grounding, age-appropriate language, detailed worked examples using pictures, a hands-on activity, differentiation, formative checks, and an exit ticket; Option 1 is generic and relies on abstract notation (e.g., 13/4) without visual support, which the prompt explicitly asked to avoid."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 4,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 5,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
@@ -478,25 +478,25 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 5.5,
   ""option_2_average"": 8.7
-}",option_2,"Option 2 fully satisfies the request by grounding all concepts in visual, hands-on representations and avoiding abstract notation without picture support, which Option 1 fails to do (e.g., it states 13/4 conversions with no visual scaffolding). Option 2 is more age-appropriate, classroom-ready, and complete despite a cut-off final sentence.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.5,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Option 2 fully meets the request with strong visual grounding, age-appropriate language, detailed worked examples using pictures, a hands-on activity, differentiation, formative checks, and an exit ticket; Option 1 is generic and relies on abstract notation (e.g., 13/4) without visual support, which the prompt explicitly asked to avoid.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 4, ""task_dimension_5"": 5, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.5,8.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,7,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 better satisfies the request's emphasis on age-appropriate language, concrete analogies, visual support, and avoiding abstract notation, while delivering a more complete and hands-on lesson; Option 1 is accurate but terse, notation-heavy, and lacks the requested visual scaffolding."",
+  ""short_rationale"": ""Option 2 better fits the 8-year-old audience with concrete analogies, explicit visual supports, scaffolded worked examples, and a hands-on activity that avoids abstract notation, exactly as requested. Option 1 is accurate but terse, uses unsupported notation (e.g., 13/4) without visuals, and lacks age-appropriate scaffolding."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 5,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 6,
+    ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 5
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 8,
+    ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
@@ -508,21 +508,21 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.9,
-  ""option_2_average"": 8.5
-}",option_2,"Option 2 better satisfies the request's emphasis on age-appropriate language, concrete analogies, visual support, and avoiding abstract notation, while delivering a more complete and hands-on lesson; Option 1 is accurate but terse, notation-heavy, and lacks the requested visual scaffolding.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.9,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 5.7,
+  ""option_2_average"": 8.6
+}",option_2,"Option 2 better fits the 8-year-old audience with concrete analogies, explicit visual supports, scaffolded worked examples, and a hands-on activity that avoids abstract notation, exactly as requested. Option 1 is accurate but terse, uses unsupported notation (e.g., 13/4) without visuals, and lacks age-appropriate scaffolding.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",5.7,8.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,4,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fully satisfies the prompt with visual-supported worked examples, age-appropriate language, explicit common misconceptions, and a hands-on activity, while Option 2 relies on abstract notation (5/2, 13/4) without visuals, uses higher-grade vocabulary, and is too thin for 8-year-olds."",
+  ""short_rationale"": ""Option 1 fully satisfies the prompt: it uses visual/pictorial support throughout, avoids abstract notation without scaffolding, includes a concrete hands-on activity, addresses misconceptions specifically, and uses age-appropriate language for 8-year-olds. Option 2 relies on bare notation (e.g., 13/4) with no visual support, is generic, and is pitched too abstractly for the target age."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
@@ -532,7 +532,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 4,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 4,
-    ""task_dimension_5"": 4,
+    ""task_dimension_5"": 3,
     ""task_dimension_6"": 4,
     ""general_instruction_following"": 4,
     ""general_accuracy_specificity"": 5,
@@ -541,23 +541,23 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 4
   },
   ""option_1_average"": 8.8,
-  ""option_2_average"": 4.5
-}",option_1,"Option 1 fully satisfies the prompt with visual-supported worked examples, age-appropriate language, explicit common misconceptions, and a hands-on activity, while Option 2 relies on abstract notation (5/2, 13/4) without visuals, uses higher-grade vocabulary, and is too thin for 8-year-olds.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 4, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 4, ""task_dimension_6"": 4}",8.8,4.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_2_average"": 4.4
+}",option_1,"Option 1 fully satisfies the prompt: it uses visual/pictorial support throughout, avoids abstract notation without scaffolding, includes a concrete hands-on activity, addresses misconceptions specifically, and uses age-appropriate language for 8-year-olds. Option 2 relies on bare notation (e.g., 13/4) with no visual support, is generic, and is pitched too abstractly for the target age.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 4, ""general_organization_readability"": 6, ""general_practical_usefulness"": 4, ""general_tone_audience_fit"": 4, ""task_dimension_1"": 5, ""task_dimension_2"": 4, ""task_dimension_3"": 5, ""task_dimension_4"": 4, ""task_dimension_5"": 3, ""task_dimension_6"": 4}",8.8,4.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 4,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 fully satisfies every requested component with strong visual support, age-appropriate analogies, concrete manipulatives, and detailed misconception fixes, directly meeting the prompt's demand to avoid abstract notation without visuals. Option 1 is accurate but thin, includes an unsupported conversion (13/4) without visual scaffolding, and lacks the depth needed for a classroom-ready 8-year-old lesson."",
+  ""short_rationale"": ""Option 2 fully satisfies every requested component with grade-appropriate language, strong visual scaffolding, concrete manipulatives, and accurate multi-step worked examples, whereas Option 1 is thin and contains a factual error (3 1/4 = 13/4 is correct but it omits visual support and includes an unsupported half-pizza analogy mismatch). Option 2's pizza model avoids abstract notation without visuals as required."",
   ""option_1_scores"": {
     ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
+    ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 6,
+    ""task_dimension_5"": 4,
+    ""task_dimension_6"": 5,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 5
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
@@ -568,67 +568,67 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 10,
     ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
+    ""general_practical_usefulness"": 10,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 5.6,
-  ""option_2_average"": 9.1
-}",option_2,"Option 2 fully satisfies every requested component with strong visual support, age-appropriate analogies, concrete manipulatives, and detailed misconception fixes, directly meeting the prompt's demand to avoid abstract notation without visuals. Option 1 is accurate but thin, includes an unsupported conversion (13/4) without visual scaffolding, and lacks the depth needed for a classroom-ready 8-year-old lesson.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.6,9.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 5.4,
+  ""option_2_average"": 9.2
+}",option_2,"Option 2 fully satisfies every requested component with grade-appropriate language, strong visual scaffolding, concrete manipulatives, and accurate multi-step worked examples, whereas Option 1 is thin and contains a factual error (3 1/4 = 13/4 is correct but it omits visual support and includes an unsupported half-pizza analogy mismatch). Option 2's pizza model avoids abstract notation without visuals as required.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 4, ""task_dimension_6"": 5}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",5.4,9.2,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 better fulfills the brief by including all requested components (hook, materials, timings, differentiation, exit ticket) and crucially keeps abstract notation visually supported with word-based fractions ('seven fourths') as the prompt required. Option 2 is cleaner and well-organized but leans on bare symbolic notation (5/3, 7/4) without consistent visual scaffolding, omits a learning-objective phrasing in student voice and explicit differentiation, and was cut off less—though Option 1's truncation is a minor flaw."",
+  ""short_rationale"": ""Option 1 better meets the brief: it includes a hook, timing, student-friendly objective, differentiation, an exit ticket, and consistently uses visual support with word-based fraction names ('seven fourths') rather than bare abstract notation, which the prompt explicitly requested. Option 2 is cleaner and more concise but relies heavily on abstract notation (5/3, 7/4) without sufficient visual scaffolding and omits a learning hook and explicit timing."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 9,
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 9
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 6,
-    ""task_dimension_2"": 6,
+    ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 6
   },
   ""option_1_average"": 8.4,
   ""option_2_average"": 6.5
-}",option_1,"Option 1 better fulfills the brief by including all requested components (hook, materials, timings, differentiation, exit ticket) and crucially keeps abstract notation visually supported with word-based fractions ('seven fourths') as the prompt required. Option 2 is cleaner and well-organized but leans on bare symbolic notation (5/3, 7/4) without consistent visual scaffolding, omits a learning-objective phrasing in student voice and explicit differentiation, and was cut off less—though Option 1's truncation is a minor flaw.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.4,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Option 1 better meets the brief: it includes a hook, timing, student-friendly objective, differentiation, an exit ticket, and consistently uses visual support with word-based fraction names ('seven fourths') rather than bare abstract notation, which the prompt explicitly requested. Option 2 is cleaner and more concise but relies heavily on abstract notation (5/3, 7/4) without sufficient visual scaffolding and omits a learning hook and explicit timing.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.4,6.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 5,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fully addresses all requested components, including bidirectional conversion (improper-to-mixed AND mixed-to-improper), more complete worked examples, and clearer interactive activity steps. Option 2 only teaches one-way conversion and uses an inconsistent crayon/box analogy that does not map well to fractions, omitting mixed-to-improper conversion entirely."",
+  ""short_rationale"": ""Option 1 fully covers every requested component including bidirectional conversion (improper-to-mixed AND mixed-to-improper), explicit common misconceptions, and concrete checks for understanding, with cleaner organization. Option 2 is warmly written but omits the mixed-to-improper direction, mislabels its examples (6 slices in a 4-slice pizza is 6/4, not clearly tied to notation), and is comparatively weaker on completeness and worked-example coverage."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 6,
     ""general_accuracy_specificity"": 6,
@@ -636,51 +636,51 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.3,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 fully addresses all requested components, including bidirectional conversion (improper-to-mixed AND mixed-to-improper), more complete worked examples, and clearer interactive activity steps. Option 2 only teaches one-way conversion and uses an inconsistent crayon/box analogy that does not map well to fractions, omitting mixed-to-improper conversion entirely.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.3,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 fully covers every requested component including bidirectional conversion (improper-to-mixed AND mixed-to-improper), explicit common misconceptions, and concrete checks for understanding, with cleaner organization. Option 2 is warmly written but omits the mixed-to-improper direction, mislabels its examples (6 slices in a 4-slice pizza is 6/4, not clearly tied to notation), and is comparatively weaker on completeness and worked-example coverage.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 6, ""task_dimension_2"": 8, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 follows the requested structure more completely (it includes every required component, including a clear learning objective explicitly capped at the grade-appropriate scope), provides more detailed visual-based worked examples, and consistently grounds abstract notation in drawings as the prompt demanded. Option 2 is solid and slightly more concise, but it introduces mixed-to-improper conversion that goes beyond the stated objective and relies on the bigger-numerator definition without the same level of visual scaffolding."",
+  ""short_rationale"": ""Option 1 better matches the grade-3 scope (it focuses on improper-to-mixed conversion with strong visual scaffolding and avoids abstract multiplication), provides richer worked examples, fuller misconception coverage, and an exit ticket. Option 2 is solid but introduces mixed-to-improper conversion via numerical multiplication (2x4) without visual support, which the prompt cautioned against, and is slightly thinner overall."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 7.1
-}",option_1,"Option 1 follows the requested structure more completely (it includes every required component, including a clear learning objective explicitly capped at the grade-appropriate scope), provides more detailed visual-based worked examples, and consistently grounds abstract notation in drawings as the prompt demanded. Option 2 is solid and slightly more concise, but it introduces mixed-to-improper conversion that goes beyond the stated objective and relies on the bigger-numerator definition without the same level of visual scaffolding.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,7.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 7.5
+}",option_1,"Option 1 better matches the grade-3 scope (it focuses on improper-to-mixed conversion with strong visual scaffolding and avoids abstract multiplication), provides richer worked examples, fuller misconception coverage, and an exit ticket. Option 2 is solid but introduces mixed-to-improper conversion via numerical multiplication (2x4) without visual support, which the prompt cautioned against, and is slightly thinner overall.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.7,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 fully addresses every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks, wrap-up) with richer detail, stronger visual scaffolding, and clear age-appropriate language; Option 2 is accurate and clean but thinner across all dimensions. Note: Option 1 contains a minor error labeling 5/4 leftover as 'one and a half' in the analogy, slightly lowering accuracy."",
+  ""short_rationale"": ""Option 1 covers every requested element more thoroughly with detailed misconceptions, multiple worked examples, materials, timing, and richer checks for understanding while keeping visual support throughout; Option 2 is accurate and clean but thinner on depth and scaffolding. One caution: Option 1's analogy section mislabels 5/4 leftover as 'a half,' a minor accuracy slip."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 9,
@@ -689,8 +689,8 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 6,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
@@ -702,19 +702,19 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 8.5,
   ""option_2_average"": 6.6
-}",option_1,"Option 1 fully addresses every requested component (objective, explanation, analogy, worked examples, misconceptions, interactive activity, checks, wrap-up) with richer detail, stronger visual scaffolding, and clear age-appropriate language; Option 2 is accurate and clean but thinner across all dimensions. Note: Option 1 contains a minor error labeling 5/4 leftover as 'one and a half' in the analogy, slightly lowering accuracy.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.5,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_1,"Option 1 covers every requested element more thoroughly with detailed misconceptions, multiple worked examples, materials, timing, and richer checks for understanding while keeping visual support throughout; Option 2 is accurate and clean but thinner on depth and scaffolding. One caution: Option 1's analogy section mislabels 5/4 leftover as 'a half,' a minor accuracy slip.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.5,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,6,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options are strong, but Option 2 fully satisfies the request by covering both directions (improper-to-mixed AND mixed-to-improper), includes timing, materials, differentiation, and a concrete exit ticket, making it more classroom-ready. Option 1 is engaging and well-written but only teaches one direction and lacks materials/timing/differentiation; it was also truncated less but Option 2's coverage of all required components is more complete despite its abrupt ending."",
+  ""short_rationale"": ""Both options are strong, but Option 2 covers both directions of conversion (improper-to-mixed and mixed-to-improper), includes timing, materials, differentiation, a formal exit ticket, and thumbs-based formative checks, making it more classroom-ready and complete per the request. Option 1 is warm and accessible but only teaches improper-to-mixed conversion and omits the mixed-to-improper direction and differentiation."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 7,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
@@ -732,15 +732,47 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
+  ""option_1_average"": 7.6,
   ""option_2_average"": 8.4
-}",option_2,"Both options are strong, but Option 2 fully satisfies the request by covering both directions (improper-to-mixed AND mixed-to-improper), includes timing, materials, differentiation, and a concrete exit ticket, making it more classroom-ready. Option 1 is engaging and well-written but only teaches one direction and lacks materials/timing/differentiation; it was also truncated less but Option 2's coverage of all required components is more complete despite its abrupt ending.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 6, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.5,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options are strong, but Option 2 covers both directions of conversion (improper-to-mixed and mixed-to-improper), includes timing, materials, differentiation, a formal exit ticket, and thumbs-based formative checks, making it more classroom-ready and complete per the request. Option 1 is warm and accessible but only teaches improper-to-mixed conversion and omits the mixed-to-improper direction and differentiation.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.6,8.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 6,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 covers all requested components more thoroughly with timings, differentiation, and consistently visual/word-based language that avoids unsupported abstract notation, better matching the prompt's constraints; Option 2 is solid and well-organized but uses bare symbolic notation (5/4, 7/3) without always pairing it to visuals and includes a slightly confusing '2 0/4' check, and its abrupt truncation is absent but it is thinner on activity detail and differentiation."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 covers all requested components more thoroughly with timings, differentiation, and consistently visual/word-based language that avoids unsupported abstract notation, better matching the prompt's constraints; Option 2 is solid and well-organized but uses bare symbolic notation (5/4, 7/3) without always pairing it to visuals and includes a slightly confusing '2 0/4' check, and its abrupt truncation is absent but it is thinner on activity detail and differentiation.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.5,6.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options are pedagogically sound and complete, but the prompt explicitly required avoiding abstract notation without visual support. Option 1 honors this better with consistent word-based fractions ('seven fourths'), while Option 2 leans more on symbolic notation (5/4, 7/3). However, Option 2 is more concise, complete (covers both objectives clearly), better organized, and includes a cleaner check-for-understanding with edge cases (4/4, 8/4); Option 1 is also strong but is truncated at the end, leaving teacher prompts incomplete."",
+  ""short_rationale"": ""Both options are strong and standards-appropriate, but Option 2 better satisfies the request's constraint to avoid abstract notation without visual support by consistently pairing every fraction with a concrete pizza visual, offers clearer organization, and includes a more complete worked example set (including a whole-number case). Option 1 is also excellent and slightly better grounded in pure visual-first pedagogy, but is truncated at the end, leaving teacher prompts incomplete."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 9,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
@@ -749,46 +781,14 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 7.9
-}",option_2,"Both options are pedagogically sound and complete, but the prompt explicitly required avoiding abstract notation without visual support. Option 1 honors this better with consistent word-based fractions ('seven fourths'), while Option 2 leans more on symbolic notation (5/4, 7/3). However, Option 2 is more concise, complete (covers both objectives clearly), better organized, and includes a cleaner check-for-understanding with edge cases (4/4, 8/4); Option 1 is also strong but is truncated at the end, leaving teacher prompts incomplete.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",8.0,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
-6,9,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options are strong and complete, but Option 2 better satisfies the 'avoid abstract notation without visual support' requirement by consistently pairing notation with the pizza analogy and shaded-slice visuals, and it offers stronger organization, kinesthetic engagement, and clearer worked examples. Option 1 is solid but is truncated at the end (incomplete teacher prompts) and slightly less polished in layout."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 9,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 8,
@@ -796,12 +796,12 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
-  ""option_1_average"": 7.6,
+  ""option_1_average"": 7.8,
   ""option_2_average"": 8.5
-}",option_2,"Both options are strong and complete, but Option 2 better satisfies the 'avoid abstract notation without visual support' requirement by consistently pairing notation with the pizza analogy and shaded-slice visuals, and it offers stronger organization, kinesthetic engagement, and clearer worked examples. Option 1 is solid but is truncated at the end (incomplete teacher prompts) and slightly less polished in layout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.6,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options are strong and standards-appropriate, but Option 2 better satisfies the request's constraint to avoid abstract notation without visual support by consistently pairing every fraction with a concrete pizza visual, offers clearer organization, and includes a more complete worked example set (including a whole-number case). Option 1 is also excellent and slightly better grounded in pure visual-first pedagogy, but is truncated at the end, leaving teacher prompts incomplete.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.8,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 8,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 covers all requested components accurately, including correct fraction-to-mixed-number conversions (5/4=1¼, 7/3=2⅓) and dedicated checks for understanding. Option 2 contains a critical accuracy error: it repeatedly equates 'improper fraction' with denominator-based grouping in crayon/cookie/box contexts and mislabels 6/4 conversions while drifting away from true fraction notation, weakening mathematical correctness and the no-abstract-notation-without-visual requirement."",
+  ""short_rationale"": ""Option 1 covers every requested component completely, includes accurate fraction-to-mixed-number conversions, addresses true misconceptions (numerator/denominator confusion, equal parts), and provides explicit answer keys. Option 2 contains a critical mathematical error: it repeatedly labels 6 slices of a 4-slice pizza as '6/4' but converts it to '1 and 2/4' (correct), yet earlier states '6 slices out of 4' inconsistently, and its analogies (crayon boxes, cookie boxes) conflate whole-number grouping with fractions, weakening the denominator concept."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -810,15 +810,15 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_5"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 8,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
     ""task_dimension_5"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 5,
@@ -826,32 +826,32 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.8
-}",option_1,"Option 1 covers all requested components accurately, including correct fraction-to-mixed-number conversions (5/4=1¼, 7/3=2⅓) and dedicated checks for understanding. Option 2 contains a critical accuracy error: it repeatedly equates 'improper fraction' with denominator-based grouping in crayon/cookie/box contexts and mislabels 6/4 conversions while drifting away from true fraction notation, weakening mathematical correctness and the no-abstract-notation-without-visual requirement.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6}",8.5,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 covers every requested component completely, includes accurate fraction-to-mixed-number conversions, addresses true misconceptions (numerator/denominator confusion, equal parts), and provides explicit answer keys. Option 2 contains a critical mathematical error: it repeatedly labels 6 slices of a 4-slice pizza as '6/4' but converts it to '1 and 2/4' (correct), yet earlier states '6 slices out of 4' inconsistently, and its analogies (crayon boxes, cookie boxes) conflate whole-number grouping with fractions, weakening the denominator concept.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6}",8.7,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 7,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both options fully cover the requested components with age-appropriate language, visuals, and hands-on activities, but Option 2 is more comprehensive and classroom-ready: it adds materials lists, a warm-up, timing, multi-whole examples (12/6 = 2), more thorough misconception fixes, varied checks including an exit ticket, and a teacher reference card. Option 1 is solid and well-written but slightly thinner and has a minor inconsistency (the analogy example uses 6/4 yet the wrap-up references mixed numbers without consistent denominators)."",
+  ""short_rationale"": ""Both options cover all required components accurately and age-appropriately, but Option 2 is more classroom-ready: it includes timing, materials, a warm-up, multi-step worked examples (including a whole-number case like 12/6), richer misconception coverage, varied checks for understanding with an exit ticket, and a teacher reference card. Option 1 is solid and slightly cleaner in plain prose, but Option 2 offers more complete, usable structure while keeping visuals and concrete language for the audience."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
     ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 9,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
+    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 9,
@@ -860,36 +860,36 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 7.5,
   ""option_2_average"": 8.5
-}",option_2,"Both options fully cover the requested components with age-appropriate language, visuals, and hands-on activities, but Option 2 is more comprehensive and classroom-ready: it adds materials lists, a warm-up, timing, multi-whole examples (12/6 = 2), more thorough misconception fixes, varied checks including an exit ticket, and a teacher reference card. Option 1 is solid and well-written but slightly thinner and has a minor inconsistency (the analogy example uses 6/4 yet the wrap-up references mixed numbers without consistent denominators).","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.5,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+}",option_2,"Both options cover all required components accurately and age-appropriately, but Option 2 is more classroom-ready: it includes timing, materials, a warm-up, multi-step worked examples (including a whole-number case like 12/6), richer misconception coverage, varied checks for understanding with an exit ticket, and a teacher reference card. Option 1 is solid and slightly cleaner in plain prose, but Option 2 offers more complete, usable structure while keeping visuals and concrete language for the audience.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.5,8.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
 9,8,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Both lessons are well-structured, but Option 1 contains a critical mathematical error: it labels the leftover slice of 5/4 (one slice out of four) as 'one and a half,' which is wrong, and its worked-example accuracy is otherwise solid yet undermined by this conflation. Option 2 is fully accurate, cleanly aligned to the grade level, and consistently pairs visuals with notation, giving it the edge on accuracy despite Option 1's richer activity detail."",
+  ""short_rationale"": ""Option 2 is more mathematically accurate and consistent: every worked example correctly matches its denominator and includes proper visual scaffolding. Option 1 is richer and better organized but contains a critical accuracy error (it repeatedly maps quarters/leftovers to 'one and a half' and gives misleading example labels), which is disqualifying for a math lesson where correctness matters most."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 9,
     ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
+    ""general_accuracy_specificity"": 4,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 7.5,
-  ""option_2_average"": 8.0
-}",option_2,"Both lessons are well-structured, but Option 1 contains a critical mathematical error: it labels the leftover slice of 5/4 (one slice out of four) as 'one and a half,' which is wrong, and its worked-example accuracy is otherwise solid yet undermined by this conflation. Option 2 is fully accurate, cleanly aligned to the grade level, and consistently pairs visuals with notation, giving it the edge on accuracy despite Option 1's richer activity detail.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 6, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.5,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+  ""option_1_average"": 7.4,
+  ""option_2_average"": 7.5
+}",option_2,"Option 2 is more mathematically accurate and consistent: every worked example correctly matches its denominator and includes proper visual scaffolding. Option 1 is richer and better organized but contains a critical accuracy error (it repeatedly maps quarters/leftovers to 'one and a half' and gives misleading example labels), which is disqualifying for a math lesson where correctness matters most.","{""general_accuracy_specificity"": 4, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 5, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.4,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8

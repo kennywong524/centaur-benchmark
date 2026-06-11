@@ -22,194 +22,13 @@
     },
     "Gemini-3.1-Pro": {
       "judge_model": "google/gemini-3.1-pro",
-      "batch_ok": false,
-      "row_pass_rate": 0.3333333333333333,
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
       "n_rows": 36,
-      "n_passing": 12,
+      "n_passing": 36,
       "suspicious_all_ones_rate": 0.0,
-      "exclude_reason": "row_pass_rate=0.33<0.90",
-      "failed_rows": [
-        {
-          "row_index": 2,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 4,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 6,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 8,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 12,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 13,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 15,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 17,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 18,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 19,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 21,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 22,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 23,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 24,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 25,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 26,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 27,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 28,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 29,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        },
-        {
-          "row_index": 30,
-          "ok": false,
-          "issues": [
-            "missing_rationale",
-            "option_1_scores_empty",
-            "option_2_scores_empty"
-          ]
-        }
-      ]
+      "exclude_reason": "",
+      "failed_rows": []
     },
     "DeepSeek-V3.1": {
       "judge_model": "deepseek-ai/DeepSeek-V3.1",
@@ -222,16 +41,11 @@
       "failed_rows": []
     }
   },
-  "excluded_from_aggregate": [
-    {
-      "judge_label": "Gemini-3.1-Pro",
-      "judge_model": "google/gemini-3.1-pro",
-      "reason": "row_pass_rate=0.33<0.90"
-    }
-  ],
+  "excluded_from_aggregate": [],
   "aggregate_judges": [
     "Claude-Opus-4.8",
     "DeepSeek-V3.1",
-    "GPT-4.1"
+    "GPT-4.1",
+    "Gemini-3.1-Pro"
   ]
 }

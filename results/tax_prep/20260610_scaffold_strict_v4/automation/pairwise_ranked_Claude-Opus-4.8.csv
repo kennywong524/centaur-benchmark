@@ -201,7 +201,7 @@ and I will recalculate final tax figures and list exact line numbers/forms to co
 
 ---
 
-## 7. **",automation_GPT-4.1,gpt-4.1,GPT-4.1,5,5,7,0.7142857142857143,3.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
+## 7. **",automation_GPT-4.1,gpt-4.1,GPT-4.1,5,5,7,0.7142857142857143,2.5,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
 0,"Below is an overview of the problems found in the “partially completed” returns, the relevant tax‐law concepts behind each, and a discussion of how to “re‐calculate” and what forms/schedules must be corrected. (Because some necessary facts – such as the amount of any allowable business expenses – are missing, we give a framework for an estimate rather than a single “final” tax liability number.)
 
 ─────────────────────────────  
@@ -281,7 +281,7 @@ B. Required Correction
 ─────────────────────────────  
 5. RECAP & CALCULATION FRAMEWORK
 
-Because some information is still missing (most notably the allowable business expenses",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,7,5,7,0.7142857142857143,3.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
+Because some information is still missing (most notably the allowable business expenses",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,7,5,7,0.7142857142857143,2.5,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
 0,"## 1. What the client gave you vs what the law requires  
 
 | Item | Client’s entry (as shown on the draft) | What the tax code says must be reported | Why the client’s entry is wrong (or incomplete) |
@@ -301,7 +301,7 @@ Because some information is still missing (most notably the allowable business e
 ## 2. Federal Return – Re‑calculation (using the information we **do** have)
 
 > **Assumptions**  
-> • No business expenses are supplied – we will",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,5,7,0.7142857142857143,3.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
+> • No business expenses are supplied – we will",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,4,7,0.5714285714285714,4.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
 0,"Of course. Here is a detailed review of the client's tax situation, identifying discrepancies, explaining the applicable rules, and providing a framework for recalculation.
 
 ### **Executive Summary**
@@ -338,6 +338,29 @@ The client's pre-filled returns contain significant errors that will likely lead
     *   **Federal Rule:** For tax year 2025, the Child Tax Credit is only for children **under age 17** by the end of the tax year. The 22-year-old dependent does **not** qualify.
     *   **Federal Rule:** However, the client may qualify for the **Credit for Other Dependents** ($500 non-refundable credit) for this dependent.
 *   **Analysis:** The invalid $2,000 Child Tax Credit claim must be removed. The $500 Credit for Other",automation_DeepSeek-V3.1,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1,2,3,7,0.42857142857142855,5.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,"<think>
+**Reviewing Client's 2025 Tax Data**
+
+I'm currently analyzing the provided 2025 tax data for California. My focus is on reconciling the reported freelance income with the W-2 wages, ensuring the correct self-employment tax is calculated, and determining the optimal filing status. I'm also assessing whether itemized deductions or the standard deduction will yield a better outcome, considering mortgage interest and property taxes. The dependent's eligibility for credits is also under review.
+
+ 
+</think>
+
+Here is a comprehensive review of your client’s partially completed 2025 federal and California tax returns, including identified discrepancies, applicable tax rules, a recalculated framework, and the necessary corrections.
+
+### 1. Discrepancies & Applicable Tax Rules
+
+**Filing Status: Single vs. Head of Household (HOH)**
+*   **Discrepancy:** The client selected ""Single,"" but they likely qualify for the highly advantageous ""Head of Household"" status.
+*   **Rule:** To qualify for HOH, a taxpayer must be unmarried, pay more than half the cost of keeping up a home for the year, and have a ""qualifying child"" or dependent live with them for more than half the year. Because the 22-year-old is a full-time student, lives with the client for 9 months, and the client provides more than 50% of their support, the student is a ""Qualifying Child."" The student's $18,000 income does not disqualify them, as the gross income test does not apply to a Qualifying Child who is a full-time student under age 24.
+
+**Dependent Credits: Child Tax Credit (CTC) vs. Credit for Other Dependents (ODC)**
+*   **Discrepancy:** The client claimed the Child Tax Credit.
+*   **Rule:** The CTC is only available for dependents *under age 17* at the end of the tax year. Because the dependent is 22, they do not qualify for the CTC. Instead, the client qualifies for the **$500 Credit for Other Dependents (ODC)**.
+
+**Freelance Income & Self-Employment Tax**
+*   **Discrepancy:** Only $2,400 of freelance income is reported instead of the $4,200 shown on the 1099-NEC. Furthermore, no Schedule C or Schedule SE was prepared.
+*   **Rule:** All 1099-NEC income must be reported on Schedule C. Because net self-employment earnings exceed $400, the client is subject to a 15.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,3,2,7,0.2857142857142857,6.5,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
 0,"Discrepancies and corrections needed:
 
 1. Freelance/contract income: The client reported $4,200 on Form 1099-NEC, but only $2,400 is reflected on the federal return. The missing $1,800 needs to be included in the federal return as additional income.
@@ -369,30 +392,7 @@ Forms/schedules that need correction or preparation:
 - Schedule SE for self-employment tax.
 - Schedule A for itemized deductions.
 - Analysis of dependent support for claiming the college student.
-- Recalculation of California tax using accurate federal income figures.",automation_GPT-3.5-Turbo,gpt-3.5-turbo,GPT-3.5-Turbo,4,2,7,0.2857142857142857,6.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
-0,"<think>
-**Reviewing Client's 2025 Tax Data**
-
-I'm currently analyzing the provided 2025 tax data for California. My focus is on reconciling the reported freelance income with the W-2 wages, ensuring the correct self-employment tax is calculated, and determining the optimal filing status. I'm also assessing whether itemized deductions or the standard deduction will yield a better outcome, considering mortgage interest and property taxes. The dependent's eligibility for credits is also under review.
-
- 
-</think>
-
-Here is a comprehensive review of your client’s partially completed 2025 federal and California tax returns, including identified discrepancies, applicable tax rules, a recalculated framework, and the necessary corrections.
-
-### 1. Discrepancies & Applicable Tax Rules
-
-**Filing Status: Single vs. Head of Household (HOH)**
-*   **Discrepancy:** The client selected ""Single,"" but they likely qualify for the highly advantageous ""Head of Household"" status.
-*   **Rule:** To qualify for HOH, a taxpayer must be unmarried, pay more than half the cost of keeping up a home for the year, and have a ""qualifying child"" or dependent live with them for more than half the year. Because the 22-year-old is a full-time student, lives with the client for 9 months, and the client provides more than 50% of their support, the student is a ""Qualifying Child."" The student's $18,000 income does not disqualify them, as the gross income test does not apply to a Qualifying Child who is a full-time student under age 24.
-
-**Dependent Credits: Child Tax Credit (CTC) vs. Credit for Other Dependents (ODC)**
-*   **Discrepancy:** The client claimed the Child Tax Credit.
-*   **Rule:** The CTC is only available for dependents *under age 17* at the end of the tax year. Because the dependent is 22, they do not qualify for the CTC. Instead, the client qualifies for the **$500 Credit for Other Dependents (ODC)**.
-
-**Freelance Income & Self-Employment Tax**
-*   **Discrepancy:** Only $2,400 of freelance income is reported instead of the $4,200 shown on the 1099-NEC. Furthermore, no Schedule C or Schedule SE was prepared.
-*   **Rule:** All 1099-NEC income must be reported on Schedule C. Because net self-employment earnings exceed $400, the client is subject to a 15.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,3,1,7,0.14285714285714285,7.0,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
+- Recalculation of California tax using accurate federal income figures.",automation_GPT-3.5-Turbo,gpt-3.5-turbo,GPT-3.5-Turbo,4,2,7,0.2857142857142857,6.5,,,anthropic/claude-opus-4-8,Claude-Opus-4.8
 0,"Below is a summary of the discrepancies we found, the correct treatment under 2025 federal and California law, the recalculations (using reasonable assumptions where data are missing), and the forms/schedules that must be added or corrected. Where exact numbers cannot be determined, we point out what’s missing and show you how to slot it into your numbers.
 
 1. Filing Status and Dependency  

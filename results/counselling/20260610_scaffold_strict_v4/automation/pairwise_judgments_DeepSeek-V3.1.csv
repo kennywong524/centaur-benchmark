@@ -1,39 +1,39 @@
 left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
 1,0,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive empathic validation, identifies patterns with greater depth and clarity, offers more detailed evidence-informed framing, and delivers more concrete and actionable next steps."",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all task dimensions with greater depth, specificity, and organization. It provides superior empathic validation, pattern identification, evidence-informed framing, concrete steps, and safety notes while maintaining excellent readability and tone."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 9,
     ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
+    ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
     ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 provides more comprehensive empathic validation, identifies patterns with greater depth and clarity, offers more detailed evidence-informed framing, and delivers more concrete and actionable next steps.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.0,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.0
+}",option_1,"Option 1 more comprehensively addresses all task dimensions with greater depth, specificity, and organization. It provides superior empathic validation, pattern identification, evidence-informed framing, concrete steps, and safety notes while maintaining excellent readability and tone.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.5,7.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,3,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more effectively validates without minimizing, cautiously identifies patterns without diagnosing, and provides more structured, evidence-informed framing and concrete steps. Option 2 is more directive and less cautious in its approach."",
+  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing with superior organization and readability. Option 2, while practical, is less structured and slightly more directive, reducing its counseling-style fit."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -41,6 +41,166 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 7.5
+}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing with superior organization and readability. Option 2, while practical, is less structured and slightly more directive, reducing its counseling-style fit.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.2,7.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, evidence-informed framing, and providing concrete, actionable steps. Option 2 is more generic, less specific, and reads like a list of suggestions rather than an integrated, supportive response."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 5,
+    ""general_practical_usefulness"": 5,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 5.8
+}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, evidence-informed framing, and providing concrete, actionable steps. Option 2 is more generic, less specific, and reads like a list of suggestions rather than an integrated, supportive response.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 7, ""task_dimension_6"": 6}",8.3,5.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+5,0,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all required task dimensions with better structure, specificity, and completeness, while Option 2 is incomplete and less organized."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 3,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 more comprehensively addresses all required task dimensions with better structure, specificity, and completeness, while Option 2 is incomplete and less organized.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 3, ""task_dimension_6"": 6}",8.5,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,6,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing with a more integrated and client-centered tone. Option 2, while more detailed in concrete steps, is less cohesive, uses more directive language, and has a slightly more clinical tone that may not fit a single-session counseling style as well."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 7.5
+}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing with a more integrated and client-centered tone. Option 2, while more detailed in concrete steps, is less cohesive, uses more directive language, and has a slightly more clinical tone that may not fit a single-session counseling style as well.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.0,7.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,0,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 excels in empathic validation, pattern identification clarity, and practical usefulness with structured, actionable steps, while Option 1 is more general and less organized."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 8.6
+}",option_2,"Option 2 excels in empathic validation, pattern identification clarity, and practical usefulness with structured, actionable steps, while Option 1 is more general and less organized.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.0,8.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing using plain language. It provides concrete, actionable steps and maintains a supportive, non-diagnostic tone throughout."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 8,
     ""general_practical_usefulness"": 8,
@@ -52,7 +212,7 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 6,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 7,
@@ -60,216 +220,144 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.1,
-  ""option_2_average"": 6.8
-}",option_1,"Option 1 more effectively validates without minimizing, cautiously identifies patterns without diagnosing, and provides more structured, evidence-informed framing and concrete steps. Option 2 is more directive and less cautious in its approach.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.1,6.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,4,0,"```json
-{
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing using plain language. It provides concrete, actionable steps and maintains a supportive, non-diagnostic tone throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.4,6.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,9,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 demonstrates superior empathic validation, provides more specific evidence-informed framing, offers concrete actionable steps, and maintains a more supportive counseling tone throughout. Option 2 is more generic, less specific in its approach, and doesn't fully address all requested elements with the same depth."",
+  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing using plain language. It provides practical, client-centered next steps and maintains a supportive, non-judgmental tone throughout."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
     ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 6.5
+}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, and evidence-informed framing using plain language. It provides practical, client-centered next steps and maintains a supportive, non-judgmental tone throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.3,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,1,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, integrates evidence-informed frameworks seamlessly, provides highly concrete and actionable next steps, and maintains a consistently supportive counseling tone."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.9,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 excels in empathic validation, integrates evidence-informed frameworks seamlessly, provides highly concrete and actionable next steps, and maintains a consistently supportive counseling tone.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 8, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.9,6.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 excels in empathic validation, pattern identification, evidence-informed framing, and practical next steps with superior organization and tone fit for counseling."",
+  ""option_1_scores"": {
     ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 5,
-    ""general_practical_usefulness"": 5,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 5.5
-}
-```",option_1,"Option 1 demonstrates superior empathic validation, provides more specific evidence-informed framing, offers concrete actionable steps, and maintains a more supportive counseling tone throughout. Option 2 is more generic, less specific in its approach, and doesn't fully address all requested elements with the same depth.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.5,5.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-5,0,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more fully addresses all required elements with better organization, completeness, and practical utility. Option 2 is incomplete and less structured, particularly missing the safety note conclusion."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.8
-}
-```",option_1,"Option 1 more fully addresses all required elements with better organization, completeness, and practical utility. Option 2 is incomplete and less structured, particularly missing the safety note conclusion.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 7}",8.5,6.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,6,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation and cautious pattern identification by using softer, more client-centered language. It frames evidence-informed concepts in plain, accessible language and provides concrete, manageable steps without being overly prescriptive. Its tone is consistently supportive and reinforces agency, making it a better fit for a single counseling session."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.1,
-  ""option_2_average"": 7.2
-}",option_1,"Option 1 excels in empathic validation and cautious pattern identification by using softer, more client-centered language. It frames evidence-informed concepts in plain, accessible language and provides concrete, manageable steps without being overly prescriptive. Its tone is consistently supportive and reinforces agency, making it a better fit for a single counseling session.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",8.1,7.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,0,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with better structure, while Option 2 is incomplete and lacks the safety note and closing encouragement."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 3,
-    ""task_dimension_6"": 3,
-    ""general_instruction_following"": 4,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 7.9,
-  ""option_2_average"": 6.1
-}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with better structure, while Option 2 is incomplete and lacks the safety note and closing encouragement.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 4, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 3, ""task_dimension_6"": 3}",7.9,6.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,8,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation without minimizing feelings, offers more cautious pattern identification, provides superior evidence-informed framing in plain language, and maintains a more consistently supportive counseling tone throughout."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 7.0
-}
-```",option_1,"Option 1 excels in empathic validation without minimizing feelings, offers more cautious pattern identification, provides superior evidence-informed framing in plain language, and maintains a more consistently supportive counseling tone throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.4,7.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,9,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 demonstrates superior empathic validation, more cautious pattern identification, better integration of evidence-informed frameworks in plain language, and more practical concrete steps. Option 2 uses more clinical formatting and jargon that may feel less supportive."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
+    ""general_organization_readability"": 5,
     ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 6.4
-}
-```",option_1,"Option 1 demonstrates superior empathic validation, more cautious pattern identification, better integration of evidence-informed frameworks in plain language, and more practical concrete steps. Option 2 uses more clinical formatting and jargon that may feel less supportive.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.0,6.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,1,0,"{
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 5.9,
+  ""option_2_average"": 8.9
+}",option_2,"Option 2 excels in empathic validation, pattern identification, evidence-informed framing, and practical next steps with superior organization and tone fit for counseling.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",5.9,8.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+1,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation, structured evidence-informed framing, and providing concrete, actionable steps. It adheres more closely to the counseling-style request with better tone and practical utility, while Option 2 is more verbose and less focused."",
+  ""short_rationale"": ""Option 1 excels in empathic validation, pattern identification, and evidence-informed framing with greater depth and specificity. Option 2 is more concise but less detailed and impactful across all dimensions."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 7.2
+}",option_1,"Option 1 excels in empathic validation, pattern identification, and evidence-informed framing with greater depth and specificity. Option 2 is more concise but less detailed and impactful across all dimensions.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.3,7.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,1,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all required task dimensions with greater specificity, practical utility, and adherence to the original request's structure and tone."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
+    ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
@@ -280,424 +368,129 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.1
+}",option_1,"Option 1 more comprehensively addresses all required task dimensions with greater specificity, practical utility, and adherence to the original request's structure and tone.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.5,7.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+1,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, pattern identification, evidence-informed framing, and concrete next steps with superior organization and specificity. Option 2 covers all required elements but does so more superficially and with less structured detail."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 6.5
+}",option_1,"Option 1 excels in empathic validation, pattern identification, evidence-informed framing, and concrete next steps with superior organization and specificity. Option 2 covers all required elements but does so more superficially and with less structured detail.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.0,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+1,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, pattern identification, and evidence-informed framing with greater depth and clarity. Option 2, while concise, is less detailed and structured, offering more superficial guidance."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 7.0
+}",option_1,"Option 1 excels in empathic validation, pattern identification, and evidence-informed framing with greater depth and clarity. Option 2, while concise, is less detailed and structured, offering more superficial guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.1,7.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,1,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with better structure, clearer practical steps, and stronger adherence to the counseling-style format."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 6
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 excels in empathic validation, structured evidence-informed framing, and providing concrete, actionable steps. It adheres more closely to the counseling-style request with better tone and practical utility, while Option 2 is more verbose and less focused.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.6,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,1,0,"{
+  ""option_1_average"": 8.4,
+  ""option_2_average"": 7.2
+}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with better structure, clearer practical steps, and stronger adherence to the counseling-style format.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.4,7.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,3,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 excels in empathic validation, pattern identification, evidence-informed framing, and concrete next steps while maintaining excellent readability and tone. It fully addresses all task dimensions with specificity and practical usefulness."",
+  ""short_rationale"": ""Option 2 excels in empathic validation, provides more concrete and actionable steps, integrates evidence-informed framing seamlessly, and offers a more encouraging and hopeful close, aligning closely with all rubric dimensions."",
   ""option_1_scores"": {
-    ""task_dimension_1"": 6,
-    ""task_dimension_2"": 5,
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
     ""task_dimension_3"": 6,
     ""task_dimension_4"": 5,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 6,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 6
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 6.2,
-  ""option_2_average"": 8.8
-}",option_2,"Option 2 excels in empathic validation, pattern identification, evidence-informed framing, and concrete next steps while maintaining excellent readability and tone. It fully addresses all task dimensions with specificity and practical usefulness.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 7, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.2,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-1,5,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 provides more comprehensive empathic validation, identifies patterns with greater specificity using researcher names and clear examples, offers more detailed evidence-informed frameworks, and maintains better organization and readability throughout."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 7.8,
-  ""option_2_average"": 6.5
-}
-```",option_1,"Option 1 provides more comprehensive empathic validation, identifies patterns with greater specificity using researcher names and clear examples, offers more detailed evidence-informed frameworks, and maintains better organization and readability throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.8,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,1,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with greater specificity, practical utility, and clearer organization. Option 2 excels in empathic validation but lacks concrete next steps and clear safety messaging."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 8.4,
-  ""option_2_average"": 7.0
-}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with greater specificity, practical utility, and clearer organization. Option 2 excels in empathic validation but lacks concrete next steps and clear safety messaging.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.4,7.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-1,7,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels at empathic validation with richer language, provides more detailed pattern identification with clear labeling, offers deeper evidence-informed framing with specific CBT concepts, and delivers more concrete next steps organized by category. Option 2 covers all requirements but does so more superficially."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 8.1,
-  ""option_2_average"": 6.8
-}
-```",option_1,"Option 1 excels at empathic validation with richer language, provides more detailed pattern identification with clear labeling, offers deeper evidence-informed framing with specific CBT concepts, and delivers more concrete next steps organized by category. Option 2 covers all requirements but does so more superficially.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.1,6.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-1,8,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation with deeper emotional resonance, provides more nuanced pattern identification with clear explanations, offers richer theoretical framing with plain-language examples, and maintains superior organization and tone throughout."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 8,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.0,
-  ""option_2_average"": 7.1
-}
-```",option_1,"Option 1 excels in empathic validation with deeper emotional resonance, provides more nuanced pattern identification with clear explanations, offers richer theoretical framing with plain-language examples, and maintains superior organization and tone throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.0,7.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,1,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with better structure, clearer practical steps, and stronger adherence to counseling-style delivery."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.3,
-  ""option_2_average"": 6.7
-}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with better structure, clearer practical steps, and stronger adherence to counseling-style delivery.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.3,6.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,3,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 excels in empathic validation, provides specific evidence-informed framing, offers highly concrete and practical next steps, and delivers a more encouraging and personalized close, aligning better with all rubric dimensions."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 6.8,
-  ""option_2_average"": 8.8
-}",option_2,"Option 2 excels in empathic validation, provides specific evidence-informed framing, offers highly concrete and practical next steps, and delivers a more encouraging and personalized close, aligning better with all rubric dimensions.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.8,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,5,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation, cautious pattern identification, evidence-informed framing, and concrete next steps, while Option 2 is more generic and less specific in its approach."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 6.7
-}",option_1,"Option 1 excels in empathic validation, cautious pattern identification, evidence-informed framing, and concrete next steps, while Option 2 is more generic and less specific in its approach.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.6,6.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively and explicitly addresses all six required task dimensions with greater specificity, practical utility, and adherence to the original request's structure and evidence-based framing."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 10,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 10,
-    ""general_accuracy_specificity"": 10,
-    ""general_practical_usefulness"": 10,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 9.3,
-  ""option_2_average"": 7.6
-}",option_1,"Option 1 more comprehensively and explicitly addresses all six required task dimensions with greater specificity, practical utility, and adherence to the original request's structure and evidence-based framing.","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",9.3,7.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-3,7,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation, provides more concrete and actionable steps, and demonstrates superior instruction following with a clearer structure and tone. Option 2 is less specific, uses more tentative language, and offers less practical guidance."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 10,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.8,
-  ""option_2_average"": 6.6
-}",option_1,"Option 1 excels in empathic validation, provides more concrete and actionable steps, and demonstrates superior instruction following with a clearer structure and tone. Option 2 is less specific, uses more tentative language, and offers less practical guidance.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.8,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,3,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively and explicitly addresses all six required task dimensions with superior structure, clarity, and practical utility, while Option 2 is less organized, misses key instructions like SMART goals and safety note prominence, and uses a less accessible tone."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 6,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 more comprehensively and explicitly addresses all six required task dimensions with superior structure, clarity, and practical utility, while Option 2 is less organized, misses key instructions like SMART goals and safety note prominence, and uses a less accessible tone.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.7,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,3,0,,,,{},{},,,False,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,5,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 excels in empathic validation, provides more specific evidence-informed framing, offers concrete and actionable next steps, includes a comprehensive safety note, and delivers a more encouraging close that reinforces agency."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 9,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 6.8,
-  ""option_2_average"": 8.7
-}",option_2,"Option 2 excels in empathic validation, provides more specific evidence-informed framing, offers concrete and actionable next steps, includes a comprehensive safety note, and delivers a more encouraging close that reinforces agency.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.8,8.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-4,6,0,"{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 excels in all task dimensions by providing specific, actionable guidance grounded in evidence-based frameworks, while Option 1 remains vague and less practical. Option 2's concrete steps, thorough safety note, and encouraging close fully meet the request's requirements."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
@@ -705,22 +498,246 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   ""option_2_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 9,
-    ""task_dimension_3"": 10,
-    ""task_dimension_4"": 10,
-    ""task_dimension_5"": 10,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 10,
-    ""general_accuracy_specificity"": 10,
-    ""general_practical_usefulness"": 10,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
     ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 6.3,
-  ""option_2_average"": 9.5
-}",option_2,"Option 2 excels in all task dimensions by providing specific, actionable guidance grounded in evidence-based frameworks, while Option 1 remains vague and less practical. Option 2's concrete steps, thorough safety note, and encouraging close fully meet the request's requirements.","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 10, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 10, ""task_dimension_4"": 10, ""task_dimension_5"": 10, ""task_dimension_6"": 9}",6.3,9.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_2_average"": 8.8
+}",option_2,"Option 2 excels in empathic validation, provides more concrete and actionable steps, integrates evidence-informed framing seamlessly, and offers a more encouraging and hopeful close, aligning closely with all rubric dimensions.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.3,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, evidence-informed framing, and providing concrete, actionable steps. Option 2 is more generic and less specific in its application of therapeutic techniques and practical advice."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.6,
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 excels in empathic validation, evidence-informed framing, and providing concrete, actionable steps. Option 2 is more generic and less specific in its application of therapeutic techniques and practical advice.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.6,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 comprehensively addresses all six required task dimensions with greater specificity, evidence-informed framing clarity, and actionable next steps, while Option 2 lacks explicit pattern identification, safety note integration, and structured goal-setting."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 comprehensively addresses all six required task dimensions with greater specificity, evidence-informed framing clarity, and actionable next steps, while Option 2 lacks explicit pattern identification, safety note integration, and structured goal-setting.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 5, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.5,6.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+3,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, provides more concrete and actionable next steps, and offers a clearer safety note. Option 2 is less structured, more general, and weaker in specificity and practical usefulness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.4
+}",option_1,"Option 1 excels in empathic validation, provides more concrete and actionable next steps, and offers a clearer safety note. Option 2 is less structured, more general, and weaker in specificity and practical usefulness.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.5,6.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with greater specificity, evidence-informed framing, and practical next steps, while Option 2 lacks precision in pattern identification, concrete steps, and safety note clarity."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 5,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 6.3
+}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with greater specificity, evidence-informed framing, and practical next steps, while Option 2 lacks precision in pattern identification, concrete steps, and safety note clarity.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.5,6.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in structured task completion, providing clear sections for each requirement, while Option 2 blends elements together, reducing clarity and specificity."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.4
+}",option_1,"Option 1 excels in structured task completion, providing clear sections for each requirement, while Option 2 blends elements together, reducing clarity and specificity.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 7, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.5,7.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,5,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more comprehensive empathic validation, identifies patterns with greater nuance, offers more specific evidence-informed framing, delivers highly concrete next steps, includes a clearer safety note, and closes with stronger encouragement."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 9.1
+}",option_2,"Option 2 provides more comprehensive empathic validation, identifies patterns with greater nuance, offers more specific evidence-informed framing, delivers highly concrete next steps, includes a clearer safety note, and closes with stronger encouragement.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",7.0,9.1,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+4,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 excels in providing specific, actionable steps and evidence-informed framing in plain language, while Option 1 is more general and lacks concrete details."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 9,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 10,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 10,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_1_average"": 6.8,
+  ""option_2_average"": 9.2
+}",option_2,"Option 2 excels in providing specific, actionable steps and evidence-informed framing in plain language, while Option 1 is more general and lacks concrete details.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 6, ""task_dimension_4"": 5, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 10, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 10, ""task_dimension_5"": 9, ""task_dimension_6"": 9}",6.8,9.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 4,7,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 demonstrates superior empathic validation, provides more specific and practical evidence-informed techniques, offers concrete next steps with clear examples, and delivers a more encouraging and personalized closing that reinforces agency."",
+  ""short_rationale"": ""Option 2 demonstrates superior empathy, integrates psychological frameworks more naturally, provides more specific and actionable guidance, and maintains a more supportive and encouraging tone throughout."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
@@ -749,10 +766,10 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_1_average"": 6.7,
   ""option_2_average"": 8.6
-}",option_2,"Option 2 demonstrates superior empathic validation, provides more specific and practical evidence-informed techniques, offers concrete next steps with clear examples, and delivers a more encouraging and personalized closing that reinforces agency.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.7,8.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+}",option_2,"Option 2 demonstrates superior empathy, integrates psychological frameworks more naturally, provides more specific and actionable guidance, and maintains a more supportive and encouraging tone throughout.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.7,8.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 8,4,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 comprehensively addresses all six requested dimensions with specific examples and actionable steps, while Option 2 provides generic responses that lack concrete detail and evidence-informed framing."",
+  ""short_rationale"": ""Option 1 excels in empathic validation, provides specific evidence-informed framing, and offers concrete, actionable steps aligned with all rubric dimensions. Option 2 is vaguer, less structured, and misses key details like safety notes and practical examples."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -760,42 +777,42 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
+    ""general_instruction_following"": 10,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
-    ""task_dimension_1"": 7,
+    ""task_dimension_1"": 6,
     ""task_dimension_2"": 5,
     ""task_dimension_3"": 5,
     ""task_dimension_4"": 5,
-    ""task_dimension_5"": 6,
+    ""task_dimension_5"": 4,
     ""task_dimension_6"": 6,
-    ""general_instruction_following"": 6,
+    ""general_instruction_following"": 5,
     ""general_accuracy_specificity"": 5,
     ""general_practical_usefulness"": 5,
     ""general_organization_readability"": 6,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 6
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 5.7
-}",option_1,"Option 1 comprehensively addresses all six requested dimensions with specific examples and actionable steps, while Option 2 provides generic responses that lack concrete detail and evidence-informed framing.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 6, ""task_dimension_6"": 6}",8.5,5.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 8.6,
+  ""option_2_average"": 5.3
+}",option_1,"Option 1 excels in empathic validation, provides specific evidence-informed framing, and offers concrete, actionable steps aligned with all rubric dimensions. Option 2 is vaguer, less structured, and misses key details like safety notes and practical examples.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 5, ""general_instruction_following"": 5, ""general_organization_readability"": 6, ""general_practical_usefulness"": 5, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 6, ""task_dimension_2"": 5, ""task_dimension_3"": 5, ""task_dimension_4"": 5, ""task_dimension_5"": 4, ""task_dimension_6"": 6}",8.6,5.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 4,9,0,"{
   ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 excels in empathic validation, provides more specific and actionable next steps, demonstrates superior organization and readability, and better integrates evidence-informed framing in plain language."",
+  ""short_rationale"": ""Option 2 provides more specific empathic validation, clearly identifies patterns with examples, offers detailed evidence-informed framing and concrete steps, includes a safety note, and closes with stronger encouragement, making it more comprehensive and practically useful."",
   ""option_1_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
-    ""task_dimension_3"": 5,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
+    ""task_dimension_5"": 5,
     ""task_dimension_6"": 7,
-    ""general_instruction_following"": 8,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 5,
+    ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
   ""option_2_scores"": {
@@ -812,11 +829,11 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_tone_audience_fit"": 9
   },
   ""option_1_average"": 6.5,
-  ""option_2_average"": 8.8
-}",option_2,"Option 2 excels in empathic validation, provides more specific and actionable next steps, demonstrates superior organization and readability, and better integrates evidence-informed framing in plain language.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 5, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.5,8.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_2_average"": 8.9
+}",option_2,"Option 2 provides more specific empathic validation, clearly identifies patterns with examples, offers detailed evidence-informed framing and concrete steps, includes a safety note, and closes with stronger encouragement, making it more comprehensive and practically useful.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}",6.5,8.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 6,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all required dimensions with greater specificity, practical detail, and clearer evidence-informed framing while maintaining a supportive tone."",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with greater specificity, practical detail, and evidence-informed framing, while Option 2 is more general and less actionable."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -824,11 +841,11 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
-    ""general_instruction_following"": 10,
+    ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
@@ -843,48 +860,16 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.7,
+  ""option_1_average"": 8.5,
   ""option_2_average"": 6.6
-}",option_1,"Option 1 more comprehensively addresses all required dimensions with greater specificity, practical detail, and clearer evidence-informed framing while maintaining a supportive tone.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.7,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with greater specificity, practical detail, and evidence-informed framing, while Option 2 is more general and less actionable.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 5,7,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more effectively validates emotions without minimizing, provides clearer evidence-informed framing in plain language, offers more concrete and actionable next steps, and maintains a stronger supportive counseling tone throughout."",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all required task dimensions with greater specificity, particularly in providing concrete next steps and a clearer safety note. It demonstrates superior instruction following and practical usefulness."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 7,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
-  },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.5
-}",option_1,"Option 1 more effectively validates emotions without minimizing, provides clearer evidence-informed framing in plain language, offers more concrete and actionable next steps, and maintains a stronger supportive counseling tone throughout.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,5,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 demonstrates superior performance across all rubric dimensions, particularly excelling in evidence-informed framing with clear CBT explanations, providing more specific and actionable concrete steps, and maintaining a more encouraging tone that reinforces agency."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
     ""task_dimension_4"": 9,
     ""task_dimension_5"": 8,
     ""task_dimension_6"": 9,
@@ -899,20 +884,20 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 6,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
+    ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 8,
+    ""general_organization_readability"": 7,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.6,
-  ""option_2_average"": 7.6
-}",option_1,"Option 1 demonstrates superior performance across all rubric dimensions, particularly excelling in evidence-informed framing with clear CBT explanations, providing more specific and actionable concrete steps, and maintaining a more encouraging tone that reinforces agency.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",8.6,7.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,5,0,"{
+  ""option_1_average"": 8.5,
+  ""option_2_average"": 7.2
+}",option_1,"Option 1 more comprehensively addresses all required task dimensions with greater specificity, particularly in providing concrete next steps and a clearer safety note. It demonstrates superior instruction following and practical usefulness.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.5,7.2,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with greater specificity, organization, and practical utility. Option 2 is more conversational but less structured and specific in its guidance."",
+  ""short_rationale"": ""Option 1 excels with more specific, actionable steps for stress regulation, thought reframing, values clarification, and goal setting. It provides clearer evidence-informed framing and a stronger safety note while maintaining excellent empathic validation and encouragement."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
@@ -924,72 +909,6 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 9,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 7,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 9
-  },
-  ""option_1_average"": 8.7,
-  ""option_2_average"": 7.6
-}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with greater specificity, organization, and practical utility. Option 2 is more conversational but less structured and specific in its guidance.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",8.7,7.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,6,0,"```json
-{
-  ""final_choice"": ""option_2"",
-  ""short_rationale"": ""Option 2 provides more comprehensive and specific guidance across all dimensions, particularly excelling in concrete next steps with actionable techniques and clearer safety messaging, while maintaining appropriate empathic validation and evidence-informed framing."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 7,
-    ""task_dimension_2"": 7,
-    ""task_dimension_3"": 7,
-    ""task_dimension_4"": 6,
-    ""task_dimension_5"": 5,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 8,
-    ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 6,
-    ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 8,
-    ""task_dimension_2"": 9,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_1_average"": 6.8,
-  ""option_2_average"": 8.4
-}
-```",option_2,"Option 2 provides more comprehensive and specific guidance across all dimensions, particularly excelling in concrete next steps with actionable techniques and clearer safety messaging, while maintaining appropriate empathic validation and evidence-informed framing.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 9, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",6.8,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,8,0,"{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all six task dimensions with greater specificity, provides more detailed and practical next steps, demonstrates superior instruction following, and maintains a consistently supportive counseling tone throughout."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 9,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 9
   },
   ""option_2_scores"": {
@@ -997,39 +916,37 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""task_dimension_2"": 7,
     ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
-    ""task_dimension_5"": 8,
+    ""task_dimension_5"": 7,
     ""task_dimension_6"": 8,
-    ""general_instruction_following"": 7,
+    ""general_instruction_following"": 8,
     ""general_accuracy_specificity"": 7,
     ""general_practical_usefulness"": 7,
     ""general_organization_readability"": 8,
     ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.6,
+  ""option_1_average"": 8.8,
   ""option_2_average"": 7.5
-}",option_1,"Option 1 more comprehensively addresses all six task dimensions with greater specificity, provides more detailed and practical next steps, demonstrates superior instruction following, and maintains a consistently supportive counseling tone throughout.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",8.6,7.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-6,9,0,,,,{},{},,,False,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-8,7,0,"```json
-{
+}",option_1,"Option 1 excels with more specific, actionable steps for stress regulation, thought reframing, values clarification, and goal setting. It provides clearer evidence-informed framing and a stronger safety note while maintaining excellent empathic validation and encouragement.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.8,7.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,5,0,"{
   ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 more comprehensively addresses all required elements with greater specificity, including explicit pattern identification, clear evidence-informed framing, and more concrete, actionable steps. Option 2 is more general and less structured in its approach."",
+  ""short_rationale"": ""Option 1 excels in empathic validation, structured exploration of patterns, and evidence-informed framing with clear, actionable steps. Option 2 is less structured, more conversational, and provides less specific guidance."",
   ""option_1_scores"": {
     ""task_dimension_1"": 9,
     ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 9,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
     ""general_instruction_following"": 9,
     ""general_accuracy_specificity"": 9,
     ""general_practical_usefulness"": 9,
     ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 9
+    ""general_tone_audience_fit"": 8
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 6,
     ""task_dimension_5"": 7,
     ""task_dimension_6"": 7,
@@ -1037,19 +954,177 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
     ""general_accuracy_specificity"": 6,
     ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 7,
-    ""general_tone_audience_fit"": 7
+    ""general_tone_audience_fit"": 8
   },
-  ""option_1_average"": 8.5,
-  ""option_2_average"": 6.5
-}
-```",option_1,"Option 1 more comprehensively addresses all required elements with greater specificity, including explicit pattern identification, clear evidence-informed framing, and more concrete, actionable steps. Option 2 is more general and less structured in its approach.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.5,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-7,9,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 better integrates all required elements into a cohesive counseling-style response with natural flow, while Option 2 uses a fragmented sectioned format that disrupts the therapeutic conversation and feels more like a manual than a counseling response."",
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.7
+}",option_1,"Option 1 excels in empathic validation, structured exploration of patterns, and evidence-informed framing with clear, actionable steps. Option 2 is less structured, more conversational, and provides less specific guidance.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.2,6.7,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 provides more specific, actionable steps for stress regulation, thought reframing, values clarification, and goal setting, and includes a clearer safety note, making it more practically useful and better aligned with the request's requirements."",
   ""option_1_scores"": {
     ""task_dimension_1"": 8,
     ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 9,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.1,
+  ""option_2_average"": 8.4
+}",option_2,"Option 2 provides more specific, actionable steps for stress regulation, thought reframing, values clarification, and goal setting, and includes a clearer safety note, making it more practically useful and better aligned with the request's requirements.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 9, ""task_dimension_6"": 8}",7.1,8.4,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 provides more comprehensive and specific guidance across all task dimensions, with superior detail in evidence-informed framing, concrete next steps, and safety messaging."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.6,
+  ""option_2_average"": 7.5
+}",option_1,"Option 1 provides more comprehensive and specific guidance across all task dimensions, with superior detail in evidence-informed framing, concrete next steps, and safety messaging.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.6,7.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+6,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all required dimensions with superior practical specificity, clearer evidence-informed framing, and more actionable next steps. Option 2 has incomplete sections and weaker organization."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 10,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 6,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 6.9
+}",option_1,"Option 1 more comprehensively addresses all required dimensions with superior practical specificity, clearer evidence-informed framing, and more actionable next steps. Option 2 has incomplete sections and weaker organization.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 10, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,6.9,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+8,7,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more comprehensively addresses all six required task dimensions with greater specificity, structure, and practical utility, while Option 2 is more general and less organized in its delivery of evidence-informed techniques and concrete steps."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 9,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 9,
+    ""general_practical_usefulness"": 9,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.7,
+  ""option_2_average"": 7.3
+}",option_1,"Option 1 more comprehensively addresses all six required task dimensions with greater specificity, structure, and practical utility, while Option 2 is more general and less organized in its delivery of evidence-informed techniques and concrete steps.","{""general_accuracy_specificity"": 9, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 7, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",8.7,7.3,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+7,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 better integrates all required elements into a natural counseling dialogue, while Option 2 uses a rigid sectioned format that disrupts flow and feels less empathetic."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 9,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 9
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 5,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 better integrates all required elements into a natural counseling dialogue, while Option 2 uses a rigid sectioned format that disrupts flow and feels less empathetic.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 9}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 5, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.2,6.8,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+9,8,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 excels in empathic validation, structured exploration of patterns, evidence-informed framing clarity, and practical next steps with better organization and tone fit."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
     ""task_dimension_3"": 8,
     ""task_dimension_4"": 8,
     ""task_dimension_5"": 7,
@@ -1062,52 +1137,17 @@ left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_
   },
   ""option_2_scores"": {
     ""task_dimension_1"": 7,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 9,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 8,
-    ""task_dimension_6"": 7,
-    ""general_instruction_following"": 5,
-    ""general_accuracy_specificity"": 7,
-    ""general_practical_usefulness"": 8,
-    ""general_organization_readability"": 4,
-    ""general_tone_audience_fit"": 5
-  },
-  ""option_1_average"": 7.9,
-  ""option_2_average"": 7.0
-}
-```",option_1,"Option 1 better integrates all required elements into a cohesive counseling-style response with natural flow, while Option 2 uses a fragmented sectioned format that disrupts the therapeutic conversation and feels more like a manual than a counseling response.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 4, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 5, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 9, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",7.9,7.0,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-9,8,0,"```json
-{
-  ""final_choice"": ""option_1"",
-  ""short_rationale"": ""Option 1 excels in empathic validation, structured pattern identification, and evidence-informed framing with clearer explanations. It provides more comprehensive and actionable concrete steps while maintaining better organization and readability."",
-  ""option_1_scores"": {
-    ""task_dimension_1"": 9,
-    ""task_dimension_2"": 8,
-    ""task_dimension_3"": 8,
-    ""task_dimension_4"": 9,
-    ""task_dimension_5"": 7,
-    ""task_dimension_6"": 8,
-    ""general_instruction_following"": 9,
-    ""general_accuracy_specificity"": 8,
-    ""general_practical_usefulness"": 9,
-    ""general_organization_readability"": 8,
-    ""general_tone_audience_fit"": 8
-  },
-  ""option_2_scores"": {
-    ""task_dimension_1"": 7,
     ""task_dimension_2"": 6,
-    ""task_dimension_3"": 6,
+    ""task_dimension_3"": 7,
     ""task_dimension_4"": 7,
     ""task_dimension_5"": 6,
     ""task_dimension_6"": 7,
     ""general_instruction_following"": 7,
     ""general_accuracy_specificity"": 6,
-    ""general_practical_usefulness"": 7,
+    ""general_practical_usefulness"": 6,
     ""general_organization_readability"": 6,
     ""general_tone_audience_fit"": 7
   },
-  ""option_1_average"": 8.2,
-  ""option_2_average"": 6.5
-}
-```",option_1,"Option 1 excels in empathic validation, structured pattern identification, and evidence-informed framing with clearer explanations. It provides more comprehensive and actionable concrete steps while maintaining better organization and readability.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 9, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.2,6.5,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 excels in empathic validation, structured exploration of patterns, evidence-informed framing clarity, and practical next steps with better organization and tone fit.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 9, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 6, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.1,6.6,True,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
