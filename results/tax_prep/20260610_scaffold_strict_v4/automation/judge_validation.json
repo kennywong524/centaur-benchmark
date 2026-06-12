@@ -4,8 +4,8 @@
       "judge_model": "gpt-4.1",
       "batch_ok": true,
       "row_pass_rate": 1.0,
-      "n_rows": 6,
-      "n_passing": 6,
+      "n_rows": 18,
+      "n_passing": 18,
       "suspicious_all_ones_rate": 0.0,
       "exclude_reason": "",
       "failed_rows": []
@@ -13,28 +13,19 @@
     "Claude-Opus-4.8": {
       "judge_model": "anthropic/claude-opus-4-8",
       "batch_ok": true,
-      "row_pass_rate": 0.9642857142857143,
-      "n_rows": 28,
-      "n_passing": 27,
+      "row_pass_rate": 1.0,
+      "n_rows": 84,
+      "n_passing": 84,
       "suspicious_all_ones_rate": 0.0,
       "exclude_reason": "",
-      "failed_rows": [
-        {
-          "row_index": 17,
-          "ok": false,
-          "issues": [
-            "option_1_missing_dimensions:1",
-            "option_2_missing_dimensions:1"
-          ]
-        }
-      ]
+      "failed_rows": []
     },
     "Gemini-3.1-Pro": {
       "judge_model": "google/gemini-3.1-pro",
       "batch_ok": true,
       "row_pass_rate": 1.0,
-      "n_rows": 36,
-      "n_passing": 36,
+      "n_rows": 108,
+      "n_passing": 108,
       "suspicious_all_ones_rate": 0.0,
       "exclude_reason": "",
       "failed_rows": []
@@ -42,12 +33,23 @@
     "DeepSeek-V3.1": {
       "judge_model": "deepseek-ai/DeepSeek-V3.1",
       "batch_ok": true,
-      "row_pass_rate": 1.0,
-      "n_rows": 36,
-      "n_passing": 36,
+      "row_pass_rate": 0.9907407407407407,
+      "n_rows": 108,
+      "n_passing": 107,
       "suspicious_all_ones_rate": 0.0,
       "exclude_reason": "",
-      "failed_rows": []
+      "failed_rows": [
+        {
+          "row_index": 62,
+          "ok": false,
+          "issues": [
+            "missing_winner",
+            "missing_rationale",
+            "option_1_scores_empty",
+            "option_2_scores_empty"
+          ]
+        }
+      ]
     }
   },
   "excluded_from_aggregate": [],

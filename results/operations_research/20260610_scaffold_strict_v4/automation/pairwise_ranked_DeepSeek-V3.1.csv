@@ -1,170 +1,4 @@
 replicate_id,output,condition,model_id,model_label,item_id,total_wins,total_games,avg_win_rate,avg_rank,std_rank,std_win_rate,judge_model,judge_label
-0,"Executive summary
-A focused program of better data, routing/inventory optimization, and targeted pilots can reduce delivery delays and fuel spend while preserving service. Below are the data, analytical framework, specific solutions with trade-offs, and KPIs needed to brief senior management and start pilots.
-
-1) Data to collect and validation
-- Required data:
-  - Orders/demand: SKU, store ID, order timestamp, requested delivery window, historical cancellations/returns.
-  - Fleet/telemetry: GPS traces, odometer, fuel usage, vehicle type/capacity, driver shifts.
-  - Warehouses: inventory levels by SKU, replenishment lead times, loading dock capacity, operating hours.
-  - Network: distances/travel times (time-of-day), road restrictions, fuel prices.
-  - Financials: labor rates, fuel per-liter cost, penalty costs for late delivery.
-- Validation:
-  - Cross-check timestamps against GPS events and billing records.
-  - Geocode and verify store/warehouse locations; flag improbable hops.
-  - Outlier detection (route distance, speed, fuel) and manual audit on flagged cases.
-  - Reconcile inventory snapshots with receiving/shipping logs and periodic physical counts.
-  - Use sample-driven ground truthing (driver logs, store confirmations) for accuracy.
-
-2) Analytical/optimization framework
-- Pipeline:
-  - Demand forecasting (time-series + feature-based models) → cluster stores by geography/service pattern.
-  - Optimization core: mixed-integer program (MIP) for warehouse allocation + vehicle routing problem (VRP) with time windows and capacities; objective = minimize total cost (fuel + labor + inventory holding + delay penalties).
-  - Robustness: stochastic/robust optimization or scenario-based sampling for demand and fuel-price volatility.
-  - Implementation: exact MIP for strategic decisions, Adaptive Large Neighborhood Search (ALNS) or real-time heuristics for daily dispatch.
-  - Validate with discrete-event simulation (measure delays, utilization) and sensitivity analysis.
-
-3) Recommended practical solutions (with trade-offs/risks)
-- Solution A: Route consolidation + dynamic dispatch
-  - What: Increase multi-stop consolidation, enforce optimized time-window batching, real-time re-routing.
-  - Benefits: 8–15% fuel and vehicle-hour reduction; higher vehicle utilization.
-  - Trade-offs/risks: Potential longer store wait times; requires driver/operations change management and reliable real-time systems.
-- Solution B: Rebalance warehouses & add micro-hubs
-  - What: Reallocate SKUs across facilities and pilot 1–2 micro-fulfillment hubs in dense regions.
-  - Benefits: Shorter last-mile trips, improved on-time %; lower emergency express shipments.
-  - Trade-offs/risks: Higher inventory holding cost and capital for hubs; risk if demand forecasts are wrong.
-- Implementation: 3-month regional pilots, compare against control regions.
-
-4) KPIs and communication
-- KPIs: On-time delivery %, average route length, cost per delivery (fuel + labor), vehicle utilization %, fill rate/stockout %, deliveries per vehicle-hour, CO2 per delivery, customer complaints.
-- Reporting cadence:
-  - Daily operations dashboard (ops teams): route exceptions, fuel spikes, vehicle utilization.
-  - Weekly exec snapshot: top 5 KPI trends vs. targets and pilot progress.
-  - Monthly deep-dive: cost-benefit, simulation outcomes, recommended rollouts.
-- Present results with before/after baseline, sensitivity ranges, and risk mitigations for executive decisions.",automation_GPT-5-Mini,gpt-5-mini-2025-08-07,GPT-5-Mini,6,7,8,0.875,1.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"# Internal Report: Improving Delivery Efficiency and Reducing Fuel Costs
-
-**To:** Senior Management
-**From:** OR Analytics Team
-**Re:** Operational Bottleneck Analysis & Optimization Strategy
-
----
-
-## 1. Data Collection & Validation
-
-**Data to collect:**
-- **Delivery records:** route distances, departure/arrival times, on-time vs. late flags, missed deliveries.
-- **Vehicle data:** fuel consumption, capacity utilization, maintenance downtime.
-- **Warehouse data:** inventory levels, order fulfillment times, stockouts, throughput per facility.
-- **Demand data:** store-level order volumes by SKU, day, and season.
-- **Cost data:** fuel prices, labor hours, third-party carrier rates.
-
-**Validation approach:**
-- Cross-check telematics/GPS logs against manual driver records to flag discrepancies.
-- Run outlier detection on delivery times and fuel-per-mile to catch sensor or entry errors.
-- Reconcile inventory system data with periodic physical counts.
-- Confirm completeness (target >95% record coverage) before modeling.
-
----
-
-## 2. Analytical & Optimization Framework
-
-A staged approach:
-- **Descriptive:** Identify bottlenecks via utilization heatmaps, route-level cost analysis, and demand variability metrics.
-- **Optimization models:**
-  - **Vehicle Routing Problem (VRP)** with time windows to minimize distance/fuel subject to capacity and service constraints.
-  - **Facility/allocation model** (mixed-integer program) to assign stores to warehouses minimizing total transport + holding cost.
-- **Simulation:** Stress-test proposed schedules against demand spikes and traffic variability before rollout.
-
----
-
-## 3. Recommended Solutions & Trade-offs
-
-**Option A — Route Consolidation & Time-Window Optimization**
-- *Benefit:* 8–15% fuel savings via fewer, fuller trips.
-- *Trade-off:* Some stores receive less frequent deliveries; may raise local inventory needs.
-- *Risk:* Reduced flexibility for urgent orders.
-
-**Option B — Warehouse Reallocation (Regional Rebalancing)**
-- *Benefit:* Shortens average delivery distance; improves on-time rates.
-- *Trade-off:* Upfront cost to shift inventory; potential short-term disruption.
-- *Risk:* Over-centralization increases vulnerability to single-site outages.
-
-**Recommendation:** Pilot Option A in one region (low cost, fast feedback), then phase in Option B where data shows persistent distance-driven delays.
-
----
-
-## 4. KPIs & Communication
-
-**KPIs to monitor:**
-- On-time delivery rate (target ≥95%)
-- Fuel cost per delivery / per mile
-- Vehicle capacity utilization (%)
-- Order cycle time
-- Stockout frequency
-
-**Communication plan:**
-- Monthly executive dashboard with trend visuals and dollar-impact summaries.
-- Quarterly deep-dive presentations highlighting wins, risks, and next pilots.
-- Frame all results in **cost saved, service improved, risk managed** terms—avoiding technical jargon.
-
----
-
-*Next step: approve a 90-day regional pilot of Option A with success metrics defined upfront.*",automation_Claude-Opus-4.8,anthropic/claude-opus-4-8,Claude-Opus-4.8,0,6,8,0.75,2.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"**Internal Operations‑Research Brief**  
-*Improving Delivery Efficiency & Controlling Fuel Costs*  
-*Prepared for Senior Management –  ≈ 350 words*  
-
----
-
-### 1. Data Requirements & Validation  
-
-| Data Category | Source | Frequency | Validation Checks |
-|---------------|--------|-----------|-------------------|
-| **Order‑level**: SKU, quantity, promised‑date, store location, priority | Order Management System (OMS) | Real‑time | ‑ Duplicate detection  <br>‑ Consistency with inventory ledger |
-| **Transportation**: truck ID, driver, route GPS trace, miles, fuel fill‑ups, load weight | Fleet telematics & fuel cards | Daily | ‑ GPS‑route match to planned route  <br>‑ Fuel‑mileage sanity (e.g., mpg within 10 % of spec) |
-| **Warehouse**: inventory on‑hand, pick‑lead time, dock‑door utilization, labor shift rosters | WMS & HR system | Hourly/shift | ‑ Stock‑balance reconciliation  <br>‑ Labor‑hour audit vs schedule |
-| **External**: traffic congestion index, weather alerts, fuel price index | 3rd‑party APIs (e.g., HERE, NOAA) | Hourly | ‑ Out‑lier filtering (e.g., spikes > 3σ) |
-| **Cost**: per‑mile fuel cost, labor rates, overtime premiums, carbon‑tax | Finance & procurement | Weekly | ‑ Cross‑check totals with invoice data |
-
-**Validation workflow:** automated ETL scripts → statistical outlier detection → manual spot‑check of 1 % of records each week → feedback loop to source systems.
-
----
-
-### 2. Analytical / Optimization Framework  
-
-1. **Descriptive Layer** – Build a *baseline simulation* using historic data (Monte‑Carlo demand + stochastic travel times) to quantify current service‑level (on‑time %), fuel consumption, and labor overtime.  
-
-2. **Predictive Layer** – Apply a *gradient‑boosted regression* to forecast route‑specific fuel use as a function of load, distance, traffic, and weather.  
-
-3. **Prescriptive Layer** – Formulate a **Mixed‑Integer Linear Program (MILP)**:  
-
-   - **Decision variables**:  
-     - \(x_{r,w}\) = 1 if route *r* is assigned to warehouse *w* (binary)  
-     - \(s_{r,t}\) = start time of route *r* in time‑slot *t* (continuous)  
-   - **Objective**: minimize total cost = fuel cost + labor overtime + penalty for missed delivery windows.  
-   - **Constraints**: vehicle capacity, driver hours‑of‑service, warehouse dock limits, service‑level agreements (≥ 95 % on‑time).  
-
-   Solver (Gurobi/CPLEX) runs nightly; results feed a *what‑if* dashboard for planners.
-
----
-
-### 3. Recommended Solutions  
-
-| Solution | What Changes | Expected Gains | Trade‑offs / Risks |
-|----------|--------------|----------------|--------------------|
-| **A. Dynamic Consolidation Zones** – Re‑draw warehouse service areas using clustering (k‑means) on store demand & distance, then re‑allocate stores to the nearest “zone” warehouse. | Fewer miles per load, higher truck fill‑rates. | ↓ Fuel use 8‑12 %; ↑ on‑time 2‑3 %. | Requires short‑term re‑training of pickers; possible temporary dock congestion at newly‑assigned warehouses. |
-| **B. Time‑Window Flexibility Incentive** – Offer retailers a 1‑hour delivery window flexibility in exchange for a modest discount; use this slack in the MILP to shift low‑traffic deliveries to off‑peak slots. | Smoother driver schedules, reduced overtime. | ↓ Labor overtime 15 %; ↓ fuel per mile (less stop‑and‑go) 5 %. | May meet resistance from stores accustomed to fixed windows; need clear communication of cost savings. |
-
-Both solutions can be piloted in a single region (≈ 10 % of volume) for 8 weeks before full rollout.
-
----
-
-### 4. Key Performance Indicators & Communication  
-
-- **Operational KPIs**  
-  - On‑time Delivery Rate (target ≥ 95 %)  
-  - Fuel‑per‑mile (kg CO₂/mi)",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,6,8,0.75,2.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"# Internal Report: Addressing Delivery Delays and Rising Fuel Costs
 
 **Prepared by:** OR Analytics Division
@@ -224,16 +58,8 @@ Reallocate inventory to 4–5 strategically positioned regional hubs based on de
 - Inventory turnover ratio
 - Fuel spend as % of total logistics cost
 
-**Reporting cadence:** Executive dashboard updated monthly; quarterly deep-dive presentations with variance analysis and scenario forecasts, ensuring decisions remain grounded in current operational data.",automation_Claude-Sonnet-4.6,anthropic/claude-sonnet-4-6,Claude-Sonnet-4.6,1,5,8,0.625,4.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"<think>
-**Optimizing Delivery Efficiency**
-
-I'm focusing on refining our dynamic routing models and exploring advanced cross-docking strategies. Initial simulations indicate significant reductions in both transit times and fuel consumption by dynamically reallocating resources based on real-time demand and traffic patterns.
-
- 
-</think>
-
-**MEMORANDUM**
+**Reporting cadence:** Executive dashboard updated monthly; quarterly deep-dive presentations with variance analysis and scenario forecasts, ensuring decisions remain grounded in current operational data.",automation_Claude-Sonnet-4.6,anthropic/claude-sonnet-4-6,Claude-Sonnet-4.6,0,18,24,0.75,1.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"**MEMORANDUM**
 
 **TO:** Senior Management Team  
 **FROM:** [Your Name], Operations Research Analyst  
@@ -270,60 +96,119 @@ To measure success, we will track three primary KPIs:
 3. **Capacity Utilization Rate** (% of trailer volume used)
 
 **Communication Plan:** 
-We will deploy an automated, interactive dashboard (via Tableau/PowerBI) for the executive team, updated weekly. This will highlight KPI variances against our current baseline. Additionally, the OR team will provide a concise monthly brief detailing model adjustments and realized cost savings.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,3,4,8,0.5,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
-0,"Internal Report: Optimizing Delivery Efficiency  
-Prepared for Senior Management  
+We will deploy an automated, interactive dashboard (via Tableau/PowerBI) for the executive team, updated weekly. This will highlight KPI variances against our current baseline. Additionally, the OR team will provide a concise monthly brief detailing model adjustments and realized cost savings.",automation_Gemini-3.1-Pro,google/gemini-3.1-pro,Gemini-3.1-Pro,2,16,24,0.6666666666666666,2.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"Executive summary
+A focused program of better data, routing/inventory optimization, and targeted pilots can reduce delivery delays and fuel spend while preserving service. Below are the data, analytical framework, specific solutions with trade-offs, and KPIs needed to brief senior management and start pilots.
 
-1. Data Collection & Validation  
-• Core Data Sets  
-  – Order manifests (volumes, SKUs, delivery time windows)  
-  – Vehicle telematics (GPS traces, speed profiles, fuel consumption)  
-  – Driver logs (routes driven, hours worked)  
-  – Warehouse inventories and throughput rates  
-  – Geographic & traffic data (historical congestion, fuel‐price zones)  
-• Validation Methods  
-  – Automated reconciliation: match GPS timestamps to order‐scan events  
-  – Statistical outlier detection on fuel‐use per mile and dwell times  
-  – Periodic manual audits of driver logs vs. telematics  
-  – Cross‐system integrity checks (TMS vs. WMS vs. ERP)  
+1) Data to collect and validation
+- Required data:
+  - Orders/demand: SKU, store ID, order timestamp, requested delivery window, historical cancellations/returns.
+  - Fleet/telemetry: GPS traces, odometer, fuel usage, vehicle type/capacity, driver shifts.
+  - Warehouses: inventory levels by SKU, replenishment lead times, loading dock capacity, operating hours.
+  - Network: distances/travel times (time-of-day), road restrictions, fuel prices.
+  - Financials: labor rates, fuel per-liter cost, penalty costs for late delivery.
+- Validation:
+  - Cross-check timestamps against GPS events and billing records.
+  - Geocode and verify store/warehouse locations; flag improbable hops.
+  - Outlier detection (route distance, speed, fuel) and manual audit on flagged cases.
+  - Reconcile inventory snapshots with receiving/shipping logs and periodic physical counts.
+  - Use sample-driven ground truthing (driver logs, store confirmations) for accuracy.
 
-2. Analytical & Optimization Framework  
-• Model  
-  – Vehicle Routing Problem with Time Windows (VRPTW), integrating a convex fuel‐cost function  
-  – Multi‐objective optimization: minimize total cost (fuel + labor + inventory) and maximize on‐time delivery  
-• Solution Techniques  
-  – Mixed‐Integer Linear Programming (MILP) for weekly planning  
-  – Rolling‐horizon heuristic (e.g., adaptive large neighborhood search) for day‐of‐delivery adjustments  
-  – Scenario‐based “what‐if” analysis for peak / disruption events  
-• Sensitivity & Robustness  
-  – Parameter sweeps on fuel‐price spikes, driver‐hour regulations, traffic delays  
-  – Stochastic simulations to forecast service‐level distributions under variation  
+2) Analytical/optimization framework
+- Pipeline:
+  - Demand forecasting (time-series + feature-based models) → cluster stores by geography/service pattern.
+  - Optimization core: mixed-integer program (MIP) for warehouse allocation + vehicle routing problem (VRP) with time windows and capacities; objective = minimize total cost (fuel + labor + inventory holding + delay penalties).
+  - Robustness: stochastic/robust optimization or scenario-based sampling for demand and fuel-price volatility.
+  - Implementation: exact MIP for strategic decisions, Adaptive Large Neighborhood Search (ALNS) or real-time heuristics for daily dispatch.
+  - Validate with discrete-event simulation (measure delays, utilization) and sensitivity analysis.
 
-3. Recommended Solutions & Trade‐Offs  
-Solution A: Dynamic Route Consolidation  
-  – Cluster geographically adjacent stores; re‐optimize routes hourly  
-  – Benefits: ↓ fuel use by ~5–8%, ↑ vehicle utilization  
-  – Risks: requires investment in real‐time TMS, driver training; initial rollout complexity  
-Solution B: Regional Cross‐Docking & Safety‐Stock Rebalancing  
-  – Pre‐position high‐turn SKUs at mini‐hubs closer to dense clusters  
-  – Benefits: ↓ last‐mile lead‐time by 10–15%, stabilizes service levels under traffic variance  
-  – Trade‐off: ↑ inventory carrying costs (~2–3%); capital tied up in safety stock  
-Combined Impact (Illustrative)  
-  – Total cost reduction: 4–6%, on‐time rate improvement: 3–5%  
+3) Recommended practical solutions (with trade-offs/risks)
+- Solution A: Route consolidation + dynamic dispatch
+  - What: Increase multi-stop consolidation, enforce optimized time-window batching, real-time re-routing.
+  - Benefits: 8–15% fuel and vehicle-hour reduction; higher vehicle utilization.
+  - Trade-offs/risks: Potential longer store wait times; requires driver/operations change management and reliable real-time systems.
+- Solution B: Rebalance warehouses & add micro-hubs
+  - What: Reallocate SKUs across facilities and pilot 1–2 micro-fulfillment hubs in dense regions.
+  - Benefits: Shorter last-mile trips, improved on-time %; lower emergency express shipments.
+  - Trade-offs/risks: Higher inventory holding cost and capital for hubs; risk if demand forecasts are wrong.
+- Implementation: 3-month regional pilots, compare against control regions.
 
-4. KPIs & Executive Communication  
-• Core KPIs  
-  – On-Time Delivery Rate (%)  
-  – Cost per Delivery Stop ($)  
-  – Fuel Consumption per Mile (gal/mi)  
-  – Warehouse Throughput (lines/hr)  
-  – Fleet Utilization Rate (%)  
-• Reporting Cadence & Format  
-  – Monthly dashboard with trend‐line charts and “traffic‐light” status  
-  – Quarterly “trade‐off” scorecards visualizing cost vs. service‐level frontier  
-  – Executive summary memos highlighting variances, root‐cause analyses, and next‐steps  
+4) KPIs and communication
+- KPIs: On-time delivery %, average route length, cost per delivery (fuel + labor), vehicle utilization %, fill rate/stockout %, deliveries per vehicle-hour, CO2 per delivery, customer complaints.
+- Reporting cadence:
+  - Daily operations dashboard (ops teams): route exceptions, fuel spikes, vehicle utilization.
+  - Weekly exec snapshot: top 5 KPI trends vs. targets and pilot progress.
+  - Monthly deep-dive: cost-benefit, simulation outcomes, recommended rollouts.
+- Present results with before/after baseline, sensitivity ranges, and risk mitigations for executive decisions.",automation_GPT-5-Mini,gpt-5-mini-2025-08-07,GPT-5-Mini,5,16,24,0.6666666666666666,2.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"# Internal Report: Improving Delivery Efficiency and Reducing Fuel Costs
 
-Next Steps: Validate data feeds, build pilot models (one region), and scale upon KPI‐backed performance gains.",automation_GPT-O4-Mini,o4-mini-2025-04-16,GPT-O4-Mini,8,4,8,0.5,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+**To:** Senior Management
+**From:** Operations Research Analyst
+**Re:** Identifying Bottlenecks and Optimizing Logistics Operations
+
+---
+
+## 1. Data Collection and Validation
+
+To diagnose bottlenecks accurately, we will collect:
+
+- **Delivery data:** route timestamps, distances, on-time/late flags, fuel consumption per trip, vehicle load factors.
+- **Warehouse data:** inventory levels, order fulfillment times, stockout frequency, dock utilization.
+- **Demand data:** store-level order volume, seasonality, demand variability.
+- **Cost data:** fuel prices, labor hours, vehicle maintenance, overtime.
+
+**Validation approach:**
+- Cross-check telematics/GPS logs against driver-reported times to catch discrepancies.
+- Flag outliers (e.g., impossible speeds, negative inventory) for review.
+- Reconcile order records with delivery confirmations to ensure completeness.
+- Run a 2–4 week data audit before drawing conclusions.
+
+---
+
+## 2. Analytical and Optimization Framework
+
+We propose a phased approach:
+
+- **Descriptive analytics:** Identify where delays cluster (specific routes, warehouses, time windows) using dashboards and Pareto analysis.
+- **Vehicle Routing Problem (VRP) optimization:** Minimize total cost (distance + time) subject to delivery windows, vehicle capacity, and driver-hour constraints.
+- **Facility/allocation modeling:** Use a mixed-integer program to assign stores to warehouses, minimizing transport cost while respecting capacity.
+- **Scenario simulation:** Test alternate schedules and allocations against demand variability and fuel-price shocks.
+
+---
+
+## 3. Recommended Solutions and Trade-offs
+
+**Solution A — Route consolidation and dynamic scheduling**
+- Combine underutilized routes; shift to demand-driven delivery frequencies.
+- *Benefit:* 8–15% potential fuel/mileage savings, higher load factors.
+- *Trade-off/Risk:* Less frequent deliveries may strain store inventory; requires reliable demand forecasts.
+
+**Solution B — Warehouse re-allocation (regional rebalancing)**
+- Reassign high-volume stores to nearer warehouses to cut long-haul trips.
+- *Benefit:* Lower transport cost, faster service.
+- *Trade-off/Risk:* Capacity pressure at popular warehouses; upfront cost of inventory repositioning.
+
+**Balancing principle:** Both options trade cost savings against service resilience. We recommend piloting Solution A first (low capital outlay), then phasing in B based on results.
+
+---
+
+## 4. KPIs and Communication
+
+**KPIs to monitor:**
+- On-time delivery rate (%)
+- Cost per delivery / cost per mile
+- Fuel consumption per route
+- Vehicle load utilization (%)
+- Stockout frequency at stores
+
+**Communication plan:**
+- Monthly executive dashboard with trend visuals and a red/amber/green status summary.
+- Quarterly deep-dive presentations highlighting savings achieved vs. baseline.
+- Plain-language summaries focused on financial and service impact, with technical detail in appendices.
+
+---
+
+**Next step:** Approve a 6-week pilot of Solution A on 2–3 high-cost regions, with a baseline established for comparison.",automation_Claude-Opus-4.8,anthropic/claude-opus-4-8,Claude-Opus-4.8,8,15,24,0.625,4.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"**INTERNAL REPORT: Improving Logistics Efficiency Amid Delivery Delays and Rising Fuel Costs**
 
 ---
@@ -394,7 +279,120 @@ We recommend a two-pronged approach:
 ---
 
 **Conclusion:**  
-By collecting robust data, applying optimization techniques, and implementing targeted solutions, we can significantly improve efficiency, control costs, and maintain service levels. Ongoing KPI monitoring and transparent reporting will ensure sustained results and executive alignment.",automation_GPT-4.1,gpt-4.1,GPT-4.1,5,3,8,0.375,7.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+By collecting robust data, applying optimization techniques, and implementing targeted solutions, we can significantly improve efficiency, control costs, and maintain service levels. Ongoing KPI monitoring and transparent reporting will ensure sustained results and executive alignment.",automation_GPT-4.1,gpt-4.1,GPT-4.1,4,14,24,0.5833333333333334,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"**Internal Operations‑Research Brief – Improving Delivery Efficiency**  
+*Prepared for Senior Management – 300‑400 words*  
+
+---
+
+### 1. Data Requirements & Validation  
+
+| Data Category | Source | Frequency | Validation Checks |
+|---------------|--------|-----------|-------------------|
+| **Order‑level** – SKU, quantity, promised‑date, store location | Order Management System (OMS) | Real‑time | Duplicate removal, range checks (quantity > 0), cross‑reference with POS |
+| **Transportation** – departure/arrival timestamps, mileage, fuel consumption, driver ID, vehicle type | GPS/Fleet telematics | Hourly | GPS‑timestamp consistency, fuel‑usage vs. distance regression, outlier detection |
+| **Warehouse** – inventory on‑hand, pick‑lead‑time, dock capacity, labor shifts | WMS & HR schedule | Daily | Inventory balance (in‑flow = out‑flow + change), labor‑hour audit |
+| **External** – traffic congestion, weather, fuel price index | 3rd‑party APIs (HERE, NOAA) | Daily | API response integrity, sanity‑check against historical patterns |
+
+*Validation pipeline*: automated ETL scripts → statistical sanity checks → manual spot‑audit (5 % sample) → data‑quality dashboard (error rate < 1 %).  
+
+---
+
+### 2. Analytical / Optimization Framework  
+
+1. **Pre‑processing** – cluster stores into geographic zones (k‑means on lat/long + demand volume).  
+2. **Scenario Engine** – build a mixed‑integer linear program (MILP) that simultaneously decides:  
+   * **Delivery windows** (departure time, route sequence)  
+   * **Warehouse‑store allocation** (binary assignment)  
+   * **Vehicle mix** (truck vs. van)  
+   Objective: minimize total cost = fuel + driver overtime + penalty for late deliveries, subject to:  
+   * Service‑level constraint (≥ 95 % on‑time)  
+   * Vehicle capacity & driver‑hour limits  
+   * Warehouse dock throughput.  
+3. **Solution approach** – use a decomposition (Benders) to generate a set of Pareto‑optimal schedules (cost vs. service).  
+4. **What‑if module** – sensitivity to fuel price spikes, demand surges, labor shortages.  
+
+---
+
+### 3. Recommended Solutions  
+
+| Solution | What It Changes | Expected Trade‑offs | Risks & Mitigation |
+|----------|----------------|---------------------|--------------------|
+| **Dynamic Zone‑Based Routing** (re‑cluster zones weekly, adjust departure times) | Reduces dead‑head miles, aligns loads with real‑time demand | Slight increase in planning complexity; may need modest driver training | Risk: schedule instability → pilot on 10 % of routes, monitor variance before full roll‑out |
+| **Cross‑Dock Consolidation Hub** (add a mid‑point hub to pool partial loads) | Improves vehicle utilization, cuts fuel by 8‑12 % | Capital outlay for hub, extra handling time (≈ 15 min) | Risk: hub bottleneck → capacity sizing via simulation, maintain fallback direct routes |
+
+Both options keep on‑time delivery ≥ 95 % while delivering 5‑10 % cost savings.  
+
+---
+
+### 4. KPIs & Communication  
+
+- **On‑Time Delivery Rate** (target ≥ 95 %)  
+- **Fuel Cost per Delivered Unit** (track % change vs. baseline)  
+- **Vehicle Utilization** (load factor, target ≥ 80 %)  
+- **Labor Overtime Hours** (≤ 5 % of total hours)  
+- **Hub Throughput** (if implemented)  
+
+*Reporting cadence*: weekly operational dashboard (visual heat‑maps, trend lines) → monthly executive brief (summary of cost savings, service impact) → quarterly deep‑dive (scenario outcomes, ROI).  
+
+All results will be visualized in PowerBI with drill‑down capability, enabling senior leaders to ask “what‑if” questions in real time.  
+
+---  
+
+**Next Steps**: finalize data‑pipeline, run a 4‑week pilot of dynamic routing on the Midwest region, and develop a business case for the consolidation hub.",automation_GPT-OSS-120B,openai/gpt-oss-120b,GPT-OSS-120B,9,14,24,0.5833333333333334,5.5,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+0,"Internal Report: Optimizing Delivery Efficiency  
+Prepared for Senior Management  
+
+1. Data Collection & Validation  
+• Core Data Sets  
+  – Order manifests (volumes, SKUs, delivery time windows)  
+  – Vehicle telematics (GPS traces, speed profiles, fuel consumption)  
+  – Driver logs (routes driven, hours worked)  
+  – Warehouse inventories and throughput rates  
+  – Geographic & traffic data (historical congestion, fuel‐price zones)  
+• Validation Methods  
+  – Automated reconciliation: match GPS timestamps to order‐scan events  
+  – Statistical outlier detection on fuel‐use per mile and dwell times  
+  – Periodic manual audits of driver logs vs. telematics  
+  – Cross‐system integrity checks (TMS vs. WMS vs. ERP)  
+
+2. Analytical & Optimization Framework  
+• Model  
+  – Vehicle Routing Problem with Time Windows (VRPTW), integrating a convex fuel‐cost function  
+  – Multi‐objective optimization: minimize total cost (fuel + labor + inventory) and maximize on‐time delivery  
+• Solution Techniques  
+  – Mixed‐Integer Linear Programming (MILP) for weekly planning  
+  – Rolling‐horizon heuristic (e.g., adaptive large neighborhood search) for day‐of‐delivery adjustments  
+  – Scenario‐based “what‐if” analysis for peak / disruption events  
+• Sensitivity & Robustness  
+  – Parameter sweeps on fuel‐price spikes, driver‐hour regulations, traffic delays  
+  – Stochastic simulations to forecast service‐level distributions under variation  
+
+3. Recommended Solutions & Trade‐Offs  
+Solution A: Dynamic Route Consolidation  
+  – Cluster geographically adjacent stores; re‐optimize routes hourly  
+  – Benefits: ↓ fuel use by ~5–8%, ↑ vehicle utilization  
+  – Risks: requires investment in real‐time TMS, driver training; initial rollout complexity  
+Solution B: Regional Cross‐Docking & Safety‐Stock Rebalancing  
+  – Pre‐position high‐turn SKUs at mini‐hubs closer to dense clusters  
+  – Benefits: ↓ last‐mile lead‐time by 10–15%, stabilizes service levels under traffic variance  
+  – Trade‐off: ↑ inventory carrying costs (~2–3%); capital tied up in safety stock  
+Combined Impact (Illustrative)  
+  – Total cost reduction: 4–6%, on‐time rate improvement: 3–5%  
+
+4. KPIs & Executive Communication  
+• Core KPIs  
+  – On-Time Delivery Rate (%)  
+  – Cost per Delivery Stop ($)  
+  – Fuel Consumption per Mile (gal/mi)  
+  – Warehouse Throughput (lines/hr)  
+  – Fleet Utilization Rate (%)  
+• Reporting Cadence & Format  
+  – Monthly dashboard with trend‐line charts and “traffic‐light” status  
+  – Quarterly “trade‐off” scorecards visualizing cost vs. service‐level frontier  
+  – Executive summary memos highlighting variances, root‐cause analyses, and next‐steps  
+
+Next Steps: Validate data feeds, build pilot models (one region), and scale upon KPI‐backed performance gains.",automation_GPT-O4-Mini,o4-mini-2025-04-16,GPT-O4-Mini,7,11,24,0.4583333333333333,7.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Internal Report: Enhancing Delivery & Warehouse Efficiency
 
 Overview  
@@ -430,7 +428,7 @@ Key Performance Indicators & Communication
  – Monthly executive dashboards featuring KPIs and trend analyses, paired with quarterly strategic review meetings.  
  – Utilize data visualization tools for clarity, ensuring actionable insights are immediately evident.
 
-In summary, by systematically collecting and validating comprehensive data, applying robust optimization models, and implementing flexible routing and warehouse strategies, we can better control operational costs, improve service levels, and mitigate risks associated with higher fuel prices and delivery delays.",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,7,1,8,0.125,8.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+In summary, by systematically collecting and validating comprehensive data, applying robust optimization models, and implementing flexible routing and warehouse strategies, we can better control operational costs, improve service levels, and mitigate risks associated with higher fuel prices and delivery delays.",automation_GPT-O3-Mini,o3-mini-2025-01-31,GPT-O3-Mini,6,4,24,0.16666666666666666,8.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"Internal Report: Improving Logistics Efficiency through Data-Driven Strategies
 
 1. Data Collection and Validation:
@@ -454,7 +452,7 @@ b. Implement a centralized inventory management system to optimize warehouse all
 - Monitor KPIs such as on-time delivery rates, fuel consumption per delivery, and inventory turnover.
 - Communicate results to management through regular reports and dashboards, highlighting cost savings, service improvements, and any identified risks or challenges.
 
-By implementing these data-driven strategies, we can address the operational bottlenecks in our logistics operations, improve efficiency, and mitigate the impact of delivery delays and rising fuel costs.",automation_GPT-3.5-Turbo,gpt-3.5-turbo,GPT-3.5-Turbo,4,0,8,0.0,9.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+By implementing these data-driven strategies, we can address the operational bottlenecks in our logistics operations, improve efficiency, and mitigate the impact of delivery delays and rising fuel costs.",automation_GPT-3.5-Turbo,gpt-3.5-turbo,GPT-3.5-Turbo,3,0,24,0.0,9.0,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
 0,"**To:** Senior Management
 **From:** OR Analyst
 **Date:** October 26, 2023
@@ -492,4 +490,4 @@ Key Performance Indicators (KPIs) to monitor:
 *   **Service:** On-time in-full (OTIF) delivery rate, Average order cycle time
 *   **Efficiency:** Vehicle fill rate, Routes per day
 
-Results will be communicated through a monthly executive dashboard visualizing trends in these KPIs, accompanied by a brief narrative linking performance changes to the implemented strategies. This ensures clarity and demonstrates ROI on operational changes.",automation_DeepSeek-V3.1,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1,2,0,0,,,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1
+Results will be communicated through a monthly executive dashboard visualizing trends in these KPIs, accompanied by a brief narrative linking performance changes to the implemented strategies. This ensures clarity and demonstrates ROI on operational changes.",automation_DeepSeek-V3.1,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1,1,0,0,,,,,deepseek-ai/DeepSeek-V3.1,DeepSeek-V3.1

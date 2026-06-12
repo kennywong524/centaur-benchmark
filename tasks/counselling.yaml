@@ -4,6 +4,7 @@ default_worker: gpt-3.5-turbo
 default_evaluator: gpt-4.1
 replicates: 1
 scaffold_model_max_tokens: 700
+automation_model_max_tokens: 128000
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
 task_prompt: 'Write a single-session supportive counseling-style response for a client who feels emotionally drained, anxious about work, and uncertain about life direction. The response must include:

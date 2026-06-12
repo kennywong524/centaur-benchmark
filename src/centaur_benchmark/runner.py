@@ -322,7 +322,7 @@ def _run_automation_single_model(
     )
     worker = Agent(instruction=auto_instr)
     mkwargs: dict[str, Any] = {}
-    if task.automation_model_max_tokens is not None and "gpt-5" in model_id:
+    if task.automation_model_max_tokens is not None:
         mkwargs["max_tokens"] = task.automation_model_max_tokens
     print(f"Running automation model={model_id} n={len(prompts)}...")
     results = (
@@ -571,9 +571,17 @@ def patch_automation_models(
             remote_description=f"{task.slug}-automation-retry-{model_id}",
             remote_visibility=task.remote_inference_visibility,
         )
+        valid = df["output"].notna() & (df["output"].astype(str).str.strip().str.len() > 50)
+        if not valid.all():
+            bad = int((~valid).sum())
+            print(
+                f"WARNING: skipping patch for {model_id}: "
+                f"{bad}/{len(df)} empty/invalid outputs (keeping existing rows)"
+            )
+            continue
         new_parts.append(df)
 
-    patched = existing[~existing["model_id"].isin(model_ids)].copy()
+    patched = existing[~existing["model_id"].isin([d["model_id"].iloc[0] for d in new_parts])].copy()
     if new_parts:
         patched = pd.concat([patched, *new_parts], ignore_index=True)
     patched.to_csv(out_csv, index=False)

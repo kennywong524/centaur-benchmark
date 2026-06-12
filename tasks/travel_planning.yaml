@@ -4,6 +4,7 @@ default_worker: gpt-3.5-turbo
 default_evaluator: gpt-4.1
 replicates: 1
 scaffold_model_max_tokens: 700
+automation_model_max_tokens: 128000
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
 task_prompt: Create a 5-day Tokyo itinerary for one traveler next month with a total budget of $2,500 USD, excluding passport costs. The traveler is departing from San Francisco. Clearly state assumptions and give clarifying questions before the provisional plan. Use realistic estimates, label them as estimates, and keep the plan budget-aware.

@@ -4,6 +4,7 @@ default_worker: gpt-3.5-turbo
 default_evaluator: gpt-4.1
 replicates: 1
 scaffold_model_max_tokens: 700
+automation_model_max_tokens: 128000
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
 task_prompt: Prepare a classroom-ready Grade 3 lesson segment for 8-year-olds on improper fractions and mixed numbers. Include a clear learning objective, simple explanation, analogy, worked examples, common misconceptions, interactive activity, checks for understanding, and a short wrap-up. Use age-appropriate language and avoid abstract notation without visual support.
