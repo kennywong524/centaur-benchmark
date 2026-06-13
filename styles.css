@@ -373,6 +373,57 @@ select {
 .stability-table th:first-child {
   width: 170px;
 }
+.validation-card {
+  margin-bottom: 18px;
+}
+.validation-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.validation-head p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.validation-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #eef5ff;
+  color: var(--blue);
+  border: 1px solid #cfe0f6;
+  font-size: 12px;
+  font-weight: 800;
+}
+.validation-note {
+  margin: 10px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.validation-cols {
+  align-items: start;
+}
+.validation-cols h3 {
+  margin: 6px 0 10px;
+}
+.validation-heat td small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 800;
+  opacity: .78;
+}
+.validation-models {
+  min-width: 620px;
+}
 
 .bar-row {
   display: grid;
