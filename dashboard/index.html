@@ -18,6 +18,7 @@
         <button class="tab active" data-tab="project">Project Overview</button>
         <button class="tab" data-tab="overview">Main Results</button>
         <button class="tab" data-tab="replicates">Replicate Summary</button>
+        <button class="tab" data-tab="validation">Validation</button>
         <button class="tab" data-tab="rankings">Rankings</button>
         <button class="tab" data-tab="judges">Judges</button>
         <button class="tab" data-tab="qualitative">Qualitative</button>
@@ -244,6 +245,23 @@
             <div id="rubricChart"></div>
           </div>
         </div>
+      </section>
+
+      <section id="validation" class="panel">
+        <div class="section-heading">
+          <h2>Criterion-Validity Checks</h2>
+          <p>These checks reuse the existing automation outputs. They ask whether held-out cross-family judges recover expected within-family capability gradients.</p>
+        </div>
+        <div class="guide-card">
+          <h2>Validation Design</h2>
+          <div class="guide-grid">
+            <p><b>GPT ladder.</b> Claude-Opus-4.8 judges GPT-family automation outputs: GPT-3.5-Turbo, O3-Mini, O4-Mini, GPT-4.1, and GPT-5-Mini.</p>
+            <p><b>Claude pair.</b> GPT-4.1 judges Claude-family automation outputs: Claude-Sonnet-4.6 and Claude-Opus-4.8.</p>
+            <p><b>Held-out judge.</b> The judge never belongs to the model family being validated, reducing same-family preference.</p>
+            <p><b>Interpretation.</b> Higher expected-order agreement means the rubric/judge pipeline more often recovers the anticipated within-family ordering.</p>
+          </div>
+        </div>
+        <div id="validationChecks"></div>
       </section>
 
       <section id="judges" class="panel">

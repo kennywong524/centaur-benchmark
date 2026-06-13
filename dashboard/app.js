@@ -42,6 +42,26 @@ const modelShort = {
   "plain": "Plain",
   "GPT-3.5-Turbo": "3.5",
 };
+const validationChecks = [
+  {
+    id: "gpt_ladder_claude",
+    title: "GPT-family automation ladder judged by Claude",
+    judge: "anthropic/claude-opus-4-8",
+    family: "GPT family",
+    models: ["GPT-3.5-Turbo", "GPT-O3-Mini", "GPT-O4-Mini", "GPT-4.1", "GPT-5-Mini"],
+    expectedBest: "GPT-5-Mini",
+    note: "GPT-OSS-120B is omitted because it is an open-weight reference model rather than a clean generation step. Treat the GPT-family ordering as a reference capability gradient, not a perfectly chronological release ladder.",
+  },
+  {
+    id: "claude_pair_gpt",
+    title: "Claude-family automation pair judged by GPT-4.1",
+    judge: "gpt-4.1",
+    family: "Claude family",
+    models: ["Claude-Sonnet-4.6", "Claude-Opus-4.8"],
+    expectedBest: "Claude-Opus-4.8",
+    note: "This is a two-model sanity check rather than a full generation ladder.",
+  },
+];
 const rubricLabels = {
   counselling: {
     task_dimension_1: "Empathy and therapeutic tone",
@@ -679,6 +699,142 @@ function renderReplicateSummary() {
   ].map(([v, l]) => `<div class="metric"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
 }
 
+function validationRows(check) {
+  const rows = [];
+  for (const run of runList()) {
+    const bundle = activeData(run.id);
+    for (const task of taskOrder) {
+      const sub = bundle.by_judge
+        .filter(d => d.mode === "automation" && d.task_slug === task && d.judge_model === check.judge && check.models.includes(d.model_label))
+        .filter(d => Number.isFinite(Number(d.rank_value)) && Number.isFinite(Number(d.score)))
+        .sort((a, b) => Number(a.rank_value) - Number(b.rank_value) || Number(b.score) - Number(a.score) || check.models.indexOf(a.model_label) - check.models.indexOf(b.model_label));
+      sub.forEach((d, i) => rows.push({
+        run_id: run.id,
+        run_label: run.label,
+        task: task,
+        model: d.model_label,
+        score: Number(d.score),
+        source_rank: Number(d.rank_value),
+        family_rank: i + 1,
+      }));
+    }
+  }
+  return rows;
+}
+
+function validationOrderStats(check, rows) {
+  let wins = 0;
+  let ties = 0;
+  let total = 0;
+  for (const run of runList()) {
+    for (const task of taskOrder) {
+      const sub = rows.filter(d => d.run_id === run.id && d.task === task);
+      const rankByModel = new Map(sub.map(d => [d.model, d.family_rank]));
+      for (let i = 0; i < check.models.length; i++) {
+        for (let j = i + 1; j < check.models.length; j++) {
+          const older = check.models[i];
+          const newer = check.models[j];
+          if (!rankByModel.has(older) || !rankByModel.has(newer)) continue;
+          total += 1;
+          const olderRank = rankByModel.get(older);
+          const newerRank = rankByModel.get(newer);
+          if (newerRank < olderRank) wins += 1;
+          else if (newerRank === olderRank) ties += 1;
+        }
+      }
+    }
+  }
+  return {
+    wins,
+    ties,
+    total,
+    agreement: total ? (wins + ties * 0.5) / total : null,
+  };
+}
+
+function validationModelStats(check, rows) {
+  return check.models.map(model => {
+    const sub = rows.filter(d => d.model === model);
+    const ranks = sub.map(d => d.family_rank);
+    const scores = sub.map(d => d.score);
+    return {
+      model,
+      meanRank: ranks.length ? avg(ranks) : null,
+      sdRank: ranks.length ? std(ranks) : null,
+      meanScore: scores.length ? avg(scores) : null,
+      n: sub.length,
+    };
+  }).filter(d => d.n);
+}
+
+function renderValidationHeat(check, rows) {
+  const maxRank = check.models.length;
+  const byCell = new Map();
+  rows.forEach(d => {
+    const key = `${d.task}|${d.model}`;
+    const arr = byCell.get(key) || [];
+    arr.push(d.family_rank);
+    byCell.set(key, arr);
+  });
+  let html = `<table class="heat-table validation-heat"><thead><tr><th>Task</th>${check.models.map(m => `<th>${displayModel(m, "automation")}</th>`).join("")}</tr></thead><tbody>`;
+  for (const task of taskOrder) {
+    html += `<tr><td>${cleanTaskTitle(task)}</td>`;
+    for (const model of check.models) {
+      const vals = byCell.get(`${task}|${model}`) || [];
+      if (!vals.length) {
+        html += `<td class="heat-na">N/A</td>`;
+      } else {
+        const m = avg(vals);
+        const s = std(vals);
+        html += `<td style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}" title="${displayModel(model, "automation")} mean within-family rank across ${vals.length} runs"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+      }
+    }
+    html += `</tr>`;
+  }
+  html += `</tbody></table>`;
+  return html;
+}
+
+function renderValidationCheck(check) {
+  const rows = validationRows(check);
+  const order = validationOrderStats(check, rows);
+  const models = validationModelStats(check, rows);
+  const best = models.slice().sort((a, b) => a.meanRank - b.meanRank || b.meanScore - a.meanScore)[0];
+  const modelTable = `<table class="heat-table stability-table validation-models"><thead><tr><th>Reference order</th><th>Model</th><th>Mean family rank</th><th>Rank SD</th><th>Mean win rate</th><th>Cells</th></tr></thead><tbody>${models.map((d, i) => `<tr><td>${i + 1}</td><td>${displayModel(d.model, "automation")}</td><td>${d.meanRank.toFixed(2)}</td><td>${d.sdRank.toFixed(2)}</td><td>${d.meanScore.toFixed(2)}</td><td>${d.n}</td></tr>`).join("")}</tbody></table>`;
+  return `<div class="viz-card validation-card">
+    <div class="validation-head">
+      <div>
+        <h3>${esc(check.title)}</h3>
+        <p>Judge: <b>${esc(judgeLabels[check.judge] || check.judge)}</b> · Mode: <b>Automation only</b> · Runs: <b>${runList().map(r => r.label).join(", ")}</b></p>
+      </div>
+      <span class="validation-pill">${esc(check.family)}</span>
+    </div>
+    <div class="metric-row validation-metrics">
+      <div class="metric"><b>${order.agreement === null ? "NA" : `${Math.round(order.agreement * 100)}%`}</b><span>expected-order agreement</span></div>
+      <div class="metric"><b>${order.wins}/${order.total}</b><span>strict ordered-pair wins</span></div>
+      <div class="metric"><b>${esc(displayModel(best?.model || "", "automation"))}</b><span>best mean family rank</span></div>
+      <div class="metric"><b>${esc(displayModel(check.expectedBest, "automation"))}</b><span>expected strongest model</span></div>
+    </div>
+    <p class="validation-note">${esc(check.note)}</p>
+    <div class="two-col validation-cols">
+      <div>
+        <h3>Mean Within-Family Rank By Task</h3>
+        ${renderValidationHeat(check, rows)}
+      </div>
+      <div>
+        <h3>Model-Level Summary</h3>
+        ${modelTable}
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderValidation() {
+  const el = document.getElementById("validationChecks");
+  if (!el) return;
+  el.innerHTML = validationChecks.map(renderValidationCheck).join("");
+}
+
 function renderProjectStats() {
   const bundles = runList().map(r => activeData(r.id));
   const outputs = bundles.reduce((s, b) => s + Object.values(b.runs).reduce((x, r) => x + r.outputs.length, 0), 0);
@@ -904,6 +1060,7 @@ function renderAll() {
   renderHeatmap(document.getElementById("heatAuto"), "automation");
   renderRoleScatter();
   renderReplicateSummary();
+  renderValidation();
   renderLeaderboard();
   renderRubric();
   renderJudgeScatter();
