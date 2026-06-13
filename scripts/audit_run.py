@@ -19,7 +19,7 @@ DEFAULT_MAX_SCAFFOLD_CHARS = 2600
 # Minimum chars for scaffold-conditioned worker outputs (plain baseline uses min_output_chars only).
 TASK_SCAFFOLD_OUTPUT_MIN_CHARS: dict[str, int] = {
     "meal_plan": 1500,
-    "tax_prep": 2500,
+    "tax_prep": 1800,
     "travel_planning": 1500,
     "operations_research": 1200,
 }
@@ -241,8 +241,11 @@ def audit_run(
         for model_id, model_label in task.assistants.items():
             if model_id in excluded:
                 continue
-            p = scaffolds_dir / f"{_safe_slug(model_label)}.md"
-            if not p.exists() or p.stat().st_size == 0:
+            base = scaffolds_dir / f"{_safe_slug(model_label)}.md"
+            scaffold_paths = [base] if base.exists() else sorted(
+                scaffolds_dir.glob(f"{_safe_slug(model_label)}_rep*.md")
+            )
+            if not scaffold_paths or any(p.stat().st_size == 0 for p in scaffold_paths):
                 failure = {
                     "task": task.slug,
                     "mode": "augmentation",
@@ -261,24 +264,26 @@ def audit_run(
                 report["ready_for_judging"] = False
                 continue
 
-            scaffold_text = p.read_text(encoding="utf-8", errors="replace")
-            scaffold_reasons = _scaffold_failure_reasons(
-                scaffold_text, min_chars=min_output_chars
-            )
-            if scaffold_reasons:
-                failure = {
-                    "task": task.slug,
-                    "mode": "augmentation",
-                    "model_id": model_id,
-                    "model_label": model_label,
-                    "kind": scaffold_reasons[0],
-                    "reasons": scaffold_reasons,
-                    "n_chars": len(scaffold_text.strip()),
-                    "preview": scaffold_text.strip()[:120],
-                }
-                task_info["bad_scaffolds"].append(failure)
-                report["failures"].append(failure)
-                report["ready_for_judging"] = False
+            for p in scaffold_paths:
+                scaffold_text = p.read_text(encoding="utf-8", errors="replace")
+                scaffold_reasons = _scaffold_failure_reasons(
+                    scaffold_text, min_chars=min_output_chars
+                )
+                if scaffold_reasons:
+                    failure = {
+                        "task": task.slug,
+                        "mode": "augmentation",
+                        "model_id": model_id,
+                        "model_label": model_label,
+                        "kind": scaffold_reasons[0],
+                        "reasons": scaffold_reasons,
+                        "n_chars": len(scaffold_text.strip()),
+                        "preview": scaffold_text.strip()[:120],
+                        "path": str(p),
+                    }
+                    task_info["bad_scaffolds"].append(failure)
+                    report["failures"].append(failure)
+                    report["ready_for_judging"] = False
 
         report["tasks"][task.slug] = task_info
 

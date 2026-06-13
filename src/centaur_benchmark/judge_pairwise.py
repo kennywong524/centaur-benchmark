@@ -241,6 +241,7 @@ Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reas
                 description=remote_description,
                 visibility=remote_visibility,
                 n=1,
+                cache=True,
             ),
         )
     )
@@ -273,6 +274,48 @@ def _clean_json_text(text: str) -> str:
     return s.strip()
 
 
+def _iter_balanced_json_objects(text: str) -> list[str]:
+    objects: list[str] = []
+    start: int | None = None
+    depth = 0
+    in_string = False
+    escape = False
+    for idx, ch in enumerate(text):
+        if in_string:
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                in_string = False
+            continue
+        if ch == '"':
+            in_string = True
+            continue
+        if ch == "{":
+            if depth == 0:
+                start = idx
+            depth += 1
+        elif ch == "}" and depth:
+            depth -= 1
+            if depth == 0 and start is not None:
+                objects.append(text[start : idx + 1])
+                start = None
+    return objects
+
+
+def _looks_like_pairwise_judgment(obj: dict[str, object]) -> bool:
+    return bool(
+        obj.get("final_choice")
+        or obj.get("option_1_scores")
+        or obj.get("option1_scores")
+        or obj.get("scores_option_1")
+        or obj.get("option_2_scores")
+        or obj.get("option2_scores")
+        or obj.get("scores_option_2")
+    )
+
+
 def _extract_json_object(text: str) -> dict[str, object]:
     cleaned = _clean_json_text(text)
     if not cleaned:
@@ -283,17 +326,21 @@ def _extract_json_object(text: str) -> dict[str, object]:
             return loaded
     except json.JSONDecodeError:
         pass
-    match = re.search(r"\{[\s\S]*\}", cleaned)
-    if not match:
-        return {}
-    blob = match.group(0)
-    for candidate in (blob, re.sub(r",\s*([}\]])", r"\1", blob)):
-        try:
-            loaded = json.loads(candidate)
-            if isinstance(loaded, dict):
-                return loaded
-        except json.JSONDecodeError:
-            continue
+    parsed_objects: list[dict[str, object]] = []
+    for blob in _iter_balanced_json_objects(cleaned):
+        for candidate in (blob, re.sub(r",\s*([}\]])", r"\1", blob)):
+            try:
+                loaded = json.loads(candidate)
+                if isinstance(loaded, dict):
+                    parsed_objects.append(loaded)
+                    break
+            except json.JSONDecodeError:
+                continue
+    for obj in parsed_objects:
+        if _looks_like_pairwise_judgment(obj):
+            return obj
+    if parsed_objects:
+        return parsed_objects[-1]
     return {}
 
 

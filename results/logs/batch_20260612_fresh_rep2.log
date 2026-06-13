@@ -1,0 +1,1133 @@
+[2026-06-13T02:10:36.863682+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T02:10:36.864405+00:00] STEP START gen/counselling/init
+[2026-06-13T02:10:36.874065+00:00] STEP OK gen/counselling/init
+[2026-06-13T02:10:36.874490+00:00] STEP START gen/counselling/aug/plain/rep0
+[2026-06-13T02:10:45.461121+00:00] QUALITY OK gen/counselling/aug/plain/rep0 rep chars=1909 attempt=1
+[2026-06-13T02:10:45.461788+00:00] STEP OK gen/counselling/aug/plain/rep0
+[2026-06-13T02:10:45.462069+00:00] STEP START gen/counselling/aug/gpt-4.1/rep0
+[2026-06-13T02:10:54.175256+00:00] QUALITY OK gen/counselling/aug/gpt-4.1/rep0 rep chars=2653 attempt=1
+[2026-06-13T02:10:54.176002+00:00] STEP OK gen/counselling/aug/gpt-4.1/rep0
+[2026-06-13T02:10:54.176224+00:00] STEP START gen/counselling/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:10:58.838463+00:00] QUALITY OK gen/counselling/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2063 attempt=1
+[2026-06-13T02:10:58.839267+00:00] STEP OK gen/counselling/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:10:58.839710+00:00] STEP START gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:14:28.532019+00:00] STEP FAIL gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T02:14:28.533567+00:00]   failure_count[gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:14:28.534926+00:00] STEP START gen/counselling/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:14:33.016318+00:00] QUALITY OK gen/counselling/aug/o4-mini-2025-04-16/rep0 rep chars=1831 attempt=1
+[2026-06-13T02:14:33.017049+00:00] STEP OK gen/counselling/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:14:33.017963+00:00] STEP START gen/counselling/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:14:37.089886+00:00] QUALITY OK gen/counselling/aug/o3-mini-2025-01-31/rep0 rep chars=1779 attempt=1
+[2026-06-13T02:14:37.091494+00:00] STEP OK gen/counselling/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:14:37.092465+00:00] STEP START gen/counselling/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:14:50.491818+00:00] QUALITY OK gen/counselling/aug/openai/gpt-oss-120b/rep0 rep chars=1628 attempt=1
+[2026-06-13T02:14:50.492954+00:00] STEP OK gen/counselling/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:14:50.493472+00:00] STEP START gen/counselling/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:15:44.835872+00:00] QUALITY OK gen/counselling/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=1637 attempt=1
+[2026-06-13T02:15:44.837511+00:00] STEP OK gen/counselling/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:15:44.838744+00:00] STEP START gen/counselling/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:16:09.558121+00:00] QUALITY OK gen/counselling/aug/anthropic/claude-opus-4-8/rep0 rep chars=2303 attempt=1
+[2026-06-13T02:16:09.559254+00:00] STEP OK gen/counselling/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:16:09.560333+00:00] STEP START gen/counselling/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:16:21.266112+00:00] QUALITY OK gen/counselling/aug/google/gemini-3.1-pro/rep0 rep chars=1739 attempt=1
+[2026-06-13T02:16:21.267460+00:00] STEP OK gen/counselling/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:16:21.267768+00:00] STEP START gen/counselling/variability_check
+[2026-06-13T02:16:21.288592+00:00] Variability counselling: 0 models, 0 issues
+[2026-06-13T02:16:21.288982+00:00] STEP OK gen/counselling/variability_check
+[2026-06-13T02:16:21.289803+00:00] STEP START gen/counselling/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:16:24.277264+00:00] QUALITY OK gen/counselling/auto/gpt-3.5-turbo/rep0 rep chars=1748 attempt=1
+[2026-06-13T02:16:24.277873+00:00] STEP OK gen/counselling/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:16:24.278174+00:00] STEP START gen/counselling/auto/gpt-4.1/rep0
+[2026-06-13T02:16:30.754080+00:00] QUALITY OK gen/counselling/auto/gpt-4.1/rep0 rep chars=3185 attempt=1
+[2026-06-13T02:16:30.756063+00:00] STEP OK gen/counselling/auto/gpt-4.1/rep0
+[2026-06-13T02:16:30.756278+00:00] STEP START gen/counselling/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:16:31.548631+00:00] QUALITY OK gen/counselling/auto/gpt-5-mini-2025-08-07/rep0 rep chars=5637 attempt=1
+[2026-06-13T02:16:31.549530+00:00] STEP OK gen/counselling/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:16:31.550225+00:00] STEP START gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:17:41.648520+00:00] QUALITY FAIL gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:17:41.649731+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:17:41.652468+00:00] STEP FAIL gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:17:41.652790+00:00]   failure_count[gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:17:41.653250+00:00] STEP START gen/counselling/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:17:42.632021+00:00] QUALITY OK gen/counselling/auto/o4-mini-2025-04-16/rep0 rep chars=2576 attempt=1
+[2026-06-13T02:17:42.632569+00:00] STEP OK gen/counselling/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:17:42.632886+00:00] STEP START gen/counselling/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:17:43.353694+00:00] QUALITY OK gen/counselling/auto/o3-mini-2025-01-31/rep0 rep chars=2707 attempt=1
+[2026-06-13T02:17:43.354066+00:00] STEP OK gen/counselling/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:17:43.354895+00:00] STEP START gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:18:53.701188+00:00] QUALITY FAIL gen/counselling/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:18:53.701633+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:18:53.702380+00:00] STEP FAIL gen/counselling/auto/openai/gpt-oss-120b/rep0: gen/counselling/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:18:53.702613+00:00]   failure_count[gen/counselling/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T02:18:53.702820+00:00] STEP START gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:20:03.595637+00:00] QUALITY FAIL gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:20:03.596081+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:20:03.596676+00:00] STEP FAIL gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0: gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:20:03.597010+00:00]   failure_count[gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T02:20:03.597257+00:00] STEP START gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:21:14.513951+00:00] QUALITY FAIL gen/counselling/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:21:14.514494+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:21:14.515843+00:00] STEP FAIL gen/counselling/auto/anthropic/claude-opus-4-8/rep0: gen/counselling/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:21:14.516495+00:00]   failure_count[gen/counselling/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T02:21:14.517566+00:00] STEP START gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:22:24.636405+00:00] QUALITY FAIL gen/counselling/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:22:24.636926+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:22:24.637648+00:00] STEP FAIL gen/counselling/auto/google/gemini-3.1-pro/rep0: gen/counselling/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:22:24.637935+00:00]   failure_count[gen/counselling/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T02:22:24.638188+00:00] STEP START gen/counselling/config
+[2026-06-13T02:22:24.638654+00:00] STEP OK gen/counselling/config
+[2026-06-13T02:22:24.638871+00:00] STEP START gen/market_trends/init
+[2026-06-13T02:22:24.647006+00:00] STEP OK gen/market_trends/init
+[2026-06-13T02:22:24.647586+00:00] STEP START gen/market_trends/aug/plain/rep0
+[2026-06-13T02:22:27.446713+00:00] QUALITY OK gen/market_trends/aug/plain/rep0 rep chars=1200 attempt=1
+[2026-06-13T02:22:27.448106+00:00] STEP OK gen/market_trends/aug/plain/rep0
+[2026-06-13T02:22:27.448572+00:00] STEP START gen/market_trends/aug/gpt-4.1/rep0
+[2026-06-13T02:22:33.893854+00:00] QUALITY OK gen/market_trends/aug/gpt-4.1/rep0 rep chars=2050 attempt=1
+[2026-06-13T02:22:33.895352+00:00] STEP OK gen/market_trends/aug/gpt-4.1/rep0
+[2026-06-13T02:22:33.896531+00:00] STEP START gen/market_trends/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:22:37.796131+00:00] QUALITY OK gen/market_trends/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2570 attempt=1
+[2026-06-13T02:22:37.797339+00:00] STEP OK gen/market_trends/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:22:37.798025+00:00] STEP START gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:26:07.514048+00:00] STEP FAIL gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T02:26:07.515879+00:00]   failure_count[gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:26:07.517014+00:00] STEP START gen/market_trends/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:26:12.053888+00:00] QUALITY OK gen/market_trends/aug/o4-mini-2025-04-16/rep0 rep chars=2671 attempt=1
+[2026-06-13T02:26:12.054992+00:00] STEP OK gen/market_trends/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:26:12.056345+00:00] STEP START gen/market_trends/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:26:17.087985+00:00] QUALITY OK gen/market_trends/aug/o3-mini-2025-01-31/rep0 rep chars=2587 attempt=1
+[2026-06-13T02:26:17.089391+00:00] STEP OK gen/market_trends/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:26:17.090657+00:00] STEP START gen/market_trends/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:26:28.739098+00:00] QUALITY OK gen/market_trends/aug/openai/gpt-oss-120b/rep0 rep chars=2071 attempt=1
+[2026-06-13T02:26:28.739715+00:00] STEP OK gen/market_trends/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:26:28.740043+00:00] STEP START gen/market_trends/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:26:42.587612+00:00] QUALITY OK gen/market_trends/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=2122 attempt=1
+[2026-06-13T02:26:42.589537+00:00] STEP OK gen/market_trends/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:26:42.590422+00:00] STEP START gen/market_trends/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:26:56.804689+00:00] QUALITY OK gen/market_trends/aug/anthropic/claude-opus-4-8/rep0 rep chars=2230 attempt=1
+[2026-06-13T02:26:56.806208+00:00] STEP OK gen/market_trends/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:26:56.807118+00:00] STEP START gen/market_trends/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:27:08.092535+00:00] QUALITY OK gen/market_trends/aug/google/gemini-3.1-pro/rep0 rep chars=2380 attempt=1
+[2026-06-13T02:27:08.093782+00:00] STEP OK gen/market_trends/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:27:08.095280+00:00] STEP START gen/market_trends/variability_check
+[2026-06-13T02:27:08.119103+00:00] Variability market_trends: 0 models, 0 issues
+[2026-06-13T02:27:08.119782+00:00] STEP OK gen/market_trends/variability_check
+[2026-06-13T02:27:08.120349+00:00] STEP START gen/market_trends/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:27:10.155827+00:00] QUALITY OK gen/market_trends/auto/gpt-3.5-turbo/rep0 rep chars=1004 attempt=1
+[2026-06-13T02:27:10.157218+00:00] STEP OK gen/market_trends/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:27:10.158198+00:00] STEP START gen/market_trends/auto/gpt-4.1/rep0
+[2026-06-13T02:27:14.544505+00:00] QUALITY OK gen/market_trends/auto/gpt-4.1/rep0 rep chars=2362 attempt=1
+[2026-06-13T02:27:14.546008+00:00] STEP OK gen/market_trends/auto/gpt-4.1/rep0
+[2026-06-13T02:27:14.547102+00:00] STEP START gen/market_trends/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:27:15.092174+00:00] QUALITY OK gen/market_trends/auto/gpt-5-mini-2025-08-07/rep0 rep chars=3336 attempt=1
+[2026-06-13T02:27:15.094468+00:00] STEP OK gen/market_trends/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:27:15.099987+00:00] STEP START gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:28:25.692986+00:00] QUALITY FAIL gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:28:25.693709+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:28:25.695499+00:00] STEP FAIL gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:28:25.697271+00:00]   failure_count[gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:28:25.699814+00:00] STEP START gen/market_trends/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:28:26.616843+00:00] QUALITY OK gen/market_trends/auto/o4-mini-2025-04-16/rep0 rep chars=1816 attempt=1
+[2026-06-13T02:28:26.617225+00:00] STEP OK gen/market_trends/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:28:26.617773+00:00] STEP START gen/market_trends/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:28:27.175843+00:00] QUALITY OK gen/market_trends/auto/o3-mini-2025-01-31/rep0 rep chars=2398 attempt=1
+[2026-06-13T02:28:27.176387+00:00] STEP OK gen/market_trends/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:28:27.182570+00:00] STEP START gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:29:37.586313+00:00] QUALITY FAIL gen/market_trends/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:29:37.586996+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:29:37.588780+00:00] STEP FAIL gen/market_trends/auto/openai/gpt-oss-120b/rep0: gen/market_trends/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:29:37.590121+00:00]   failure_count[gen/market_trends/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T02:29:37.591724+00:00] STEP START gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:30:47.515491+00:00] QUALITY FAIL gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:30:47.516142+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:30:47.518384+00:00] STEP FAIL gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0: gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:30:47.518946+00:00]   failure_count[gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T02:30:47.519474+00:00] STEP START gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:31:57.507589+00:00] QUALITY FAIL gen/market_trends/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:31:57.508373+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:31:57.511148+00:00] STEP FAIL gen/market_trends/auto/anthropic/claude-opus-4-8/rep0: gen/market_trends/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:31:57.512633+00:00]   failure_count[gen/market_trends/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T02:31:57.513788+00:00] STEP START gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:33:07.569002+00:00] QUALITY FAIL gen/market_trends/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:33:07.569865+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:33:07.571187+00:00] STEP FAIL gen/market_trends/auto/google/gemini-3.1-pro/rep0: gen/market_trends/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:33:07.571705+00:00]   failure_count[gen/market_trends/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T02:33:07.572283+00:00] STEP START gen/market_trends/config
+[2026-06-13T02:33:07.572962+00:00] STEP OK gen/market_trends/config
+[2026-06-13T02:33:07.573332+00:00] STEP START gen/meal_plan/init
+[2026-06-13T02:33:07.576346+00:00] STEP OK gen/meal_plan/init
+[2026-06-13T02:33:07.576753+00:00] STEP START gen/meal_plan/aug/plain/rep0
+[2026-06-13T02:33:12.805353+00:00] QUALITY OK gen/meal_plan/aug/plain/rep0 rep chars=2621 attempt=1
+[2026-06-13T02:33:12.806316+00:00] STEP OK gen/meal_plan/aug/plain/rep0
+[2026-06-13T02:33:12.807121+00:00] STEP START gen/meal_plan/aug/gpt-4.1/rep0
+[2026-06-13T02:33:22.043449+00:00] QUALITY OK gen/meal_plan/aug/gpt-4.1/rep0 rep chars=2306 attempt=1
+[2026-06-13T02:33:22.044918+00:00] STEP OK gen/meal_plan/aug/gpt-4.1/rep0
+[2026-06-13T02:33:22.046000+00:00] STEP START gen/meal_plan/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:33:28.603509+00:00] QUALITY OK gen/meal_plan/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2965 attempt=1
+[2026-06-13T02:33:28.604761+00:00] STEP OK gen/meal_plan/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:33:28.605802+00:00] STEP START gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:36:58.510151+00:00] STEP FAIL gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T02:36:58.511360+00:00]   failure_count[gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:36:58.512238+00:00] STEP START gen/meal_plan/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:37:05.520564+00:00] QUALITY OK gen/meal_plan/aug/o4-mini-2025-04-16/rep0 rep chars=2479 attempt=1
+[2026-06-13T02:37:05.522266+00:00] STEP OK gen/meal_plan/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:37:05.523026+00:00] STEP START gen/meal_plan/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:37:11.343306+00:00] QUALITY OK gen/meal_plan/aug/o3-mini-2025-01-31/rep0 rep chars=2763 attempt=1
+[2026-06-13T02:37:11.344768+00:00] STEP OK gen/meal_plan/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:37:11.345817+00:00] STEP START gen/meal_plan/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:37:24.042879+00:00] QUALITY OK gen/meal_plan/aug/openai/gpt-oss-120b/rep0 rep chars=2531 attempt=1
+[2026-06-13T02:37:24.044666+00:00] STEP OK gen/meal_plan/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:37:24.045532+00:00] STEP START gen/meal_plan/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:37:38.990785+00:00] QUALITY OK gen/meal_plan/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=2657 attempt=1
+[2026-06-13T02:37:38.993507+00:00] STEP OK gen/meal_plan/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:37:38.995041+00:00] STEP START gen/meal_plan/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:38:07.461298+00:00] QUALITY OK gen/meal_plan/aug/anthropic/claude-opus-4-8/rep0 rep chars=2804 attempt=1
+[2026-06-13T02:38:07.462520+00:00] STEP OK gen/meal_plan/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:38:07.463377+00:00] STEP START gen/meal_plan/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:38:19.238375+00:00] QUALITY OK gen/meal_plan/aug/google/gemini-3.1-pro/rep0 rep chars=2188 attempt=1
+[2026-06-13T02:38:19.239674+00:00] STEP OK gen/meal_plan/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:38:19.240538+00:00] STEP START gen/meal_plan/variability_check
+[2026-06-13T02:38:19.262071+00:00] Variability meal_plan: 0 models, 0 issues
+[2026-06-13T02:38:19.262743+00:00] STEP OK gen/meal_plan/variability_check
+[2026-06-13T02:38:19.263576+00:00] STEP START gen/meal_plan/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:38:23.947710+00:00] QUALITY OK gen/meal_plan/auto/gpt-3.5-turbo/rep0 rep chars=2200 attempt=1
+[2026-06-13T02:38:23.948819+00:00] STEP OK gen/meal_plan/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:38:23.949569+00:00] STEP START gen/meal_plan/auto/gpt-4.1/rep0
+[2026-06-13T02:39:33.519996+00:00] QUALITY FAIL gen/meal_plan/auto/gpt-4.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:39:33.521412+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/gpt-4.1/rep0
+[2026-06-13T02:39:33.523845+00:00] STEP FAIL gen/meal_plan/auto/gpt-4.1/rep0: gen/meal_plan/auto/gpt-4.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:39:33.524972+00:00]   failure_count[gen/meal_plan/auto/gpt-4.1/rep0]=1
+[2026-06-13T02:39:33.525565+00:00] STEP START gen/meal_plan/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:39:34.358033+00:00] QUALITY OK gen/meal_plan/auto/gpt-5-mini-2025-08-07/rep0 rep chars=8034 attempt=1
+[2026-06-13T02:39:34.358419+00:00] STEP OK gen/meal_plan/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:39:34.358699+00:00] STEP START gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:40:44.537727+00:00] QUALITY FAIL gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:40:44.538253+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:40:44.539663+00:00] STEP FAIL gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:40:44.540191+00:00]   failure_count[gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:40:44.540618+00:00] STEP START gen/meal_plan/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:40:45.189461+00:00] QUALITY OK gen/meal_plan/auto/o4-mini-2025-04-16/rep0 rep chars=5279 attempt=1
+[2026-06-13T02:40:45.190822+00:00] STEP OK gen/meal_plan/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:40:45.191703+00:00] STEP START gen/meal_plan/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:40:46.043356+00:00] QUALITY OK gen/meal_plan/auto/o3-mini-2025-01-31/rep0 rep chars=8581 attempt=1
+[2026-06-13T02:40:46.043821+00:00] STEP OK gen/meal_plan/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:40:46.044136+00:00] STEP START gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:41:56.713944+00:00] QUALITY FAIL gen/meal_plan/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:41:56.714872+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:41:56.716521+00:00] STEP FAIL gen/meal_plan/auto/openai/gpt-oss-120b/rep0: gen/meal_plan/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:41:56.718134+00:00]   failure_count[gen/meal_plan/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T02:41:56.719463+00:00] STEP START gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:43:06.503294+00:00] QUALITY FAIL gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:43:06.504084+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:43:06.506539+00:00] STEP FAIL gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0: gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:43:06.507358+00:00]   failure_count[gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T02:43:06.507837+00:00] STEP START gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:44:16.494643+00:00] QUALITY FAIL gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:44:16.495250+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:44:16.497096+00:00] STEP FAIL gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0: gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:44:16.498533+00:00]   failure_count[gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T02:44:16.499562+00:00] STEP START gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:45:26.565838+00:00] QUALITY FAIL gen/meal_plan/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:45:26.566835+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:45:26.569986+00:00] STEP FAIL gen/meal_plan/auto/google/gemini-3.1-pro/rep0: gen/meal_plan/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:45:26.571823+00:00]   failure_count[gen/meal_plan/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T02:45:26.573868+00:00] STEP START gen/meal_plan/config
+[2026-06-13T02:45:26.575873+00:00] STEP OK gen/meal_plan/config
+[2026-06-13T02:45:26.576522+00:00] STEP START gen/operations_research/init
+[2026-06-13T02:45:26.579429+00:00] STEP OK gen/operations_research/init
+[2026-06-13T02:45:26.580002+00:00] STEP START gen/operations_research/aug/plain/rep0
+[2026-06-13T02:45:30.060195+00:00] QUALITY OK gen/operations_research/aug/plain/rep0 rep chars=1892 attempt=1
+[2026-06-13T02:45:30.061225+00:00] STEP OK gen/operations_research/aug/plain/rep0
+[2026-06-13T02:45:30.061905+00:00] STEP START gen/operations_research/aug/gpt-4.1/rep0
+[2026-06-13T02:45:37.473171+00:00] QUALITY OK gen/operations_research/aug/gpt-4.1/rep0 rep chars=1632 attempt=1
+[2026-06-13T02:45:37.474757+00:00] STEP OK gen/operations_research/aug/gpt-4.1/rep0
+[2026-06-13T02:45:37.475927+00:00] STEP START gen/operations_research/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:45:40.852754+00:00] QUALITY OK gen/operations_research/aug/gpt-5-mini-2025-08-07/rep0 rep chars=1445 attempt=1
+[2026-06-13T02:45:40.853214+00:00] STEP OK gen/operations_research/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:45:40.853520+00:00] STEP START gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:49:10.474385+00:00] STEP FAIL gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T02:49:10.475603+00:00]   failure_count[gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:49:10.476344+00:00] STEP START gen/operations_research/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:49:14.359139+00:00] QUALITY OK gen/operations_research/aug/o4-mini-2025-04-16/rep0 rep chars=1853 attempt=1
+[2026-06-13T02:49:14.360509+00:00] STEP OK gen/operations_research/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T02:49:14.361656+00:00] STEP START gen/operations_research/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:49:18.581700+00:00] QUALITY OK gen/operations_research/aug/o3-mini-2025-01-31/rep0 rep chars=1662 attempt=1
+[2026-06-13T02:49:18.583899+00:00] STEP OK gen/operations_research/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T02:49:18.585289+00:00] STEP START gen/operations_research/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:49:30.366174+00:00] QUALITY OK gen/operations_research/aug/openai/gpt-oss-120b/rep0 rep chars=1604 attempt=1
+[2026-06-13T02:49:30.368398+00:00] STEP OK gen/operations_research/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T02:49:30.369495+00:00] STEP START gen/operations_research/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:49:55.449713+00:00] QUALITY OK gen/operations_research/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=1638 attempt=1
+[2026-06-13T02:49:55.451313+00:00] STEP OK gen/operations_research/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:49:55.452270+00:00] STEP START gen/operations_research/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:50:09.886851+00:00] QUALITY OK gen/operations_research/aug/anthropic/claude-opus-4-8/rep0 rep chars=1517 attempt=1
+[2026-06-13T02:50:09.888248+00:00] STEP OK gen/operations_research/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:50:09.889504+00:00] STEP START gen/operations_research/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:50:19.640672+00:00] QUALITY OK gen/operations_research/aug/google/gemini-3.1-pro/rep0 rep chars=1661 attempt=1
+[2026-06-13T02:50:19.641691+00:00] STEP OK gen/operations_research/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T02:50:19.642665+00:00] STEP START gen/operations_research/variability_check
+[2026-06-13T02:50:19.662650+00:00] Variability operations_research: 0 models, 0 issues
+[2026-06-13T02:50:19.663747+00:00] STEP OK gen/operations_research/variability_check
+[2026-06-13T02:50:19.664565+00:00] STEP START gen/operations_research/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:50:22.383406+00:00] QUALITY OK gen/operations_research/auto/gpt-3.5-turbo/rep0 rep chars=1676 attempt=1
+[2026-06-13T02:50:22.384887+00:00] STEP OK gen/operations_research/auto/gpt-3.5-turbo/rep0
+[2026-06-13T02:50:22.386046+00:00] STEP START gen/operations_research/auto/gpt-4.1/rep0
+[2026-06-13T02:50:27.808352+00:00] QUALITY OK gen/operations_research/auto/gpt-4.1/rep0 rep chars=2999 attempt=1
+[2026-06-13T02:50:27.810215+00:00] STEP OK gen/operations_research/auto/gpt-4.1/rep0
+[2026-06-13T02:50:27.811414+00:00] STEP START gen/operations_research/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:50:28.600865+00:00] QUALITY OK gen/operations_research/auto/gpt-5-mini-2025-08-07/rep0 rep chars=3263 attempt=1
+[2026-06-13T02:50:28.601430+00:00] STEP OK gen/operations_research/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:50:28.601967+00:00] STEP START gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:51:38.502633+00:00] QUALITY FAIL gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:51:38.503280+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T02:51:38.505882+00:00] STEP FAIL gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:51:38.507195+00:00]   failure_count[gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T02:51:38.508642+00:00] STEP START gen/operations_research/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:51:39.035611+00:00] QUALITY OK gen/operations_research/auto/o4-mini-2025-04-16/rep0 rep chars=2632 attempt=1
+[2026-06-13T02:51:39.037057+00:00] STEP OK gen/operations_research/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T02:51:39.038730+00:00] STEP START gen/operations_research/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:51:39.843998+00:00] QUALITY OK gen/operations_research/auto/o3-mini-2025-01-31/rep0 rep chars=2859 attempt=1
+[2026-06-13T02:51:39.845380+00:00] STEP OK gen/operations_research/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T02:51:39.846864+00:00] STEP START gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:52:49.647070+00:00] QUALITY FAIL gen/operations_research/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:52:49.648076+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T02:52:49.650200+00:00] STEP FAIL gen/operations_research/auto/openai/gpt-oss-120b/rep0: gen/operations_research/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:52:49.650619+00:00]   failure_count[gen/operations_research/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T02:52:49.650976+00:00] STEP START gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:53:59.535088+00:00] QUALITY FAIL gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:53:59.535589+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T02:53:59.536492+00:00] STEP FAIL gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0: gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:53:59.536832+00:00]   failure_count[gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T02:53:59.537455+00:00] STEP START gen/operations_research/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:55:09.478917+00:00] QUALITY FAIL gen/operations_research/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:55:09.479660+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T02:55:09.481428+00:00] STEP FAIL gen/operations_research/auto/anthropic/claude-opus-4-8/rep0: gen/operations_research/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:55:09.484191+00:00]   failure_count[gen/operations_research/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T02:55:09.485778+00:00] STEP START gen/operations_research/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:56:19.488179+00:00] QUALITY FAIL gen/operations_research/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T02:56:19.489057+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T02:56:19.491590+00:00] STEP FAIL gen/operations_research/auto/google/gemini-3.1-pro/rep0: gen/operations_research/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T02:56:19.493458+00:00]   failure_count[gen/operations_research/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T02:56:19.494857+00:00] STEP START gen/operations_research/config
+[2026-06-13T02:56:19.495834+00:00] STEP OK gen/operations_research/config
+[2026-06-13T02:56:19.496394+00:00] STEP START gen/tax_prep/init
+[2026-06-13T02:56:19.499295+00:00] STEP OK gen/tax_prep/init
+[2026-06-13T02:56:19.500011+00:00] STEP START gen/tax_prep/aug/plain/rep0
+[2026-06-13T02:56:24.637018+00:00] QUALITY OK gen/tax_prep/aug/plain/rep0 rep chars=2489 attempt=1
+[2026-06-13T02:56:24.638476+00:00] STEP OK gen/tax_prep/aug/plain/rep0
+[2026-06-13T02:56:24.639425+00:00] STEP START gen/tax_prep/aug/gpt-4.1/rep0
+[2026-06-13T02:56:34.605869+00:00] QUALITY OK gen/tax_prep/aug/gpt-4.1/rep0 rep chars=3252 attempt=1
+[2026-06-13T02:56:34.608503+00:00] STEP OK gen/tax_prep/aug/gpt-4.1/rep0
+[2026-06-13T02:56:34.609885+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T02:56:39.718658+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2160
+[2026-06-13T02:56:43.611432+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2450
+[2026-06-13T02:56:47.302541+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1927
+[2026-06-13T02:56:47.304724+00:00] STEP FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T02:56:47.305843+00:00]   failure_count[gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0]=1
+[2026-06-13T02:56:47.307282+00:00] STEP START gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:00:17.493572+00:00] STEP FAIL gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T03:00:17.495348+00:00]   failure_count[gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:00:17.496359+00:00] STEP START gen/tax_prep/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T03:00:21.930371+00:00] QUALITY FAIL gen/tax_prep/aug/o4-mini-2025-04-16/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=1759
+[2026-06-13T03:00:27.228928+00:00] QUALITY FAIL gen/tax_prep/aug/o4-mini-2025-04-16/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2202
+[2026-06-13T03:00:31.873420+00:00] QUALITY FAIL gen/tax_prep/aug/o4-mini-2025-04-16/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2274
+[2026-06-13T03:00:31.875851+00:00] STEP FAIL gen/tax_prep/aug/o4-mini-2025-04-16/rep0: gen/tax_prep/aug/o4-mini-2025-04-16/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T03:00:31.876891+00:00]   failure_count[gen/tax_prep/aug/o4-mini-2025-04-16/rep0]=1
+[2026-06-13T03:00:31.878178+00:00] STEP START gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T03:00:37.231024+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=1/3 issues=['short_scaffold_output<2500', 'meta_scaffold_echo'] chars=2398
+[2026-06-13T03:00:44.076911+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=2/3 issues=['meta_scaffold_echo'] chars=2665
+[2026-06-13T03:00:49.905132+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=3/3 issues=['meta_scaffold_echo'] chars=2563
+[2026-06-13T03:00:49.907442+00:00] STEP FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0: gen/tax_prep/aug/o3-mini-2025-01-31/rep0 failed quality gate after 3 attempts: ['meta_scaffold_echo']
+[2026-06-13T03:00:49.908592+00:00]   failure_count[gen/tax_prep/aug/o3-mini-2025-01-31/rep0]=1
+[2026-06-13T03:00:49.909724+00:00] STEP START gen/tax_prep/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:01:05.592286+00:00] QUALITY OK gen/tax_prep/aug/openai/gpt-oss-120b/rep0 rep chars=2546 attempt=1
+[2026-06-13T03:01:05.594331+00:00] STEP OK gen/tax_prep/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:01:05.595645+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:01:45.756015+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2352
+[2026-06-13T03:02:25.541132+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500', 'missing_terms:schedule'] chars=2426
+[2026-06-13T03:04:02.655856+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1977
+[2026-06-13T03:04:02.658559+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T03:04:02.660422+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T03:04:02.661359+00:00] STEP START gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:04:40.616214+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=1922
+[2026-06-13T03:05:07.764948+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2420
+[2026-06-13T03:05:23.066011+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2239
+[2026-06-13T03:05:23.074849+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0: gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T03:05:23.078573+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T03:05:23.081532+00:00] STEP START gen/tax_prep/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T03:11:13.436668+00:00] STEP FAIL gen/tax_prep/aug/google/gemini-3.1-pro/rep0: Failed to generate valid scaffold from google/gemini-3.1-pro; errors=['empty']; preview=''
+[2026-06-13T03:11:13.437789+00:00]   failure_count[gen/tax_prep/aug/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T03:11:13.438694+00:00] STEP START gen/tax_prep/variability_check
+[2026-06-13T03:11:13.526319+00:00] Variability tax_prep: 0 models, 0 issues
+[2026-06-13T03:11:13.527162+00:00] STEP OK gen/tax_prep/variability_check
+[2026-06-13T03:11:13.527924+00:00] STEP START gen/tax_prep/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:11:18.045471+00:00] QUALITY OK gen/tax_prep/auto/gpt-3.5-turbo/rep0 rep chars=2282 attempt=1
+[2026-06-13T03:11:18.046853+00:00] STEP OK gen/tax_prep/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:11:18.048305+00:00] STEP START gen/tax_prep/auto/gpt-4.1/rep0
+[2026-06-13T03:12:28.519447+00:00] QUALITY FAIL gen/tax_prep/auto/gpt-4.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:12:28.519993+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/gpt-4.1/rep0
+[2026-06-13T03:12:28.521215+00:00] STEP FAIL gen/tax_prep/auto/gpt-4.1/rep0: gen/tax_prep/auto/gpt-4.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:12:28.521981+00:00]   failure_count[gen/tax_prep/auto/gpt-4.1/rep0]=1
+[2026-06-13T03:12:28.523009+00:00] STEP START gen/tax_prep/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:13:27.873245+00:00] QUALITY OK gen/tax_prep/auto/gpt-5-mini-2025-08-07/rep0 rep chars=13575 attempt=1
+[2026-06-13T03:13:27.876092+00:00] STEP OK gen/tax_prep/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:13:27.877521+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:14:38.458158+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:14:38.459229+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:14:38.461621+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:14:38.462898+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:14:38.465574+00:00] STEP START gen/tax_prep/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:15:03.905876+00:00] QUALITY OK gen/tax_prep/auto/o4-mini-2025-04-16/rep0 rep chars=6242 attempt=1
+[2026-06-13T03:15:03.908381+00:00] STEP OK gen/tax_prep/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:15:03.910131+00:00] STEP START gen/tax_prep/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:15:44.593154+00:00] QUALITY OK gen/tax_prep/auto/o3-mini-2025-01-31/rep0 rep chars=10911 attempt=1
+[2026-06-13T03:15:44.595331+00:00] STEP OK gen/tax_prep/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:15:44.596429+00:00] STEP START gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:16:54.457786+00:00] QUALITY FAIL gen/tax_prep/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:16:54.458474+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:16:54.460569+00:00] STEP FAIL gen/tax_prep/auto/openai/gpt-oss-120b/rep0: gen/tax_prep/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:16:54.462097+00:00]   failure_count[gen/tax_prep/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T03:16:54.463583+00:00] STEP START gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:18:04.478373+00:00] QUALITY FAIL gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:18:04.479233+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:18:04.480873+00:00] STEP FAIL gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:18:04.481515+00:00]   failure_count[gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T03:18:04.482151+00:00] STEP START gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:19:14.408462+00:00] QUALITY FAIL gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:19:14.409092+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:19:14.410793+00:00] STEP FAIL gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0: gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:19:14.411464+00:00]   failure_count[gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T03:19:14.413089+00:00] STEP START gen/tax_prep/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:20:24.609316+00:00] QUALITY FAIL gen/tax_prep/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:20:24.612586+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:20:24.614477+00:00] STEP FAIL gen/tax_prep/auto/google/gemini-3.1-pro/rep0: gen/tax_prep/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:20:24.617064+00:00]   failure_count[gen/tax_prep/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T03:20:24.618624+00:00] STEP START gen/tax_prep/config
+[2026-06-13T03:20:24.620393+00:00] STEP OK gen/tax_prep/config
+[2026-06-13T03:20:24.621201+00:00] STEP START gen/travel_planning/init
+[2026-06-13T03:20:24.625186+00:00] STEP OK gen/travel_planning/init
+[2026-06-13T03:20:24.625642+00:00] STEP START gen/travel_planning/aug/plain/rep0
+[2026-06-13T03:20:29.738373+00:00] QUALITY OK gen/travel_planning/aug/plain/rep0 rep chars=2028 attempt=1
+[2026-06-13T03:20:29.739336+00:00] STEP OK gen/travel_planning/aug/plain/rep0
+[2026-06-13T03:20:29.739923+00:00] STEP START gen/travel_planning/aug/gpt-4.1/rep0
+[2026-06-13T03:20:38.518457+00:00] QUALITY FAIL gen/travel_planning/aug/gpt-4.1/rep0 attempt=1/3 issues=['missing_terms:hotel'] chars=2168
+[2026-06-13T03:20:47.216808+00:00] QUALITY OK gen/travel_planning/aug/gpt-4.1/rep0 rep chars=2311 attempt=2
+[2026-06-13T03:20:47.218539+00:00] STEP OK gen/travel_planning/aug/gpt-4.1/rep0
+[2026-06-13T03:20:47.219455+00:00] STEP START gen/travel_planning/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:21:03.632920+00:00] QUALITY OK gen/travel_planning/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2011 attempt=1
+[2026-06-13T03:21:03.635136+00:00] STEP OK gen/travel_planning/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:21:03.636797+00:00] STEP START gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:24:34.999375+00:00] STEP FAIL gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T03:24:35.000687+00:00]   failure_count[gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:24:35.002057+00:00] STEP START gen/travel_planning/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T03:24:47.852183+00:00] QUALITY OK gen/travel_planning/aug/o4-mini-2025-04-16/rep0 rep chars=2153 attempt=1
+[2026-06-13T03:24:47.853115+00:00] STEP OK gen/travel_planning/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T03:24:47.853691+00:00] STEP START gen/travel_planning/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T03:24:57.270822+00:00] QUALITY OK gen/travel_planning/aug/o3-mini-2025-01-31/rep0 rep chars=1724 attempt=1
+[2026-06-13T03:24:57.272914+00:00] STEP OK gen/travel_planning/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T03:24:57.274281+00:00] STEP START gen/travel_planning/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:25:12.323216+00:00] QUALITY OK gen/travel_planning/aug/openai/gpt-oss-120b/rep0 rep chars=2262 attempt=1
+[2026-06-13T03:25:12.325038+00:00] STEP OK gen/travel_planning/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:25:12.326369+00:00] STEP START gen/travel_planning/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:25:40.408430+00:00] QUALITY FAIL gen/travel_planning/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['missing_terms:hotel'] chars=2352
+[2026-06-13T03:25:55.095702+00:00] QUALITY FAIL gen/travel_planning/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['missing_terms:itinerary'] chars=1824
+[2026-06-13T03:26:09.894154+00:00] QUALITY OK gen/travel_planning/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=2099 attempt=3
+[2026-06-13T03:26:09.896245+00:00] STEP OK gen/travel_planning/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:26:09.898394+00:00] STEP START gen/travel_planning/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:26:37.436806+00:00] QUALITY FAIL gen/travel_planning/aug/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['missing_terms:itinerary'] chars=1877
+[2026-06-13T03:26:52.249495+00:00] QUALITY OK gen/travel_planning/aug/anthropic/claude-opus-4-8/rep0 rep chars=1798 attempt=2
+[2026-06-13T03:26:52.255864+00:00] STEP OK gen/travel_planning/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:26:52.257588+00:00] STEP START gen/travel_planning/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T03:27:03.466620+00:00] QUALITY OK gen/travel_planning/aug/google/gemini-3.1-pro/rep0 rep chars=1974 attempt=1
+[2026-06-13T03:27:03.467515+00:00] STEP OK gen/travel_planning/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T03:27:03.468192+00:00] STEP START gen/travel_planning/variability_check
+[2026-06-13T03:27:03.482416+00:00] Variability travel_planning: 0 models, 0 issues
+[2026-06-13T03:27:03.483430+00:00] STEP OK gen/travel_planning/variability_check
+[2026-06-13T03:27:03.484629+00:00] STEP START gen/travel_planning/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:27:07.335547+00:00] QUALITY OK gen/travel_planning/auto/gpt-3.5-turbo/rep0 rep chars=1850 attempt=1
+[2026-06-13T03:27:07.337284+00:00] STEP OK gen/travel_planning/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:27:07.339017+00:00] STEP START gen/travel_planning/auto/gpt-4.1/rep0
+[2026-06-13T03:27:16.236454+00:00] QUALITY OK gen/travel_planning/auto/gpt-4.1/rep0 rep chars=4591 attempt=1
+[2026-06-13T03:27:16.238549+00:00] STEP OK gen/travel_planning/auto/gpt-4.1/rep0
+[2026-06-13T03:27:16.239889+00:00] STEP START gen/travel_planning/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:27:16.869650+00:00] QUALITY OK gen/travel_planning/auto/gpt-5-mini-2025-08-07/rep0 rep chars=8566 attempt=1
+[2026-06-13T03:27:16.870858+00:00] STEP OK gen/travel_planning/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:27:16.871588+00:00] STEP START gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:28:26.431761+00:00] QUALITY FAIL gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:28:26.432518+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:28:26.435233+00:00] STEP FAIL gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:28:26.436598+00:00]   failure_count[gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:28:26.449713+00:00] STEP START gen/travel_planning/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:28:46.860028+00:00] QUALITY OK gen/travel_planning/auto/o4-mini-2025-04-16/rep0 rep chars=1517 attempt=1
+[2026-06-13T03:28:46.862478+00:00] STEP OK gen/travel_planning/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:28:46.863537+00:00] STEP START gen/travel_planning/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:29:11.493022+00:00] QUALITY OK gen/travel_planning/auto/o3-mini-2025-01-31/rep0 rep chars=7482 attempt=1
+[2026-06-13T03:29:11.494393+00:00] STEP OK gen/travel_planning/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:29:11.495047+00:00] STEP START gen/travel_planning/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:30:21.385426+00:00] QUALITY FAIL gen/travel_planning/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:30:21.385972+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:30:21.388393+00:00] STEP FAIL gen/travel_planning/auto/openai/gpt-oss-120b/rep0: gen/travel_planning/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:30:21.389900+00:00]   failure_count[gen/travel_planning/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T03:30:21.390608+00:00] STEP START gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:31:31.425134+00:00] QUALITY FAIL gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:31:31.425584+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:31:31.428109+00:00] STEP FAIL gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0: gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:31:31.429377+00:00]   failure_count[gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T03:31:31.430512+00:00] STEP START gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:32:41.360753+00:00] QUALITY FAIL gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:32:41.361334+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:32:41.363018+00:00] STEP FAIL gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0: gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:32:41.363771+00:00]   failure_count[gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T03:32:41.364474+00:00] STEP START gen/travel_planning/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:33:51.396306+00:00] QUALITY FAIL gen/travel_planning/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:33:51.397156+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:33:51.399208+00:00] STEP FAIL gen/travel_planning/auto/google/gemini-3.1-pro/rep0: gen/travel_planning/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:33:51.400059+00:00]   failure_count[gen/travel_planning/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T03:33:51.400788+00:00] STEP START gen/travel_planning/config
+[2026-06-13T03:33:51.402087+00:00] STEP OK gen/travel_planning/config
+[2026-06-13T03:33:51.402689+00:00] STEP START gen/tutoring/init
+[2026-06-13T03:33:51.406357+00:00] STEP OK gen/tutoring/init
+[2026-06-13T03:33:51.406919+00:00] STEP START gen/tutoring/aug/plain/rep0
+[2026-06-13T03:33:55.032141+00:00] QUALITY OK gen/tutoring/aug/plain/rep0 rep chars=1638 attempt=1
+[2026-06-13T03:33:55.032898+00:00] STEP OK gen/tutoring/aug/plain/rep0
+[2026-06-13T03:33:55.033394+00:00] STEP START gen/tutoring/aug/gpt-4.1/rep0
+[2026-06-13T03:34:03.607660+00:00] QUALITY OK gen/tutoring/aug/gpt-4.1/rep0 rep chars=1519 attempt=1
+[2026-06-13T03:34:03.610436+00:00] STEP OK gen/tutoring/aug/gpt-4.1/rep0
+[2026-06-13T03:34:03.611118+00:00] STEP START gen/tutoring/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:34:16.478198+00:00] QUALITY OK gen/tutoring/aug/gpt-5-mini-2025-08-07/rep0 rep chars=1959 attempt=1
+[2026-06-13T03:34:16.480285+00:00] STEP OK gen/tutoring/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:34:16.483115+00:00] STEP START gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:37:46.366606+00:00] STEP FAIL gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T03:37:46.367621+00:00]   failure_count[gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:37:46.368752+00:00] STEP START gen/tutoring/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T03:37:55.830887+00:00] QUALITY OK gen/tutoring/aug/o4-mini-2025-04-16/rep0 rep chars=1477 attempt=1
+[2026-06-13T03:37:55.833277+00:00] STEP OK gen/tutoring/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T03:37:55.834465+00:00] STEP START gen/tutoring/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T03:38:03.972012+00:00] QUALITY OK gen/tutoring/aug/o3-mini-2025-01-31/rep0 rep chars=1697 attempt=1
+[2026-06-13T03:38:03.973855+00:00] STEP OK gen/tutoring/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T03:38:03.975000+00:00] STEP START gen/tutoring/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:39:42.409052+00:00] QUALITY OK gen/tutoring/aug/openai/gpt-oss-120b/rep0 rep chars=1921 attempt=1
+[2026-06-13T03:39:42.411788+00:00] STEP OK gen/tutoring/aug/openai/gpt-oss-120b/rep0
+[2026-06-13T03:39:42.414017+00:00] STEP START gen/tutoring/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:39:55.661898+00:00] QUALITY OK gen/tutoring/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=1575 attempt=1
+[2026-06-13T03:39:55.663943+00:00] STEP OK gen/tutoring/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:39:55.665113+00:00] STEP START gen/tutoring/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:40:20.590990+00:00] QUALITY OK gen/tutoring/aug/anthropic/claude-opus-4-8/rep0 rep chars=1471 attempt=1
+[2026-06-13T03:40:20.593564+00:00] STEP OK gen/tutoring/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:40:20.594899+00:00] STEP START gen/tutoring/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T03:40:32.048898+00:00] QUALITY OK gen/tutoring/aug/google/gemini-3.1-pro/rep0 rep chars=1779 attempt=1
+[2026-06-13T03:40:32.051127+00:00] STEP OK gen/tutoring/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T03:40:32.052516+00:00] STEP START gen/tutoring/variability_check
+[2026-06-13T03:40:32.071022+00:00] Variability tutoring: 0 models, 0 issues
+[2026-06-13T03:40:32.073001+00:00] STEP OK gen/tutoring/variability_check
+[2026-06-13T03:40:32.075917+00:00] STEP START gen/tutoring/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:40:35.105310+00:00] QUALITY OK gen/tutoring/auto/gpt-3.5-turbo/rep0 rep chars=1420 attempt=1
+[2026-06-13T03:40:35.106573+00:00] STEP OK gen/tutoring/auto/gpt-3.5-turbo/rep0
+[2026-06-13T03:40:35.107383+00:00] STEP START gen/tutoring/auto/gpt-4.1/rep0
+[2026-06-13T03:40:41.275197+00:00] QUALITY OK gen/tutoring/auto/gpt-4.1/rep0 rep chars=3018 attempt=1
+[2026-06-13T03:40:41.277554+00:00] STEP OK gen/tutoring/auto/gpt-4.1/rep0
+[2026-06-13T03:40:41.279470+00:00] STEP START gen/tutoring/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:40:41.820394+00:00] QUALITY OK gen/tutoring/auto/gpt-5-mini-2025-08-07/rep0 rep chars=6154 attempt=1
+[2026-06-13T03:40:41.822430+00:00] STEP OK gen/tutoring/auto/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T03:40:41.824127+00:00] STEP START gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:41:51.338774+00:00] QUALITY FAIL gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:41:51.339853+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:41:51.342621+00:00] STEP FAIL gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:41:51.343791+00:00]   failure_count[gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0]=1
+[2026-06-13T03:41:51.344653+00:00] STEP START gen/tutoring/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:42:00.745869+00:00] QUALITY OK gen/tutoring/auto/o4-mini-2025-04-16/rep0 rep chars=3200 attempt=1
+[2026-06-13T03:42:00.747884+00:00] STEP OK gen/tutoring/auto/o4-mini-2025-04-16/rep0
+[2026-06-13T03:42:00.749121+00:00] STEP START gen/tutoring/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:42:08.133333+00:00] QUALITY OK gen/tutoring/auto/o3-mini-2025-01-31/rep0 rep chars=3494 attempt=1
+[2026-06-13T03:42:08.135594+00:00] STEP OK gen/tutoring/auto/o3-mini-2025-01-31/rep0
+[2026-06-13T03:42:08.137019+00:00] STEP START gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:43:18.328669+00:00] QUALITY FAIL gen/tutoring/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:43:18.329236+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:43:18.331620+00:00] STEP FAIL gen/tutoring/auto/openai/gpt-oss-120b/rep0: gen/tutoring/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:43:18.332559+00:00]   failure_count[gen/tutoring/auto/openai/gpt-oss-120b/rep0]=1
+[2026-06-13T03:43:18.333957+00:00] STEP START gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:44:28.607149+00:00] QUALITY FAIL gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:44:28.608391+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:44:28.615353+00:00] STEP FAIL gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0: gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:44:28.617296+00:00]   failure_count[gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0]=1
+[2026-06-13T03:44:28.619478+00:00] STEP START gen/tutoring/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:45:38.418806+00:00] QUALITY FAIL gen/tutoring/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:45:38.419485+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:45:38.421408+00:00] STEP FAIL gen/tutoring/auto/anthropic/claude-opus-4-8/rep0: gen/tutoring/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:45:38.422361+00:00]   failure_count[gen/tutoring/auto/anthropic/claude-opus-4-8/rep0]=1
+[2026-06-13T03:45:38.423868+00:00] STEP START gen/tutoring/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:46:48.539956+00:00] QUALITY FAIL gen/tutoring/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:46:48.541040+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:46:48.543725+00:00] STEP FAIL gen/tutoring/auto/google/gemini-3.1-pro/rep0: gen/tutoring/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:46:48.545176+00:00]   failure_count[gen/tutoring/auto/google/gemini-3.1-pro/rep0]=1
+[2026-06-13T03:46:48.547815+00:00] STEP START gen/tutoring/config
+[2026-06-13T03:46:48.549224+00:00] STEP OK gen/tutoring/config
+[2026-06-13T03:46:48.550479+00:00] STEP START gen/repair
+[2026-06-13T03:46:48.626036+00:00] Repair round 1/5: 42 failing rows
+[2026-06-13T03:47:58.395859+00:00] QUALITY FAIL repair/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:47:58.397378+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for repair/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:47:58.401067+00:00] STEP FAIL gen/repair: repair/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:47:58.402105+00:00]   failure_count[gen/repair]=1
+[2026-06-13T03:47:58.404446+00:00] STEP START gen/final_audit
+[2026-06-13T03:47:58.483035+00:00] Final audit: 90/132 ok, 42 failing
+[2026-06-13T03:47:58.483169+00:00]   FAIL counselling/automation GPT-OSS-120B rep=0 ['short<250']
+[2026-06-13T03:47:58.483253+00:00]   FAIL counselling/automation Claude-Sonnet-4.6 rep=0 ['short<250']
+[2026-06-13T03:47:58.483328+00:00]   FAIL counselling/automation Claude-Opus-4.8 rep=0 ['short<250']
+[2026-06-13T03:47:58.483399+00:00]   FAIL counselling/automation Gemini-3.1-Pro rep=0 ['short<250']
+[2026-06-13T03:47:58.483553+00:00]   FAIL counselling/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T03:47:58.483664+00:00]   FAIL market_trends/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T03:47:58.483808+00:00]   FAIL market_trends/automation GPT-OSS-120B rep=0 ['short<250']
+[2026-06-13T03:47:58.483898+00:00]   FAIL market_trends/automation Claude-Sonnet-4.6 rep=0 ['short<250']
+[2026-06-13T03:47:58.483998+00:00]   FAIL market_trends/automation Claude-Opus-4.8 rep=0 ['short<250']
+[2026-06-13T03:47:58.484064+00:00]   FAIL market_trends/automation Gemini-3.1-Pro rep=0 ['short<250']
+[2026-06-13T03:47:58.484172+00:00]   FAIL meal_plan/automation GPT-4.1 rep=0 ['short<250']
+[2026-06-13T03:47:58.484268+00:00]   FAIL meal_plan/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T03:47:58.484362+00:00]   FAIL meal_plan/automation GPT-OSS-120B rep=0 ['short<250']
+[2026-06-13T03:47:58.484463+00:00]   FAIL meal_plan/automation Claude-Sonnet-4.6 rep=0 ['short<250']
+[2026-06-13T03:47:58.484537+00:00]   FAIL meal_plan/automation Claude-Opus-4.8 rep=0 ['short<250']
+[2026-06-13T03:47:58.484617+00:00]   FAIL meal_plan/automation Gemini-3.1-Pro rep=0 ['short<250']
+[2026-06-13T03:47:58.484681+00:00]   FAIL operations_research/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T03:47:58.484742+00:00]   FAIL operations_research/automation GPT-OSS-120B rep=0 ['short<250']
+[2026-06-13T03:47:58.484802+00:00]   FAIL operations_research/automation Claude-Sonnet-4.6 rep=0 ['short<250']
+[2026-06-13T03:47:58.485039+00:00]   FAIL operations_research/automation Claude-Opus-4.8 rep=0 ['short<250']
+[2026-06-13T03:47:58.486231+00:00] STEP FAIL gen/final_audit: Generation audit failed: 42 bad rows. Re-run with --phase generation (repair step will retry) or inspect /Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/logs/audit_20260612_fresh_rep2.json
+[2026-06-13T03:47:58.486734+00:00]   failure_count[gen/final_audit]=1
+[2026-06-13T03:47:58.487528+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T03:47:58.488637+00:00] Progress: 111/163 steps complete
+[2026-06-13T03:47:58.488745+00:00] Next pending: gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:47:58.488883+00:00] Failed steps: ['gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/counselling/auto/openai/gpt-oss-120b/rep0', 'gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/counselling/auto/anthropic/claude-opus-4-8/rep0', 'gen/counselling/auto/google/gemini-3.1-pro/rep0', 'gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/market_trends/auto/openai/gpt-oss-120b/rep0', 'gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/market_trends/auto/anthropic/claude-opus-4-8/rep0', 'gen/market_trends/auto/google/gemini-3.1-pro/rep0', 'gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/meal_plan/auto/gpt-4.1/rep0', 'gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/meal_plan/auto/openai/gpt-oss-120b/rep0', 'gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0', 'gen/meal_plan/auto/google/gemini-3.1-pro/rep0', 'gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/operations_research/auto/openai/gpt-oss-120b/rep0', 'gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/operations_research/auto/anthropic/claude-opus-4-8/rep0', 'gen/operations_research/auto/google/gemini-3.1-pro/rep0', 'gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 'gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/tax_prep/aug/o4-mini-2025-04-16/rep0', 'gen/tax_prep/aug/o3-mini-2025-01-31/rep0', 'gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 'gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0', 'gen/tax_prep/aug/google/gemini-3.1-pro/rep0', 'gen/tax_prep/auto/gpt-4.1/rep0', 'gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/tax_prep/auto/openai/gpt-oss-120b/rep0', 'gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0', 'gen/tax_prep/auto/google/gemini-3.1-pro/rep0', 'gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/travel_planning/auto/openai/gpt-oss-120b/rep0', 'gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0', 'gen/travel_planning/auto/google/gemini-3.1-pro/rep0', 'gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/tutoring/auto/openai/gpt-oss-120b/rep0', 'gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0', 'gen/tutoring/auto/anthropic/claude-opus-4-8/rep0', 'gen/tutoring/auto/google/gemini-3.1-pro/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T03:47:58.489070+00:00] Failure counts (hot): [('gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0', 1), ('gen/counselling/auto/anthropic/claude-opus-4-8/rep0', 1), ('gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0', 1), ('gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0', 1), ('gen/counselling/auto/google/gemini-3.1-pro/rep0', 1), ('gen/counselling/auto/openai/gpt-oss-120b/rep0', 1), ('gen/final_audit', 1), ('gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0', 1)]
+[2026-06-13T03:47:58.489535+00:00] Latest audit: 90/132 ok, 42 failing
+[2026-06-13T03:48:22.185360+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T03:48:22.215163+00:00] STEP START gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:51:56.415845+00:00] STEP FAIL gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T03:51:56.418461+00:00]   failure_count[gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T03:51:56.488978+00:00] STEP START gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:53:06.902456+00:00] QUALITY FAIL gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:53:06.902844+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T03:53:06.904593+00:00] STEP FAIL gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:53:06.905288+00:00]   failure_count[gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T03:53:06.908499+00:00] STEP START gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:54:16.412384+00:00] QUALITY FAIL gen/counselling/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:54:16.413045+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T03:54:16.416012+00:00] STEP FAIL gen/counselling/auto/openai/gpt-oss-120b/rep0: gen/counselling/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:54:16.417290+00:00]   failure_count[gen/counselling/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T03:54:16.418722+00:00] STEP START gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:55:26.429379+00:00] QUALITY FAIL gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:55:26.429973+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T03:55:26.435177+00:00] STEP FAIL gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0: gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:55:26.436346+00:00]   failure_count[gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0]=2
+[2026-06-13T03:55:26.437348+00:00] STEP START gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:56:36.422449+00:00] QUALITY FAIL gen/counselling/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:56:36.423402+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T03:56:36.427543+00:00] STEP FAIL gen/counselling/auto/anthropic/claude-opus-4-8/rep0: gen/counselling/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:56:36.429211+00:00]   failure_count[gen/counselling/auto/anthropic/claude-opus-4-8/rep0]=2
+[2026-06-13T03:56:36.430529+00:00] STEP START gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:57:46.480576+00:00] QUALITY FAIL gen/counselling/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T03:57:46.481719+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T03:57:46.484153+00:00] STEP FAIL gen/counselling/auto/google/gemini-3.1-pro/rep0: gen/counselling/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T03:57:46.485386+00:00]   failure_count[gen/counselling/auto/google/gemini-3.1-pro/rep0]=2
+[2026-06-13T03:57:46.495194+00:00] STEP START gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:01:16.611889+00:00] STEP FAIL gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T04:01:16.615332+00:00]   failure_count[gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:01:16.692959+00:00] STEP START gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:02:26.482555+00:00] QUALITY FAIL gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:02:26.483011+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:02:26.484141+00:00] STEP FAIL gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:02:26.484673+00:00]   failure_count[gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:02:26.487696+00:00] STEP START gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:03:36.404301+00:00] QUALITY FAIL gen/market_trends/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:03:36.405198+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:03:36.407333+00:00] STEP FAIL gen/market_trends/auto/openai/gpt-oss-120b/rep0: gen/market_trends/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:03:36.408460+00:00]   failure_count[gen/market_trends/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T04:03:36.409410+00:00] STEP START gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:04:46.413225+00:00] QUALITY FAIL gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:04:46.413720+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:04:46.415142+00:00] STEP FAIL gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0: gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:04:46.415896+00:00]   failure_count[gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0]=2
+[2026-06-13T04:04:46.416849+00:00] STEP START gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:05:56.688183+00:00] QUALITY FAIL gen/market_trends/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:05:56.688773+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:05:56.690886+00:00] STEP FAIL gen/market_trends/auto/anthropic/claude-opus-4-8/rep0: gen/market_trends/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:05:56.691857+00:00]   failure_count[gen/market_trends/auto/anthropic/claude-opus-4-8/rep0]=2
+[2026-06-13T04:05:56.692852+00:00] STEP START gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:07:06.466003+00:00] QUALITY FAIL gen/market_trends/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:07:06.467005+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:07:06.468512+00:00] STEP FAIL gen/market_trends/auto/google/gemini-3.1-pro/rep0: gen/market_trends/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:07:06.469177+00:00]   failure_count[gen/market_trends/auto/google/gemini-3.1-pro/rep0]=2
+[2026-06-13T04:07:06.478316+00:00] STEP START gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:10:36.521833+00:00] STEP FAIL gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T04:10:36.525181+00:00]   failure_count[gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:10:36.600450+00:00] STEP START gen/meal_plan/auto/gpt-4.1/rep0
+[2026-06-13T04:10:58.951348+00:00] QUALITY OK gen/meal_plan/auto/gpt-4.1/rep0 rep chars=4693 attempt=1
+[2026-06-13T04:10:58.953584+00:00] STEP OK gen/meal_plan/auto/gpt-4.1/rep0
+[2026-06-13T04:10:58.960573+00:00] STEP START gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:12:09.411102+00:00] QUALITY FAIL gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:12:09.411661+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:12:09.414668+00:00] STEP FAIL gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:12:09.415928+00:00]   failure_count[gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:12:09.422286+00:00] STEP START gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:13:19.398804+00:00] QUALITY FAIL gen/meal_plan/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:13:19.399745+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:13:19.402209+00:00] STEP FAIL gen/meal_plan/auto/openai/gpt-oss-120b/rep0: gen/meal_plan/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:13:19.403818+00:00]   failure_count[gen/meal_plan/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T04:13:19.404688+00:00] STEP START gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:14:29.456492+00:00] QUALITY FAIL gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:14:29.457618+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:14:29.462989+00:00] STEP FAIL gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0: gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:14:29.464668+00:00]   failure_count[gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0]=2
+[2026-06-13T04:14:29.466890+00:00] STEP START gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:15:39.644963+00:00] QUALITY FAIL gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:15:39.645630+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:15:39.647268+00:00] STEP FAIL gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0: gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:15:39.648027+00:00]   failure_count[gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0]=2
+[2026-06-13T04:15:39.648894+00:00] STEP START gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:16:49.419008+00:00] QUALITY FAIL gen/meal_plan/auto/google/gemini-3.1-pro/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:16:49.419895+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:16:49.424832+00:00] STEP FAIL gen/meal_plan/auto/google/gemini-3.1-pro/rep0: gen/meal_plan/auto/google/gemini-3.1-pro/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:16:49.427233+00:00]   failure_count[gen/meal_plan/auto/google/gemini-3.1-pro/rep0]=2
+[2026-06-13T04:16:49.435397+00:00] STEP START gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:20:19.358968+00:00] STEP FAIL gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0: Failed to generate valid scaffold from deepseek-ai/DeepSeek-V3.1; errors=['empty']; preview=''
+[2026-06-13T04:20:19.359625+00:00]   failure_count[gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:20:19.429269+00:00] STEP START gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:21:29.453462+00:00] QUALITY FAIL gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:21:29.453883+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:21:29.457400+00:00] STEP FAIL gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:21:29.458349+00:00]   failure_count[gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:21:29.462785+00:00] STEP START gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:22:39.449476+00:00] QUALITY FAIL gen/operations_research/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:22:39.450045+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:22:39.451558+00:00] STEP FAIL gen/operations_research/auto/openai/gpt-oss-120b/rep0: gen/operations_research/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:22:39.452381+00:00]   failure_count[gen/operations_research/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T04:22:39.453730+00:00] STEP START gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:23:49.366779+00:00] QUALITY FAIL gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:23:49.367713+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:23:49.369680+00:00] STEP FAIL gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0: gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:23:49.371008+00:00]   failure_count[gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0]=2
+[2026-06-13T04:23:49.372274+00:00] STEP START gen/operations_research/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:24:59.199673+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T04:24:59.225834+00:00] STEP START gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:25:37.943458+00:00] QUALITY OK gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=2712 attempt=1
+[2026-06-13T04:25:37.944405+00:00] STEP OK gen/counselling/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:25:37.952488+00:00] STEP START gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:26:53.315158+00:00] QUALITY OK gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=4127 attempt=1
+[2026-06-13T04:26:53.317302+00:00] STEP OK gen/counselling/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:26:53.325583+00:00] STEP START gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:27:24.494157+00:00] QUALITY OK gen/counselling/auto/openai/gpt-oss-120b/rep0 rep chars=5590 attempt=1
+[2026-06-13T04:27:24.497347+00:00] STEP OK gen/counselling/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:27:24.498001+00:00] STEP START gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:28:32.091982+00:00] QUALITY OK gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=11663 attempt=1
+[2026-06-13T04:28:32.094242+00:00] STEP OK gen/counselling/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:28:32.095513+00:00] STEP START gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:28:56.256790+00:00] QUALITY OK gen/counselling/auto/anthropic/claude-opus-4-8/rep0 rep chars=3852 attempt=1
+[2026-06-13T04:28:56.258650+00:00] STEP OK gen/counselling/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:28:56.260330+00:00] STEP START gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:29:20.301116+00:00] QUALITY OK gen/counselling/auto/google/gemini-3.1-pro/rep0 rep chars=4307 attempt=1
+[2026-06-13T04:29:20.303289+00:00] STEP OK gen/counselling/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:29:20.321040+00:00] STEP START gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:29:51.446620+00:00] QUALITY OK gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=2447 attempt=1
+[2026-06-13T04:29:51.449093+00:00] STEP OK gen/market_trends/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:29:51.466356+00:00] STEP START gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:31:20.010860+00:00] QUALITY OK gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=4548 attempt=1
+[2026-06-13T04:31:20.013506+00:00] STEP OK gen/market_trends/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:31:20.021221+00:00] STEP START gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:32:08.436829+00:00] QUALITY OK gen/market_trends/auto/openai/gpt-oss-120b/rep0 rep chars=3513 attempt=1
+[2026-06-13T04:32:08.439273+00:00] STEP OK gen/market_trends/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:32:08.440403+00:00] STEP START gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:32:48.942798+00:00] QUALITY OK gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=6594 attempt=1
+[2026-06-13T04:32:48.946896+00:00] STEP OK gen/market_trends/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:32:48.947956+00:00] STEP START gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:33:11.285289+00:00] QUALITY OK gen/market_trends/auto/anthropic/claude-opus-4-8/rep0 rep chars=3268 attempt=1
+[2026-06-13T04:33:11.287504+00:00] STEP OK gen/market_trends/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:33:11.288677+00:00] STEP START gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:33:37.534725+00:00] QUALITY OK gen/market_trends/auto/google/gemini-3.1-pro/rep0 rep chars=4239 attempt=1
+[2026-06-13T04:33:37.538486+00:00] STEP OK gen/market_trends/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:33:37.552390+00:00] STEP START gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:34:20.517632+00:00] QUALITY OK gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=2248 attempt=1
+[2026-06-13T04:34:20.519462+00:00] STEP OK gen/meal_plan/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:34:20.537627+00:00] STEP START gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:36:59.979581+00:00] QUALITY OK gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=6579 attempt=1
+[2026-06-13T04:36:59.981810+00:00] STEP OK gen/meal_plan/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:36:59.991629+00:00] STEP START gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:38:25.854350+00:00] QUALITY OK gen/meal_plan/auto/openai/gpt-oss-120b/rep0 rep chars=8596 attempt=1
+[2026-06-13T04:38:25.857212+00:00] STEP OK gen/meal_plan/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:38:25.858334+00:00] STEP START gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:40:10.036464+00:00] QUALITY OK gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=17226 attempt=1
+[2026-06-13T04:40:10.038723+00:00] STEP OK gen/meal_plan/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:40:10.040134+00:00] STEP START gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:40:41.199385+00:00] QUALITY OK gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0 rep chars=4442 attempt=1
+[2026-06-13T04:40:41.201440+00:00] STEP OK gen/meal_plan/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:40:41.202892+00:00] STEP START gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:41:18.975736+00:00] QUALITY OK gen/meal_plan/auto/google/gemini-3.1-pro/rep0 rep chars=5812 attempt=1
+[2026-06-13T04:41:18.978805+00:00] STEP OK gen/meal_plan/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:41:18.995204+00:00] STEP START gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:42:11.377195+00:00] QUALITY OK gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=1408 attempt=1
+[2026-06-13T04:42:11.382416+00:00] STEP OK gen/operations_research/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:42:11.396183+00:00] STEP START gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:43:27.115582+00:00] QUALITY OK gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=3153 attempt=1
+[2026-06-13T04:43:27.117186+00:00] STEP OK gen/operations_research/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:43:27.122140+00:00] STEP START gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:43:51.289711+00:00] QUALITY OK gen/operations_research/auto/openai/gpt-oss-120b/rep0 rep chars=4414 attempt=1
+[2026-06-13T04:43:51.291699+00:00] STEP OK gen/operations_research/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:43:51.293260+00:00] STEP START gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:44:13.329687+00:00] QUALITY OK gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=2985 attempt=1
+[2026-06-13T04:44:13.331809+00:00] STEP OK gen/operations_research/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:44:13.332651+00:00] STEP START gen/operations_research/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:44:34.091475+00:00] QUALITY OK gen/operations_research/auto/anthropic/claude-opus-4-8/rep0 rep chars=3123 attempt=1
+[2026-06-13T04:44:34.093524+00:00] STEP OK gen/operations_research/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:44:34.095691+00:00] STEP START gen/operations_research/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:44:53.610127+00:00] QUALITY OK gen/operations_research/auto/google/gemini-3.1-pro/rep0 rep chars=2956 attempt=1
+[2026-06-13T04:44:53.611850+00:00] STEP OK gen/operations_research/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T04:44:53.621317+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T04:45:14.460974+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2117
+[2026-06-13T04:45:36.263162+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2097
+[2026-06-13T04:46:01.448585+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2349
+[2026-06-13T04:46:01.455880+00:00] STEP FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T04:46:01.457475+00:00]   failure_count[gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0]=2
+[2026-06-13T04:46:01.458613+00:00] STEP START gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:46:44.191941+00:00] QUALITY OK gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=2613 attempt=1
+[2026-06-13T04:46:44.193801+00:00] STEP OK gen/tax_prep/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:46:44.194688+00:00] STEP START gen/tax_prep/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T04:47:00.696502+00:00] QUALITY FAIL gen/tax_prep/aug/o4-mini-2025-04-16/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=1753
+[2026-06-13T04:47:19.254237+00:00] QUALITY OK gen/tax_prep/aug/o4-mini-2025-04-16/rep0 rep chars=3804 attempt=2
+[2026-06-13T04:47:19.255737+00:00] STEP OK gen/tax_prep/aug/o4-mini-2025-04-16/rep0
+[2026-06-13T04:47:19.256488+00:00] STEP START gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T04:47:35.534087+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=1/3 issues=['meta_scaffold_echo'] chars=3178
+[2026-06-13T04:47:51.401356+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2429
+[2026-06-13T04:48:08.564203+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2315
+[2026-06-13T04:48:08.573468+00:00] STEP FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0: gen/tax_prep/aug/o3-mini-2025-01-31/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T04:48:08.574237+00:00]   failure_count[gen/tax_prep/aug/o3-mini-2025-01-31/rep0]=2
+[2026-06-13T04:48:08.574917+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T04:48:31.473636+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2288
+[2026-06-13T04:48:54.252220+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2362
+[2026-06-13T04:49:17.444467+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1941
+[2026-06-13T04:49:17.451205+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T04:49:17.452336+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0]=2
+[2026-06-13T04:49:17.453135+00:00] STEP START gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T04:49:40.817090+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2438
+[2026-06-13T04:50:03.838388+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=2/3 issues=['missing_terms:federal'] chars=2608
+[2026-06-13T04:50:25.799868+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2322
+[2026-06-13T04:50:25.802525+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0: gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T04:50:25.804197+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0]=2
+[2026-06-13T04:50:25.805410+00:00] STEP START gen/tax_prep/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T04:50:54.570628+00:00] QUALITY OK gen/tax_prep/aug/google/gemini-3.1-pro/rep0 rep chars=2785 attempt=1
+[2026-06-13T04:50:54.572284+00:00] STEP OK gen/tax_prep/aug/google/gemini-3.1-pro/rep0
+[2026-06-13T04:50:54.580132+00:00] STEP START gen/tax_prep/auto/gpt-4.1/rep0
+[2026-06-13T04:51:13.849790+00:00] QUALITY OK gen/tax_prep/auto/gpt-4.1/rep0 rep chars=8388 attempt=1
+[2026-06-13T04:51:13.851427+00:00] STEP OK gen/tax_prep/auto/gpt-4.1/rep0
+[2026-06-13T04:51:13.859170+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:54:38.546071+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:54:38.546842+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T04:54:38.549778+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:54:38.550237+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T04:54:38.557233+00:00] STEP START gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:58:02.843362+00:00] QUALITY FAIL gen/tax_prep/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T04:58:02.843894+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T04:58:02.847827+00:00] STEP FAIL gen/tax_prep/auto/openai/gpt-oss-120b/rep0: gen/tax_prep/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T04:58:02.848250+00:00]   failure_count[gen/tax_prep/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T04:58:02.848923+00:00] STEP START gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:01:02.397362+00:00] QUALITY OK gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=32550 attempt=1
+[2026-06-13T05:01:02.398574+00:00] STEP OK gen/tax_prep/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:01:02.398981+00:00] STEP START gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:01:50.312117+00:00] QUALITY OK gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0 rep chars=8749 attempt=1
+[2026-06-13T05:01:50.313680+00:00] STEP OK gen/tax_prep/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:01:50.314626+00:00] STEP START gen/tax_prep/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:02:30.971185+00:00] QUALITY OK gen/tax_prep/auto/google/gemini-3.1-pro/rep0 rep chars=6274 attempt=1
+[2026-06-13T05:02:30.973405+00:00] STEP OK gen/tax_prep/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:02:30.984825+00:00] STEP START gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:03:17.951744+00:00] QUALITY OK gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=2298 attempt=1
+[2026-06-13T05:03:17.953204+00:00] STEP OK gen/travel_planning/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:03:17.976630+00:00] STEP START gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:06:41.184970+00:00] QUALITY FAIL gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T05:06:41.185752+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:06:41.187957+00:00] STEP FAIL gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T05:06:41.188769+00:00]   failure_count[gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0]=2
+[2026-06-13T05:06:41.195086+00:00] STEP START gen/travel_planning/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:09:55.852372+00:00] QUALITY OK gen/travel_planning/auto/openai/gpt-oss-120b/rep0 rep chars=9271 attempt=1
+[2026-06-13T05:09:55.854229+00:00] STEP OK gen/travel_planning/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:09:55.854858+00:00] STEP START gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:11:34.913527+00:00] QUALITY OK gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=13685 attempt=1
+[2026-06-13T05:11:34.915386+00:00] STEP OK gen/travel_planning/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:11:34.915742+00:00] STEP START gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:12:09.285955+00:00] QUALITY OK gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0 rep chars=4681 attempt=1
+[2026-06-13T05:12:09.288539+00:00] STEP OK gen/travel_planning/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:12:09.291513+00:00] STEP START gen/travel_planning/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:12:44.393793+00:00] QUALITY OK gen/travel_planning/auto/google/gemini-3.1-pro/rep0 rep chars=6742 attempt=1
+[2026-06-13T05:12:44.395175+00:00] STEP OK gen/travel_planning/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:12:44.405330+00:00] STEP START gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:13:29.957818+00:00] QUALITY OK gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=1967 attempt=1
+[2026-06-13T05:13:29.959771+00:00] STEP OK gen/tutoring/aug/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:13:29.976784+00:00] STEP START gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:15:38.238479+00:00] QUALITY FAIL gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['likely_hard_truncation', 'ends_with_punctuation_gap'] chars=5639
+[2026-06-13T05:17:47.282657+00:00] QUALITY OK gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=5118 attempt=2
+[2026-06-13T05:17:47.284252+00:00] STEP OK gen/tutoring/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:17:47.288068+00:00] STEP START gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:21:10.908940+00:00] QUALITY FAIL gen/tutoring/auto/openai/gpt-oss-120b/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T05:21:10.909562+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:21:10.913472+00:00] STEP FAIL gen/tutoring/auto/openai/gpt-oss-120b/rep0: gen/tutoring/auto/openai/gpt-oss-120b/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T05:21:10.913989+00:00]   failure_count[gen/tutoring/auto/openai/gpt-oss-120b/rep0]=2
+[2026-06-13T05:21:10.914695+00:00] STEP START gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:22:57.026502+00:00] QUALITY OK gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0 rep chars=18010 attempt=1
+[2026-06-13T05:22:57.028852+00:00] STEP OK gen/tutoring/auto/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:22:57.029216+00:00] STEP START gen/tutoring/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:25:06.914027+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T05:25:07.072284+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T05:25:38.211053+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500', 'missing_terms:schedule'] chars=2141
+[2026-06-13T05:26:00.259534+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=1975
+[2026-06-13T05:26:25.169405+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1867
+[2026-06-13T05:26:25.172995+00:00] STEP FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:26:25.174725+00:00]   failure_count[gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0]=3
+[2026-06-13T05:26:25.180194+00:00] STEP START gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T05:26:41.920077+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2041
+[2026-06-13T05:26:58.176061+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=2/3 issues=['meta_scaffold_echo'] chars=2650
+[2026-06-13T05:27:15.207493+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1827
+[2026-06-13T05:27:15.209838+00:00] STEP FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0: gen/tax_prep/aug/o3-mini-2025-01-31/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:27:15.210753+00:00]   failure_count[gen/tax_prep/aug/o3-mini-2025-01-31/rep0]=3
+[2026-06-13T05:27:15.211703+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:27:39.516365+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2134
+[2026-06-13T05:28:05.028661+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2237
+[2026-06-13T05:28:28.259091+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500', 'missing_terms:schedule'] chars=2495
+[2026-06-13T05:28:28.261572+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500', 'missing_terms:schedule']
+[2026-06-13T05:28:28.262772+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0]=3
+[2026-06-13T05:28:28.263486+00:00] STEP START gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:28:51.583816+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=1650
+[2026-06-13T05:29:14.096954+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2147
+[2026-06-13T05:29:35.907475+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2485
+[2026-06-13T05:29:35.910127+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0: gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:29:35.910894+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0]=3
+[2026-06-13T05:29:35.930629+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:32:59.428809+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T05:32:59.429556+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:32:59.431129+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T05:32:59.431756+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=3
+[2026-06-13T05:32:59.439053+00:00] STEP START gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:35:22.342531+00:00] QUALITY OK gen/tax_prep/auto/openai/gpt-oss-120b/rep0 rep chars=13104 attempt=1
+[2026-06-13T05:35:22.344454+00:00] STEP OK gen/tax_prep/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:35:22.371403+00:00] STEP START gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:38:23.434946+00:00] QUALITY OK gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0 rep chars=7151 attempt=1
+[2026-06-13T05:38:23.437088+00:00] STEP OK gen/travel_planning/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:38:23.467593+00:00] STEP START gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:38:40.373185+00:00] QUALITY OK gen/tutoring/auto/openai/gpt-oss-120b/rep0 rep chars=7195 attempt=1
+[2026-06-13T05:38:40.374730+00:00] STEP OK gen/tutoring/auto/openai/gpt-oss-120b/rep0
+[2026-06-13T05:38:40.375652+00:00] STEP START gen/tutoring/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:39:10.633787+00:00] QUALITY OK gen/tutoring/auto/anthropic/claude-opus-4-8/rep0 rep chars=4305 attempt=1
+[2026-06-13T05:39:10.635923+00:00] STEP OK gen/tutoring/auto/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:39:10.636291+00:00] STEP START gen/tutoring/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:39:37.756906+00:00] QUALITY OK gen/tutoring/auto/google/gemini-3.1-pro/rep0 rep chars=4978 attempt=1
+[2026-06-13T05:39:37.758422+00:00] STEP OK gen/tutoring/auto/google/gemini-3.1-pro/rep0
+[2026-06-13T05:39:37.759171+00:00] STEP START gen/repair
+[2026-06-13T05:39:37.901710+00:00] Repair round 1/5: 5 failing rows
+[2026-06-13T05:39:59.530108+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2074
+[2026-06-13T05:40:24.017351+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2098
+[2026-06-13T05:40:51.242252+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2325
+[2026-06-13T05:40:51.250920+00:00] STEP FAIL gen/repair: repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:40:51.252589+00:00]   failure_count[gen/repair]=2
+[2026-06-13T05:40:51.253500+00:00] STEP START gen/final_audit
+[2026-06-13T05:40:51.349827+00:00] Final audit: 135/140 ok, 5 failing
+[2026-06-13T05:40:51.349972+00:00]   FAIL tax_prep/augmentation GPT-O3-Mini rep=0 ['short_scaffold_output<2500']
+[2026-06-13T05:40:51.350056+00:00]   FAIL tax_prep/augmentation Claude-Sonnet-4.6 rep=0 ['short_scaffold_output<2500', 'missing_terms:schedule']
+[2026-06-13T05:40:51.350134+00:00]   FAIL tax_prep/augmentation Claude-Opus-4.8 rep=0 ['short_scaffold_output<2500']
+[2026-06-13T05:40:51.350210+00:00]   FAIL tax_prep/augmentation GPT-5-Mini rep=0 ['short_scaffold_output<2500']
+[2026-06-13T05:40:51.350287+00:00]   FAIL tax_prep/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T05:40:51.350931+00:00] STEP FAIL gen/final_audit: Generation audit failed: 5 bad rows. Re-run with --phase generation (repair step will retry) or inspect /Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/logs/audit_20260612_fresh_rep2.json
+[2026-06-13T05:40:51.351471+00:00]   failure_count[gen/final_audit]=2
+[2026-06-13T05:40:51.351741+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T05:40:51.351857+00:00] Progress: 156/163 steps complete
+[2026-06-13T05:40:51.351948+00:00] Next pending: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T05:40:51.352066+00:00] Failed steps: ['gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 'gen/tax_prep/aug/o3-mini-2025-01-31/rep0', 'gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 'gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0', 'gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T05:40:51.352243+00:00] Failure counts (hot): [('gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0', 3), ('gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 3), ('gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 3), ('gen/tax_prep/aug/o3-mini-2025-01-31/rep0', 3), ('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 3), ('gen/final_audit', 2), ('gen/repair', 2)]
+[2026-06-13T05:40:51.352653+00:00] Latest audit: 135/140 ok, 5 failing
+[2026-06-13T05:48:11.693327+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T05:48:11.786474+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T05:48:40.242648+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2448
+[2026-06-13T05:49:04.436861+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2227
+[2026-06-13T05:49:32.565953+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2217
+[2026-06-13T05:49:32.587990+00:00] STEP FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:49:32.589152+00:00]   failure_count[gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0]=4
+[2026-06-13T05:49:32.608885+00:00] STEP START gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T05:49:49.539904+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2022
+[2026-06-13T05:50:06.410731+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=1711
+[2026-06-13T05:50:23.958485+00:00] QUALITY FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2133
+[2026-06-13T05:50:23.962870+00:00] STEP FAIL gen/tax_prep/aug/o3-mini-2025-01-31/rep0: gen/tax_prep/aug/o3-mini-2025-01-31/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:50:23.963626+00:00]   failure_count[gen/tax_prep/aug/o3-mini-2025-01-31/rep0]=4
+[2026-06-13T05:50:23.964107+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T05:50:46.680035+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2397
+[2026-06-13T05:51:09.186487+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2099
+[2026-06-13T05:51:32.561227+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2024
+[2026-06-13T05:51:32.566780+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:51:32.567472+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0]=4
+[2026-06-13T05:51:32.568089+00:00] STEP START gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:51:56.797873+00:00] QUALITY OK gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0 rep chars=2809 attempt=1
+[2026-06-13T05:51:56.799440+00:00] STEP OK gen/tax_prep/aug/anthropic/claude-opus-4-8/rep0
+[2026-06-13T05:51:56.815168+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:55:20.192439+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T05:55:20.193178+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T05:55:20.194590+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T05:55:20.195106+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=4
+[2026-06-13T05:55:20.240319+00:00] STEP START gen/repair
+[2026-06-13T05:55:20.325954+00:00] Repair round 1/5: 4 failing rows
+[2026-06-13T05:55:43.268063+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2270
+[2026-06-13T05:56:08.839974+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2360
+[2026-06-13T05:56:30.900675+00:00] QUALITY OK repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2591 attempt=3
+[2026-06-13T05:56:48.729492+00:00] QUALITY OK repair/tax_prep/aug/o3-mini-2025-01-31/rep0 rep chars=2797 attempt=1
+[2026-06-13T05:57:13.957943+00:00] QUALITY FAIL repair/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2446
+[2026-06-13T05:57:36.939595+00:00] QUALITY FAIL repair/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2164
+[2026-06-13T05:58:01.142208+00:00] QUALITY FAIL repair/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1752
+[2026-06-13T05:58:01.150459+00:00] STEP FAIL gen/repair: repair/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T05:58:01.152932+00:00]   failure_count[gen/repair]=3
+[2026-06-13T05:58:01.154673+00:00] STEP START gen/final_audit
+[2026-06-13T05:58:01.277812+00:00] Final audit: 138/140 ok, 2 failing
+[2026-06-13T05:58:01.277937+00:00]   FAIL tax_prep/augmentation Claude-Sonnet-4.6 rep=0 ['short_scaffold_output<2500']
+[2026-06-13T05:58:01.278015+00:00]   FAIL tax_prep/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T05:58:01.278673+00:00] STEP FAIL gen/final_audit: Generation audit failed: 2 bad rows. Re-run with --phase generation (repair step will retry) or inspect /Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/logs/audit_20260612_fresh_rep2.json
+[2026-06-13T05:58:01.279052+00:00]   failure_count[gen/final_audit]=3
+[2026-06-13T05:58:01.279147+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T05:58:01.279240+00:00] Progress: 157/163 steps complete
+[2026-06-13T05:58:01.279315+00:00] Next pending: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T05:58:01.279431+00:00] Failed steps: ['gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 'gen/tax_prep/aug/o3-mini-2025-01-31/rep0', 'gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 'gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T05:58:01.279713+00:00] Failure counts (hot): [('gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 4), ('gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 4), ('gen/tax_prep/aug/o3-mini-2025-01-31/rep0', 4), ('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 4), ('gen/final_audit', 3), ('gen/repair', 3)]
+[2026-06-13T05:58:01.280181+00:00] Latest audit: 138/140 ok, 2 failing
+[2026-06-13T06:09:33.443735+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T06:09:33.580558+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T06:10:04.960926+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2097
+[2026-06-13T06:10:46.102221+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2204
+[2026-06-13T06:11:11.200113+00:00] QUALITY FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2418
+[2026-06-13T06:11:11.258936+00:00] STEP FAIL gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T06:11:11.259397+00:00]   failure_count[gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0]=5
+[2026-06-13T06:11:11.283224+00:00] STEP START gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T06:11:29.720905+00:00] QUALITY OK gen/tax_prep/aug/o3-mini-2025-01-31/rep0 rep chars=3173 attempt=1
+[2026-06-13T06:11:29.721848+00:00] STEP OK gen/tax_prep/aug/o3-mini-2025-01-31/rep0
+[2026-06-13T06:11:29.722213+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T06:11:51.479186+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2171
+[2026-06-13T06:12:15.347488+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=1721
+[2026-06-13T06:12:41.315455+00:00] QUALITY FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=1952
+[2026-06-13T06:12:41.317613+00:00] STEP FAIL gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0: gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T06:12:41.318622+00:00]   failure_count[gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0]=5
+[2026-06-13T06:12:41.338717+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:16:04.909435+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T06:16:04.909953+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:16:04.910690+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T06:16:04.910970+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=5
+[2026-06-13T06:16:04.955465+00:00] STEP START gen/repair
+[2026-06-13T06:16:05.080751+00:00] Repair round 1/5: 3 failing rows
+[2026-06-13T06:16:27.908453+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=1/3 issues=['short_scaffold_output<2500'] chars=2041
+[2026-06-13T06:16:51.476536+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=2/3 issues=['short_scaffold_output<2500'] chars=2044
+[2026-06-13T06:17:15.097828+00:00] QUALITY FAIL repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 attempt=3/3 issues=['short_scaffold_output<2500'] chars=2372
+[2026-06-13T06:17:15.104187+00:00] STEP FAIL gen/repair: repair/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 failed quality gate after 3 attempts: ['short_scaffold_output<2500']
+[2026-06-13T06:17:15.104728+00:00]   failure_count[gen/repair]=4
+[2026-06-13T06:17:15.105463+00:00] STEP START gen/final_audit
+[2026-06-13T06:17:15.208144+00:00] Final audit: 137/140 ok, 3 failing
+[2026-06-13T06:17:15.208258+00:00]   FAIL tax_prep/augmentation Claude-Sonnet-4.6 rep=0 ['short_scaffold_output<2500']
+[2026-06-13T06:17:15.208338+00:00]   FAIL tax_prep/augmentation GPT-5-Mini rep=0 ['short_scaffold_output<2500']
+[2026-06-13T06:17:15.208412+00:00]   FAIL tax_prep/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T06:17:15.209103+00:00] STEP FAIL gen/final_audit: Generation audit failed: 3 bad rows. Re-run with --phase generation (repair step will retry) or inspect /Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/logs/audit_20260612_fresh_rep2.json
+[2026-06-13T06:17:15.209509+00:00]   failure_count[gen/final_audit]=4
+[2026-06-13T06:17:15.209601+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T06:17:15.209767+00:00] Progress: 158/163 steps complete
+[2026-06-13T06:17:15.209866+00:00] Next pending: gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T06:17:15.209947+00:00] Failed steps: ['gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 'gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 'gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T06:17:15.210027+00:00] Failure counts (hot): [('gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0', 5), ('gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0', 5), ('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 5), ('gen/final_audit', 4), ('gen/repair', 4)]
+[2026-06-13T06:17:15.210373+00:00] Latest audit: 137/140 ok, 3 failing
+[2026-06-13T06:25:46.280141+00:00] Starting batch phase=generation (163 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T06:25:46.443063+00:00] STEP START gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T06:26:18.270233+00:00] QUALITY OK gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0 rep chars=2479 attempt=1
+[2026-06-13T06:26:18.270985+00:00] STEP OK gen/tax_prep/aug/gpt-5-mini-2025-08-07/rep0
+[2026-06-13T06:26:18.274894+00:00] STEP START gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T06:26:43.447874+00:00] QUALITY OK gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0 rep chars=2276 attempt=1
+[2026-06-13T06:26:43.448699+00:00] STEP OK gen/tax_prep/aug/anthropic/claude-sonnet-4-6/rep0
+[2026-06-13T06:26:43.461043+00:00] STEP START gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:30:07.297483+00:00] QUALITY FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T06:30:07.298294+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:30:07.300439+00:00] STEP FAIL gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T06:30:07.300693+00:00]   failure_count[gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0]=6
+[2026-06-13T06:30:07.338313+00:00] STEP START gen/repair
+[2026-06-13T06:30:07.424929+00:00] Repair round 1/5: 1 failing rows
+[2026-06-13T06:33:32.392297+00:00] QUALITY FAIL repair/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 attempt=1/3 issues=['short<250'] chars=3
+[2026-06-13T06:33:32.393055+00:00]   upstream API failure (proxy timeout) — skipping remaining retries for repair/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:33:32.397785+00:00] STEP FAIL gen/repair: repair/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0 failed quality gate after 3 attempts: ['short<250']
+[2026-06-13T06:33:32.398215+00:00]   failure_count[gen/repair]=5
+[2026-06-13T06:33:32.398867+00:00] STEP START gen/final_audit
+[2026-06-13T06:33:32.508965+00:00] Final audit: 139/140 ok, 1 failing
+[2026-06-13T06:33:32.509136+00:00]   FAIL tax_prep/automation DeepSeek-V3.1 rep=0 ['short<250']
+[2026-06-13T06:33:32.509866+00:00] STEP FAIL gen/final_audit: Generation audit failed: 1 bad rows. Re-run with --phase generation (repair step will retry) or inspect /Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/logs/audit_20260612_fresh_rep2.json
+[2026-06-13T06:33:32.510171+00:00]   failure_count[gen/final_audit]=5
+[2026-06-13T06:33:32.510282+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T06:33:32.510393+00:00] Progress: 160/163 steps complete
+[2026-06-13T06:33:32.510526+00:00] Next pending: gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0
+[2026-06-13T06:33:32.510618+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T06:33:32.510699+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T06:33:32.511055+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T07:55:49.245198+00:00] Progress: 0/15 steps complete
+[2026-06-13T07:55:49.245611+00:00] Next pending: judge/counselling/augmentation
+[2026-06-13T07:55:49.245746+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T07:55:49.245856+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T07:55:49.246480+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T08:40:25.186464+00:00] EDSL mode: local API proxy
+[2026-06-13T08:40:25.290548+00:00] Starting batch phase=judge (15 steps, max_retries=3, repair_rounds=5, continue-on-error)
+[2026-06-13T08:40:25.291071+00:00] STEP START judge/counselling/augmentation
+[2026-06-13T08:42:35.913291+00:00] STEP OK judge/counselling/augmentation
+[2026-06-13T08:42:35.913677+00:00] STEP START judge/counselling/automation
+[2026-06-13T08:44:41.825148+00:00] STEP OK judge/counselling/automation
+[2026-06-13T08:44:41.825680+00:00] STEP START judge/market_trends/augmentation
+[2026-06-13T08:46:27.683911+00:00] STEP OK judge/market_trends/augmentation
+[2026-06-13T08:46:27.684562+00:00] STEP START judge/market_trends/automation
+[2026-06-13T08:48:09.984088+00:00] STEP OK judge/market_trends/automation
+[2026-06-13T08:48:09.984573+00:00] STEP START judge/meal_plan/augmentation
+[2026-06-13T08:50:08.081749+00:00] STEP OK judge/meal_plan/augmentation
+[2026-06-13T08:50:08.082174+00:00] STEP START judge/meal_plan/automation
+[2026-06-13T08:52:14.054131+00:00] STEP OK judge/meal_plan/automation
+[2026-06-13T08:52:14.054556+00:00] STEP START judge/operations_research/augmentation
+[2026-06-13T08:54:14.210622+00:00] STEP OK judge/operations_research/augmentation
+[2026-06-13T08:54:14.211197+00:00] STEP START judge/operations_research/automation
+[2026-06-13T08:56:06.999570+00:00] STEP OK judge/operations_research/automation
+[2026-06-13T08:56:07.000152+00:00] STEP START judge/tax_prep/augmentation
+[2026-06-13T08:57:50.891193+00:00] STEP OK judge/tax_prep/augmentation
+[2026-06-13T08:57:50.891701+00:00] STEP START judge/tax_prep/automation
+[2026-06-13T08:57:57.577268+00:00] Progress: 9/15 steps complete
+[2026-06-13T08:57:57.577725+00:00] Next pending: judge/tax_prep/automation
+[2026-06-13T08:57:57.577830+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T08:57:57.577919+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T08:57:57.578617+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T08:59:50.294594+00:00] STEP OK judge/tax_prep/automation
+[2026-06-13T08:59:50.295180+00:00] STEP START judge/travel_planning/augmentation
+[2026-06-13T09:01:52.509499+00:00] STEP OK judge/travel_planning/augmentation
+[2026-06-13T09:01:52.509909+00:00] STEP START judge/travel_planning/automation
+[2026-06-13T09:02:00.400464+00:00] Progress: 11/15 steps complete
+[2026-06-13T09:02:00.401118+00:00] Next pending: judge/travel_planning/automation
+[2026-06-13T09:02:00.401738+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:02:00.402186+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:02:00.403325+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T09:03:55.289154+00:00] STEP OK judge/travel_planning/automation
+[2026-06-13T09:03:55.289585+00:00] STEP START judge/tutoring/augmentation
+[2026-06-13T09:05:29.874968+00:00] Progress: 12/15 steps complete
+[2026-06-13T09:05:29.875202+00:00] Next pending: judge/tutoring/augmentation
+[2026-06-13T09:05:29.875289+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:05:29.875366+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:05:29.876011+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T09:05:38.374258+00:00] STEP OK judge/tutoring/augmentation
+[2026-06-13T09:05:38.374578+00:00] STEP START judge/tutoring/automation
+[2026-06-13T09:07:21.340466+00:00] STEP OK judge/tutoring/automation
+[2026-06-13T09:07:21.340949+00:00] STEP START judge/notes
+[2026-06-13T09:07:21.697891+00:00] STEP OK judge/notes
+[2026-06-13T09:07:21.697997+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T09:07:21.698086+00:00] Progress: 15/15 steps complete
+[2026-06-13T09:07:21.698167+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:07:21.698238+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:07:21.698925+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T09:08:32.557269+00:00] Progress: 15/15 steps complete
+[2026-06-13T09:08:32.557541+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:08:32.557629+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:08:32.560197+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T09:08:55.228064+00:00] Starting batch phase=summarize (1 steps, max_retries=3, repair_rounds=5)
+[2026-06-13T09:08:55.228877+00:00] STEP START summarize/cross_task
+[2026-06-13T09:09:10.095422+00:00] STEP OK summarize/cross_task
+[2026-06-13T09:09:10.095705+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T09:09:10.095836+00:00] Progress: 1/1 steps complete
+[2026-06-13T09:09:10.095925+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:09:10.096003+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:09:10.096606+00:00] Latest audit: 139/140 ok, 1 failing
+[2026-06-13T09:16:04.929256+00:00] Starting batch phase=summarize (1 steps, max_retries=3, repair_rounds=5)
+[2026-06-13T09:16:04.929643+00:00] Batch complete for run_id=20260612_fresh_rep2
+[2026-06-13T09:16:04.929742+00:00] Progress: 1/1 steps complete
+[2026-06-13T09:16:04.929825+00:00] Failed steps: ['gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 'gen/repair', 'gen/final_audit']
+[2026-06-13T09:16:04.929956+00:00] Failure counts (hot): [('gen/tax_prep/auto/deepseek-ai/DeepSeek-V3.1/rep0', 6), ('gen/final_audit', 5), ('gen/repair', 5)]
+[2026-06-13T09:16:04.930545+00:00] Latest audit: 139/140 ok, 1 failing

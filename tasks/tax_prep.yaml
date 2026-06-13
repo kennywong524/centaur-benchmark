@@ -2,9 +2,8 @@ slug: tax_prep
 title: Tax preparation discrepancy spotting
 default_worker: gpt-3.5-turbo
 default_evaluator: gpt-4.1
-replicates: 1
+replicates: 3
 scaffold_model_max_tokens: 700
-# GPT-5-Mini on this long prompt needs a high cap; omitting max_tokens returns a format stub.
 automation_model_max_tokens: 128000
 automation_worker_instruction: Complete the task clearly and professionally. Return only the final deliverable.
 remote_inference_visibility: private
@@ -54,7 +53,10 @@ task_prompt: 'Assume tax year 2025 and state: California. A client brings partia
 
 
   All calculations were done by the client before coming to you. Do not assume the pre-filled entries are correct.'
-scaffold_prompt_template: 'You are a planning coach helping another model prepare to complete a task.
+scaffold_prompt_template: 'You are a task-domain-aware planning coach helping another model prepare to complete a task.
+
+
+  Your job is task-specific SCAFFOLDING: use your knowledge of what this task requires to help the worker plan, structure, and self-check — without writing the deliverable.
 
 
   Your role is to provide PROCESS guidance only, not task content.
@@ -98,7 +100,8 @@ scaffold_prompt_template: 'You are a planning coach helping another model prepar
   Format in Markdown under the heading:
 
   **Assistant Guidance: Three-Phase Workflow**'
-worker_instruction: 'You receive internal assistant guidance plus a client task. Use the guidance for planning only; never copy or restate it. Complete the client task fully and return only the complete final deliverable.'
+worker_instruction: You receive internal assistant guidance plus a client task. Use the guidance for planning only; never copy or restate it. Complete the client task fully and return only the complete final deliverable. For this tax review, write a complete sectioned discrepancy review rather than a short client letter. Include a discrepancy list, federal and California rule explanations, recalculation framework or estimates, forms/schedules to correct, dependent analysis, and missing information needed for exact liability. Aim for at least 700 words if needed to cover the required sections.
+worker_model_max_tokens: 4096
 pairwise_task_context: 'Assume tax year 2025 and state: California. A client brings partially completed federal and California returns. Review the provided data, identify discrepancies, explain the applicable federal/state rules, recalculate key figures using stated assumptions, and explain what forms/schedules need correction. If information is insufficient for an exact tax liability, state what is missing and provide a reasonable estimate or calculation framework.
 
 
@@ -190,8 +193,8 @@ pairwise_eval_prompt: 'You are an expert evaluator comparing two candidate respo
 
   Return valid JSON only. Include the final choice, scores for each rubric dimension for both options, the average score for both options, and a short rationale grounded in the rubric.'
 pairwise:
-  n_evals_per_pair: 3
-  n_outer_runs: 5
+  n_evals_per_pair: 1
+  n_outer_runs: 1
 models:
   assistants:
     gpt-4.1: GPT-4.1
