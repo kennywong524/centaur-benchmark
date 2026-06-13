@@ -15,7 +15,9 @@
         <p class="authors">Pattaraphon Kenny Wongchamcharoen, Kris Gulati, Min Min Fong, Abhishek Nagaraj · Data Innovation and AI Lab, Haas School of Business, UC Berkeley</p>
       </div>
       <nav class="tabs" aria-label="Dashboard sections">
-        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab active" data-tab="project">Project Overview</button>
+        <button class="tab" data-tab="overview">Main Results</button>
+        <button class="tab" data-tab="replicates">Replicate Summary</button>
         <button class="tab" data-tab="rankings">Rankings</button>
         <button class="tab" data-tab="judges">Judges</button>
         <button class="tab" data-tab="qualitative">Qualitative</button>
@@ -24,6 +26,10 @@
 
     <main>
       <section class="control-band">
+        <label>
+          Run
+          <select id="runSelect"></select>
+        </label>
         <label>
           Rank universe
           <select id="modelSet"></select>
@@ -45,7 +51,29 @@
         </label>
       </section>
 
-      <section id="overview" class="panel active">
+      <section id="project" class="panel active">
+        <div class="project-hero">
+          <div>
+            <div class="eyebrow">Project overview</div>
+            <h2>Benchmarking assistance, not just task completion.</h2>
+            <p>Centaur compares the same models in two roles: as direct workers that solve professional tasks end-to-end, and as assistants that scaffold a fixed lower-capability worker. The goal is to estimate whether “best model” depends on the economic use case: replacement-style automation versus augmentation-style assistance.</p>
+          </div>
+          <div class="project-stats" id="projectStats"></div>
+        </div>
+        <div class="finding-grid">
+          <div class="finding-card">
+            <b>Automation</b>
+            <p>Focal models produce final deliverables directly. This approximates delegating a complete task to an AI system.</p>
+          </div>
+          <div class="finding-card">
+            <b>Augmentation</b>
+            <p>Focal models write process scaffolds for GPT-3.5-Turbo, and the fixed worker produces the final deliverable.</p>
+          </div>
+          <div class="finding-card">
+            <b>Evaluation</b>
+            <p>LLM judges perform blind pairwise comparisons with task-specific rubric scores and leave-family-out masking.</p>
+          </div>
+        </div>
         <div class="viz-card method-card" id="methodology">
           <div class="method-head">
             <h2>Methodology at a Glance</h2>
@@ -142,6 +170,9 @@
             <div class="guide-step"><span class="step-num">4</span><div><b>Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</div></div>
           </div>
         </div>
+      </section>
+
+      <section id="overview" class="panel">
         <div class="metric-row" id="metricRow"></div>
         <div class="section-heading">
           <h2>Figure 1: Aggregate Rank Heat Map</h2>
@@ -163,6 +194,38 @@
         </div>
         <div class="viz-card compact-figure">
           <div id="roleScatter"></div>
+        </div>
+      </section>
+
+      <section id="replicates" class="panel">
+        <div class="section-heading">
+          <h2>Replicate Summary</h2>
+          <p>Average ranks and stability across Rep 0/v4, Rep 1, and Rep 2. Lower rank is better; lower standard deviation means the result is more stable across reruns.</p>
+        </div>
+        <div class="metric-row" id="replicateMetrics"></div>
+        <div class="two-col">
+          <div class="viz-card">
+            <h3>Augmentation · Mean Rank Across Runs</h3>
+            <div id="repHeatAug"></div>
+          </div>
+          <div class="viz-card">
+            <h3>Automation · Mean Rank Across Runs</h3>
+            <div id="repHeatAuto"></div>
+          </div>
+        </div>
+        <div class="section-heading">
+          <h2>Run-to-Run Stability</h2>
+          <p>Model averages summarize rank-of-ranks across all seven tasks for each replicate.</p>
+        </div>
+        <div class="two-col">
+          <div class="viz-card">
+            <h3>Augmentation Stability</h3>
+            <div id="repStabilityAug"></div>
+          </div>
+          <div class="viz-card">
+            <h3>Automation Stability</h3>
+            <div id="repStabilityAuto"></div>
+          </div>
         </div>
       </section>
 

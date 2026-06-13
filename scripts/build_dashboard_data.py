@@ -9,7 +9,24 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RUN_ID = "20260610_scaffold_strict_v4"
+DEFAULT_RUN_ID = "20260610_scaffold_strict_v4"
+RUNS = [
+    {
+        "id": "20260610_scaffold_strict_v4",
+        "label": "Rep 0 / v4",
+        "description": "Original strict-scaffold run used for the dashboard baseline.",
+    },
+    {
+        "id": "20260612_fresh_rep1",
+        "label": "Rep 1",
+        "description": "Fresh replicate generated after strict scaffold and judge parser fixes.",
+    },
+    {
+        "id": "20260612_fresh_rep2",
+        "label": "Rep 2",
+        "description": "Second fresh replicate generated after strict scaffold and judge parser fixes.",
+    },
+]
 TASKS = [
     "counselling",
     "market_trends",
@@ -136,23 +153,19 @@ def slim_judgment(row: dict) -> dict:
     }
 
 
-def main() -> None:
-    cross = ROOT / "artifacts" / "cross_task" / RUN_ID
-    dashboard = ROOT / "dashboard"
-    dashboard.mkdir(exist_ok=True)
-
+def load_run_bundle(run_id: str) -> dict:
+    cross = ROOT / "artifacts" / "cross_task" / run_id
     aggregate = [convert_numbers(r) for r in read_csv(cross / "all_leaderboards_long.csv")]
     by_judge = [convert_numbers(r) for r in read_csv(cross / "all_leaderboards_by_judge_long.csv")]
     corr = [convert_numbers(r) for r in read_csv(cross / "judge_rank_correlation_summary.csv")]
     scatter = [convert_numbers(r) for r in read_csv(cross / "judge_rank_scatter_points.csv")]
-
     runs: dict[str, dict] = {}
     rubric_scores: list[dict] = []
     validations: list[dict] = []
     for task in TASKS:
         for mode in MODES:
             key = f"{task}/{mode}"
-            mode_dir = ROOT / "results" / task / RUN_ID / mode
+            mode_dir = ROOT / "results" / task / run_id / mode
             outputs = [slim_output(r, i) for i, r in enumerate(read_csv(mode_dir / "outputs.csv"))]
             judgments = [slim_judgment(r) for r in read_csv(mode_dir / "pairwise_judgments_by_judge.csv")]
             leaderboard = [convert_numbers(r) for r in read_csv(mode_dir / "leaderboard_aggregate.csv")]
@@ -182,10 +195,28 @@ def main() -> None:
                         "validation": json.loads(validation_path.read_text(encoding="utf-8")),
                     }
                 )
+    return {
+        "aggregate": aggregate,
+        "by_judge": by_judge,
+        "rubric_scores": rubric_scores,
+        "validations": validations,
+        "correlations": corr,
+        "scatter_points": scatter,
+        "runs": runs,
+    }
+
+
+def main() -> None:
+    dashboard = ROOT / "dashboard"
+    dashboard.mkdir(exist_ok=True)
+    runs_by_id = {run["id"]: load_run_bundle(run["id"]) for run in RUNS}
+    default_bundle = runs_by_id[DEFAULT_RUN_ID]
 
     data = {
         "meta": {
-            "run_id": RUN_ID,
+            "run_id": DEFAULT_RUN_ID,
+            "default_run_id": DEFAULT_RUN_ID,
+            "replicate_runs": RUNS,
             "generated_from": str(ROOT),
             "notes": "Static dashboard bundle generated from current Centaur benchmark artifacts.",
         },
@@ -212,13 +243,14 @@ def main() -> None:
                 ],
             },
         },
-        "aggregate": aggregate,
-        "by_judge": by_judge,
-        "rubric_scores": rubric_scores,
-        "validations": validations,
-        "correlations": corr,
-        "scatter_points": scatter,
-        "runs": runs,
+        "runs_by_id": runs_by_id,
+        "aggregate": default_bundle["aggregate"],
+        "by_judge": default_bundle["by_judge"],
+        "rubric_scores": default_bundle["rubric_scores"],
+        "validations": default_bundle["validations"],
+        "correlations": default_bundle["correlations"],
+        "scatter_points": default_bundle["scatter_points"],
+        "runs": default_bundle["runs"],
     }
     out = dashboard / "dashboard-data.json"
     out.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
