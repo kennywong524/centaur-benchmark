@@ -816,12 +816,12 @@ function renderValidationCheck(check) {
       <div class="metric"><b>${esc(displayModel(check.expectedBest, "automation"))}</b><span>expected strongest model</span></div>
     </div>
     <p class="validation-note">${esc(check.note)}</p>
-    <div class="two-col validation-cols">
-      <div>
+    <div class="validation-cols">
+      <div class="validation-table-block">
         <h3>Mean Within-Family Rank By Task</h3>
         ${renderValidationHeat(check, rows)}
       </div>
-      <div>
+      <div class="validation-table-block">
         <h3>Model-Level Summary</h3>
         ${modelTable}
       </div>
