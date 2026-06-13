@@ -1,6 +1,7 @@
 const state = {
   data: null,
-  tab: "overview",
+  tab: "project",
+  runId: null,
   modelSet: "no_baseline",
   task: "tax_prep",
   mode: "augmentation",
@@ -172,6 +173,20 @@ const generalRubricDetails = {
   general_tone_audience_fit: "Matches the role, user need, and professional context.",
 };
 
+function runList() {
+  return state.data?.meta?.replicate_runs || [{ id: state.data?.meta?.run_id, label: state.data?.meta?.run_id || "Run" }];
+}
+
+function activeData(runId = state.runId) {
+  const id = runId || state.data?.meta?.default_run_id || state.data?.meta?.run_id;
+  return state.data?.runs_by_id?.[id] || state.data;
+}
+
+function activeRunMeta(runId = state.runId) {
+  const id = runId || state.data?.meta?.default_run_id || state.data?.meta?.run_id;
+  return runList().find(r => r.id === id) || { id, label: id };
+}
+
 function modelAllowed(label) {
   const set = state.data.model_sets[state.modelSet];
   if (set.include) return set.include.includes(label);
@@ -184,6 +199,7 @@ function cleanTaskTitle(slug) {
 }
 
 function displayModel(label, mode = state.mode) {
+  if (label === "gpt-3.5-turbo") return "GPT-3.5-Turbo";
   if (mode === "augmentation" && label === "plain") return "GPT-3.5-Turbo (plain)";
   return label || "";
 }
@@ -205,8 +221,8 @@ function isOwnFamily(judge, modelLabel) {
   return false;
 }
 
-function visibleModels(mode) {
-  return [...new Set(state.data.aggregate
+function visibleModels(mode, runId = state.runId) {
+  return [...new Set(activeData(runId).aggregate
     .filter(d => d.mode === mode && modelAllowed(d.model_label))
     .map(d => d.model_label))];
 }
@@ -248,8 +264,9 @@ function scoreColor(score) {
   return `rgb(${r},${g},${b})`;
 }
 
-function records(mode, judge = "aggregate") {
-  const source = judge === "aggregate" ? state.data.aggregate : state.data.by_judge;
+function records(mode, judge = "aggregate", runId = state.runId) {
+  const bundle = activeData(runId);
+  const source = judge === "aggregate" ? bundle.aggregate : bundle.by_judge;
   return source.filter(d =>
     d.mode === mode &&
     modelAllowed(d.model_label) &&
@@ -258,10 +275,10 @@ function records(mode, judge = "aggregate") {
   );
 }
 
-function rankOfRanks(mode, judge = "aggregate") {
+function rankOfRanks(mode, judge = "aggregate", runId = state.runId) {
   const rows = [];
   for (const task of taskOrder) {
-    const sub = records(mode, judge)
+    const sub = records(mode, judge, runId)
       .filter(d => d.task_slug === task)
       .sort((a, b) => num(a.rank_value) - num(b.rank_value) || num(b.score) - num(a.score) || a.model_label.localeCompare(b.model_label));
     sub.forEach((d, i) => rows.push({ ...d, display_rank: i + 1 }));
@@ -269,10 +286,10 @@ function rankOfRanks(mode, judge = "aggregate") {
   return rows;
 }
 
-function averageRanks(judge = "aggregate") {
+function averageRanks(judge = "aggregate", runId = state.runId) {
   const out = {};
   for (const mode of ["augmentation", "automation"]) {
-    for (const d of rankOfRanks(mode, judge)) {
+    for (const d of rankOfRanks(mode, judge, runId)) {
       out[d.model_label] ||= {};
       out[d.model_label][mode] ||= [];
       out[d.model_label][mode].push(d.display_rank);
@@ -287,6 +304,18 @@ function averageRanks(judge = "aggregate") {
 
 function avg(xs) {
   return xs.reduce((a, b) => a + b, 0) / xs.length;
+}
+
+function uniqueJudgmentCount(bundle) {
+  const seen = new Set();
+  Object.entries(bundle.runs).forEach(([taskMode, run]) => {
+    run.judgments.forEach(j => {
+      const a = Math.min(Number(j.left_idx), Number(j.right_idx));
+      const b = Math.max(Number(j.left_idx), Number(j.right_idx));
+      seen.add(`${taskMode}|${j.judge_model}|${a}|${b}`);
+    });
+  });
+  return seen.size;
 }
 
 function heatColor(rank, maxRank) {
@@ -374,14 +403,16 @@ function renderRoleScatter() {
 
 function renderMetrics() {
   const tasks = state.data.tasks.length;
-  const outputs = Object.values(state.data.runs).reduce((s, r) => s + r.outputs.length, 0);
-  const judgments = Object.values(state.data.runs).reduce((s, r) => s + r.judgments.filter(j => j.judge_label !== "Gemini-3.1-Pro").length, 0);
-  const models = new Set(state.data.aggregate.map(d => d.model_label)).size;
+  const bundle = activeData();
+  const outputs = Object.values(bundle.runs).reduce((s, r) => s + r.outputs.length, 0);
+  const judgments = uniqueJudgmentCount(bundle);
+  const models = new Set(bundle.aggregate.map(d => d.model_label)).size;
   document.getElementById("metricRow").innerHTML = [
+    [`${activeRunMeta().label}`, "selected run"],
     [`${tasks}`, "tasks"],
     [`${models}`, "candidate conditions"],
     [`${outputs}`, "saved outputs"],
-    [`${judgments.toLocaleString()}`, "included pairwise judgments"],
+    [`${judgments.toLocaleString()}`, "unique pairwise judgments"],
   ].map(([v, l]) => `<div class="metric"><b>${v}</b><span>${l}</span></div>`).join("");
 }
 
@@ -454,7 +485,12 @@ function renderRubric() {
 }
 
 function renderJudgeScatter() {
-  const pairs = [["gpt-4.1", "anthropic/claude-opus-4-8"], ["gpt-4.1", "deepseek-ai/DeepSeek-V3.1"], ["anthropic/claude-opus-4-8", "deepseek-ai/DeepSeek-V3.1"]];
+  const bundle = activeData();
+  const judges = [...new Set(bundle.by_judge.map(d => d.judge_model))].filter(Boolean);
+  const pairs = [];
+  for (let i = 0; i < judges.length; i++) {
+    for (let j = i + 1; j < judges.length; j++) pairs.push([judges[i], judges[j]]);
+  }
   const size = 420, pad = 50, maxRank = 10;
   const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
   const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
@@ -462,17 +498,17 @@ function renderJudgeScatter() {
     const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
     const within1 = diffs.filter(d => d <= 1).length / Math.max(1, diffs.length);
     const meanDiff = diffs.reduce((s, d) => s + d, 0) / Math.max(1, diffs.length);
-    const corr = state.data.correlations.find(d => d.scope === "all" && d.method === "spearman" && ((d.judge_a === judgeLabels[a] && d.judge_b === judgeLabels[b]) || (d.judge_b === judgeLabels[a] && d.judge_a === judgeLabels[b])));
+    const corr = bundle.correlations.find(d => d.scope === "all" && d.method === "spearman" && ((d.judge_a === judgeLabels[a] && d.judge_b === judgeLabels[b]) || (d.judge_b === judgeLabels[a] && d.judge_a === judgeLabels[b])));
     return { within1, meanDiff, rho: corr ? Number(corr.correlation) : null };
   };
   const cardHtml = pairs.map(([a, b]) => {
-    const pts = state.data.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    const pts = bundle.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
     const s = stat(pts, a, b);
     return `<div class="metric"><b>${s.rho === null ? "NA" : s.rho.toFixed(2)}</b><span>${judgeLabels[a]} × ${judgeLabels[b]} rank correlation<br>${Math.round(s.within1 * 100)}% close calls within 1 rank<br>average rank gap ${s.meanDiff.toFixed(1)}</span></div>`;
   }).join("");
   document.getElementById("judgeAgreementCards").innerHTML = cardHtml;
   const panels = pairs.map(([a, b]) => {
-    const pts = state.data.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    const pts = bundle.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
     return `<svg viewBox="0 0 ${size} ${size}">
       <rect width="${size}" height="${size}" fill="white"/>
       <text x="${size/2}" y="24" text-anchor="middle" font-weight="700">${judgeLabels[a]} vs ${judgeLabels[b]}</text>
@@ -493,11 +529,12 @@ function renderJudgeScatter() {
 }
 
 function renderJudgeAgreementTable(pairs) {
+  const bundle = activeData();
   const rows = [];
   for (const task of taskOrder) {
     for (const mode of ["augmentation", "automation"]) {
       const cells = pairs.map(([a, b]) => {
-        const pts = state.data.scatter_points.filter(d => d.task === task && d.mode === mode && d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+        const pts = bundle.scatter_points.filter(d => d.task === task && d.mode === mode && d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
         if (!pts.length) return "N/A";
         const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
         const meanGap = diffs.reduce((s, d) => s + d, 0) / diffs.length;
@@ -512,9 +549,10 @@ function renderJudgeAgreementTable(pairs) {
 }
 
 function renderJudgeDisagreementTable(pairs) {
+  const bundle = activeData();
   const rows = [];
   for (const [a, b] of pairs) {
-    state.data.scatter_points
+    bundle.scatter_points
       .filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label))
       .forEach(d => {
         rows.push({
@@ -534,8 +572,125 @@ function renderJudgeDisagreementTable(pairs) {
 }
 
 function renderCorrTable() {
-  const rows = state.data.correlations.filter(d => d.method === "spearman");
+  const rows = activeData().correlations.filter(d => d.method === "spearman");
   document.getElementById("corrTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Spearman is a rank-order correlation. It is computed only on entries both judges were eligible to score after leave-family-out exclusions.</p><table class="heat-table"><thead><tr><th>Scope</th><th>Pair</th><th>Spearman</th><th>Shared ranks</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.scope}</td><td>${d.judge_a} × ${d.judge_b}</td><td>${Number(d.correlation).toFixed(3)}</td><td>${d.n_pairs}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function std(xs) {
+  if (!xs.length) return 0;
+  const m = avg(xs);
+  return Math.sqrt(xs.reduce((s, x) => s + (x - m) ** 2, 0) / xs.length);
+}
+
+function replicateRankRows(mode, judge = state.judge) {
+  return runList().flatMap(run => rankOfRanks(mode, judge, run.id).map(d => ({
+    ...d,
+    run_id: run.id,
+    run_label: run.label,
+  })));
+}
+
+function replicateCellStats(mode, judge = state.judge) {
+  const rows = replicateRankRows(mode, judge);
+  const byCell = new Map();
+  rows.forEach(d => {
+    const key = `${d.task_slug}|${d.model_label}`;
+    const arr = byCell.get(key) || [];
+    arr.push(Number(d.display_rank));
+    byCell.set(key, arr);
+  });
+  return { rows, byCell };
+}
+
+function renderReplicateHeatmap(el, mode) {
+  const { rows, byCell } = replicateCellStats(mode);
+  const models = [...new Set(rows.map(d => d.model_label))].sort((a, b) => {
+    const av = avg(rows.filter(d => d.model_label === a).map(d => Number(d.display_rank)));
+    const bv = avg(rows.filter(d => d.model_label === b).map(d => Number(d.display_rank)));
+    return av - bv;
+  });
+  const maxRank = Math.max(models.length, 1);
+  let html = `<table class="heat-table replicate-heat"><thead><tr><th>Task</th>${models.map(m => `<th>${displayModel(m, mode)}</th>`).join("")}</tr></thead><tbody>`;
+  for (const task of taskOrder) {
+    html += `<tr><td>${cleanTaskTitle(task)}</td>`;
+    for (const model of models) {
+      const vals = byCell.get(`${task}|${model}`) || [];
+      if (!vals.length) {
+        html += `<td class="heat-na">N/A</td>`;
+      } else {
+        const m = avg(vals);
+        const s = std(vals);
+        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)} across ${vals.length} runs" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+      }
+    }
+    html += `</tr>`;
+  }
+  html += `<tr><td>Average</td>`;
+  for (const model of models) {
+    const vals = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
+    const m = vals.length ? avg(vals) : null;
+    const s = vals.length ? std(vals) : null;
+    html += m === null ? `<td class="heat-na">N/A</td>` : `<td style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+  }
+  html += `</tr></tbody></table>`;
+  el.innerHTML = html;
+}
+
+function replicateModelStats(mode) {
+  const rows = replicateRankRows(mode);
+  const models = [...new Set(rows.map(d => d.model_label))];
+  return models.map(model => {
+    const perRun = runList().map(run => {
+      const vals = rows.filter(d => d.model_label === model && d.run_id === run.id).map(d => Number(d.display_rank));
+      return { run: run.label, value: vals.length ? avg(vals) : null };
+    }).filter(d => d.value !== null);
+    const allTaskRanks = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
+    const values = perRun.map(d => d.value);
+    return {
+      model,
+      mean: values.length ? avg(values) : null,
+      sd: values.length ? std(values) : null,
+      best: values.length ? Math.min(...values) : null,
+      worst: values.length ? Math.max(...values) : null,
+      top3: allTaskRanks.length ? allTaskRanks.filter(x => x <= 3).length / allTaskRanks.length : null,
+      perRun,
+    };
+  }).filter(d => d.mean !== null).sort((a, b) => a.mean - b.mean);
+}
+
+function renderReplicateStability(el, mode) {
+  const stats = replicateModelStats(mode);
+  el.innerHTML = `<table class="heat-table stability-table"><thead><tr><th>Model</th><th>Mean avg rank</th><th>SD</th><th>Best run</th><th>Worst run</th><th>Top-3 task cells</th><th>Per-run averages</th></tr></thead><tbody>${stats.map(d => `<tr><td>${displayModel(d.model, mode)}</td><td>${d.mean.toFixed(2)}</td><td>${d.sd.toFixed(2)}</td><td>${d.best.toFixed(2)}</td><td>${d.worst.toFixed(2)}</td><td>${Math.round(d.top3 * 100)}%</td><td>${d.perRun.map(r => `${r.run}: ${r.value.toFixed(2)}`).join(" · ")}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function renderReplicateSummary() {
+  renderReplicateHeatmap(document.getElementById("repHeatAug"), "augmentation");
+  renderReplicateHeatmap(document.getElementById("repHeatAuto"), "automation");
+  renderReplicateStability(document.getElementById("repStabilityAug"), "augmentation");
+  renderReplicateStability(document.getElementById("repStabilityAuto"), "automation");
+  const aug = replicateModelStats("augmentation");
+  const auto = replicateModelStats("automation");
+  const stable = xs => xs.length ? avg(xs.map(d => d.sd)).toFixed(2) : "NA";
+  document.getElementById("replicateMetrics").innerHTML = [
+    [`${runList().length}`, "replicate runs"],
+    [displayModel(aug[0]?.model || "", "augmentation"), "best mean augmentation rank"],
+    [displayModel(auto[0]?.model || "", "automation"), "best mean automation rank"],
+    [`${stable(aug)} / ${stable(auto)}`, "mean rank SD: aug / auto"],
+  ].map(([v, l]) => `<div class="metric"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
+}
+
+function renderProjectStats() {
+  const bundles = runList().map(r => activeData(r.id));
+  const outputs = bundles.reduce((s, b) => s + Object.values(b.runs).reduce((x, r) => x + r.outputs.length, 0), 0);
+  const judgments = bundles.reduce((s, b) => s + uniqueJudgmentCount(b), 0);
+  const models = new Set(bundles.flatMap(b => b.aggregate.map(d => d.model_label))).size;
+  document.getElementById("projectStats").innerHTML = [
+    [`${runList().length}`, "replicate runs"],
+    [`${state.data.tasks.length}`, "tasks"],
+    [`${models}`, "candidate conditions"],
+    [`${outputs.toLocaleString()}`, "outputs"],
+    [`${judgments.toLocaleString()}`, "unique judgments"],
+  ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join("");
 }
 
 function runKey() {
@@ -543,7 +698,7 @@ function runKey() {
 }
 
 function currentRun() {
-  return state.data.runs[runKey()];
+  return activeData().runs[runKey()];
 }
 
 function renderQualitative() {
@@ -635,14 +790,18 @@ function renderRationales(out) {
 }
 
 function populateControls() {
+  const runSelect = document.getElementById("runSelect");
+  runSelect.innerHTML = runList().map(r => `<option value="${r.id}">${r.label}</option>`).join("");
+  runSelect.value = state.runId;
   const modelSet = document.getElementById("modelSet");
   modelSet.innerHTML = Object.entries(state.data.model_sets).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join("");
   modelSet.value = state.modelSet;
   document.getElementById("taskSelect").innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
   document.getElementById("taskSelect").value = state.task;
   document.getElementById("modeSelect").value = state.mode;
-  const judges = ["aggregate", ...new Set(state.data.by_judge.map(d => d.judge_model))];
+  const judges = ["aggregate", ...new Set(activeData().by_judge.map(d => d.judge_model))];
   document.getElementById("judgeSelect").innerHTML = judges.map(j => `<option value="${j}">${judgeLabels[j] || j}</option>`).join("");
+  if (!judges.includes(state.judge)) state.judge = "aggregate";
   document.getElementById("judgeSelect").value = state.judge;
 }
 
@@ -674,7 +833,7 @@ const methodologyDetails = {
   },
   evaluator: {
     title: "Evaluator panel: blind pairwise judging",
-    body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
+    body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, and Gemini-3.1-Pro where available) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
     action: { label: "Inspect judge agreement", run: () => goTab("judges") },
   },
   results: {
@@ -725,6 +884,7 @@ function bind() {
     document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x === b));
     document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === state.tab));
   }));
+  document.getElementById("runSelect").addEventListener("change", e => { state.runId = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
   document.getElementById("modelSet").addEventListener("change", e => { state.modelSet = e.target.value; renderAll(); });
   document.getElementById("taskSelect").addEventListener("change", e => { state.task = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
   document.getElementById("modeSelect").addEventListener("change", e => { state.mode = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
@@ -738,10 +898,12 @@ function bind() {
 
 function renderAll() {
   populateControls();
+  renderProjectStats();
   renderMetrics();
   renderHeatmap(document.getElementById("heatAug"), "augmentation");
   renderHeatmap(document.getElementById("heatAuto"), "automation");
   renderRoleScatter();
+  renderReplicateSummary();
   renderLeaderboard();
   renderRubric();
   renderJudgeScatter();
@@ -752,6 +914,7 @@ fetch("dashboard-data.json")
   .then(r => r.json())
   .then(data => {
     state.data = data;
+    state.runId = data.meta.default_run_id || data.meta.run_id;
     populateControls();
     bind();
     renderAll();
