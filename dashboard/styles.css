@@ -163,7 +163,7 @@ select {
 }
 .guide-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
   margin-top: 12px;
 }
@@ -409,10 +409,18 @@ select {
   line-height: 1.45;
 }
 .validation-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: start;
 }
 .validation-cols h3 {
   margin: 6px 0 10px;
+}
+.validation-table-block {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 .validation-heat td small {
   display: block;
@@ -422,7 +430,10 @@ select {
   opacity: .78;
 }
 .validation-models {
-  min-width: 620px;
+  min-width: 760px;
+}
+.validation-heat {
+  min-width: 980px;
 }
 
 .bar-row {
