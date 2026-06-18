@@ -29,6 +29,27 @@ const judgeLabels = {
   "deepseek-ai/DeepSeek-V3.1": "DeepSeek-V3.1",
   "google/gemini-3.1-pro": "Gemini-3.1-Pro",
 };
+function canonicalJudge(name) {
+  if (!name) return "";
+  const s = String(name).toLowerCase();
+  if (s.includes("claude") || s.includes("opus") || s.includes("anthropic")) return "claude";
+  if (s.includes("deepseek")) return "deepseek";
+  if (s.includes("gemini") || s.includes("google")) return "gemini";
+  if (s.includes("gpt") || s.includes("openai") || s.includes("o3") || s.includes("o4")) return "gpt41";
+  return s;
+}
+
+const canonicalJudgeLabels = {
+  claude: "Claude-Opus-4.8",
+  deepseek: "DeepSeek-V3.1",
+  gemini: "Gemini-3.1-Pro",
+  gpt41: "GPT-4.1",
+};
+
+function judgeDisplay(name) {
+  return judgeLabels[name] || canonicalJudgeLabels[canonicalJudge(name)] || name;
+}
+
 const modelShort = {
   "GPT-5-Mini": "G5M",
   "GPT-4.1": "G4.1",
@@ -396,28 +417,29 @@ function renderHeatmap(el, mode) {
 
 function renderRoleScatter() {
   const data = averageRanks(state.judge);
-  const size = 460, pad = 56;
+  const size = 400, pad = 50;
   const maxRank = Math.max(...data.flatMap(d => [d.augmentation, d.automation]), 9);
   const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
   const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
-  const offsets = [[9, -8], [9, 13], [-36, -8], [-36, 13], [8, 1], [-36, 1], [0, -18], [0, 23], [13, -18], [-42, 22]];
+  // Alternate label placement (right / left) to reduce overlap.
   const points = data.map((d, i) => {
-    const [dx, dy] = offsets[i % offsets.length];
     const cx = x(d.automation);
     const cy = y(d.augmentation);
     const short = modelShort[d.model] || d.model.slice(0, 6);
-    const w = Math.max(22, short.length * 6 + 6);
-    return `<g><circle cx="${cx}" cy="${cy}" r="5.5" fill="#2f6fcb" opacity=".86"><title>${displayModel(d.model)}: automate ${d.automation.toFixed(2)}, augment ${d.augmentation.toFixed(2)}</title></circle><rect x="${cx + dx - 3}" y="${cy + dy - 9}" width="${w}" height="14" rx="3" fill="white" opacity=".9"/><text x="${cx + dx}" y="${cy + dy + 1}" font-size="8" font-weight="800">${short}</text></g>`;
+    const right = cx < size * 0.7;
+    const lx = right ? cx + 9 : cx - 9;
+    const anchor = right ? "start" : "end";
+    return `<g><circle cx="${cx}" cy="${cy}" r="4.5" fill="#2f6fcb" stroke="white" stroke-width="1.2"><title>${displayModel(d.model)}: automate ${d.automation.toFixed(2)}, augment ${d.augmentation.toFixed(2)}</title></circle><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round">${short}</text></g>`;
   }).join("");
   const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
   const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
   document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Distance from the diagonal indicates role specialization.</p><div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img">
     <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
-    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#e7ebf0"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#e7ebf0"/><text x="${x(t)}" y="${size-pad+20}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-14}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
-    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#111" stroke-dasharray="6 5" stroke-width="1.6"/>
+    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#eef1f5"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
+    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.4"/>
     ${points}
-    <text x="${size/2}" y="${size-10}" text-anchor="middle" font-size="12" font-weight="700">Automation avg rank</text>
-    <text x="16" y="${size/2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size/2})">Augmentation avg rank</text>
+    <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank</text>
+    <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">Augmentation avg rank</text>
   </svg></div><div class="role-legend">${legend}</div>`;
 }
 
@@ -518,7 +540,12 @@ function renderJudgeScatter() {
     const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
     const within1 = diffs.filter(d => d <= 1).length / Math.max(1, diffs.length);
     const meanDiff = diffs.reduce((s, d) => s + d, 0) / Math.max(1, diffs.length);
-    const corr = bundle.correlations.find(d => d.scope === "all" && d.method === "spearman" && ((d.judge_a === judgeLabels[a] && d.judge_b === judgeLabels[b]) || (d.judge_b === judgeLabels[a] && d.judge_a === judgeLabels[b])));
+    const ca = canonicalJudge(a);
+    const cb = canonicalJudge(b);
+    const corr = bundle.correlations.find(d => d.scope === "all" && d.method === "spearman" && (
+      (canonicalJudge(d.judge_a) === ca && canonicalJudge(d.judge_b) === cb) ||
+      (canonicalJudge(d.judge_a) === cb && canonicalJudge(d.judge_b) === ca)
+    ));
     return { within1, meanDiff, rho: corr ? Number(corr.correlation) : null };
   };
   const cardHtml = pairs.map(([a, b]) => {
@@ -593,13 +620,18 @@ function renderJudgeDisagreementTable(pairs) {
 
 function renderCorrTable() {
   const rows = activeData().correlations.filter(d => d.method === "spearman");
-  document.getElementById("corrTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Spearman is a rank-order correlation. It is computed only on entries both judges were eligible to score after leave-family-out exclusions.</p><table class="heat-table"><thead><tr><th>Scope</th><th>Pair</th><th>Spearman</th><th>Shared ranks</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.scope}</td><td>${d.judge_a} × ${d.judge_b}</td><td>${Number(d.correlation).toFixed(3)}</td><td>${d.n_pairs}</td></tr>`).join("")}</tbody></table>`;
+  document.getElementById("corrTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Spearman is a rank-order correlation. It is computed only on entries both judges were eligible to score after leave-family-out exclusions.</p><table class="heat-table"><thead><tr><th>Scope</th><th>Pair</th><th>Spearman</th><th>Shared ranks</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.scope}</td><td>${judgeDisplay(d.judge_a)} × ${judgeDisplay(d.judge_b)}</td><td>${Number(d.correlation).toFixed(3)}</td><td>${d.n_pairs}</td></tr>`).join("")}</tbody></table>`;
 }
 
 function std(xs) {
   if (!xs.length) return 0;
   const m = avg(xs);
   return Math.sqrt(xs.reduce((s, x) => s + (x - m) ** 2, 0) / xs.length);
+}
+
+function sem(xs) {
+  if (!xs.length) return 0;
+  return std(xs) / Math.sqrt(xs.length);
 }
 
 function replicateRankRows(mode, judge = state.judge) {
@@ -639,8 +671,8 @@ function renderReplicateHeatmap(el, mode) {
         html += `<td class="heat-na">N/A</td>`;
       } else {
         const m = avg(vals);
-        const s = std(vals);
-        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)} across ${vals.length} runs" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+        const se = sem(vals);
+        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)} across ${vals.length} runs (mean rank ± standard error)" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
       }
     }
     html += `</tr>`;
@@ -649,8 +681,8 @@ function renderReplicateHeatmap(el, mode) {
   for (const model of models) {
     const vals = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
     const m = vals.length ? avg(vals) : null;
-    const s = vals.length ? std(vals) : null;
-    html += m === null ? `<td class="heat-na">N/A</td>` : `<td style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+    const se = vals.length ? sem(vals) : null;
+    html += m === null ? `<td class="heat-na">N/A</td>` : `<td title="mean rank ± standard error across ${vals.length} run-task cells" style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
   }
   html += `</tr></tbody></table>`;
   el.innerHTML = html;
