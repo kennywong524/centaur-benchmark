@@ -486,12 +486,14 @@ function renderHeatmap(el, mode) {
 
 function renderRoleScatter() {
   const data = averageRanks(state.judge);
+  const runLabel = activeRunMeta().label;
+  const judgeLabel = state.judge === "aggregate" ? "panel aggregate" : (judgeLabels[state.judge] || state.judge);
   const size = 400, pad = 50;
   const maxRank = Math.max(...data.flatMap(d => [d.augmentation, d.automation]), 9);
   const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
   const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
   // Alternate label placement (right / left) to reduce overlap.
-  const points = data.map((d, i) => {
+  const points = data.map((d) => {
     const cx = x(d.automation);
     const cy = y(d.augmentation);
     const short = modelShort[d.model] || d.model.slice(0, 6);
@@ -502,7 +504,7 @@ function renderRoleScatter() {
   }).join("");
   const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
   const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
-  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Distance from the diagonal indicates role specialization.</p><div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img">
+  const svg = `<div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img">
     <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
     ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#eef1f5"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
     <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.4"/>
@@ -510,6 +512,28 @@ function renderRoleScatter() {
     <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank</text>
     <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">Augmentation avg rank</text>
   </svg></div><div class="role-legend">${legend}</div>`;
+
+  const cards = data.slice().sort((a, b) => a.automation - b.automation).map(d => {
+    const gap = d.automation - d.augmentation;
+    let tag = "Balanced", tagClass = "tag-bal";
+    if (gap >= 1) { tag = "Stronger assistant"; tagClass = "tag-aug"; }
+    else if (gap <= -1) { tag = "Stronger solver"; tagClass = "tag-auto"; }
+    return `<div class="role-info-card">
+      <div class="role-info-name">${displayModel(d.model)}<span class="role-tag ${tagClass}">${tag}</span></div>
+      <div class="role-info-line">avg ranked <b>${d.automation.toFixed(2)}</b> in automation and <b>${d.augmentation.toFixed(2)}</b> in augmentation</div>
+      <div class="role-info-stats">
+        <div class="role-stat role-stat-auto"><span class="role-stat-label">Automation</span><span class="role-stat-val">${d.automation.toFixed(2)}</span></div>
+        <div class="role-stat role-stat-aug"><span class="role-stat-label">Augmentation</span><span class="role-stat-val">${d.augmentation.toFixed(2)}</span></div>
+      </div>
+    </div>`;
+  }).join("");
+  const info = `<div class="role-info">
+    <div class="role-info-head">Average ranks · ${esc(runLabel)}</div>
+    <p class="role-info-sub">Mean rank across all seven tasks (${esc(judgeLabel)}); lower is better. Toggle <b>Run</b> above to switch between the three replicates.</p>
+    ${cards}
+  </div>`;
+
+  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Distance from the diagonal indicates role specialization.</p><div class="role-swap-layout"><div class="role-swap-left">${svg}</div><div class="role-swap-right">${info}</div></div>`;
 }
 
 function renderMetrics() {
