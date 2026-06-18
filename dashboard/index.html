@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Centaur Results Explorer</title>
+    <title>Results Explorer — LLM Workers &amp; Assistants Benchmark</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div>
-        <div class="eyebrow">Centaur Benchmark</div>
+        <div class="eyebrow">LLM Workers &amp; Assistants Benchmark</div>
         <h1>Results Explorer</h1>
-        <p class="paper-title">Decoding Human-AI Augmentation: Measuring the Value of LLM Assistance on Professional Tasks Using Simulation</p>
-        <p class="authors">Pattaraphon Kenny Wongchamcharoen, Kris Gulati, Min Min Fong, Abhishek Nagaraj · Data Innovation and AI Lab, Haas School of Business, UC Berkeley</p>
+        <p class="paper-title">The Best Player Is Not Always the Best Coach: Benchmarking LLMs as Workers and Assistants Across Professional Tasks</p>
+        <p class="authors"><a href="https://kennywong524.github.io/" target="_blank" rel="noopener">Pattaraphon Kenny Wongchamcharoen</a>, <a href="https://sites.google.com/view/kris-gulati/home" target="_blank" rel="noopener">Kris Gulati</a>, Min Min Fong, <a href="https://www.abhishekn.com/" target="_blank" rel="noopener">Abhishek Nagaraj</a> · <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Data Innovation and AI Lab</a>, Haas School of Business, UC Berkeley</p>
       </div>
       <nav class="tabs" aria-label="Dashboard sections">
         <button class="tab active" data-tab="project">Project Overview</button>
@@ -56,10 +56,23 @@
         <div class="project-hero">
           <div>
             <div class="eyebrow">Project overview</div>
-            <h2>Benchmarking assistance, not just task completion.</h2>
-            <p>Centaur evaluates LLMs as both task solvers and helpers. Across seven professional tasks, each model either completes the work directly or writes a scaffold for a fixed worker model; rubric-guided judges then compare final outputs. The benchmark produces role- and task-specific model profiles, showing when a model is better suited for automation, augmentation, or cost-aware multi-agent workflows.</p>
+            <h2>The Worker-Assistant Benchmark</h2>
+            <p>Most benchmarks score a model on the work it produces alone. But in real workplaces, models often help a worker rather than replace them. This benchmark measures both: across seven professional tasks, each model either solves the task directly (<b>automation</b>) or writes a scaffold for a fixed lower-capability worker that produces the final output (<b>augmentation</b>). Holding the worker constant isolates the value of the assistant's guidance, and rubric-guided judges then compare the final outputs through blind pairwise matchups.</p>
+            <div class="resource-links">
+              <a class="resource-link" href="https://github.com/kennywong524/best-player-not-best-coach" target="_blank" rel="noopener">
+                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+                Reproducibility code (GitHub)
+              </a>
+              <a class="resource-link" href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Data Innovation &amp; AI Lab</a>
+            </div>
           </div>
           <div class="project-stats" id="projectStats"></div>
+        </div>
+        <div class="abstract-card">
+          <h2>Abstract</h2>
+          <p>Organizations adopting generative AI increasingly face a model-selection problem that existing benchmarks do not fully answer. Most LLM benchmarks evaluate models as autonomous task solvers, scoring the quality of a model's final output. Yet in workplaces, models are often used not in isolation but to assist a human worker by structuring the problem, surfacing constraints, or improving the worker's reasoning. In these settings, the economically relevant question is not only which model can complete a task, but which model can improve the work of another agent.</p>
+          <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across three independent runs.</p>
+          <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
         </div>
         <div class="finding-grid">
           <div class="finding-card">
@@ -165,11 +178,12 @@
         <div class="guide-card">
           <h2>How To Use This Dashboard</h2>
           <div class="guide-grid">
-            <div class="guide-step"><span class="step-num">1</span><div><b>Choose a rank universe.</b> Use <i>Exclude baselines</i> for paper-ready 1-9 rank-of-ranks figures, or <i>All candidates</i> to audit the full run.</div></div>
-            <div class="guide-step"><span class="step-num">2</span><div><b>Read aggregate patterns.</b> Use the heat maps and role-swap scatter to compare automation and augmentation profiles.</div></div>
-            <div class="guide-step"><span class="step-num">3</span><div><b>Drill into a task.</b> In <i>Rankings</i>, click a model row to update rubric scores for that selected response.</div></div>
-            <div class="guide-step"><span class="step-num">4</span><div><b>Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</div></div>
-            <div class="guide-step"><span class="step-num">5</span><div><b>Check validity.</b> In <i>Validation</i>, inspect held-out cross-family judge checks that reuse automation outputs to test whether the rubric pipeline recovers expected model-family gradients.</div></div>
+            <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>Exclude baselines</i> for the 1-9 rank-of-ranks view, or <i>All candidates</i> for the full run.</div></div>
+            <div class="guide-step"><span class="step-num">2</span><div><b>See the big picture.</b> <i>Main Results</i> — heat maps and the role-swap scatter compare automation vs. augmentation.</div></div>
+            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>Replicate Summary</i> — mean rank ± standard error across the three runs (smaller = more stable).</div></div>
+            <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to load its rubric scores.</div></div>
+            <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> <i>Qualitative</i> — outputs, scaffolds, prompts, and pairwise judge rationales.</div></div>
+            <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> <i>Validation</i> — held-out cross-family judge checks on model-family gradients.</div></div>
           </div>
         </div>
       </section>
@@ -202,7 +216,7 @@
       <section id="replicates" class="panel">
         <div class="section-heading">
           <h2>Replicate Summary</h2>
-          <p>Average ranks and stability across Rep 0/v4, Rep 1, and Rep 2. Lower rank is better; lower standard deviation means the result is more stable across reruns.</p>
+          <p>Average ranks and stability across Run 1, Run 2, and Run 3. Lower rank is better; the value beneath each heat-map cell is the standard error across runs, so a smaller error means the result is more stable across reruns. Use this tab to confirm a ranking is reproducible before drawing conclusions from it.</p>
         </div>
         <div class="metric-row" id="replicateMetrics"></div>
         <div class="two-col">
@@ -260,6 +274,7 @@
             <p><b>Claude pair.</b> GPT-4.1 judges Claude-family automation outputs: Claude-Sonnet-4.6 and Claude-Opus-4.8.</p>
             <p><b>Held-out judge.</b> The judge never belongs to the model family being validated, reducing same-family preference.</p>
             <p><b>Interpretation.</b> Higher expected-order agreement means the rubric/judge pipeline more often recovers the anticipated within-family ordering.</p>
+            <p><b>Why no Gemini or DeepSeek ladder.</b> These criterion checks rely on a known within-family capability gradient (several models of increasing strength from the same family). Our roster includes only a single Gemini model (Gemini-3.1-Pro) and a single DeepSeek model (DeepSeek-V3.1), so there is no within-family ordering to recover and no validation ladder can be built for them.</p>
           </div>
         </div>
         <div id="validationChecks"></div>

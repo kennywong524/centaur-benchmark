@@ -13,18 +13,18 @@ DEFAULT_RUN_ID = "20260610_scaffold_strict_v4"
 RUNS = [
     {
         "id": "20260610_scaffold_strict_v4",
-        "label": "Rep 0 / v4",
-        "description": "Original strict-scaffold run used for the dashboard baseline.",
+        "label": "Run 1",
+        "description": "Independent run of the full pipeline.",
     },
     {
         "id": "20260612_fresh_rep1",
-        "label": "Rep 1",
-        "description": "Fresh replicate generated after strict scaffold and judge parser fixes.",
+        "label": "Run 2",
+        "description": "Independent run of the full pipeline.",
     },
     {
         "id": "20260612_fresh_rep2",
-        "label": "Rep 2",
-        "description": "Second fresh replicate generated after strict scaffold and judge parser fixes.",
+        "label": "Run 3",
+        "description": "Independent run of the full pipeline.",
     },
 ]
 TASKS = [
