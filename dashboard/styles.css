@@ -416,6 +416,84 @@ select {
   margin: 0 auto;
 }
 
+.role-swap-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 360px);
+  gap: 22px;
+  align-items: start;
+}
+.role-swap-left { min-width: 0; }
+.role-swap-left .svg-wrap { max-width: 520px; margin: 0 auto; }
+.role-swap-right { min-width: 0; }
+.role-info {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfe;
+  padding: 14px;
+  max-height: 560px;
+  overflow: auto;
+}
+.role-info-head {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--ink);
+}
+.role-info-sub { margin: 4px 0 12px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.role-info-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+.role-info-card:last-child { margin-bottom: 0; }
+.role-info-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.role-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.role-tag.tag-aug { background: #f1ecfe; color: #5b3fd0; }
+.role-tag.tag-auto { background: #eef5ff; color: #2156a8; }
+.role-tag.tag-bal { background: #eef1f5; color: #5a6577; }
+.role-info-line { margin: 6px 0 9px; font-size: 12px; color: #4a5566; line-height: 1.45; }
+.role-info-line b { color: var(--ink); }
+.role-info-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.role-stat {
+  border-radius: 7px;
+  padding: 7px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.role-stat-auto { background: #eef5ff; }
+.role-stat-aug { background: #f4f0fe; }
+.role-stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--muted);
+}
+.role-stat-val { font-size: 18px; font-weight: 800; color: var(--ink); }
+@media (max-width: 900px) {
+  .role-swap-layout { grid-template-columns: 1fr; }
+  .role-info { max-height: none; }
+}
+
 .heat-table {
   border-collapse: collapse;
   width: 100%;
