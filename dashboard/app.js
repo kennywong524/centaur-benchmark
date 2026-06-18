@@ -281,6 +281,75 @@ function esc(value) {
     .replaceAll("'", "&#039;");
 }
 
+function mdInline(escaped) {
+  return escaped
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[\s(])_([^_\n]+)_(?=[\s.,;:)]|$)/g, "$1<em>$2</em>");
+}
+
+function mdToHtml(raw) {
+  const lines = String(raw ?? "").replace(/\r\n/g, "\n").split("\n");
+  let html = "";
+  let para = [];
+  let listType = null;
+  const flushPara = () => {
+    if (para.length) { html += `<p>${para.map(l => mdInline(esc(l))).join("<br>")}</p>`; para = []; }
+  };
+  const closeList = () => { if (listType) { html += `</${listType}>`; listType = null; } };
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    if (/^```/.test(trimmed)) {
+      flushPara(); closeList();
+      const buf = [];
+      i++;
+      while (i < lines.length && !/^```/.test(lines[i].trim())) { buf.push(lines[i]); i++; }
+      html += `<pre class="md-code">${esc(buf.join("\n"))}</pre>`;
+      continue;
+    }
+    const heading = trimmed.match(/^(#{1,4})\s+(.*)$/);
+    if (heading) {
+      flushPara(); closeList();
+      const lvl = heading[1].length;
+      html += `<h${lvl} class="md-h md-h${lvl}">${mdInline(esc(heading[2]))}</h${lvl}>`;
+      continue;
+    }
+    if (trimmed === "") { flushPara(); closeList(); continue; }
+    const ul = trimmed.match(/^[-*•]\s+(.*)$/);
+    if (ul) {
+      flushPara();
+      if (listType !== "ul") { closeList(); html += '<ul class="md-list">'; listType = "ul"; }
+      html += `<li>${mdInline(esc(ul[1]))}</li>`;
+      continue;
+    }
+    const ol = trimmed.match(/^(\d+)[.)]\s+(.*)$/);
+    if (ol) {
+      flushPara();
+      if (listType !== "ol") { closeList(); html += '<ol class="md-list">'; listType = "ol"; }
+      html += `<li>${mdInline(esc(ol[2]))}</li>`;
+      continue;
+    }
+    closeList();
+    para.push(line);
+  }
+  flushPara(); closeList();
+  return html || `<p>${mdInline(esc(String(raw ?? "")))}</p>`;
+}
+
+function renderQualSections(sections) {
+  if (!sections.length) return "";
+  return `<div class="qual-doc">${sections.map(s => {
+    const sub = s.sublabel ? `<span class="qual-sec-sub">${esc(s.sublabel)}</span>` : "";
+    const body = s.empty
+      ? `<div class="qual-sec-body qual-empty">${esc(s.body)}</div>`
+      : `<div class="qual-sec-body md">${mdToHtml(s.body)}</div>`;
+    return `<section class="qual-section qual-${s.kind}">`
+      + `<header class="qual-sec-head"><span class="qual-sec-label">${esc(s.label)}</span>${sub}</header>`
+      + body + `</section>`;
+  }).join("")}</div>`;
+}
+
 function rubricName(dim) {
   return rubricLabels[state.task]?.[dim] || generalRubricLabels[dim] || dim;
 }
@@ -917,18 +986,35 @@ function renderQualitative() {
     [state.mode === "augmentation" ? "Worker / Final Output Model" : "Worker / Direct Solver", worker],
     ["Condition", condition],
   ].map(([k, v]) => `<div class="role-chip"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join("") : "";
-  let text = "";
-  if (state.textTab === "output") text = out?.output || "";
-  if (state.textTab === "scaffold") text = out?.scaffold_text || "No scaffold in automation/plain condition.";
-  if (state.textTab === "scaffoldPrompt") {
-    const task = state.data.tasks.find(t => t.slug === state.task);
-    text = `SCAFFOLD PROMPT USED FOR THIS TASK\n\n${task?.scaffold_prompt || "No scaffold prompt found in dashboard data."}\n\n\nWORKER INSTRUCTION THAT CONSUMES THE SCAFFOLD\n\n${task?.worker_instruction || "No worker instruction found in dashboard data."}`;
+  const taskObj = state.data.tasks.find(t => t.slug === state.task);
+  let sections = [];
+  if (state.textTab === "output") {
+    sections = [{ label: "Final Output", sublabel: "Worker deliverable", kind: "output",
+      body: out?.output || "No output found for this cell.", empty: !out?.output }];
+  } else if (state.textTab === "scaffold") {
+    const hasScaffold = !!out?.scaffold_text;
+    sections = [{ label: "Assistant Scaffold", sublabel: "Process guidance passed to the worker", kind: "assistant",
+      body: hasScaffold ? out.scaffold_text : "No scaffold in this automation / plain condition.", empty: !hasScaffold }];
+  } else if (state.textTab === "scaffoldPrompt") {
+    sections = [
+      { label: "Scaffold Prompt", sublabel: "Instruction that generates the assistant scaffold", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No scaffold prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Worker Instruction", sublabel: "How the worker consumes the scaffold", kind: "worker",
+        body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
+    ];
+  } else if (state.textTab === "prompt") {
+    sections = [
+      { label: "Task Prompt", sublabel: "The professional task for this cell", kind: "task",
+        body: taskObj?.task_prompt || "No task prompt found.", empty: !taskObj?.task_prompt },
+      { label: "Scaffold Prompt", sublabel: "Used in augmentation to generate guidance", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No scaffold prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Worker Instruction", sublabel: "How the worker turns inputs into the deliverable", kind: "worker",
+        body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
+      { label: "Judge Rubric", sublabel: "Task-specific and general scoring criteria", kind: "evaluator",
+        body: taskObj?.rubric || "No rubric found.", empty: !taskObj?.rubric },
+    ];
   }
-  if (state.textTab === "prompt") {
-    const task = state.data.tasks.find(t => t.slug === state.task);
-    text = `TASK PROMPT\n\n${task?.task_prompt || ""}\n\n\nSCAFFOLD PROMPT USED IN AUGMENTATION\n\n${task?.scaffold_prompt || "No scaffold prompt found in dashboard data."}\n\n\nWORKER INSTRUCTION\n\n${task?.worker_instruction || "No worker instruction found in dashboard data."}\n\n\nJUDGE RUBRIC / PROMPT\n\n${task?.rubric || ""}`;
-  }
-  document.getElementById("qualText").textContent = text;
+  document.getElementById("qualText").innerHTML = renderQualSections(sections);
   renderRationales(out);
 }
 
