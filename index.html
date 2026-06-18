@@ -56,7 +56,7 @@
         <div class="project-hero">
           <div>
             <div class="eyebrow">Project overview</div>
-            <h2>Which model can improve the work of another?</h2>
+            <h2>The Worker-Assistant Benchmark</h2>
             <p>Most benchmarks score a model on the work it produces alone. But in real workplaces, models often help a worker rather than replace them. This benchmark measures both: across seven professional tasks, each model either solves the task directly (<b>automation</b>) or writes a scaffold for a fixed lower-capability worker that produces the final output (<b>augmentation</b>). Holding the worker constant isolates the value of the assistant's guidance, and rubric-guided judges then compare the final outputs through blind pairwise matchups.</p>
           </div>
           <div class="project-stats" id="projectStats"></div>
@@ -178,12 +178,12 @@
         <div class="guide-card">
           <h2>How To Use This Dashboard</h2>
           <div class="guide-grid">
-            <div class="guide-step"><span class="step-num">1</span><div><b>Choose a rank universe.</b> Use <i>Exclude baselines</i> for paper-ready 1-9 rank-of-ranks figures, or <i>All candidates</i> to audit the full run.</div></div>
-            <div class="guide-step"><span class="step-num">2</span><div><b>Read aggregate patterns.</b> In <i>Main Results</i>, use the heat maps and role-swap scatter to compare automation and augmentation profiles.</div></div>
-            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> In <i>Replicate Summary</i>, see how rankings hold up across the three independent runs. The heat maps show mean rank with standard error beneath each cell (smaller error = more stable), and the stability tables report each model's best/worst run and per-run averages. Use this tab to judge whether a ranking difference is robust or just run-to-run noise before trusting it.</div></div>
-            <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> In <i>Rankings</i>, click a model row to update rubric scores for that selected response.</div></div>
-            <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> In <i>Qualitative</i>, inspect outputs, scaffolds, scaffold prompts, and pairwise judge rationales with expandable scorecards.</div></div>
-            <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> In <i>Validation</i>, inspect held-out cross-family judge checks that reuse automation outputs to test whether the rubric pipeline recovers expected model-family gradients.</div></div>
+            <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>Exclude baselines</i> for the 1-9 rank-of-ranks view, or <i>All candidates</i> for the full run.</div></div>
+            <div class="guide-step"><span class="step-num">2</span><div><b>See the big picture.</b> <i>Main Results</i> — heat maps and the role-swap scatter compare automation vs. augmentation.</div></div>
+            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>Replicate Summary</i> — mean rank ± standard error across the three runs (smaller = more stable).</div></div>
+            <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to load its rubric scores.</div></div>
+            <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> <i>Qualitative</i> — outputs, scaffolds, prompts, and pairwise judge rationales.</div></div>
+            <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> <i>Validation</i> — held-out cross-family judge checks on model-family gradients.</div></div>
           </div>
         </div>
       </section>
