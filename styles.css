@@ -169,6 +169,42 @@ select {
   padding: 18px 22px;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+}
+.abstract-body { flex: 1 1 auto; min-width: 0; }
+.abstract-logos {
+  flex: 0 0 auto;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+.abstract-logos a { display: block; line-height: 0; }
+.abstract-logos img {
+  max-width: 100%;
+  max-height: 90px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+@media (max-width: 780px) {
+  .abstract-card { flex-direction: column; gap: 18px; }
+  .abstract-logos {
+    flex-direction: row;
+    width: auto;
+    padding-left: 0;
+    padding-top: 16px;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    justify-content: flex-start;
+    gap: 28px;
+  }
 }
 .abstract-card h2 {
   font-size: 16px;
