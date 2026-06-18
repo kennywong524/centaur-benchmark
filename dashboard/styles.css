@@ -166,54 +166,58 @@ select {
   border: 1px solid var(--line);
   border-left: 3px solid rgba(47,111,203,.55);
   border-radius: 8px;
-  padding: 18px 22px;
+  padding: 18px 28px 18px 22px;
   margin-bottom: 16px;
   box-shadow: var(--shadow);
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
   align-items: stretch;
-  gap: 28px;
+  gap: 32px;
 }
-.abstract-body { flex: 1 1 auto; min-width: 0; }
+.abstract-body { min-width: 0; }
 .abstract-logos {
-  flex: 0 0 auto;
-  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 32px;
   padding-left: 32px;
+  padding-right: 4px;
   border-left: 1px solid var(--line);
 }
-.abstract-logos a { display: block; line-height: 0; }
+.abstract-logos a { display: block; line-height: 0; width: 100%; text-align: center; }
 .abstract-logos img {
   width: auto;
   height: auto;
   object-fit: contain;
 }
 .abstract-logos .logo-dial {
-  width: 280px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 340px;
 }
 .abstract-logos .logo-haas {
-  width: 220px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 280px;
 }
-@media (max-width: 780px) {
-  .abstract-card { flex-direction: column; gap: 18px; }
+@media (max-width: 900px) {
+  .abstract-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px 22px;
+  }
   .abstract-logos {
     flex-direction: row;
     align-items: center;
-    width: auto;
+    justify-content: flex-start;
     padding-left: 0;
+    padding-right: 0;
     padding-top: 16px;
     border-left: none;
     border-top: 1px solid var(--line);
-    justify-content: flex-start;
     gap: 36px;
   }
-  .abstract-logos .logo-dial { width: 240px; }
-  .abstract-logos .logo-haas { width: 190px; }
+  .abstract-logos .logo-dial { max-width: 260px; }
+  .abstract-logos .logo-haas { max-width: 200px; }
 }
 .abstract-card h2 {
   font-size: 16px;
