@@ -2,7 +2,7 @@ const state = {
   data: null,
   tab: "project",
   runId: null,
-  modelSet: "no_baseline",
+  modelSet: "all",
   task: "tax_prep",
   mode: "augmentation",
   judge: "aggregate",

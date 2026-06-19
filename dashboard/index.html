@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Results Explorer — LLM Workers &amp; Assistants Benchmark</title>
+    <title>CentaurBench — Results Explorer</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div>
-        <div class="eyebrow">LLM Workers &amp; Assistants Benchmark</div>
+        <div class="eyebrow">CentaurBench</div>
         <h1>Results Explorer</h1>
-        <p class="paper-title">The Best Player Is Not Always the Best Coach: Benchmarking LLMs as Workers and Assistants Across Professional Tasks</p>
+        <p class="paper-title">CentaurBench: Benchmarking LLM Augmentation on Occupational Tasks</p>
         <p class="authors"><a href="https://kennywong524.github.io/" target="_blank" rel="noopener">Pattaraphon Kenny Wongchamcharoen</a>, <a href="https://sites.google.com/view/kris-gulati/home" target="_blank" rel="noopener">Kris Gulati</a>, Min Min Fong, <a href="https://www.abhishekn.com/" target="_blank" rel="noopener">Abhishek Nagaraj</a> · <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Data Innovation and AI Lab</a>, Haas School of Business, UC Berkeley</p>
       </div>
       <nav class="tabs" aria-label="Dashboard sections">
@@ -56,7 +56,7 @@
         <div class="project-hero">
           <div>
             <div class="eyebrow">Project overview</div>
-            <h2>The Worker-Assistant Benchmark</h2>
+            <h2>CentaurBench</h2>
             <p>Most benchmarks score a model on the work it produces alone. But in real workplaces, models often help a worker rather than replace them. This benchmark measures both: across seven professional tasks, each model either solves the task directly (<b>automation</b>) or writes a scaffold for a fixed lower-capability worker that produces the final output (<b>augmentation</b>). Holding the worker constant isolates the value of the assistant's guidance, and rubric-guided judges then compare the final outputs through blind pairwise matchups.</p>
             <div class="resource-links">
               <a class="resource-link" href="https://github.com/kennywong524/best-player-not-best-coach" target="_blank" rel="noopener">
@@ -188,7 +188,7 @@
         <div class="guide-card">
           <h2>How To Use This Dashboard</h2>
           <div class="guide-grid">
-            <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>Exclude baselines</i> for the 1-9 rank-of-ranks view, or <i>All candidates</i> for the full run.</div></div>
+            <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>All candidates</i> (default) includes the GPT-3.5-Turbo baseline and matches the paper figures; <i>Exclude baselines</i> shows the assistant-only 1-9 view.</div></div>
             <div class="guide-step"><span class="step-num">2</span><div><b>See the big picture.</b> <i>Main Results</i> — heat maps and the role-swap scatter compare automation vs. augmentation.</div></div>
             <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>Replicate Summary</i> — mean rank ± standard error across the three runs (smaller = more stable).</div></div>
             <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to load its rubric scores.</div></div>
