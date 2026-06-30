@@ -12,7 +12,7 @@ from typing import Any
 import pandas as pd
 
 from centaur_benchmark.config import TaskConfig
-from centaur_benchmark.edsl_runtime import edsl_run_kwargs
+from centaur_benchmark.edsl_runtime import edsl_run_kwargs, make_model, provider_model_name
 from centaur_benchmark.io import write_json
 from centaur_benchmark.scaffold_prompt import SCAFFOLD_SURVEY_QUESTION
 
@@ -70,6 +70,13 @@ def _generation_model_kwargs(model_id: str, base: dict[str, Any] | None = None) 
     if "temperature" not in kwargs:
         kwargs["temperature"] = GENERATION_TEMPERATURE
     return kwargs
+
+
+def _model_for_edsl(model_id: str, kwargs: dict[str, Any] | None = None) -> tuple[str, dict[str, Any]]:
+    """Return provider-facing model name and merged Model(...) kwargs."""
+    provider_id, provider_kwargs = provider_model_name(model_id)
+    merged = {**provider_kwargs, **_generation_model_kwargs(model_id, kwargs)}
+    return provider_id, merged
 
 
 def _cache_bust_description(desc: str) -> str:
@@ -207,7 +214,8 @@ Gemini-specific constraints:
         kwargs["max_tokens"] = 1200  # headroom after occasional thinking wrappers
     elif task.scaffold_model_max_tokens is not None:
         kwargs["max_tokens"] = int(task.scaffold_model_max_tokens)
-    model = Model(assistant_model, **_generation_model_kwargs(assistant_model, kwargs))
+    provider_id, model_kwargs = _model_for_edsl(assistant_model, kwargs)
+    model = make_model(assistant_model, **model_kwargs)
     print(f"Generating scaffold from {assistant_model} rep={rep}...")
     last_text = ""
     last_errors: list[str] = []
@@ -223,6 +231,7 @@ Gemini-specific constraints:
         results = survey.by(scenario).by(assistant_agent).by(model).run(
             **edsl_run_kwargs(
                 description=_cache_bust_description(desc),
+                model_id=assistant_model,
                 visibility=task.remote_inference_visibility,
             ),
         )
@@ -273,13 +282,15 @@ def _run_worker_batch(
         wkwargs["max_tokens"] = int(task.worker_model_max_tokens)
     interactive = sys.stdout.isatty()
     print(f"Running worker={worker_model} condition={condition} n={len(full_prompts)} rep={replicate_id}...")
+    provider_id, model_kwargs = _model_for_edsl(worker_model, wkwargs)
     results = (
         survey.by(scenarios)
         .by(worker)
-        .by(Model(worker_model, **_generation_model_kwargs(worker_model, wkwargs)))
+        .by(make_model(worker_model, **model_kwargs))
         .run(
             **edsl_run_kwargs(
                 description=_cache_bust_description(remote_description),
+                model_id=worker_model,
                 visibility=remote_visibility,
                 progress_bar=interactive,
                 verbose=interactive,
@@ -427,13 +438,15 @@ def _run_automation_single_model(
         f"Running automation model={model_id} n={len(prompts)} rep={replicate_id} "
         f"max_tokens={max_tok} attempt={attempt}..."
     )
+    provider_id, model_kwargs = _model_for_edsl(model_id, mkwargs)
     results = (
         survey.by(scenarios)
         .by(worker)
-        .by(Model(model_id, **_generation_model_kwargs(model_id, mkwargs)))
+        .by(make_model(model_id, **model_kwargs))
         .run(
             **edsl_run_kwargs(
                 description=_cache_bust_description(remote_description),
+                model_id=model_id,
                 visibility=remote_visibility,
                 n=1,
             ),

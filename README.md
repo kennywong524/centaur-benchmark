@@ -53,12 +53,120 @@ export CENTAUR_EDSL_REMOTE=1
 
 and enable **Run surveys remotely** in your Expected Parrot account settings. The stable frontier run below used **local proxy**.
 
+For larger public-release replication batches, the runner also supports an explicit
+execution mode:
+
+```bash
+# Old behavior: all model calls through Expected Parrot's API proxy.
+export CENTAUR_EDSL_MODE=ep_proxy
+
+# Direct local provider keys only. Fast/cheap when every model ID is provider-native.
+export CENTAUR_EDSL_MODE=direct
+
+# Recommended for the current benchmark: use direct provider keys where possible,
+# and fall back to Expected Parrot proxy for open-weight/proxy-only model IDs.
+export CENTAUR_EDSL_MODE=mixed
+```
+
+In `mixed` mode, OpenAI-family rows use `OPENAI_API_KEY` directly; GPT-OSS and
+DeepSeek benchmark IDs stay on the Expected Parrot proxy by default. Claude and
+Gemini benchmark IDs are also kept on the proxy unless you explicitly verify
+provider-native aliases, because labels such as `anthropic/claude-opus-4-8` and
+`google/gemini-3.1-pro` may be Expected-Parrot-side aliases rather than model IDs
+accepted by the public provider APIs.
+
+If a specific direct-provider model fails because the provider no longer serves
+that benchmark ID, force only that model back to the Expected Parrot proxy:
+
+```bash
+export CENTAUR_EP_PROXY_MODELS=gpt-3.5-turbo
+```
+
+Provider keys go in the gitignored `.env` file:
+
+```bash
+EXPECTED_PARROT_API_KEY=...
+OPENAI_API_KEY=...
+ANTHROPIC_API_KEY=...
+GOOGLE_API_KEY=...
+```
+
+If a benchmark model label needs a direct-provider alias, add an override instead
+of editing every task YAML:
+
+```bash
+# Examples only; set these to the provider-native names you have verified.
+export CENTAUR_DIRECT_ENABLE_VENDOR_ALIASES=1
+export CENTAUR_MODEL_ALIAS_ANTHROPIC_CLAUDE_OPUS_4_8=claude-opus-4-20250514
+export CENTAUR_MODEL_ALIAS_ANTHROPIC_CLAUDE_SONNET_4_6=claude-sonnet-4-20250514
+export CENTAUR_MODEL_ALIAS_GOOGLE_GEMINI_3_1_PRO=gemini-2.5-pro
+```
+
 Recommended timeouts for long tasks:
 
 ```bash
 export EDSL_API_TIMEOUT=600
 export REMOTE_PROXY_TIMEOUT=600
 export EDSL_MAX_ATTEMPTS=8
+```
+
+### Running additional public-release replicates
+
+The safest speedup is to run several independent one-replicate run IDs in
+parallel, rather than parallelizing writes inside one run directory. Each child
+run still uses the resumable quality-gated pipeline and writes its own audit log.
+
+Example: run the seven additional one-replicate runs needed to move from three to
+ten total runs:
+
+```bash
+set -a && source .env && set +a
+export CENTAUR_EDSL_MODE=mixed
+export EDSL_API_TIMEOUT=1800 REMOTE_PROXY_TIMEOUT=1800 EDSL_MAX_ATTEMPTS=8
+
+.venv/bin/python scripts/run_replicate_pool.py \
+  --prefix 20260629_public_rep \
+  --start 4 \
+  --count 7 \
+  --parallel 2 \
+  --phase generation \
+  --replicates 1
+```
+
+Monitor progress:
+
+```bash
+tail -f results/logs/pool_20260629_public_rep4.log
+.venv/bin/python scripts/run_resumable_batch.py --run-id 20260629_public_rep4 --status
+```
+
+After generation finishes, inspect each audit before judging:
+
+```bash
+ls results/logs/audit_20260629_public_rep*.json
+```
+
+Then judge and summarize the same run IDs, optionally with lower parallelism if
+provider rate limits bite:
+
+```bash
+.venv/bin/python scripts/run_replicate_pool.py \
+  --prefix 20260629_public_rep \
+  --start 4 \
+  --count 7 \
+  --parallel 2 \
+  --phase judge \
+  --replicates 1 \
+  --n-evals 1 \
+  --skip-variability-gate
+
+.venv/bin/python scripts/run_replicate_pool.py \
+  --prefix 20260629_public_rep \
+  --start 4 \
+  --count 7 \
+  --parallel 4 \
+  --phase summarize \
+  --replicates 1
 ```
 
 ---

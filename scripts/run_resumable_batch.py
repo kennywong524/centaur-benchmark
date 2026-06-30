@@ -33,7 +33,7 @@ if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
 from centaur_benchmark.config import default_tasks_dir, load_task  # noqa: E402
-from centaur_benchmark.edsl_runtime import use_remote_inference  # noqa: E402
+from centaur_benchmark.edsl_runtime import execution_mode, use_remote_inference  # noqa: E402
 from centaur_benchmark.io import ensure_run_dir, results_base, write_json  # noqa: E402
 from centaur_benchmark.judge_pairwise import (  # noqa: E402
     judge_augmentation_panel,
@@ -675,7 +675,12 @@ def main() -> None:
         return
 
     if args.phase in {"all", "judge"}:
-        mode_label = "remote Expected Parrot Jobs" if use_remote_inference() else "local API proxy"
+        mode = execution_mode()
+        mode_label = (
+            "remote Expected Parrot Jobs"
+            if use_remote_inference()
+            else ("mixed direct-provider/EP proxy" if mode == "mixed" else mode)
+        )
         _log(args.run_id, f"EDSL mode: {mode_label}")
 
     if args.phase in {"all", "judge"}:

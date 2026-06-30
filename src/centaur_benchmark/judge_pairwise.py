@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 from centaur_benchmark.config import TaskConfig
-from centaur_benchmark.edsl_runtime import edsl_run_kwargs
+from centaur_benchmark.edsl_runtime import edsl_run_kwargs, make_model, provider_model_name
 
 EXPECTED_SCORE_DIMENSIONS: tuple[str, ...] = (
     "task_dimension_1",
@@ -231,7 +231,8 @@ Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reas
     model_kwargs = {}
     if "gemini" in eval_model.lower() or "google" in eval_model.lower():
         model_kwargs["max_tokens"] = 4096
-    evaluator = Model(eval_model, **model_kwargs)
+    provider_id, provider_kwargs = provider_model_name(eval_model)
+    evaluator = make_model(eval_model, **{**provider_kwargs, **model_kwargs})
     results = (
         survey.by(scenarios)
         .by(agent)
@@ -239,6 +240,7 @@ Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reas
         .run(
             **edsl_run_kwargs(
                 description=remote_description,
+                model_id=eval_model,
                 visibility=remote_visibility,
                 n=1,
                 cache=True,

@@ -27,8 +27,13 @@ cd "$(dirname "$0")/.."
 RUN_ID="${RUN_ID:-20260612_rep1}"
 REPLICATES="${REPLICATES:-1}"
 # v4 (20260610_scaffold_strict_v4) used local Expected Parrot API proxy, not remote Jobs.
+# Set CENTAUR_EDSL_MODE=mixed for direct provider keys where possible plus EP proxy fallback.
 CENTAUR_EDSL_REMOTE="${CENTAUR_EDSL_REMOTE:-0}"
 export CENTAUR_EDSL_REMOTE
+CENTAUR_EDSL_MODE="${CENTAUR_EDSL_MODE:-}"
+if [[ -n "$CENTAUR_EDSL_MODE" ]]; then
+  export CENTAUR_EDSL_MODE
+fi
 export CENTAUR_RUN_ID="$RUN_ID"
 PHASE="${PHASE:-generation}"
 EXTRA_ARGS=("$@")
@@ -89,8 +94,10 @@ if [[ -f "$PIDFILE" ]]; then
 fi
 
 EDSL_MODE="remote Expected Parrot Jobs"
-if [[ "${CENTAUR_EDSL_REMOTE}" == "0" ]]; then
-  EDSL_MODE="local API proxy"
+if [[ -n "${CENTAUR_EDSL_MODE:-}" ]]; then
+  EDSL_MODE="$CENTAUR_EDSL_MODE"
+elif [[ "${CENTAUR_EDSL_REMOTE}" == "0" ]]; then
+  EDSL_MODE="local EP API proxy"
 fi
 HAS_REPLICATES=false
 for arg in "${EXTRA_ARGS[@]}"; do
