@@ -7,18 +7,27 @@ import re
 from types import MethodType
 from typing import Any
 
-# EDSL CONFIG loads repo .env with override=True on first import, clobbering shell exports.
-_CENTAUR_TIMEOUT_SEC = "1800"
-
-
 def ensure_edsl_timeouts() -> None:
-    """Keep local-proxy timeouts high; .env often has 300s which causes frontier-model failures."""
-    os.environ["EDSL_API_TIMEOUT"] = _CENTAUR_TIMEOUT_SEC
-    os.environ["REMOTE_PROXY_TIMEOUT"] = _CENTAUR_TIMEOUT_SEC
+    """Keep EDSL timeouts explicit while allowing run scripts to tune them.
+
+    Earlier versions always forced 1800s here. That was helpful for long
+    frontier-model completions, but it also made proxy-only failures hang for
+    half an hour before the resumable runner could repair or skip them. Respect
+    the caller's env override so batch runs can choose the right trade-off.
+    """
+    timeout_sec = os.environ.get("CENTAUR_EDSL_TIMEOUT_SEC", "").strip()
+    if not timeout_sec:
+        timeout_sec = os.environ.get("EDSL_API_TIMEOUT", "").strip()
+    if not timeout_sec:
+        timeout_sec = "1800"
+    os.environ["EDSL_API_TIMEOUT"] = timeout_sec
+    os.environ["REMOTE_PROXY_TIMEOUT"] = os.environ.get(
+        "REMOTE_PROXY_TIMEOUT", timeout_sec
+    )
     try:
         from edsl.config import CONFIG
 
-        CONFIG.EDSL_API_TIMEOUT = _CENTAUR_TIMEOUT_SEC
+        CONFIG.EDSL_API_TIMEOUT = timeout_sec
     except ImportError:
         pass
 
@@ -73,6 +82,8 @@ def _safe_env_suffix(model_id: str) -> str:
 
 def model_uses_ep_proxy(model_id: str | None) -> bool:
     """Whether this model should use the Expected Parrot API proxy for this call."""
+    if model_uses_remote_jobs(model_id):
+        return False
     mode = execution_mode()
     if mode == "remote":
         return False
@@ -100,6 +111,25 @@ def model_uses_ep_proxy(model_id: str | None) -> bool:
     return False
 
 
+def model_uses_remote_jobs(model_id: str | None) -> bool:
+    """Whether this model should use Expected Parrot remote Jobs in mixed mode.
+
+    This is intentionally opt-in. It lets public replication runs route a flaky
+    proxy-only model, such as DeepSeek through EP, to remote Jobs while keeping
+    OpenAI/Anthropic/Google calls on direct provider keys.
+    """
+    mode = execution_mode()
+    if mode == "remote":
+        return True
+    mid = str(model_id or "")
+    forced = [
+        x.strip()
+        for x in os.environ.get("CENTAUR_REMOTE_JOB_MODELS", "").split(",")
+        if x.strip()
+    ]
+    return any(mid == pattern or mid.startswith(pattern.rstrip("*")) for pattern in forced)
+
+
 def provider_model_name(model_id: str) -> tuple[str, dict[str, Any]]:
     """Map benchmark model IDs to EDSL direct-provider Model(...) arguments.
 
@@ -108,6 +138,9 @@ def provider_model_name(model_id: str) -> tuple[str, dict[str, Any]]:
       CENTAUR_MODEL_ALIAS_ANTHROPIC_CLAUDE_OPUS_4_8=claude-opus-4-20250514
       CENTAUR_MODEL_ALIAS_GOOGLE_GEMINI_3_1_PRO=gemini-2.5-pro
     """
+    if model_uses_remote_jobs(model_id):
+        return str(model_id), {}
+
     if model_uses_ep_proxy(model_id):
         return str(model_id), {}
 
@@ -221,7 +254,7 @@ def edsl_run_kwargs(
     if n is not None:
         kwargs["n"] = n
     mode = execution_mode()
-    if mode == "remote":
+    if mode == "remote" or model_uses_remote_jobs(model_id):
         kwargs.update(
             {
                 "use_api_proxy": False,

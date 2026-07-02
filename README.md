@@ -327,6 +327,38 @@ Re-audit, then **delete judge CSVs** for any patched task/mode before re-judging
 
 Panel judging across 7 tasks × 2 modes × 4 judges is API-intensive. A practical order: audit → `n_evals=1` judge pass → check burn rate → optionally re-run with `n_evals=3`.
 
+### Together DeepSeek-V3.1 dedicated endpoint
+
+DeepSeek-V3.1 is not fine-tuned for this benchmark. If the Expected Parrot/DeepInfra route returns `nan` or tiny stubs, use a Together dedicated endpoint serving the base `deepseek-ai/DeepSeek-V3.1` model:
+
+```bash
+set -a && source .env && set +a
+
+# Inspect available hardware. This does not start billing.
+PYTHONPATH=src .venv/bin/python scripts/together_deepseek_endpoint.py hardware
+
+# Create and start a base-model endpoint. Stop it as soon as repairs/judging finish.
+PYTHONPATH=src .venv/bin/python scripts/together_deepseek_endpoint.py create \
+  --start --wait \
+  --hardware 4x_nvidia_b200_180gb_sxm \
+  --inactive-timeout 900
+
+# Put the printed endpoint id in .env:
+# CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT="<endpoint id>"
+# CENTAUR_DEEPSEEK_ROUTE="together"
+
+# Smoke test normal inference against the endpoint.
+PYTHONPATH=src .venv/bin/python scripts/together_deepseek_endpoint.py smoke
+
+# Repair known public-run DeepSeek automation stubs through Together.
+PYTHONPATH=src .venv/bin/python scripts/repair_public_deepseek_together.py --attempts 3
+
+# Stop the endpoint when done.
+PYTHONPATH=src .venv/bin/python scripts/together_deepseek_endpoint.py stop <endpoint id>
+```
+
+The endpoint path is used only when `CENTAUR_DEEPSEEK_ROUTE=together`; all other models stay on their existing EDSL/direct-provider routes.
+
 ---
 
 ## Single-task CLI (alternative)

@@ -15,6 +15,7 @@ from centaur_benchmark.config import TaskConfig
 from centaur_benchmark.edsl_runtime import edsl_run_kwargs, make_model, provider_model_name
 from centaur_benchmark.io import write_json
 from centaur_benchmark.scaffold_prompt import SCAFFOLD_SURVEY_QUESTION
+from centaur_benchmark.together_runtime import together_chat_completion, use_together_deepseek
 
 MIN_SCAFFOLD_CHARS = 250
 MAX_SCAFFOLD_CHARS = 2600
@@ -61,7 +62,11 @@ _AUTOMATION_MODEL_TASK_MAX_TOKENS: dict[tuple[str, str], int] = {
     # DeepSeek meal planning failed or truncated with generic high/default caps;
     # exact deep_infra route with 6k passed in 20260612_fresh_rep1.
     ("deepseek-ai/DeepSeek-V3.1", "meal_plan"): 6_000,
-    ("deepseek-ai/DeepSeek-V3.1", "tax_prep"): 6_000,
+}
+_AUTOMATION_MODEL_TASK_OMIT_MAX_TOKENS: set[tuple[str, str]] = {
+    # DeepSeek tax automation repeatedly times out through EP remote Jobs when
+    # max_tokens is forced. No-cap repairs return complete outputs.
+    ("deepseek-ai/DeepSeek-V3.1", "tax_prep"),
 }
 
 
@@ -99,6 +104,8 @@ def _automation_model_kwargs(
         if cap is None:
             return {}
         return {"max_tokens": cap}
+    if (model_id, task.slug) in _AUTOMATION_MODEL_TASK_OMIT_MAX_TOKENS:
+        return {}
     special_cap = _AUTOMATION_MODEL_TASK_MAX_TOKENS.get((model_id, task.slug))
     if special_cap is not None:
         return {"max_tokens": special_cap}
@@ -419,6 +426,36 @@ def _run_automation_single_model(
     from edsl import Agent, Model, Scenario, ScenarioList, Survey, QuestionFreeText
 
     condition = f"automation_{model_label.replace(' ', '_')}"
+    auto_instr = task.automation_worker_instruction or (
+        "Complete the task clearly and professionally. Return only the final deliverable."
+    )
+    mkwargs = _automation_model_kwargs(task, model_id, attempt=attempt)
+    max_tok = mkwargs.get("max_tokens", "default")
+    print(
+        f"Running automation model={model_id} n={len(prompts)} rep={replicate_id} "
+        f"max_tokens={max_tok} attempt={attempt}..."
+    )
+    if use_together_deepseek(model_id):
+        rows: list[dict[str, Any]] = []
+        for i, fp in enumerate(prompts):
+            rep = replicate_id if len(prompts) == 1 else i
+            output = together_chat_completion(
+                system_prompt=auto_instr,
+                user_prompt=fp,
+                max_tokens=mkwargs.get("max_tokens"),
+                temperature=GENERATION_TEMPERATURE,
+            )
+            rows.append(
+                {
+                    "replicate_id": rep,
+                    "output": output,
+                    "condition": condition,
+                    "model_id": model_id,
+                    "model_label": model_label,
+                }
+            )
+        return pd.DataFrame(rows)
+
     scenario_rows: list[dict[str, Any]] = []
     for i, fp in enumerate(prompts):
         rep = replicate_id if len(prompts) == 1 else i
@@ -428,16 +465,7 @@ def _run_automation_single_model(
     scenarios = ScenarioList([Scenario(row) for row in scenario_rows])
     q = QuestionFreeText("output", "{{ scenario.task_prompt }}")
     survey = Survey([q])
-    auto_instr = task.automation_worker_instruction or (
-        "Complete the task clearly and professionally. Return only the final deliverable."
-    )
     worker = Agent(instruction=auto_instr)
-    mkwargs = _automation_model_kwargs(task, model_id, attempt=attempt)
-    max_tok = mkwargs.get("max_tokens", "default")
-    print(
-        f"Running automation model={model_id} n={len(prompts)} rep={replicate_id} "
-        f"max_tokens={max_tok} attempt={attempt}..."
-    )
     provider_id, model_kwargs = _model_for_edsl(model_id, mkwargs)
     results = (
         survey.by(scenarios)

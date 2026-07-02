@@ -254,6 +254,8 @@ def _step_passes_quality(step_id: str, run_id: str) -> bool:
 
 def _is_upstream_api_failure(raw: str, audit: dict[str, Any]) -> bool:
     """nan / empty rows from LanguageModelNoResponseError — retries won't help for ~70s."""
+    if os.environ.get("CENTAUR_RETRY_TINY_FAILURES", "").strip().lower() in {"1", "true", "yes"}:
+        return False
     text = str(raw or "").strip().lower()
     if text in {"", "nan", "none"}:
         return True
