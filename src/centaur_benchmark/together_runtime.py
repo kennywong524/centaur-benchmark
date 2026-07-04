@@ -24,23 +24,54 @@ def use_together_deepseek(model_id: str | None) -> bool:
     return str(model_id or "") == DEEPSEEK_MODEL_ID and route == "together"
 
 
+def _together_client():
+    from together import Together
+
+    api_key = os.environ.get("TOGETHER_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("TOGETHER_API_KEY is required for Together DeepSeek calls")
+    return Together(api_key=api_key)
+
+
+def together_endpoint_id() -> str:
+    return os.environ.get("CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT", "").strip()
+
+
+def together_endpoint_info() -> dict[str, Any]:
+    """Retrieve dedicated endpoint metadata when an endpoint id is configured."""
+    endpoint_id = together_endpoint_id()
+    if not endpoint_id or not endpoint_id.startswith("endpoint-"):
+        return {}
+    ep = _together_client().endpoints.retrieve(endpoint_id)
+    autoscaling = getattr(ep, "autoscaling", None)
+    return {
+        "id": str(getattr(ep, "id", endpoint_id) or endpoint_id),
+        "name": str(getattr(ep, "name", "") or "").strip(),
+        "display_name": str(getattr(ep, "display_name", "") or "").strip(),
+        "model": str(getattr(ep, "model", "") or "").strip(),
+        "hardware": str(getattr(ep, "hardware", "") or "").strip(),
+        "state": str(getattr(ep, "state", "") or getattr(ep, "status", "") or "").strip(),
+        "ready_replicas": int(getattr(autoscaling, "ready_replicas", 0) or 0),
+        "current_replicas": int(getattr(autoscaling, "current_replicas", 0) or 0),
+    }
+
+
 def together_endpoint_model() -> str:
     """Model/endpoint identifier to pass to Together chat completions."""
     endpoint_name = os.environ.get("CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT_NAME", "").strip()
     if endpoint_name:
         return endpoint_name
-    endpoint = os.environ.get("CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT", "").strip()
+    endpoint = together_endpoint_id()
     if endpoint:
         if endpoint.startswith("endpoint-"):
-            try:
-                from together import Together
-
-                ep = Together(api_key=os.environ.get("TOGETHER_API_KEY")).endpoints.retrieve(endpoint)
-                name = str(getattr(ep, "name", "") or "").strip()
-                if name:
-                    return name
-            except Exception:
-                pass
+            info = together_endpoint_info()
+            name = str(info.get("name") or "").strip()
+            if name:
+                return name
+            raise RuntimeError(
+                f"Could not resolve Together endpoint id {endpoint} to endpoint.name; "
+                "set CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT_NAME explicitly."
+            )
         return endpoint
     return os.environ.get("CENTAUR_TOGETHER_DEEPSEEK_MODEL", DEEPSEEK_MODEL_ID).strip()
 
@@ -60,11 +91,10 @@ def together_chat_completion(
         raise RuntimeError("TOGETHER_API_KEY is required for Together DeepSeek calls")
 
     model = together_endpoint_model()
+    sdk_timeout = int(timeout_sec or os.environ.get("CENTAUR_TOGETHER_TIMEOUT_SEC", "900"))
     if os.environ.get("CENTAUR_TOGETHER_USE_SDK", "1").strip().lower() not in {"0", "false", "no"}:
         try:
-            from together import Together
-
-            client = Together(api_key=api_key)
+            client = _together_client()
             response = client.chat.completions.create(
                 model=model,
                 messages=[
@@ -73,7 +103,7 @@ def together_chat_completion(
                 ],
                 temperature=temperature,
                 max_tokens=max_tokens,
-                timeout=int(timeout_sec or os.environ.get("CENTAUR_TOGETHER_TIMEOUT_SEC", "900")),
+                timeout=sdk_timeout,
             )
             choice = response.choices[0]
             content = getattr(getattr(choice, "message", None), "content", None)
@@ -81,13 +111,16 @@ def together_chat_completion(
                 content = getattr(choice, "text", "")
             return str(content or "").strip()
         except Exception as exc:
+            wrapped = RuntimeError(
+                f"Together SDK chat failed for model={model!r}: {type(exc).__name__}: {exc}"
+            )
             if os.environ.get("CENTAUR_TOGETHER_SDK_ONLY", "").strip().lower() in {
                 "1",
                 "true",
                 "yes",
             }:
-                raise
-            last_sdk_error = exc
+                raise wrapped from exc
+            last_sdk_error = wrapped
     else:
         last_sdk_error = None
 

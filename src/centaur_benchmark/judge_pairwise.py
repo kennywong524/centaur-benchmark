@@ -12,7 +12,18 @@ import numpy as np
 import pandas as pd
 
 from centaur_benchmark.config import TaskConfig
-from centaur_benchmark.edsl_runtime import edsl_run_kwargs, make_model, provider_model_name
+from centaur_benchmark.edsl_runtime import (
+    edsl_run_kwargs,
+    execution_mode,
+    make_model,
+    model_uses_ep_proxy,
+    provider_model_name,
+)
+from centaur_benchmark.together_runtime import (
+    together_chat_completion,
+    together_endpoint_model,
+    use_together_deepseek,
+)
 
 EXPECTED_SCORE_DIMENSIONS: tuple[str, ...] = (
     "task_dimension_1",
@@ -60,6 +71,88 @@ _PAIRWISE_JSON_SCHEMA = """{
   "option_1_average": 6.8,
   "option_2_average": 5.0
 }"""
+
+
+def _pairwise_user_prompt(task_text: str, option_1: str, option_2: str) -> str:
+    return f"""Original request:
+{task_text}
+
+--------------------------------------------------
+OPTION 1
+{option_1}
+
+--------------------------------------------------
+OPTION 2
+{option_2}
+
+Compare OPTION 1 and OPTION 2 using the rubric in your evaluator instructions.
+Score each option independently on every dimension before choosing.
+Replace the placeholder integers below with your real 1-10 scores. Do not copy the example values.
+
+Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reasoning, chain-of-thought, analysis tags, or <think> blocks. Use exactly this schema:
+""" + _PAIRWISE_JSON_SCHEMA + """
+"""
+
+
+def _scenario_data(scenario) -> dict[str, object]:
+    if isinstance(scenario, dict):
+        return scenario
+    if hasattr(scenario, "to_dict"):
+        return scenario.to_dict()
+    return dict(scenario)
+
+
+def _describe_judge_route(eval_model: str) -> str:
+    if use_together_deepseek(eval_model):
+        return f"Together dedicated ({together_endpoint_model()})"
+    if model_uses_ep_proxy(eval_model):
+        return "Expected Parrot proxy"
+    _, provider_kwargs = provider_model_name(eval_model)
+    service = provider_kwargs.get("service_name", "openai")
+    return f"direct provider ({service}) via EDSL"
+
+
+def _run_pairwise_together(
+    scenarios_list: list,
+    eval_prompt: str,
+    eval_model: str,
+    *,
+    include_run_id: bool,
+) -> pd.DataFrame:
+    if not scenarios_list:
+        return pd.DataFrame()
+    print(
+        f"Judge {eval_model} route: {_describe_judge_route(eval_model)} "
+        f"(EDSL mode={execution_mode()})",
+        flush=True,
+    )
+    rows: list[dict[str, object]] = []
+    for scenario in scenarios_list:
+        data = _scenario_data(scenario)
+        raw = together_chat_completion(
+            system_prompt=eval_prompt,
+            user_prompt=_pairwise_user_prompt(
+                str(data["task_text"]),
+                str(data["option_1"]),
+                str(data["option_2"]),
+            ),
+            max_tokens=4096,
+            temperature=0.2,
+        )
+        row: dict[str, object] = {
+            "left_idx": data["left_idx"],
+            "right_idx": data["right_idx"],
+            "replicate_id": data["replicate_id"],
+            "judgment": raw,
+        }
+        if include_run_id and "run_id" in data:
+            row["run_id"] = data["run_id"]
+        rows.append(row)
+    pairwise_df = pd.DataFrame(rows)
+    pairwise_df = _parse_pairwise_judgments(pairwise_df)
+    pairwise_df["judge_model"] = eval_model
+    return pairwise_df
+
 
 _JUDGE_RULES_SUFFIX = """
 
@@ -199,32 +292,27 @@ def _run_pairwise_survey(
     remote_description: str,
     remote_visibility: str = "private",
 ) -> pd.DataFrame:
+    if use_together_deepseek(eval_model):
+        return _run_pairwise_together(
+            scenarios_list,
+            eval_prompt,
+            eval_model,
+            include_run_id=include_run_id,
+        )
+
     from edsl import Agent, Model, ScenarioList, Survey, QuestionFreeText
 
     if not scenarios_list:
         return pd.DataFrame()
+    print(
+        f"Judge {eval_model} route: {_describe_judge_route(eval_model)} "
+        f"(EDSL mode={execution_mode()})",
+        flush=True,
+    )
     scenarios = ScenarioList(scenarios_list)
     q = QuestionFreeText(
         question_name="judgment",
-        question_text="""
-Original request:
-{{ task_text }}
-
---------------------------------------------------
-OPTION 1
-{{ option_1 }}
-
---------------------------------------------------
-OPTION 2
-{{ option_2 }}
-
-Compare OPTION 1 and OPTION 2 using the rubric in your evaluator instructions.
-Score each option independently on every dimension before choosing.
-Replace the placeholder integers below with your real 1-10 scores. Do not copy the example values.
-
-Return JSON only. No Markdown. No prose outside JSON. Do not include hidden reasoning, chain-of-thought, analysis tags, or <think> blocks. Use exactly this schema:
-""" + _PAIRWISE_JSON_SCHEMA + """
-""",
+        question_text=_pairwise_user_prompt("{{ task_text }}", "{{ option_1 }}", "{{ option_2 }}"),
     )
     survey = Survey([q])
     agent = Agent(instruction=eval_prompt)

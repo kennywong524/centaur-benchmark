@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_RUN_ID = "20260610_scaffold_strict_v4"
+DEFAULT_RUN_ID = "20260629_public_rep10"
 RUNS = [
     {
         "id": "20260610_scaffold_strict_v4",
@@ -25,6 +25,41 @@ RUNS = [
         "id": "20260612_fresh_rep2",
         "label": "Run 3",
         "description": "Independent run of the full pipeline.",
+    },
+    {
+        "id": "20260629_public_rep4",
+        "label": "Run 4",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep5",
+        "label": "Run 5",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep6",
+        "label": "Run 6",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep7",
+        "label": "Run 7",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep8",
+        "label": "Run 8",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep9",
+        "label": "Run 9",
+        "description": "Public-release replication run.",
+    },
+    {
+        "id": "20260629_public_rep10",
+        "label": "Run 10",
+        "description": "Public-release replication run.",
     },
 ]
 TASKS = [

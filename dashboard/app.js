@@ -529,7 +529,7 @@ function renderRoleScatter() {
   }).join("");
   const info = `<div class="role-info">
     <div class="role-info-head">Average ranks · ${esc(runLabel)}</div>
-    <p class="role-info-sub">Mean rank across all seven tasks (${esc(judgeLabel)}); lower is better. Toggle <b>Run</b> above to switch between the three replicates.</p>
+    <p class="role-info-sub">Mean rank across all seven tasks (${esc(judgeLabel)}); lower is better. Toggle <b>Run</b> above to switch between the ten runs.</p>
     ${cards}
   </div>`;
 
@@ -727,7 +727,7 @@ function sem(xs) {
   return std(xs) / Math.sqrt(xs.length);
 }
 
-function replicateRankRows(mode, judge = state.judge) {
+function replicateRankRows(mode, judge = "aggregate") {
   return runList().flatMap(run => rankOfRanks(mode, judge, run.id).map(d => ({
     ...d,
     run_id: run.id,
@@ -735,7 +735,7 @@ function replicateRankRows(mode, judge = state.judge) {
   })));
 }
 
-function replicateCellStats(mode, judge = state.judge) {
+function replicateCellStats(mode, judge = "aggregate") {
   const rows = replicateRankRows(mode, judge);
   const byCell = new Map();
   rows.forEach(d => {
@@ -822,6 +822,92 @@ function renderReplicateSummary() {
     [displayModel(auto[0]?.model || "", "automation"), "best mean automation rank"],
     [`${stable(aug)} / ${stable(auto)}`, "mean rank SD: aug / auto"],
   ].map(([v, l]) => `<div class="metric"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
+}
+
+function isBaselineModel(model) {
+  return model === "plain" || model === "GPT-3.5-Turbo" || model === "gpt-3.5-turbo";
+}
+
+function taskWinnerStats(mode, { assistantsOnly = false } = {}) {
+  const rows = replicateRankRows(mode, "aggregate")
+    .filter(d => !(assistantsOnly && isBaselineModel(d.model_label)));
+  return taskOrder.map(task => {
+    const byModel = new Map();
+    rows.filter(d => d.task_slug === task).forEach(d => {
+      const arr = byModel.get(d.model_label) || [];
+      arr.push(Number(d.display_rank));
+      byModel.set(d.model_label, arr);
+    });
+    const candidates = [...byModel.entries()].map(([model, vals]) => ({
+      task,
+      model,
+      mean: avg(vals),
+      se: sem(vals),
+      n: vals.length,
+    })).sort((a, b) => a.mean - b.mean || a.model.localeCompare(b.model));
+    return candidates[0];
+  }).filter(Boolean);
+}
+
+function judgeCoverageStats() {
+  let cells = 0;
+  let allFour = 0;
+  const counts = new Map();
+  runList().forEach(run => {
+    activeData(run.id).validations.forEach(v => {
+      const judges = v.validation?.aggregate_judges || [];
+      cells += 1;
+      if (judges.length >= 4) allFour += 1;
+      judges.forEach(j => counts.set(j, (counts.get(j) || 0) + 1));
+    });
+  });
+  return { cells, allFour, counts };
+}
+
+function winnerListHtml(winners, mode) {
+  return `<div class="winner-pills">${winners.map(w => `<span class="winner-pill"><b>${esc(cleanTaskTitle(w.task))}</b>${esc(displayModel(w.model, mode))} <em>${w.mean.toFixed(1)}</em></span>`).join("")}</div>`;
+}
+
+function renderFindingsSnapshot() {
+  const augStats = replicateModelStats("augmentation");
+  const autoStats = replicateModelStats("automation");
+  const topAugAssistant = augStats.find(d => !isBaselineModel(d.model));
+  const topAugOverall = augStats[0];
+  const topAuto = autoStats[0];
+  const augWinners = taskWinnerStats("augmentation");
+  const augAssistantWinners = taskWinnerStats("augmentation", { assistantsOnly: true });
+  const autoWinners = taskWinnerStats("automation");
+  const autoWinnerCount = new Set(autoWinners.map(w => w.model)).size;
+  const augWinnerCount = new Set(augAssistantWinners.map(w => w.model)).size;
+  const html = `<div class="findings-grid">
+    <div class="finding-summary-card">
+      <span class="summary-kicker">Best average automator</span>
+      <b>${esc(displayModel(topAuto?.model || "", "automation"))}</b>
+      <p>mean rank ${topAuto?.mean.toFixed(2)} across ten runs and seven tasks; automation winners are relatively concentrated.</p>
+    </div>
+    <div class="finding-summary-card">
+      <span class="summary-kicker">Best average assistant</span>
+      <b>${esc(displayModel(topAugAssistant?.model || "", "augmentation"))}</b>
+      <p>mean rank ${topAugAssistant?.mean.toFixed(2)} among assistant models. Overall augmentation leader: ${esc(displayModel(topAugOverall?.model || "", "augmentation"))}.</p>
+    </div>
+    <div class="finding-summary-card">
+      <span class="summary-kicker">Task specificity</span>
+      <b>${augWinnerCount} assistant winners</b>
+      <p>win at least one augmentation task, compared with ${autoWinnerCount} winners in automation.</p>
+    </div>
+  </div>
+  <div class="winner-block">
+    <h3>Augmentation winners by task</h3>
+    ${winnerListHtml(augAssistantWinners, "augmentation")}
+  </div>
+  <div class="winner-block">
+    <h3>Automation winners by task</h3>
+    ${winnerListHtml(autoWinners, "automation")}
+  </div>`;
+  ["tenRunFindings"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  });
 }
 
 function validationRows(check) {
@@ -1131,7 +1217,7 @@ const methodologyDetails = {
   },
   evaluator: {
     title: "Evaluator panel: blind pairwise judging",
-    body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, and Gemini-3.1-Pro where available) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
+    body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, and Gemini-3.1-Pro) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
     action: { label: "Inspect judge agreement", run: () => goTab("judges") },
   },
   results: {
@@ -1197,6 +1283,7 @@ function bind() {
 function renderAll() {
   populateControls();
   renderProjectStats();
+  renderFindingsSnapshot();
   renderMetrics();
   renderHeatmap(document.getElementById("heatAug"), "augmentation");
   renderHeatmap(document.getElementById("heatAuto"), "automation");

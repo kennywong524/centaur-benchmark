@@ -127,13 +127,45 @@ def delete_endpoint(endpoint_id: str) -> None:
     print(f"Deleted endpoint {endpoint_id}")
 
 
-def smoke(prompt: str, max_tokens: int) -> None:
+def _print_endpoint_debug() -> None:
     from centaur_benchmark.together_runtime import (
-        together_chat_completion,
+        together_endpoint_id,
+        together_endpoint_info,
         together_endpoint_model,
     )
 
+    endpoint_id = together_endpoint_id()
+    print(f"CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT={endpoint_id or '(unset)'}")
+    print(
+        "CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT_NAME="
+        f"{os.environ.get('CENTAUR_TOGETHER_DEEPSEEK_ENDPOINT_NAME', '').strip() or '(unset)'}"
+    )
+    if endpoint_id:
+        info = together_endpoint_info()
+        if info:
+            print("Endpoint retrieve():")
+            for key in (
+                "id",
+                "name",
+                "display_name",
+                "model",
+                "hardware",
+                "state",
+                "ready_replicas",
+                "current_replicas",
+            ):
+                print(f"  {key}: {info.get(key)}")
     print(f"Together chat model identifier: {together_endpoint_model()}")
+
+
+def smoke(prompt: str, max_tokens: int, *, wait_first: bool, wait_timeout: int) -> None:
+    from centaur_benchmark.together_runtime import together_chat_completion, together_endpoint_id
+
+    endpoint_id = together_endpoint_id()
+    if wait_first and endpoint_id:
+        print(f"Waiting for endpoint {endpoint_id} to become ready...")
+        wait_endpoint(endpoint_id, timeout=wait_timeout)
+    _print_endpoint_debug()
     text = together_chat_completion(
         system_prompt="Return only the requested answer.",
         user_prompt=prompt,
@@ -179,6 +211,13 @@ def main() -> None:
     smoke_parser = sub.add_parser("smoke")
     smoke_parser.add_argument("--prompt", default="Write one sentence confirming this endpoint works.")
     smoke_parser.add_argument("--max-tokens", type=int, default=128)
+    smoke_parser.add_argument(
+        "--wait-first",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Wait for ready_replicas > 0 before calling chat (default: true).",
+    )
+    smoke_parser.add_argument("--wait-timeout", type=int, default=1800)
 
     args = parser.parse_args()
     if args.cmd == "hardware":
@@ -196,7 +235,12 @@ def main() -> None:
     elif args.cmd == "delete":
         delete_endpoint(args.endpoint_id)
     elif args.cmd == "smoke":
-        smoke(args.prompt, args.max_tokens)
+        smoke(
+            args.prompt,
+            args.max_tokens,
+            wait_first=args.wait_first,
+            wait_timeout=args.wait_timeout,
+        )
     else:
         parser.print_help()
         sys.exit(2)
