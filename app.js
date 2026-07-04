@@ -877,15 +877,9 @@ function renderFindingsSnapshot() {
   const augWinners = taskWinnerStats("augmentation");
   const augAssistantWinners = taskWinnerStats("augmentation", { assistantsOnly: true });
   const autoWinners = taskWinnerStats("automation");
-  const coverage = judgeCoverageStats();
   const autoWinnerCount = new Set(autoWinners.map(w => w.model)).size;
   const augWinnerCount = new Set(augAssistantWinners.map(w => w.model)).size;
   const html = `<div class="findings-grid">
-    <div class="finding-summary-card">
-      <span class="summary-kicker">Panel repaired</span>
-      <b>${coverage.allFour}/${coverage.cells}</b>
-      <p>task-mode-run cells include all four judges: GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, and Gemini-3.1-Pro.</p>
-    </div>
     <div class="finding-summary-card">
       <span class="summary-kicker">Best average automator</span>
       <b>${esc(displayModel(topAuto?.model || "", "automation"))}</b>
@@ -903,7 +897,7 @@ function renderFindingsSnapshot() {
     </div>
   </div>
   <div class="winner-block">
-    <h3>Augmentation winners by task <span>assistant-only view</span></h3>
+    <h3>Augmentation winners by task</h3>
     ${winnerListHtml(augAssistantWinners, "augmentation")}
   </div>
   <div class="winner-block">
