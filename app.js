@@ -727,7 +727,7 @@ function sem(xs) {
   return std(xs) / Math.sqrt(xs.length);
 }
 
-function replicateRankRows(mode, judge = state.judge) {
+function replicateRankRows(mode, judge = "aggregate") {
   return runList().flatMap(run => rankOfRanks(mode, judge, run.id).map(d => ({
     ...d,
     run_id: run.id,
@@ -735,7 +735,7 @@ function replicateRankRows(mode, judge = state.judge) {
   })));
 }
 
-function replicateCellStats(mode, judge = state.judge) {
+function replicateCellStats(mode, judge = "aggregate") {
   const rows = replicateRankRows(mode, judge);
   const byCell = new Map();
   rows.forEach(d => {
@@ -904,7 +904,7 @@ function renderFindingsSnapshot() {
     <h3>Automation winners by task</h3>
     ${winnerListHtml(autoWinners, "automation")}
   </div>`;
-  ["projectFindings", "mainFindings"].forEach(id => {
+  ["tenRunFindings"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
   });

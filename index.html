@@ -98,13 +98,6 @@
             <p>LLM judges perform blind pairwise comparisons with task-specific rubric scores and leave-family-out masking.</p>
           </div>
         </div>
-        <div class="viz-card findings-card">
-          <div class="section-heading compact">
-            <h2>10-Run Findings Snapshot</h2>
-            <p>Computed from the repaired four-judge panel across all ten runs.</p>
-          </div>
-          <div id="projectFindings"></div>
-        </div>
         <div class="viz-card method-card" id="methodology">
           <div class="method-head">
             <h2>Methodology at a Glance</h2>
@@ -207,13 +200,6 @@
 
       <section id="overview" class="panel">
         <div class="metric-row" id="metricRow"></div>
-        <div class="viz-card findings-card">
-          <div class="section-heading compact">
-            <h2>Main Findings Across 10 Runs</h2>
-            <p>These summaries aggregate rank-of-ranks across the full ten-run panel. The heat maps below still respond to the selected run and judge controls.</p>
-          </div>
-          <div id="mainFindings"></div>
-        </div>
         <div class="section-heading">
           <h2>Figure 1: Aggregate Rank Heat Map</h2>
           <p>Rank-of-ranks recomputed within the selected model universe. Lower is better.</p>
@@ -241,6 +227,13 @@
         <div class="section-heading">
           <h2>10-Run Summary</h2>
           <p>Average ranks and stability across all ten runs. Lower rank is better; the value beneath each heat-map cell is the standard error across runs, so a smaller error means the result is more stable across reruns. Use this tab to confirm a ranking is reproducible before drawing conclusions from it.</p>
+        </div>
+        <div class="viz-card findings-card">
+          <div class="section-heading compact">
+            <h2>Main Findings Across 10 Runs</h2>
+            <p>These summaries aggregate rank-of-ranks across the full ten-run panel. The heat maps and stability tables below use the same panel-aggregate view.</p>
+          </div>
+          <div id="tenRunFindings"></div>
         </div>
         <div class="metric-row" id="replicateMetrics"></div>
         <div class="two-col">
