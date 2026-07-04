@@ -17,7 +17,7 @@
       <nav class="tabs" aria-label="Dashboard sections">
         <button class="tab active" data-tab="project">Project Overview</button>
         <button class="tab" data-tab="overview">Main Results</button>
-        <button class="tab" data-tab="replicates">Replicate Summary</button>
+        <button class="tab" data-tab="replicates">10-Run Summary</button>
         <button class="tab" data-tab="rankings">Rankings</button>
         <button class="tab" data-tab="judges">Judges</button>
         <button class="tab" data-tab="qualitative">Qualitative</button>
@@ -72,7 +72,7 @@
           <div class="abstract-body">
             <h2>Abstract</h2>
             <p>Organizations adopting generative AI increasingly face a model-selection problem that existing benchmarks do not fully answer. Most LLM benchmarks evaluate models as autonomous task solvers, scoring the quality of a model's final output. Yet in workplaces, models are often used not in isolation but to assist a human worker by structuring the problem, surfacing constraints, or improving the worker's reasoning. In these settings, the economically relevant question is not only which model can complete a task, but which model can improve the work of another agent.</p>
-            <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across three independent runs.</p>
+            <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across ten independent runs.</p>
             <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
           </div>
           <div class="abstract-logos">
@@ -97,6 +97,13 @@
             <b>Evaluation</b>
             <p>LLM judges perform blind pairwise comparisons with task-specific rubric scores and leave-family-out masking.</p>
           </div>
+        </div>
+        <div class="viz-card findings-card">
+          <div class="section-heading compact">
+            <h2>10-Run Findings Snapshot</h2>
+            <p>Computed from the repaired four-judge panel across all ten runs.</p>
+          </div>
+          <div id="projectFindings"></div>
         </div>
         <div class="viz-card method-card" id="methodology">
           <div class="method-head">
@@ -190,7 +197,7 @@
           <div class="guide-grid">
             <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>All candidates</i> (default) includes the GPT-3.5-Turbo baseline and matches the paper figures; <i>Exclude baselines</i> shows the assistant-only 1-9 view.</div></div>
             <div class="guide-step"><span class="step-num">2</span><div><b>See the big picture.</b> <i>Main Results</i> — heat maps and the role-swap scatter compare automation vs. augmentation.</div></div>
-            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>Replicate Summary</i> — mean rank ± standard error across the three runs (smaller = more stable).</div></div>
+            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>10-Run Summary</i> — mean rank ± standard error across all ten runs (smaller = more stable).</div></div>
             <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to load its rubric scores.</div></div>
             <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> <i>Qualitative</i> — outputs, scaffolds, prompts, and pairwise judge rationales.</div></div>
             <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> <i>Validation</i> — held-out cross-family judge checks on model-family gradients.</div></div>
@@ -200,6 +207,13 @@
 
       <section id="overview" class="panel">
         <div class="metric-row" id="metricRow"></div>
+        <div class="viz-card findings-card">
+          <div class="section-heading compact">
+            <h2>Main Findings Across 10 Runs</h2>
+            <p>These summaries aggregate rank-of-ranks across the full ten-run panel. The heat maps below still respond to the selected run and judge controls.</p>
+          </div>
+          <div id="mainFindings"></div>
+        </div>
         <div class="section-heading">
           <h2>Figure 1: Aggregate Rank Heat Map</h2>
           <p>Rank-of-ranks recomputed within the selected model universe. Lower is better.</p>
@@ -225,8 +239,8 @@
 
       <section id="replicates" class="panel">
         <div class="section-heading">
-          <h2>Replicate Summary</h2>
-          <p>Average ranks and stability across Run 1, Run 2, and Run 3. Lower rank is better; the value beneath each heat-map cell is the standard error across runs, so a smaller error means the result is more stable across reruns. Use this tab to confirm a ranking is reproducible before drawing conclusions from it.</p>
+          <h2>10-Run Summary</h2>
+          <p>Average ranks and stability across all ten runs. Lower rank is better; the value beneath each heat-map cell is the standard error across runs, so a smaller error means the result is more stable across reruns. Use this tab to confirm a ranking is reproducible before drawing conclusions from it.</p>
         </div>
         <div class="metric-row" id="replicateMetrics"></div>
         <div class="two-col">

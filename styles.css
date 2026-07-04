@@ -1154,6 +1154,106 @@ pre {
 .method-detail p { color: #465063; font-size: 13px; line-height: 1.55; max-width: 1020px; }
 .method-detail .pill { margin-top: 10px; }
 
+/* ── Findings snapshot ─────────────────────────────────────────── */
+
+.findings-card {
+  margin-bottom: 16px;
+}
+
+.section-heading.compact {
+  margin-bottom: 12px;
+}
+
+.section-heading.compact h2 {
+  font-size: 18px;
+}
+
+.findings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.finding-summary-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff, #f8fafc);
+  border-radius: 8px;
+  padding: 13px;
+  min-height: 132px;
+}
+
+.finding-summary-card .summary-kicker {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+
+.finding-summary-card b {
+  display: block;
+  font-size: 21px;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.finding-summary-card p {
+  color: #465063;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.winner-block {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.winner-block h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.winner-block h3 span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.winner-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.winner-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #fff;
+  font-size: 12px;
+  color: #334057;
+}
+
+.winner-pill b {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.winner-pill em {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 700;
+}
+
 /* ── Misc polish ───────────────────────────────────────────────── */
 
 .heat-table td { transition: filter .1s ease; }
@@ -1170,6 +1270,7 @@ select:focus, button:focus-visible {
 @media (max-width: 1000px) {
   .topbar { align-items: start; flex-direction: column; }
   .control-band, .two-col, .metric-row, .qual-grid, .guide-grid, .role-strip, .project-hero, .finding-grid { grid-template-columns: 1fr; }
+  .findings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-stats { grid-template-columns: 1fr 1fr; }
   .content-tabs { grid-template-columns: 1fr 1fr; }
   .method-top, .regime-cols { grid-template-columns: 1fr; }
@@ -1177,4 +1278,8 @@ select:focus, button:focus-visible {
   .input-node, .pipe-lanes, .eval-node, .results-node { flex: 1 1 auto; }
   .pipe-arrow { flex-direction: row; }
   .pipe-arrow svg { transform: rotate(90deg); }
+}
+
+@media (max-width: 680px) {
+  .findings-grid { grid-template-columns: 1fr; }
 }
