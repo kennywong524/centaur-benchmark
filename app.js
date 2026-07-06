@@ -520,7 +520,8 @@ function scoreColor(score) {
 
 function records(mode, judge = "aggregate", runId = state.runId) {
   const bundle = activeData(runId);
-  const source = judge === "aggregate" ? bundle.aggregate : bundle.by_judge;
+  const source = judge === "aggregate" ? bundle?.aggregate : bundle?.by_judge;
+  if (!Array.isArray(source)) return [];
   return source.filter(d =>
     d.mode === mode &&
     modelAllowed(d.model_label) &&
@@ -766,7 +767,7 @@ function renderMetrics() {
   const bundle = activeData();
   const outputs = stats?.outputs ?? Object.values(bundle.runs || {}).reduce((s, r) => s + (r.outputs?.length || 0), 0);
   const judgments = stats?.unique_judgments ?? uniqueJudgmentCount(bundle);
-  const models = new Set(bundle.aggregate.map(d => d.model_label)).size;
+  const models = new Set((bundle.aggregate || []).map(d => d.model_label)).size;
   document.getElementById("metricRow").innerHTML = [
     [`${activeRunMeta().label}`, "selected run"],
     [`${tasks}`, "tasks"],
@@ -801,8 +802,8 @@ function renderLeaderboard() {
 }
 
 function renderRubric() {
-  if (needsQualitativeData() && !qualDataReady()) {
-    document.getElementById("rubricChart").innerHTML = `<p class="qual-loading-inline">Loading rubric scores…</p>`;
+  if (!qualDataReady()) {
+    document.getElementById("rubricChart").innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Rankings or Qualitative.</p>`;
     return;
   }
   const dims = [
@@ -812,13 +813,13 @@ function renderRubric() {
   const run = currentRun();
   const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   const allowed = new Set(ranked.map(d => d.model_label));
-  const outputs = run.outputs.filter(o => allowed.has(o.model_label));
+  const outputs = (run?.outputs || []).filter(o => allowed.has(o.model_label));
   const models = [...new Set(outputs.map(d => d.model_label))];
   const model = state.selectedModel && models.includes(state.selectedModel) ? state.selectedModel : models[0];
   const output = outputs.find(o => o.model_label === model);
   const grouped = new Map();
   if (output) {
-    run.judgments
+    (run?.judgments || [])
       .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
       .forEach(j => {
         const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
@@ -855,7 +856,10 @@ function renderRubric() {
 
 function renderJudgeScatter() {
   const bundle = activeData();
-  const judges = [...new Set(bundle.by_judge.map(d => d.judge_model))].filter(Boolean);
+  const scatter = bundle.scatter_points || [];
+  const correlations = bundle.correlations || [];
+  const byJudge = bundle.by_judge || [];
+  const judges = [...new Set(byJudge.map(d => d.judge_model))].filter(Boolean);
   const pairs = [];
   for (let i = 0; i < judges.length; i++) {
     for (let j = i + 1; j < judges.length; j++) pairs.push([judges[i], judges[j]]);
@@ -869,20 +873,20 @@ function renderJudgeScatter() {
     const meanDiff = diffs.reduce((s, d) => s + d, 0) / Math.max(1, diffs.length);
     const ca = canonicalJudge(a);
     const cb = canonicalJudge(b);
-    const corr = bundle.correlations.find(d => d.scope === "all" && d.method === "spearman" && (
+    const corr = correlations.find(d => d.scope === "all" && d.method === "spearman" && (
       (canonicalJudge(d.judge_a) === ca && canonicalJudge(d.judge_b) === cb) ||
       (canonicalJudge(d.judge_a) === cb && canonicalJudge(d.judge_b) === ca)
     ));
     return { within1, meanDiff, rho: corr ? Number(corr.correlation) : null };
   };
   const cardHtml = pairs.map(([a, b]) => {
-    const pts = bundle.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    const pts = scatter.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
     const s = stat(pts, a, b);
     return `<div class="metric"><b>${s.rho === null ? "NA" : s.rho.toFixed(2)}</b><span>${judgeLabels[a]} × ${judgeLabels[b]} rank correlation<br>${Math.round(s.within1 * 100)}% close calls within 1 rank<br>average rank gap ${s.meanDiff.toFixed(1)}</span></div>`;
   }).join("");
   document.getElementById("judgeAgreementCards").innerHTML = cardHtml;
   const panels = pairs.map(([a, b]) => {
-    const pts = bundle.scatter_points.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+    const pts = scatter.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
     return `<svg viewBox="0 0 ${size} ${size}">
       <rect width="${size}" height="${size}" fill="white"/>
       <text x="${size/2}" y="24" text-anchor="middle" font-weight="700">${judgeLabels[a]} vs ${judgeLabels[b]}</text>
@@ -903,12 +907,12 @@ function renderJudgeScatter() {
 }
 
 function renderJudgeAgreementTable(pairs) {
-  const bundle = activeData();
+  const scatter = activeData().scatter_points || [];
   const rows = [];
   for (const task of taskOrder) {
     for (const mode of ["augmentation", "automation"]) {
       const cells = pairs.map(([a, b]) => {
-        const pts = bundle.scatter_points.filter(d => d.task === task && d.mode === mode && d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
+        const pts = scatter.filter(d => d.task === task && d.mode === mode && d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
         if (!pts.length) return "N/A";
         const diffs = pts.map(d => Math.abs(Number(d[a]) - Number(d[b])));
         const meanGap = diffs.reduce((s, d) => s + d, 0) / diffs.length;
@@ -923,10 +927,10 @@ function renderJudgeAgreementTable(pairs) {
 }
 
 function renderJudgeDisagreementTable(pairs) {
-  const bundle = activeData();
+  const scatter = activeData().scatter_points || [];
   const rows = [];
   for (const [a, b] of pairs) {
-    bundle.scatter_points
+    scatter
       .filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label))
       .forEach(d => {
         rows.push({
@@ -946,7 +950,7 @@ function renderJudgeDisagreementTable(pairs) {
 }
 
 function renderCorrTable() {
-  const rows = activeData().correlations.filter(d => d.method === "spearman");
+  const rows = (activeData().correlations || []).filter(d => d.method === "spearman");
   document.getElementById("corrTable").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Spearman is a rank-order correlation. It is computed only on entries both judges were eligible to score after leave-family-out exclusions.</p><table class="heat-table"><thead><tr><th>Scope</th><th>Pair</th><th>Spearman</th><th>Shared ranks</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.scope}</td><td>${judgeDisplay(d.judge_a)} × ${judgeDisplay(d.judge_b)}</td><td>${Number(d.correlation).toFixed(3)}</td><td>${d.n_pairs}</td></tr>`).join("")}</tbody></table>`;
 }
 
@@ -1173,7 +1177,7 @@ function validationRows(check) {
   for (const run of runList()) {
     const bundle = activeData(run.id);
     for (const task of taskOrder) {
-      const sub = bundle.by_judge
+      const sub = (bundle.by_judge || [])
         .filter(d => d.mode === "automation" && d.task_slug === task && d.judge_model === check.judge && check.models.includes(d.model_label))
         .filter(d => Number.isFinite(Number(d.rank_value)) && Number.isFinite(Number(d.score)))
         .sort((a, b) => Number(a.rank_value) - Number(b.rank_value) || Number(b.score) - Number(a.score) || check.models.indexOf(a.model_label) - check.models.indexOf(b.model_label));
@@ -1340,7 +1344,7 @@ function renderQualitative() {
   const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   renderQualQuickPicks(ranked);
   const allowed = new Set(ranked.map(d => d.model_label));
-  const outputs = run.outputs.filter(o => allowed.has(o.model_label));
+  const outputs = (run?.outputs || []).filter(o => allowed.has(o.model_label));
   if (!state.selectedModel || !outputs.some(o => o.model_label === state.selectedModel)) state.selectedModel = outputs[0]?.model_label;
   document.getElementById("modelList").innerHTML = outputs.map(o => {
     const r = ranked.find(d => d.model_label === o.model_label);
@@ -1470,7 +1474,7 @@ function populateControls() {
   document.getElementById("taskSelect").innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
   document.getElementById("taskSelect").value = state.task;
   document.getElementById("modeSelect").value = state.mode;
-  const judges = ["aggregate", ...new Set(activeData().by_judge.map(d => d.judge_model))];
+  const judges = ["aggregate", ...new Set((activeData().by_judge || []).map(d => d.judge_model))];
   document.getElementById("judgeSelect").innerHTML = judges.map(j => `<option value="${j}">${judgeLabels[j] || j}</option>`).join("");
   if (!judges.includes(state.judge)) state.judge = "aggregate";
   document.getElementById("judgeSelect").value = state.judge;
