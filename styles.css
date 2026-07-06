@@ -380,24 +380,93 @@ label[data-control].hidden { display: none !important; }
   border-radius: 8px;
   background: #fff;
 }
-.heat-legend-note {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--muted);
+.heat-color-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
   font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.heat-color-bar {
+  flex: 1;
+  max-width: 220px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(37,127,99), rgb(210,232,207), rgb(244,221,124), rgb(222,105,72), rgb(158,35,42));
+  border: 1px solid var(--line);
+}
+
+.model-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.model-legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.model-legend-chip b {
+  color: var(--blue);
+  font-size: 10px;
+}
+.model-legend-chip span {
+  color: #465063;
+}
+
+.floating-tip {
+  position: fixed;
+  z-index: 40;
+  max-width: min(360px, calc(100vw - 16px));
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(23, 31, 48, 0.18);
+  pointer-events: none;
+}
+.floating-tip-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.floating-tip-body {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #334057;
+}
+
+.heat-model-col {
+  cursor: help;
 }
 
 .compact-heat {
   min-width: 0 !important;
   width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
 }
 .compact-heat th,
 .compact-heat td {
-  padding: 4px 5px;
+  padding: 4px 3px;
   font-size: 10px;
   height: auto;
-  min-width: 34px;
+  min-width: 0;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .compact-heat th:first-child,
 .compact-heat td:first-child {
@@ -776,6 +845,7 @@ select {
   box-shadow: var(--shadow);
 }
 .viz-card { padding: 16px; overflow: auto; }
+.viz-card.heat-viz-card { overflow: visible; }
 .viz-card h3 { margin-bottom: 12px; }
 .compact-figure {
   max-width: 560px;
@@ -863,8 +933,10 @@ select {
 .heat-table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 720px;
   table-layout: fixed;
+}
+.heat-table:not(.compact-heat) {
+  min-width: 720px;
 }
 .heat-table th, .heat-table td {
   border: 1px solid white;

@@ -474,6 +474,76 @@ function heatColor(rank, maxRank) {
   return `rgb(${c[0]},${c[1]},${c[2]})`;
 }
 
+function heatModelAbbr(model, mode) {
+  if (model === "plain") return "Plain";
+  return modelShort[model] || displayModel(model, mode).slice(0, 5);
+}
+
+function heatModelHeader(model, mode) {
+  const full = displayModel(model, mode);
+  const abbr = heatModelAbbr(model, mode);
+  return `<th class="heat-model-col" tabindex="0" data-tip="${esc(full)}" data-tip-title="Model">${esc(abbr)}</th>`;
+}
+
+function heatColorLegendHtml() {
+  return `<div class="heat-color-legend"><span>Rank 1 · best</span><div class="heat-color-bar"></div><span>worst</span></div>`;
+}
+
+function modelLegendHtml(models, mode) {
+  return `<div class="model-legend">${models.map(m => `<button type="button" class="model-legend-chip" data-tip="${esc(displayModel(m, mode))}" data-tip-title="${esc(heatModelAbbr(m, mode))}"><b>${esc(heatModelAbbr(m, mode))}</b><span>${esc(displayModel(m, mode))}</span></button>`).join("")}</div>`;
+}
+
+let activeTipAnchor = null;
+
+function hideFloatingTip() {
+  document.querySelectorAll(".floating-tip").forEach(n => n.remove());
+  activeTipAnchor = null;
+}
+
+function showFloatingTip(anchor, text, title = "") {
+  if (!text) return;
+  hideFloatingTip();
+  const tip = document.createElement("div");
+  tip.className = "floating-tip";
+  tip.innerHTML = title
+    ? `<div class="floating-tip-title">${esc(title)}</div><div class="floating-tip-body">${esc(text)}</div>`
+    : `<div class="floating-tip-body">${esc(text)}</div>`;
+  document.body.appendChild(tip);
+  const r = anchor.getBoundingClientRect();
+  let left = Math.max(8, Math.min(r.left, window.innerWidth - tip.offsetWidth - 8));
+  let top = r.bottom + 8;
+  if (top + tip.offsetHeight > window.innerHeight - 8) top = Math.max(8, r.top - tip.offsetHeight - 8);
+  tip.style.left = `${left}px`;
+  tip.style.top = `${top}px`;
+  activeTipAnchor = anchor;
+}
+
+function bindFloatingTips(root = document) {
+  root.querySelectorAll("[data-tip]").forEach(el => {
+    if (el.dataset.tipBound) return;
+    el.dataset.tipBound = "1";
+    const text = el.dataset.tip || "";
+    const title = el.dataset.tipTitle || "";
+    if (el.classList.contains("term-info-btn")) {
+      el.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (activeTipAnchor === el) hideFloatingTip();
+        else showFloatingTip(el, text, title);
+      });
+      return;
+    }
+    el.addEventListener("mouseenter", () => showFloatingTip(el, text, title));
+    el.addEventListener("mouseleave", hideFloatingTip);
+    el.addEventListener("focus", () => showFloatingTip(el, text, title));
+    el.addEventListener("blur", hideFloatingTip);
+    el.addEventListener("click", e => {
+      e.stopPropagation();
+      showFloatingTip(el, text, title);
+    });
+  });
+}
+
 function renderHeatmap(el, mode) {
   const rows = rankOfRanks(mode, state.judge);
   const models = visibleModels(mode).sort((a, b) => {
@@ -485,16 +555,18 @@ function renderHeatmap(el, mode) {
   });
   const maxRank = models.length;
   const byKey = new Map(rows.map(d => [`${d.task_slug}|${d.model_label}`, d]));
-  let html = `<table class="heat-table"><thead><tr><th>Task</th>${models.map(m => `<th>${displayModel(m, mode)}</th>`).join("")}</tr></thead><tbody>`;
+  let html = `<table class="heat-table compact-heat"><thead><tr><th>Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
   for (const task of taskOrder) {
     html += `<tr><td>${cleanTaskTitle(task)}</td>`;
     for (const model of models) {
       const d = byKey.get(`${task}|${model}`);
       const r = d?.display_rank;
+      const full = displayModel(model, mode);
       if (isOwnFamily(state.judge, model)) {
-        html += `<td class="heat-na" title="${displayModel(model, mode)} is excluded from ${judgeLabels[state.judge] || state.judge} judging by leave-family-out.">N/A</td>`;
+        html += `<td class="heat-na" data-tip="${esc(full)} excluded by leave-family-out for ${esc(judgeLabels[state.judge] || state.judge)}." data-tip-title="N/A">—</td>`;
       } else {
-        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)}: win rate ${d ? Number(d.score).toFixed(3) : "NA"}" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "white" : "#172033"}">${r || ""}</td>`;
+        const tip = `${full} · ${cleanTaskTitle(task)} · rank ${r || "—"} · win rate ${d ? Number(d.score).toFixed(3) : "NA"}`;
+        html += `<td data-tip="${esc(tip)}" data-tip-title="Cell" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "white" : "#172033"}">${r || ""}</td>`;
       }
     }
     html += `</tr>`;
@@ -502,15 +574,16 @@ function renderHeatmap(el, mode) {
   html += `<tr><td>Average</td>`;
   for (const model of models) {
     if (isOwnFamily(state.judge, model)) {
-      html += `<td class="heat-na" title="Excluded by leave-family-out.">N/A</td>`;
+      html += `<td class="heat-na">—</td>`;
     } else {
       const vals = rows.filter(d => d.model_label === model).map(d => d.display_rank);
       const av = vals.length ? avg(vals) : null;
-      html += av ? `<td style="background:${heatColor(av, maxRank)}">${av.toFixed(1)}</td>` : `<td class="heat-na">N/A</td>`;
+      html += av ? `<td style="background:${heatColor(av, maxRank)}">${av.toFixed(1)}</td>` : `<td class="heat-na">—</td>`;
     }
   }
   html += `</tr></tbody></table>`;
-  el.innerHTML = html;
+  el.innerHTML = heatColorLegendHtml() + html + modelLegendHtml(models, mode);
+  bindFloatingTips(el);
 }
 
 function renderRoleScatter() {
@@ -595,6 +668,7 @@ function renderLeaderboard() {
     .join("");
   document.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
     state.selectedModel = b.dataset.rankmodel;
+    goTab("qualitative");
     renderAll();
   }));
 }
@@ -788,8 +862,7 @@ function renderReplicateHeatmap(el, mode) {
     return av - bv;
   });
   const maxRank = Math.max(models.length, 1);
-  const headerNote = `<span class="heat-legend-note">Columns use abbreviations · hover for full model name · lower rank is better</span>`;
-  let html = `<table class="heat-table replicate-heat compact-heat"><thead><tr><th>Task</th>${models.map(m => `<th title="${esc(displayModel(m, mode))}">${esc(modelShort[m] || displayModel(m, mode))}</th>`).join("")}</tr></thead><tbody>`;
+  let html = `<table class="heat-table replicate-heat compact-heat"><thead><tr><th>Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
   for (const task of taskOrder) {
     html += `<tr><td>${cleanTaskTitle(task)}</td>`;
     for (const model of models) {
@@ -799,7 +872,8 @@ function renderReplicateHeatmap(el, mode) {
       } else {
         const m = avg(vals);
         const se = sem(vals);
-        html += `<td title="${esc(displayModel(model, mode))} / ${cleanTaskTitle(task)}: mean ${m.toFixed(2)} ± ${se.toFixed(2)} (${vals.length} runs)" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
+        const tip = `${displayModel(model, mode)} · ${cleanTaskTitle(task)} · mean ${m.toFixed(2)} ± ${se.toFixed(2)} (${vals.length} runs)`;
+        html += `<td data-tip="${esc(tip)}" data-tip-title="10-run cell" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
       }
     }
     html += `</tr>`;
@@ -809,10 +883,11 @@ function renderReplicateHeatmap(el, mode) {
     const vals = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
     const m = vals.length ? avg(vals) : null;
     const se = vals.length ? sem(vals) : null;
-    html += m === null ? `<td class="heat-na">—</td>` : `<td title="mean ± SE across ${vals.length} cells" style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
+    html += m === null ? `<td class="heat-na">—</td>` : `<td data-tip="Mean ± SE across ${vals.length} run-task cells" data-tip-title="Average" style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
   }
   html += `</tr></tbody></table>`;
-  el.innerHTML = headerNote + wrapTableScroll(html);
+  el.innerHTML = heatColorLegendHtml() + html + modelLegendHtml(models, mode);
+  bindFloatingTips(el);
 }
 
 function renderReplicateStability(el, mode) {
@@ -1341,15 +1416,16 @@ function applyTermTooltips(root = document) {
     const def = glossary[term];
     if (!def) return;
     const label = el.textContent.trim() || term;
-    el.innerHTML = `${esc(label)}<button type="button" class="term-info-btn" title="${esc(def)}" aria-label="${esc(term)}: ${esc(def)}">i</button>`;
+    el.innerHTML = `${esc(label)}<button type="button" class="term-info-btn" data-tip="${esc(def)}" data-tip-title="${esc(term)}">i</button>`;
     el.classList.add("term-with-info");
     el.dataset.tipApplied = "1";
   });
   const rankLabel = document.querySelector('[data-control="modelSet"] .label-with-tip');
   if (rankLabel && !rankLabel.dataset.tipApplied) {
-    rankLabel.innerHTML = `Rank universe<button type="button" class="term-info-btn" title="${esc(glossary["rank universe"])}" aria-label="Rank universe: ${esc(glossary["rank universe"])}">i</button>`;
+    rankLabel.innerHTML = `Rank universe<button type="button" class="term-info-btn" data-tip="${esc(glossary["rank universe"])}" data-tip-title="Rank universe">i</button>`;
     rankLabel.dataset.tipApplied = "1";
   }
+  bindFloatingTips(root);
 }
 
 function openGlossaryModal() {
@@ -1377,6 +1453,9 @@ function bindChrome() {
       if (e.target === glossaryModal) closeGlossaryModal();
     });
   }
+  document.addEventListener("click", e => {
+    if (!e.target.closest("[data-tip]") && !e.target.closest(".floating-tip")) hideFloatingTip();
+  });
   const bibtexBtn = document.getElementById("bibtexBtn");
   const bibtexBlock = document.getElementById("bibtexBlock");
   if (bibtexBtn && bibtexBlock) {
