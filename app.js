@@ -11,6 +11,24 @@ const state = {
   rubricFocus: null,
 };
 
+const glossary = {
+  "rank-of-ranks": "Average of per-task ranks within the selected model set. Lower is better.",
+  "rank universe": "Which models are eligible for ranking — all candidates (includes GPT-3.5-Turbo baseline) vs assistants only.",
+  "leave-family-out": "A judge never scores outputs from its own model family, reducing same-family preference.",
+  "role-swap": "Compares a model's automation rank vs augmentation rank to reveal role specialization.",
+  "standard error": "Uncertainty across 10 independent replications; smaller means more stable.",
+};
+
+const controlsByTab = {
+  project: [],
+  replicates: ["modelSet"],
+  overview: ["run", "modelSet"],
+  rankings: ["run", "modelSet", "task", "mode", "judge"],
+  judges: ["modelSet", "task", "mode"],
+  qualitative: ["run", "task", "mode"],
+  validation: ["task"],
+};
+
 const taskOrder = ["counselling", "market_trends", "meal_plan", "operations_research", "tax_prep", "travel_planning", "tutoring"];
 const taskLabels = {
   counselling: "Counseling",
@@ -1223,7 +1241,7 @@ const methodologyDetails = {
   results: {
     title: "Results aggregation",
     body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank-of-ranks heat maps (Figure 1) and the role-swap scatter (Figure 2) — so every model can be compared as a direct solver versus as an augmenting assistant.",
-    action: { label: "Jump to Figure 1", run: () => { goTab("overview"); setTimeout(() => document.getElementById("heatAug")?.scrollIntoView({ behavior: "smooth", block: "center" }), 60); } },
+    action: { label: "View 10-run summary", run: () => goTab("replicates") },
   },
 };
 
@@ -1242,7 +1260,72 @@ function goTab(tab) {
   state.tab = tab;
   document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.tab === tab));
   document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
+  updateControlBandVisibility();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateControlBandVisibility() {
+  const band = document.getElementById("controlBand");
+  if (!band) return;
+  const allowed = new Set(controlsByTab[state.tab] || []);
+  const showBand = allowed.size > 0;
+  band.classList.toggle("hidden", !showBand);
+  band.querySelectorAll("[data-control]").forEach(el => {
+    const key = el.dataset.control;
+    const visible = allowed.has(key);
+    el.classList.toggle("hidden", !visible);
+    el.classList.toggle("inactive", !visible);
+  });
+  if (showBand) {
+    const cols = allowed.size;
+    band.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+  }
+}
+
+function renderGlossary() {
+  const list = document.getElementById("glossaryList");
+  if (!list) return;
+  list.innerHTML = Object.entries(glossary)
+    .map(([term, def]) => `<dt>${esc(term)}</dt><dd>${esc(def)}</dd>`)
+    .join("");
+}
+
+function applyTermTooltips(root = document) {
+  root.querySelectorAll(".term-inline[data-term]").forEach(el => {
+    const term = el.dataset.term;
+    const def = glossary[term];
+    if (!def) return;
+    el.setAttribute("title", def);
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+    el.setAttribute("aria-label", `${term}: ${def}`);
+  });
+  const rankLabel = document.querySelector('[data-control="modelSet"] .label-with-tip');
+  if (rankLabel) {
+    rankLabel.setAttribute("title", glossary["rank universe"]);
+  }
+}
+
+function bindChrome() {
+  document.querySelectorAll("[data-gotab]").forEach(btn => {
+    btn.addEventListener("click", () => goTab(btn.dataset.gotab));
+  });
+  const bibtexBtn = document.getElementById("bibtexBtn");
+  const bibtexBlock = document.getElementById("bibtexBlock");
+  if (bibtexBtn && bibtexBlock) {
+    bibtexBtn.addEventListener("click", async () => {
+      const text = bibtexBlock.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        bibtexBtn.textContent = "Copied!";
+        setTimeout(() => { bibtexBtn.textContent = "BibTeX"; }, 1800);
+      } catch {
+        bibtexBlock.hidden = !bibtexBlock.hidden;
+      }
+    });
+  }
+  renderGlossary();
+  applyTermTooltips();
 }
 
 function bindMethodology() {
@@ -1252,7 +1335,11 @@ function bindMethodology() {
   const show = key => {
     const d = methodologyDetails[key];
     if (!d) return;
-    blocks.forEach(b => b.classList.toggle("active", b.dataset.stage === key));
+    blocks.forEach(b => {
+      const active = b.dataset.stage === key;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-expanded", active ? "true" : "false");
+    });
     detail.innerHTML = `<b>${esc(d.title)}</b><p>${esc(d.body)}</p>${d.action ? `<button class="pill" type="button">${esc(d.action.label)} &#8594;</button>` : ""}`;
     const act = detail.querySelector("button");
     if (act && d.action) act.addEventListener("click", d.action.run);
@@ -1262,12 +1349,9 @@ function bindMethodology() {
 }
 
 function bind() {
+  bindChrome();
   bindMethodology();
-  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
-    state.tab = b.dataset.tab;
-    document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x === b));
-    document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === state.tab));
-  }));
+  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => goTab(b.dataset.tab)));
   document.getElementById("runSelect").addEventListener("change", e => { state.runId = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
   document.getElementById("modelSet").addEventListener("change", e => { state.modelSet = e.target.value; renderAll(); });
   document.getElementById("taskSelect").addEventListener("change", e => { state.task = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
@@ -1282,6 +1366,7 @@ function bind() {
 
 function renderAll() {
   populateControls();
+  updateControlBandVisibility();
   renderProjectStats();
   renderFindingsSnapshot();
   renderMetrics();
@@ -1294,8 +1379,10 @@ function renderAll() {
   renderRubric();
   renderJudgeScatter();
   renderQualitative();
+  applyTermTooltips();
 }
 
+document.body.classList.add("loading");
 fetch("dashboard-data.json")
   .then(r => r.json())
   .then(data => {
@@ -1304,7 +1391,11 @@ fetch("dashboard-data.json")
     populateControls();
     bind();
     renderAll();
+    document.body.classList.remove("loading");
+    const overlay = document.getElementById("loadingOverlay");
+    if (overlay) overlay.classList.add("hidden");
   })
   .catch(err => {
+    document.body.classList.remove("loading");
     document.body.innerHTML = `<main><div class="viz-card"><h1>Dashboard data failed to load</h1><pre>${err}</pre></div></main>`;
   });

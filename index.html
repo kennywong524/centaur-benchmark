@@ -4,20 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CentaurBench — Results Explorer</title>
+    <meta name="description" content="CentaurBench compares LLM automation vs augmentation across seven professional tasks, with blind pairwise judging and ten independent replications." />
+    <meta property="og:title" content="CentaurBench — Results Explorer" />
+    <meta property="og:description" content="Do strong task solvers make strong assistants? Explore automation vs augmentation rankings across 10 replications." />
+    <meta property="og:type" content="website" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
-      <div>
+      <div class="topbar-main">
         <div class="eyebrow">CentaurBench</div>
-        <h1>Results Explorer</h1>
+        <h1>CentaurBench</h1>
+        <p class="site-subtitle">Results Explorer</p>
         <p class="paper-title">CentaurBench: Benchmarking LLM Augmentation on Occupational Tasks</p>
         <p class="authors"><a href="https://kennywong524.github.io/" target="_blank" rel="noopener">Pattaraphon Kenny Wongchamcharoen</a>, <a href="https://sites.google.com/view/kris-gulati/home" target="_blank" rel="noopener">Kris Gulati</a>, Min Min Fong, <a href="https://www.abhishekn.com/" target="_blank" rel="noopener">Abhishek Nagaraj</a> · <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Data Innovation and AI Lab</a>, Haas School of Business, UC Berkeley</p>
+        <div class="paper-bar">
+          <a class="paper-bar-btn" id="paperPdfLink" href="#" title="Working paper PDF (coming soon)">Working Paper (PDF)</a>
+          <button class="paper-bar-btn" type="button" id="bibtexBtn">BibTeX</button>
+          <a class="paper-bar-btn" href="https://github.com/kennywong524/best-player-not-best-coach" target="_blank" rel="noopener">GitHub</a>
+          <a class="paper-bar-btn" href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Lab</a>
+        </div>
+        <pre class="bibtex-block" id="bibtexBlock" hidden>@misc{wongchamcharoen2026centaurbench,
+  title={CentaurBench: Benchmarking LLM Augmentation on Occupational Tasks},
+  author={Wongchamcharoen, Pattaraphon Kenny and Gulati, Kris and Fong, Min Min and Nagaraj, Abhishek},
+  year={2026},
+  howpublished={Working paper},
+  url={https://kennywong524.github.io/centaur-benchmark/}
+}</pre>
       </div>
       <nav class="tabs" aria-label="Dashboard sections">
         <button class="tab active" data-tab="project">Project Overview</button>
-        <button class="tab" data-tab="overview">Main Results</button>
         <button class="tab" data-tab="replicates">10-Run Summary</button>
+        <button class="tab" data-tab="overview">Main Results</button>
         <button class="tab" data-tab="rankings">Rankings</button>
         <button class="tab" data-tab="judges">Judges</button>
         <button class="tab" data-tab="qualitative">Qualitative</button>
@@ -26,64 +44,63 @@
     </header>
 
     <main>
-      <section class="control-band">
-        <label>
+      <section class="control-band hidden" id="controlBand" aria-label="Dashboard filters">
+        <label data-control="run">
           Run
           <select id="runSelect"></select>
         </label>
-        <label>
-          Rank universe
+        <label data-control="modelSet">
+          <span class="label-with-tip">Rank universe</span>
           <select id="modelSet"></select>
         </label>
-        <label>
+        <label data-control="task">
           Task
           <select id="taskSelect"></select>
         </label>
-        <label>
+        <label data-control="mode">
           Mode
           <select id="modeSelect">
             <option value="augmentation">Augmentation</option>
             <option value="automation">Automation</option>
           </select>
         </label>
-        <label>
+        <label data-control="judge">
           Judge
           <select id="judgeSelect"></select>
         </label>
       </section>
 
       <section id="project" class="panel active">
+        <div class="guide-card guide-card-primary">
+          <h2>New here? Start with this guide</h2>
+          <p class="guide-lead">CentaurBench asks a simple question: <b>which models are best at doing work themselves, and which are best at helping another worker do better work?</b> Use the tabs above to explore results from ten independent replications.</p>
+          <div class="guide-grid">
+            <div class="guide-step"><span class="step-num">1</span><div><b>Check reproducibility first.</b> Open <i>10-Run Summary</i> for paper-level rankings averaged across all ten runs (mean rank ± standard error).</div></div>
+            <div class="guide-step"><span class="step-num">2</span><div><b>Compare automation vs augmentation.</b> <i>Main Results</i> shows heat maps and a <span class="term-inline" data-term="role-swap">role-swap</span> view for one selected run.</div></div>
+            <div class="guide-step"><span class="step-num">3</span><div><b>Pick a rank universe.</b> <i>All candidates</i> (default) includes the GPT-3.5-Turbo baseline; <i>Exclude baselines</i> shows assistant models only.</div></div>
+            <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to see rubric scores.</div></div>
+            <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> <i>Qualitative</i> — read outputs, scaffolds, prompts, and judge rationales.</div></div>
+            <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> <i>Validation</i> — held-out cross-family judge checks.</div></div>
+          </div>
+          <div class="cta-row">
+            <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Start with 10-Run Summary</button>
+            <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run Main Results</button>
+          </div>
+        </div>
+
+        <div class="key-finding">
+          <b>Key finding:</b> Automation and augmentation produce different model rankings — strong direct solvers are not always the strongest assistants.
+        </div>
+
         <div class="project-hero">
           <div>
-            <div class="eyebrow">Project overview</div>
-            <h2>CentaurBench</h2>
-            <p>Most benchmarks score a model on the work it produces alone. But in real workplaces, models often help a worker rather than replace them. This benchmark measures both: across seven professional tasks, each model either solves the task directly (<b>automation</b>) or writes a scaffold for a fixed lower-capability worker that produces the final output (<b>augmentation</b>). Holding the worker constant isolates the value of the assistant's guidance, and rubric-guided judges then compare the final outputs through blind pairwise matchups.</p>
-            <div class="resource-links">
-              <a class="resource-link" href="https://github.com/kennywong524/best-player-not-best-coach" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-                Reproducibility code (GitHub)
-              </a>
-              <a class="resource-link" href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Data Innovation &amp; AI Lab</a>
-            </div>
+            <div class="eyebrow">What is CentaurBench?</div>
+            <h2>Two ways to use an LLM at work</h2>
+            <p>Most benchmarks score a model on the work it produces alone. In real workplaces, models often help a worker rather than replace them. This benchmark measures both: across seven professional tasks, each model either solves the task directly (<b>automation</b>) or writes a scaffold for a fixed lower-capability worker that produces the final output (<b>augmentation</b>). Holding the worker constant isolates the value of the assistant's guidance, and rubric-guided judges compare the final outputs through blind pairwise matchups.</p>
           </div>
           <div class="project-stats" id="projectStats"></div>
         </div>
-        <div class="abstract-card">
-          <div class="abstract-body">
-            <h2>Abstract</h2>
-            <p>Organizations adopting generative AI increasingly face a model-selection problem that existing benchmarks do not fully answer. Most LLM benchmarks evaluate models as autonomous task solvers, scoring the quality of a model's final output. Yet in workplaces, models are often used not in isolation but to assist a human worker by structuring the problem, surfacing constraints, or improving the worker's reasoning. In these settings, the economically relevant question is not only which model can complete a task, but which model can improve the work of another agent.</p>
-            <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across ten independent runs.</p>
-            <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
-          </div>
-          <div class="abstract-logos">
-            <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">
-              <img class="logo-dial" src="assets/dial-logo.png" alt="Data Innovation and AI Lab (DIAL)" loading="lazy">
-            </a>
-            <a href="https://haas.berkeley.edu/" target="_blank" rel="noopener">
-              <img class="logo-haas" src="assets/berkeley-haas-logo.png" alt="UC Berkeley Haas School of Business" loading="lazy">
-            </a>
-          </div>
-        </div>
+
         <div class="finding-grid">
           <div class="finding-card">
             <b>Automation</b>
@@ -95,9 +112,30 @@
           </div>
           <div class="finding-card">
             <b>Evaluation</b>
-            <p>LLM judges perform blind pairwise comparisons with task-specific rubric scores and leave-family-out masking.</p>
+            <p>LLM judges perform blind pairwise comparisons with task-specific rubric scores and <span class="term-inline" data-term="leave-family-out">leave-family-out</span> masking.</p>
           </div>
         </div>
+
+        <div class="abstract-card">
+          <div class="abstract-body">
+            <h2>Abstract</h2>
+            <p>Organizations adopting generative AI increasingly face a model-selection problem that existing benchmarks do not fully answer. Most LLM benchmarks evaluate models as autonomous task solvers, scoring the quality of a model's final output. Yet in workplaces, models are often used not in isolation but to assist a human worker by structuring the problem, surfacing constraints, or improving the worker's reasoning. In these settings, the economically relevant question is not only which model can complete a task, but which model can improve the work of another agent.</p>
+            <details class="abstract-more">
+              <summary>Read full abstract</summary>
+              <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across ten independent runs.</p>
+              <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
+            </details>
+          </div>
+          <div class="abstract-logos">
+            <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">
+              <img class="logo-dial" src="assets/dial-logo.png" alt="Data Innovation and AI Lab (DIAL)" loading="lazy">
+            </a>
+            <a href="https://haas.berkeley.edu/" target="_blank" rel="noopener">
+              <img class="logo-haas" src="assets/berkeley-haas-logo.png" alt="UC Berkeley Haas School of Business" loading="lazy">
+            </a>
+          </div>
+        </div>
+
         <div class="viz-card method-card" id="methodology">
           <div class="method-head">
             <h2>Methodology at a Glance</h2>
@@ -108,19 +146,19 @@
             <div class="method-block">
               <div class="method-block-title title-roles">Core models</div>
               <div class="role-rows">
-                <button class="role-row" data-stage="worker" type="button">
+                <button class="role-row" data-stage="worker" type="button" aria-expanded="false">
                   <span class="role-icon icon-worker" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.2"/><path d="M5.5 19.5c.8-3.6 3.4-5.4 6.5-5.4s5.7 1.8 6.5 5.4"/></svg>
                   </span>
                   <span class="role-copy"><b>Worker model</b><small>Produces the final output for a task — directly, or after receiving assistant scaffolding. Fixed to GPT-3.5-Turbo in augmentation.</small></span>
                 </button>
-                <button class="role-row" data-stage="assistant" type="button">
+                <button class="role-row" data-stage="assistant" type="button" aria-expanded="false">
                   <span class="role-icon icon-assistant" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 3.5 8 12 12.5 20.5 8 12 3.5Z"/><path d="m3.5 12.5 8.5 4.5 8.5-4.5"/><path d="m3.5 17 8.5 4.5 8.5-4.5"/></svg>
                   </span>
                   <span class="role-copy"><b>Assistant model</b><small>Provides process scaffolding — plans, checklists, self-review steps — to the worker model. This is the model under test in augmentation.</small></span>
                 </button>
-                <button class="role-row" data-stage="evaluator" type="button">
+                <button class="role-row" data-stage="evaluator" type="button" aria-expanded="false">
                   <span class="role-icon icon-evaluator" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15"/><path d="M8.5 20h7"/><path d="M5 7h14"/><path d="M5 7l-2.6 5.2a3 3 0 0 0 5.2 0L5 7Z"/><path d="M19 7l-2.6 5.2a3 3 0 0 0 5.2 0L19 7Z"/></svg>
                   </span>
@@ -131,11 +169,11 @@
             <div class="method-block">
               <div class="method-block-title title-regimes">Regimes</div>
               <div class="regime-cols">
-                <button class="regime regime-auto" data-stage="automation" type="button">
+                <button class="regime regime-auto" data-stage="automation" type="button" aria-expanded="false">
                   <b>Automation</b>
                   <small>Focal models are tested as workers and directly solve tasks end-to-end.</small>
                 </button>
-                <button class="regime regime-aug" data-stage="augmentation" type="button">
+                <button class="regime regime-aug" data-stage="augmentation" type="button" aria-expanded="false">
                   <b>Augmentation</b>
                   <small>Focal models provide scaffolds to a fixed worker model, which then produces the final task output.</small>
                 </button>
@@ -145,13 +183,13 @@
 
           <div class="pipeline-title">Experiment &amp; evaluation pipeline</div>
           <div class="pipeline">
-            <button class="pipe-node input-node" data-stage="input" type="button">
+            <button class="pipe-node input-node" data-stage="input" type="button" aria-expanded="false">
               <b>Input / tasks</b>
               <span>7 professional tasks, one fixed prompt each</span>
             </button>
             <div class="pipe-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <div class="pipe-lanes">
-              <button class="pipe-node lane lane-auto" data-stage="automation" type="button">
+              <button class="pipe-node lane lane-auto" data-stage="automation" type="button" aria-expanded="false">
                 <span class="lane-tag">Automation</span>
                 <span class="lane-flow">
                   <span class="mini-chip">Focal model</span>
@@ -160,7 +198,7 @@
                 </span>
                 <span class="lane-note">Innate capability — no scaffold, no intermediary</span>
               </button>
-              <button class="pipe-node lane lane-aug" data-stage="augmentation" type="button">
+              <button class="pipe-node lane lane-aug" data-stage="augmentation" type="button" aria-expanded="false">
                 <span class="lane-tag">Augmentation</span>
                 <span class="lane-flow">
                   <span class="mini-chip">Focal model writes scaffold</span>
@@ -171,67 +209,38 @@
               </button>
             </div>
             <div class="pipe-arrow labeled" aria-hidden="true"><em>outputs</em><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <button class="pipe-node eval-node" data-stage="evaluator" type="button">
+            <button class="pipe-node eval-node" data-stage="evaluator" type="button" aria-expanded="false">
               <b>Evaluator panel</b>
               <span>Blind pairwise A/B with rubric scores; judges never score their own model family</span>
             </button>
             <div class="pipe-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <button class="pipe-node results-node" data-stage="results" type="button">
+            <button class="pipe-node results-node" data-stage="results" type="button" aria-expanded="false">
               <b>Results aggregation</b>
-              <span>Win rates &#8594; task ranks &#8594; rank-of-ranks heat maps &amp; role-swap view</span>
+              <span>Win rates &#8594; task ranks &#8594; <span class="term-inline" data-term="rank-of-ranks">rank-of-ranks</span> heat maps &amp; role-swap view</span>
             </button>
           </div>
 
           <div class="method-detail" id="methodDetail"></div>
         </div>
 
-        <div class="guide-card">
-          <h2>How To Use This Dashboard</h2>
-          <div class="guide-grid">
-            <div class="guide-step"><span class="step-num">1</span><div><b>Pick a rank universe.</b> <i>All candidates</i> (default) includes the GPT-3.5-Turbo baseline and matches the paper figures; <i>Exclude baselines</i> shows the assistant-only 1-9 view.</div></div>
-            <div class="guide-step"><span class="step-num">2</span><div><b>See the big picture.</b> <i>Main Results</i> — heat maps and the role-swap scatter compare automation vs. augmentation.</div></div>
-            <div class="guide-step"><span class="step-num">3</span><div><b>Check reproducibility.</b> <i>10-Run Summary</i> — mean rank ± standard error across all ten runs (smaller = more stable).</div></div>
-            <div class="guide-step"><span class="step-num">4</span><div><b>Drill into a task.</b> <i>Rankings</i> — click a model row to load its rubric scores.</div></div>
-            <div class="guide-step"><span class="step-num">5</span><div><b>Audit judgments.</b> <i>Qualitative</i> — outputs, scaffolds, prompts, and pairwise judge rationales.</div></div>
-            <div class="guide-step"><span class="step-num">6</span><div><b>Check validity.</b> <i>Validation</i> — held-out cross-family judge checks on model-family gradients.</div></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="overview" class="panel">
-        <div class="metric-row" id="metricRow"></div>
-        <div class="section-heading">
-          <h2>Figure 1: Aggregate Rank Heat Map</h2>
-          <p>Rank-of-ranks recomputed within the selected model universe. Lower is better.</p>
-        </div>
-        <div class="two-col">
-          <div class="viz-card">
-            <h3>Augmentation</h3>
-            <div id="heatAug"></div>
-          </div>
-          <div class="viz-card">
-            <h3>Automation</h3>
-            <div id="heatAuto"></div>
-          </div>
-        </div>
-        <div class="section-heading">
-          <h2>Figure 2: Role-Swap View</h2>
-          <p>Average rank in automation versus augmentation for the selected run. Points far from the diagonal indicate role-specific model profiles.</p>
-        </div>
-        <div class="viz-card role-swap-card">
-          <div id="roleScatter"></div>
-        </div>
+        <details class="guide-card glossary-card">
+          <summary><h2>Glossary</h2></summary>
+          <dl class="glossary-list" id="glossaryList"></dl>
+        </details>
       </section>
 
       <section id="replicates" class="panel">
+        <div class="info-banner info-banner-primary">
+          <b>Panel aggregate across all 10 replications.</b> This view matches the paper figures. Lower rank is better; ± values are standard error across runs.
+        </div>
         <div class="section-heading">
           <h2>10-Run Summary</h2>
-          <p>Average ranks and stability across all ten runs. Lower rank is better; the value beneath each heat-map cell is the standard error across runs, so a smaller error means the result is more stable across reruns. Use this tab to confirm a ranking is reproducible before drawing conclusions from it.</p>
+          <p>Average ranks and stability across all ten runs. Use the <span class="term-inline" data-term="rank universe">rank universe</span> filter above to include or exclude baseline models.</p>
         </div>
         <div class="viz-card findings-card">
           <div class="section-heading compact">
             <h2>Main Findings Across 10 Runs</h2>
-            <p>These summaries aggregate rank-of-ranks across the full ten-run panel. The heat maps and stability tables below use the same panel-aggregate view.</p>
+            <p>These summaries aggregate <span class="term-inline" data-term="rank-of-ranks">rank-of-ranks</span> across the full ten-run panel.</p>
           </div>
           <div id="tenRunFindings"></div>
         </div>
@@ -259,6 +268,34 @@
             <h3>Automation Stability</h3>
             <div id="repStabilityAuto"></div>
           </div>
+        </div>
+      </section>
+
+      <section id="overview" class="panel">
+        <div class="info-banner">
+          <b>Single-run snapshot.</b> Switch the <b>Run</b> filter above to compare individual replications. For paper-level conclusions, use <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>.
+        </div>
+        <div class="metric-row" id="metricRow"></div>
+        <div class="section-heading">
+          <h2>Figure 1: Aggregate Rank Heat Map</h2>
+          <p><span class="term-inline" data-term="rank-of-ranks">Rank-of-ranks</span> recomputed within the selected model universe. Lower is better.</p>
+        </div>
+        <div class="two-col">
+          <div class="viz-card">
+            <h3>Augmentation</h3>
+            <div id="heatAug"></div>
+          </div>
+          <div class="viz-card">
+            <h3>Automation</h3>
+            <div id="heatAuto"></div>
+          </div>
+        </div>
+        <div class="section-heading">
+          <h2>Figure 2: Role-Swap View</h2>
+          <p>Average rank in automation versus augmentation for the selected run. Points far from the diagonal indicate role-specific model profiles.</p>
+        </div>
+        <div class="viz-card role-swap-card">
+          <div id="roleScatter"></div>
         </div>
       </section>
 
@@ -300,7 +337,7 @@
       <section id="judges" class="panel">
         <div class="section-heading">
           <h2>Judge Agreement</h2>
-          <p>These diagnostics ask whether evaluator models produce broadly similar rankings after leave-family-out masking.</p>
+          <p>These diagnostics ask whether evaluator models produce broadly similar rankings after <span class="term-inline" data-term="leave-family-out">leave-family-out</span> masking.</p>
         </div>
         <div class="guide-card judge-guide">
           <h2>How To Read Judge Agreement</h2>
@@ -333,16 +370,16 @@
               <h3 id="qualTitle">Select a model</h3>
               <div class="content-tabs">
                 <button class="content-tab active" data-texttab="output">
-                  <span>Final Output</span>
-                  <small>Worker deliverable</small>
+                  <span>Worker Output</span>
+                  <small>Final deliverable</small>
                 </button>
                 <button class="content-tab" data-texttab="scaffold">
                   <span>Scaffold</span>
                   <small>Assistant guidance</small>
                 </button>
                 <button class="content-tab" data-texttab="scaffoldPrompt">
-                  <span>Scaffold Prompt</span>
-                  <small>Generation instruction</small>
+                  <span>Scaffold Generation</span>
+                  <small>How scaffold was created</small>
                 </button>
                 <button class="content-tab" data-texttab="prompt">
                   <span>Prompt & Rubric</span>
@@ -360,6 +397,10 @@
         </div>
       </section>
     </main>
+
+    <div class="loading-overlay" id="loadingOverlay" aria-live="polite">
+      <div class="loading-card">Loading benchmark data…</div>
+    </div>
 
     <script src="app.js"></script>
   </body>
