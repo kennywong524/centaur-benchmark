@@ -8,7 +8,13 @@
     <meta property="og:title" content="CentaurBench — Results Explorer" />
     <meta property="og:description" content="Do strong task solvers make strong assistants? Explore automation vs augmentation rankings across 10 replications." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/figure1_augmentation_heatmap.png" />
+    <meta property="og:url" content="https://kennywong524.github.io/centaur-benchmark/" />
+    <meta property="og:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CentaurBench — Results Explorer" />
+    <meta name="twitter:description" content="Do strong task solvers make strong assistants? Explore automation vs augmentation rankings across 10 replications." />
+    <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
+    <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -33,14 +39,14 @@
   url={https://kennywong524.github.io/centaur-benchmark/}
 }</pre>
       </div>
-      <nav class="tabs" aria-label="Dashboard sections">
-        <button class="tab active" data-tab="project">Project Overview</button>
-        <button class="tab" data-tab="replicates">10-Run Summary</button>
-        <button class="tab" data-tab="overview">Main Results</button>
-        <button class="tab" data-tab="rankings">Rankings</button>
-        <button class="tab" data-tab="judges">Judges</button>
-        <button class="tab" data-tab="qualitative">Qualitative</button>
-        <button class="tab" data-tab="validation">Validation</button>
+      <nav class="tabs" aria-label="Dashboard sections" role="tablist">
+        <button class="tab active" data-tab="project" role="tab" aria-selected="true" aria-controls="project">Project Overview</button>
+        <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-Run Summary</button>
+        <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Main Results</button>
+        <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Rankings</button>
+        <button class="tab" data-tab="judges" role="tab" aria-selected="false" aria-controls="judges">Judges</button>
+        <button class="tab" data-tab="qualitative" role="tab" aria-selected="false" aria-controls="qualitative">Qualitative</button>
+        <button class="tab" data-tab="validation" role="tab" aria-selected="false" aria-controls="validation">Validation</button>
       </nav>
     </header>
 
@@ -76,7 +82,7 @@
       <section id="project" class="panel active">
         <div class="guide-card guide-card-primary">
           <h2>New here? Start with this guide</h2>
-          <p class="guide-lead">CentaurBench asks a simple question: <b>which models are best at doing work themselves, and which are best at helping another worker do better work?</b> Use the tabs above to explore results from ten independent replications.</p>
+          <p class="guide-lead">CentaurBench asks a simple question: <b>which models are best at doing work themselves, and which are best at helping another worker do better work?</b> Use the tabs above to explore results from <span id="replicateRunCount">10</span> independent replications.</p>
           <div class="guide-grid">
             <div class="guide-step"><span class="step-num">1</span><div><b>Check reproducibility first.</b> Open <i>10-Run Summary</i> for paper-level rankings averaged across all ten runs (mean rank ± standard error).</div></div>
             <div class="guide-step"><span class="step-num">2</span><div><b>Compare automation vs augmentation.</b> <i>Main Results</i> shows heat maps and a <span class="term-inline" data-term="role-swap">role-swap</span> view for one selected run.</div></div>
@@ -180,6 +186,12 @@
                 </button>
               </div>
             </div>
+          </div>
+
+          <div class="method-block method-roster-block">
+            <div class="method-block-title title-roster">Candidate model roster</div>
+            <p class="method-roster-note">Eleven conditions compete in each task (automation and augmentation). GPT-3.5-Turbo is the fixed augmentation worker; <i>plain</i> is the unaided worker baseline.</p>
+            <div class="model-roster-grid" id="modelRoster"></div>
           </div>
 
           <div class="pipeline-title">Experiment &amp; evaluation pipeline</div>
@@ -368,7 +380,8 @@
         </div>
       </section>
 
-      <section id="qualitative" class="panel">
+      <section id="qualitative" class="panel" role="tabpanel" aria-labelledby="qualitative-tab">
+        <div class="qual-loading-note hidden" id="qualLoadingNote" aria-live="polite">Loading qualitative bundle (outputs, scaffolds, rationales)…</div>
         <div class="section-heading">
           <h2>Qualitative Browser</h2>
           <p>Read the exact scaffold, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
@@ -412,7 +425,13 @@
     </main>
 
     <div class="loading-overlay" id="loadingOverlay" aria-live="polite">
-      <div class="loading-card">Loading benchmark data…</div>
+      <div class="loading-card">
+        <div class="loading-title">Loading CentaurBench results…</div>
+        <div class="loading-skeleton">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="loading-sub">Rankings and heatmaps load first (~4 MB). Qualitative outputs load on demand.</p>
+      </div>
     </div>
 
     <div class="glossary-modal" id="glossaryModal" role="dialog" aria-modal="true" aria-labelledby="glossaryModalTitle">

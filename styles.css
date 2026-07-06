@@ -664,8 +664,79 @@ label[data-control].hidden { display: none !important; }
   background: #fff;
   box-shadow: var(--shadow);
   font-weight: 700;
+  max-width: 360px;
+}
+.loading-title { font-weight: 800; margin-bottom: 10px; }
+.loading-sub { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; font-weight: 500; }
+.loading-skeleton { display: grid; gap: 8px; margin-top: 4px; }
+.loading-skeleton span {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #eef1f5, #f8fafc, #eef1f5);
+  background-size: 200% 100%;
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+.loading-skeleton span:nth-child(2) { width: 88%; animation-delay: .15s; }
+.loading-skeleton span:nth-child(3) { width: 72%; animation-delay: .3s; }
+@keyframes skeleton-pulse {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 body.loading main { opacity: 0.35; pointer-events: none; }
+body.qual-loading #qualText { opacity: 0.55; }
+
+.qual-loading-note {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid #d7e3f5;
+  border-radius: 8px;
+  background: #f3f8ff;
+  color: #334057;
+  font-size: 12px;
+  font-weight: 650;
+}
+.qual-loading-note.hidden { display: none; }
+.qual-loading-inline {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 12px 0;
+}
+
+.method-roster-block { margin-top: 14px; }
+.method-roster-note {
+  margin: 6px 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.model-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.model-roster-group b {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.model-roster-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.model-roster-chips span {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 650;
+}
 
 .tab:focus-visible,
 .pill:focus-visible,
@@ -1820,6 +1891,7 @@ select:focus, button:focus-visible, .tab:focus-visible {
   .control-band, .two-col, .metric-row, .qual-grid, .guide-grid, .role-strip, .project-hero, .finding-grid { grid-template-columns: 1fr; }
   .control-band { grid-template-columns: 1fr !important; }
   .qual-back-link { display: inline-flex; }
+  .model-roster-grid { grid-template-columns: 1fr; }
   .qual-grid { display: flex; flex-direction: column; }
   .model-list, .rationale-list, .text-pane { max-height: none; }
   .findings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

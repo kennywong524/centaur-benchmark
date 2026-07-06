@@ -1,5 +1,7 @@
 const state = {
   data: null,
+  qualLoaded: false,
+  qualLoading: false,
   tab: "project",
   runId: null,
   modelSet: "all",
@@ -277,6 +279,85 @@ const generalRubricDetails = {
   general_tone_audience_fit: "Matches the role, user need, and professional context.",
 };
 
+function runStats(runId = state.runId) {
+  return state.data?.meta?.run_stats?.[runId] || null;
+}
+
+function totalRunStats() {
+  const stats = state.data?.meta?.run_stats || {};
+  return Object.values(stats).reduce(
+    (acc, s) => ({
+      outputs: acc.outputs + (s.outputs || 0),
+      judgments: acc.judgments + (s.unique_judgments || s.judgments || 0),
+    }),
+    { outputs: 0, judgments: 0 },
+  );
+}
+
+function mergeQualitativeData(qual) {
+  if (!qual?.runs_by_id || !state.data?.runs_by_id) return;
+  for (const [runId, qualBundle] of Object.entries(qual.runs_by_id)) {
+    const target = state.data.runs_by_id[runId];
+    if (!target?.runs) continue;
+    for (const [key, qualRun] of Object.entries(qualBundle.runs || {})) {
+      if (!target.runs[key]) continue;
+      target.runs[key].outputs = qualRun.outputs || [];
+      target.runs[key].judgments = qualRun.judgments || [];
+    }
+  }
+  syncActiveRunMirror();
+  state.qualLoaded = true;
+}
+
+function syncActiveRunMirror() {
+  const bundle = activeData();
+  if (bundle?.runs) state.data.runs = bundle.runs;
+}
+
+function setQualLoading(on) {
+  state.qualLoading = on;
+  document.body.classList.toggle("qual-loading", on);
+  const note = document.getElementById("qualLoadingNote");
+  if (note) note.classList.toggle("hidden", !on);
+}
+
+let qualLoadPromise = null;
+function ensureQualitativeData() {
+  if (state.qualLoaded) return Promise.resolve();
+  if (qualLoadPromise) return qualLoadPromise;
+  const qualFile = state.data?.meta?.data_files?.qualitative || "dashboard-qualitative.json";
+  setQualLoading(true);
+  qualLoadPromise = fetch(qualFile)
+    .then(r => {
+      if (!r.ok) throw new Error(`Failed to load ${qualFile} (${r.status})`);
+      return r.json();
+    })
+    .then(data => {
+      mergeQualitativeData(data);
+      setQualLoading(false);
+      renderRubric();
+      renderQualitative();
+      applyTermTooltips(document.getElementById("qualitative"));
+    })
+    .catch(err => {
+      setQualLoading(false);
+      qualLoadPromise = null;
+      const el = document.getElementById("qualText");
+      if (el) el.innerHTML = `<div class="qual-empty-state">Qualitative bundle failed to load: ${esc(String(err))}</div>`;
+      throw err;
+    });
+  return qualLoadPromise;
+}
+
+function needsQualitativeData(tab = state.tab) {
+  return tab === "qualitative" || tab === "rankings";
+}
+
+function qualDataReady() {
+  const run = currentRun();
+  return !!(run?.outputs?.length || run?.judgments?.length);
+}
+
 function runList() {
   return state.data?.meta?.replicate_runs || [{ id: state.data?.meta?.run_id, label: state.data?.meta?.run_id || "Run" }];
 }
@@ -481,8 +562,8 @@ function avg(xs) {
 
 function uniqueJudgmentCount(bundle) {
   const seen = new Set();
-  Object.entries(bundle.runs).forEach(([taskMode, run]) => {
-    run.judgments.forEach(j => {
+  Object.entries(bundle.runs || {}).forEach(([taskMode, run]) => {
+    (run.judgments || []).forEach(j => {
       const a = Math.min(Number(j.left_idx), Number(j.right_idx));
       const b = Math.max(Number(j.left_idx), Number(j.right_idx));
       seen.add(`${taskMode}|${j.judge_model}|${a}|${b}`);
@@ -681,9 +762,10 @@ function renderRoleScatter() {
 
 function renderMetrics() {
   const tasks = state.data.tasks.length;
+  const stats = runStats();
   const bundle = activeData();
-  const outputs = Object.values(bundle.runs).reduce((s, r) => s + r.outputs.length, 0);
-  const judgments = uniqueJudgmentCount(bundle);
+  const outputs = stats?.outputs ?? Object.values(bundle.runs || {}).reduce((s, r) => s + (r.outputs?.length || 0), 0);
+  const judgments = stats?.unique_judgments ?? uniqueJudgmentCount(bundle);
   const models = new Set(bundle.aggregate.map(d => d.model_label)).size;
   document.getElementById("metricRow").innerHTML = [
     [`${activeRunMeta().label}`, "selected run"],
@@ -719,6 +801,10 @@ function renderLeaderboard() {
 }
 
 function renderRubric() {
+  if (needsQualitativeData() && !qualDataReady()) {
+    document.getElementById("rubricChart").innerHTML = `<p class="qual-loading-inline">Loading rubric scores…</p>`;
+    return;
+  }
   const dims = [
     ...Object.keys(rubricLabels[state.task] || {}),
     ...Object.keys(generalRubricLabels),
@@ -1219,16 +1305,15 @@ function renderValidation() {
 }
 
 function renderProjectStats() {
-  const bundles = runList().map(r => activeData(r.id));
-  const outputs = bundles.reduce((s, b) => s + Object.values(b.runs).reduce((x, r) => x + r.outputs.length, 0), 0);
-  const judgments = bundles.reduce((s, b) => s + uniqueJudgmentCount(b), 0);
-  const models = new Set(bundles.flatMap(b => b.aggregate.map(d => d.model_label))).size;
+  const totals = totalRunStats();
+  const models = new Set(activeData().aggregate.map(d => d.model_label)).size;
+  const runCount = runList().length;
   document.getElementById("projectStats").innerHTML = [
-    [`${runList().length}`, "replicate runs"],
+    [`${runCount}`, runCount === 1 ? "replicate run" : "replicate runs"],
     [`${state.data.tasks.length}`, "tasks"],
     [`${models}`, "candidate conditions"],
-    [`${outputs.toLocaleString()}`, "outputs"],
-    [`${judgments.toLocaleString()}`, "unique judgments"],
+    [`${totals.outputs.toLocaleString()}`, "outputs"],
+    [`${totals.judgments.toLocaleString()}`, "unique judgments"],
   ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join("");
 }
 
@@ -1241,6 +1326,16 @@ function currentRun() {
 }
 
 function renderQualitative() {
+  if (!qualDataReady()) {
+    document.getElementById("modelList").innerHTML = "";
+    document.getElementById("qualTitle").textContent = "Loading qualitative bundle…";
+    document.getElementById("roleStrip").innerHTML = "";
+    document.getElementById("qualText").innerHTML = `<p class="qual-loading-inline">Fetching outputs, scaffolds, and judge rationales (~28 MB). This loads once per session.</p>`;
+    document.getElementById("rationales").innerHTML = "";
+    const tabDesc = document.getElementById("qualTabDesc");
+    if (tabDesc) tabDesc.textContent = qualTabDescriptions[state.textTab] || "";
+    return;
+  }
   const run = currentRun();
   const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   renderQualQuickPicks(ranked);
@@ -1348,6 +1443,23 @@ function renderRationales(out) {
   }).join("");
 }
 
+function renderModelRoster() {
+  const el = document.getElementById("modelRoster");
+  if (!el || !state.data?.aggregate) return;
+  const models = [...new Set(state.data.aggregate.map(d => d.model_label))].sort();
+  const worker = ["GPT-3.5-Turbo", "plain"].filter(m => models.includes(m));
+  const candidates = models.filter(m => !worker.includes(m));
+  el.innerHTML = [
+    { title: "Fixed worker / baselines", items: worker },
+    { title: "Focal models under test", items: candidates },
+  ].map(g => `<div class="model-roster-group"><b>${esc(g.title)}</b><div class="model-roster-chips">${g.items.map(m => `<span>${esc(m)}</span>`).join("")}</div></div>`).join("");
+}
+
+function syncPaperCounts() {
+  const rc = document.getElementById("replicateRunCount");
+  if (rc) rc.textContent = String(runList().length);
+}
+
 function populateControls() {
   const runSelect = document.getElementById("runSelect");
   runSelect.innerHTML = runList().map(r => `<option value="${r.id}">${r.label}</option>`).join("");
@@ -1415,10 +1527,16 @@ function syncTextTabs() {
 
 function goTab(tab) {
   state.tab = tab;
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.tab === tab));
+  document.querySelectorAll(".tab").forEach(x => {
+    const active = x.dataset.tab === tab;
+    x.classList.toggle("active", active);
+    x.setAttribute("aria-selected", active ? "true" : "false");
+  });
   document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
   updateControlBandVisibility();
   updateViewContextBadge();
+  renderAll();
+  if (needsQualitativeData(tab)) ensureQualitativeData();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -1548,7 +1666,14 @@ function bind() {
   bindChrome();
   bindMethodology();
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => goTab(b.dataset.tab)));
-  document.getElementById("runSelect").addEventListener("change", e => { state.runId = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
+  document.getElementById("runSelect").addEventListener("change", e => {
+    state.runId = e.target.value;
+    state.selectedModel = null;
+    state.rubricFocus = null;
+    syncActiveRunMirror();
+    renderAll();
+    if (needsQualitativeData()) ensureQualitativeData();
+  });
   document.getElementById("modelSet").addEventListener("change", e => { state.modelSet = e.target.value; renderAll(); });
   document.getElementById("taskSelect").addEventListener("change", e => { state.task = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
   document.getElementById("modeSelect").addEventListener("change", e => { state.mode = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
@@ -1562,7 +1687,9 @@ function bind() {
 
 function renderAll() {
   populateControls();
+  syncPaperCounts();
   updateControlBandVisibility();
+  renderModelRoster();
   renderProjectStats();
   renderFindingsSnapshot();
   renderMetrics();
@@ -1579,11 +1706,15 @@ function renderAll() {
 }
 
 document.body.classList.add("loading");
-fetch("dashboard-data.json")
-  .then(r => r.json())
+fetch("dashboard-meta.json")
+  .then(r => {
+    if (!r.ok) throw new Error(`Failed to load dashboard-meta.json (${r.status})`);
+    return r.json();
+  })
   .then(data => {
     state.data = data;
     state.runId = data.meta.default_run_id || data.meta.run_id;
+    syncActiveRunMirror();
     populateControls();
     bind();
     renderAll();
