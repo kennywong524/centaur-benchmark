@@ -1,0 +1,68 @@
+\section{Results}
+
+We report two sets of results. First, we examine the \emph{automation} regime, where each model solves the task directly. This serves as a sanity check on the evaluation pipeline before we interpret the more novel augmentation results: if recent frontier models systematically outperform older models on most tasks, that pattern is directionally consistent with conventional capability rankings and increases confidence in the pairwise judging setup. Second, we examine the \emph{augmentation} regime, where each assistant model acts as a coach that supplies a process scaffold to a fixed GPT-3.5-Turbo worker that produces the final output, rather than solving the task itself. We then compare augmentation rankings to automation rankings to test whether strong direct task-solving ability also implies strong assistant ability. Across both analyses, rankings are computed over ten independent runs of the full pipeline. Main-text figures report within-task \emph{rank of ranks} (integer ranks derived from mean ranks across runs); Appendix~\ref{app:rank-tables} reports mean rank with standard error ($\mathrm{SE}=\mathrm{SD}/\sqrt{10}$) for readers who want the underlying magnitudes. All rankings are computed over the full candidate pool, which includes the unaided GPT-3.5-Turbo baseline.
+
+Our central result is that model performance is both task-specific and mode-specific. In automation, rankings are concentrated around a small set of strong direct solvers and are broadly aligned with the expected frontier-model ordering. In augmentation, no single assistant model dominates across all tasks: different task domains reward different assistant behaviors, and several tasks are best handled by the unaided worker baseline rather than by an external scaffold. This divergence suggests that standard automation benchmarks do not capture an economically important capability, whether a model can improve another worker's output through planning and decomposition. We use the paper figures to summarize the main patterns; the interactive dashboard provides a more detailed audit trail for readers who wish to inspect individual tasks, models, and judgments.
+
+\subsection{Automation Rankings Align With Expected Model Capability}
+
+In automation, rankings are directionally aligned with conventional capability rankings: stronger frontier models tend to perform better as direct task solvers, while weaker or older models fall toward the bottom. Figure~\ref{fig:automation-heatmap} reports these rankings by task. GPT-5-Mini has the best average rank across tasks, followed by Claude-Opus-4.8. GPT-O4-Mini and Claude-Sonnet-4.6 form the next tier, while GPT-3.5-Turbo (plain) ranks last on average, as expected for a low-cost baseline. This is reassuring before we turn to augmentation: the evaluation does not produce arbitrary orderings, and stronger direct solvers are recognized as such across most task domains.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{paper_figures/figure2a_automation_heatmap.png}
+    \caption{
+    Automation rankings by task, averaged across ten independent runs.
+    Each cell reports the within-task rank of ranks (1 = best mean rank across runs).
+    Models are ordered from newest to oldest (left to right); GPT-3.5-Turbo (plain) is the direct-solver baseline at far right.
+    Lower ranks indicate better performance.
+    Mean rank with standard error across the ten runs is reported in Appendix~\ref{app:rank-tables}, Figure~\ref{fig:automation-heatmap-appendix}.
+    }
+    \label{fig:automation-heatmap}
+\end{figure}
+
+The task-level pattern is also concentrated. GPT-5-Mini ranks first in menu planning, tax preparation, travel planning, and tutoring. Claude-Opus-4.8 ranks first in market-trends analysis, GPT-OSS-120B ranks first in counseling, and Gemini-3.1-Pro narrowly leads operations research. A likely reason automation tracks conventional capability more closely is that it places the full burden of task completion on the assistant model. The model must interpret the prompt, track constraints, produce the final deliverable, and avoid errors without help from another system, so general model capability matters more. Augmentation, by contrast, tests whether a model can improve a fixed worker's output through guidance; this depends not only on raw task-solving ability but on whether the guidance is usable by the downstream worker. We examine that regime next.
+
+\subsection{Model Rankings Are Task-Specific in Augmentation}
+
+Figure~\ref{fig:augmentation-heatmap} reports model rankings in the augmentation regime. Each assistant model provides a process scaffold to a fixed GPT-3.5-Turbo worker, which then produces the final task output. The figure shows substantial heterogeneity across tasks: no single assistant model consistently ranks first across the task set, and the relative ordering of models shifts across counseling, tutoring, planning, and analytical tasks.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{paper_figures/figure1_augmentation_heatmap.png}
+    \caption{
+    Augmentation rankings by task, averaged across ten independent runs.
+    Each cell reports the within-task rank of ranks (1 = best mean rank across runs).
+    Models are ordered from newest to oldest (left to right); GPT-3.5-Turbo (plain) is the unaided worker baseline (no external assistance) at far right.
+    Lower ranks indicate better performance.
+    No single assistant model dominates across tasks, and different domains favor different assistants.
+    Mean rank with standard error across the ten runs is reported in Appendix~\ref{app:rank-tables}, Figure~\ref{fig:augmentation-heatmap-appendix}.
+    }
+    \label{fig:augmentation-heatmap}
+\end{figure}
+
+The best assistant changes substantially across tasks. GPT-4.1 ranks first in counseling, GPT-O4-Mini in market-trends analysis, GPT-5-Mini in menu planning and tutoring, GPT-OSS-120B in operations research, and Claude-Sonnet-4.6 in travel planning. In tax preparation, GPT-5-Mini is the best-performing assistant model. However, the unaided GPT-3.5-Turbo worker baseline ranks first in operations research, tax preparation, and travel planning when it is included in the full candidate pool. The best-performing assistant therefore differs by domain rather than converging on a single model, and in some tasks assistance does not improve on the fixed worker's unaided output.
+
+The pattern also differs by task type. Among the assistant models, GPT-4.1 performs especially well in counseling, consistent with strength in professionally framed guidance and sensitive response structure. GPT-O4-Mini leads in market-trends analysis, where the rubric rewards concise synthesis, specificity, and actionable interpretation. GPT-5-Mini leads in menu planning and tutoring and is the best assistant in tax preparation, suggesting strength on tasks that require constraint tracking, complete deliverables, and structured explanation. GPT-OSS-120B leads among assistants in operations research, where the rubric rewards optimization framing and trade-off reasoning. Claude-Sonnet-4.6 leads among assistants in travel planning, where practical sequencing, budget awareness, and itinerary usability are central. These results are descriptive rather than causal. They suggest that different models provide different kinds of useful guidance, but the mechanisms require qualitative analysis of the guidance and the resulting worker outputs, which we return to in Section~\ref{sec:analysis}.
+
+Importantly, these ranking differences are unlikely to be driven by models excelling on one general evaluation dimension but not another. Across the five general rubric dimensions (instruction following, accuracy and specificity, practical usefulness, organization and readability, and tone/audience fit), most models receive similar relative scores on each dimension rather than specializing on a single axis (Appendix~\ref{app:general-rubrics}, Figure~\ref{fig:general-rubric-profiles}). Augmentation rankings therefore reflect differences in overall assistant quality and task fit rather than artifacts of how the general rubric is weighted. Models do not win because they are disproportionately strong on, say, organization but weak on accuracy. The task-specific pairwise outcomes point to genuine differences in how each model guides the fixed worker.
+
+\subsection{Automation Rankings Differ From Augmentation Rankings}
+\label{sec:role-swap}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{paper_figures/figure2b_role_swap_scatter.pdf}
+    \caption{
+    Model-level comparison of average automation rank and average augmentation rank (assistant models only).
+    Blue points report augmentation ranks and orange points report automation ranks; horizontal lines show the shift between regimes.
+    Lower rank indicates better performance.
+    }
+    \label{fig:role-swap-scatter}
+\end{figure}
+
+Figure~\ref{fig:role-swap-scatter} compares each model's average automation rank and average augmentation rank. Several models move substantially across regimes. GPT-5-Mini is strong in both regimes and has the best average rank among assistant models in augmentation as well as the best average rank in automation. GPT-4.1 is relatively stronger as an assistant than as a direct solver: it ranks near the middle of the augmentation distribution but near the bottom in automation. Conversely, Claude-Opus-4.8, Claude-Sonnet-4.6, Gemini-3.1-Pro, and GPT-O4-Mini are stronger in automation than in augmentation. GPT-OSS-120B sits close to the diagonal, with similar average ranks across modes. The same model is thus not consistently favored when it solves a task directly versus when it assists another worker.
+
+Table~\ref{tab:best-model-by-task} (Appendix~\ref{app:best-model-table}) makes the divergence concrete. It reports the best-performing model in each task under automation and augmentation, using the lowest mean rank across ten runs. In five of seven tasks, the augmentation winner differs from the automation winner. In counseling, GPT-OSS-120B is the strongest automator while GPT-4.1 is the strongest assistant; in market-trends analysis, Claude-Opus-4.8 automates best but GPT-O4-Mini assists best; and in operations research, Gemini-3.1-Pro automates best while the unaided worker baseline ranks first in augmentation. Menu planning and tutoring are the two exceptions, where GPT-5-Mini ranks first in both regimes.
+
+The table also shows that augmentation winners are not uniformly frontier assistant models. GPT-3.5-Turbo (plain), the unaided worker with no external assistance, ranks first in operations research, tax preparation, and travel planning. We read this not as evidence that guidance is futile, but as evidence that its value is task-contingent and can be negative: poorly matched or overly complex guidance can leave the worker worse off than working alone. The corollary is central to our argument that strong direct solvers do not automatically make strong assistants, and the right model depends jointly on the role it plays and the task it supports. We interpret these qualitative differences in the guidance and final outputs in Section~\ref{sec:analysis}.

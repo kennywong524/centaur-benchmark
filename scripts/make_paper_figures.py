@@ -197,7 +197,18 @@ def _draw_heatmap_base(
             color = "white" if val > n_cols * 0.72 else "#1f2433"
             weight = "semibold" if matrix.index[i] == "Average" else "normal"
             for dy, text in cell_formatter(val, i, j):
-                ax.text(j, i + dy, text, ha="center", va="center", color=color, fontsize=12.2 if dy == 0 else 9.3, fontweight=weight, alpha=0.86 if dy != 0 else 1.0)
+                is_main_value = dy == 0
+                ax.text(
+                    j,
+                    i + dy,
+                    text,
+                    ha="center",
+                    va="center",
+                    color=color,
+                    fontsize=15.5 if is_main_value else 11.0,
+                    fontweight="bold" if is_main_value else weight,
+                    alpha=0.9 if not is_main_value else 1.0,
+                )
     cbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.015)
     cbar.set_label(cbar_label, fontsize=11)
     cbar.ax.tick_params(labelsize=10)
@@ -242,8 +253,8 @@ def draw_heatmap_rank_of_ranks(data: dict, mode: str, filename: str) -> None:
                 ha="center",
                 va="center",
                 color=color,
-                fontsize=18.5,
-                fontweight=weight,
+                fontsize=21.0,
+                fontweight="bold",
             )
     cbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.015, ticks=range(1, n_cols + 1))
     cbar.set_label("Rank", fontsize=11)
@@ -1079,7 +1090,7 @@ def write_best_model_table(data: dict) -> Path:
     lines = [
         r"\begin{table}[t]",
         r"    \centering",
-        r"    \caption{Best-performing model by task and regime, based on lowest mean rank across three independent runs.}",
+        r"    \caption{Best-performing model by task and regime, based on lowest mean rank across ten independent runs.}",
         r"    \label{tab:best-model-by-task}",
         r"    \small",
         r"    \begin{tabular}{lcc}",
