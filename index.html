@@ -8,6 +8,7 @@
     <meta property="og:title" content="CentaurBench — Results Explorer" />
     <meta property="og:description" content="Do strong task solvers make strong assistants? Explore automation vs augmentation rankings across 10 replications." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/figure1_augmentation_heatmap.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -69,6 +70,8 @@
           <select id="judgeSelect"></select>
         </label>
       </section>
+
+      <div class="view-context-badge hidden" id="viewContextBadge" aria-live="polite"></div>
 
       <section id="project" class="panel active">
         <div class="guide-card guide-card-primary">
@@ -304,6 +307,9 @@
       </section>
 
       <section id="rankings" class="panel">
+        <div class="info-banner">
+          <b>Task drill-down.</b> Use the filters above to pick a task and regime. Click any model row to open its output, scaffold, and judge rationales in <button class="inline-link" type="button" data-gotab="qualitative">Qualitative</button>.
+        </div>
         <div class="section-heading">
           <h2>Task-Level Rankings</h2>
           <p>Inspect winners, win rates, and rank movement for each task and regime.</p>
@@ -367,6 +373,8 @@
           <h2>Qualitative Browser</h2>
           <p>Read the exact scaffold, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
         </div>
+        <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Rankings</button>
+        <div id="qualQuickPicks" class="qual-quick-picks"></div>
         <div class="qual-grid">
           <aside class="model-list" id="modelList"></aside>
           <article class="text-pane">
@@ -391,6 +399,7 @@
                 </button>
               </div>
             </div>
+            <p class="qual-tab-desc" id="qualTabDesc"></p>
             <div class="role-strip" id="roleStrip"></div>
             <div id="qualText"></div>
           </article>

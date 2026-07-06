@@ -30,6 +30,40 @@ const glossary = {
   rubric: "Task-specific scoring dimensions (e.g., empathy, accuracy) plus five general dimensions applied to every task.",
 };
 
+const qualTabDescriptions = {
+  output: "The worker's final deliverable for this task–model cell.",
+  scaffold: "Process guidance the assistant wrote for the worker (augmentation only).",
+  scaffoldPrompt: "How the scaffold was generated and how the fixed worker consumes it.",
+  prompt: "The shared task prompt, augmentation specs, and judge rubric for this task.",
+};
+
+function updateViewContextBadge() {
+  const badge = document.getElementById("viewContextBadge");
+  if (!badge) return;
+  const singleRunTabs = new Set(["overview", "rankings", "qualitative"]);
+  const show = singleRunTabs.has(state.tab);
+  badge.classList.toggle("hidden", !show);
+  if (!show) return;
+  badge.innerHTML = `<span class="view-badge-pill">Single run · ${esc(activeRunMeta().label)}</span><span class="view-badge-note">Paper figures aggregate all 10 runs.</span><button class="inline-link" type="button" data-gotab="replicates">Open 10-Run Summary →</button>`;
+}
+
+function renderQualQuickPicks(ranked) {
+  const el = document.getElementById("qualQuickPicks");
+  if (!el) return;
+  const top = ranked.slice().sort((a, b) => a.display_rank - b.display_rank).slice(0, 3);
+  if (!top.length) {
+    el.innerHTML = `<div class="qual-empty-state">No ranked models for ${esc(cleanTaskTitle(state.task))} · ${esc(modeLabels[state.mode])} under the current judge filter. Try another task or judge.</div>`;
+    return;
+  }
+  el.innerHTML = `<span class="qual-quick-label">Top ranked:</span>${top.map(d => `<button type="button" class="qual-quick-chip ${state.selectedModel === d.model_label ? "active" : ""}" data-quickmodel="${esc(d.model_label)}"><span class="rank-badge ${Number(d.display_rank) <= 3 ? "top" : ""}">${d.display_rank}</span>${esc(displayModel(d.model_label, state.mode))}</button>`).join("")}`;
+  el.querySelectorAll("[data-quickmodel]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.selectedModel = btn.dataset.quickmodel;
+      renderAll();
+    });
+  });
+}
+
 const controlsByTab = {
   project: [],
   replicates: ["modelSet"],
@@ -482,7 +516,7 @@ function heatModelAbbr(model, mode) {
 function heatModelHeader(model, mode) {
   const full = displayModel(model, mode);
   const abbr = heatModelAbbr(model, mode);
-  return `<th class="heat-model-col" tabindex="0" data-tip="${esc(full)}" data-tip-title="Model">${esc(abbr)}</th>`;
+  return `<th scope="col" class="heat-model-col" tabindex="0" data-tip="${esc(full)}" data-tip-title="Model">${esc(abbr)}</th>`;
 }
 
 function heatColorLegendHtml() {
@@ -555,9 +589,9 @@ function renderHeatmap(el, mode) {
   });
   const maxRank = models.length;
   const byKey = new Map(rows.map(d => [`${d.task_slug}|${d.model_label}`, d]));
-  let html = `<table class="heat-table compact-heat"><thead><tr><th>Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
+  let html = `<table class="heat-table compact-heat"><thead><tr><th scope="col">Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
   for (const task of taskOrder) {
-    html += `<tr><td>${cleanTaskTitle(task)}</td>`;
+    html += `<tr><th scope="row">${cleanTaskTitle(task)}</th>`;
     for (const model of models) {
       const d = byKey.get(`${task}|${model}`);
       const r = d?.display_rank;
@@ -571,7 +605,7 @@ function renderHeatmap(el, mode) {
     }
     html += `</tr>`;
   }
-  html += `<tr><td>Average</td>`;
+  html += `<tr><th scope="row">Average</th>`;
   for (const model of models) {
     if (isOwnFamily(state.judge, model)) {
       html += `<td class="heat-na">—</td>`;
@@ -602,17 +636,23 @@ function renderRoleScatter() {
     const right = cx < size * 0.7;
     const lx = right ? cx + 9 : cx - 9;
     const anchor = right ? "start" : "end";
-    return `<g><circle cx="${cx}" cy="${cy}" r="4.5" fill="#2f6fcb" stroke="white" stroke-width="1.2"><title>${displayModel(d.model)}: automate ${d.automation.toFixed(2)}, augment ${d.augmentation.toFixed(2)}</title></circle><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round">${short}</text></g>`;
+    const delta = d.automation - d.augmentation;
+    const deltaLabel = delta > 0.05 ? `+${delta.toFixed(2)} toward automation` : delta < -0.05 ? `${Math.abs(delta).toFixed(2)} toward augmentation` : "balanced across roles";
+    const tip = `${displayModel(d.model)} · automation ${d.automation.toFixed(2)} · augmentation ${d.augmentation.toFixed(2)} · ${deltaLabel}`;
+    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="7" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#2f6fcb" stroke="white" stroke-width="1.2" pointer-events="none"/><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
   }).join("");
   const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
   const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
-  const svg = `<div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img">
+  const diagMidX = (x(1) + x(maxRank)) / 2;
+  const diagMidY = (y(1) + y(maxRank)) / 2;
+  const svg = `<div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Role-swap scatter comparing automation and augmentation average ranks">
     <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
     ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#eef1f5"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
     <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.4"/>
+    <text x="${diagMidX}" y="${diagMidY - 10}" text-anchor="middle" font-size="9" fill="#8a93a3" font-style="italic">Same rank in both regimes</text>
     ${points}
-    <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank</text>
-    <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">Augmentation avg rank</text>
+    <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank →</text>
+    <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">← Augmentation avg rank</text>
   </svg></div><div class="role-legend">${legend}</div>`;
 
   const cards = data.slice().sort((a, b) => a.automation - b.automation).map(d => {
@@ -635,7 +675,8 @@ function renderRoleScatter() {
     ${cards}
   </div>`;
 
-  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Distance from the diagonal indicates role specialization.</p><div class="role-swap-layout"><div class="role-swap-left">${svg}</div><div class="role-swap-right">${info}</div></div>`;
+  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Points above the diagonal rank better as assistants; below it, better as direct solvers.</p><div class="role-swap-layout"><div class="role-swap-left">${svg}</div><div class="role-swap-right">${info}</div></div>`;
+  bindFloatingTips(document.getElementById("roleScatter"));
 }
 
 function renderMetrics() {
@@ -656,8 +697,12 @@ function renderMetrics() {
 function renderLeaderboard() {
   const rows = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   document.getElementById("rankTitle").textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
+  if (!rows.length) {
+    document.getElementById("leaderboard").innerHTML = `<div class="rank-empty-state"><p>No ranked models for this task under the current judge filter.</p><p class="rank-empty-hint">Try <b>Aggregate</b> judge, another task, or switch mode.</p></div>`;
+    return;
+  }
   const maxScore = Math.max(...rows.map(d => Number(d.score)), 1);
-  document.getElementById("leaderboard").innerHTML = `<p style="color:var(--muted);font-size:12px;margin:0 0 10px">Rank badges order candidates by average output rank; bars show pairwise win rate. In replicated tasks these can diverge when one model has uneven replicates.</p>` + rows
+  document.getElementById("leaderboard").innerHTML = `<p class="leaderboard-hint">Click any model row to open its output and judge rationales in Qualitative.</p>` + rows
     .sort((a, b) => a.display_rank - b.display_rank)
     .map(d => {
       const rank = Number(d.display_rank);
@@ -862,9 +907,9 @@ function renderReplicateHeatmap(el, mode) {
     return av - bv;
   });
   const maxRank = Math.max(models.length, 1);
-  let html = `<table class="heat-table replicate-heat compact-heat"><thead><tr><th>Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
+  let html = `<table class="heat-table replicate-heat compact-heat"><thead><tr><th scope="col">Task</th>${models.map(m => heatModelHeader(m, mode)).join("")}</tr></thead><tbody>`;
   for (const task of taskOrder) {
-    html += `<tr><td>${cleanTaskTitle(task)}</td>`;
+    html += `<tr><th scope="row">${cleanTaskTitle(task)}</th>`;
     for (const model of models) {
       const vals = byCell.get(`${task}|${model}`) || [];
       if (!vals.length) {
@@ -878,7 +923,7 @@ function renderReplicateHeatmap(el, mode) {
     }
     html += `</tr>`;
   }
-  html += `<tr><td>Average</td>`;
+  html += `<tr><th scope="row">Average</th>`;
   for (const model of models) {
     const vals = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
     const m = vals.length ? avg(vals) : null;
@@ -1198,6 +1243,7 @@ function currentRun() {
 function renderQualitative() {
   const run = currentRun();
   const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  renderQualQuickPicks(ranked);
   const allowed = new Set(ranked.map(d => d.model_label));
   const outputs = run.outputs.filter(o => allowed.has(o.model_label));
   if (!state.selectedModel || !outputs.some(o => o.model_label === state.selectedModel)) state.selectedModel = outputs[0]?.model_label;
@@ -1214,6 +1260,8 @@ function renderQualitative() {
   }));
   const out = outputs.find(o => o.model_label === state.selectedModel) || outputs[0];
   document.getElementById("qualTitle").textContent = out ? `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} · ${displayModel(out.model_label, state.mode)}` : "No output";
+  const tabDesc = document.getElementById("qualTabDesc");
+  if (tabDesc) tabDesc.textContent = qualTabDescriptions[state.textTab] || "";
   const assistant = state.mode === "augmentation" ? displayModel(out?.assistant_model || out?.model_label, state.mode) : "N/A";
   const worker = state.mode === "augmentation" ? displayModel(out?.worker_model || "gpt-3.5-turbo", state.mode) : displayModel(out?.model_label, state.mode);
   const condition = out?.condition || "";
@@ -1370,6 +1418,7 @@ function goTab(tab) {
   document.querySelectorAll(".tab").forEach(x => x.classList.toggle("active", x.dataset.tab === tab));
   document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
   updateControlBandVisibility();
+  updateViewContextBadge();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -1389,6 +1438,7 @@ function updateControlBandVisibility() {
     const cols = allowed.size;
     band.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
   }
+  updateViewContextBadge();
 }
 
 function renderGlossary() {
