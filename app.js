@@ -12,20 +12,31 @@ const state = {
 };
 
 const glossary = {
-  "rank-of-ranks": "Average of per-task ranks within the selected model set. Lower is better.",
-  "rank universe": "Which models are eligible for ranking — all candidates (includes GPT-3.5-Turbo baseline) vs assistants only.",
-  "leave-family-out": "A judge never scores outputs from its own model family, reducing same-family preference.",
-  "role-swap": "Compares a model's automation rank vs augmentation rank to reveal role specialization.",
-  "standard error": "Uncertainty across 10 independent replications; smaller means more stable.",
+  automation: "The model solves the task end-to-end and produces the final deliverable directly, with no intermediary worker.",
+  augmentation: "The model writes guidance for a fixed GPT-3.5-Turbo worker, which then produces the final deliverable. Tests coaching ability, not solo solving.",
+  scaffold: "Process-only guidance from the assistant model — plans, checklists, and self-review steps — given to the worker without containing the task answer itself.",
+  "worker model": "The model that produces the final task output. In augmentation this is always GPT-3.5-Turbo; in automation it is the model under test.",
+  "assistant model": "The focal model under test in augmentation. It does not write the final answer; it writes the scaffold for the worker.",
+  "pairwise comparison": "Judges see two anonymized outputs side-by-side, pick a winner, and score rubric dimensions — never knowing which model produced which.",
+  "win rate": "Share of pairwise matchups a model wins within a task and regime. Higher is better.",
+  "rank-of-ranks": "Per-task rank (1 = best) averaged across tasks in the selected model set. Lower is better.",
+  "rank universe": "Which models are eligible for ranking: all candidates (includes GPT-3.5-Turbo baseline) vs assistant models only.",
+  "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
+  "role-swap": "Compares a model's automation rank vs augmentation rank to reveal whether it is a better solver or assistant.",
+  "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
+  "baseline (plain worker)": "GPT-3.5-Turbo run with no external scaffold in augmentation. Shows what the fixed worker achieves unaided.",
+  "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
+  "judge panel": "Four LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, Gemini-3.1-Pro). Aggregate combines all eligible judges per cell.",
+  rubric: "Task-specific scoring dimensions (e.g., empathy, accuracy) plus five general dimensions applied to every task.",
 };
 
 const controlsByTab = {
   project: [],
   replicates: ["modelSet"],
-  overview: ["run", "modelSet"],
+  overview: ["run", "modelSet", "judge"],
   rankings: ["run", "modelSet", "task", "mode", "judge"],
   judges: ["modelSet", "task", "mode"],
-  qualitative: ["run", "task", "mode"],
+  qualitative: ["run", "task", "mode", "judge"],
   validation: ["task"],
 };
 
@@ -765,6 +776,10 @@ function replicateCellStats(mode, judge = "aggregate") {
   return { rows, byCell };
 }
 
+function wrapTableScroll(html, note = "") {
+  return `<div class="table-scroll-wrap">${note ? `<p class="table-scroll-note">${note}</p>` : ""}<div class="table-scroll">${html}</div></div>`;
+}
+
 function renderReplicateHeatmap(el, mode) {
   const { rows, byCell } = replicateCellStats(mode);
   const models = [...new Set(rows.map(d => d.model_label))].sort((a, b) => {
@@ -773,17 +788,18 @@ function renderReplicateHeatmap(el, mode) {
     return av - bv;
   });
   const maxRank = Math.max(models.length, 1);
-  let html = `<table class="heat-table replicate-heat"><thead><tr><th>Task</th>${models.map(m => `<th>${displayModel(m, mode)}</th>`).join("")}</tr></thead><tbody>`;
+  const headerNote = `<span class="heat-legend-note">Columns use abbreviations · hover for full model name · lower rank is better</span>`;
+  let html = `<table class="heat-table replicate-heat compact-heat"><thead><tr><th>Task</th>${models.map(m => `<th title="${esc(displayModel(m, mode))}">${esc(modelShort[m] || displayModel(m, mode))}</th>`).join("")}</tr></thead><tbody>`;
   for (const task of taskOrder) {
     html += `<tr><td>${cleanTaskTitle(task)}</td>`;
     for (const model of models) {
       const vals = byCell.get(`${task}|${model}`) || [];
       if (!vals.length) {
-        html += `<td class="heat-na">N/A</td>`;
+        html += `<td class="heat-na">—</td>`;
       } else {
         const m = avg(vals);
         const se = sem(vals);
-        html += `<td title="${displayModel(model, mode)} / ${cleanTaskTitle(task)} across ${vals.length} runs (mean rank ± standard error)" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
+        html += `<td title="${esc(displayModel(model, mode))} / ${cleanTaskTitle(task)}: mean ${m.toFixed(2)} ± ${se.toFixed(2)} (${vals.length} runs)" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
       }
     }
     html += `</tr>`;
@@ -793,10 +809,33 @@ function renderReplicateHeatmap(el, mode) {
     const vals = rows.filter(d => d.model_label === model).map(d => Number(d.display_rank));
     const m = vals.length ? avg(vals) : null;
     const se = vals.length ? sem(vals) : null;
-    html += m === null ? `<td class="heat-na">N/A</td>` : `<td title="mean rank ± standard error across ${vals.length} run-task cells" style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
+    html += m === null ? `<td class="heat-na">—</td>` : `<td title="mean ± SE across ${vals.length} cells" style="background:${heatColor(m, maxRank)}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
   }
   html += `</tr></tbody></table>`;
-  el.innerHTML = html;
+  el.innerHTML = headerNote + wrapTableScroll(html);
+}
+
+function renderReplicateStability(el, mode) {
+  const stats = replicateModelStats(mode);
+  const tableId = `stability-${mode}-${el.id}`;
+  const summary = `<table class="heat-table stability-table compact-stability"><thead><tr><th>Model</th><th>Mean rank</th><th>SD</th><th>Best</th><th>Worst</th><th>Top-3%</th></tr></thead><tbody>${stats.map((d, i) => `<tr class="stability-row" data-stability-row="${tableId}-${i}"><td>${displayModel(d.model, mode)}</td><td>${d.mean.toFixed(2)}</td><td>${d.sd.toFixed(2)}</td><td>${d.best.toFixed(2)}</td><td>${d.worst.toFixed(2)}</td><td>${Math.round(d.top3 * 100)}%</td></tr>`).join("")}</tbody></table>`;
+  const details = stats.map((d, i) => `<div class="stability-detail hidden" id="${tableId}-${i}"><div class="stability-detail-head">${displayModel(d.model, mode)} · per-run average ranks</div><div class="stability-run-grid">${d.perRun.map(r => `<span class="stability-run-chip"><b>${esc(r.run)}</b> ${r.value.toFixed(2)}</span>`).join("")}</div></div>`).join("");
+  el.innerHTML = wrapTableScroll(summary, "Click any model row to expand per-run averages.") + `<div class="stability-details">${details}</div>`;
+  el.querySelectorAll(".stability-row").forEach(row => {
+    row.style.cursor = "pointer";
+    row.addEventListener("click", () => {
+      const id = row.dataset.stabilityRow;
+      const panel = document.getElementById(id);
+      if (!panel) return;
+      const open = !panel.classList.contains("hidden");
+      el.querySelectorAll(".stability-detail").forEach(p => p.classList.add("hidden"));
+      el.querySelectorAll(".stability-row").forEach(r => r.classList.remove("active"));
+      if (!open) {
+        panel.classList.remove("hidden");
+        row.classList.add("active");
+      }
+    });
+  });
 }
 
 function replicateModelStats(mode) {
@@ -819,11 +858,6 @@ function replicateModelStats(mode) {
       perRun,
     };
   }).filter(d => d.mean !== null).sort((a, b) => a.mean - b.mean);
-}
-
-function renderReplicateStability(el, mode) {
-  const stats = replicateModelStats(mode);
-  el.innerHTML = `<table class="heat-table stability-table"><thead><tr><th>Model</th><th>Mean avg rank</th><th>SD</th><th>Best run</th><th>Worst run</th><th>Top-3 task cells</th><th>Per-run averages</th></tr></thead><tbody>${stats.map(d => `<tr><td>${displayModel(d.model, mode)}</td><td>${d.mean.toFixed(2)}</td><td>${d.sd.toFixed(2)}</td><td>${d.best.toFixed(2)}</td><td>${d.worst.toFixed(2)}</td><td>${Math.round(d.top3 * 100)}%</td><td>${d.perRun.map(r => `${r.run}: ${r.value.toFixed(2)}`).join(" · ")}</td></tr>`).join("")}</tbody></table>`;
 }
 
 function renderReplicateSummary() {
@@ -1283,33 +1317,66 @@ function updateControlBandVisibility() {
 }
 
 function renderGlossary() {
+  const entries = Object.entries(glossary);
   const list = document.getElementById("glossaryList");
-  if (!list) return;
-  list.innerHTML = Object.entries(glossary)
-    .map(([term, def]) => `<dt>${esc(term)}</dt><dd>${esc(def)}</dd>`)
-    .join("");
+  if (list) {
+    const preview = entries.slice(0, 5);
+    const more = entries.length - preview.length;
+    list.innerHTML = preview
+      .map(([term, def]) => `<dt>${esc(term)}</dt><dd>${esc(def)}</dd>`)
+      .join("") + (more > 0 ? `<dd class="glossary-more-note">+ ${more} more terms — click <b>Open Glossary</b>.</dd>` : "");
+  }
+  const modalList = document.getElementById("glossaryModalList");
+  if (modalList) {
+    modalList.innerHTML = entries
+      .map(([term, def]) => `<div class="glossary-modal-item"><b>${esc(term)}</b><p>${esc(def)}</p></div>`)
+      .join("");
+  }
 }
 
 function applyTermTooltips(root = document) {
   root.querySelectorAll(".term-inline[data-term]").forEach(el => {
+    if (el.dataset.tipApplied) return;
     const term = el.dataset.term;
     const def = glossary[term];
     if (!def) return;
-    el.setAttribute("title", def);
-    el.setAttribute("tabindex", "0");
-    el.setAttribute("role", "button");
-    el.setAttribute("aria-label", `${term}: ${def}`);
+    const label = el.textContent.trim() || term;
+    el.innerHTML = `${esc(label)}<button type="button" class="term-info-btn" title="${esc(def)}" aria-label="${esc(term)}: ${esc(def)}">i</button>`;
+    el.classList.add("term-with-info");
+    el.dataset.tipApplied = "1";
   });
   const rankLabel = document.querySelector('[data-control="modelSet"] .label-with-tip');
-  if (rankLabel) {
-    rankLabel.setAttribute("title", glossary["rank universe"]);
+  if (rankLabel && !rankLabel.dataset.tipApplied) {
+    rankLabel.innerHTML = `Rank universe<button type="button" class="term-info-btn" title="${esc(glossary["rank universe"])}" aria-label="Rank universe: ${esc(glossary["rank universe"])}">i</button>`;
+    rankLabel.dataset.tipApplied = "1";
   }
+}
+
+function openGlossaryModal() {
+  const modal = document.getElementById("glossaryModal");
+  if (modal) modal.classList.add("open");
+}
+
+function closeGlossaryModal() {
+  const modal = document.getElementById("glossaryModal");
+  if (modal) modal.classList.remove("open");
 }
 
 function bindChrome() {
   document.querySelectorAll("[data-gotab]").forEach(btn => {
     btn.addEventListener("click", () => goTab(btn.dataset.gotab));
   });
+  document.querySelectorAll("[data-glossary-open]").forEach(btn => {
+    btn.addEventListener("click", openGlossaryModal);
+  });
+  const glossaryClose = document.getElementById("glossaryClose");
+  const glossaryModal = document.getElementById("glossaryModal");
+  if (glossaryClose) glossaryClose.addEventListener("click", closeGlossaryModal);
+  if (glossaryModal) {
+    glossaryModal.addEventListener("click", e => {
+      if (e.target === glossaryModal) closeGlossaryModal();
+    });
+  }
   const bibtexBtn = document.getElementById("bibtexBtn");
   const bibtexBlock = document.getElementById("bibtexBlock");
   if (bibtexBtn && bibtexBlock) {

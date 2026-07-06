@@ -85,6 +85,7 @@
           <div class="cta-row">
             <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Start with 10-Run Summary</button>
             <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run Main Results</button>
+            <button class="cta-btn cta-glossary" type="button" data-glossary-open>Open Glossary</button>
           </div>
         </div>
 
@@ -120,11 +121,8 @@
           <div class="abstract-body">
             <h2>Abstract</h2>
             <p>Organizations adopting generative AI increasingly face a model-selection problem that existing benchmarks do not fully answer. Most LLM benchmarks evaluate models as autonomous task solvers, scoring the quality of a model's final output. Yet in workplaces, models are often used not in isolation but to assist a human worker by structuring the problem, surfacing constraints, or improving the worker's reasoning. In these settings, the economically relevant question is not only which model can complete a task, but which model can improve the work of another agent.</p>
-            <details class="abstract-more">
-              <summary>Read full abstract</summary>
-              <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a scaffold that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across ten independent runs.</p>
-              <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
-            </details>
+            <p>We introduce a framework for evaluating models across two regimes: <i>automation</i>, in which a model completes a task end-to-end, and <i>augmentation</i>, where a focal model provides a <span class="term-inline" data-term="scaffold">scaffold</span> that is passed to a fixed lower-capability worker model, which then produces the final output. Holding the worker constant isolates the value of the assistant's guidance. We apply this framework to seven economically grounded professional tasks spanning structured planning, analytical work, and human-facing services. Outputs are evaluated using task-specific and general rubrics through blind pairwise comparisons by multiple LLM judges, with rankings replicated across ten independent runs.</p>
+            <p>Our results show that automation and augmentation produce meaningfully different model rankings. Automation rankings are more concentrated and more directionally aligned with conventional model capability orderings, while augmentation rankings are more fragmented and task-dependent. No single model dominates across all augmentation tasks, and strong direct task solvers are not always the strongest assistants. These findings have direct implications for model selection, human–AI collaboration, and multi-agent delegation: organizations and researchers should benchmark not only whether models can do work, but also whether they can improve the work of others.</p>
           </div>
           <div class="abstract-logos">
             <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">
@@ -223,10 +221,16 @@
           <div class="method-detail" id="methodDetail"></div>
         </div>
 
-        <details class="guide-card glossary-card">
-          <summary><h2>Glossary</h2></summary>
-          <dl class="glossary-list" id="glossaryList"></dl>
-        </details>
+        <div class="guide-card glossary-card">
+          <div class="glossary-card-head">
+            <div>
+              <h2>Key terms glossary</h2>
+              <p>Definitions for automation, augmentation, scaffold, rank-of-ranks, leave-family-out, and more.</p>
+            </div>
+            <button class="cta-btn cta-glossary" type="button" data-glossary-open>Open Glossary</button>
+          </div>
+          <dl class="glossary-list glossary-preview" id="glossaryList"></dl>
+        </div>
       </section>
 
       <section id="replicates" class="panel">
@@ -245,7 +249,7 @@
           <div id="tenRunFindings"></div>
         </div>
         <div class="metric-row" id="replicateMetrics"></div>
-        <div class="two-col">
+        <div class="replicates-stack">
           <div class="viz-card">
             <h3>Augmentation · Mean Rank Across Runs</h3>
             <div id="repHeatAug"></div>
@@ -257,9 +261,9 @@
         </div>
         <div class="section-heading">
           <h2>Run-to-Run Stability</h2>
-          <p>Model averages summarize rank-of-ranks across all seven tasks for each replicate.</p>
+          <p>Model averages summarize rank-of-ranks across all seven tasks for each replicate. Click a row for per-run detail.</p>
         </div>
-        <div class="two-col">
+        <div class="replicates-stack">
           <div class="viz-card">
             <h3>Augmentation Stability</h3>
             <div id="repStabilityAug"></div>
@@ -400,6 +404,16 @@
 
     <div class="loading-overlay" id="loadingOverlay" aria-live="polite">
       <div class="loading-card">Loading benchmark data…</div>
+    </div>
+
+    <div class="glossary-modal" id="glossaryModal" role="dialog" aria-modal="true" aria-labelledby="glossaryModalTitle">
+      <div class="glossary-modal-panel">
+        <div class="glossary-modal-head">
+          <h2 id="glossaryModalTitle">CentaurBench Glossary</h2>
+          <button class="glossary-close" type="button" id="glossaryClose" aria-label="Close glossary">×</button>
+        </div>
+        <div class="glossary-modal-body" id="glossaryModalList"></div>
+      </div>
     </div>
 
     <script src="app.js"></script>
