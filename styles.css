@@ -484,7 +484,15 @@ label[data-control].hidden { display: none !important; }
   font-weight: 750;
 }
 
-.view-context-badge {
+.render-error-banner {
+  margin: 12px;
+  padding: 12px 14px;
+  border: 1px solid #f0b4b4;
+  border-radius: 8px;
+  background: #fff5f5;
+  color: #7a1f1f;
+  font-size: 13px;
+}
   display: flex;
   align-items: center;
   flex-wrap: wrap;
