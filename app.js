@@ -1408,8 +1408,8 @@ function renderRationales(out) {
     return;
   }
   const run = currentRun();
-  const byIdx = new Map(run.outputs.map(o => [o.idx, o]));
-  const rows = run.judgments
+  const byIdx = new Map((run?.outputs || []).map(o => [o.idx, o]));
+  const rows = (run?.judgments || [])
     .filter(j => j.left_idx === out.idx || j.right_idx === out.idx)
     .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
     .slice(0, 24);
@@ -1454,9 +1454,9 @@ function renderModelRoster() {
   const worker = ["GPT-3.5-Turbo", "plain"].filter(m => models.includes(m));
   const candidates = models.filter(m => !worker.includes(m));
   el.innerHTML = [
-    { title: "Fixed worker / baselines", items: worker },
-    { title: "Focal models under test", items: candidates },
-  ].map(g => `<div class="model-roster-group"><b>${esc(g.title)}</b><div class="model-roster-chips">${g.items.map(m => `<span>${esc(m)}</span>`).join("")}</div></div>`).join("");
+    { title: "Fixed worker / baselines", items: worker, tone: "baseline" },
+    { title: "Focal models under test", items: candidates, tone: "focal" },
+  ].map(g => `<div class="model-roster-group model-roster-${g.tone}"><div class="model-roster-label">${esc(g.title)}<span class="model-roster-count">${g.items.length}</span></div><div class="model-roster-chips">${g.items.map(m => `<span class="model-roster-chip">${esc(m)}</span>`).join("")}</div></div>`).join("");
 }
 
 function syncPaperCounts() {
@@ -1690,23 +1690,34 @@ function bind() {
 }
 
 function renderAll() {
-  populateControls();
-  syncPaperCounts();
-  updateControlBandVisibility();
-  renderModelRoster();
-  renderProjectStats();
-  renderFindingsSnapshot();
-  renderMetrics();
-  renderHeatmap(document.getElementById("heatAug"), "augmentation");
-  renderHeatmap(document.getElementById("heatAuto"), "automation");
-  renderRoleScatter();
-  renderReplicateSummary();
-  renderValidation();
-  renderLeaderboard();
-  renderRubric();
-  renderJudgeScatter();
-  renderQualitative();
-  applyTermTooltips();
+  try {
+    populateControls();
+    syncPaperCounts();
+    updateControlBandVisibility();
+    renderModelRoster();
+    renderProjectStats();
+    renderFindingsSnapshot();
+    renderMetrics();
+    renderHeatmap(document.getElementById("heatAug"), "augmentation");
+    renderHeatmap(document.getElementById("heatAuto"), "automation");
+    renderRoleScatter();
+    renderReplicateSummary();
+    renderValidation();
+    renderLeaderboard();
+    renderRubric();
+    renderJudgeScatter();
+    renderQualitative();
+    applyTermTooltips();
+  } catch (err) {
+    console.error("Dashboard render failed:", err);
+    const overlay = document.getElementById("loadingOverlay");
+    if (overlay) overlay.classList.add("hidden");
+    document.body.classList.remove("loading");
+    const msg = document.createElement("div");
+    msg.className = "render-error-banner";
+    msg.innerHTML = `<b>Dashboard render error:</b> ${esc(String(err))}`;
+    document.body.prepend(msg);
+  }
 }
 
 document.body.classList.add("loading");
