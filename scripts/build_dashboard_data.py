@@ -195,7 +195,6 @@ def load_run_bundle(run_id: str) -> dict:
     corr = [convert_numbers(r) for r in read_csv(cross / "judge_rank_correlation_summary.csv")]
     scatter = [convert_numbers(r) for r in read_csv(cross / "judge_rank_scatter_points.csv")]
     runs: dict[str, dict] = {}
-    rubric_scores: list[dict] = []
     validations: list[dict] = []
     for task in TASKS:
         for mode in MODES:
@@ -203,23 +202,13 @@ def load_run_bundle(run_id: str) -> dict:
             mode_dir = ROOT / "results" / task / run_id / mode
             outputs = [slim_output(r, i) for i, r in enumerate(read_csv(mode_dir / "outputs.csv"))]
             judgments = [slim_judgment(r) for r in read_csv(mode_dir / "pairwise_judgments_by_judge.csv")]
-            leaderboard = [convert_numbers(r) for r in read_csv(mode_dir / "leaderboard_aggregate.csv")]
-            judge_lb = [convert_numbers(r) for r in read_csv(mode_dir / "leaderboard_by_judge.csv")]
             runs[key] = {
                 "task": task,
                 "task_label": TASK_LABELS[task],
                 "mode": mode,
                 "outputs": outputs,
                 "judgments": judgments,
-                "leaderboard": leaderboard,
-                "leaderboard_by_judge": judge_lb,
             }
-            for r in read_csv(mode_dir / "rubric_scores_summary.csv"):
-                d = convert_numbers(r)
-                d["task_slug"] = task
-                d["task_label"] = TASK_LABELS[task]
-                d["mode"] = mode
-                rubric_scores.append(d)
             validation_path = mode_dir / "judge_validation.json"
             if validation_path.exists():
                 validations.append(
@@ -233,7 +222,6 @@ def load_run_bundle(run_id: str) -> dict:
     return {
         "aggregate": aggregate,
         "by_judge": by_judge,
-        "rubric_scores": rubric_scores,
         "validations": validations,
         "correlations": corr,
         "scatter_points": scatter,
@@ -241,19 +229,76 @@ def load_run_bundle(run_id: str) -> dict:
     }
 
 
+def unique_judgment_count(bundle: dict) -> int:
+    seen: set[str] = set()
+    for task_mode, run in bundle["runs"].items():
+        for j in run["judgments"]:
+            a = min(int(j["left_idx"]), int(j["right_idx"]))
+            b = max(int(j["left_idx"]), int(j["right_idx"]))
+            seen.add(f"{task_mode}|{j.get('judge_model')}|{a}|{b}")
+    return len(seen)
+
+
+def run_stats(bundle: dict) -> dict:
+    outputs = sum(len(r["outputs"]) for r in bundle["runs"].values())
+    judgments = sum(len(r["judgments"]) for r in bundle["runs"].values())
+    return {
+        "outputs": outputs,
+        "judgments": judgments,
+        "unique_judgments": unique_judgment_count(bundle),
+    }
+
+
+def meta_run_bundle(bundle: dict) -> dict:
+    return {
+        "aggregate": bundle["aggregate"],
+        "by_judge": bundle["by_judge"],
+        "validations": bundle["validations"],
+        "correlations": bundle["correlations"],
+        "scatter_points": bundle["scatter_points"],
+        "runs": {
+            key: {"task": run["task"], "task_label": run["task_label"], "mode": run["mode"]}
+            for key, run in bundle["runs"].items()
+        },
+    }
+
+
+def qual_run_bundle(bundle: dict) -> dict:
+    return {
+        "runs": {
+            key: {
+                "task": run["task"],
+                "task_label": run["task_label"],
+                "mode": run["mode"],
+                "outputs": run["outputs"],
+                "judgments": run["judgments"],
+            }
+            for key, run in bundle["runs"].items()
+        }
+    }
+
+
 def main() -> None:
     dashboard = ROOT / "dashboard"
     dashboard.mkdir(exist_ok=True)
-    runs_by_id = {run["id"]: load_run_bundle(run["id"]) for run in RUNS}
-    default_bundle = runs_by_id[DEFAULT_RUN_ID]
+    runs_by_id_full = {run["id"]: load_run_bundle(run["id"]) for run in RUNS}
+    default_bundle = runs_by_id_full[DEFAULT_RUN_ID]
+    stats_by_run = {run_id: run_stats(bundle) for run_id, bundle in runs_by_id_full.items()}
+    runs_by_id_meta = {run_id: meta_run_bundle(bundle) for run_id, bundle in runs_by_id_full.items()}
+    runs_by_id_qual = {run_id: qual_run_bundle(bundle) for run_id, bundle in runs_by_id_full.items()}
 
-    data = {
+    meta_payload = {
         "meta": {
             "run_id": DEFAULT_RUN_ID,
             "default_run_id": DEFAULT_RUN_ID,
             "replicate_runs": RUNS,
+            "run_stats": stats_by_run,
             "generated_from": str(ROOT),
-            "notes": "Static dashboard bundle generated from current Centaur benchmark artifacts.",
+            "notes": "Static dashboard meta bundle (rankings, heatmaps, judge diagnostics). Qualitative outputs lazy-load separately.",
+            "data_files": {
+                "meta": "dashboard-meta.json",
+                "qualitative": "dashboard-qualitative.json",
+            },
         },
         "tasks": [load_task_yaml(t) for t in TASKS],
         "modes": MODES,
@@ -278,18 +323,32 @@ def main() -> None:
                 ],
             },
         },
-        "runs_by_id": runs_by_id,
+        "runs_by_id": runs_by_id_meta,
         "aggregate": default_bundle["aggregate"],
         "by_judge": default_bundle["by_judge"],
-        "rubric_scores": default_bundle["rubric_scores"],
         "validations": default_bundle["validations"],
         "correlations": default_bundle["correlations"],
         "scatter_points": default_bundle["scatter_points"],
-        "runs": default_bundle["runs"],
+        "runs": runs_by_id_meta[DEFAULT_RUN_ID]["runs"],
     }
-    out = dashboard / "dashboard-data.json"
-    out.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-    print(f"Wrote {out} ({out.stat().st_size / 1024 / 1024:.1f} MB)")
+    qual_payload = {"runs_by_id": runs_by_id_qual}
+
+    meta_out = dashboard / "dashboard-meta.json"
+    qual_out = dashboard / "dashboard-qualitative.json"
+    meta_out.write_text(json.dumps(meta_payload, ensure_ascii=False), encoding="utf-8")
+    qual_out.write_text(json.dumps(qual_payload, ensure_ascii=False), encoding="utf-8")
+    print(f"Wrote {meta_out} ({meta_out.stat().st_size / 1024 / 1024:.1f} MB)")
+    print(f"Wrote {qual_out} ({qual_out.stat().st_size / 1024 / 1024:.1f} MB)")
+
+    # Monolithic bundle kept for offline tooling; dashboard loads split files.
+    legacy = {
+        **meta_payload,
+        "runs_by_id": runs_by_id_full,
+        "runs": runs_by_id_full[DEFAULT_RUN_ID]["runs"],
+    }
+    legacy_out = dashboard / "dashboard-data.json"
+    legacy_out.write_text(json.dumps(legacy, ensure_ascii=False), encoding="utf-8")
+    print(f"Wrote {legacy_out} ({legacy_out.stat().st_size / 1024 / 1024:.1f} MB)")
 
 
 if __name__ == "__main__":
