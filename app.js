@@ -124,15 +124,6 @@ const qualTabDescriptions = {
   prompt: "The shared task prompt, augmentation specs, and judge rubric for this task.",
 };
 
-function updateViewContextBadge() {
-  const badge = document.getElementById("viewContextBadge");
-  if (!badge) return;
-  const singleRunTabs = new Set(["overview", "rankings", "qualitative"]);
-  const show = singleRunTabs.has(state.tab);
-  badge.classList.toggle("hidden", !show);
-  if (!show) return;
-  badge.innerHTML = `<span class="view-badge-pill">Single run · ${esc(activeRunMeta().label)}</span><span class="view-badge-note">Paper figures aggregate all 10 runs.</span><button class="inline-link" type="button" data-gotab="replicates">Open 10-Run Summary →</button>`;
-}
 
 function renderQualQuickPicks(ranked) {
   const el = document.getElementById("qualQuickPicks");
@@ -1649,7 +1640,6 @@ function goTab(tab) {
   document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
   applyHeaderLayout();
   updateControlBandVisibility();
-  updateViewContextBadge();
   renderAll();
   if (needsQualitativeData(tab)) ensureQualitativeData();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1671,7 +1661,6 @@ function updateControlBandVisibility() {
     const cols = allowed.size;
     band.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
   }
-  updateViewContextBadge();
 }
 
 function renderGlossary() {
