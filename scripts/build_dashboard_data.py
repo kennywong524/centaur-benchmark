@@ -308,7 +308,7 @@ def main() -> None:
                 "exclude": [],
             },
             "no_baseline": {
-                "label": "Exclude baselines (assistants only)",
+                "label": "Assistants only",
                 "exclude": ["plain", "GPT-3.5-Turbo"],
             },
             "frontier_current": {

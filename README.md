@@ -9,6 +9,10 @@ This repo refactors Colab notebooks into:
 - **One CLI** (`centaur-benchmark`) for single-task runs.
 - **Clean directories**: raw runs → `results/` (gitignored); summary CSVs + heatmaps → [`artifacts/`](artifacts/) (committed when exported).
 
+## Published results (10-run panel)
+
+The [results explorer](https://kennywong524.github.io/centaur-benchmark/) and paper figures aggregate **ten independent full-pipeline replications** (Runs 1–3 from the initial benchmark plus Runs 4–10 from the public-release batch). Standard errors in figures use SE = SD/√10. The repo ships all ten `run_id`s in the dashboard bundle; Runs 1–3 (`20260610_scaffold_strict_v4`, `20260612_fresh_rep1`, `20260612_fresh_rep2`) are the original development replications documented below.
+
 ## Requirements
 
 - **Python 3.10+** (EDSL on PyPI targets 3.10–3.12).

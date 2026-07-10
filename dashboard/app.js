@@ -22,7 +22,8 @@ const glossary = {
   "pairwise comparison": "Judges see two anonymized outputs side-by-side, pick a winner, and score rubric dimensions — never knowing which model produced which.",
   "win rate": "Share of pairwise matchups a model wins within a task and regime. Higher is better.",
   "rank-of-ranks": "Per-task rank (1 = best) averaged across tasks in the selected model set. Lower is better.",
-  "rank universe": "Which models are eligible for ranking: all candidates (includes GPT-3.5-Turbo baseline) vs assistant models only.",
+  "model pool": "Which models are eligible for ranking: All candidates (includes the plain unaided worker baseline) vs Assistants only (focal assistant models).",
+  "rank universe": "Synonym for model pool — which models are eligible for ranking.",
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
   "role-swap": "Compares a model's automation rank vs augmentation rank to reveal whether it is a better solver or assistant.",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
@@ -791,7 +792,7 @@ function renderLeaderboard() {
       const rank = Number(d.display_rank);
       const win = Number(d.score);
       const rawRank = num(d.rank_value);
-      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
+      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span><span class="row-chevron" aria-hidden="true">›</span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
     })
     .join("");
   document.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
@@ -1028,7 +1029,7 @@ function renderReplicateHeatmap(el, mode) {
 function renderReplicateStability(el, mode) {
   const stats = replicateModelStats(mode);
   const tableId = `stability-${mode}-${el.id}`;
-  const summary = `<table class="heat-table stability-table compact-stability"><thead><tr><th>Model</th><th>Mean rank</th><th>SD</th><th>Best</th><th>Worst</th><th>Top-3%</th></tr></thead><tbody>${stats.map((d, i) => `<tr class="stability-row" data-stability-row="${tableId}-${i}"><td>${displayModel(d.model, mode)}</td><td>${d.mean.toFixed(2)}</td><td>${d.sd.toFixed(2)}</td><td>${d.best.toFixed(2)}</td><td>${d.worst.toFixed(2)}</td><td>${Math.round(d.top3 * 100)}%</td></tr>`).join("")}</tbody></table>`;
+  const summary = `<table class="heat-table stability-table compact-stability"><thead><tr><th>Model</th><th>Mean rank</th><th>SD</th><th>Best</th><th>Worst</th><th>Top-3%</th><th aria-hidden="true"></th></tr></thead><tbody>${stats.map((d, i) => `<tr class="stability-row" data-stability-row="${tableId}-${i}"><td>${displayModel(d.model, mode)}</td><td>${d.mean.toFixed(2)}</td><td>${d.sd.toFixed(2)}</td><td>${d.best.toFixed(2)}</td><td>${d.worst.toFixed(2)}</td><td>${Math.round(d.top3 * 100)}%</td><td class="row-chevron-cell" aria-hidden="true">›</td></tr>`).join("")}</tbody></table>`;
   const details = stats.map((d, i) => `<div class="stability-detail hidden" id="${tableId}-${i}"><div class="stability-detail-head">${displayModel(d.model, mode)} · per-run average ranks</div><div class="stability-run-grid">${d.perRun.map(r => `<span class="stability-run-chip"><b>${esc(r.run)}</b> ${r.value.toFixed(2)}</span>`).join("")}</div></div>`).join("");
   el.innerHTML = wrapTableScroll(summary, "Click any model row to expand per-run averages.") + `<div class="stability-details">${details}</div>`;
   el.querySelectorAll(".stability-row").forEach(row => {
@@ -1128,6 +1129,31 @@ function judgeCoverageStats() {
 
 function winnerListHtml(winners, mode) {
   return `<div class="winner-pills">${winners.map(w => `<span class="winner-pill"><b>${esc(cleanTaskTitle(w.task))}</b>${esc(displayModel(w.model, mode))} <em>${w.mean.toFixed(1)}</em></span>`).join("")}</div>`;
+}
+
+function countRegimeDivergence() {
+  const augWinners = taskWinnerStats("augmentation");
+  const autoWinners = taskWinnerStats("automation");
+  const augByTask = new Map(augWinners.map(w => [w.task, w.model]));
+  const autoByTask = new Map(autoWinners.map(w => [w.task, w.model]));
+  let differ = 0;
+  let plainWins = 0;
+  for (const task of taskOrder) {
+    if (augByTask.get(task) === "plain") plainWins += 1;
+    if (augByTask.get(task) !== autoByTask.get(task)) differ += 1;
+  }
+  return { differ, plainWins, total: taskOrder.length };
+}
+
+function renderHeroStatBand() {
+  const el = document.getElementById("heroStatBand");
+  if (!el || !state.data) return;
+  const { differ, plainWins, total } = countRegimeDivergence();
+  el.innerHTML = [
+    { value: `${plainWins}/${total}`, label: "tasks where unaided worker beats every assisted condition" },
+    { value: `${differ}/${total}`, label: "tasks where automation and augmentation winners differ" },
+    { value: "10", label: "independent replications in paper figures (±SE = SD/√10)" },
+  ].map(s => `<div class="hero-stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("");
 }
 
 function renderFindingsSnapshot() {
@@ -1513,7 +1539,7 @@ const methodologyDetails = {
   },
   results: {
     title: "Results aggregation",
-    body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank-of-ranks heat maps (Figure 1) and the role-swap scatter (Figure 2) — so every model can be compared as a direct solver versus as an augmenting assistant.",
+    body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank heat maps and role-swap scatter — so every model can be compared as a direct solver versus as an augmenting assistant.",
     action: { label: "View 10-run summary", run: () => goTab("replicates") },
   },
 };
@@ -1594,7 +1620,7 @@ function applyTermTooltips(root = document) {
   });
   const rankLabel = document.querySelector('[data-control="modelSet"] .label-with-tip');
   if (rankLabel && !rankLabel.dataset.tipApplied) {
-    rankLabel.innerHTML = `Rank universe<button type="button" class="term-info-btn" data-tip="${esc(glossary["rank universe"])}" data-tip-title="Rank universe">i</button>`;
+    rankLabel.innerHTML = `Model pool<button type="button" class="term-info-btn" data-tip="${esc(glossary["model pool"])}" data-tip-title="Model pool">i</button>`;
     rankLabel.dataset.tipApplied = "1";
   }
   bindFloatingTips(root);
@@ -1696,6 +1722,7 @@ function renderAll() {
     updateControlBandVisibility();
     renderModelRoster();
     renderProjectStats();
+    renderHeroStatBand();
     renderFindingsSnapshot();
     renderMetrics();
     renderHeatmap(document.getElementById("heatAug"), "augmentation");
