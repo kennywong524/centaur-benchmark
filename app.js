@@ -1,3 +1,87 @@
+const LAYOUT_STORAGE_KEY = "centaur-layout-v1";
+
+const layoutPrefs = loadLayoutPrefs();
+
+function loadLayoutPrefs() {
+  try {
+    const raw = localStorage.getItem(LAYOUT_STORAGE_KEY);
+    if (!raw) return { header: "auto", autoShrink: true, folds: {} };
+    const parsed = JSON.parse(raw);
+    return {
+      header: parsed.header || "auto",
+      autoShrink: parsed.autoShrink !== false,
+      folds: parsed.folds || {},
+    };
+  } catch {
+    return { header: "auto", autoShrink: true, folds: {} };
+  }
+}
+
+function saveLayoutPrefs() {
+  try {
+    localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify(layoutPrefs));
+  } catch {
+    /* ignore quota errors */
+  }
+}
+
+function effectiveHeaderMode() {
+  if (layoutPrefs.header === "expanded" || layoutPrefs.header === "compact" || layoutPrefs.header === "focus") {
+    return layoutPrefs.header;
+  }
+  if (layoutPrefs.autoShrink && state.tab !== "project") return "compact";
+  return "expanded";
+}
+
+function applyHeaderLayout() {
+  const topbar = document.getElementById("topbar");
+  if (!topbar) return;
+  const mode = effectiveHeaderMode();
+  topbar.classList.toggle("header-expanded", mode === "expanded");
+  topbar.classList.toggle("header-compact", mode === "compact");
+  topbar.classList.toggle("header-focus", mode === "focus");
+  const expandBtn = document.getElementById("headerExpandBtn");
+  const compactBtn = document.getElementById("headerCompactBtn");
+  const focusBtn = document.getElementById("headerFocusBtn");
+  const autoBtn = document.getElementById("headerAutoBtn");
+  if (expandBtn) expandBtn.setAttribute("aria-pressed", mode === "expanded" ? "true" : "false");
+  if (compactBtn) compactBtn.setAttribute("aria-pressed", mode === "compact" ? "true" : "false");
+  if (focusBtn) focusBtn.setAttribute("aria-pressed", mode === "focus" ? "true" : "false");
+  if (autoBtn) autoBtn.setAttribute("aria-pressed", layoutPrefs.header === "auto" && layoutPrefs.autoShrink ? "true" : "false");
+  if (expandBtn) expandBtn.textContent = mode === "focus" ? "Exit focus" : "Expand";
+}
+
+function restoreFoldStates() {
+  document.querySelectorAll("details.fold-block[data-fold-id]").forEach(el => {
+    const id = el.dataset.foldId;
+    if (id in layoutPrefs.folds) el.open = !!layoutPrefs.folds[id];
+    el.addEventListener("toggle", () => {
+      layoutPrefs.folds[id] = el.open;
+      saveLayoutPrefs();
+    });
+  });
+}
+
+function bindLayoutControls() {
+  const setHeader = mode => {
+    layoutPrefs.header = mode;
+    if (mode === "auto") layoutPrefs.autoShrink = true;
+    saveLayoutPrefs();
+    applyHeaderLayout();
+  };
+  document.getElementById("headerExpandBtn")?.addEventListener("click", () => setHeader("expanded"));
+  document.getElementById("headerCompactBtn")?.addEventListener("click", () => setHeader("compact"));
+  document.getElementById("headerFocusBtn")?.addEventListener("click", () => setHeader("focus"));
+  document.getElementById("headerAutoBtn")?.addEventListener("click", () => {
+    layoutPrefs.header = "auto";
+    layoutPrefs.autoShrink = true;
+    saveLayoutPrefs();
+    applyHeaderLayout();
+  });
+  restoreFoldStates();
+  applyHeaderLayout();
+}
+
 const state = {
   data: null,
   qualLoaded: false,
@@ -1563,6 +1647,7 @@ function goTab(tab) {
     x.setAttribute("aria-selected", active ? "true" : "false");
   });
   document.querySelectorAll(".panel").forEach(x => x.classList.toggle("active", x.id === tab));
+  applyHeaderLayout();
   updateControlBandVisibility();
   updateViewContextBadge();
   renderAll();
@@ -1694,6 +1779,7 @@ function bindMethodology() {
 
 function bind() {
   bindChrome();
+  bindLayoutControls();
   bindMethodology();
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => goTab(b.dataset.tab)));
   document.getElementById("runSelect").addEventListener("change", e => {

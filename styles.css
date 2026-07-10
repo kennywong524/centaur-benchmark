@@ -24,18 +24,139 @@ body {
 }
 
 .topbar {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 28px 36px 18px;
+  display: block;
+  padding: 14px 28px 12px;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
   z-index: 5;
 }
+.topbar-grid {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+}
+.topbar-brand { min-width: 0; }
+.topbar-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10px;
+  margin-left: auto;
+}
+.topbar-details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.topbar.header-compact {
+  padding: 10px 20px 8px;
+}
+.topbar.header-compact .topbar-details { display: none; }
+.topbar.header-compact h1 { font-size: 22px; }
+.topbar.header-compact .site-subtitle,
+.topbar.header-compact .eyebrow { display: none; }
+.topbar.header-compact .topbar-grid { align-items: center; }
+.topbar.header-focus {
+  padding: 8px 16px 6px;
+}
+.topbar.header-focus .topbar-details,
+.topbar.header-focus .topbar-brand { display: none; }
+.topbar.header-focus .layout-btn:not(#headerExpandBtn) { display: none; }
+.topbar.header-focus .topbar-actions {
+  width: 100%;
+  align-items: stretch;
+}
+.topbar.header-focus .tabs { width: 100%; }
 .topbar-main { min-width: 0; flex: 1 1 auto; }
+
+.layout-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: end;
+}
+.layout-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+.layout-btn:hover { border-color: #aeb9ca; background: #f3f6fa; color: var(--ink); }
+.layout-btn[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: #eef5ff;
+  color: #1f4f96;
+}
+.layout-btn-muted[aria-pressed="true"] {
+  border-color: #9eb6dc;
+  background: #f7faff;
+  color: #466089;
+}
+
+.fold-block {
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.fold-block.fold-banner {
+  margin-bottom: 12px;
+  box-shadow: none;
+  border-style: dashed;
+  background: transparent;
+}
+.fold-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+  user-select: none;
+}
+.fold-summary::-webkit-details-marker { display: none; }
+.fold-summary::before {
+  content: "▾";
+  color: var(--blue);
+  font-size: 14px;
+  margin-right: 8px;
+  transition: transform .15s ease;
+}
+.fold-block:not([open]) .fold-summary::before { transform: rotate(-90deg); }
+.fold-summary-banner {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.fold-hint {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--muted);
+}
+.fold-body { padding: 0 16px 16px; }
+.fold-banner .fold-body { padding: 0 12px 12px; }
+.fold-block > .guide-card,
+.fold-block > .abstract-card,
+.fold-block > .viz-card { margin: 0; box-shadow: none; border: 0; }
+.fold-block .guide-card-primary { margin-bottom: 0; }
 
 .paper-bar {
   display: flex;
@@ -2040,7 +2161,11 @@ select:focus, button:focus-visible, .tab:focus-visible {
 .model-button:hover { border-color: #aeb9ca; }
 
 @media (max-width: 1000px) {
-  .topbar { align-items: start; flex-direction: column; }
+  .topbar { padding: 12px 16px 10px; }
+  .topbar-grid { flex-direction: column; align-items: stretch; }
+  .topbar-actions { align-items: stretch; margin-left: 0; }
+  .layout-toolbar { justify-content: start; }
+  .hero-stat-band { grid-template-columns: 1fr; }
   .control-band, .two-col, .metric-row, .qual-grid, .guide-grid, .role-strip, .project-hero, .finding-grid, .hero-stat-band { grid-template-columns: 1fr; }
   .control-band { grid-template-columns: 1fr !important; }
   .qual-back-link { display: inline-flex; }
