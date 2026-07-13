@@ -138,8 +138,14 @@ def mean_rank_matrix(data: dict, mode: str) -> tuple[pd.DataFrame, pd.DataFrame,
     ).fillna(0)
     mean = mean.loc[[TASK_LABELS[t] for t in TASK_ORDER]]
     sd = sd.loc[[TASK_LABELS[t] for t in TASK_ORDER]]
+    # The overall row pools the seven task ranks from each of ten runs. Its
+    # uncertainty is therefore descriptive across 70 task-run cells and
+    # captures both cross-task and run-to-run dispersion.
     avg_row = pd.DataFrame([mean.mean(axis=0)], index=["Average"])
-    sd_avg = pd.DataFrame([df.groupby("model")["rank"].agg(lambda values: float(np.std(values, ddof=0)))], index=["Average"]).fillna(0)
+    sd_avg = pd.DataFrame(
+        [df.groupby("model")["rank"].agg(lambda values: float(np.std(values, ddof=0)))],
+        index=["Average"],
+    ).fillna(0)
     mean = pd.concat([mean, avg_row])
     sd = pd.concat([sd, sd_avg])
     order = column_release_order(mean.columns, mode=mode)
@@ -179,9 +185,15 @@ def _draw_heatmap_base(
     im = ax.imshow(values, cmap=centaur_cmap(), vmin=1, vmax=n_cols, aspect="auto")
 
     ax.set_xticks(np.arange(n_cols))
-    ax.set_xticklabels([fill(display_model_label(c), 14) for c in matrix.columns], rotation=0, ha="center", fontsize=10)
+    ax.set_xticklabels(
+        [fill(display_model_label(c), 10) for c in matrix.columns],
+        rotation=0,
+        ha="center",
+        fontsize=15,
+        fontweight="semibold",
+    )
     ax.set_yticks(np.arange(n_rows))
-    ax.set_yticklabels(matrix.index, fontsize=11)
+    ax.set_yticklabels(matrix.index, fontsize=18, fontweight="semibold")
     ax.tick_params(axis="both", length=0)
 
     for spine in ax.spines.values():
@@ -197,7 +209,7 @@ def _draw_heatmap_base(
             color = "white" if val > n_cols * 0.72 else "#1f2433"
             weight = "semibold" if matrix.index[i] == "Average" else "normal"
             for dy, text in cell_formatter(val, i, j):
-                is_main_value = dy == 0
+                is_main_value = dy < 0
                 ax.text(
                     j,
                     i + dy,
@@ -205,13 +217,13 @@ def _draw_heatmap_base(
                     ha="center",
                     va="center",
                     color=color,
-                    fontsize=15.5 if is_main_value else 11.0,
+                    fontsize=18.0 if is_main_value else 13.5,
                     fontweight="bold" if is_main_value else weight,
                     alpha=0.9 if not is_main_value else 1.0,
                 )
     cbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.015)
-    cbar.set_label(cbar_label, fontsize=11)
-    cbar.ax.tick_params(labelsize=10)
+    cbar.set_label(cbar_label, fontsize=18, fontweight="semibold", labelpad=10)
+    cbar.ax.tick_params(labelsize=15)
     fig.subplots_adjust(left=0.055, right=0.955, bottom=0.12, top=0.96)
     for ext in ["png", "pdf"]:
         fig.savefig(OUT / f"{filename}.{ext}", bbox_inches="tight")
@@ -229,9 +241,15 @@ def draw_heatmap_rank_of_ranks(data: dict, mode: str, filename: str) -> None:
     im = ax.imshow(values, cmap=centaur_cmap(), vmin=1, vmax=n_cols, aspect="auto")
 
     ax.set_xticks(np.arange(n_cols))
-    ax.set_xticklabels([fill(display_model_label(c), 14) for c in ranks.columns], rotation=0, ha="center", fontsize=10)
+    ax.set_xticklabels(
+        [fill(display_model_label(c), 10) for c in ranks.columns],
+        rotation=0,
+        ha="center",
+        fontsize=15,
+        fontweight="semibold",
+    )
     ax.set_yticks(np.arange(n_rows))
-    ax.set_yticklabels(ranks.index, fontsize=11)
+    ax.set_yticklabels(ranks.index, fontsize=18, fontweight="semibold")
     ax.tick_params(axis="both", length=0)
 
     for spine in ax.spines.values():
@@ -257,8 +275,8 @@ def draw_heatmap_rank_of_ranks(data: dict, mode: str, filename: str) -> None:
                 fontweight="bold",
             )
     cbar = fig.colorbar(im, ax=ax, fraction=0.025, pad=0.015, ticks=range(1, n_cols + 1))
-    cbar.set_label("Rank", fontsize=11)
-    cbar.ax.tick_params(labelsize=10)
+    cbar.set_label("Rank", fontsize=18, fontweight="semibold", labelpad=10)
+    cbar.ax.tick_params(labelsize=15)
     fig.subplots_adjust(left=0.055, right=0.955, bottom=0.12, top=0.96)
     for ext in ["png", "pdf"]:
         fig.savefig(OUT / f"{filename}.{ext}", bbox_inches="tight")
@@ -268,6 +286,9 @@ def draw_heatmap_rank_of_ranks(data: dict, mode: str, filename: str) -> None:
 def draw_heatmap_mean_se(data: dict, mode: str, filename: str) -> None:
     mean, sd, n_reps = mean_rank_matrix(data, mode)
     se = sd / math.sqrt(n_reps)
+    # Match the dashboard summary row: task-level cells use ten run
+    # observations, while the Average row pools 7 tasks x 10 runs.
+    se.loc["Average"] = sd.loc["Average"] / math.sqrt(n_reps * len(TASK_ORDER))
 
     def cell_formatter(val: float, i: int, j: int) -> list[tuple[float, str]]:
         err = se.iloc[i, j]
@@ -284,41 +305,75 @@ def average_model_ranks(data: dict) -> pd.DataFrame:
     rows = []
     for mode in ["augmentation", "automation"]:
         df = all_rank_rows(data, mode)
-        for model, sub in df.groupby("model"):
+        # Treat each full-pipeline replication as one observation.  First
+        # average a model's ranks across tasks within each run, then compute
+        # the run-to-run mean, SD, and SE used in the role-swap figure.
+        run_model = df.groupby(["run_id", "model"], as_index=False)["rank"].mean()
+        for model, sub in run_model.groupby("model"):
+            sd_rank = float(sub["rank"].std(ddof=0))
+            n_runs = int(sub["run_id"].nunique())
             rows.append(
                 {
                     "model": model,
                     "mode": mode,
-                    "mean_rank": sub["rank"].mean(),
-                    "sd_rank": sub["rank"].std(ddof=0),
+                    "mean_rank": float(sub["rank"].mean()),
+                    "sd_rank": sd_rank,
+                    "se_rank": sd_rank / math.sqrt(n_runs),
+                    "n_runs": n_runs,
                 }
             )
-    wide = pd.DataFrame(rows).pivot(index="model", columns="mode", values="mean_rank").reset_index()
-    return wide.dropna(subset=["augmentation", "automation"])
+    wide = pd.DataFrame(rows).pivot(index="model", columns="mode").reset_index()
+    wide.columns = [
+        column if isinstance(column, str) else "_".join(str(part) for part in column if part)
+        for column in wide.columns
+    ]
+    return wide.dropna(subset=["mean_rank_augmentation", "mean_rank_automation"])
 
 
 def draw_role_scatter(data: dict) -> None:
     df = average_model_ranks(data)
-    df = df.assign(gap=(df["automation"] - df["augmentation"]).abs()).sort_values(
-        ["gap", "augmentation"], ascending=[False, True]
+    df = df.assign(gap=(df["mean_rank_automation"] - df["mean_rank_augmentation"]).abs()).sort_values(
+        ["gap", "mean_rank_augmentation"], ascending=[False, True]
     )
     fig, ax = plt.subplots(figsize=(8.4, 5.8), dpi=220)
     y = np.arange(len(df))
 
     for i, (_, r) in enumerate(df.iterrows()):
         ax.plot(
-            [r["automation"], r["augmentation"]],
+            [r["mean_rank_automation"], r["mean_rank_augmentation"]],
             [i, i],
             color="#aeb6c2",
             linewidth=1.4,
             zorder=1,
         )
-    ax.scatter(df["augmentation"], y, s=68, color="#2f6fcb", edgecolor="white", linewidth=1.0, label="Augmentation", zorder=3)
-    ax.scatter(df["automation"], y, s=68, color="#d96f31", edgecolor="white", linewidth=1.0, label="Automation", zorder=3)
+    ax.errorbar(
+        df["mean_rank_augmentation"],
+        y,
+        xerr=df["se_rank_augmentation"],
+        fmt="none",
+        ecolor="#2f6fcb",
+        elinewidth=1.0,
+        capsize=2.5,
+        capthick=1.0,
+        zorder=2,
+    )
+    ax.errorbar(
+        df["mean_rank_automation"],
+        y,
+        xerr=df["se_rank_automation"],
+        fmt="none",
+        ecolor="#d96f31",
+        elinewidth=1.0,
+        capsize=2.5,
+        capthick=1.0,
+        zorder=2,
+    )
+    ax.scatter(df["mean_rank_augmentation"], y, s=68, color="#2f6fcb", edgecolor="white", linewidth=1.0, label="Augmentation", zorder=3)
+    ax.scatter(df["mean_rank_automation"], y, s=68, color="#d96f31", edgecolor="white", linewidth=1.0, label="Automation", zorder=3)
 
     for i, (_, r) in enumerate(df.iterrows()):
-        ax.text(r["augmentation"], i - 0.22, f"{r['augmentation']:.1f}", color="#2f6fcb", fontsize=8.5, ha="center")
-        ax.text(r["automation"], i + 0.30, f"{r['automation']:.1f}", color="#d96f31", fontsize=8.5, ha="center")
+        ax.text(r["mean_rank_augmentation"], i - 0.22, f"{r['mean_rank_augmentation']:.1f}", color="#2f6fcb", fontsize=8.5, ha="center")
+        ax.text(r["mean_rank_automation"], i + 0.30, f"{r['mean_rank_automation']:.1f}", color="#d96f31", fontsize=8.5, ha="center")
 
     ax.set_yticks(y)
     ax.set_yticklabels(df["model"], fontsize=10)
@@ -347,7 +402,8 @@ def validation_metrics(data: dict) -> pd.DataFrame:
         {
             "label": "GPT ladder\n(Claude judge)",
             "judge": "anthropic/claude-opus-4-8",
-            "models": ["GPT-3.5-Turbo", "GPT-O3-Mini", "GPT-O4-Mini", "GPT-4.1", "GPT-5-Mini"],
+            # Chronological reference order for the evaluated OpenAI releases.
+            "models": ["GPT-3.5-Turbo", "GPT-O3-Mini", "GPT-4.1", "GPT-O4-Mini", "GPT-5-Mini"],
         },
         {
             "label": "Claude pair\n(GPT-4.1 judge)",
@@ -553,7 +609,8 @@ def criterion_validity_details(data: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
         {
             "family": "GPT ladder",
             "judge": "anthropic/claude-opus-4-8",
-            "models": ["GPT-3.5-Turbo", "GPT-O3-Mini", "GPT-O4-Mini", "GPT-4.1", "GPT-5-Mini"],
+            # Chronological reference order for the evaluated OpenAI releases.
+            "models": ["GPT-3.5-Turbo", "GPT-O3-Mini", "GPT-4.1", "GPT-O4-Mini", "GPT-5-Mini"],
         },
         {
             "family": "Claude pair",
@@ -677,9 +734,39 @@ def draw_general_rubric_profiles(data: dict) -> None:
         "general_organization_readability": "Organization &\nreadability",
         "general_tone_audience_fit": "Tone &\naudience fit",
     }
+    rubric_rows = data.get("rubric_scores")
+    if rubric_rows is None:
+        # Split dashboard bundles keep rubric detail inside each judgment.
+        # Reconstruct the long-form score rows used by this figure so the
+        # paper generator and website can share one freshly built bundle.
+        rubric_rows = []
+        for run_id, bundle in data.get("runs_by_id", {}).items():
+            for run in bundle.get("runs", {}).values():
+                outputs = {int(row["idx"]): row for row in run.get("outputs", [])}
+                for judgment in run.get("judgments", []):
+                    for idx_key, scores_key in [
+                        ("left_idx", "option_1_scores"),
+                        ("right_idx", "option_2_scores"),
+                    ]:
+                        output = outputs.get(int(judgment[idx_key]))
+                        scores = judgment.get(scores_key) or {}
+                        if output is None or not isinstance(scores, dict):
+                            continue
+                        for dimension, score in scores.items():
+                            if isinstance(score, (int, float)):
+                                rubric_rows.append(
+                                    {
+                                        "run_id": run_id,
+                                        "mode": run["mode"],
+                                        "model_label": output["model_label"],
+                                        "dimension": dimension,
+                                        "mean_score": float(score),
+                                        "n_scores": 1,
+                                    }
+                                )
     rows = [
         r
-        for r in data["rubric_scores"]
+        for r in rubric_rows
         if r["mode"] == "augmentation"
         and r["model_label"] not in EXCLUDE
         and r["dimension"] in dim_labels
@@ -909,7 +996,7 @@ def draw_prompt_rubric_schematic() -> None:
 
     rounded_box(0.04, 0.055, 0.92, 0.17, "#f3fbfa", colors["teal"], lw=1.0, radius=0.016)
     ax.text(0.068, 0.195, "AI", fontsize=12.5, color=colors["teal"], fontweight="semibold", ha="center", va="center")
-    ax.text(0.105, 0.198, "Augmentation scaffold constraint", fontsize=11.5, color=colors["teal"], fontweight="semibold", va="center")
+    ax.text(0.105, 0.198, "Augmentation assistance-text constraint", fontsize=11.5, color=colors["teal"], fontweight="semibold", va="center")
     ax.text(0.365, 0.198, "Assistant provides guidance only, not the final deliverable.", fontsize=8.7, color=colors["text"], va="center")
     steps = [("1", "Requirements check"), ("2", "Execution plan"), ("3", "Final checklist")]
     for i, (num, label) in enumerate(steps):
@@ -1132,6 +1219,17 @@ def main() -> None:
     paper_dir = ROOT / "paper_figures"
     paper_dir.mkdir(parents=True, exist_ok=True)
     (paper_dir / "table_best_model_by_task.tex").write_text(table_path.read_text(encoding="utf-8"), encoding="utf-8")
+    for name in (
+        "figure1_augmentation_heatmap",
+        "figure2a_automation_heatmap",
+        "figure2b_role_swap_scatter",
+        "figureA_augmentation_heatmap_mean_se",
+        "figureA_automation_heatmap_mean_se",
+    ):
+        for ext in ("png", "pdf"):
+            src = OUT / f"{name}.{ext}"
+            if src.is_file():
+                (paper_dir / f"{name}.{ext}").write_bytes(src.read_bytes())
     print(f"Wrote figures to {OUT}")
     print(f"Wrote {table_path}")
     for p in sorted(OUT.glob("figure*.*")):
