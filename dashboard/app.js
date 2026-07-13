@@ -2,6 +2,120 @@ const LAYOUT_STORAGE_KEY = "centaur-layout-v1";
 
 const layoutPrefs = loadLayoutPrefs();
 
+function initAmbientCanvas() {
+  const canvas = document.getElementById("ambientCanvas");
+  const header = canvas?.closest(".topbar");
+  const ctx = canvas?.getContext("2d");
+  if (!canvas || !header || !ctx) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let frameId = 0;
+  let pointerX = 0.76;
+  let pointerY = 0.34;
+  let pointerActive = false;
+
+  const seedParticles = () => {
+    const count = Math.min(74, Math.max(28, Math.round((width * height) / 11000)));
+    particles = Array.from({ length: count }, (_, index) => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.11,
+      vy: (Math.random() - 0.5) * 0.07,
+      radius: index % 9 === 0 ? 1.7 : 0.75 + Math.random() * 0.8,
+      phase: Math.random() * Math.PI * 2,
+    }));
+  };
+
+  const paint = time => {
+    if (!canvas.isConnected) return;
+    ctx.clearRect(0, 0, width, height);
+
+    const focusX = pointerX * width;
+    const focusY = pointerY * height;
+    const glow = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(width, height) * 0.48);
+    glow.addColorStop(0, pointerActive ? "rgba(68, 196, 255, .16)" : "rgba(68, 196, 255, .10)");
+    glow.addColorStop(1, "rgba(68, 196, 255, 0)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, width, height);
+
+    if (!reducedMotion.matches) {
+      particles.forEach(particle => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        if (particle.x < -8) particle.x = width + 8;
+        if (particle.x > width + 8) particle.x = -8;
+        if (particle.y < -8) particle.y = height + 8;
+        if (particle.y > height + 8) particle.y = -8;
+      });
+    }
+
+    const connectionDistance = Math.min(150, Math.max(100, width / 10));
+    for (let i = 0; i < particles.length; i += 1) {
+      for (let j = i + 1; j < particles.length; j += 1) {
+        const a = particles[i];
+        const b = particles[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance >= connectionDistance) continue;
+        const alpha = (1 - distance / connectionDistance) * 0.24;
+        ctx.strokeStyle = `rgba(86, 200, 255, ${alpha})`;
+        ctx.lineWidth = 0.65;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    particles.forEach(particle => {
+      const pulse = 0.72 + Math.sin(time * 0.001 + particle.phase) * 0.24;
+      ctx.fillStyle = `rgba(223, 246, 255, ${pulse})`;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if (!reducedMotion.matches && !document.hidden) frameId = requestAnimationFrame(paint);
+  };
+
+  const resize = () => {
+    const rect = header.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = Math.max(1, Math.round(rect.width));
+    height = Math.max(1, Math.round(rect.height));
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    seedParticles();
+    if (reducedMotion.matches) paint(0);
+  };
+
+  header.addEventListener("pointermove", event => {
+    const rect = header.getBoundingClientRect();
+    pointerX = (event.clientX - rect.left) / rect.width;
+    pointerY = (event.clientY - rect.top) / rect.height;
+    pointerActive = true;
+    if (reducedMotion.matches) paint(0);
+  }, { passive: true });
+  header.addEventListener("pointerleave", () => { pointerActive = false; });
+
+  const observer = new ResizeObserver(resize);
+  observer.observe(header);
+  document.addEventListener("visibilitychange", () => {
+    cancelAnimationFrame(frameId);
+    if (!document.hidden && !reducedMotion.matches) frameId = requestAnimationFrame(paint);
+  });
+
+  resize();
+  if (!reducedMotion.matches) frameId = requestAnimationFrame(paint);
+}
+
 function loadLayoutPrefs() {
   try {
     const raw = localStorage.getItem(LAYOUT_STORAGE_KEY);
@@ -1818,6 +1932,7 @@ function renderAll() {
   }
 }
 
+initAmbientCanvas();
 document.body.classList.add("loading");
 fetch("dashboard-meta.json")
   .then(r => {
