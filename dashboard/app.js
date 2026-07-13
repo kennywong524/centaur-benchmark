@@ -26,11 +26,7 @@ function saveLayoutPrefs() {
 }
 
 function effectiveHeaderMode() {
-  if (layoutPrefs.header === "expanded" || layoutPrefs.header === "compact" || layoutPrefs.header === "focus") {
-    return layoutPrefs.header;
-  }
-  if (layoutPrefs.autoShrink && state.tab !== "project") return "compact";
-  return "expanded";
+  return state.tab === "project" ? "expanded" : "compact";
 }
 
 function applyHeaderLayout() {
@@ -100,9 +96,9 @@ const state = {
 const glossary = {
   automation: "The model solves the task end-to-end and produces the final deliverable directly, with no intermediary worker.",
   augmentation: "The model writes guidance for a fixed GPT-3.5-Turbo worker, which then produces the final deliverable. Tests coaching ability, not solo solving.",
-  scaffold: "Process-only guidance from the assistant model — plans, checklists, and self-review steps — given to the worker without containing the task answer itself.",
+  "assistance text": "Process-only guidance from the assistant model — plans, checklists, and self-review steps — given to the worker without containing the task answer itself.",
   "worker model": "The model that produces the final task output. In augmentation this is always GPT-3.5-Turbo; in automation it is the model under test.",
-  "assistant model": "The focal model under test in augmentation. It does not write the final answer; it writes the scaffold for the worker.",
+  "assistant model": "The focal model under test in augmentation. It writes assistance text for the worker rather than the task deliverable.",
   "pairwise comparison": "Judges see two anonymized outputs side-by-side, pick a winner, and score rubric dimensions — never knowing which model produced which.",
   "win rate": "Share of pairwise matchups a model wins within a task and regime. Higher is better.",
   "rank-of-ranks": "Per-task rank (1 = best) averaged across tasks in the selected model set. Lower is better.",
@@ -111,7 +107,7 @@ const glossary = {
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
   "role-swap": "Compares a model's automation rank vs augmentation rank to reveal whether it is a better solver or assistant.",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
-  "baseline (plain worker)": "GPT-3.5-Turbo run with no external scaffold in augmentation. Shows what the fixed worker achieves unaided.",
+  "baseline (plain worker)": "GPT-3.5-Turbo run with no external assistance text in augmentation. Shows what the fixed worker achieves unaided.",
   "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
   "judge panel": "Four LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, Gemini-3.1-Pro). Aggregate combines all eligible judges per cell.",
   rubric: "Task-specific scoring dimensions (e.g., empathy, accuracy) plus five general dimensions applied to every task.",
@@ -119,8 +115,8 @@ const glossary = {
 
 const qualTabDescriptions = {
   output: "The worker's final deliverable for this task–model cell.",
-  scaffold: "Process guidance the assistant wrote for the worker (augmentation only).",
-  scaffoldPrompt: "How the scaffold was generated and how the fixed worker consumes it.",
+  scaffold: "The assistance text the assistant model wrote for the worker model (augmentation only).",
+  scaffoldPrompt: "The prompt used to generate assistance text and the instruction given to the worker model.",
   prompt: "The shared task prompt, augmentation specs, and judge rubric for this task.",
 };
 
@@ -1435,7 +1431,7 @@ function renderQualitative() {
     document.getElementById("modelList").innerHTML = "";
     document.getElementById("qualTitle").textContent = "Loading qualitative bundle…";
     document.getElementById("roleStrip").innerHTML = "";
-    document.getElementById("qualText").innerHTML = `<p class="qual-loading-inline">Fetching outputs, scaffolds, and judge rationales (~28 MB). This loads once per session.</p>`;
+    document.getElementById("qualText").innerHTML = `<p class="qual-loading-inline">Fetching outputs, assistance text, and judge rationales (~28 MB). This loads once per session.</p>`;
     document.getElementById("rationales").innerHTML = "";
     const tabDesc = document.getElementById("qualTabDesc");
     if (tabDesc) tabDesc.textContent = qualTabDescriptions[state.textTab] || "";
@@ -1450,8 +1446,8 @@ function renderQualitative() {
   document.getElementById("modelList").innerHTML = outputs.map(o => {
     const r = ranked.find(d => d.model_label === o.model_label);
     const role = state.mode === "augmentation"
-      ? `assistant/scaffold: ${displayModel(o.assistant_model || o.model_label, state.mode)} · worker: ${displayModel(o.worker_model || "gpt-3.5-turbo", state.mode)}`
-      : `worker/direct solver: ${displayModel(o.model_label, state.mode)}`;
+      ? `assistant model: ${displayModel(o.assistant_model || o.model_label, state.mode)} · worker model: ${displayModel(o.worker_model || "gpt-3.5-turbo", state.mode)}`
+      : `worker model: ${displayModel(o.model_label, state.mode)}`;
     return `<button class="model-button ${o.model_label === state.selectedModel ? "active" : ""}" data-model="${o.model_label}"><span>${displayModel(o.model_label, state.mode)}<small class="model-role">${esc(role)}</small></span><span>rank ${r?.display_rank || "?"}</span></button>`;
   }).join("");
   document.querySelectorAll(".model-button").forEach(b => b.addEventListener("click", () => {
@@ -1467,32 +1463,32 @@ function renderQualitative() {
   const condition = out?.condition || "";
   document.getElementById("roleStrip").innerHTML = out ? [
     ["Mode", modeLabels[state.mode]],
-    [state.mode === "augmentation" ? "Assistant / Scaffold Model" : "Assistant", assistant],
-    [state.mode === "augmentation" ? "Worker / Final Output Model" : "Worker / Direct Solver", worker],
-    ["Condition", condition],
+    ["Assistant model", assistant],
+    ["Worker model", worker],
+    ["Condition", condition.replace(/^scaffold_/i, "Assisted · ").replace(/^automation_/i, "Direct · ")],
   ].map(([k, v]) => `<div class="role-chip"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join("") : "";
   const taskObj = state.data.tasks.find(t => t.slug === state.task);
   let sections = [];
   if (state.textTab === "output") {
-    sections = [{ label: "Final Output", sublabel: "Worker deliverable", kind: "output",
+    sections = [{ label: "Worker model", sublabel: "Produced deliverable", kind: "output",
       body: out?.output || "No output found for this cell.", empty: !out?.output }];
   } else if (state.textTab === "scaffold") {
     const hasScaffold = !!out?.scaffold_text;
-    sections = [{ label: "Assistant Scaffold", sublabel: "Process guidance passed to the worker", kind: "assistant",
-      body: hasScaffold ? out.scaffold_text : "No scaffold in this automation / plain condition.", empty: !hasScaffold }];
+    sections = [{ label: "Assistant model", sublabel: "Assistance text passed to the worker model", kind: "assistant",
+      body: hasScaffold ? out.scaffold_text : "No assistance text in this direct or plain-worker condition.", empty: !hasScaffold }];
   } else if (state.textTab === "scaffoldPrompt") {
     sections = [
-      { label: "Scaffold Prompt", sublabel: "Instruction that generates the assistant scaffold", kind: "assistant",
-        body: taskObj?.scaffold_prompt || "No scaffold prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
-      { label: "Worker Instruction", sublabel: "How the worker consumes the scaffold", kind: "worker",
+      { label: "Assistance Text Prompt", sublabel: "Instruction that generates the assistant model's guidance", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No assistance text prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Worker Model Instruction", sublabel: "How the worker model uses the assistance text", kind: "worker",
         body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
     ];
   } else if (state.textTab === "prompt") {
     sections = [
       { label: "Task Prompt", sublabel: "The professional task for this cell", kind: "task",
         body: taskObj?.task_prompt || "No task prompt found.", empty: !taskObj?.task_prompt },
-      { label: "Scaffold Prompt", sublabel: "Used in augmentation to generate guidance", kind: "assistant",
-        body: taskObj?.scaffold_prompt || "No scaffold prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Assistance Text Prompt", sublabel: "Used in augmentation to generate guidance", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No assistance text prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
       { label: "Worker Instruction", sublabel: "How the worker turns inputs into the deliverable", kind: "worker",
         body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
       { label: "Judge Rubric", sublabel: "Task-specific and general scoring criteria", kind: "evaluator",
@@ -1589,22 +1585,22 @@ const methodologyDetails = {
   },
   worker: {
     title: "Worker model: the fixed executor",
-    body: "In augmentation, a single low-cost worker — GPT-3.5-Turbo — always produces the final deliverable. Because the worker never changes, the only thing that varies between augmentation conditions is the guidance it receives, which isolates the value added by each assistant's scaffold. A plain, no-scaffold worker run serves as the baseline.",
+    body: "In augmentation, a single low-cost worker — GPT-3.5-Turbo — always produces the deliverable. Because the worker never changes, the only thing that varies between augmentation conditions is the guidance it receives, which isolates the value added by each assistant's assistance text. A plain worker run with no assistance text serves as the baseline.",
     action: { label: "See worker deliverables", run: () => { setMode("augmentation"); state.textTab = "output"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
   },
   assistant: {
     title: "Assistant model: the model under test",
-    body: "Each frontier model writes a process-only scaffold — a 'Three-Phase Workflow' of roughly 200-250 words covering requirements checks, planning, and self-review. Scaffolds are validated automatically (no task content leakage, no stubs, length caps) and regenerated when they fail. The scaffold, not the assistant's own answer, is what reaches the worker.",
-    action: { label: "Browse real scaffolds", run: () => { setMode("augmentation"); state.textTab = "scaffold"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
+    body: "Each frontier model writes process-only assistance text — a 'Three-Phase Workflow' of roughly 200-250 words covering requirements checks, planning, and self-review. Assistance text is validated automatically (no task content leakage, no stubs, length caps) and regenerated when it fails. This guidance, not the assistant model's own answer, is what reaches the worker.",
+    action: { label: "Browse assistance text", run: () => { setMode("augmentation"); state.textTab = "scaffold"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
   },
   automation: {
     title: "Automation regime: the model solves alone",
-    body: "Each focal model receives the task prompt directly and produces the deliverable end-to-end. This measures innate capability: no scaffold, no intermediary. These outputs then compete against each other in the automation tournament.",
+    body: "Each focal model receives the task prompt directly and produces the deliverable end-to-end. This measures innate capability: no assistance text, no intermediary. These outputs then compete against each other in the automation tournament.",
     action: { label: "View automation rankings", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
   },
   augmentation: {
     title: "Augmentation regime: the model guides a fixed worker",
-    body: "The focal model acts as an assistant: it writes a process scaffold, which is handed to the fixed GPT-3.5-Turbo worker as internal guidance alongside the client task. The worker's deliverable is what gets judged — so a model wins this regime by making its worker better, mirroring how AI assistance augments a human professional.",
+    body: "The focal model acts as an assistant: it writes process-focused assistance text, which is handed to the fixed GPT-3.5-Turbo worker as internal guidance alongside the client task. The worker's deliverable is what gets judged — so a model wins this regime by making its worker better, mirroring how AI assistance augments a human professional.",
     action: { label: "View augmentation rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
   },
   evaluator: {
