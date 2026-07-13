@@ -2591,3 +2591,99 @@ h2 { font-weight: 650; }
     transition-duration: .01ms !important;
   }
 }
+
+/* Cool, technical canvas for a business and generative-AI benchmark. */
+:root {
+  --muted: #647286;
+  --line: #ccd7e3;
+  --soft: #f2f6fa;
+  --paper: #ffffff;
+}
+
+html { background: #edf3f8; }
+
+body {
+  background-color: #edf3f8;
+  background-image:
+    radial-gradient(circle at 12% 0%, rgba(36, 76, 104, .12), transparent 34rem),
+    linear-gradient(rgba(36, 76, 104, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 76, 104, .035) 1px, transparent 1px);
+  background-position: center top;
+  background-size: auto, 32px 32px, 32px 32px;
+}
+
+.topbar {
+  background: rgba(249, 251, 253, .95);
+  border-bottom-color: #c5d1de;
+}
+
+.topbar-details { border-top-color: #d6e0e9; }
+
+.site-subtitle,
+.authors,
+.tab,
+.fold-hint,
+.content-tab small { color: #687589; }
+
+.control-band {
+  border-color: #c7d4e1;
+  background: rgba(231, 239, 246, .96);
+}
+
+.control-band label { color: #42546a; }
+
+select {
+  border-color: #bac9d8;
+  background-color: #ffffff;
+}
+
+.fold-block,
+.viz-card,
+.guide-card,
+.abstract-card,
+.finding-card,
+.metric-card,
+.text-pane,
+.model-list,
+.rationale-list,
+.glossary-modal-panel {
+  border-color: #ccd7e3;
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 1px 2px rgba(23, 43, 66, .04);
+}
+
+.fold-block[open] > .fold-summary,
+.viz-card > h3 { border-color: #d9e2eb; }
+
+.hero-stat-band,
+.findings-grid,
+.finding-grid,
+.metric-row {
+  border-color: #ccd7e3;
+  background: #ccd7e3;
+}
+
+.hero-stat,
+.finding-summary-card,
+.finding-card,
+.metric-card { background: #ffffff; }
+
+.content-tabs { border-bottom-color: #c8d4e0; }
+.content-tab:hover { background: #f1f6fa; }
+.role-chip { background: #eef3f7; }
+
+.heat-table th {
+  background: #e8eff5;
+  color: #34465b;
+}
+
+.heat-table td,
+.heat-table th { border-color: #ced9e4; }
+
+.viz-card:hover,
+.finding-card:hover,
+.metric-card:hover,
+.method-block:hover {
+  border-color: #9fb3c6;
+  box-shadow: 0 12px 28px rgba(23, 43, 66, .10);
+}
