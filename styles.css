@@ -2521,3 +2521,630 @@ select {
   .content-tabs { display: grid; grid-template-columns: 1fr 1fr; }
   .hero-tagline { font-size: 38px; }
 }
+
+/* Dark interactive direction inspired by the Beer Game reference */
+:root {
+  --ink: #f0f0f0;
+  --muted: #aaa7a2;
+  --line: #45413d;
+  --soft: #242321;
+  --paper: #20201f;
+  --blue: #f28c28;
+  --orange: #f28c28;
+  --green: #7fb892;
+  --bad: #df746a;
+  --warn: #e2b85d;
+}
+
+html { background: #1a1a1a; }
+
+body {
+  background: #1a1a1a;
+  color: var(--ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.paper-title,
+.authors,
+.site-subtitle,
+.fold-summary,
+.control-band label,
+.hero-tagline,
+.metric-card b,
+.finding-summary-card b {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.topbar,
+.topbar.header-compact,
+.topbar.header-focus {
+  background: rgba(24, 24, 24, .96);
+  border-bottom-color: #403d39;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+}
+
+.topbar h1 {
+  color: #f5f5f5;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+
+.site-subtitle {
+  margin-top: -2px;
+  color: #b7b3ae;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.topbar-details { border-top-color: #3e3b37; }
+
+.paper-title {
+  color: #f2f2f2;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.authors {
+  color: #bbb7b1;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.authors a,
+.inline-link,
+.term-inline {
+  color: #f3a34f;
+}
+
+.tab {
+  color: #b8b5b0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tab:hover {
+  border-color: #7a6a58;
+  color: #fff;
+}
+
+.tab.active,
+.tab.active:hover {
+  border-color: #f28c28;
+  color: #f6a34e;
+}
+
+.paper-bar-btn,
+.layout-btn,
+.pill,
+.cta-btn,
+.qual-quick-chip,
+.qual-back-link {
+  border-color: #625d56;
+  background: transparent;
+  color: #f0f0f0;
+}
+
+.paper-bar-btn:hover,
+.layout-btn:hover,
+.pill:hover,
+.cta-btn:hover,
+.qual-quick-chip:hover,
+.qual-back-link:hover {
+  border-color: #f28c28;
+  background: rgba(242, 140, 40, .09);
+  color: #f6a34e;
+  transform: translateY(-1px);
+}
+
+.cta-primary,
+.cta-glossary {
+  border-color: #f28c28;
+  background: #f28c28;
+  color: #171717;
+}
+
+.cta-primary:hover,
+.cta-glossary:hover {
+  background: #ffa246;
+  color: #111;
+}
+
+main { background: #1a1a1a; }
+
+h2 {
+  color: #f3f3f3;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+
+h3 {
+  color: #f0f0f0;
+  font-weight: 650;
+}
+
+.section-heading { max-width: 980px; }
+
+.section-heading p,
+.project-hero p,
+.abstract-body p,
+.guide-lead,
+.guide-grid,
+.finding-card p,
+.finding-summary-card p,
+.method-card p,
+.chart-note {
+  color: #c1bdb7;
+}
+
+.section-heading > h2::after,
+.abstract-body > h2::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin-top: 10px;
+  background: #f28c28;
+}
+
+.control-band {
+  border-color: #4a4641;
+  background: #242321;
+}
+
+.control-band label {
+  color: #c7c2bb;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+select {
+  border-color: #5a554f;
+  background-color: #191919;
+  color: #f0f0f0;
+}
+
+select:hover,
+select:focus { border-color: #f28c28; }
+
+.fold-block,
+.viz-card,
+.guide-card,
+.abstract-card,
+.finding-card,
+.metric-card,
+.text-pane,
+.model-list,
+.rationale-list,
+.glossary-modal-panel,
+.method-block,
+.qual-section,
+.rationale-card {
+  border-color: #46423d;
+  background: #20201f;
+  color: #f0f0f0;
+}
+
+.fold-block,
+.viz-card,
+.finding-card,
+.metric-card,
+.method-block,
+.qual-section,
+.rationale-card {
+  transition: transform .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.viz-card:hover,
+.finding-card:hover,
+.metric-card:hover,
+.method-block:hover {
+  border-color: #6f5d4a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+  transform: translateY(-2px);
+}
+
+.fold-summary {
+  color: #efefef;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.fold-block[open] > .fold-summary,
+.viz-card > h3,
+.winner-block { border-color: #46423d; }
+.fold-hint { color: #85817c; }
+
+.hero-tagline {
+  max-width: 1050px;
+  color: #f5f5f5;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 750;
+  line-height: 1.04;
+  letter-spacing: -.045em;
+}
+
+.hero-tagline::first-line { color: #f28c28; }
+.eyebrow { color: #f28c28; }
+
+.hero-stat-band,
+.findings-grid,
+.finding-grid,
+.metric-row {
+  border-color: #45413d;
+  background: #45413d;
+}
+
+.hero-stat,
+.finding-summary-card,
+.finding-card,
+.metric-card {
+  background: #20201f;
+  color: #f0f0f0;
+}
+
+.hero-stat b,
+.project-stats b,
+.metric-card b,
+.finding-summary-card b { color: #f4a04a; }
+
+.hero-stat span,
+.project-stats span,
+.metric-card span,
+.finding-summary-card .summary-kicker { color: #aaa7a2; }
+
+.project-stats > div,
+.role-chip,
+.model-roster-chip,
+.winner-pill,
+.qual-quick-chip {
+  border-color: #4d4944;
+  background: #282725;
+  color: #e7e5e2;
+}
+
+.viz-card > h3 {
+  color: #f2f2f2;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.content-tabs { border-color: #514c46; }
+
+.content-tab {
+  color: #bdb9b3;
+}
+
+.content-tab:hover { background: #2a2927; }
+.content-tab.active { border-color: #f28c28; color: #f6a34e; }
+.content-tab small,
+.qual-tab-desc,
+.model-role { color: #99958f; }
+
+.model-button {
+  border-color: #45413d;
+  background: #20201f;
+  color: #dedbd6;
+}
+
+.model-button:hover,
+.model-button.active {
+  border-color: #f28c28;
+  background: #2a2723;
+  color: #fff;
+}
+
+.role-chip b,
+.qual-sec-title,
+.rationale-card b { color: #f4a04a; }
+
+.role-chip span,
+.qual-sec-sub,
+.rationale-card p { color: #c2beb8; }
+
+.qual-section.qual-task .qual-sec-head,
+.qual-section.qual-output .qual-sec-head,
+.qual-section.qual-assistant .qual-sec-head,
+.qual-section.qual-worker .qual-sec-head,
+.qual-section.qual-evaluator .qual-sec-head {
+  background: #292725;
+}
+
+.qual-section.qual-task,
+.qual-section.qual-output,
+.qual-section.qual-assistant,
+.qual-section.qual-worker,
+.qual-section.qual-evaluator { border-left-color: #f28c28; }
+
+.qual-body,
+.qual-section pre,
+.bibtex-block {
+  border-color: #46423d;
+  background: #171717;
+  color: #dedbd7;
+}
+
+.heat-table {
+  background: #20201f;
+  color: #eee;
+}
+
+.heat-table th {
+  background: #2b2927;
+  color: #c9c5bf;
+}
+
+.heat-table td,
+.heat-table th { border-color: #4c4842; }
+.heat-table td:first-child { background: #242321; color: #e7e4df; }
+.heat-table tbody tr:hover td:first-child { color: #f6a34e; }
+
+.bar-row,
+.bar-row button {
+  color: #e7e4df;
+}
+
+.bar-row button:hover,
+.bar-row button.active {
+  background: #2c2925;
+  color: #f7a44f;
+}
+
+.bar-track { background: #3b3834; }
+.bar-fill { background: #f28c28 !important; }
+.rank-badge { background: #33302c; color: #ddd9d3; }
+.rank-badge.top { background: #f28c28; color: #161616; }
+
+.pipe-node,
+.role-row,
+.regime,
+.method-detail {
+  border-color: #4d4842;
+  background: #282725;
+  color: #f0f0f0;
+}
+
+.pipe-node:hover,
+.role-row:hover,
+.regime:hover {
+  border-color: #f28c28;
+  background: #302b26;
+}
+
+.pipe-node > span,
+.role-copy small,
+.regime small,
+.method-detail p,
+.lane-note { color: #aaa6a0; }
+
+.mini-chip {
+  border-color: #5b554e;
+  background: #1c1c1b;
+  color: #dedbd6;
+}
+
+.method-card [data-stage].active {
+  border-color: #f28c28;
+  box-shadow: 0 0 0 2px rgba(242, 140, 40, .18);
+}
+
+.glossary-modal { background: rgba(0, 0, 0, .78); }
+.glossary-modal-head { border-color: #49453f; }
+.glossary-modal-item { border-color: #44403b; }
+.glossary-modal-item b { color: #f3a04b; }
+.glossary-modal-item p { color: #c2beb8; }
+.glossary-close { color: #efefef; }
+
+.loading-overlay { background: #181818; }
+.loading-card { border-color: #514b44; background: #222; color: #f1f1f1; }
+.loading-skeleton span { background: linear-gradient(90deg, #292929, #3d3832, #292929); }
+
+/* Normalize legacy artifacts to the same warm dark palette */
+.table-scroll,
+.model-legend-chip,
+.project-stats div,
+.role-info,
+.role-info-card,
+.rubric-detail,
+.score-chip,
+.contestant-detail,
+.score-inline,
+.role-strip,
+.qual-sec-head,
+.qual-sec-body,
+.qual-sec-body code,
+.qual-sec-body .md-code {
+  border-color: #48443f;
+  background: #242321;
+  color: #dedbd6;
+}
+
+.metric {
+  border-color: #48443f;
+  border-top-color: #f28c28;
+  background: #20201f;
+  color: #f0f0f0;
+  box-shadow: none;
+}
+
+.metric:nth-child(2) { border-top-color: #d9c7a7; }
+.metric:nth-child(3) { border-top-color: #b78455; }
+.metric:nth-child(4) { border-top-color: #f28c28; }
+.metric b { color: #f4a04a; }
+
+.heat-color-bar {
+  border-color: #56504a;
+  background: linear-gradient(90deg, rgb(242,140,40), rgb(232,174,95), rgb(180,151,111), rgb(150,91,66), rgb(103,57,52));
+}
+
+.heat-na {
+  background: #302e2b !important;
+  color: #8f8a83 !important;
+}
+
+.compact-heat th:first-child,
+.compact-heat th[scope="row"],
+.compact-heat td:first-child,
+.heat-table th[scope="row"] {
+  background: #242321;
+  color: #e7e4df;
+}
+
+.stability-row:hover,
+.stability-row.active {
+  background: #2c2925;
+}
+
+.validation-pill {
+  border-color: #7c5d3e;
+  background: rgba(242, 140, 40, .11);
+  color: #f4a04a;
+}
+
+.role-info-head,
+.role-info-name,
+.role-stat-val,
+.qual-sec-label,
+.qual-sec-body .md-h,
+.rubric-detail b { color: #f1eeea; }
+
+.role-info-line,
+.role-info-sub,
+.rubric-detail p { color: #aaa6a0; }
+
+.role-tag.tag-aug,
+.role-tag.tag-auto,
+.role-tag.tag-bal {
+  background: #35312d;
+  color: #e7c7a4;
+}
+
+.role-stat-auto,
+.role-stat-aug {
+  border: 1px solid #48433d;
+  background: #2b2926;
+}
+
+.svg-wrap svg text,
+#judgeScatter svg text { fill: #d8d3cd; }
+
+.svg-wrap svg > rect,
+#judgeScatter svg > rect { fill: #20201f; }
+
+.rubric-label { border-color: #8c7763; }
+
+.contestant-detail.winner {
+  border-color: #f28c28;
+  background: #2b2824;
+}
+
+.contestant-detail summary::before {
+  background: #37332e;
+  color: #f4a04a;
+}
+
+.mini-score td { border-color: #45413d; }
+.mini-track { background: #3a3733; }
+
+.method-block-title,
+.title-roles,
+.title-regimes {
+  background: #302d29;
+  color: #f4a04a;
+}
+
+.role-icon,
+.icon-worker,
+.icon-assistant,
+.icon-evaluator {
+  background: #36322e;
+  color: #f4a04a;
+}
+
+.regime-cols { background: #48433e; }
+.regime-auto b { color: #d9c7a7; }
+.regime-aug b { color: #f4a04a; }
+
+.pipeline-title {
+  border-color: #7a5b3c;
+  background: #2d2823;
+  color: #f4a04a;
+}
+
+.input-node,
+.lane-auto,
+.lane-aug,
+.eval-node,
+.results-node {
+  border-color: #554f48;
+  background: #282725;
+}
+
+.lane-auto .lane-tag { color: #d9c7a7; }
+.lane-aug .lane-tag { color: #f4a04a; }
+.pipe-arrow { color: #807970; }
+
+.method-detail {
+  border-left-color: #f28c28;
+  background: #242321;
+}
+
+.finding-summary-card,
+.winner-pill,
+.model-roster-chip { background: #242321; }
+
+.paper-fig-tag {
+  border-color: #765a3c;
+  background: #2d2823;
+  color: #e3b781;
+}
+
+.info-banner,
+.info-banner-primary,
+.qual-loading-note,
+.qual-empty-state {
+  border-color: #5d5043;
+  background: #28241f;
+  color: #c8b8a5;
+}
+
+.term-info-btn,
+.term-info-btn:hover {
+  border-color: #765a3c;
+  background: #332b24;
+  color: #f4a04a;
+}
+
+.stability-detail,
+.stability-run-chip {
+  border-color: #48443f;
+  background: #242321;
+  color: #d8d3cd;
+}
+
+.panel.active { animation: panel-enter .28s ease-out both; }
+
+@keyframes panel-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
