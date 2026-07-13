@@ -35,8 +35,8 @@ function initAmbientCanvas() {
     const focusX = pointerX * width;
     const focusY = pointerY * height;
     const glow = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(width, height) * 0.48);
-    glow.addColorStop(0, pointerActive ? "rgba(36, 76, 104, .10)" : "rgba(36, 76, 104, .07)");
-    glow.addColorStop(1, "rgba(36, 76, 104, 0)");
+    glow.addColorStop(0, pointerActive ? "rgba(47, 111, 203, .10)" : "rgba(47, 111, 203, .07)");
+    glow.addColorStop(1, "rgba(47, 111, 203, 0)");
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, width, height);
 
@@ -61,7 +61,7 @@ function initAmbientCanvas() {
         const distance = Math.hypot(dx, dy);
         if (distance >= connectionDistance) continue;
         const alpha = (1 - distance / connectionDistance) * 0.24;
-        ctx.strokeStyle = `rgba(36, 76, 104, ${alpha})`;
+        ctx.strokeStyle = `rgba(47, 111, 203, ${alpha})`;
         ctx.lineWidth = 0.65;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -72,7 +72,7 @@ function initAmbientCanvas() {
 
     particles.forEach(particle => {
       const pulse = 0.72 + Math.sin(time * 0.001 + particle.phase) * 0.24;
-      ctx.fillStyle = `rgba(36, 76, 104, ${pulse * 0.72})`;
+      ctx.fillStyle = `rgba(47, 111, 203, ${pulse * 0.72})`;
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
       ctx.fill();
