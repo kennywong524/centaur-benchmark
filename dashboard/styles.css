@@ -2612,3 +2612,115 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .ambient-canvas { opacity: .18; }
 }
+
+/* White background treatment */
+:root {
+  --soft: #ffffff;
+  --paper: #ffffff;
+}
+
+body,
+.topbar,
+.control-band,
+select,
+.tab:hover,
+.pill:hover,
+.content-tab,
+.content-tab.active,
+.content-tab:hover,
+.key-finding,
+.hero-stat,
+.paper-bar-btn-disabled,
+.guide-card-primary,
+.info-banner,
+.info-banner-primary,
+.term-info-btn,
+.cta-glossary,
+.fold-block,
+.viz-card,
+.guide-card,
+.abstract-card,
+.finding-card,
+.metric-card,
+.text-pane,
+.model-list,
+.rationale-list,
+.glossary-modal-panel,
+.project-hero,
+.project-stats div,
+.hero-stat,
+.finding-summary-card,
+.method-block,
+.method-block-title,
+.title-roles,
+.title-regimes,
+.role-info,
+.role-tag,
+.role-tag.tag-aug,
+.role-tag.tag-auto,
+.role-tag.tag-bal,
+.role-stat,
+.role-stat-auto,
+.role-stat-aug,
+.heat-table th,
+.heat-table td:first-child,
+.heat-na,
+.bar-row button:hover,
+.bar-row button.active,
+.stability-row:hover,
+.rank-empty-state,
+.role-strip,
+.model-roster-group,
+.model-roster-group.model-roster-baseline,
+.model-roster-group.model-roster-focal,
+.model-roster-count,
+.model-roster-focal .model-roster-count,
+.qual-sec-head,
+.qual-section.qual-task .qual-sec-head,
+.qual-section.qual-output .qual-sec-head,
+.qual-section.qual-assistant .qual-sec-head,
+.qual-section.qual-worker .qual-sec-head,
+.qual-section.qual-evaluator .qual-sec-head,
+.role-row:hover,
+.regime-cols,
+.regime:hover,
+.pipeline-title,
+.input-node,
+.lane-auto,
+.lane-aug,
+.eval-node,
+.results-node,
+.role-row.active,
+.regime.active,
+.method-detail,
+.role-chip,
+.model-button,
+.model-button.active,
+.icon-worker,
+.icon-assistant,
+.icon-evaluator,
+.qual-section,
+.rationale-card,
+.loading-overlay,
+.qual-loading-note {
+  background: #ffffff;
+}
+
+.project-hero {
+  background-image: none;
+}
+
+.hero-stat-band,
+.findings-grid,
+.finding-grid,
+.metric-row {
+  background: #ffffff;
+}
+
+.ambient-canvas {
+  opacity: 0;
+}
+
+html {
+  background: #ffffff;
+}
