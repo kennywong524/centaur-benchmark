@@ -578,15 +578,15 @@ function scoreColor(score) {
   const t = Math.max(0, Math.min(1, Number(score) / 10));
   if (t < 0.5) {
     const f = t / 0.5;
-    const r = Math.round(112 + (176 - 112) * f);
-    const g = Math.round(58 + (105 - 58) * f);
-    const b = Math.round(52 + (63 - 52) * f);
+    const r = Math.round(185 + (228 - 185) * f);
+    const g = Math.round(75 + (197 - 75) * f);
+    const b = Math.round(72 + (90 - 72) * f);
     return `rgb(${r},${g},${b})`;
   }
   const f = (t - 0.5) / 0.5;
-  const r = Math.round(176 + (242 - 176) * f);
-  const g = Math.round(105 + (140 - 105) * f);
-  const b = Math.round(63 + (40 - 63) * f);
+  const r = Math.round(228 + (37 - 228) * f);
+  const g = Math.round(197 + (127 - 197) * f);
+  const b = Math.round(90 + (99 - 90) * f);
   return `rgb(${r},${g},${b})`;
 }
 
@@ -646,14 +646,14 @@ function uniqueJudgmentCount(bundle) {
 }
 
 function heatColor(rank, maxRank) {
-  if (!rank) return "#302e2b";
+  if (!rank) return "#f2f4f7";
   const t = (rank - 1) / Math.max(1, maxRank - 1);
   const stops = [
-    [242, 140, 40],
-    [232, 174, 95],
-    [180, 151, 111],
-    [150, 91, 66],
-    [103, 57, 52],
+    [37, 127, 99],
+    [210, 232, 207],
+    [244, 221, 124],
+    [222, 105, 72],
+    [158, 35, 42],
   ];
   const p = t * (stops.length - 1);
   const i = Math.min(stops.length - 2, Math.floor(p));
@@ -754,7 +754,7 @@ function renderHeatmap(el, mode) {
         html += `<td class="heat-na" data-tip="${esc(full)} excluded by leave-family-out for ${esc(judgeLabels[state.judge] || state.judge)}." data-tip-title="N/A">—</td>`;
       } else {
         const tip = `${full} · ${cleanTaskTitle(task)} · rank ${r || "—"} · win rate ${d ? Number(d.score).toFixed(3) : "NA"}`;
-        html += `<td data-tip="${esc(tip)}" data-tip-title="Cell" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "#f5f2ed" : "#171717"}">${r || ""}</td>`;
+        html += `<td data-tip="${esc(tip)}" data-tip-title="Cell" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "white" : "#172033"}">${r || ""}</td>`;
       }
     }
     html += `</tr>`;
@@ -793,17 +793,17 @@ function renderRoleScatter() {
     const delta = d.automation - d.augmentation;
     const deltaLabel = delta > 0.05 ? `+${delta.toFixed(2)} toward automation` : delta < -0.05 ? `${Math.abs(delta).toFixed(2)} toward augmentation` : "balanced across roles";
     const tip = `${displayModel(d.model)} · automation ${d.automation.toFixed(2)} · augmentation ${d.augmentation.toFixed(2)} · ${deltaLabel}`;
-    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="7" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#f28c28" stroke="#171717" stroke-width="1.2" pointer-events="none"/><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#f0ece6" stroke="#20201f" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
+    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="7" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#2f6fcb" stroke="white" stroke-width="1.2" pointer-events="none"/><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
   }).join("");
   const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
   const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
   const diagMidX = (x(1) + x(maxRank)) / 2;
   const diagMidY = (y(1) + y(maxRank)) / 2;
   const svg = `<div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Role-swap scatter comparing automation and augmentation average ranks">
-    <rect x="0" y="0" width="${size}" height="${size}" fill="#20201f"/>
-    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#48443f"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#48443f"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#aaa6a0">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#aaa6a0">${t}</text>`).join("")}
-    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#8d857c" stroke-dasharray="6 5" stroke-width="1.4"/>
-    <text x="${diagMidX}" y="${diagMidY - 10}" text-anchor="middle" font-size="9" fill="#aaa6a0" font-style="italic">Same rank in both regimes</text>
+    <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
+    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#eef1f5"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
+    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.4"/>
+    <text x="${diagMidX}" y="${diagMidY - 10}" text-anchor="middle" font-size="9" fill="#8a93a3" font-style="italic">Same rank in both regimes</text>
     ${points}
     <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank →</text>
     <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">← Augmentation avg rank</text>
@@ -960,19 +960,19 @@ function renderJudgeScatter() {
   const panels = pairs.map(([a, b]) => {
     const pts = scatter.filter(d => d[a] !== null && d[b] !== null && modelAllowed(d.model_label));
     return `<svg viewBox="0 0 ${size} ${size}">
-      <rect width="${size}" height="${size}" fill="#20201f"/>
+      <rect width="${size}" height="${size}" fill="white"/>
       <text x="${size/2}" y="24" text-anchor="middle" font-weight="700">${judgeLabels[a]} vs ${judgeLabels[b]}</text>
-      <text x="${size/2}" y="42" text-anchor="middle" font-size="11" fill="#aaa6a0">One point = one model in one task/mode</text>
+      <text x="${size/2}" y="42" text-anchor="middle" font-size="11" fill="#657083">One point = one model in one task/mode</text>
       ${[1,5,10].map(t => `<text x="${x(t)}" y="${size-pad+22}" text-anchor="middle" font-size="11">${t}</text><text x="${pad-12}" y="${y(t)+4}" text-anchor="end" font-size="11">${t}</text>`).join("")}
-      ${Array.from({ length: 10 }, (_, i) => i + 1).map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#48443f"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#48443f"/>`).join("")}
-      <polygon points="${x(1)},${y(2)} ${x(9)},${y(10)} ${x(10)},${y(9)} ${x(2)},${y(1)}" fill="#f28c28" opacity=".08"/>
-      <line x1="${x(1)}" y1="${y(1)}" x2="${x(10)}" y2="${y(10)}" stroke="#8d857c" stroke-dasharray="7 6"/>
-      ${pts.map((d, i) => `<circle cx="${x(d[a]) + ((i % 7) - 3) * 1.8}" cy="${y(d[b]) + (((i / 7) | 0) % 7 - 3) * 1.8}" r="3.8" fill="${d.mode === "augmentation" ? "#f28c28" : "#d9c7a7"}" opacity=".72"><title>${cleanTaskTitle(d.task)} ${d.mode}: ${displayModel(d.model_label, d.mode)}</title></circle>`).join("")}
+      ${Array.from({ length: 10 }, (_, i) => i + 1).map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#e6e9ee"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#e6e9ee"/>`).join("")}
+      <polygon points="${x(1)},${y(2)} ${x(9)},${y(10)} ${x(10)},${y(9)} ${x(2)},${y(1)}" fill="#2f6fcb" opacity=".08"/>
+      <line x1="${x(1)}" y1="${y(1)}" x2="${x(10)}" y2="${y(10)}" stroke="#111" stroke-dasharray="7 6"/>
+      ${pts.map((d, i) => `<circle cx="${x(d[a]) + ((i % 7) - 3) * 1.8}" cy="${y(d[b]) + (((i / 7) | 0) % 7 - 3) * 1.8}" r="3.8" fill="${d.mode === "augmentation" ? "#2f6fcb" : "#d96f31"}" opacity=".52"><title>${cleanTaskTitle(d.task)} ${d.mode}: ${displayModel(d.model_label, d.mode)}</title></circle>`).join("")}
       <text x="${size/2}" y="${size-10}" text-anchor="middle" font-size="12">${judgeLabels[a]} rank</text>
       <text x="14" y="${size/2}" text-anchor="middle" font-size="12" transform="rotate(-90 14 ${size/2})">${judgeLabels[b]} rank</text>
     </svg>`;
   }).join("");
-  document.getElementById("judgeScatter").innerHTML = `<p style="color:var(--muted);font-size:13px;margin:0 0 12px">Dots near the dashed diagonal mean the two judges assigned similar ranks. The translucent orange band marks rankings within one rank of each other. Orange dots are augmentation entries; sand dots are automation entries.</p><div class="two-col judge-grid">${panels}</div><h3 style="margin-top:18px">Task-Level Agreement Summary</h3><div id="judgeAgreementTable"></div><h3 style="margin-top:18px">Largest Individual Rank Disagreements</h3><div id="judgeDisagreementTable"></div>`;
+  document.getElementById("judgeScatter").innerHTML = `<p style="color:var(--muted);font-size:13px;margin:0 0 12px">Dots near the dashed diagonal mean the two judges assigned similar ranks. The pale blue band marks rankings within one rank of each other. Blue dots are augmentation entries; orange dots are automation entries.</p><div class="two-col judge-grid">${panels}</div><h3 style="margin-top:18px">Task-Level Agreement Summary</h3><div id="judgeAgreementTable"></div><h3 style="margin-top:18px">Largest Individual Rank Disagreements</h3><div id="judgeDisagreementTable"></div>`;
   renderJudgeAgreementTable(pairs);
   renderJudgeDisagreementTable(pairs);
   renderCorrTable();
@@ -1080,7 +1080,7 @@ function renderReplicateHeatmap(el, mode) {
         const m = avg(vals);
         const se = sem(vals);
         const tip = `${displayModel(model, mode)} · ${cleanTaskTitle(task)} · mean ${m.toFixed(2)} ± ${se.toFixed(2)} (${vals.length} runs)`;
-        html += `<td data-tip="${esc(tip)}" data-tip-title="10-run cell" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "#f5f2ed" : "#171717"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
+        html += `<td data-tip="${esc(tip)}" data-tip-title="10-run cell" style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}"><b>${m.toFixed(1)}</b><small>±${se.toFixed(1)}</small></td>`;
       }
     }
     html += `</tr>`;
@@ -1356,7 +1356,7 @@ function renderValidationHeat(check, rows) {
       } else {
         const m = avg(vals);
         const s = std(vals);
-        html += `<td style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "#f5f2ed" : "#171717"}" title="${displayModel(model, "automation")} mean within-family rank across ${vals.length} runs"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
+        html += `<td style="background:${heatColor(m, maxRank)};color:${m > maxRank * .72 ? "white" : "#172033"}" title="${displayModel(model, "automation")} mean within-family rank across ${vals.length} runs"><b>${m.toFixed(1)}</b><small>±${s.toFixed(1)}</small></td>`;
       }
     }
     html += `</tr>`;
