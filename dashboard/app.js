@@ -1272,9 +1272,8 @@ function isBaselineModel(model) {
   return model === "plain" || model === "GPT-3.5-Turbo" || model === "gpt-3.5-turbo";
 }
 
-function taskWinnerStats(mode, { assistantsOnly = false } = {}) {
-  const rows = replicateRankRows(mode, "aggregate")
-    .filter(d => !(assistantsOnly && isBaselineModel(d.model_label)));
+function taskWinnerStats(mode) {
+  const rows = replicateRankRows(mode, "aggregate");
   return taskOrder.map(task => {
     const byModel = new Map();
     rows.filter(d => d.task_slug === task).forEach(d => {
@@ -1344,10 +1343,11 @@ function renderFindingsSnapshot() {
   const topAugOverall = augStats[0];
   const topAuto = autoStats[0];
   const augWinners = taskWinnerStats("augmentation");
-  const augAssistantWinners = taskWinnerStats("augmentation", { assistantsOnly: true });
   const autoWinners = taskWinnerStats("automation");
   const autoWinnerCount = new Set(autoWinners.map(w => w.model)).size;
-  const augWinnerCount = new Set(augAssistantWinners.map(w => w.model)).size;
+  const augWinningAssistants = augWinners.filter(w => !isBaselineModel(w.model));
+  const augWinnerCount = new Set(augWinningAssistants.map(w => w.model)).size;
+  const plainTaskWins = augWinners.filter(w => isBaselineModel(w.model)).length;
   const html = `<div class="findings-grid">
     <div class="finding-summary-card">
       <span class="summary-kicker">Best average automator</span>
@@ -1362,12 +1362,12 @@ function renderFindingsSnapshot() {
     <div class="finding-summary-card">
       <span class="summary-kicker">Task specificity</span>
       <b>${augWinnerCount} assistant winners</b>
-      <p>win at least one augmentation task, compared with ${autoWinnerCount} winners in automation.</p>
+      <p>win at least one augmentation task; the unaided worker wins ${plainTaskWins} task${plainTaskWins === 1 ? "" : "s"}. Automation has ${autoWinnerCount} distinct winners.</p>
     </div>
   </div>
   <div class="winner-block">
     <h3>Augmentation winners by task</h3>
-    ${winnerListHtml(augAssistantWinners, "augmentation")}
+    ${winnerListHtml(augWinners, "augmentation")}
   </div>
   <div class="winner-block">
     <h3>Automation winners by task</h3>
