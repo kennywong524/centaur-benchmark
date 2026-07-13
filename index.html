@@ -181,7 +181,7 @@
                   <span class="role-icon icon-assistant" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 3.5 8 12 12.5 20.5 8 12 3.5Z"/><path d="m3.5 12.5 8.5 4.5 8.5-4.5"/><path d="m3.5 17 8.5 4.5 8.5-4.5"/></svg>
                   </span>
-                  <span class="role-copy"><b>Assistant model</b><small>Provides assistance text — plans, checklists, self-review steps — to the worker model. This is the model under test in augmentation.</small></span>
+                  <span class="role-copy"><b>Assistant model</b><small>Provides the worker model with assistance text, such as plans, checklists, and self-review steps. This is the model under test in augmentation.</small></span>
                 </button>
                 <button class="role-row" data-stage="evaluator" type="button" aria-expanded="false">
                   <span class="role-icon icon-evaluator" aria-hidden="true">
@@ -208,7 +208,7 @@
 
           <div class="method-block method-roster-block">
             <div class="method-block-title title-roster">Candidate model roster</div>
-            <p class="method-roster-note">Ten candidates are ranked per task in each regime: automation compares ten direct solvers; augmentation compares assistance text from nine assistant models plus the plain unaided worker baseline. GPT-3.5-Turbo is the fixed worker in augmentation (and also competes as a direct solver in automation).</p>
+            <p class="method-roster-note">Ten candidates are ranked per task in each regime: automation compares ten direct solvers; augmentation compares nine assisted conditions — one per assistant model — plus the plain unaided worker baseline. GPT-3.5-Turbo is the fixed worker in augmentation (and also competes as a direct solver in automation).</p>
             <div class="model-roster-grid" id="modelRoster"></div>
           </div>
 
@@ -414,7 +414,7 @@
                   <small>Assistance text</small>
                 </button>
                 <button class="content-tab" data-texttab="scaffoldPrompt">
-                  <span>Assistance text prompt</span>
+                  <span>Prompt for assistance text</span>
                   <small>How guidance was created</small>
                 </button>
                 <button class="content-tab" data-texttab="prompt">

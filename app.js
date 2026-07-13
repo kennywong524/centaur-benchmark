@@ -96,7 +96,7 @@ const state = {
 const glossary = {
   automation: "The model solves the task end-to-end and produces the final deliverable directly, with no intermediary worker.",
   augmentation: "The model writes guidance for a fixed GPT-3.5-Turbo worker, which then produces the final deliverable. Tests coaching ability, not solo solving.",
-  "assistance text": "Process-only guidance from the assistant model — plans, checklists, and self-review steps — given to the worker without containing the task answer itself.",
+  "assistance text": "Process-only guidance — such as plans, checklists, and self-review steps — written by the assistant model for the worker model. It does not contain a direct answer to the task.",
   "worker model": "The model that produces the final task output. In augmentation this is always GPT-3.5-Turbo; in automation it is the model under test.",
   "assistant model": "The focal model under test in augmentation. It writes assistance text for the worker rather than the task deliverable.",
   "pairwise comparison": "Judges see two anonymized outputs side-by-side, pick a winner, and score rubric dimensions — never knowing which model produced which.",
@@ -107,7 +107,7 @@ const glossary = {
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
   "role-swap": "Compares a model's automation rank vs augmentation rank to reveal whether it is a better solver or assistant.",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
-  "baseline (plain worker)": "GPT-3.5-Turbo run with no external assistance text in augmentation. Shows what the fixed worker achieves unaided.",
+  "baseline (plain worker)": "An augmentation run in which GPT-3.5-Turbo receives no assistance text. This shows what the fixed worker model achieves unaided.",
   "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
   "judge panel": "Four LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, Gemini-3.1-Pro). Aggregate combines all eligible judges per cell.",
   rubric: "Task-specific scoring dimensions (e.g., empathy, accuracy) plus five general dimensions applied to every task.",
@@ -115,8 +115,8 @@ const glossary = {
 
 const qualTabDescriptions = {
   output: "The worker's final deliverable for this task–model cell.",
-  scaffold: "The assistance text the assistant model wrote for the worker model (augmentation only).",
-  scaffoldPrompt: "The prompt used to generate assistance text and the instruction given to the worker model.",
+  scaffold: "Assistance text written by the assistant model for the worker model (augmentation only).",
+  scaffoldPrompt: "The prompt used to generate the assistance text, together with the instructions given to the worker model.",
   prompt: "The shared task prompt, augmentation specs, and judge rubric for this task.",
 };
 
@@ -1475,11 +1475,11 @@ function renderQualitative() {
   } else if (state.textTab === "scaffold") {
     const hasScaffold = !!out?.scaffold_text;
     sections = [{ label: "Assistant model", sublabel: "Assistance text passed to the worker model", kind: "assistant",
-      body: hasScaffold ? out.scaffold_text : "No assistance text in this direct or plain-worker condition.", empty: !hasScaffold }];
+      body: hasScaffold ? out.scaffold_text : "This direct or unaided-worker condition does not include assistance text.", empty: !hasScaffold }];
   } else if (state.textTab === "scaffoldPrompt") {
     sections = [
-      { label: "Assistance Text Prompt", sublabel: "Instruction that generates the assistant model's guidance", kind: "assistant",
-        body: taskObj?.scaffold_prompt || "No assistance text prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Prompt for Assistance Text", sublabel: "Prompt used to generate the assistant model's assistance text", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No prompt for assistance text found in the dashboard data.", empty: !taskObj?.scaffold_prompt },
       { label: "Worker Model Instruction", sublabel: "How the worker model uses the assistance text", kind: "worker",
         body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
     ];
@@ -1487,8 +1487,8 @@ function renderQualitative() {
     sections = [
       { label: "Task Prompt", sublabel: "The professional task for this cell", kind: "task",
         body: taskObj?.task_prompt || "No task prompt found.", empty: !taskObj?.task_prompt },
-      { label: "Assistance Text Prompt", sublabel: "Used in augmentation to generate guidance", kind: "assistant",
-        body: taskObj?.scaffold_prompt || "No assistance text prompt found in dashboard data.", empty: !taskObj?.scaffold_prompt },
+      { label: "Prompt for Assistance Text", sublabel: "Used in augmentation to generate the assistant model's guidance", kind: "assistant",
+        body: taskObj?.scaffold_prompt || "No prompt for assistance text found in the dashboard data.", empty: !taskObj?.scaffold_prompt },
       { label: "Worker Instruction", sublabel: "How the worker turns inputs into the deliverable", kind: "worker",
         body: taskObj?.worker_instruction || "No worker instruction found in dashboard data.", empty: !taskObj?.worker_instruction },
       { label: "Judge Rubric", sublabel: "Task-specific and general scoring criteria", kind: "evaluator",
@@ -1585,12 +1585,12 @@ const methodologyDetails = {
   },
   worker: {
     title: "Worker model: the fixed executor",
-    body: "In augmentation, a single low-cost worker — GPT-3.5-Turbo — always produces the deliverable. Because the worker never changes, the only thing that varies between augmentation conditions is the guidance it receives, which isolates the value added by each assistant's assistance text. A plain worker run with no assistance text serves as the baseline.",
+    body: "In augmentation, a single low-cost worker — GPT-3.5-Turbo — always produces the deliverable. Because the worker never changes, the only input that varies across augmentation conditions is the assistance text it receives. This isolates the value added by each assistant model. An augmentation run without assistance text serves as the baseline.",
     action: { label: "See worker deliverables", run: () => { setMode("augmentation"); state.textTab = "output"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
   },
   assistant: {
     title: "Assistant model: the model under test",
-    body: "Each frontier model writes process-only assistance text — a 'Three-Phase Workflow' of roughly 200-250 words covering requirements checks, planning, and self-review. Assistance text is validated automatically (no task content leakage, no stubs, length caps) and regenerated when it fails. This guidance, not the assistant model's own answer, is what reaches the worker.",
+    body: "Each frontier model writes a piece of process-only assistance text: a 'Three-Phase Workflow' of roughly 200-250 words covering requirements checks, planning, and self-review. The assistance text is validated automatically (no task content leakage, no stubs, and a strict length cap) and regenerated when validation fails. This assistance text — not the assistant model's own answer — is what reaches the worker model.",
     action: { label: "Browse assistance text", run: () => { setMode("augmentation"); state.textTab = "scaffold"; syncTextTabs(); goTab("qualitative"); renderAll(); } },
   },
   automation: {
@@ -1600,7 +1600,7 @@ const methodologyDetails = {
   },
   augmentation: {
     title: "Augmentation regime: the model guides a fixed worker",
-    body: "The focal model acts as an assistant: it writes process-focused assistance text, which is handed to the fixed GPT-3.5-Turbo worker as internal guidance alongside the client task. The worker's deliverable is what gets judged — so a model wins this regime by making its worker better, mirroring how AI assistance augments a human professional.",
+    body: "The focal model acts as an assistant by providing process-focused assistance text to the fixed GPT-3.5-Turbo worker model alongside the client task. The worker model's deliverable is what gets judged, so a model succeeds in this regime by helping its worker perform better — mirroring how AI assistance can augment a human professional.",
     action: { label: "View augmentation rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
   },
   evaluator: {
