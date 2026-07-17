@@ -282,42 +282,34 @@ function taskSourceBadgesHtml(slug) {
   return badges.join("");
 }
 
+/** Overview Compare teaser presets — real task × regime × model pairs. */
 const compareTeaserPairs = [
   {
     label: "Counseling · GPT-4.1 vs DeepSeek",
     task: "counselling",
-    a: {
-      name: "GPT-4.1",
-      body: "<ul><li>Validate burnout without diagnosing.</li><li>Offer one CBT reframe and one values check.</li><li>End with two concrete next-day actions.</li></ul>",
-    },
-    b: {
-      name: "DeepSeek-V3.1",
-      body: "<ul><li>Broad wellness advice with fewer task constraints.</li><li>Less structure for session pacing.</li><li>Weaker match to counseling rubric cues.</li></ul>",
-    },
+    mode: "augmentation",
+    modelA: "GPT-4.1",
+    modelB: "DeepSeek-V3.1",
+    paneA: "scaffold",
+    paneB: "scaffold",
   },
   {
     label: "Menu Planning · GPT-5-Mini vs plain",
     task: "meal_plan",
-    a: {
-      name: "GPT-5-Mini",
-      body: "<ul><li>Allergy checklist before drafting meals.</li><li>Day-by-day variety with grocery grouping.</li><li>Self-review for shellfish, gluten, lactose, onion.</li></ul>",
-    },
-    b: {
-      name: "GPT-3.5-Turbo (plain)",
-      body: "<ul><li>Unaided worker baseline — no assistance text.</li><li>Useful contrast for whether coaching helps.</li><li>Same worker model as assisted conditions.</li></ul>",
-    },
+    mode: "augmentation",
+    modelA: "GPT-5-Mini",
+    modelB: "plain",
+    paneA: "scaffold",
+    paneB: "output",
   },
   {
-    label: "Tax Prep · assistants vs unaided",
+    label: "Tax Prep · GPT-4.1 vs plain",
     task: "tax_prep",
-    a: {
-      name: "Assisted conditions",
-      body: "<ul><li>Process guidance for discrepancy spotting.</li><li>Federal/CA rule reminders and form checks.</li><li>On this task, assistance often underperforms.</li></ul>",
-    },
-    b: {
-      name: "GPT-3.5-Turbo (plain)",
-      body: "<ul><li>Unaided worker ranks first in augmentation.</li><li>Shows assistance is not automatically helpful.</li><li>Open Compare for full deliverables.</li></ul>",
-    },
+    mode: "augmentation",
+    modelA: "GPT-4.1",
+    modelB: "plain",
+    paneA: "scaffold",
+    paneB: "output",
   },
 ];
 
@@ -369,7 +361,7 @@ function renderQualQuickPicks(ranked) {
 const controlsByTab = {
   project: [],
   compare: [],
-  replicates: ["modelSet"],
+  replicates: [],
   overview: ["run"],
   rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
@@ -644,9 +636,11 @@ function ensureQualitativeData() {
       renderRankings();
       renderQualitative();
       renderCompare();
+      renderOverviewCompareTeaser();
       applyTermTooltips(document.getElementById("qualitative"));
       applyTermTooltips(document.getElementById("compare"));
       applyTermTooltips(document.getElementById("rankings"));
+      applyTermTooltips(document.getElementById("overviewCompareTeaser"));
     })
     .catch(err => {
       setQualLoading(false);
@@ -1592,8 +1586,9 @@ function sem(xs) {
   return std(xs) / Math.sqrt(xs.length);
 }
 
+/** 10-Run Result always uses the full candidate pool (same as Single-run / Scoreboard). */
 function replicateRankRows(mode, judge = "aggregate") {
-  return runList().flatMap(run => rankOfRanks(mode, judge, run.id).map(d => ({
+  return runList().flatMap(run => rankOfRanks(mode, judge, run.id, { allModels: true }).map(d => ({
     ...d,
     run_id: run.id,
     run_label: run.label,
@@ -1895,39 +1890,230 @@ function renderOverviewHeatmaps() {
   renderReplicateHeatmap(document.getElementById("overviewHeatAuto"), "automation");
 }
 
+function clipCompareRaw(raw, maxChars = 900) {
+  const text = String(raw || "").trim();
+  if (text.length <= maxChars) return text;
+  const slice = text.slice(0, maxChars);
+  const breakAt = Math.max(slice.lastIndexOf("\n\n"), slice.lastIndexOf(". "), slice.lastIndexOf("\n"));
+  const cut = breakAt > maxChars * 0.55 ? slice.slice(0, breakAt + (slice[breakAt] === "." ? 1 : 0)) : slice;
+  return `${cut.trimEnd()}\n\n…`;
+}
+
+function teaserPaneLabel(pane, mode) {
+  const regime = modeLabels[mode] || mode;
+  if (pane === "scaffold") return `${regime} · assistance text`;
+  return `${regime} · deliverable`;
+}
+
+function teaserExcerptHtml(out, pane, mode) {
+  if (!out) return `<p class="qual-empty-state">No output for this selection.</p>`;
+  if (pane === "scaffold") {
+    if (mode !== "augmentation") {
+      return `<p class="qual-empty-state">Assistance text applies only in augmentation mode.</p>`;
+    }
+    const scaffoldText = assistanceTextOf(out);
+    if (!scaffoldText) {
+      const msg = isUnaidedBaseline(out)
+        ? "Unaided baseline — no assistance text"
+        : "No assistance text saved for this model in this run.";
+      return `<p class="qual-empty-state">${esc(msg)}</p>`;
+    }
+    return renderCompareRichText(clipCompareRaw(scaffoldText), { kind: "scaffold" });
+  }
+  const deliverable = out.output || "No deliverable saved.";
+  return renderCompareRichText(clipCompareRaw(deliverable), { kind: "deliverable" });
+}
+
+function teaserRunCell(pair) {
+  const runId = state.compare.runId || state.runId;
+  const bundle = activeData(runId);
+  return bundle?.runs?.[`${pair.task}/${pair.mode}`] || null;
+}
+
+function applyCompareTeaserPreset(pair = compareTeaserPairs[state.compareTeaserPair]) {
+  if (!pair) return;
+  state.compare.task = pair.task;
+  state.compare.mode = pair.mode;
+  state.compare.modelA = pair.modelA;
+  state.compare.modelB = pair.modelB;
+  state.compare.paneA = pair.paneA;
+  state.compare.paneB = pair.paneB;
+  state.compare.rubricView = "pair";
+  state.compare.rubricJudge = "average";
+  if (!state.compare.runId) state.compare.runId = state.runId;
+}
+
+function renderTeaserCompactSpine(task, dims, mapA, mapB, labelA, labelB) {
+  if (!dims.length) {
+    return `<p class="chart-note">No rubric scores found for this selection.</p>`;
+  }
+  const max = 10;
+  const rows = dims.map(dim => {
+    const left = mapA.get(dim);
+    const right = mapB.get(dim);
+    const aBetter = Number.isFinite(left) && Number.isFinite(right) && left > right + 0.05;
+    const bBetter = Number.isFinite(left) && Number.isFinite(right) && right > left + 0.05;
+    const name = rubricLabels[task]?.[dim] || generalRubricLabels[dim] || dim;
+    return `<div class="compare-teaser-spine-row">
+      <div class="compare-teaser-spine-dim" title="${esc(name)}">${esc(name)}</div>
+      <div class="compare-teaser-spine-cell" title="${esc(labelA)}">
+        <div class="bar-track"><div class="bar-fill a" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%"></div></div>
+        <span class="compare-teaser-spine-val ${aBetter ? "is-better" : ""}">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
+      </div>
+      <div class="compare-teaser-spine-cell" title="${esc(labelB)}">
+        <div class="bar-track"><div class="bar-fill b" style="width:${Number.isFinite(right) ? right / max * 100 : 0}%"></div></div>
+        <span class="compare-teaser-spine-val ${bBetter ? "is-better" : ""}">${Number.isFinite(right) ? right.toFixed(1) : "—"}</span>
+      </div>
+    </div>`;
+  }).join("");
+  return `
+    <div class="compare-teaser-spine">
+      <div class="compare-teaser-spine-head">
+        <span>Average rubric scores</span>
+        <span class="compare-teaser-spine-legend">
+          <span><i class="dot a"></i>${esc(labelA)}</span>
+          <span><i class="dot b"></i>${esc(labelB)}</span>
+        </span>
+      </div>
+      ${rows}
+    </div>`;
+}
+
 function renderOverviewCompareTeaser() {
   const root = document.getElementById("overviewCompareTeaser");
   if (!root) return;
   const pair = compareTeaserPairs[state.compareTeaserPair] || compareTeaserPairs[0];
   root.querySelectorAll("[data-teaser-pair]").forEach(btn => {
     const idx = Number(btn.dataset.teaserPair);
-    btn.classList.toggle("active", idx === state.compareTeaserPair);
+    const active = idx === state.compareTeaserPair;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
   });
+
   const titleA = document.getElementById("teaserTitleA");
   const titleB = document.getElementById("teaserTitleB");
+  const modeA = document.getElementById("teaserModeA");
+  const modeB = document.getElementById("teaserModeB");
   const bodyA = document.getElementById("teaserBodyA");
   const bodyB = document.getElementById("teaserBodyB");
-  if (titleA) titleA.textContent = pair.a.name;
-  if (titleB) titleB.textContent = pair.b.name;
-  if (bodyA) bodyA.innerHTML = pair.a.body;
-  if (bodyB) bodyB.innerHTML = pair.b.body;
+  const meanA = document.getElementById("teaserMeanA");
+  const meanB = document.getElementById("teaserMeanB");
+  const evidence = document.getElementById("teaserEvidence");
+
+  if (titleA) titleA.textContent = displayModel(pair.modelA, pair.mode);
+  if (titleB) titleB.textContent = displayModel(pair.modelB, pair.mode);
+  if (modeA) modeA.textContent = teaserPaneLabel(pair.paneA, pair.mode);
+  if (modeB) modeB.textContent = teaserPaneLabel(pair.paneB, pair.mode);
+
+  if (!state.qualLoaded) {
+    if (bodyA) bodyA.innerHTML = `<p class="qual-empty-state">Loading qualitative evidence…</p>`;
+    if (bodyB) bodyB.innerHTML = `<p class="qual-empty-state">Loading qualitative evidence…</p>`;
+    if (meanA) meanA.innerHTML = "";
+    if (meanB) meanB.innerHTML = "";
+    if (evidence) evidence.innerHTML = `<p class="chart-note">Loading rubric spines and judge rationales…</p>`;
+    ensureQualitativeData().then(() => renderOverviewCompareTeaser()).catch(() => {
+      if (evidence) {
+        evidence.innerHTML = `<p class="chart-note">Qualitative bundle failed to load. Open Compare after the page finishes loading.</p>`;
+      }
+    });
+    return;
+  }
+
+  const cell = teaserRunCell(pair);
+  const outputs = cell?.outputs || [];
+  const judgments = cell?.judgments || [];
+  const outA = outputs.find(o => o.model_label === pair.modelA);
+  const outB = outputs.find(o => o.model_label === pair.modelB);
+
+  if (bodyA) bodyA.innerHTML = teaserExcerptHtml(outA, pair.paneA, pair.mode);
+  if (bodyB) bodyB.innerHTML = teaserExcerptHtml(outB, pair.paneB, pair.mode);
+
+  const rowsA = outA ? rubricMeansForOutput(outA, judgments, pair.task) : [];
+  const rowsB = outB ? rubricMeansForOutput(outB, judgments, pair.task) : [];
+  const mapA = new Map(rowsA.map(r => [r.dimension, r.mean]));
+  const mapB = new Map(rowsB.map(r => [r.dimension, r.mean]));
+  const dims = [...new Set([
+    ...Object.keys(rubricLabels[pair.task] || {}),
+    ...Object.keys(generalRubricLabels),
+    ...rowsA.map(r => r.dimension),
+    ...rowsB.map(r => r.dimension),
+  ])].filter(dim => mapA.has(dim) || mapB.has(dim));
+
+  const labelA = displayModel(pair.modelA, pair.mode);
+  const labelB = displayModel(pair.modelB, pair.mode);
+  const avgA = meanRubricScore(rowsA);
+  const avgB = meanRubricScore(rowsB);
+  if (meanA) {
+    meanA.innerHTML = Number.isFinite(avgA)
+      ? `<span class="compare-teaser-mean-chip">Mean rubric <b>${avgA.toFixed(1)}</b><small>/ 10</small></span>`
+      : "";
+  }
+  if (meanB) {
+    meanB.innerHTML = Number.isFinite(avgB)
+      ? `<span class="compare-teaser-mean-chip">Mean rubric <b>${avgB.toFixed(1)}</b><small>/ 10</small></span>`
+      : "";
+  }
+
+  if (!evidence) return;
+  if (!outA || !outB) {
+    evidence.innerHTML = `<p class="chart-note">No saved outputs for this preset in the active run.</p>`;
+    return;
+  }
+
+  const spine = renderTeaserCompactSpine(pair.task, dims, mapA, mapB, labelA, labelB);
+  const pairJs = judgments.filter(j => {
+    const left = Number(j.left_idx);
+    const right = Number(j.right_idx);
+    const a = Number(outA.idx);
+    const b = Number(outB.idx);
+    return (left === a && right === b) || (left === b && right === a);
+  });
+  const withRationale = pairJs.find(j => rationaleTextOf(j));
+  let rationaleHtml = `<p class="chart-note">No direct pairwise rationale for this pair in the active run.</p>`;
+  if (withRationale) {
+    const aIsLeft = Number(withRationale.left_idx) === Number(outA.idx);
+    let winner = "tie / unclear";
+    if (withRationale.winner === "option_1") {
+      winner = displayModel(aIsLeft ? pair.modelA : pair.modelB, pair.mode);
+    } else if (withRationale.winner === "option_2") {
+      winner = displayModel(aIsLeft ? pair.modelB : pair.modelA, pair.mode);
+    }
+    rationaleHtml = `<div class="compare-rationale-card compare-teaser-rationale">
+      <div class="compare-rationale-meta"><b>${esc(withRationale.judge_label || judgeDisplay(withRationale.judge_model))}</b> · preferred <b>${esc(winner)}</b></div>
+      <p>${esc(rationaleTextOf(withRationale))}</p>
+    </div>`;
+  }
+
+  evidence.innerHTML = `
+    <div class="compare-teaser-evidence-grid">
+      ${spine}
+      <div class="compare-teaser-rationale-wrap">
+        <div class="compare-teaser-spine-head"><span>Judge rationale</span></div>
+        ${rationaleHtml}
+      </div>
+    </div>`;
 }
 
 function bindOverviewInteractions() {
   const teaser = document.getElementById("overviewCompareTeaser");
-  if (!teaser || teaser.dataset.bound) return;
-  teaser.dataset.bound = "1";
-  teaser.querySelectorAll("[data-teaser-pair]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      state.compareTeaserPair = Number(btn.dataset.teaserPair) || 0;
-      const pair = compareTeaserPairs[state.compareTeaserPair];
-      if (pair?.task) {
-        state.compare.task = pair.task;
-        state.compare.mode = "augmentation";
-      }
-      renderOverviewCompareTeaser();
+  if (teaser && !teaser.dataset.bound) {
+    teaser.dataset.bound = "1";
+    teaser.querySelectorAll("[data-teaser-pair]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.compareTeaserPair = Number(btn.dataset.teaserPair) || 0;
+        applyCompareTeaserPreset();
+        renderOverviewCompareTeaser();
+      });
     });
-  });
+  }
+  const openBtn = document.getElementById("overviewOpenCompare");
+  if (openBtn && !openBtn.dataset.bound) {
+    openBtn.dataset.bound = "1";
+    openBtn.addEventListener("click", () => {
+      applyCompareTeaserPreset();
+      goTab("compare");
+    });
+  }
 }
 
 function renderOverviewLanding() {
@@ -2367,7 +2553,6 @@ function updateControlBandVisibility() {
   const showBand = allowed.size > 0;
   band.classList.toggle("hidden", !showBand);
   band.dataset.tab = state.tab || "";
-  band.classList.toggle("control-band--replicates", state.tab === "replicates");
   band.querySelectorAll("[data-control]").forEach(el => {
     const key = el.dataset.control;
     const visible = allowed.has(key);
