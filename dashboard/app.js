@@ -2672,7 +2672,6 @@ function renderCompareBodyHtml(tokens) {
   if (!tokens.length) return "";
   const out = [];
   let i = 0;
-  let sectionNum = 0;
   let usedTitle = false;
 
   // Leading title: first heading before any section.
@@ -2702,21 +2701,46 @@ function renderCompareBodyHtml(tokens) {
     return chunk.join("");
   };
 
+  /** Body range for a section token at idx (exclusive end = next section or EOF). */
+  const sectionSpan = (idx) => {
+    let end = idx + 1;
+    while (end < tokens.length && tokens[end].type !== "section") end += 1;
+    return end;
+  };
+
   while (i < tokens.length) {
     const t = tokens[i];
     if (t.type === "section") {
-      sectionNum += 1;
+      const bodyEnd = sectionSpan(i);
+      const bodyHtml = flushLoose(i + 1, bodyEnd);
+
+      // Bare numbered lines (title only, no body) → compact ordered list, not section cards.
+      if (!bodyHtml) {
+        const items = [];
+        while (i < tokens.length && tokens[i].type === "section") {
+          const end = sectionSpan(i);
+          const body = flushLoose(i + 1, end);
+          if (body) break;
+          items.push(tokens[i]);
+          i = end;
+        }
+        const start = Number.isFinite(items[0]?.n) ? items[0].n : 1;
+        out.push(`<ol class="compare-steps" start="${start}">${items.map(it =>
+          `<li>${formatCompareInline(esc(it.text))}</li>`
+        ).join("")}</ol>`);
+        continue;
+      }
+
+      // Numbered step with real body content → section card (no empty-body filler).
+      const num = Number.isFinite(t.n) ? t.n : 1;
       const title = t.text;
-      i += 1;
-      const bodyStart = i;
-      while (i < tokens.length && tokens[i].type !== "section") i += 1;
-      const bodyHtml = flushLoose(bodyStart, i);
+      i = bodyEnd;
       out.push(`<section class="compare-section">
         <div class="compare-section-head">
-          <span class="compare-section-num" aria-hidden="true">${sectionNum}</span>
+          <span class="compare-section-num" aria-hidden="true">${num}</span>
           <h4 class="compare-section-title">${formatCompareInline(esc(title))}</h4>
         </div>
-        <div class="compare-section-body">${bodyHtml || `<p class="compare-md-p compare-md-muted">No details under this step.</p>`}</div>
+        <div class="compare-section-body">${bodyHtml}</div>
       </section>`);
       continue;
     }
@@ -2726,7 +2750,6 @@ function renderCompareBodyHtml(tokens) {
     while (i < tokens.length && tokens[i].type !== "section") i += 1;
     const loose = flushLoose(looseStart, i);
     if (loose) {
-      // If we already used a title and this loose block starts with a duplicate heading, skip that heading.
       out.push(loose);
     }
   }
