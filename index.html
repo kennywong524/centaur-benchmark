@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717v" />
+    <link rel="stylesheet" href="styles.css?v=20260717w" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -291,20 +291,35 @@
       </section>
 
       <section id="overview" class="panel">
-        <div class="metric-row" id="metricRow"></div>
-        <div class="section-heading">
-          <h2>Rank Heat Maps</h2>
-          <p>Single-run snapshot. Use the <b>Run</b> filter to compare runs; for paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>. Lower cell = better rank. The Overview scatter uses the 10-run panel.</p>
+        <div class="section-heading heatmaps-heading">
+          <h2>Rank heat maps</h2>
+          <p>Single-run snapshot of model ranks across tasks. Use the <b>Run</b> and <b>Model pool</b> filters above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>.</p>
         </div>
-        <div class="replicates-stack">
-          <div class="viz-card heat-viz-card">
-            <h3>Augmentation</h3>
-            <div id="heatAug"></div>
-          </div>
-          <div class="viz-card heat-viz-card">
-            <h3>Automation</h3>
-            <div id="heatAuto"></div>
-          </div>
+        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Heatmap judge filter"></div>
+        <div class="metric-row heatmaps-metrics" id="metricRow"></div>
+        <div class="heatmaps-layout">
+          <article class="heatmaps-panel heatmaps-panel--aug">
+            <header class="heatmaps-panel-head">
+              <div class="heatmaps-panel-kicker">
+                <span class="heatmaps-side-badge aug">AUG</span>
+                <span class="heatmaps-panel-role">Usage regime</span>
+              </div>
+              <h3>Augmentation</h3>
+              <p class="heatmaps-panel-sub">Assistant models guiding a fixed worker · lower rank is better</p>
+            </header>
+            <div class="heatmaps-panel-body" id="heatAug"></div>
+          </article>
+          <article class="heatmaps-panel heatmaps-panel--auto">
+            <header class="heatmaps-panel-head">
+              <div class="heatmaps-panel-kicker">
+                <span class="heatmaps-side-badge auto">AUTO</span>
+                <span class="heatmaps-panel-role">Usage regime</span>
+              </div>
+              <h3>Automation</h3>
+              <p class="heatmaps-panel-sub">Models solving the task end-to-end · lower rank is better</p>
+            </header>
+            <div class="heatmaps-panel-body" id="heatAuto"></div>
+          </article>
         </div>
       </section>
 
@@ -521,6 +536,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717v"></script>
+    <script src="app.js?v=20260717w"></script>
   </body>
 </html>
