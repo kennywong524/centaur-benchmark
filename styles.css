@@ -313,10 +313,10 @@ label[data-control].hidden { display: none !important; }
 
 .hero-stat {
   padding: 14px 16px;
-  border: 1px solid #c5d8f3;
+  border: 0;
   border-radius: 8px;
   background: linear-gradient(180deg, #fff, #f4f8ff);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .hero-stat b {
@@ -2750,11 +2750,14 @@ main {
   gap: 10px;
   margin-top: 18px;
   max-width: 820px;
+  border: 0;
+  background: transparent;
 }
 .hero-stat {
-  border: 1px solid rgba(207, 215, 228, 0.9);
+  border: 0;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.75);
+  box-shadow: none;
   padding: 12px 14px;
 }
 .hero-stat b {
