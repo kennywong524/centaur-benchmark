@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260718j" />
+    <link rel="stylesheet" href="styles.css?v=20260718k" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -327,7 +327,7 @@
           <h2>Single-run Result</h2>
           <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Result</button>.</p>
         </div>
-        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run Result judge filter"></div>
+        <div class="compare-judge-bar heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run Result judge filter"></div>
         <div class="metric-row heatmaps-metrics" id="metricRow"></div>
         <div class="heatmaps-layout">
           <article class="heatmaps-panel heatmaps-panel--aug">
@@ -440,7 +440,7 @@
           <h2>Task-Usage Scoreboard</h2>
           <p>For readers who want a deeper read on <b>what each rubric dimension means for each task</b>, plus <b>task × usage-regime rankings</b> under Average or individual judges. Select a model on the left to load its dimension scores on the right. Automation vs augmentation use the same filters above; assistance text terminology is unchanged.</p>
         </div>
-        <div class="rank-judge-bar" id="rankJudgeBar" role="tablist" aria-label="Scoreboard judge filter"></div>
+        <div class="compare-judge-bar rank-judge-bar" id="rankJudgeBar" role="tablist" aria-label="Scoreboard judge filter"></div>
         <div class="rank-layout">
           <article class="rank-panel rank-panel--board">
             <header class="rank-panel-head">
@@ -594,6 +594,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260718j"></script>
+    <script src="app.js?v=20260718k"></script>
   </body>
 </html>
