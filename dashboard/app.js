@@ -2663,20 +2663,12 @@ function shortCompareRubricLabel(dim) {
   return `${full.slice(0, 22).trimEnd()}…`;
 }
 
-function compareRadarAxisScale(values) {
-  const finite = values.filter(Number.isFinite);
-  if (!finite.length) return { min: 0, max: 10 };
-  let min = Math.min(...finite);
-  let max = Math.max(...finite);
-  if (max - min < 0.25) {
-    min = Math.max(0, min - 0.5);
-    max = Math.min(10, max + 0.5);
-  }
-  if (min === max) {
-    min = Math.max(0, min - 1);
-    max = Math.min(10, max + 1);
-  }
-  return { min, max };
+/** Absolute radar radius = rubric max. Same for every axis/model (not relative min–max). */
+const COMPARE_RADAR_AXIS_MAX = 10;
+
+function compareRadarNorm(value) {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(1, value / COMPARE_RADAR_AXIS_MAX));
 }
 
 function buildCompareRadarSvg(axes, series) {
@@ -2714,12 +2706,7 @@ function buildCompareRadarSvg(axes, series) {
   }).join("");
 
   const paths = series.map(s => {
-    const norms = axes.map(axis => {
-      const v = axis.values[s.key];
-      if (!Number.isFinite(v)) return 0;
-      const span = axis.max - axis.min || 1;
-      return (v - axis.min) / span;
-    });
+    const norms = axes.map(axis => compareRadarNorm(axis.values[s.key]));
     const dash = s.style === "dashed" ? 'stroke-dasharray="8 5"' : (s.style === "dotted" ? 'stroke-dasharray="2 4"' : "");
     const hidden = s.visible ? "" : "is-hidden";
     return `<g class="compare-radar-series ${hidden}" data-radar-series="${esc(s.key)}">
@@ -2760,20 +2747,12 @@ function renderCompareRadarMarkup(dims, mapA, mapRight, labelA, labelRight, vsAv
   const axes = dims.map(dim => {
     const a = mapA.get(dim);
     const b = mapRight.get(dim);
-    const scaleVals = [];
-    if (showA && Number.isFinite(a)) scaleVals.push(a);
-    if (showB && Number.isFinite(b)) scaleVals.push(b);
-    if (!scaleVals.length) {
-      if (Number.isFinite(a)) scaleVals.push(a);
-      if (Number.isFinite(b)) scaleVals.push(b);
-    }
-    const { min, max } = compareRadarAxisScale(scaleVals);
     return {
       dim,
       full: compareRubricDimName(dim),
       short: shortCompareRubricLabel(dim),
-      min,
-      max,
+      min: 0,
+      max: COMPARE_RADAR_AXIS_MAX,
       values: { a, b },
     };
   }).filter(axis => Number.isFinite(axis.values.a) || Number.isFinite(axis.values.b));
@@ -2797,7 +2776,7 @@ function renderCompareRadarMarkup(dims, mapA, mapRight, labelA, labelRight, vsAv
       </div>
       <div class="compare-radar-toggles" role="group" aria-label="Toggle radar series">${pills}</div>
       <div class="compare-radar-legend">${legendItems}</div>
-      <p class="compare-radar-hint">Each axis is independently scaled (min–max across visible series). Hover legend to highlight &amp; see values.</p>
+      <p class="compare-radar-hint">Axes scaled 0–${COMPARE_RADAR_AXIS_MAX} (absolute rubric scores). Hover legend to highlight &amp; see values.</p>
       <div class="compare-radar-stage">
         ${buildCompareRadarSvg(axes, seriesMeta)}
         <div class="compare-radar-values" id="compareRadarValues" hidden></div>
