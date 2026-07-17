@@ -4031,7 +4031,7 @@ a.task-source-badge:hover {
 }
 .compare-judge-chip:hover { border-color: #7a8aa3; color: var(--compare-ink, #1a2233); }
 .compare-judge-chip.active {
-  /* Fallback: --compare-ink is scoped to #compare; Rankings/Heatmaps reuse this chip */
+  /* Fallback: --compare-ink is scoped to #compare; Scoreboard/Single-run reuse this chip */
   background: var(--compare-ink, #1a2233);
   border-color: var(--compare-ink, #1a2233);
   color: #fff;
@@ -4496,7 +4496,7 @@ a.task-source-badge:hover {
   }
 }
 
-/* —— Task-Usage Rankings (Compare-aligned editorial chrome) —— */
+/* —— Task-Usage Scoreboard (Compare-aligned editorial chrome) —— */
 #rankings.panel {
   --rank-a: #1f5fbf;
   --rank-a-deep: #163f84;
@@ -4772,14 +4772,16 @@ a.task-source-badge:hover {
   .rank-win { text-align: left; }
 }
 
-/* —— Heatmaps tab (Compare-aligned editorial chrome) —— */
+/* —— Single-run result tab (Compare-aligned editorial chrome) —— */
 #overview.panel {
   --heat-a: #1f5fbf;
   --heat-a-deep: #163f84;
   --heat-a-soft: #e8f1ff;
+  --heat-a-mid: #7eb0f0;
   --heat-b: #c45a1a;
   --heat-b-deep: #8f3d0c;
   --heat-b-soft: #fff0e4;
+  --heat-b-mid: #f0a46a;
   --heat-ink: #1a2233;
   --heat-paper: #fffdf8;
   --heat-rail: 5px;
@@ -4829,6 +4831,16 @@ a.task-source-badge:hover {
   border: 1.5px solid #c9d4e4;
   border-radius: 4px;
   box-shadow: 4px 4px 0 rgba(26, 34, 51, 0.06);
+  position: sticky;
+  top: 56px;
+  z-index: 4;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#overview .heatmaps-judge-bar .compare-judge-chip.active {
+  background: var(--heat-ink);
+  border-color: var(--heat-ink);
+  color: #fff;
 }
 #overview .heatmaps-metrics {
   margin: 0 0 18px;

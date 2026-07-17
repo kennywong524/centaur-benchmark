@@ -203,11 +203,11 @@ const state = {
   rubricFocus: null,
   overviewTask: "counselling",
   compareTeaserPair: 0,
-  /** Rankings-only judge filter — independent of Heatmaps / Qualitative. */
+  /** Scoreboard-only judge filter — independent of Single-run result / Qualitative. */
   rankings: {
     judgeFilter: "aggregate",
   },
-  /** Heatmaps-only judge filter — never share with Rankings or Qualitative. */
+  /** Single-run result judge filter — never share with Scoreboard or Qualitative. */
   heatmaps: {
     judgeFilter: "aggregate",
   },
@@ -370,7 +370,7 @@ const controlsByTab = {
   project: [],
   compare: [],
   replicates: ["modelSet"],
-  overview: ["run", "modelSet"],
+  overview: ["run"],
   rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
   qualitative: ["run", "task", "mode", "judge"],
@@ -855,7 +855,7 @@ function rankingsJudge() {
   return state.rankings?.judgeFilter || "aggregate";
 }
 
-/** Task-Usage Rankings always uses the full candidate pool (no model-pool filter). */
+/** Task-Usage Scoreboard always uses the full candidate pool (no model-pool filter). */
 function rankingRows(mode = state.mode, judge = rankingsJudge(), runId = state.runId) {
   return rankOfRanks(mode, judge, runId, { allModels: true }).filter(d => d.task_slug === state.task);
 }
@@ -1055,7 +1055,7 @@ function heatmapsJudge() {
   return state.heatmaps?.judgeFilter || "aggregate";
 }
 
-/** Judges available for Heatmaps (full panel; leave-family-out applied per cell). */
+/** Judges available for Single-run result (full panel; leave-family-out applied per cell). */
 function heatmapJudgeOptions() {
   const bundle = activeData();
   const seen = new Map();
@@ -1099,8 +1099,9 @@ function renderHeatJudgeBar() {
 function renderHeatmap(el, mode) {
   if (!el) return;
   const judge = heatmapsJudge();
-  const rows = rankOfRanks(mode, judge);
-  const models = visibleModels(mode).sort((a, b) => {
+  /** Single-run result always uses the full candidate pool (same as Task-Usage Scoreboard). */
+  const rows = rankOfRanks(mode, judge, state.runId, { allModels: true });
+  const models = [...new Set(rows.map(d => d.model_label))].sort((a, b) => {
     const avs = rows.filter(d => d.model_label === a).map(d => d.display_rank);
     const bvs = rows.filter(d => d.model_label === b).map(d => d.display_rank);
     const av = avs.length ? avg(avs) : 999;
@@ -1402,7 +1403,7 @@ function renderRubric() {
   const titleEl = document.getElementById("rubricPanelTitle");
   if (!chart) return;
   if (!qualDataReady()) {
-    chart.innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Task-Usage Rankings or Qualitative.</p>`;
+    chart.innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Task-Usage Scoreboard or Qualitative.</p>`;
     return;
   }
   const judge = rankingsJudge();
@@ -2314,12 +2315,12 @@ const methodologyDetails = {
   automation: {
     title: "Automation regime: the model solves alone",
     body: "Each focal model receives the task prompt directly and produces the deliverable end-to-end. This measures innate capability: no assistance text, no intermediary. These outputs then compete against each other in the automation tournament.",
-    action: { label: "View automation task-usage rankings", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
+    action: { label: "View automation task-usage scoreboard", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
   },
   augmentation: {
     title: "Augmentation regime: the model guides a fixed worker",
     body: "The focal model acts as an assistant by providing process-focused assistance text to the fixed GPT-3.5-Turbo worker model alongside the client task. The worker model's deliverable is what gets judged, so a model succeeds in this regime by helping its worker perform better — mirroring how AI assistance can augment a human professional.",
-    action: { label: "View augmentation task-usage rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
+    action: { label: "View augmentation task-usage scoreboard", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
   },
   evaluator: {
     title: "Evaluator panel: blind pairwise judging",
