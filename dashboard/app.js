@@ -203,8 +203,12 @@ const state = {
   rubricFocus: null,
   overviewTask: "counselling",
   compareTeaserPair: 0,
-  /** Rankings-only filters — never share with Heatmaps (`state.judge`). */
+  /** Rankings-only judge filter — independent of Heatmaps / Qualitative. */
   rankings: {
+    judgeFilter: "aggregate",
+  },
+  /** Heatmaps-only judge filter — never share with Rankings or Qualitative. */
+  heatmaps: {
     judgeFilter: "aggregate",
   },
   compare: {
@@ -366,7 +370,7 @@ const controlsByTab = {
   project: [],
   compare: [],
   replicates: ["modelSet"],
-  overview: ["run", "modelSet", "judge"],
+  overview: ["run", "modelSet"],
   rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
   qualitative: ["run", "task", "mode", "judge"],
@@ -1047,9 +1051,55 @@ function bindFloatingTips(root = document) {
   });
 }
 
+function heatmapsJudge() {
+  return state.heatmaps?.judgeFilter || "aggregate";
+}
+
+/** Judges available for Heatmaps (full panel; leave-family-out applied per cell). */
+function heatmapJudgeOptions() {
+  const bundle = activeData();
+  const seen = new Map();
+  (bundle?.by_judge || []).forEach(d => {
+    if (!d.judge_model) return;
+    if (!seen.has(d.judge_model)) seen.set(d.judge_model, judgeDisplay(d.judge_model));
+  });
+  return [...seen.entries()]
+    .map(([model, label]) => ({ model, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function renderHeatJudgeBar() {
+  const el = document.getElementById("heatJudgeBar");
+  if (!el) return;
+  if (!state.heatmaps) state.heatmaps = { judgeFilter: "aggregate" };
+  const judgeOpts = heatmapJudgeOptions();
+  const active = heatmapsJudge();
+  if (active !== "aggregate" && !judgeOpts.some(j => j.model === active)) {
+    state.heatmaps.judgeFilter = "aggregate";
+  }
+  const judge = heatmapsJudge();
+  const buttons = [
+    `<button type="button" class="compare-judge-chip ${judge === "aggregate" ? "active" : ""}" data-heat-judge="aggregate">Average</button>`,
+    ...judgeOpts.map(j =>
+      `<button type="button" class="compare-judge-chip ${judge === j.model ? "active" : ""}" data-heat-judge="${esc(j.model)}">${esc(j.label)}</button>`
+    ),
+  ].join("");
+  el.innerHTML = `
+    <span class="compare-judge-bar-label">Scores from</span>
+    <div class="compare-judge-chips">${buttons}</div>
+    <span class="compare-rubric-scope">Average = panel aggregate · per-judge respects leave-family-out</span>`;
+  el.querySelectorAll("[data-heat-judge]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.heatmaps.judgeFilter = btn.dataset.heatJudge;
+      renderHeatmaps();
+    });
+  });
+}
+
 function renderHeatmap(el, mode) {
   if (!el) return;
-  const rows = rankOfRanks(mode, state.judge);
+  const judge = heatmapsJudge();
+  const rows = rankOfRanks(mode, judge);
   const models = visibleModels(mode).sort((a, b) => {
     const avs = rows.filter(d => d.model_label === a).map(d => d.display_rank);
     const bvs = rows.filter(d => d.model_label === b).map(d => d.display_rank);
@@ -1066,8 +1116,8 @@ function renderHeatmap(el, mode) {
       const d = byKey.get(`${task}|${model}`);
       const r = d?.display_rank;
       const full = displayModel(model, mode);
-      if (isOwnFamily(state.judge, model)) {
-        html += `<td class="heat-na" data-tip="${esc(full)} excluded by leave-family-out for ${esc(judgeLabels[state.judge] || state.judge)}." data-tip-title="N/A">—</td>`;
+      if (isOwnFamily(judge, model)) {
+        html += `<td class="heat-na" data-tip="${esc(full)} excluded by leave-family-out for ${esc(judgeLabels[judge] || judge)}." data-tip-title="N/A">—</td>`;
       } else {
         const tip = `${full} · ${cleanTaskTitle(task)} · rank ${r || "—"} · win rate ${d ? Number(d.score).toFixed(3) : "NA"}`;
         html += `<td data-tip="${esc(tip)}" data-tip-title="Cell" style="background:${heatColor(r, maxRank)};color:${r > maxRank * .72 ? "white" : "#172033"}">${r || ""}</td>`;
@@ -1077,7 +1127,7 @@ function renderHeatmap(el, mode) {
   }
   html += `<tr><th scope="row">Average</th>`;
   for (const model of models) {
-    if (isOwnFamily(state.judge, model)) {
+    if (isOwnFamily(judge, model)) {
       html += `<td class="heat-na">—</td>`;
     } else {
       const vals = rows.filter(d => d.model_label === model).map(d => d.display_rank);
@@ -1088,6 +1138,13 @@ function renderHeatmap(el, mode) {
   html += `</tr></tbody></table>`;
   el.innerHTML = heatColorLegendHtml() + html + modelLegendHtml(models, mode);
   bindFloatingTips(el);
+}
+
+function renderHeatmaps() {
+  renderHeatJudgeBar();
+  renderMetrics();
+  renderHeatmap(document.getElementById("heatAug"), "augmentation");
+  renderHeatmap(document.getElementById("heatAuto"), "automation");
 }
 
 function roleLeanMeta(gap) {
@@ -3352,9 +3409,7 @@ function renderAll() {
     renderProjectStats();
     renderOverviewLanding();
     renderFindingsSnapshot();
-    renderMetrics();
-    renderHeatmap(document.getElementById("heatAug"), "augmentation");
-    renderHeatmap(document.getElementById("heatAuto"), "automation");
+    renderHeatmaps();
     renderRoleScatter();
     renderReplicateSummary();
     renderValidation();
