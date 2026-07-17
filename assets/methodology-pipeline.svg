@@ -183,9 +183,6 @@
     <text x="247" y="330" text-anchor="middle" font-size="12" fill="#2a2e36">Worker models directly</text>
     <text x="247" y="345" text-anchor="middle" font-size="12" fill="#2a2e36">solve tasks.</text>
     <rect x="156" y="234" width="182" height="118" rx="11" fill="none" stroke="#0a3db3" stroke-width="1.7"/>
-
-    <line x1="338" y1="294" x2="434" y2="324" stroke="#0a3db3" stroke-width="2" marker-end="url(#arrBlue)"/>
-    <text x="372" y="292" font-size="12.5" font-weight="700" fill="#0a3db3">Outputs</text>
   </g>
 
   <!-- ============ Augmentation lane ============ -->
@@ -217,9 +214,12 @@
     <text x="260" y="520" text-anchor="middle" font-size="12" fill="#2a2e36">Assistants provide assistance texts;</text>
     <text x="260" y="535" text-anchor="middle" font-size="12" fill="#2a2e36">the worker then solves the task.</text>
     <rect x="150" y="364" width="220" height="180" rx="11" fill="none" stroke="#e05a0a" stroke-width="1.7"/>
+  </g>
 
-    <line x1="370" y1="470" x2="434" y2="406" stroke="#e05a0a" stroke-width="2" marker-end="url(#arrOrange)"/>
-    <text x="400" y="458" font-size="12.5" font-weight="700" fill="#e05a0a">Outputs</text>
+  <!-- Incoming arrows stop just outside Evaluator left edge; fill covers any tip overshoot -->
+  <g>
+    <line x1="338" y1="293" x2="435" y2="322" stroke="#0a3db3" stroke-width="2" marker-end="url(#arrBlue)"/>
+    <line x1="370" y1="464" x2="435" y2="414" stroke="#e05a0a" stroke-width="2" marker-end="url(#arrOrange)"/>
   </g>
 
   <!-- ============ Evaluator ============ -->
@@ -233,9 +233,18 @@
     <text x="502" y="409" text-anchor="middle" font-size="12" fill="#2a2e36">using task-specific</text>
     <text x="502" y="424" text-anchor="middle" font-size="12" fill="#2a2e36">rubrics.</text>
     <rect x="438" y="280" width="128" height="178" rx="11" fill="none" stroke="#0a8976" stroke-width="1.7"/>
+  </g>
 
-    <line x1="566" y1="340" x2="696" y2="340" stroke="#0a8976" stroke-width="2" marker-end="url(#arrGreen)"/>
-    <line x1="566" y1="400" x2="696" y2="400" stroke="#0a8976" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <!-- Outputs labels painted last, centered in the open gap left of Evaluator -->
+  <g>
+    <text x="355" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0a3db3">Outputs</text>
+    <text x="358" y="422" text-anchor="middle" font-size="12.5" font-weight="700" fill="#e05a0a">Outputs</text>
+  </g>
+
+  <!-- Evaluator → Results arrows first; Results fill covers tip overshoot; stroke last -->
+  <g>
+    <line x1="566" y1="340" x2="702" y2="340" stroke="#0a8976" stroke-width="2" marker-end="url(#arrGreen)"/>
+    <line x1="566" y1="400" x2="702" y2="400" stroke="#0a8976" stroke-width="2" marker-end="url(#arrGreen)"/>
     <text x="631" y="318" text-anchor="middle" font-size="12" fill="#2a2e36">Pairwise choice</text>
     <text x="631" y="333" text-anchor="middle" font-size="12" fill="#2a2e36">+ brief rationale</text>
     <text x="631" y="422" text-anchor="middle" font-size="12" fill="#2a2e36">Rubric scores</text>
