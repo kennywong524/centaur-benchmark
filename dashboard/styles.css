@@ -4182,11 +4182,11 @@ a.task-source-badge:hover {
   font-weight: 700;
   cursor: pointer;
 }
-.compare-judge-chip:hover { border-color: #7a8aa3; color: var(--compare-ink, #1a2233); }
+.compare-judge-chip:hover { border-color: #7a8aa3; color: #1a2233; }
 .compare-judge-chip.active {
-  /* Fallback: --compare-ink is scoped to #compare; Scoreboard/Single-run reuse this chip */
-  background: var(--compare-ink, #1a2233);
-  border-color: var(--compare-ink, #1a2233);
+  /* Solid ink — shared by Compare, Scoreboard, Single-run (and other chip toggles) */
+  background: #1a2233;
+  border-color: #1a2233;
   color: #fff;
 }
 .compare-rubric-scope {
@@ -4694,23 +4694,9 @@ a.task-source-badge:hover {
   max-width: 54rem;
   color: #4d5a70;
 }
+/* Scoreboard: reuse .compare-judge-bar chrome; only spacing differs */
 .rank-judge-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 12px;
   margin: 0 0 18px;
-  padding: 12px 14px;
-  background:
-    linear-gradient(135deg, rgba(255, 240, 228, 0.88), rgba(255, 255, 255, 0.95) 42%, rgba(232, 241, 255, 0.9));
-  border: 1.5px solid #c9d4e4;
-  border-radius: 4px;
-  box-shadow: 4px 4px 0 rgba(26, 34, 51, 0.06);
-}
-#rankings .rank-judge-bar .compare-judge-chip.active {
-  background: var(--rank-ink);
-  border-color: var(--rank-ink);
-  color: #fff;
 }
 .rank-layout {
   display: grid;
@@ -4977,28 +4963,12 @@ a.task-source-badge:hover {
   max-width: 54rem;
   color: #4d5a70;
 }
+/* Single-run: reuse .compare-judge-bar chrome; sticky only (no blur washout) */
 .heatmaps-judge-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px 12px;
   margin: 0 0 16px;
-  padding: 12px 14px;
-  background:
-    linear-gradient(135deg, rgba(255, 240, 228, 0.88), rgba(255, 255, 255, 0.95) 42%, rgba(232, 241, 255, 0.9));
-  border: 1.5px solid #c9d4e4;
-  border-radius: 4px;
-  box-shadow: 4px 4px 0 rgba(26, 34, 51, 0.06);
   position: sticky;
   top: 56px;
   z-index: 4;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-#overview .heatmaps-judge-bar .compare-judge-chip.active {
-  background: var(--heat-ink);
-  border-color: var(--heat-ink);
-  color: #fff;
 }
 #overview .heatmaps-metrics {
   margin: 0 0 18px;
