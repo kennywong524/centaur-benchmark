@@ -242,10 +242,10 @@ function taskSourceBadgesHtml(slug) {
   const label = taskSourceLabel(slug);
   const badges = [];
   if (/gdpval/i.test(label)) {
-    badges.push(`<span class="task-source-badge"><img class="task-source-logo openai" src="assets/openai-logo.png?v=20260717q" alt="" width="18" height="18" /><span>GDPval</span></span>`);
+    badges.push(`<span class="task-source-badge"><img class="task-source-logo openai" src="assets/openai-logo.png?v=20260717r" alt="" width="18" height="18" /><span>GDPval</span></span>`);
   }
   if (/anthropic/i.test(label)) {
-    badges.push(`<span class="task-source-badge"><img class="task-source-logo anthropic" src="assets/anthropic-logo.png?v=20260717q" alt="" width="18" height="18" /><span>Anthropic Economic Index</span></span>`);
+    badges.push(`<span class="task-source-badge"><img class="task-source-logo anthropic" src="assets/anthropic-logo.png?v=20260717r" alt="" width="18" height="18" /><span>Anthropic Economic Index</span></span>`);
   }
   if (/author/i.test(label)) {
     badges.push(`<span class="task-source-badge task-source-badge-plain"><span>Author-designed</span></span>`);
@@ -307,7 +307,7 @@ const glossary = {
   "model pool": "Which models are eligible for ranking: All candidates (includes the plain unaided worker baseline) vs Assistants only (focal assistant models).",
   "rank universe": "Synonym for model pool — which models are eligible for ranking.",
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
-  "role-swap": "Compares a model's automation performance (solves the task alone) versus augmentation performance (helps a fixed worker). Higher score is better.",
+  "role-swap": "Compares a model's automation performance (solves the task alone) versus augmentation performance (helps a fixed worker). Axes use reverse rank (inverted mean rank so higher = better).",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
   "baseline (plain worker)": "An augmentation run in which GPT-3.5-Turbo receives no assistance text. This shows what the fixed worker model achieves unaided.",
   "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
@@ -1008,6 +1008,52 @@ function renderHeatmap(el, mode) {
   bindFloatingTips(el);
 }
 
+function roleLeanMeta(gap) {
+  if (gap >= 0.8) return { lean: "aug", label: "Stronger assistant", short: "assistant" };
+  if (gap <= -0.8) return { lean: "auto", label: "Stronger automator", short: "automator" };
+  return { lean: "bal", label: "Similar in both", short: "similar" };
+}
+
+function bindRoleScatterSync(root) {
+  const plot = root.querySelector(".role-scatter-svg");
+  const list = root.querySelector(".role-model-list");
+  if (!plot || !list) return;
+
+  const clear = () => {
+    root.querySelectorAll(".role-point.is-active, .role-model-row.is-active").forEach(n => n.classList.remove("is-active"));
+    root.classList.remove("role-scatter-has-focus");
+  };
+
+  const activate = (model, { scroll = false } = {}) => {
+    clear();
+    if (!model) return;
+    root.classList.add("role-scatter-has-focus");
+    const point = [...plot.querySelectorAll(".role-point")].find(n => n.dataset.model === model);
+    const row = [...list.querySelectorAll(".role-model-row")].find(n => n.dataset.model === model);
+    if (point) point.classList.add("is-active");
+    if (row) {
+      row.classList.add("is-active");
+      if (scroll) row.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  };
+
+  plot.querySelectorAll(".role-point").forEach(point => {
+    const model = point.dataset.model;
+    point.addEventListener("mouseenter", () => activate(model, { scroll: true }));
+    point.addEventListener("mouseleave", clear);
+    point.addEventListener("focus", () => activate(model, { scroll: true }));
+    point.addEventListener("blur", clear);
+  });
+
+  list.querySelectorAll(".role-model-row").forEach(row => {
+    const model = row.dataset.model;
+    row.addEventListener("mouseenter", () => activate(model));
+    row.addEventListener("mouseleave", clear);
+    row.addEventListener("focus", () => activate(model));
+    row.addEventListener("blur", clear);
+  });
+}
+
 function renderRoleScatter() {
   const el = document.getElementById("roleScatter");
   if (!el) return;
@@ -1021,13 +1067,20 @@ function renderRoleScatter() {
     data.length,
     9
   );
-  const scored = data.map(d => ({
-    model: d.model,
-    autoScore: rankToScore(d.automation, maxRank),
-    augScore: rankToScore(d.augmentation, maxRank),
-    autoRank: d.automation,
-    augRank: d.augmentation,
-  }));
+  const scored = data.map(d => {
+    const autoScore = rankToScore(d.automation, maxRank);
+    const augScore = rankToScore(d.augmentation, maxRank);
+    const gap = augScore - autoScore;
+    return {
+      model: d.model,
+      autoScore,
+      augScore,
+      autoRank: d.automation,
+      augRank: d.augmentation,
+      gap,
+      ...roleLeanMeta(gap),
+    };
+  });
   const size = 520;
   const pad = 58;
   const lo = 1;
@@ -1035,75 +1088,108 @@ function renderRoleScatter() {
   const x = v => pad + (v - lo) / (hi - lo) * (size - pad * 2);
   const y = v => size - pad - (v - lo) / (hi - lo) * (size - pad * 2);
   const mid = (lo + hi) / 2;
+  const midX = x(mid);
+  const midY = y(mid);
+  const plotW = size - pad * 2;
+  const plotH = size - pad * 2;
   const ticks = Array.from({ length: Math.round(hi) }, (_, i) => i + 1)
     .filter(t => t === 1 || t === Math.round(hi) || t % 2 === 0);
+
+  const fillByLean = {
+    aug: "#2f6fcb",
+    auto: "#d96f31",
+    bal: "#5a6b82",
+  };
 
   const points = scored.map(d => {
     const cx = x(d.autoScore);
     const cy = y(d.augScore);
     const short = modelShort[d.model] || d.model.slice(0, 6);
     const right = cx < size * 0.72;
-    const lx = right ? cx + 10 : cx - 10;
+    const lx = right ? cx + 12 : cx - 12;
     const anchor = right ? "start" : "end";
-    const gap = d.augScore - d.autoScore;
-    const tip = `${displayModel(d.model)} · automation ${d.autoScore.toFixed(1)} (rank ${d.autoRank.toFixed(1)}) · augmentation ${d.augScore.toFixed(1)} (rank ${d.augRank.toFixed(1)})`;
-    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="8" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="5" fill="#2f6fcb" stroke="white" stroke-width="1.4" pointer-events="none"/><text x="${lx}" y="${cy + 3.5}" font-size="11" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="3" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
+    const fill = fillByLean[d.lean] || fillByLean.bal;
+    const tip = [
+      `Automation reverse rank ${d.autoScore.toFixed(1)} (mean rank ${d.autoRank.toFixed(1)})`,
+      `Augmentation reverse rank ${d.augScore.toFixed(1)} (mean rank ${d.augRank.toFixed(1)})`,
+      d.label,
+    ].join(" · ");
+    return `<g class="role-point lean-${d.lean}" tabindex="0" data-model="${esc(d.model)}" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}">
+      <circle class="role-hit" cx="${cx}" cy="${cy}" r="14" fill="transparent"/>
+      <circle class="role-halo" cx="${cx}" cy="${cy}" r="9" fill="${fill}" opacity="0.18" pointer-events="none"/>
+      <circle class="role-dot" cx="${cx}" cy="${cy}" r="5.5" fill="${fill}" stroke="#fff" stroke-width="1.8" filter="url(#roleDotShadow)" pointer-events="none"/>
+      <text class="role-label" x="${lx}" y="${cy + 3.5}" font-size="11" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="3.5" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text>
+    </g>`;
   }).join("");
 
-  const qLabel = (tx, ty, text, anchor = "middle") =>
-    `<text x="${tx}" y="${ty}" text-anchor="${anchor}" font-size="10" font-weight="650" fill="#8a93a3">${text}</text>`;
+  const qLabel = (tx, ty, text, anchor = "middle", cls = "") =>
+    `<text class="role-q-label ${cls}" x="${tx}" y="${ty}" text-anchor="${anchor}" font-size="10.5" font-weight="700">${text}</text>`;
 
-  const svg = `<div class="svg-wrap landing-scatter-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Models plotted by automation performance versus augmentation performance. Higher is better on both axes.">
-    <rect x="0" y="0" width="${size}" height="${size}" fill="#fbfcfe"/>
-    <rect x="${pad}" y="${pad}" width="${size - pad * 2}" height="${size - pad * 2}" fill="#fff" stroke="#e8edf4"/>
+  const svg = `<div class="svg-wrap landing-scatter-wrap"><svg class="role-scatter-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="Models plotted by automation reverse rank versus augmentation reverse rank. Higher is better on both axes.">
+    <defs>
+      <filter id="roleDotShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#1f2433" flood-opacity="0.18"/>
+      </filter>
+    </defs>
+    <rect x="0" y="0" width="${size}" height="${size}" fill="#f7f9fc"/>
+    <g class="role-quadrants" aria-hidden="true">
+      <rect class="q-aug" x="${pad}" y="${pad}" width="${midX - pad}" height="${midY - pad}" />
+      <rect class="q-both" x="${midX}" y="${pad}" width="${pad + plotW - midX}" height="${midY - pad}" />
+      <rect class="q-weak" x="${pad}" y="${midY}" width="${midX - pad}" height="${pad + plotH - midY}" />
+      <rect class="q-auto" x="${midX}" y="${midY}" width="${pad + plotW - midX}" height="${pad + plotH - midY}" />
+    </g>
+    <rect x="${pad}" y="${pad}" width="${plotW}" height="${plotH}" fill="none" stroke="#d9dee7"/>
     ${ticks.map(t => {
       const s = rankToScore(t, maxRank);
-      return `<line x1="${x(s)}" y1="${pad}" x2="${x(s)}" y2="${size - pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(s)}" x2="${size - pad}" y2="${y(s)}" stroke="#eef1f5"/><text x="${x(s)}" y="${size - pad + 18}" text-anchor="middle" font-size="10" fill="#657083">${s}</text><text x="${pad - 10}" y="${y(s) + 3}" text-anchor="end" font-size="10" fill="#657083">${s}</text>`;
+      return `<line x1="${x(s)}" y1="${pad}" x2="${x(s)}" y2="${size - pad}" stroke="#e8edf4"/><line x1="${pad}" y1="${y(s)}" x2="${size - pad}" y2="${y(s)}" stroke="#e8edf4"/><text x="${x(s)}" y="${size - pad + 18}" text-anchor="middle" font-size="10" fill="#657083">${s}</text><text x="${pad - 10}" y="${y(s) + 3}" text-anchor="end" font-size="10" fill="#657083">${s}</text>`;
     }).join("")}
-    <line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.5"/>
-    <text x="${(x(lo) + x(hi)) / 2}" y="${(y(lo) + y(hi)) / 2 - 12}" text-anchor="middle" font-size="10" fill="#8a93a3" font-style="italic">Same in both roles</text>
-    ${qLabel(x(hi) - 8, y(hi) + 18, "Strong in both", "end")}
-    ${qLabel(x(lo) + 8, y(hi) + 18, "Stronger assistant", "start")}
-    ${qLabel(x(hi) - 8, y(lo) - 10, "Stronger automator", "end")}
-    ${qLabel(x(lo) + 8, y(lo) - 10, "Weaker in both", "start")}
-    ${points}
-    <text x="${size / 2}" y="${size - 10}" text-anchor="middle" font-size="12" font-weight="700">Automation →</text>
-    <text x="16" y="${size / 2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size / 2})">← Augmentation</text>
+    <line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" stroke="#8a93a3" stroke-dasharray="5 5" stroke-width="1.4"/>
+    <text x="${(x(lo) + x(hi)) / 2 + 18}" y="${(y(lo) + y(hi)) / 2 - 10}" text-anchor="middle" font-size="10" fill="#7a8496" font-style="italic">Same in both roles</text>
+    ${qLabel(pad + 10, pad + 16, "Stronger assistant", "start", "q-aug-label")}
+    ${qLabel(size - pad - 10, pad + 16, "Strong in both", "end", "q-both-label")}
+    ${qLabel(pad + 10, size - pad - 10, "Weaker in both", "start", "q-weak-label")}
+    ${qLabel(size - pad - 10, size - pad - 10, "Stronger automator", "end", "q-auto-label")}
+    <g class="role-points">${points}</g>
+    <text x="${size / 2}" y="${size - 8}" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2433">Automation reverse rank →</text>
+    <text x="14" y="${size / 2}" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2433" transform="rotate(-90 14 ${size / 2})">← Augmentation reverse rank</text>
   </svg></div>`;
 
-  const movers = scored
-    .map(d => ({ ...d, gap: d.augScore - d.autoScore }))
-    .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
-    .slice(0, 4);
+  const rows = [...scored]
+    .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap) || b.autoScore + b.augScore - (a.autoScore + a.augScore));
 
-  const cards = movers.map(d => {
-    let tag = "Balanced";
-    let tagClass = "tag-bal";
-    if (d.gap >= 0.8) { tag = "Stronger as assistant"; tagClass = "tag-aug"; }
-    else if (d.gap <= -0.8) { tag = "Stronger as automator"; tagClass = "tag-auto"; }
-    return `<div class="role-info-card">
-      <div class="role-info-name">${esc(displayModel(d.model))}<span class="role-tag ${tagClass}">${tag}</span></div>
-      <div class="role-info-stats">
-        <div class="role-stat role-stat-auto"><span class="role-stat-label">Automation</span><span class="role-stat-val">${d.autoScore.toFixed(1)}</span></div>
-        <div class="role-stat role-stat-aug"><span class="role-stat-label">Augmentation</span><span class="role-stat-val">${d.augScore.toFixed(1)}</span></div>
-      </div>
-    </div>`;
+  const listRows = rows.map(d => {
+    const delta = Math.abs(d.gap);
+    const leanNote = d.lean === "bal"
+      ? "similar both ways"
+      : d.lean === "aug"
+        ? `+${delta.toFixed(1)} as assistant`
+        : `+${delta.toFixed(1)} as automator`;
+    return `<button type="button" class="role-model-row lean-${d.lean}" data-model="${esc(d.model)}">
+      <span class="role-model-main">
+        <span class="role-model-name">${esc(displayModel(d.model))}</span>
+        <span class="role-model-lean">${esc(leanNote)}</span>
+      </span>
+      <span class="role-model-scores" aria-label="Reverse rank scores">
+        <span class="role-score role-score-auto"><em>Auto</em><b>${d.autoScore.toFixed(1)}</b></span>
+        <span class="role-score role-score-aug"><em>Aug</em><b>${d.augScore.toFixed(1)}</b></span>
+      </span>
+    </button>`;
   }).join("");
 
-  const legend = scored.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${esc(displayModel(d.model))}</span>`).join("");
   el.innerHTML = `
-    <p class="chart-note">10-run panel average · higher score = better · assistant models only (excludes unaided baseline)</p>
+    <p class="chart-note">10-run panel average · reverse rank (higher = better) · assistant models only</p>
     <div class="role-swap-layout">
-      <div class="role-swap-left">${svg}<div class="role-legend">${legend}</div></div>
+      <div class="role-swap-left">${svg}</div>
       <div class="role-swap-right">
-        <div class="role-info">
-          <div class="role-info-head">Largest role gaps</div>
-          <p class="role-info-sub">Models that shift most between automation and augmentation. Hover points for full scores.</p>
-          ${cards}
+        <div class="role-info role-model-panel">
+          <div class="role-info-head">All models</div>
+          <p class="role-info-sub">Reverse rank scores. Hover a point or row to sync. Sorted by role gap.</p>
+          <div class="role-model-list" role="list">${listRows}</div>
         </div>
       </div>
     </div>`;
   bindFloatingTips(el);
+  bindRoleScatterSync(el);
 }
 
 function renderMetrics() {
@@ -1598,8 +1684,10 @@ function renderOverviewTasks() {
 }
 
 function medalHtml(entry, mode, place) {
-  if (!entry) return `<div class="medal medal-${place}"><span class="medal-rank">${place === "gold" ? "1st" : "2nd"}</span><span class="medal-model">—</span></div>`;
-  return `<div class="medal medal-${place}"><span class="medal-rank">${place === "gold" ? "Gold" : "Silver"}</span><span class="medal-model">${esc(displayModel(entry.model, mode))}</span><span class="medal-mean">mean rank ${entry.mean.toFixed(2)}</span></div>`;
+  const emoji = place === "gold" ? "🥇" : "🥈";
+  const aria = place === "gold" ? "1st place" : "2nd place";
+  if (!entry) return `<div class="medal medal-${place}"><span class="medal-rank" aria-label="${aria}">${emoji}</span><span class="medal-model">—</span></div>`;
+  return `<div class="medal medal-${place}"><span class="medal-rank" aria-label="${aria}">${emoji}</span><span class="medal-model">${esc(displayModel(entry.model, mode))}</span><span class="medal-mean">mean rank ${entry.mean.toFixed(2)}</span></div>`;
 }
 
 function renderOverviewPodium() {
