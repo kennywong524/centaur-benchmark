@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717x" />
+    <link rel="stylesheet" href="styles.css?v=20260717y" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -24,8 +24,8 @@
         <nav class="tabs" aria-label="Dashboard sections" role="tablist">
           <button class="tab active" data-tab="project" role="tab" aria-selected="true" aria-controls="project">Overview</button>
           <button class="tab" data-tab="compare" role="tab" aria-selected="false" aria-controls="compare">Compare</button>
-          <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Task-Usage Rankings</button>
-          <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Heatmaps</button>
+          <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Task-Usage Scoreboard</button>
+          <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Single-run result</button>
           <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-Run Summary</button>
           <button class="tab" data-tab="qualitative" role="tab" aria-selected="false" aria-controls="qualitative">Qualitative</button>
           <button class="tab" data-tab="judges" role="tab" aria-selected="false" aria-controls="judges">Judges</button>
@@ -177,7 +177,7 @@
             </div>
             <div class="landing-cta-row">
               <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Open 10-Run Summary →</button>
-              <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run heatmaps →</button>
+              <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run result →</button>
             </div>
           </div>
 
@@ -215,15 +215,15 @@
           <div class="landing-section ace-section" id="overview-explore">
             <div class="landing-section-head">
               <p class="ace-kicker">Go deeper</p>
-              <h3>Task-usage rankings, rubrics, and qualitative evidence</h3>
+              <h3>Task-usage scoreboard, rubrics, and qualitative evidence</h3>
               <p>Drill into per-task × usage-regime leaderboards and rubric dimensions, then open the Qualitative browser for full prompts, assistance text, outputs, and judge rationales.</p>
             </div>
             <div class="explore-card-grid">
               <button class="explore-card" type="button" data-gotab="rankings">
-                <span class="explore-card-kicker">Task-Usage Rankings</span>
+                <span class="explore-card-kicker">Task-Usage Scoreboard</span>
                 <b>Task × usage-regime leaderboards</b>
                 <p>Average and per-judge rankings plus what each rubric dimension means for the task.</p>
-                <span class="explore-card-cta">Open Task-Usage Rankings →</span>
+                <span class="explore-card-cta">Open Task-Usage Scoreboard →</span>
               </button>
               <button class="explore-card" type="button" data-gotab="qualitative">
                 <span class="explore-card-kicker">Qualitative</span>
@@ -292,10 +292,10 @@
 
       <section id="overview" class="panel">
         <div class="section-heading heatmaps-heading">
-          <h2>Rank heat maps</h2>
-          <p>Single-run snapshot of model ranks across tasks. Use the <b>Run</b> and <b>Model pool</b> filters above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>.</p>
+          <h2>Single-run result</h2>
+          <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>.</p>
         </div>
-        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Heatmap judge filter"></div>
+        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run result judge filter"></div>
         <div class="metric-row heatmaps-metrics" id="metricRow"></div>
         <div class="heatmaps-layout">
           <article class="heatmaps-panel heatmaps-panel--aug">
@@ -405,10 +405,10 @@
 
       <section id="rankings" class="panel">
         <div class="section-heading rank-heading">
-          <h2>Task-Usage Rankings</h2>
+          <h2>Task-Usage Scoreboard</h2>
           <p>For readers who want a deeper read on <b>what each rubric dimension means for each task</b>, plus <b>task × usage-regime rankings</b> under Average or individual judges. Select a model on the left to load its dimension scores on the right. Automation vs augmentation use the same filters above; assistance text terminology is unchanged.</p>
         </div>
-        <div class="rank-judge-bar" id="rankJudgeBar" role="tablist" aria-label="Ranking judge filter"></div>
+        <div class="rank-judge-bar" id="rankJudgeBar" role="tablist" aria-label="Scoreboard judge filter"></div>
         <div class="rank-layout">
           <article class="rank-panel rank-panel--board">
             <header class="rank-panel-head">
@@ -478,7 +478,7 @@
           <h2>Qualitative Browser</h2>
           <p>Read the exact assistance text, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
         </div>
-        <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Task-Usage Rankings</button>
+        <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Task-Usage Scoreboard</button>
         <div id="qualQuickPicks" class="qual-quick-picks"></div>
         <div class="qual-grid">
           <aside class="model-list" id="modelList"></aside>
@@ -522,7 +522,7 @@
         <div class="loading-skeleton">
           <span></span><span></span><span></span>
         </div>
-        <p class="loading-sub">Rankings and heatmaps load first (~4 MB). Qualitative outputs load on demand.</p>
+        <p class="loading-sub">Scoreboard and single-run results load first (~4 MB). Qualitative outputs load on demand.</p>
       </div>
     </div>
 
@@ -536,6 +536,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717x"></script>
+    <script src="app.js?v=20260717y"></script>
   </body>
 </html>
