@@ -201,6 +201,16 @@ const state = {
   selectedModel: null,
   textTab: "output",
   rubricFocus: null,
+  compare: {
+    task: "tax_prep",
+    mode: "augmentation",
+    runId: null,
+    modelA: null,
+    modelB: null,
+    rubricView: "pair",
+    paneA: "output",
+    paneB: "output",
+  },
 };
 
 const glossary = {
@@ -215,7 +225,7 @@ const glossary = {
   "model pool": "Which models are eligible for ranking: All candidates (includes the plain unaided worker baseline) vs Assistants only (focal assistant models).",
   "rank universe": "Synonym for model pool — which models are eligible for ranking.",
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
-  "role-swap": "Compares a model's automation rank vs augmentation rank to reveal whether it is a better solver or assistant.",
+  "role-swap": "Compares how well a model works alone versus how well it coaches a fixed worker. Higher performance score is better.",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
   "baseline (plain worker)": "An augmentation run in which GPT-3.5-Turbo receives no assistance text. This shows what the fixed worker model achieves unaided.",
   "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
@@ -250,6 +260,7 @@ function renderQualQuickPicks(ranked) {
 
 const controlsByTab = {
   project: [],
+  compare: [],
   replicates: ["modelSet"],
   overview: ["run", "modelSet", "judge"],
   rankings: ["run", "modelSet", "task", "mode", "judge"],
@@ -268,7 +279,7 @@ const taskLabels = {
   travel_planning: "Travel Agent",
   tutoring: "Tutoring",
 };
-const modeLabels = { augmentation: "Augmentation", automation: "Automation" };
+const modeLabels = { augmentation: "Coaches a worker", automation: "Works alone" };
 const judgeLabels = {
   aggregate: "Aggregate",
   "gpt-4.1": "GPT-4.1",
@@ -519,7 +530,9 @@ function ensureQualitativeData() {
       setQualLoading(false);
       renderRubric();
       renderQualitative();
+      renderCompare();
       applyTermTooltips(document.getElementById("qualitative"));
+      applyTermTooltips(document.getElementById("compare"));
     })
     .catch(err => {
       setQualLoading(false);
@@ -532,7 +545,7 @@ function ensureQualitativeData() {
 }
 
 function needsQualitativeData(tab = state.tab) {
-  return tab === "qualitative" || tab === "rankings";
+  return tab === "qualitative" || tab === "rankings" || tab === "compare";
 }
 
 function qualDataReady() {
@@ -739,6 +752,29 @@ function averageRanks(judge = "aggregate", runId = state.runId) {
   })).filter(d => d.augmentation !== null && d.automation !== null);
 }
 
+/** Paper Fig. 9: mean ranks across all replicate runs (assistant models by default). */
+function panelAverageRanks(judge = "aggregate", { assistantsOnly = true } = {}) {
+  const buckets = new Map();
+  for (const run of runList()) {
+    for (const d of averageRanks(judge, run.id)) {
+      if (assistantsOnly && isBaselineModel(d.model)) continue;
+      const cur = buckets.get(d.model) || { automation: [], augmentation: [] };
+      cur.automation.push(d.automation);
+      cur.augmentation.push(d.augmentation);
+      buckets.set(d.model, cur);
+    }
+  }
+  return [...buckets.entries()].map(([model, v]) => ({
+    model,
+    automation: avg(v.automation),
+    augmentation: avg(v.augmentation),
+  }));
+}
+
+function rankToScore(rank, maxRank) {
+  return maxRank + 1 - Number(rank);
+}
+
 function avg(xs) {
   return xs.reduce((a, b) => a + b, 0) / xs.length;
 }
@@ -843,6 +879,7 @@ function bindFloatingTips(root = document) {
 }
 
 function renderHeatmap(el, mode) {
+  if (!el) return;
   const rows = rankOfRanks(mode, state.judge);
   const models = visibleModels(mode).sort((a, b) => {
     const avs = rows.filter(d => d.model_label === a).map(d => d.display_rank);
@@ -885,107 +922,163 @@ function renderHeatmap(el, mode) {
 }
 
 function renderRoleScatter() {
-  const data = averageRanks(state.judge);
-  const runLabel = activeRunMeta().label;
-  const judgeLabel = state.judge === "aggregate" ? "panel aggregate" : (judgeLabels[state.judge] || state.judge);
-  const size = 400, pad = 50;
-  const maxRank = Math.max(...data.flatMap(d => [d.augmentation, d.automation]), 9);
-  const x = v => pad + (v - 1) / (maxRank - 1) * (size - pad * 2);
-  const y = v => size - pad - (v - 1) / (maxRank - 1) * (size - pad * 2);
-  // Alternate label placement (right / left) to reduce overlap.
-  const points = data.map((d) => {
-    const cx = x(d.automation);
-    const cy = y(d.augmentation);
-    const short = modelShort[d.model] || d.model.slice(0, 6);
-    const right = cx < size * 0.7;
-    const lx = right ? cx + 9 : cx - 9;
-    const anchor = right ? "start" : "end";
-    const delta = d.automation - d.augmentation;
-    const deltaLabel = delta > 0.05 ? `+${delta.toFixed(2)} toward automation` : delta < -0.05 ? `${Math.abs(delta).toFixed(2)} toward augmentation` : "balanced across roles";
-    const tip = `${displayModel(d.model)} · automation ${d.automation.toFixed(2)} · augmentation ${d.augmentation.toFixed(2)} · ${deltaLabel}`;
-    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="7" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="4.5" fill="#2f6fcb" stroke="white" stroke-width="1.2" pointer-events="none"/><text x="${lx}" y="${cy + 3}" font-size="10" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="2.6" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
-  }).join("");
-  const legend = data.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${displayModel(d.model)}</span>`).join("");
-  const ticks = Array.from({ length: Math.round(maxRank) }, (_, i) => i + 1).filter(t => t === 1 || t === Math.round(maxRank) || t % 2 === 0);
-  const diagMidX = (x(1) + x(maxRank)) / 2;
-  const diagMidY = (y(1) + y(maxRank)) / 2;
-  const svg = `<div class="svg-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Role-swap scatter comparing automation and augmentation average ranks">
-    <rect x="0" y="0" width="${size}" height="${size}" fill="white"/>
-    ${ticks.map(t => `<line x1="${x(t)}" y1="${pad}" x2="${x(t)}" y2="${size-pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(t)}" x2="${size-pad}" y2="${y(t)}" stroke="#eef1f5"/><text x="${x(t)}" y="${size-pad+18}" text-anchor="middle" font-size="10" fill="#657083">${t}</text><text x="${pad-12}" y="${y(t)+3}" text-anchor="end" font-size="10" fill="#657083">${t}</text>`).join("")}
-    <line x1="${x(1)}" y1="${y(1)}" x2="${x(maxRank)}" y2="${y(maxRank)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.4"/>
-    <text x="${diagMidX}" y="${diagMidY - 10}" text-anchor="middle" font-size="9" fill="#8a93a3" font-style="italic">Same rank in both regimes</text>
-    ${points}
-    <text x="${size/2}" y="${size-8}" text-anchor="middle" font-size="11" font-weight="700">Automation avg rank →</text>
-    <text x="15" y="${size/2}" text-anchor="middle" font-size="11" font-weight="700" transform="rotate(-90 15 ${size/2})">← Augmentation avg rank</text>
-  </svg></div><div class="role-legend">${legend}</div>`;
+  const el = document.getElementById("roleScatter");
+  if (!el) return;
+  const data = panelAverageRanks("aggregate", { assistantsOnly: true });
+  if (!data.length) {
+    el.innerHTML = `<p class="chart-note">No panel ranks available yet.</p>`;
+    return;
+  }
+  const maxRank = Math.max(
+    ...data.flatMap(d => [d.augmentation, d.automation]),
+    data.length,
+    9
+  );
+  const scored = data.map(d => ({
+    model: d.model,
+    autoScore: rankToScore(d.automation, maxRank),
+    augScore: rankToScore(d.augmentation, maxRank),
+    autoRank: d.automation,
+    augRank: d.augmentation,
+  }));
+  const size = 520;
+  const pad = 58;
+  const lo = 1;
+  const hi = maxRank;
+  const x = v => pad + (v - lo) / (hi - lo) * (size - pad * 2);
+  const y = v => size - pad - (v - lo) / (hi - lo) * (size - pad * 2);
+  const mid = (lo + hi) / 2;
+  const ticks = Array.from({ length: Math.round(hi) }, (_, i) => i + 1)
+    .filter(t => t === 1 || t === Math.round(hi) || t % 2 === 0);
 
-  const cards = data.slice().sort((a, b) => a.automation - b.automation).map(d => {
-    const gap = d.automation - d.augmentation;
-    let tag = "Balanced", tagClass = "tag-bal";
-    if (gap >= 1) { tag = "Stronger assistant"; tagClass = "tag-aug"; }
-    else if (gap <= -1) { tag = "Stronger solver"; tagClass = "tag-auto"; }
+  const points = scored.map(d => {
+    const cx = x(d.autoScore);
+    const cy = y(d.augScore);
+    const short = modelShort[d.model] || d.model.slice(0, 6);
+    const right = cx < size * 0.72;
+    const lx = right ? cx + 10 : cx - 10;
+    const anchor = right ? "start" : "end";
+    const gap = d.augScore - d.autoScore;
+    const tip = `${displayModel(d.model)} · works alone ${d.autoScore.toFixed(1)} (rank ${d.autoRank.toFixed(1)}) · coaches ${d.augScore.toFixed(1)} (rank ${d.augRank.toFixed(1)})`;
+    return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="8" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="5" fill="#2f6fcb" stroke="white" stroke-width="1.4" pointer-events="none"/><text x="${lx}" y="${cy + 3.5}" font-size="11" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="3" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
+  }).join("");
+
+  const qLabel = (tx, ty, text, anchor = "middle") =>
+    `<text x="${tx}" y="${ty}" text-anchor="${anchor}" font-size="10" font-weight="650" fill="#8a93a3">${text}</text>`;
+
+  const svg = `<div class="svg-wrap landing-scatter-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Models plotted by solo-work performance versus coaching performance. Higher is better on both axes.">
+    <rect x="0" y="0" width="${size}" height="${size}" fill="#fbfcfe"/>
+    <rect x="${pad}" y="${pad}" width="${size - pad * 2}" height="${size - pad * 2}" fill="#fff" stroke="#e8edf4"/>
+    ${ticks.map(t => {
+      const s = rankToScore(t, maxRank);
+      return `<line x1="${x(s)}" y1="${pad}" x2="${x(s)}" y2="${size - pad}" stroke="#eef1f5"/><line x1="${pad}" y1="${y(s)}" x2="${size - pad}" y2="${y(s)}" stroke="#eef1f5"/><text x="${x(s)}" y="${size - pad + 18}" text-anchor="middle" font-size="10" fill="#657083">${s}</text><text x="${pad - 10}" y="${y(s) + 3}" text-anchor="end" font-size="10" fill="#657083">${s}</text>`;
+    }).join("")}
+    <line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.5"/>
+    <text x="${(x(lo) + x(hi)) / 2}" y="${(y(lo) + y(hi)) / 2 - 12}" text-anchor="middle" font-size="10" fill="#8a93a3" font-style="italic">Same in both roles</text>
+    ${qLabel(x(hi) - 8, y(hi) + 18, "Strong in both", "end")}
+    ${qLabel(x(lo) + 8, y(hi) + 18, "Better coach", "start")}
+    ${qLabel(x(hi) - 8, y(lo) - 10, "Better solo", "end")}
+    ${qLabel(x(lo) + 8, y(lo) - 10, "Weaker in both", "start")}
+    ${points}
+    <text x="${size / 2}" y="${size - 10}" text-anchor="middle" font-size="12" font-weight="700">Works alone →</text>
+    <text x="16" y="${size / 2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size / 2})">← Coaches a worker</text>
+  </svg></div>`;
+
+  const movers = scored
+    .map(d => ({ ...d, gap: d.augScore - d.autoScore }))
+    .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
+    .slice(0, 4);
+
+  const cards = movers.map(d => {
+    let tag = "Balanced";
+    let tagClass = "tag-bal";
+    if (d.gap >= 0.8) { tag = "Better coach"; tagClass = "tag-aug"; }
+    else if (d.gap <= -0.8) { tag = "Better solo"; tagClass = "tag-auto"; }
     return `<div class="role-info-card">
-      <div class="role-info-name">${displayModel(d.model)}<span class="role-tag ${tagClass}">${tag}</span></div>
-      <div class="role-info-line">avg ranked <b>${d.automation.toFixed(2)}</b> in automation and <b>${d.augmentation.toFixed(2)}</b> in augmentation</div>
+      <div class="role-info-name">${esc(displayModel(d.model))}<span class="role-tag ${tagClass}">${tag}</span></div>
       <div class="role-info-stats">
-        <div class="role-stat role-stat-auto"><span class="role-stat-label">Automation</span><span class="role-stat-val">${d.automation.toFixed(2)}</span></div>
-        <div class="role-stat role-stat-aug"><span class="role-stat-label">Augmentation</span><span class="role-stat-val">${d.augmentation.toFixed(2)}</span></div>
+        <div class="role-stat role-stat-auto"><span class="role-stat-label">Works alone</span><span class="role-stat-val">${d.autoScore.toFixed(1)}</span></div>
+        <div class="role-stat role-stat-aug"><span class="role-stat-label">Coaches</span><span class="role-stat-val">${d.augScore.toFixed(1)}</span></div>
       </div>
     </div>`;
   }).join("");
-  const info = `<div class="role-info">
-    <div class="role-info-head">Average ranks · ${esc(runLabel)}</div>
-    <p class="role-info-sub">Mean rank across all seven tasks (${esc(judgeLabel)}); lower is better. Toggle <b>Run</b> above to switch between the ten runs.</p>
-    ${cards}
-  </div>`;
 
-  document.getElementById("roleScatter").innerHTML = `<p class="chart-note">Lower-left is better in both modes. Points above the diagonal rank better as assistants; below it, better as direct solvers.</p><div class="role-swap-layout"><div class="role-swap-left">${svg}</div><div class="role-swap-right">${info}</div></div>`;
-  bindFloatingTips(document.getElementById("roleScatter"));
+  const legend = scored.map(d => `<span><b>${modelShort[d.model] || d.model}</b> ${esc(displayModel(d.model))}</span>`).join("");
+  el.innerHTML = `
+    <p class="chart-note">10-run panel average · higher score = better · assistant models only (excludes unaided baseline)</p>
+    <div class="role-swap-layout">
+      <div class="role-swap-left">${svg}<div class="role-legend">${legend}</div></div>
+      <div class="role-swap-right">
+        <div class="role-info">
+          <div class="role-info-head">Largest role gaps</div>
+          <p class="role-info-sub">Models that shift most between working alone and coaching. Hover points for full scores.</p>
+          ${cards}
+        </div>
+      </div>
+    </div>`;
+  bindFloatingTips(el);
 }
 
 function renderMetrics() {
+  const el = document.getElementById("metricRow");
+  if (!el) return;
   const tasks = state.data.tasks.length;
   const stats = runStats();
   const bundle = activeData();
   const outputs = stats?.outputs ?? Object.values(bundle.runs || {}).reduce((s, r) => s + (r.outputs?.length || 0), 0);
   const judgments = stats?.unique_judgments ?? uniqueJudgmentCount(bundle);
   const models = new Set((bundle.aggregate || []).map(d => d.model_label)).size;
-  document.getElementById("metricRow").innerHTML = [
+  el.innerHTML = [
     [`${activeRunMeta().label}`, "selected run"],
     [`${tasks}`, "tasks"],
-    [`${models}`, "candidate conditions"],
+    [`${models}`, "models tested"],
     [`${outputs}`, "saved outputs"],
     [`${judgments.toLocaleString()}`, "unique pairwise judgments"],
   ].map(([v, l]) => `<div class="metric"><b>${v}</b><span>${l}</span></div>`).join("");
 }
 
 function renderLeaderboard() {
+  const titleEl = document.getElementById("rankTitle");
+  const board = document.getElementById("leaderboard");
+  if (!titleEl || !board) return;
   const rows = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
-  document.getElementById("rankTitle").textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
+  titleEl.textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
   if (!rows.length) {
-    document.getElementById("leaderboard").innerHTML = `<div class="rank-empty-state"><p>No ranked models for this task under the current judge filter.</p><p class="rank-empty-hint">Try <b>Aggregate</b> judge, another task, or switch mode.</p></div>`;
+    board.innerHTML = `<div class="rank-empty-state"><p>No ranked models for this task under the current judge filter.</p><p class="rank-empty-hint">Try <b>Aggregate</b> judge, another task, or switch mode.</p></div>`;
     return;
   }
   const maxScore = Math.max(...rows.map(d => Number(d.score)), 1);
-  document.getElementById("leaderboard").innerHTML = `<p class="leaderboard-hint">Click any model row to open its output and judge rationales in Qualitative.</p>` + rows
+  board.innerHTML = `<p class="leaderboard-hint">Open Qualitative for full audit, or add models to Compare.</p>` + rows
     .sort((a, b) => a.display_rank - b.display_rank)
     .map(d => {
       const rank = Number(d.display_rank);
       const win = Number(d.score);
       const rawRank = num(d.rank_value);
-      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span><span class="row-chevron" aria-hidden="true">›</span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div title="Pairwise win rate">${win.toFixed(2)}</div></div>`;
+      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span><span class="row-chevron" aria-hidden="true">›</span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div class="leader-actions"><span title="Pairwise win rate">${win.toFixed(2)}</span><button type="button" class="compare-add-btn" data-compare-add="${esc(d.model_label)}">Compare</button></div></div>`;
     })
     .join("");
-  document.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
+  board.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
     state.selectedModel = b.dataset.rankmodel;
     goTab("qualitative");
     renderAll();
   }));
+  board.querySelectorAll("[data-compare-add]").forEach(b => b.addEventListener("click", e => {
+    e.stopPropagation();
+    const model = b.dataset.compareAdd;
+    state.compare.task = state.task;
+    state.compare.mode = state.mode;
+    state.compare.runId = state.runId;
+    if (!state.compare.modelA || state.compare.modelA === model) state.compare.modelA = model;
+    else state.compare.modelB = model;
+    goTab("compare");
+  }));
 }
 
 function renderRubric() {
+  const chart = document.getElementById("rubricChart");
+  if (!chart) return;
   if (!qualDataReady()) {
-    document.getElementById("rubricChart").innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Rankings or Qualitative.</p>`;
+    chart.innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Rankings or Qualitative.</p>`;
     return;
   }
   const dims = [
@@ -1024,11 +1117,11 @@ function renderRubric() {
     ? sub.map(d => `<div class="bar-row" data-rubricdim="${d.dimension}"><div><span class="rubric-label">${esc(rubricName(d.dimension))}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Number(d.mean_score) / max * 100}%;background:${scoreColor(d.mean_score)}"></div></div><div>${Number(d.mean_score).toFixed(1)}</div></div>`).join("")
     : `<p style="color:var(--muted);font-size:13px">No rubric-score rows found for this response under the current judge filter. Try Aggregate or another judge.</p>`;
   const focus = state.rubricFocus && sub.some(d => d.dimension === state.rubricFocus) ? state.rubricFocus : sub[0]?.dimension;
-  document.getElementById("rubricChart").innerHTML = intro + body + (focus ? `<div class="rubric-detail"><b>${esc(rubricName(focus))}</b><p>${esc(rubricTip(focus))}</p></div>` : "");
-  document.querySelectorAll("[data-rubricdim]").forEach(el => {
+  chart.innerHTML = intro + body + (focus ? `<div class="rubric-detail"><b>${esc(rubricName(focus))}</b><p>${esc(rubricTip(focus))}</p></div>` : "");
+  chart.querySelectorAll("[data-rubricdim]").forEach(el => {
     const setFocus = () => {
       state.rubricFocus = el.dataset.rubricdim;
-      const detail = document.querySelector("#rubricChart .rubric-detail");
+      const detail = chart.querySelector(".rubric-detail");
       if (detail) detail.innerHTML = `<b>${esc(rubricName(state.rubricFocus))}</b><p>${esc(rubricTip(state.rubricFocus))}</p>`;
     };
     el.addEventListener("mouseenter", setFocus);
@@ -1516,10 +1609,12 @@ function renderValidation() {
 }
 
 function renderProjectStats() {
+  const el = document.getElementById("projectStats");
+  if (!el) return;
   const totals = totalRunStats();
   const models = new Set(activeData().aggregate.map(d => d.model_label)).size;
   const runCount = runList().length;
-  document.getElementById("projectStats").innerHTML = [
+  el.innerHTML = [
     [`${runCount}`, runCount === 1 ? "replicate run" : "replicate runs"],
     [`${state.data.tasks.length}`, "tasks"],
     [`${models}`, "candidate conditions"],
@@ -1876,6 +1971,7 @@ function bind() {
   bindChrome();
   bindLayoutControls();
   bindMethodology();
+  bindCompareControls();
   document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => goTab(b.dataset.tab)));
   document.getElementById("runSelect").addEventListener("change", e => {
     state.runId = e.target.value;
@@ -1894,6 +1990,262 @@ function bind() {
     document.querySelectorAll("[data-texttab]").forEach(x => x.classList.toggle("active", x === b));
     renderQualitative();
   }));
+}
+
+function compareRunBundle() {
+  const runId = state.compare.runId || state.runId;
+  return activeData(runId);
+}
+
+function compareOutputs() {
+  const bundle = compareRunBundle();
+  const key = `${state.compare.task}/${state.compare.mode}`;
+  return bundle?.runs?.[key]?.outputs || [];
+}
+
+function compareJudgments() {
+  const bundle = compareRunBundle();
+  const key = `${state.compare.task}/${state.compare.mode}`;
+  return bundle?.runs?.[key]?.judgments || [];
+}
+
+function rubricMeansForOutput(output, judgments, task) {
+  const dims = [
+    ...Object.keys(rubricLabels[task] || {}),
+    ...Object.keys(generalRubricLabels),
+  ];
+  const grouped = new Map();
+  judgments.forEach(j => {
+    const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
+    if (!scores) return;
+    dims.forEach(dim => {
+      if (scores[dim] === undefined || scores[dim] === null) return;
+      const arr = grouped.get(dim) || [];
+      arr.push(Number(scores[dim]));
+      grouped.set(dim, arr);
+    });
+  });
+  return dims
+    .filter(d => grouped.has(d))
+    .map(d => ({ dimension: d, mean: avg(grouped.get(d)), n: grouped.get(d).length }));
+}
+
+function taskAverageRubric(outputs, judgments, task) {
+  const byDim = new Map();
+  outputs.forEach(out => {
+    rubricMeansForOutput(out, judgments, task).forEach(row => {
+      const arr = byDim.get(row.dimension) || [];
+      arr.push(row.mean);
+      byDim.set(row.dimension, arr);
+    });
+  });
+  return [...byDim.entries()].map(([dimension, vals]) => ({ dimension, mean: avg(vals) }));
+}
+
+function populateCompareControls() {
+  const taskEl = document.getElementById("compareTask");
+  const runEl = document.getElementById("compareRun");
+  const modeEl = document.getElementById("compareMode");
+  const aEl = document.getElementById("compareModelA");
+  const bEl = document.getElementById("compareModelB");
+  const viewEl = document.getElementById("compareRubricView");
+  if (!taskEl || !runEl || !aEl || !bEl) return;
+
+  if (!state.compare.runId) state.compare.runId = state.runId;
+  if (!taskOrder.includes(state.compare.task)) state.compare.task = state.task;
+
+  taskEl.innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
+  taskEl.value = state.compare.task;
+  runEl.innerHTML = runList().map(r => `<option value="${r.id}">${r.label}</option>`).join("");
+  runEl.value = state.compare.runId;
+  if (modeEl) modeEl.value = state.compare.mode;
+  if (viewEl) viewEl.value = state.compare.rubricView;
+
+  const outputs = compareOutputs();
+  const models = [...new Set(outputs.map(o => o.model_label))];
+  if (!models.includes(state.compare.modelA)) state.compare.modelA = models[0] || null;
+  if (!models.includes(state.compare.modelB) || state.compare.modelB === state.compare.modelA) {
+    state.compare.modelB = models.find(m => m !== state.compare.modelA) || models[0] || null;
+  }
+  aEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
+  bEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
+  if (state.compare.modelA) aEl.value = state.compare.modelA;
+  if (state.compare.modelB) bEl.value = state.compare.modelB;
+}
+
+function renderComparePane(side) {
+  const textEl = document.getElementById(side === "a" ? "compareTextA" : "compareTextB");
+  const titleEl = document.getElementById(side === "a" ? "compareTitleA" : "compareTitleB");
+  if (!textEl || !titleEl) return;
+  const model = side === "a" ? state.compare.modelA : state.compare.modelB;
+  const pane = side === "a" ? state.compare.paneA : state.compare.paneB;
+  const out = compareOutputs().find(o => o.model_label === model);
+  titleEl.textContent = model ? displayModel(model, state.compare.mode) : `Model ${side.toUpperCase()}`;
+  if (!out) {
+    textEl.innerHTML = `<p class="qual-empty-state">No output for this selection.</p>`;
+    return;
+  }
+  if (pane === "scaffold") {
+    if (state.compare.mode !== "augmentation") {
+      textEl.innerHTML = `<p class="qual-empty-state">Coaching notes apply only when the model coaches a worker.</p>`;
+      return;
+    }
+    textEl.innerHTML = `<pre class="qual-pre">${esc(out.scaffold || out.assistance_text || "No coaching notes saved.")}</pre>`;
+    return;
+  }
+  textEl.innerHTML = `<pre class="qual-pre">${esc(out.output || "No deliverable saved.")}</pre>`;
+}
+
+function renderCompareRubric() {
+  const el = document.getElementById("compareRubric");
+  if (!el) return;
+  const outputs = compareOutputs();
+  const judgments = compareJudgments();
+  const outA = outputs.find(o => o.model_label === state.compare.modelA);
+  const outB = outputs.find(o => o.model_label === state.compare.modelB);
+  if (!outA || !outB) {
+    el.innerHTML = `<p class="chart-note">Pick two models with saved outputs to compare rubric scores.</p>`;
+    return;
+  }
+  const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task);
+  const rowsB = rubricMeansForOutput(outB, judgments, state.compare.task);
+  const avgRows = taskAverageRubric(outputs, judgments, state.compare.task);
+  const dims = [...new Set([...rowsA, ...rowsB, ...avgRows].map(r => r.dimension))];
+  const mapA = new Map(rowsA.map(r => [r.dimension, r.mean]));
+  const mapB = new Map(rowsB.map(r => [r.dimension, r.mean]));
+  const mapAvg = new Map(avgRows.map(r => [r.dimension, r.mean]));
+  const vsAvg = state.compare.rubricView === "avg";
+  const labelA = displayModel(state.compare.modelA, state.compare.mode);
+  const labelB = displayModel(state.compare.modelB, state.compare.mode);
+
+  if (!dims.length) {
+    el.innerHTML = `<p class="chart-note">No rubric scores found for this cell. Try another run or open Qualitative.</p>`;
+    return;
+  }
+
+  const rows = dims.map(dim => {
+    const a = mapA.get(dim);
+    const b = mapB.get(dim);
+    const tavg = mapAvg.get(dim);
+    const left = vsAvg ? a : a;
+    const right = vsAvg ? tavg : b;
+    const rightLabel = vsAvg ? "Task avg" : "B";
+    const max = 10;
+    return `<div class="compare-rubric-row">
+      <div class="compare-rubric-dim">${esc(rubricName(dim))}</div>
+      <div class="compare-rubric-bars">
+        <div class="compare-rubric-bar-wrap" title="${esc(labelA)}">
+          <span class="compare-rubric-side">A</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%;background:#2f6fcb"></div></div>
+          <span class="compare-rubric-val">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
+        </div>
+        <div class="compare-rubric-bar-wrap" title="${vsAvg ? "Task average" : esc(labelB)}">
+          <span class="compare-rubric-side">${rightLabel}</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(right) ? right / max * 100 : 0}%;background:${vsAvg ? "#94a3b8" : "#d96f31"}"></div></div>
+          <span class="compare-rubric-val">${Number.isFinite(right) ? right.toFixed(1) : "—"}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="section-heading compact">
+      <h2>Rubric comparison</h2>
+      <p>${esc(labelA)} vs ${vsAvg ? "task average" : esc(labelB)} · ${esc(cleanTaskTitle(state.compare.task))} · ${esc(modeLabels[state.compare.mode])}</p>
+    </div>
+    ${!vsAvg && Number.isFinite(mapB.get(dims[0])) === false ? "" : ""}
+    <div class="compare-rubric-legend"><span class="dot a"></span> ${esc(labelA)} <span class="dot b"></span> ${vsAvg ? "Task average" : esc(labelB)}</div>
+    ${rows}`;
+}
+
+function renderCompareRationales() {
+  const el = document.getElementById("compareRationales");
+  if (!el) return;
+  const outputs = compareOutputs();
+  const outA = outputs.find(o => o.model_label === state.compare.modelA);
+  const outB = outputs.find(o => o.model_label === state.compare.modelB);
+  if (!outA || !outB) {
+    el.innerHTML = `<p class="chart-note">No head-to-head judgments for this pair.</p>`;
+    return;
+  }
+  const pair = compareJudgments().filter(j =>
+    (j.left_idx === outA.idx && j.right_idx === outB.idx) ||
+    (j.left_idx === outB.idx && j.right_idx === outA.idx)
+  );
+  if (!pair.length) {
+    el.innerHTML = `<p class="chart-note">No direct pairwise matchup between these two models in this run. Try another run, or browse Qualitative for related rationales.</p>`;
+    return;
+  }
+  el.innerHTML = pair.map(j => {
+    const aIsLeft = j.left_idx === outA.idx;
+    const winnerIdx = j.winner_idx ?? j.preferred_idx;
+    let winner = "tie / unclear";
+    if (winnerIdx === outA.idx) winner = displayModel(state.compare.modelA, state.compare.mode);
+    else if (winnerIdx === outB.idx) winner = displayModel(state.compare.modelB, state.compare.mode);
+    else if (String(j.winner || "").toLowerCase().includes("1")) winner = aIsLeft ? displayModel(state.compare.modelA, state.compare.mode) : displayModel(state.compare.modelB, state.compare.mode);
+    else if (String(j.winner || "").toLowerCase().includes("2")) winner = aIsLeft ? displayModel(state.compare.modelB, state.compare.mode) : displayModel(state.compare.modelA, state.compare.mode);
+    return `<div class="compare-rationale-card">
+      <div class="compare-rationale-meta"><b>${esc(judgeDisplay(j.judge_model))}</b> · preferred <b>${esc(winner)}</b></div>
+      <p>${esc(j.rationale || j.reason || "No rationale text.")}</p>
+    </div>`;
+  }).join("");
+}
+
+function renderCompare() {
+  const panel = document.getElementById("compare");
+  if (!panel) return;
+  const loading = document.getElementById("compareLoadingNote");
+  populateCompareControls();
+  if (!state.qualLoaded) {
+    if (loading) loading.classList.remove("hidden");
+    ensureQualitativeData().then(() => renderCompare());
+    return;
+  }
+  const run = compareRunBundle()?.runs?.[`${state.compare.task}/${state.compare.mode}`];
+  if (!run?.outputs?.length) {
+    if (loading) {
+      loading.classList.remove("hidden");
+      loading.textContent = "No outputs found for this task, role, and run.";
+    }
+    document.getElementById("compareRubric").innerHTML = "";
+    document.getElementById("compareTextA").innerHTML = "";
+    document.getElementById("compareTextB").innerHTML = "";
+    document.getElementById("compareRationales").innerHTML = "";
+    return;
+  }
+  if (loading) loading.classList.add("hidden");
+  renderCompareRubric();
+  renderComparePane("a");
+  renderComparePane("b");
+  renderCompareRationales();
+}
+
+function bindCompareControls() {
+  const bind = (id, fn) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("change", fn);
+  };
+  bind("compareTask", e => { state.compare.task = e.target.value; renderCompare(); });
+  bind("compareMode", e => { state.compare.mode = e.target.value; state.compare.modelA = null; state.compare.modelB = null; renderCompare(); });
+  bind("compareRun", e => { state.compare.runId = e.target.value; renderCompare(); });
+  bind("compareModelA", e => { state.compare.modelA = e.target.value; renderCompare(); });
+  bind("compareModelB", e => { state.compare.modelB = e.target.value; renderCompare(); });
+  bind("compareRubricView", e => { state.compare.rubricView = e.target.value; renderCompare(); });
+  document.querySelectorAll(".compare-tabs").forEach(group => {
+    group.querySelectorAll("[data-compare-pane]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const side = group.dataset.compareSide;
+        group.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        if (side === "a") state.compare.paneA = btn.dataset.comparePane;
+        else state.compare.paneB = btn.dataset.comparePane;
+        renderComparePane(side);
+      });
+    });
+  });
+  const landingBib = document.getElementById("landingBibtexBtn");
+  const bibtexBtn = document.getElementById("bibtexBtn");
+  if (landingBib && bibtexBtn) landingBib.addEventListener("click", () => bibtexBtn.click());
 }
 
 function renderAll() {
@@ -1915,6 +2267,7 @@ function renderAll() {
     renderRubric();
     renderJudgeScatter();
     renderQualitative();
+    renderCompare();
     applyTermTooltips();
   } catch (err) {
     console.error("Dashboard render failed:", err);
