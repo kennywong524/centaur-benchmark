@@ -218,14 +218,30 @@ const state = {
   },
 };
 
+/** Paper Table / Figure 2 provenance (GDPval vs Anthropic Economic Index vs designed). */
 const taskSourceHints = {
   counselling: "Anthropic Economic Index",
-  meal_plan: "GDPval-style",
-  tax_prep: "Author-designed",
-  market_trends: "GDPval / Anthropic Economic Index",
-  operations_research: "GDPval / Anthropic Economic Index",
-  travel_planning: "GDPval / Anthropic Economic Index",
-  tutoring: "GDPval / Anthropic Economic Index",
+  meal_plan: "GDPval",
+  market_trends: "GDPval",
+  operations_research: "Anthropic Economic Index",
+  tax_prep: "Designed task",
+  travel_planning: "GDPval",
+  tutoring: "Anthropic Economic Index",
+};
+
+const taskSourceUrls = {
+  GDPval: "https://openai.com/index/gdpval/",
+  "Anthropic Economic Index": "https://www.anthropic.com/economic-index",
+};
+
+const taskTaglines = {
+  counselling: "Planning a counseling session",
+  market_trends: "Analyzing U.S. Energy Market",
+  meal_plan: "Creating daily 7-day meal",
+  operations_research: "Drafting OR internal report for executives",
+  tax_prep: "Spotting Tax filing discrepancies",
+  travel_planning: "Crafting Tokyo trip itinerary",
+  tutoring: "Planning a math lesson.",
 };
 
 const taskTypeTone = {
@@ -238,19 +254,21 @@ function taskTypeClass(type) {
   return taskTypeTone[type] || "default";
 }
 
+function taskTagline(slug) {
+  return taskTaglines[slug] || "";
+}
+
 function taskSourceBadgesHtml(slug) {
   const label = taskSourceLabel(slug);
   const badges = [];
-  if (/gdpval/i.test(label)) {
-    badges.push(`<span class="task-source-badge"><img class="task-source-logo openai" src="assets/openai-logo.png?v=20260717r" alt="" width="18" height="18" /><span>GDPval</span></span>`);
-  }
-  if (/anthropic/i.test(label)) {
-    badges.push(`<span class="task-source-badge"><img class="task-source-logo anthropic" src="assets/anthropic-logo.png?v=20260717r" alt="" width="18" height="18" /><span>Anthropic Economic Index</span></span>`);
-  }
-  if (/author/i.test(label)) {
-    badges.push(`<span class="task-source-badge task-source-badge-plain"><span>Author-designed</span></span>`);
-  }
-  if (!badges.length) {
+  const cache = "20260717t";
+  if (label === "GDPval") {
+    badges.push(`<a class="task-source-badge" href="${esc(taskSourceUrls.GDPval)}" target="_blank" rel="noopener noreferrer" title="OpenAI GDPval"><img class="task-source-logo openai" src="assets/openai-logo.png?v=${cache}" alt="" width="18" height="18" /><span>GDPval</span></a>`);
+  } else if (label === "Anthropic Economic Index") {
+    badges.push(`<a class="task-source-badge" href="${esc(taskSourceUrls["Anthropic Economic Index"])}" target="_blank" rel="noopener noreferrer" title="Anthropic Economic Index"><img class="task-source-logo anthropic" src="assets/anthropic-logo.png?v=${cache}" alt="" width="18" height="18" /><span>Anthropic Economic Index</span></a>`);
+  } else if (/designed/i.test(label)) {
+    badges.push(`<span class="task-source-badge task-source-badge-plain"><span>Designed task</span></span>`);
+  } else {
     badges.push(`<span class="task-source-badge task-source-badge-plain"><span>${esc(label)}</span></span>`);
   }
   return badges.join("");
@@ -1571,12 +1589,7 @@ function taskMetaBySlug(slug) {
 }
 
 function taskSourceLabel(slug) {
-  const meta = taskMetaBySlug(slug);
-  const title = meta?.title || "";
-  if (/anthropic/i.test(title)) return "Anthropic Economic Index";
-  if (/gdpval/i.test(title)) return "GDPval-style";
-  if (slug === "tax_prep") return "Author-designed (rule-based professional task)";
-  return taskSourceHints[slug] || "GDPval / Anthropic Economic Index";
+  return taskSourceHints[slug] || "Designed task";
 }
 
 function judgeCoverageStats() {
@@ -1657,7 +1670,8 @@ function renderOverviewTasks() {
   list.innerHTML = tasks.map((t, i) => {
     const active = t.slug === state.overviewTask;
     const tone = taskTypeClass(t.type);
-    return `<button type="button" class="overview-task-btn tone-${tone} ${active ? "active" : ""}" role="option" aria-selected="${active ? "true" : "false"}" data-overview-task="${esc(t.slug)}"><span class="task-idx">${i + 1}</span><b>${esc(t.label || cleanTaskTitle(t.slug))}</b><small>${esc(t.type || "Professional task")}</small></button>`;
+    const blurb = taskTagline(t.slug) || t.type || "Professional task";
+    return `<button type="button" class="overview-task-btn tone-${tone} ${active ? "active" : ""}" role="option" aria-selected="${active ? "true" : "false"}" data-overview-task="${esc(t.slug)}"><span class="task-idx">${i + 1}</span><b>${esc(t.label || cleanTaskTitle(t.slug))}</b><small>${esc(blurb)}</small></button>`;
   }).join("");
   const meta = taskMetaBySlug(state.overviewTask);
   if (!meta) {
@@ -1666,15 +1680,21 @@ function renderOverviewTasks() {
   }
   const prompt = (meta.task_prompt || "").trim();
   const tone = taskTypeClass(meta.type);
+  const tagline = taskTagline(meta.slug);
+  const promptBody = prompt
+    ? formatCompareBlocks(prompt)
+    : `<p class="compare-md-p">Prompt not available in metadata.</p>`;
   detail.innerHTML = `
     <div class="overview-task-detail-head tone-${tone}">
       <span class="task-type-pill">${esc(meta.type || "Task")}</span>
       <h4>${esc(meta.label || cleanTaskTitle(meta.slug))}</h4>
-      <p class="task-source-line">${esc(meta.title || cleanTaskTitle(meta.slug))}</p>
+      ${tagline ? `<p class="task-tagline">${esc(tagline)}</p>` : ""}
       <div class="task-source-row" aria-label="Task source">${taskSourceBadgesHtml(meta.slug)}</div>
     </div>
     <p class="task-prompt-label">Task prompt</p>
-    <pre class="task-prompt">${esc(prompt || "Prompt not available in metadata.")}</pre>`;
+    <div class="task-prompt-doc compare-doc compare-doc--deliverable">
+      <div class="compare-doc-body">${promptBody}</div>
+    </div>`;
   list.querySelectorAll("[data-overview-task]").forEach(btn => {
     btn.addEventListener("click", () => {
       state.overviewTask = btn.dataset.overviewTask;
