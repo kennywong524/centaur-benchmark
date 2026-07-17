@@ -2895,6 +2895,13 @@ main {
   font-weight: 650;
   color: #2a3344;
   white-space: nowrap;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+a.task-attr-inline:hover {
+  color: #1a4f9c;
+  border-bottom-color: rgba(26, 79, 156, 0.35);
 }
 .task-source-logo {
   display: inline-block;
@@ -3150,10 +3157,12 @@ main {
   letter-spacing: -0.02em;
   color: #1a2233;
 }
-.overview-task-detail .task-source-line {
+.overview-task-detail .task-source-line,
+.overview-task-detail .task-tagline {
   margin: 0 0 10px;
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #4a5568;
 }
 .task-source-row {
   display: flex;
@@ -3171,6 +3180,13 @@ main {
   font-size: 12px;
   font-weight: 650;
   color: #2a3344;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+a.task-source-badge:hover {
+  border-color: #b8c6da;
+  background: #f7f9fc;
+  color: #1a4f9c;
 }
 .task-source-badge .task-source-logo {
   width: 18px;
@@ -3187,19 +3203,28 @@ main {
   text-transform: uppercase;
   color: #5a667a;
 }
-.overview-task-detail .task-prompt {
-  margin: 0 18px 16px;
-  white-space: pre-wrap;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #2a3344;
-  background: #f7f9fc;
+.overview-task-detail .task-prompt-doc {
+  margin: 0 14px 16px;
   border: 1px solid #e6ebf2;
   border-radius: 4px;
-  padding: 12px 14px;
-  max-height: 280px;
+  background: #fbfcfe;
+  max-height: 340px;
   overflow: auto;
+}
+.overview-task-detail .task-prompt-doc .compare-doc-body {
+  padding: 12px 14px 14px;
+  max-width: none;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.overview-task-detail .task-prompt-doc .compare-section {
+  background: #fff;
+}
+.overview-task-detail .task-prompt-doc .compare-section-num {
+  background: #3d5a80;
+}
+.overview-task-detail .task-prompt-doc .compare-bullets li::marker {
+  color: #3d5a80;
 }
 
 /* Podium / winners */
