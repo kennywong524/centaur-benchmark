@@ -369,7 +369,7 @@ function renderQualQuickPicks(ranked) {
 const controlsByTab = {
   project: [],
   compare: [],
-  replicates: ["modelSet"],
+  replicates: [],
   overview: ["run"],
   rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
@@ -1592,8 +1592,9 @@ function sem(xs) {
   return std(xs) / Math.sqrt(xs.length);
 }
 
+/** 10-Run Result always uses the full candidate pool (same as Single-run / Scoreboard). */
 function replicateRankRows(mode, judge = "aggregate") {
-  return runList().flatMap(run => rankOfRanks(mode, judge, run.id).map(d => ({
+  return runList().flatMap(run => rankOfRanks(mode, judge, run.id, { allModels: true }).map(d => ({
     ...d,
     run_id: run.id,
     run_label: run.label,
@@ -2367,7 +2368,6 @@ function updateControlBandVisibility() {
   const showBand = allowed.size > 0;
   band.classList.toggle("hidden", !showBand);
   band.dataset.tab = state.tab || "";
-  band.classList.toggle("control-band--replicates", state.tab === "replicates");
   band.querySelectorAll("[data-control]").forEach(el => {
     const key = el.dataset.control;
     const visible = allowed.has(key);
