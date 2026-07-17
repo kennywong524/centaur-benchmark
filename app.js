@@ -2177,6 +2177,109 @@ function renderCompareScoreSummary(side, rows, h2h, vsAvg) {
   el.innerHTML = chips.join("");
 }
 
+/** Light structured formatting for Compare panes (escape first, then mark up). */
+function formatCompareInline(escaped) {
+  return escaped
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
+}
+
+function formatCompareBlocks(raw) {
+  const text = String(raw || "").replace(/\r\n/g, "\n").trim();
+  if (!text) return "";
+
+  const fenceParts = text.split(/(```[\s\S]*?```)/g);
+  const out = [];
+
+  fenceParts.forEach(part => {
+    if (!part) return;
+    if (part.startsWith("```") && part.endsWith("```")) {
+      const inner = part.slice(3, -3).replace(/^\w*\n/, "");
+      out.push(`<pre class="compare-code"><code>${esc(inner.trimEnd())}</code></pre>`);
+      return;
+    }
+
+    const lines = part.split("\n");
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (!line.trim()) { i += 1; continue; }
+
+      const heading = line.match(/^(#{1,3})\s+(.+)$/);
+      if (heading) {
+        const level = Math.min(heading[1].length + 2, 5); // h3–h5
+        out.push(`<h${level} class="compare-md-h">${formatCompareInline(esc(heading[2].trim()))}</h${level}>`);
+        i += 1;
+        continue;
+      }
+
+      // Bold-only title line used by many model outputs
+      const boldTitle = line.match(/^\*\*([^*]+)\*\*\s*$/);
+      if (boldTitle) {
+        out.push(`<h3 class="compare-md-h">${esc(boldTitle[1].trim())}</h3>`);
+        i += 1;
+        continue;
+      }
+
+      if (/^\d+[.)]\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^\d+[.)]\s+/.test(lines[i])) {
+          items.push(`<li>${formatCompareInline(esc(lines[i].replace(/^\d+[.)]\s+/, "")))}</li>`);
+          i += 1;
+          // continuation lines indented under a numbered item
+          while (i < lines.length && lines[i] && !/^\d+[.)]\s+/.test(lines[i]) && !/^[-*•]\s+/.test(lines[i]) && !/^#{1,3}\s+/.test(lines[i]) && lines[i].startsWith("  ")) {
+            items[items.length - 1] = items[items.length - 1].replace(/<\/li>$/, ` ${formatCompareInline(esc(lines[i].trim()))}</li>`);
+            i += 1;
+          }
+        }
+        out.push(`<ol class="compare-md-list">${items.join("")}</ol>`);
+        continue;
+      }
+
+      if (/^[-*•]\s+/.test(line)) {
+        const items = [];
+        while (i < lines.length && /^[-*•]\s+/.test(lines[i])) {
+          items.push(`<li>${formatCompareInline(esc(lines[i].replace(/^[-*•]\s+/, "")))}</li>`);
+          i += 1;
+        }
+        out.push(`<ul class="compare-md-list">${items.join("")}</ul>`);
+        continue;
+      }
+
+      const para = [];
+      while (i < lines.length && lines[i].trim()
+        && !/^\d+[.)]\s+/.test(lines[i])
+        && !/^[-*•]\s+/.test(lines[i])
+        && !/^#{1,3}\s+/.test(lines[i])
+        && !/^\*\*[^*]+\*\*\s*$/.test(lines[i])
+        && !(lines[i].startsWith("```"))) {
+        para.push(lines[i]);
+        i += 1;
+      }
+      if (para.length) {
+        out.push(`<p class="compare-md-p">${formatCompareInline(esc(para.join(" ")))}</p>`);
+      }
+    }
+  });
+
+  return out.join("") || `<p class="compare-md-p">${formatCompareInline(esc(text))}</p>`;
+}
+
+function renderCompareRichText(raw, { kind = "deliverable", side = "a" } = {}) {
+  const body = formatCompareBlocks(raw);
+  if (kind === "scaffold") {
+    return `<div class="compare-doc compare-doc--assist compare-doc--${side}">
+      <div class="compare-doc-label">Assistance text</div>
+      <div class="compare-doc-body">${body}</div>
+    </div>`;
+  }
+  return `<div class="compare-doc compare-doc--deliverable compare-doc--${side}">
+    <div class="compare-doc-label">Deliverable</div>
+    <div class="compare-doc-body">${body}</div>
+  </div>`;
+}
+
 function renderComparePane(side) {
   const textEl = document.getElementById(side === "a" ? "compareTextA" : "compareTextB");
   const titleEl = document.getElementById(side === "a" ? "compareTitleA" : "compareTitleB");
@@ -2195,6 +2298,9 @@ function renderComparePane(side) {
     });
   }
 
+  textEl.classList.toggle("is-assist", pane === "scaffold");
+  textEl.classList.toggle("is-deliverable", pane !== "scaffold");
+
   if (!out) {
     textEl.innerHTML = `<p class="qual-empty-state">No output for this selection.</p>`;
     return;
@@ -2212,10 +2318,11 @@ function renderComparePane(side) {
       textEl.innerHTML = `<p class="qual-empty-state">${esc(msg)}</p>`;
       return;
     }
-    textEl.innerHTML = `<pre class="qual-pre">${esc(scaffoldText)}</pre>`;
+    textEl.innerHTML = renderCompareRichText(scaffoldText, { kind: "scaffold", side });
     return;
   }
-  textEl.innerHTML = `<pre class="qual-pre">${esc(out.output || "No deliverable saved.")}</pre>`;
+  const deliverable = out.output || "No deliverable saved.";
+  textEl.innerHTML = renderCompareRichText(deliverable, { kind: "deliverable", side });
 }
 
 function renderCompareRubric() {
@@ -2373,7 +2480,7 @@ function bindCompareControls() {
     group.querySelectorAll("[data-compare-pane]").forEach(btn => {
       btn.addEventListener("click", () => {
         const side = group.dataset.compareSide;
-        group.querySelectorAll(".pill").forEach(p => {
+        group.querySelectorAll(".compare-seg, .pill").forEach(p => {
           p.classList.remove("active");
           p.setAttribute("aria-selected", "false");
         });
