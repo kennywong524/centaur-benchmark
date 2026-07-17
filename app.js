@@ -2366,6 +2366,8 @@ function updateControlBandVisibility() {
   const allowed = new Set(controlsByTab[state.tab] || []);
   const showBand = allowed.size > 0;
   band.classList.toggle("hidden", !showBand);
+  band.dataset.tab = state.tab || "";
+  band.classList.toggle("control-band--replicates", state.tab === "replicates");
   band.querySelectorAll("[data-control]").forEach(el => {
     const key = el.dataset.control;
     const visible = allowed.has(key);

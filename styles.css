@@ -5155,3 +5155,33 @@ a.task-source-badge:hover {
 #replicates .stability-row.active {
   background: var(--rep-a-soft);
 }
+
+/* Model-pool control chrome when 10-run Result is active */
+.control-band.control-band--replicates {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  max-width: 420px;
+  background:
+    linear-gradient(135deg, rgba(232, 241, 255, 0.85), rgba(255, 255, 255, 0.95) 40%, rgba(255, 240, 228, 0.7));
+  border: 1.5px solid #c9d4e4;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 rgba(26, 34, 51, 0.06);
+  position: sticky;
+  top: 56px;
+  z-index: 4;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.control-band.control-band--replicates label {
+  color: #1a2233;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+.control-band.control-band--replicates select {
+  border: 1.5px solid #c5cedc;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: inset 3px 0 0 #1f5fbf;
+  font-weight: 600;
+}
