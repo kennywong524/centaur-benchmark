@@ -4029,10 +4029,11 @@ a.task-source-badge:hover {
   font-weight: 700;
   cursor: pointer;
 }
-.compare-judge-chip:hover { border-color: #7a8aa3; color: var(--compare-ink); }
+.compare-judge-chip:hover { border-color: #7a8aa3; color: var(--compare-ink, #1a2233); }
 .compare-judge-chip.active {
-  background: var(--compare-ink);
-  border-color: var(--compare-ink);
+  /* Fallback: --compare-ink is scoped to #compare; Rankings/Heatmaps reuse this chip */
+  background: var(--compare-ink, #1a2233);
+  border-color: var(--compare-ink, #1a2233);
   color: #fff;
 }
 .compare-rubric-scope {
