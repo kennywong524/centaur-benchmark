@@ -2289,9 +2289,6 @@ function bindCompareControls() {
       });
     });
   });
-  const landingBib = document.getElementById("landingBibtexBtn");
-  const bibtexBtn = document.getElementById("bibtexBtn");
-  if (landingBib && bibtexBtn) landingBib.addEventListener("click", () => bibtexBtn.click());
 }
 
 function renderAll() {
