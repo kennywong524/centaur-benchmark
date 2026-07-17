@@ -211,6 +211,11 @@ const state = {
   heatmaps: {
     judgeFilter: "aggregate",
   },
+  /** Qualitative pairwise rationales — independent of Heatmaps / Scoreboard judge filters. */
+  qual: {
+    judgeFilter: null,
+    pairModel: null,
+  },
   compare: {
     task: "tax_prep",
     mode: "augmentation",
@@ -2328,6 +2333,72 @@ function currentRun() {
   return activeData().runs[runKey()];
 }
 
+function ensureQualPairState() {
+  if (!state.qual) state.qual = { judgeFilter: null, pairModel: null };
+}
+
+function qualJudgmentHasScores(j) {
+  const has = scores => scores && typeof scores === "object"
+    && Object.values(scores).some(v => Number.isFinite(Number(v)));
+  return has(j?.option_1_scores) && has(j?.option_2_scores);
+}
+
+function qualOpponentOf(j, out, byIdx) {
+  if (!j || !out) return null;
+  const otherIdx = Number(j.left_idx) === Number(out.idx) ? j.right_idx : j.left_idx;
+  return byIdx.get(otherIdx) || null;
+}
+
+/** Non-empty pairwise judgments for a focal output after leave-family-out. */
+function qualValidPairJudgments(out) {
+  const run = currentRun();
+  const byIdx = new Map((run?.outputs || []).map(o => [o.idx, o]));
+  if (!out) return { judgments: [], byIdx };
+  const judgments = (run?.judgments || []).filter(j => {
+    if (Number(j.left_idx) !== Number(out.idx) && Number(j.right_idx) !== Number(out.idx)) return false;
+    if (!j.judge_model || !qualJudgmentHasScores(j)) return false;
+    if (isOwnFamily(j.judge_model, out.model_label)) return false;
+    const opp = qualOpponentOf(j, out, byIdx);
+    if (!opp || opp.model_label === out.model_label) return false;
+    if (isOwnFamily(j.judge_model, opp.model_label)) return false;
+    return true;
+  });
+  return { judgments, byIdx };
+}
+
+function qualOpponentOptions(out, judgments, byIdx, judgeFilter = null) {
+  const seen = new Map();
+  judgments.forEach(j => {
+    if (judgeFilter && j.judge_model !== judgeFilter) return;
+    const opp = qualOpponentOf(j, out, byIdx);
+    if (!opp) return;
+    if (!seen.has(opp.model_label)) {
+      seen.set(opp.model_label, displayModel(opp.model_label, state.mode));
+    }
+  });
+  return [...seen.entries()]
+    .map(([model, label]) => ({ model, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function qualJudgeOptionsForOpponent(out, pairModel, judgments, byIdx) {
+  const seen = new Map();
+  if (!pairModel) return [];
+  judgments.forEach(j => {
+    const opp = qualOpponentOf(j, out, byIdx);
+    if (!opp || opp.model_label !== pairModel) return;
+    if (!j.judge_model || seen.has(j.judge_model)) return;
+    if (isOwnFamily(j.judge_model, out.model_label)) return;
+    if (isOwnFamily(j.judge_model, opp.model_label)) return;
+    const scores = judgmentScoresForOutput(j, out);
+    if (!scores || !Object.values(scores).some(v => Number.isFinite(Number(v)))) return;
+    seen.set(j.judge_model, j.judge_label || judgeDisplay(j.judge_model));
+  });
+  return [...seen.entries()]
+    .map(([model, label]) => ({ model, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
 function renderQualitative() {
   if (!qualDataReady()) {
     document.getElementById("modelList").innerHTML = "";
@@ -2335,25 +2406,36 @@ function renderQualitative() {
     document.getElementById("roleStrip").innerHTML = "";
     document.getElementById("qualText").innerHTML = `<p class="qual-loading-inline">Fetching outputs, assistance text, and judge rationales (~28 MB). This loads once per session.</p>`;
     document.getElementById("rationales").innerHTML = "";
+    const pairControls = document.getElementById("qualPairControls");
+    if (pairControls) pairControls.innerHTML = "";
     const tabDesc = document.getElementById("qualTabDesc");
     if (tabDesc) tabDesc.textContent = qualTabDescriptions[state.textTab] || "";
     return;
   }
   const run = currentRun();
+  // Control-band judge ranks the model rail only; pairwise panel uses state.qual.
   const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
   renderQualQuickPicks(ranked);
   const allowed = new Set(ranked.map(d => d.model_label));
   const outputs = (run?.outputs || []).filter(o => allowed.has(o.model_label));
-  if (!state.selectedModel || !outputs.some(o => o.model_label === state.selectedModel)) state.selectedModel = outputs[0]?.model_label;
+  if (!state.selectedModel || !outputs.some(o => o.model_label === state.selectedModel)) {
+    state.selectedModel = outputs[0]?.model_label;
+    ensureQualPairState();
+    state.qual.pairModel = null;
+    state.qual.judgeFilter = null;
+  }
   document.getElementById("modelList").innerHTML = outputs.map(o => {
     const r = ranked.find(d => d.model_label === o.model_label);
     const role = state.mode === "augmentation"
       ? `assistant model: ${displayModel(o.assistant_model || o.model_label, state.mode)} · worker model: ${displayModel(o.worker_model || "gpt-3.5-turbo", state.mode)}`
       : `worker model: ${displayModel(o.model_label, state.mode)}`;
-    return `<button class="model-button ${o.model_label === state.selectedModel ? "active" : ""}" data-model="${o.model_label}"><span>${displayModel(o.model_label, state.mode)}<small class="model-role">${esc(role)}</small></span><span>rank ${r?.display_rank || "?"}</span></button>`;
+    return `<button class="model-button ${o.model_label === state.selectedModel ? "active" : ""}" data-model="${esc(o.model_label)}"><span>${esc(displayModel(o.model_label, state.mode))}<small class="model-role">${esc(role)}</small></span><span>rank ${r?.display_rank || "?"}</span></button>`;
   }).join("");
-  document.querySelectorAll(".model-button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#modelList .model-button").forEach(b => b.addEventListener("click", () => {
     state.selectedModel = b.dataset.model;
+    ensureQualPairState();
+    state.qual.pairModel = null;
+    state.qual.judgeFilter = null;
     renderAll();
   }));
   const out = outputs.find(o => o.model_label === state.selectedModel) || outputs[0];
@@ -2405,16 +2487,83 @@ function renderQualitative() {
 }
 
 function renderRationales(out) {
+  ensureQualPairState();
+  const controls = document.getElementById("qualPairControls");
+  const el = document.getElementById("rationales");
+  if (!el) return;
   if (!out) {
-    document.getElementById("rationales").innerHTML = "";
+    if (controls) controls.innerHTML = "";
+    el.innerHTML = "";
     return;
   }
-  const run = currentRun();
-  const byIdx = new Map((run?.outputs || []).map(o => [o.idx, o]));
-  const rows = (run?.judgments || [])
-    .filter(j => j.left_idx === out.idx || j.right_idx === out.idx)
-    .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
-    .slice(0, 24);
+
+  const { judgments, byIdx } = qualValidPairJudgments(out);
+  if (!judgments.length) {
+    if (controls) controls.innerHTML = "";
+    el.innerHTML = `<div class="qual-empty-state">No leave-family-out eligible pairwise judgments with rubric scores for <b>${esc(displayModel(out.model_label, state.mode))}</b> in this run.</div>`;
+    return;
+  }
+
+  const opponents = qualOpponentOptions(out, judgments, byIdx, null);
+  if (!opponents.some(o => o.model === state.qual.pairModel)) {
+    state.qual.pairModel = opponents[0]?.model || null;
+  }
+  const judgeOpts = qualJudgeOptionsForOpponent(out, state.qual.pairModel, judgments, byIdx);
+  if (!judgeOpts.some(j => j.model === state.qual.judgeFilter)) {
+    state.qual.judgeFilter = judgeOpts[0]?.model || null;
+  }
+
+  const activeJudge = state.qual.judgeFilter;
+  const activeOpp = state.qual.pairModel;
+  const focalLabel = displayModel(out.model_label, state.mode);
+  const oppLabel = displayModel(activeOpp, state.mode);
+  const judgeLabel = judgeOpts.find(j => j.model === activeJudge)?.label
+    || judgeDisplay(activeJudge);
+
+  if (controls) {
+    const judgeButtons = judgeOpts.map(j =>
+      `<button type="button" class="compare-judge-chip ${activeJudge === j.model ? "active" : ""}" data-qual-judge="${esc(j.model)}">${esc(j.label)}</button>`
+    ).join("");
+    const oppButtons = opponents.map(o =>
+      `<button type="button" class="compare-judge-chip ${activeOpp === o.model ? "active" : ""}" data-qual-pair="${esc(o.model)}">${esc(o.label)}</button>`
+    ).join("");
+    controls.innerHTML = `
+      <div class="qual-pair-bar" role="tablist" aria-label="Pairwise judge filter">
+        <span class="compare-judge-bar-label">Judge</span>
+        <div class="compare-judge-chips">${judgeButtons || `<span class="qual-pair-empty">No eligible judges</span>`}</div>
+      </div>
+      <div class="qual-pair-bar" role="tablist" aria-label="Pairwise opponent model">
+        <span class="compare-judge-bar-label">vs</span>
+        <div class="compare-judge-chips">${oppButtons || `<span class="qual-pair-empty">No opponents</span>`}</div>
+      </div>
+      <p class="qual-pair-scope">${esc(judgeLabel)} · ${esc(focalLabel)} vs ${esc(oppLabel)} · leave-family-out only</p>`;
+    controls.querySelectorAll("[data-qual-judge]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        ensureQualPairState();
+        state.qual.judgeFilter = btn.dataset.qualJudge;
+        renderRationales(out);
+      });
+    });
+    controls.querySelectorAll("[data-qual-pair]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        ensureQualPairState();
+        state.qual.pairModel = btn.dataset.qualPair;
+        renderRationales(out);
+      });
+    });
+  }
+
+  const rows = judgments.filter(j => {
+    if (j.judge_model !== activeJudge) return false;
+    const opp = qualOpponentOf(j, out, byIdx);
+    return opp && opp.model_label === activeOpp;
+  }).slice(0, 24);
+
+  if (!rows.length) {
+    el.innerHTML = `<div class="qual-empty-state">No scored judgments for this judge × opponent pair.</div>`;
+    return;
+  }
+
   const dims = [
     ...Object.keys(rubricLabels[state.task] || {}),
     ...Object.keys(generalRubricLabels),
@@ -2426,14 +2575,16 @@ function renderRationales(out) {
       return `<tr><td><span class="rubric-label" title="${esc(rubricTip(dim))}">${esc(rubricName(dim))}</span></td><td><div class="mini-track"><div class="mini-fill" style="width:${score * 10}%;background:${scoreColor(score)}"></div></div></td><td>${score.toFixed(1)}</td></tr>`;
     })
     .join("")}</table></div>`;
-  document.getElementById("rationales").innerHTML = rows.map(j => {
+
+  el.innerHTML = rows.map(j => {
     const left = byIdx.get(j.left_idx);
     const right = byIdx.get(j.right_idx);
     const selected = j.winner === "option_1" ? left : right;
     const leftWinner = selected?.idx === left?.idx;
     const rightWinner = selected?.idx === right?.idx;
+    const rationale = rationaleTextOf(j);
     return `<div class="rationale">
-      <div class="meta">${j.judge_label} · ${displayModel(left?.model_label, state.mode)} vs ${displayModel(right?.model_label, state.mode)}</div>
+      <div class="meta">${esc(j.judge_label || judgeLabel)} · ${esc(displayModel(left?.model_label, state.mode))} vs ${esc(displayModel(right?.model_label, state.mode))}</div>
       <div class="contestants">
         <details class="contestant-detail ${leftWinner ? "winner" : ""}" ${leftWinner ? "open" : ""}>
           <summary><span>Option 1: ${esc(displayModel(left?.model_label, state.mode))}</span><span class="score-chip">avg ${Number(j.option_1_average).toFixed(1)}</span></summary>
@@ -2444,7 +2595,7 @@ function renderRationales(out) {
           ${scoreTable(j.option_2_scores)}
         </details>
       </div>
-      <p>${esc(j.short_rationale)}</p>
+      <p>${esc(rationale || "Rationale missing for this judgment.")}</p>
     </div>`;
   }).join("");
 }
@@ -2553,6 +2704,8 @@ function updateControlBandVisibility() {
   const showBand = allowed.size > 0;
   band.classList.toggle("hidden", !showBand);
   band.dataset.tab = state.tab || "";
+  band.classList.toggle("control-band--replicates", state.tab === "replicates");
+  band.classList.toggle("control-band--qualitative", state.tab === "qualitative");
   band.querySelectorAll("[data-control]").forEach(el => {
     const key = el.dataset.control;
     const visible = allowed.has(key);
@@ -2684,14 +2837,38 @@ function bind() {
     state.runId = e.target.value;
     state.selectedModel = null;
     state.rubricFocus = null;
+    ensureQualPairState();
+    state.qual.pairModel = null;
+    state.qual.judgeFilter = null;
     syncActiveRunMirror();
     renderAll();
     if (needsQualitativeData()) ensureQualitativeData();
   });
   document.getElementById("modelSet").addEventListener("change", e => { state.modelSet = e.target.value; renderAll(); });
-  document.getElementById("taskSelect").addEventListener("change", e => { state.task = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
-  document.getElementById("modeSelect").addEventListener("change", e => { state.mode = e.target.value; state.selectedModel = null; state.rubricFocus = null; renderAll(); });
-  document.getElementById("judgeSelect").addEventListener("change", e => { state.judge = e.target.value; state.rubricFocus = null; renderAll(); });
+  document.getElementById("taskSelect").addEventListener("change", e => {
+    state.task = e.target.value;
+    state.selectedModel = null;
+    state.rubricFocus = null;
+    ensureQualPairState();
+    state.qual.pairModel = null;
+    state.qual.judgeFilter = null;
+    renderAll();
+  });
+  document.getElementById("modeSelect").addEventListener("change", e => {
+    state.mode = e.target.value;
+    state.selectedModel = null;
+    state.rubricFocus = null;
+    ensureQualPairState();
+    state.qual.pairModel = null;
+    state.qual.judgeFilter = null;
+    renderAll();
+  });
+  document.getElementById("judgeSelect").addEventListener("change", e => {
+    // Control-band judge ranks the Qualitative model rail only — not the pairwise panel.
+    state.judge = e.target.value;
+    state.rubricFocus = null;
+    renderAll();
+  });
   document.querySelectorAll("[data-texttab]").forEach(b => b.addEventListener("click", () => {
     state.textTab = b.dataset.texttab;
     document.querySelectorAll("[data-texttab]").forEach(x => x.classList.toggle("active", x === b));
