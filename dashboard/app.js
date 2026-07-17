@@ -491,11 +491,16 @@ function mergeQualitativeData(qual) {
   if (!qual?.runs_by_id || !state.data?.runs_by_id) return;
   for (const [runId, qualBundle] of Object.entries(qual.runs_by_id)) {
     const target = state.data.runs_by_id[runId];
-    if (!target?.runs) continue;
+    if (!target) continue;
+    if (!target.runs) target.runs = {};
     for (const [key, qualRun] of Object.entries(qualBundle.runs || {})) {
-      if (!target.runs[key]) continue;
-      target.runs[key].outputs = qualRun.outputs || [];
-      target.runs[key].judgments = qualRun.judgments || [];
+      const cell = target.runs[key] || (target.runs[key] = {
+        task: qualRun.task,
+        task_label: qualRun.task_label,
+        mode: qualRun.mode,
+      });
+      cell.outputs = qualRun.outputs || [];
+      cell.judgments = qualRun.judgments || [];
     }
   }
   syncActiveRunMirror();
@@ -1678,9 +1683,12 @@ function renderQualitative() {
     sections = [{ label: "Worker model", sublabel: "Produced deliverable", kind: "output",
       body: out?.output || "No output found for this cell.", empty: !out?.output }];
   } else if (state.textTab === "scaffold") {
-    const hasScaffold = !!out?.scaffold_text;
+    const scaffoldText = assistanceTextOf(out);
+    const emptyMsg = isUnaidedBaseline(out)
+      ? "Unaided baseline — no assistance text"
+      : "This direct or unaided-worker condition does not include assistance text.";
     sections = [{ label: "Assistant model", sublabel: "Assistance text passed to the worker model", kind: "assistant",
-      body: hasScaffold ? out.scaffold_text : "This direct or unaided-worker condition does not include assistance text.", empty: !hasScaffold }];
+      body: scaffoldText || emptyMsg, empty: !scaffoldText }];
   } else if (state.textTab === "scaffoldPrompt") {
     sections = [
       { label: "Prompt for Assistance Text", sublabel: "Prompt used to generate the assistant model's assistance text", kind: "assistant",
@@ -2009,6 +2017,24 @@ function compareJudgments() {
   return bundle?.runs?.[key]?.judgments || [];
 }
 
+/** Assistance text lives in scaffold_text (Qualitative / qualitative JSON). */
+function assistanceTextOf(out) {
+  const text = out?.scaffold_text || out?.scaffold || out?.assistance_text || "";
+  return typeof text === "string" ? text.trim() : "";
+}
+
+/** Judge write-ups use short_rationale in the qualitative bundle. */
+function rationaleTextOf(j) {
+  const text = j?.short_rationale || j?.rationale || j?.reason || j?.explanation || "";
+  return typeof text === "string" ? text.trim() : "";
+}
+
+function isUnaidedBaseline(out) {
+  if (!out) return false;
+  const label = String(out.model_label || out.condition || "").toLowerCase();
+  return label === "plain" || label === "gpt-3.5-turbo" || out.condition === "plain";
+}
+
 function rubricMeansForOutput(output, judgments, task) {
   const dims = [
     ...Object.keys(rubricLabels[task] || {}),
@@ -2016,7 +2042,9 @@ function rubricMeansForOutput(output, judgments, task) {
   ];
   const grouped = new Map();
   judgments.forEach(j => {
-    const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
+    const scores = Number(j.left_idx) === Number(output.idx)
+      ? j.option_1_scores
+      : (Number(j.right_idx) === Number(output.idx) ? j.option_2_scores : null);
     if (!scores) return;
     dims.forEach(dim => {
       if (scores[dim] === undefined || scores[dim] === null) return;
@@ -2063,9 +2091,14 @@ function populateCompareControls() {
 
   const outputs = compareOutputs();
   const models = [...new Set(outputs.map(o => o.model_label))];
-  if (!models.includes(state.compare.modelA)) state.compare.modelA = models[0] || null;
+  // Prefer assisted / focal models over the unaided plain baseline so Compare
+  // opens on cells that actually have assistance text.
+  const preferred = models.filter(m => m !== "plain" && m !== "GPT-3.5-Turbo");
+  const pickDefault = (exclude = null) =>
+    preferred.find(m => m !== exclude) || models.find(m => m !== exclude) || models[0] || null;
+  if (!models.includes(state.compare.modelA)) state.compare.modelA = pickDefault();
   if (!models.includes(state.compare.modelB) || state.compare.modelB === state.compare.modelA) {
-    state.compare.modelB = models.find(m => m !== state.compare.modelA) || models[0] || null;
+    state.compare.modelB = pickDefault(state.compare.modelA);
   }
   aEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
   bEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
@@ -2090,10 +2123,12 @@ function renderComparePane(side) {
       textEl.innerHTML = `<p class="qual-empty-state">Assistance text applies only in augmentation mode.</p>`;
       return;
     }
-    // Qualitative / qualitative JSON use scaffold_text (not scaffold / assistance_text).
-    const scaffoldText = out.scaffold_text || out.scaffold || out.assistance_text;
+    const scaffoldText = assistanceTextOf(out);
     if (!scaffoldText) {
-      textEl.innerHTML = `<p class="qual-empty-state">This direct or unaided-worker condition does not include assistance text.</p>`;
+      const msg = isUnaidedBaseline(out)
+        ? "Unaided baseline — no assistance text"
+        : "No assistance text saved for this model in this run.";
+      textEl.innerHTML = `<p class="qual-empty-state">${esc(msg)}</p>`;
       return;
     }
     textEl.innerHTML = `<pre class="qual-pre">${esc(scaffoldText)}</pre>`;
@@ -2174,16 +2209,19 @@ function renderCompareRationales() {
     el.innerHTML = `<p class="chart-note">No head-to-head judgments for this pair.</p>`;
     return;
   }
-  const pair = compareJudgments().filter(j =>
-    (j.left_idx === outA.idx && j.right_idx === outB.idx) ||
-    (j.left_idx === outB.idx && j.right_idx === outA.idx)
-  );
+  const pair = compareJudgments().filter(j => {
+    const left = Number(j.left_idx);
+    const right = Number(j.right_idx);
+    const a = Number(outA.idx);
+    const b = Number(outB.idx);
+    return (left === a && right === b) || (left === b && right === a);
+  });
   if (!pair.length) {
     el.innerHTML = `<p class="chart-note">No direct pairwise matchup between these two models in this run. Try another run, or browse Qualitative for related rationales.</p>`;
     return;
   }
   el.innerHTML = pair.map(j => {
-    const aIsLeft = j.left_idx === outA.idx;
+    const aIsLeft = Number(j.left_idx) === Number(outA.idx);
     // Judgments store winner as "option_1" / "option_2" (same as Qualitative).
     let winner = "tie / unclear";
     if (j.winner === "option_1") {
@@ -2191,11 +2229,10 @@ function renderCompareRationales() {
     } else if (j.winner === "option_2") {
       winner = displayModel(aIsLeft ? state.compare.modelB : state.compare.modelA, state.compare.mode);
     }
-    // Qualitative JSON field is short_rationale (not rationale / reason).
-    const rationale = j.short_rationale || j.rationale || j.reason || "";
+    const rationale = rationaleTextOf(j);
     return `<div class="compare-rationale-card">
       <div class="compare-rationale-meta"><b>${esc(j.judge_label || judgeDisplay(j.judge_model))}</b> · preferred <b>${esc(winner)}</b></div>
-      <p>${esc(rationale || "No rationale text.")}</p>
+      <p>${esc(rationale || "Rationale missing for this judgment.")}</p>
     </div>`;
   }).join("");
 }
