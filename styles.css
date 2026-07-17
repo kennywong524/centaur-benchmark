@@ -5622,6 +5622,34 @@ a.task-source-badge:hover {
   box-shadow: inset 3px 0 0 #1f5fbf;
   font-weight: 600;
 }
+
+/* Scoreboard + Single-run: Run/Task/Mode strip — orange→blue editorial chrome */
+.control-band.control-band--editorial {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 240, 228, 0.88), rgba(255, 255, 255, 0.95) 42%, rgba(232, 241, 255, 0.9));
+  border: 1.5px solid #c9d4e4;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 rgba(26, 34, 51, 0.06);
+  position: sticky;
+  top: 56px;
+  z-index: 4;
+}
+.control-band.control-band--editorial label {
+  color: #1a2233;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+.control-band.control-band--editorial select {
+  border: 1.5px solid #c5cedc;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: inset 3px 0 0 #1f5fbf;
+  font-weight: 600;
+  min-height: 36px;
+}
 @media (max-width: 1100px) {
   #qualitative .qual-grid { grid-template-columns: 1fr; }
   #qualitative .qual-panel { max-height: none; }

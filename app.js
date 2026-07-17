@@ -2700,6 +2700,10 @@ function updateControlBandVisibility() {
   band.classList.toggle("hidden", !showBand);
   band.dataset.tab = state.tab || "";
   band.classList.toggle("control-band--qualitative", state.tab === "qualitative");
+  band.classList.toggle(
+    "control-band--editorial",
+    state.tab === "rankings" || state.tab === "overview"
+  );
   band.querySelectorAll("[data-control]").forEach(el => {
     const key = el.dataset.control;
     const visible = allowed.has(key);
