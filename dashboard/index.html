@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717i" />
+    <link rel="stylesheet" href="styles.css?v=20260717l" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -80,50 +80,70 @@
 
       <section id="project" class="panel active">
         <div class="landing">
-          <div class="landing-hero">
-            <div class="landing-hero-band">
-              <div class="landing-hero-copy">
-                <p class="landing-kicker">CentaurBench</p>
-                <h2 class="landing-headline">The best player is not always the best coach.</h2>
+          <div class="landing-hero-frame">
+            <div class="landing-hero-wash" aria-hidden="true"></div>
+            <div class="landing-hero">
+              <div class="landing-hero-band">
+                <div class="landing-hero-copy">
+                  <p class="landing-kicker">CentaurBench</p>
+                  <h2 class="landing-headline">The best player is not always the best coach.</h2>
+                </div>
+                <div class="landing-hero-logos" aria-label="Affiliations">
+                  <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">
+                    <img class="logo-dial" src="assets/data-innovation-lab-logo.png?v=20260717d" alt="Data Innovation and AI Lab Berkeley logo" width="148" height="148" loading="eager">
+                  </a>
+                  <a href="https://haas.berkeley.edu/" target="_blank" rel="noopener">
+                    <img class="logo-haas" src="assets/haas-logo.png?v=20260717d" alt="Berkeley Haas School of Business logo" width="168" height="168" loading="eager">
+                  </a>
+                </div>
               </div>
-              <div class="landing-hero-logos" aria-label="Affiliations">
-                <a href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">
-                  <img class="logo-dial" src="assets/data-innovation-lab-logo.png?v=20260717d" alt="Data Innovation and AI Lab Berkeley logo" width="148" height="148" loading="eager">
-                </a>
-                <a href="https://haas.berkeley.edu/" target="_blank" rel="noopener">
-                  <img class="logo-haas" src="assets/haas-logo.png?v=20260717d" alt="Berkeley Haas School of Business logo" width="168" height="168" loading="eager">
-                </a>
+              <p class="landing-lede">Most benchmarks ask which model works best <b>alone</b>. At work, models often <b>help</b> another worker. Those are different skills — and they produce different rankings.</p>
+              <p class="landing-lede-sub">Wrong question: “Which model is best?” · Right question: “Best for which role, on which task?”</p>
+              <div class="regime-defs">
+                <div class="regime-def regime-def-auto">
+                  <b>Automation</b>
+                  <span>The model completes the task end-to-end on its own.</span>
+                </div>
+                <div class="regime-def regime-def-aug">
+                  <b>Augmentation</b>
+                  <span>The model writes assistance text for a fixed GPT-3.5-Turbo worker, which produces the deliverable.</span>
+                </div>
               </div>
-            </div>
-            <p class="landing-lede">Most benchmarks ask which model works best <b>alone</b>. At work, models often <b>help</b> another worker. Those are different skills — and they produce different rankings.</p>
-            <p class="landing-lede-sub">Wrong question: “Which model is best?” · Right question: “Best for which role, on which task?”</p>
-            <div class="regime-defs">
-              <div class="regime-def">
-                <b>Automation</b>
-                <span>The model completes the task end-to-end on its own.</span>
-              </div>
-              <div class="regime-def">
-                <b>Augmentation</b>
-                <span>The model writes assistance text for a fixed GPT-3.5-Turbo worker, which produces the deliverable.</span>
-              </div>
+              <div class="hero-stat-band" id="heroStatBand"></div>
             </div>
           </div>
 
-          <div class="landing-section">
+          <div class="landing-section ace-section" id="overview-methodology">
             <div class="landing-section-head">
-              <h3>Automation vs augmentation</h3>
-              <p>Each point is a model. Axes show average performance across seven tasks (higher = better). Points above the diagonal are stronger in <span class="term-inline" data-term="augmentation">augmentation</span> than in <span class="term-inline" data-term="automation">automation</span>.</p>
+              <p class="ace-kicker">Methodology</p>
+              <h3>Two regimes, one evaluation pipeline</h3>
+              <p><b>Automation:</b> the model finishes the task itself. <b>Augmentation:</b> the model writes assistance text for a fixed GPT-3.5-Turbo worker. Blind pairwise judges score the deliverables with task rubrics.</p>
             </div>
-            <div class="viz-card role-swap-card landing-scatter-card">
-              <div id="roleScatter"></div>
+            <figure class="method-figure">
+              <img src="assets/methodology-pipeline.svg?v=20260717h" alt="Experiment and evaluation pipeline: automation vs augmentation paths, blind pairwise evaluation, and aggregate rankings" loading="lazy" />
+              <figcaption>Models are tested in automation (solve the task end-to-end) or augmentation (provide assistance text to a fixed worker). Outputs are compared blind with task rubrics, then aggregated into rankings by task and regime.</figcaption>
+            </figure>
+          </div>
+
+          <div class="landing-section ace-section" id="overview-tasks">
+            <div class="landing-section-head">
+              <p class="ace-kicker">Tasks</p>
+              <h3>Seven economically grounded professional tasks</h3>
+              <p>Tasks were drawn from GDPval and the Anthropic Economic Index, except for tax preparation, which was designed by the authors. Select a task to read its prompt brief.</p>
+            </div>
+            <div class="overview-task-browser" id="overviewTaskBrowser">
+              <div class="overview-task-list" id="overviewTaskList" role="listbox" aria-label="Benchmark tasks"></div>
+              <article class="overview-task-detail" id="overviewTaskDetail" aria-live="polite"></article>
             </div>
           </div>
 
-          <div class="landing-section">
+          <div class="landing-section ace-section" id="overview-results">
             <div class="landing-section-head">
-              <h3>Key takeaways</h3>
+              <p class="ace-kicker">Main results</p>
+              <h3>Automation and augmentation produce different rankings</h3>
+              <p>10-run panel averages. Lower rank is better. In five of seven tasks the regime winners differ; menu planning and tutoring share GPT-5-Mini across both.</p>
             </div>
-            <div class="takeaway-grid">
+            <div class="takeaway-grid" id="overviewTakeaways">
               <div class="takeaway-card">
                 <b>5 of 7 tasks</b>
                 <p>The best model in automation is not the best model in augmentation.</p>
@@ -133,27 +153,108 @@
                 <p>The unaided worker beats every assisted condition — poor assistance can hurt.</p>
               </div>
               <div class="takeaway-card">
-                <b>No single assistant wins all</b>
-                <p>Augmentation rankings are task-specific. GPT-5-Mini wins both regimes only on menu planning and tutoring.</p>
+                <b>Shared winners</b>
+                <p>GPT-5-Mini wins both regimes on menu planning and tutoring; other tasks diverge by role.</p>
               </div>
             </div>
-          </div>
-
-          <div class="landing-section">
-            <div class="landing-section-head">
-              <h3>How it works</h3>
-              <p><b>Automation:</b> the model finishes the task itself. <b>Augmentation:</b> the model writes assistance text for a fixed GPT-3.5-Turbo worker. Blind pairwise judges score the deliverables.</p>
+            <div class="viz-card role-swap-card landing-scatter-card overview-scatter">
+              <div class="landing-section-head compact-head">
+                <h4>Role-swap scatter</h4>
+                <p>Each point is a model. Higher = better. Points above the diagonal are stronger in <span class="term-inline" data-term="augmentation">augmentation</span> than in <span class="term-inline" data-term="automation">automation</span>.</p>
+              </div>
+              <div id="roleScatter"></div>
             </div>
-            <figure class="method-figure">
-              <img src="assets/methodology-pipeline.svg?v=20260717h" alt="Experiment and evaluation pipeline: automation vs augmentation paths, blind pairwise evaluation, and aggregate rankings" loading="lazy" />
-              <figcaption>Models are tested in automation (solve the task end-to-end) or augmentation (provide assistance text to a fixed worker). Outputs are compared blind with task rubrics, then aggregated into rankings by task and regime.</figcaption>
-            </figure>
+            <div class="overview-podium" id="overviewPodium"></div>
+            <div class="replicates-stack overview-heat-stack">
+              <div class="viz-card heat-viz-card">
+                <h3>Augmentation · Mean Rank Across Runs</h3>
+                <div id="overviewHeatAug"></div>
+              </div>
+              <div class="viz-card heat-viz-card">
+                <h3>Automation · Mean Rank Across Runs</h3>
+                <div id="overviewHeatAuto"></div>
+              </div>
+            </div>
+            <div class="landing-cta-row">
+              <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Open 10-Run Summary →</button>
+              <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run heatmaps →</button>
+            </div>
           </div>
 
-          <div class="landing-cta-row">
-            <button class="cta-btn cta-primary" type="button" data-gotab="compare">Compare models →</button>
-            <button class="cta-btn cta-secondary" type="button" data-gotab="rankings">Full rankings →</button>
-            <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Heatmaps →</button>
+          <div class="landing-section ace-section" id="overview-compare">
+            <div class="landing-section-head">
+              <p class="ace-kicker">Compare</p>
+              <h3>A/B any two models on the same task</h3>
+              <p>Side-by-side deliverables, assistance text, rubric spines, and judge rationales — flip between models without leaving the page.</p>
+            </div>
+            <div class="compare-teaser" id="overviewCompareTeaser" aria-label="Compare preview">
+              <div class="compare-teaser-controls">
+                <button type="button" class="compare-teaser-chip active" data-teaser-pair="0">Counseling · GPT-4.1 vs DeepSeek</button>
+                <button type="button" class="compare-teaser-chip" data-teaser-pair="1">Menu Planning · GPT-5-Mini vs plain</button>
+                <button type="button" class="compare-teaser-chip" data-teaser-pair="2">Tax Prep · assistants vs unaided</button>
+              </div>
+              <div class="compare-teaser-arena">
+                <article class="compare-teaser-panel a">
+                  <header><span class="compare-side-badge a">A</span><h4 id="teaserTitleA">Model A</h4></header>
+                  <p class="compare-teaser-mode">Augmentation · assistance text</p>
+                  <div class="compare-teaser-body" id="teaserBodyA"></div>
+                </article>
+                <div class="compare-teaser-vs" aria-hidden="true">vs</div>
+                <article class="compare-teaser-panel b">
+                  <header><span class="compare-side-badge b">B</span><h4 id="teaserTitleB">Model B</h4></header>
+                  <p class="compare-teaser-mode">Augmentation · assistance text</p>
+                  <div class="compare-teaser-body" id="teaserBodyB"></div>
+                </article>
+              </div>
+            </div>
+            <div class="landing-cta-row">
+              <button class="cta-btn cta-primary" type="button" data-gotab="compare">Open Compare →</button>
+            </div>
+          </div>
+
+          <div class="landing-section ace-section" id="overview-explore">
+            <div class="landing-section-head">
+              <p class="ace-kicker">Go deeper</p>
+              <h3>Task-level rankings, rubrics, and qualitative evidence</h3>
+              <p>Drill into per-task leaderboards and rubric dimensions, then open the Qualitative browser for full prompts, assistance text, outputs, and judge rationales.</p>
+            </div>
+            <div class="explore-card-grid">
+              <button class="explore-card" type="button" data-gotab="rankings">
+                <span class="explore-card-kicker">Rankings</span>
+                <b>Task-level leaderboards</b>
+                <p>General and task-specific rubric scores for every model × regime cell.</p>
+                <span class="explore-card-cta">Open Rankings →</span>
+              </button>
+              <button class="explore-card" type="button" data-gotab="qualitative">
+                <span class="explore-card-kicker">Qualitative</span>
+                <b>Read the evidence</b>
+                <p>Browse assistance text, worker deliverables, prompts, and pairwise rationales.</p>
+                <span class="explore-card-cta">Open Qualitative →</span>
+              </button>
+              <button class="explore-card" type="button" data-gotab="judges">
+                <span class="explore-card-kicker">Judges</span>
+                <b>Agreement diagnostics</b>
+                <p>Leave-family-out correlations and rank-gap checks across the judge panel.</p>
+                <span class="explore-card-cta">Open Judges →</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="landing-section ace-section overview-engage" id="overview-engage">
+            <div class="engage-card">
+              <div class="engage-copy">
+                <p class="ace-kicker">Engage with Our Research</p>
+                <h3 class="engage-title">CentaurBench</h3>
+                <p class="engage-tagline">The best player is not always the best coach.</p>
+                <p class="engage-lede">We welcome your feedback and questions. If you have any thoughts on our work or would like to collaborate, please don't hesitate to reach out.</p>
+                <div class="engage-actions">
+                  <a class="cta-btn cta-primary" href="mailto:data-innovation-lab@berkeley.edu">Contact Us</a>
+                  <span class="paper-bar-btn paper-bar-btn-disabled" aria-disabled="true">Working Paper (PDF) · coming soon</span>
+                  <a class="cta-btn cta-secondary" href="https://github.com/kennywong524/best-player-not-best-coach" target="_blank" rel="noopener">GitHub</a>
+                  <a class="cta-btn cta-secondary" href="https://thedatainnovationlab.com/" target="_blank" rel="noopener">Lab</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -413,6 +514,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717i"></script>
+    <script src="app.js?v=20260717l"></script>
   </body>
 </html>
