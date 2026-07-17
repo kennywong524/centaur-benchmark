@@ -2733,11 +2733,14 @@ main {
   padding: 12px;
   box-shadow: var(--shadow);
 }
-.method-figure img {
+.method-figure img,
+.method-figure svg {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 6px;
+  image-rendering: auto;
+  -webkit-user-drag: none;
 }
 .method-figure figcaption {
   margin-top: 10px;
