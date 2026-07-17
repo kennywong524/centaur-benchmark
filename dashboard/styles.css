@@ -2638,13 +2638,13 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 22px;
   flex: 0 0 auto;
 }
 .landing-hero-logos a {
   display: block;
   line-height: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   transition: opacity .15s ease;
 }
@@ -2656,12 +2656,12 @@ main {
   object-fit: contain;
 }
 .landing-hero-logos .logo-dial {
-  width: 96px;
-  height: 96px;
+  width: 148px;
+  height: 148px;
 }
 .landing-hero-logos .logo-haas {
-  width: 112px;
-  height: 112px;
+  width: 168px;
+  height: 168px;
 }
 @media (max-width: 700px) {
   .landing-hero-band {
@@ -2671,14 +2671,15 @@ main {
   }
   .landing-hero-logos {
     justify-content: flex-start;
+    gap: 16px;
   }
   .landing-hero-logos .logo-dial {
-    width: 72px;
-    height: 72px;
+    width: 104px;
+    height: 104px;
   }
   .landing-hero-logos .logo-haas {
-    width: 84px;
-    height: 84px;
+    width: 118px;
+    height: 118px;
   }
 }
 .landing-kicker {
