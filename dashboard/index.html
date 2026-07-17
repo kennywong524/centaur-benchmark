@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717e" />
+    <link rel="stylesheet" href="styles.css?v=20260717f" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -223,7 +223,7 @@
       </section>
 
       <section id="compare" class="panel">
-        <div class="section-heading">
+        <div class="section-heading compare-heading">
           <h2>Compare models</h2>
           <p>Side-by-side panels for two models on the same task and mode — rubric spine, deliverables, and assistance text.</p>
         </div>
@@ -266,8 +266,8 @@
               <div class="compare-score-row" id="compareScoreA"></div>
             </header>
             <div class="compare-tabs" data-compare-side="a" role="tablist" aria-label="Model A content">
-              <button type="button" class="pill active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
+              <button type="button" class="compare-seg active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
+              <button type="button" class="compare-seg" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
             </div>
             <div class="compare-text" id="compareTextA" role="tabpanel"></div>
           </article>
@@ -284,8 +284,8 @@
               <div class="compare-score-row" id="compareScoreB"></div>
             </header>
             <div class="compare-tabs" data-compare-side="b" role="tablist" aria-label="Model B content">
-              <button type="button" class="pill active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
+              <button type="button" class="compare-seg active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
+              <button type="button" class="compare-seg" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
             </div>
             <div class="compare-text" id="compareTextB" role="tabpanel"></div>
           </article>
@@ -420,6 +420,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717e"></script>
+    <script src="app.js?v=20260717f"></script>
   </body>
 </html>
