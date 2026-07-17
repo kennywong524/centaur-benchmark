@@ -2106,6 +2106,77 @@ function populateCompareControls() {
   if (state.compare.modelB) bEl.value = state.compare.modelB;
 }
 
+function comparePairJudgments(outA, outB) {
+  if (!outA || !outB) return [];
+  return compareJudgments().filter(j => {
+    const left = Number(j.left_idx);
+    const right = Number(j.right_idx);
+    const a = Number(outA.idx);
+    const b = Number(outB.idx);
+    return (left === a && right === b) || (left === b && right === a);
+  });
+}
+
+function compareHeadToHeadStats(outA, outB) {
+  const pair = comparePairJudgments(outA, outB);
+  let winsA = 0;
+  let winsB = 0;
+  let ties = 0;
+  pair.forEach(j => {
+    const aIsLeft = Number(j.left_idx) === Number(outA.idx);
+    if (j.winner === "option_1") {
+      if (aIsLeft) winsA += 1;
+      else winsB += 1;
+    } else if (j.winner === "option_2") {
+      if (aIsLeft) winsB += 1;
+      else winsA += 1;
+    } else {
+      ties += 1;
+    }
+  });
+  return { pair, winsA, winsB, ties, n: pair.length };
+}
+
+function meanRubricScore(rows) {
+  if (!rows?.length) return null;
+  return avg(rows.map(r => r.mean).filter(Number.isFinite));
+}
+
+function renderCompareScoreSummary(side, rows, h2h, vsAvg) {
+  const el = document.getElementById(side === "a" ? "compareScoreA" : "compareScoreB");
+  if (!el) return;
+  const mean = meanRubricScore(rows);
+  const wins = side === "a" ? h2h.winsA : h2h.winsB;
+  const oppWins = side === "a" ? h2h.winsB : h2h.winsA;
+  const leadMean = Number.isFinite(mean) && (
+    side === "a"
+      ? mean >= (meanRubricScore(h2h.rowsB) ?? -Infinity)
+      : mean >= (meanRubricScore(h2h.rowsA) ?? -Infinity)
+  );
+  const leadH2H = h2h.n > 0 && wins > oppWins;
+
+  const chips = [];
+  chips.push(`<div class="compare-score-chip ${leadMean && !vsAvg ? "is-lead" : ""}">
+    <span class="label">Mean rubric</span>
+    <span class="value">${Number.isFinite(mean) ? mean.toFixed(1) : "—"}</span>
+    <span class="sub">/ 10 across dims</span>
+  </div>`);
+  if (!vsAvg) {
+    chips.push(`<div class="compare-score-chip ${leadH2H ? "is-lead" : ""}">
+      <span class="label">Head-to-head</span>
+      <span class="value">${h2h.n ? `${wins}–${oppWins}` : "—"}</span>
+      <span class="sub">${h2h.n ? `${h2h.n} judge${h2h.n === 1 ? "" : "s"}` : "no direct pair"}</span>
+    </div>`);
+  } else {
+    chips.push(`<div class="compare-score-chip">
+      <span class="label">View</span>
+      <span class="value" style="font-size:13px">vs avg</span>
+      <span class="sub">task baseline</span>
+    </div>`);
+  }
+  el.innerHTML = chips.join("");
+}
+
 function renderComparePane(side) {
   const textEl = document.getElementById(side === "a" ? "compareTextA" : "compareTextB");
   const titleEl = document.getElementById(side === "a" ? "compareTitleA" : "compareTitleB");
@@ -2114,6 +2185,16 @@ function renderComparePane(side) {
   const pane = side === "a" ? state.compare.paneA : state.compare.paneB;
   const out = compareOutputs().find(o => o.model_label === model);
   titleEl.textContent = model ? displayModel(model, state.compare.mode) : `Model ${side.toUpperCase()}`;
+
+  const tabs = document.querySelector(`.compare-tabs[data-compare-side="${side}"]`);
+  if (tabs) {
+    tabs.querySelectorAll("[data-compare-pane]").forEach(btn => {
+      const active = btn.dataset.comparePane === pane;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  }
+
   if (!out) {
     textEl.innerHTML = `<p class="qual-empty-state">No output for this selection.</p>`;
     return;
@@ -2146,6 +2227,8 @@ function renderCompareRubric() {
   const outB = outputs.find(o => o.model_label === state.compare.modelB);
   if (!outA || !outB) {
     el.innerHTML = `<p class="chart-note">Pick two models with saved outputs to compare rubric scores.</p>`;
+    renderCompareScoreSummary("a", [], { winsA: 0, winsB: 0, n: 0, rowsA: [], rowsB: [] }, false);
+    renderCompareScoreSummary("b", [], { winsA: 0, winsB: 0, n: 0, rowsA: [], rowsB: [] }, false);
     return;
   }
   const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task);
@@ -2158,44 +2241,55 @@ function renderCompareRubric() {
   const vsAvg = state.compare.rubricView === "avg";
   const labelA = displayModel(state.compare.modelA, state.compare.mode);
   const labelB = displayModel(state.compare.modelB, state.compare.mode);
+  const h2h = compareHeadToHeadStats(outA, outB);
+  h2h.rowsA = rowsA;
+  h2h.rowsB = rowsB;
+  renderCompareScoreSummary("a", rowsA, h2h, vsAvg);
+  renderCompareScoreSummary("b", rowsB, h2h, vsAvg);
 
   if (!dims.length) {
     el.innerHTML = `<p class="chart-note">No rubric scores found for this cell. Try another run or open Qualitative.</p>`;
     return;
   }
 
+  const rightColor = vsAvg ? "var(--compare-avg)" : "var(--compare-b)";
+  const max = 10;
+
   const rows = dims.map(dim => {
     const a = mapA.get(dim);
     const b = mapB.get(dim);
     const tavg = mapAvg.get(dim);
-    const left = vsAvg ? a : a;
+    const left = a;
     const right = vsAvg ? tavg : b;
-    const rightLabel = vsAvg ? "Task avg" : "B";
-    const max = 10;
+    const aBetter = Number.isFinite(left) && Number.isFinite(right) && left > right + 0.05;
+    const bBetter = Number.isFinite(left) && Number.isFinite(right) && right > left + 0.05;
     return `<div class="compare-rubric-row">
       <div class="compare-rubric-dim">${esc(rubricName(dim))}</div>
-      <div class="compare-rubric-bars">
-        <div class="compare-rubric-bar-wrap" title="${esc(labelA)}">
-          <span class="compare-rubric-side">A</span>
-          <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%;background:#2f6fcb"></div></div>
-          <span class="compare-rubric-val">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
-        </div>
-        <div class="compare-rubric-bar-wrap" title="${vsAvg ? "Task average" : esc(labelB)}">
-          <span class="compare-rubric-side">${rightLabel}</span>
-          <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(right) ? right / max * 100 : 0}%;background:${vsAvg ? "#94a3b8" : "#d96f31"}"></div></div>
-          <span class="compare-rubric-val">${Number.isFinite(right) ? right.toFixed(1) : "—"}</span>
-        </div>
+      <div class="compare-rubric-cell" data-side="A · ${esc(labelA)}" title="${esc(labelA)}">
+        <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%;background:var(--compare-a)"></div></div>
+        <span class="compare-rubric-val ${aBetter ? "is-better" : ""}">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
+      </div>
+      <div class="compare-rubric-cell" data-side="${vsAvg ? "Task avg" : `B · ${esc(labelB)}`}" title="${vsAvg ? "Task average" : esc(labelB)}">
+        <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(right) ? right / max * 100 : 0}%;background:${rightColor}"></div></div>
+        <span class="compare-rubric-val ${bBetter ? "is-better" : ""}">${Number.isFinite(right) ? right.toFixed(1) : "—"}</span>
       </div>
     </div>`;
   }).join("");
 
   el.innerHTML = `
     <div class="section-heading compact">
-      <h2>Rubric comparison</h2>
+      <h2>Rubric attributes</h2>
       <p>${esc(labelA)} vs ${vsAvg ? "task average" : esc(labelB)} · ${esc(cleanTaskTitle(state.compare.task))} · ${esc(modeLabels[state.compare.mode])}</p>
     </div>
-    ${!vsAvg && Number.isFinite(mapB.get(dims[0])) === false ? "" : ""}
-    <div class="compare-rubric-legend"><span class="dot a"></span> ${esc(labelA)} <span class="dot b"></span> ${vsAvg ? "Task average" : esc(labelB)}</div>
+    <div class="compare-rubric-legend">
+      <span><span class="dot a"></span>${esc(labelA)}</span>
+      <span><span class="dot b"></span>${vsAvg ? "Task average" : esc(labelB)}</span>
+    </div>
+    <div class="compare-rubric-head" aria-hidden="true">
+      <span class="col-dim">Dimension</span>
+      <span class="col-a">A</span>
+      <span class="col-b">${vsAvg ? "Avg" : "B"}</span>
+    </div>
     ${rows}`;
 }
 
@@ -2209,13 +2303,7 @@ function renderCompareRationales() {
     el.innerHTML = `<p class="chart-note">No head-to-head judgments for this pair.</p>`;
     return;
   }
-  const pair = compareJudgments().filter(j => {
-    const left = Number(j.left_idx);
-    const right = Number(j.right_idx);
-    const a = Number(outA.idx);
-    const b = Number(outB.idx);
-    return (left === a && right === b) || (left === b && right === a);
-  });
+  const pair = comparePairJudgments(outA, outB);
   if (!pair.length) {
     el.innerHTML = `<p class="chart-note">No direct pairwise matchup between these two models in this run. Try another run, or browse Qualitative for related rationales.</p>`;
     return;
@@ -2257,6 +2345,10 @@ function renderCompare() {
     document.getElementById("compareTextA").innerHTML = "";
     document.getElementById("compareTextB").innerHTML = "";
     document.getElementById("compareRationales").innerHTML = "";
+    const scoreA = document.getElementById("compareScoreA");
+    const scoreB = document.getElementById("compareScoreB");
+    if (scoreA) scoreA.innerHTML = "";
+    if (scoreB) scoreB.innerHTML = "";
     return;
   }
   if (loading) loading.classList.add("hidden");
@@ -2281,8 +2373,12 @@ function bindCompareControls() {
     group.querySelectorAll("[data-compare-pane]").forEach(btn => {
       btn.addEventListener("click", () => {
         const side = group.dataset.compareSide;
-        group.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+        group.querySelectorAll(".pill").forEach(p => {
+          p.classList.remove("active");
+          p.setAttribute("aria-selected", "false");
+        });
         btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
         if (side === "a") state.compare.paneA = btn.dataset.comparePane;
         else state.compare.paneB = btn.dataset.comparePane;
         renderComparePane(side);

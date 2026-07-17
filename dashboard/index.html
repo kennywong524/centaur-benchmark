@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717d" />
+    <link rel="stylesheet" href="styles.css?v=20260717e" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -225,7 +225,7 @@
       <section id="compare" class="panel">
         <div class="section-heading">
           <h2>Compare models</h2>
-          <p>Pick any two models on the same task and mode. Rubric scores lead; deliverables and assistance text sit side-by-side.</p>
+          <p>Side-by-side panels for two models on the same task and mode — rubric spine, deliverables, and assistance text.</p>
         </div>
         <div class="compare-controls" id="compareControls">
           <label>Task
@@ -254,28 +254,51 @@
           </label>
         </div>
         <div class="qual-loading-note hidden" id="compareLoadingNote">Loading outputs and rubric scores…</div>
-        <div id="compareRubric" class="viz-card compare-rubric-card"></div>
-        <div class="compare-split">
-          <div class="viz-card compare-pane">
-            <h3 id="compareTitleA">Model A</h3>
-            <div class="compare-tabs" data-compare-side="a">
-              <button type="button" class="pill active" data-compare-pane="output">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold">Assistance text</button>
+
+        <div class="compare-arena" id="compareArena">
+          <article class="compare-panel compare-panel--a" aria-labelledby="compareTitleA">
+            <header class="compare-panel-head">
+              <div class="compare-panel-kicker">
+                <span class="compare-side-badge a">A</span>
+                <span class="compare-panel-role">Model A</span>
+              </div>
+              <h3 id="compareTitleA">Model A</h3>
+              <div class="compare-score-row" id="compareScoreA"></div>
+            </header>
+            <div class="compare-tabs" data-compare-side="a" role="tablist" aria-label="Model A content">
+              <button type="button" class="pill active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
+              <button type="button" class="pill" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
             </div>
-            <div class="compare-text" id="compareTextA"></div>
-          </div>
-          <div class="viz-card compare-pane">
-            <h3 id="compareTitleB">Model B</h3>
-            <div class="compare-tabs" data-compare-side="b">
-              <button type="button" class="pill active" data-compare-pane="output">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold">Assistance text</button>
+            <div class="compare-text" id="compareTextA" role="tabpanel"></div>
+          </article>
+
+          <div class="compare-vs" aria-hidden="true"><span>vs</span></div>
+
+          <article class="compare-panel compare-panel--b" aria-labelledby="compareTitleB">
+            <header class="compare-panel-head">
+              <div class="compare-panel-kicker">
+                <span class="compare-side-badge b">B</span>
+                <span class="compare-panel-role">Model B</span>
+              </div>
+              <h3 id="compareTitleB">Model B</h3>
+              <div class="compare-score-row" id="compareScoreB"></div>
+            </header>
+            <div class="compare-tabs" data-compare-side="b" role="tablist" aria-label="Model B content">
+              <button type="button" class="pill active" data-compare-pane="output" role="tab" aria-selected="true">Deliverable</button>
+              <button type="button" class="pill" data-compare-pane="scaffold" role="tab" aria-selected="false">Assistance text</button>
             </div>
-            <div class="compare-text" id="compareTextB"></div>
-          </div>
+            <div class="compare-text" id="compareTextB" role="tabpanel"></div>
+          </article>
         </div>
-        <details class="fold-block fold-banner" open>
-          <summary class="fold-summary fold-summary-banner"><span>Judge rationales (head-to-head when available)</span></summary>
-          <div class="fold-body" id="compareRationales"></div>
+
+        <div id="compareRubric" class="compare-rubric-band"></div>
+
+        <details class="compare-rationale-band" open>
+          <summary class="compare-rationale-summary">
+            <span class="compare-rationale-title">Head-to-head judge rationales</span>
+            <span class="compare-rationale-hint">Direct pairwise matchups for this pair, when available</span>
+          </summary>
+          <div class="compare-rationale-body" id="compareRationales"></div>
         </details>
       </section>
 
@@ -397,6 +420,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717c"></script>
+    <script src="app.js?v=20260717e"></script>
   </body>
 </html>
