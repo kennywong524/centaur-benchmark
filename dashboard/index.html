@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CentaurBench: Benchmarking LLM Augmentation on Real-world Work</title>
-    <meta name="description" content="The best player is not always the best coach. CentaurBench compares which LLMs work best alone versus which best coach another worker across seven professional tasks." />
+    <meta name="description" content="The best player is not always the best coach. CentaurBench compares LLM automation vs augmentation across seven professional tasks." />
     <meta property="og:title" content="CentaurBench: Benchmarking LLM Augmentation on Real-world Work" />
-    <meta property="og:description" content="The best player is not always the best coach. Explore which models work best alone vs as coaches across seven professional tasks." />
+    <meta property="og:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings across seven professional tasks." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kennywong524.github.io/centaur-benchmark/" />
     <meta property="og:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="CentaurBench: Benchmarking LLM Augmentation on Real-world Work" />
-    <meta name="twitter:description" content="The best player is not always the best coach. Which models work best alone vs as coaches?" />
+    <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
     <link rel="stylesheet" href="styles.css" />
@@ -141,7 +141,7 @@
             </div>
             <figure class="method-figure">
               <img src="assets/methodology-pipeline.png" alt="Experiment and evaluation pipeline: automation vs augmentation paths, blind pairwise evaluation, and aggregate rankings" loading="lazy" />
-              <figcaption>Models are tested either as solo workers or as coaches to a fixed worker. Outputs are compared blind with task rubrics, then aggregated into rankings by task and role.</figcaption>
+              <figcaption>Models are tested in automation (solve the task end-to-end) or augmentation (provide assistance text to a fixed worker). Outputs are compared blind with task rubrics, then aggregated into rankings by task and regime.</figcaption>
             </figure>
           </div>
 
@@ -367,7 +367,7 @@
                 </button>
                 <button class="content-tab" data-texttab="scaffoldPrompt">
                   <span>Prompt for assistance text</span>
-                  <small>How guidance was created</small>
+                  <small>How assistance text was created</small>
                 </button>
                 <button class="content-tab" data-texttab="prompt">
                   <span>Prompt & Rubric</span>
