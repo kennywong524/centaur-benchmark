@@ -214,8 +214,8 @@ const state = {
 };
 
 const glossary = {
-  automation: "The model solves the task end-to-end and produces the final deliverable directly, with no intermediary worker.",
-  augmentation: "The model writes guidance for a fixed GPT-3.5-Turbo worker, which then produces the final deliverable. Tests coaching ability, not solo solving.",
+  automation: "The model completes the task end-to-end on its own and produces the deliverable.",
+  augmentation: "The model writes assistance text for a fixed GPT-3.5-Turbo worker, which then produces the deliverable.",
   "assistance text": "Process-only guidance — such as plans, checklists, and self-review steps — written by the assistant model for the worker model. It does not contain a direct answer to the task.",
   "worker model": "The model that produces the final task output. In augmentation this is always GPT-3.5-Turbo; in automation it is the model under test.",
   "assistant model": "The focal model under test in augmentation. It writes assistance text for the worker rather than the task deliverable.",
@@ -225,7 +225,7 @@ const glossary = {
   "model pool": "Which models are eligible for ranking: All candidates (includes the plain unaided worker baseline) vs Assistants only (focal assistant models).",
   "rank universe": "Synonym for model pool — which models are eligible for ranking.",
   "leave-family-out": "A judge never scores outputs from its own model family (e.g., Claude does not judge Claude outputs), reducing same-family preference.",
-  "role-swap": "Compares how well a model works alone versus how well it coaches a fixed worker. Higher performance score is better.",
+  "role-swap": "Compares a model's automation performance (solves the task alone) versus augmentation performance (helps a fixed worker). Higher score is better.",
   "standard error": "Uncertainty across 10 independent replications (SE = SD / √10). Smaller means a more stable ranking.",
   "baseline (plain worker)": "An augmentation run in which GPT-3.5-Turbo receives no assistance text. This shows what the fixed worker model achieves unaided.",
   "replication run": "One full independent pass of generation, worker execution, and judging. The dashboard aggregates ten runs for paper-level results.",
@@ -279,7 +279,7 @@ const taskLabels = {
   travel_planning: "Travel Agent",
   tutoring: "Tutoring",
 };
-const modeLabels = { augmentation: "Coaches a worker", automation: "Works alone" };
+const modeLabels = { augmentation: "Augmentation", automation: "Automation" };
 const judgeLabels = {
   aggregate: "Aggregate",
   "gpt-4.1": "GPT-4.1",
@@ -959,7 +959,7 @@ function renderRoleScatter() {
     const lx = right ? cx + 10 : cx - 10;
     const anchor = right ? "start" : "end";
     const gap = d.augScore - d.autoScore;
-    const tip = `${displayModel(d.model)} · works alone ${d.autoScore.toFixed(1)} (rank ${d.autoRank.toFixed(1)}) · coaches ${d.augScore.toFixed(1)} (rank ${d.augRank.toFixed(1)})`;
+    const tip = `${displayModel(d.model)} · automation ${d.autoScore.toFixed(1)} (rank ${d.autoRank.toFixed(1)}) · augmentation ${d.augScore.toFixed(1)} (rank ${d.augRank.toFixed(1)})`;
     return `<g class="role-point" tabindex="0" data-tip="${esc(tip)}" data-tip-title="${esc(displayModel(d.model))}"><circle cx="${cx}" cy="${cy}" r="8" fill="transparent"/><circle cx="${cx}" cy="${cy}" r="5" fill="#2f6fcb" stroke="white" stroke-width="1.4" pointer-events="none"/><text x="${lx}" y="${cy + 3.5}" font-size="11" font-weight="700" text-anchor="${anchor}" fill="#172033" stroke="white" stroke-width="3" paint-order="stroke" style="stroke-linejoin:round" pointer-events="none">${short}</text></g>`;
   }).join("");
 
@@ -976,12 +976,12 @@ function renderRoleScatter() {
     <line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.5"/>
     <text x="${(x(lo) + x(hi)) / 2}" y="${(y(lo) + y(hi)) / 2 - 12}" text-anchor="middle" font-size="10" fill="#8a93a3" font-style="italic">Same in both roles</text>
     ${qLabel(x(hi) - 8, y(hi) + 18, "Strong in both", "end")}
-    ${qLabel(x(lo) + 8, y(hi) + 18, "Better coach", "start")}
-    ${qLabel(x(hi) - 8, y(lo) - 10, "Better solo", "end")}
+    ${qLabel(x(lo) + 8, y(hi) + 18, "Better augmenter", "start")}
+    ${qLabel(x(hi) - 8, y(lo) - 10, "Better automator", "end")}
     ${qLabel(x(lo) + 8, y(lo) - 10, "Weaker in both", "start")}
     ${points}
-    <text x="${size / 2}" y="${size - 10}" text-anchor="middle" font-size="12" font-weight="700">Works alone →</text>
-    <text x="16" y="${size / 2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size / 2})">← Coaches a worker</text>
+    <text x="${size / 2}" y="${size - 10}" text-anchor="middle" font-size="12" font-weight="700">Automation →</text>
+    <text x="16" y="${size / 2}" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 16 ${size / 2})">← Augmentation</text>
   </svg></div>`;
 
   const movers = scored
@@ -992,13 +992,13 @@ function renderRoleScatter() {
   const cards = movers.map(d => {
     let tag = "Balanced";
     let tagClass = "tag-bal";
-    if (d.gap >= 0.8) { tag = "Better coach"; tagClass = "tag-aug"; }
-    else if (d.gap <= -0.8) { tag = "Better solo"; tagClass = "tag-auto"; }
+    if (d.gap >= 0.8) { tag = "Stronger in augmentation"; tagClass = "tag-aug"; }
+    else if (d.gap <= -0.8) { tag = "Stronger in automation"; tagClass = "tag-auto"; }
     return `<div class="role-info-card">
       <div class="role-info-name">${esc(displayModel(d.model))}<span class="role-tag ${tagClass}">${tag}</span></div>
       <div class="role-info-stats">
-        <div class="role-stat role-stat-auto"><span class="role-stat-label">Works alone</span><span class="role-stat-val">${d.autoScore.toFixed(1)}</span></div>
-        <div class="role-stat role-stat-aug"><span class="role-stat-label">Coaches</span><span class="role-stat-val">${d.augScore.toFixed(1)}</span></div>
+        <div class="role-stat role-stat-auto"><span class="role-stat-label">Automation</span><span class="role-stat-val">${d.autoScore.toFixed(1)}</span></div>
+        <div class="role-stat role-stat-aug"><span class="role-stat-label">Augmentation</span><span class="role-stat-val">${d.augScore.toFixed(1)}</span></div>
       </div>
     </div>`;
   }).join("");
@@ -1011,7 +1011,7 @@ function renderRoleScatter() {
       <div class="role-swap-right">
         <div class="role-info">
           <div class="role-info-head">Largest role gaps</div>
-          <p class="role-info-sub">Models that shift most between working alone and coaching. Hover points for full scores.</p>
+          <p class="role-info-sub">Models that shift most between automation and augmentation. Hover points for full scores.</p>
           ${cards}
         </div>
       </div>
@@ -2087,7 +2087,7 @@ function renderComparePane(side) {
   }
   if (pane === "scaffold") {
     if (state.compare.mode !== "augmentation") {
-      textEl.innerHTML = `<p class="qual-empty-state">Coaching notes apply only when the model coaches a worker.</p>`;
+      textEl.innerHTML = `<p class="qual-empty-state">Assistance text applies only in augmentation mode.</p>`;
       return;
     }
     textEl.innerHTML = `<pre class="qual-pre">${esc(out.scaffold || out.assistance_text || "No coaching notes saved.")}</pre>`;
