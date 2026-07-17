@@ -2245,6 +2245,30 @@ function isUnaidedBaseline(out) {
   return label === "plain" || label === "gpt-3.5-turbo" || out.condition === "plain";
 }
 
+function judgmentScoresForOutput(judgment, output) {
+  if (!judgment || !output) return null;
+  if (Number(judgment.left_idx) === Number(output.idx)) return judgment.option_1_scores || null;
+  if (Number(judgment.right_idx) === Number(output.idx)) return judgment.option_2_scores || null;
+  return null;
+}
+
+/** Judges that actually scored this output after leave-family-out. */
+function judgesWithRubricScoresForOutput(output, judgments) {
+  const seen = new Map();
+  if (!output) return seen;
+  judgments.forEach(j => {
+    const key = j.judge_model;
+    if (!key || seen.has(key)) return;
+    if (isOwnFamily(key, output.model_label)) return;
+    const scores = judgmentScoresForOutput(j, output);
+    if (!scores || typeof scores !== "object") return;
+    const hasNumeric = Object.values(scores).some(v => Number.isFinite(Number(v)));
+    if (!hasNumeric) return;
+    seen.set(key, j.judge_label || judgeDisplay(key));
+  });
+  return seen;
+}
+
 function rubricMeansForOutput(output, judgments, task, opts = {}) {
   const dims = [
     ...Object.keys(rubricLabels[task] || {}),
@@ -2254,9 +2278,10 @@ function rubricMeansForOutput(output, judgments, task, opts = {}) {
   const grouped = new Map();
   judgments.forEach(j => {
     if (judgeFilter && j.judge_model !== judgeFilter) return;
-    const scores = Number(j.left_idx) === Number(output.idx)
-      ? j.option_1_scores
-      : (Number(j.right_idx) === Number(output.idx) ? j.option_2_scores : null);
+    // Leave-family-out: never treat a same-family judge as contributing scores.
+    if (!judgeFilter && isOwnFamily(j.judge_model, output.model_label)) return;
+    if (judgeFilter && isOwnFamily(judgeFilter, output.model_label)) return;
+    const scores = judgmentScoresForOutput(j, output);
     if (!scores) return;
     dims.forEach(dim => {
       if (scores[dim] === undefined || scores[dim] === null) return;
@@ -2282,13 +2307,23 @@ function taskAverageRubric(outputs, judgments, task, opts = {}) {
   return [...byDim.entries()].map(([dimension, vals]) => ({ dimension, mean: avg(vals) }));
 }
 
-function compareRubricJudgeOptions(judgments) {
+/** Judge chips for Compare: only judges with real scores for both A and B (LOO excluded). */
+function compareRubricJudgeOptions(judgments, outA, outB) {
+  const forA = judgesWithRubricScoresForOutput(outA, judgments);
+  const forB = judgesWithRubricScoresForOutput(outB, judgments);
+  // Intersection: a selected judge must be able to populate both sides of the spine/radar.
   const seen = new Map();
-  judgments.forEach(j => {
-    const key = j.judge_model;
-    if (!key || seen.has(key)) return;
-    seen.set(key, j.judge_label || judgeDisplay(j.judge_model));
+  forA.forEach((label, model) => {
+    if (!forB.has(model)) return;
+    if (outA && isOwnFamily(model, outA.model_label)) return;
+    if (outB && isOwnFamily(model, outB.model_label)) return;
+    seen.set(model, label);
   });
+  // If only one side has outputs yet, fall back to that side's eligible judges.
+  if (!seen.size && (forA.size || forB.size)) {
+    const src = forA.size ? forA : forB;
+    src.forEach((label, model) => seen.set(model, label));
+  }
   return [...seen.entries()]
     .map(([model, label]) => ({ model, label }))
     .sort((a, b) => a.label.localeCompare(b.label));
@@ -2846,15 +2881,21 @@ function renderCompareRubric() {
     return;
   }
 
-  const judgeOpts = compareRubricJudgeOptions(judgments);
+  const judgeOpts = compareRubricJudgeOptions(judgments, outA, outB);
   if (state.compare.rubricJudge !== "average"
     && !judgeOpts.some(j => j.model === state.compare.rubricJudge)) {
     state.compare.rubricJudge = "average";
   }
   const judgeModel = state.compare.rubricJudge === "average" ? null : state.compare.rubricJudge;
-  const rubricOpts = judgeModel ? { judgeModel } : {};
-  const judgeLabel = judgeModel
-    ? (judgeOpts.find(j => j.model === judgeModel)?.label || judgeDisplay(judgeModel))
+  // Guard: never ask a leave-family-out judge for scores on this pair.
+  if (judgeModel
+    && (isOwnFamily(judgeModel, outA.model_label) || isOwnFamily(judgeModel, outB.model_label))) {
+    state.compare.rubricJudge = "average";
+  }
+  const activeJudge = state.compare.rubricJudge === "average" ? null : state.compare.rubricJudge;
+  const rubricOpts = activeJudge ? { judgeModel: activeJudge } : {};
+  const judgeLabel = activeJudge
+    ? (judgeOpts.find(j => j.model === activeJudge)?.label || judgeDisplay(activeJudge))
     : "Average";
 
   const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task, rubricOpts);
@@ -2881,13 +2922,13 @@ function renderCompareRubric() {
 
   const rightColor = vsAvg ? "var(--compare-avg)" : "var(--compare-b)";
   const max = 10;
-  const scopeNote = judgeModel
+  const scopeNote = activeJudge
     ? (vsAvg
       ? `${judgeLabel} scores · A vs task average under this judge`
       : `${judgeLabel} scores · A vs B`)
     : (vsAvg
-      ? "Average across judges · A vs task average"
-      : "Average across judges · A vs B");
+      ? "Average across leave-family-out eligible judges · A vs task average"
+      : "Average across leave-family-out eligible judges · A vs B");
 
   const rows = dims.map(dim => {
     const left = mapA.get(dim);
