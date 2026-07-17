@@ -966,7 +966,7 @@ function renderRoleScatter() {
   const qLabel = (tx, ty, text, anchor = "middle") =>
     `<text x="${tx}" y="${ty}" text-anchor="${anchor}" font-size="10" font-weight="650" fill="#8a93a3">${text}</text>`;
 
-  const svg = `<div class="svg-wrap landing-scatter-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Models plotted by solo-work performance versus coaching performance. Higher is better on both axes.">
+  const svg = `<div class="svg-wrap landing-scatter-wrap"><svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Models plotted by automation performance versus augmentation performance. Higher is better on both axes.">
     <rect x="0" y="0" width="${size}" height="${size}" fill="#fbfcfe"/>
     <rect x="${pad}" y="${pad}" width="${size - pad * 2}" height="${size - pad * 2}" fill="#fff" stroke="#e8edf4"/>
     ${ticks.map(t => {
@@ -976,8 +976,8 @@ function renderRoleScatter() {
     <line x1="${x(lo)}" y1="${y(lo)}" x2="${x(hi)}" y2="${y(hi)}" stroke="#9aa3b2" stroke-dasharray="6 5" stroke-width="1.5"/>
     <text x="${(x(lo) + x(hi)) / 2}" y="${(y(lo) + y(hi)) / 2 - 12}" text-anchor="middle" font-size="10" fill="#8a93a3" font-style="italic">Same in both roles</text>
     ${qLabel(x(hi) - 8, y(hi) + 18, "Strong in both", "end")}
-    ${qLabel(x(lo) + 8, y(hi) + 18, "Better augmenter", "start")}
-    ${qLabel(x(hi) - 8, y(lo) - 10, "Better automator", "end")}
+    ${qLabel(x(lo) + 8, y(hi) + 18, "Stronger assistant", "start")}
+    ${qLabel(x(hi) - 8, y(lo) - 10, "Stronger automator", "end")}
     ${qLabel(x(lo) + 8, y(lo) - 10, "Weaker in both", "start")}
     ${points}
     <text x="${size / 2}" y="${size - 10}" text-anchor="middle" font-size="12" font-weight="700">Automation →</text>
@@ -992,8 +992,8 @@ function renderRoleScatter() {
   const cards = movers.map(d => {
     let tag = "Balanced";
     let tagClass = "tag-bal";
-    if (d.gap >= 0.8) { tag = "Stronger in augmentation"; tagClass = "tag-aug"; }
-    else if (d.gap <= -0.8) { tag = "Stronger in automation"; tagClass = "tag-auto"; }
+    if (d.gap >= 0.8) { tag = "Stronger as assistant"; tagClass = "tag-aug"; }
+    else if (d.gap <= -0.8) { tag = "Stronger as automator"; tagClass = "tag-auto"; }
     return `<div class="role-info-card">
       <div class="role-info-name">${esc(displayModel(d.model))}<span class="role-tag ${tagClass}">${tag}</span></div>
       <div class="role-info-stats">
@@ -2090,7 +2090,13 @@ function renderComparePane(side) {
       textEl.innerHTML = `<p class="qual-empty-state">Assistance text applies only in augmentation mode.</p>`;
       return;
     }
-    textEl.innerHTML = `<pre class="qual-pre">${esc(out.scaffold || out.assistance_text || "No coaching notes saved.")}</pre>`;
+    // Qualitative / qualitative JSON use scaffold_text (not scaffold / assistance_text).
+    const scaffoldText = out.scaffold_text || out.scaffold || out.assistance_text;
+    if (!scaffoldText) {
+      textEl.innerHTML = `<p class="qual-empty-state">This direct or unaided-worker condition does not include assistance text.</p>`;
+      return;
+    }
+    textEl.innerHTML = `<pre class="qual-pre">${esc(scaffoldText)}</pre>`;
     return;
   }
   textEl.innerHTML = `<pre class="qual-pre">${esc(out.output || "No deliverable saved.")}</pre>`;
@@ -2178,15 +2184,18 @@ function renderCompareRationales() {
   }
   el.innerHTML = pair.map(j => {
     const aIsLeft = j.left_idx === outA.idx;
-    const winnerIdx = j.winner_idx ?? j.preferred_idx;
+    // Judgments store winner as "option_1" / "option_2" (same as Qualitative).
     let winner = "tie / unclear";
-    if (winnerIdx === outA.idx) winner = displayModel(state.compare.modelA, state.compare.mode);
-    else if (winnerIdx === outB.idx) winner = displayModel(state.compare.modelB, state.compare.mode);
-    else if (String(j.winner || "").toLowerCase().includes("1")) winner = aIsLeft ? displayModel(state.compare.modelA, state.compare.mode) : displayModel(state.compare.modelB, state.compare.mode);
-    else if (String(j.winner || "").toLowerCase().includes("2")) winner = aIsLeft ? displayModel(state.compare.modelB, state.compare.mode) : displayModel(state.compare.modelA, state.compare.mode);
+    if (j.winner === "option_1") {
+      winner = displayModel(aIsLeft ? state.compare.modelA : state.compare.modelB, state.compare.mode);
+    } else if (j.winner === "option_2") {
+      winner = displayModel(aIsLeft ? state.compare.modelB : state.compare.modelA, state.compare.mode);
+    }
+    // Qualitative JSON field is short_rationale (not rationale / reason).
+    const rationale = j.short_rationale || j.rationale || j.reason || "";
     return `<div class="compare-rationale-card">
-      <div class="compare-rationale-meta"><b>${esc(judgeDisplay(j.judge_model))}</b> · preferred <b>${esc(winner)}</b></div>
-      <p>${esc(j.rationale || j.reason || "No rationale text.")}</p>
+      <div class="compare-rationale-meta"><b>${esc(j.judge_label || judgeDisplay(j.judge_model))}</b> · preferred <b>${esc(winner)}</b></div>
+      <p>${esc(rationale || "No rationale text.")}</p>
     </div>`;
   }).join("");
 }
