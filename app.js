@@ -201,6 +201,8 @@ const state = {
   selectedModel: null,
   textTab: "output",
   rubricFocus: null,
+  overviewTask: "counselling",
+  compareTeaserPair: 0,
   compare: {
     task: "tax_prep",
     mode: "augmentation",
@@ -211,8 +213,59 @@ const state = {
     rubricJudge: "average",
     paneA: "output",
     paneB: "output",
+    radarShowA: true,
+    radarShowB: true,
   },
 };
+
+const taskSourceHints = {
+  counselling: "Anthropic Economic Index",
+  meal_plan: "GDPval-style",
+  tax_prep: "Author-designed",
+  market_trends: "GDPval / Anthropic Economic Index",
+  operations_research: "GDPval / Anthropic Economic Index",
+  travel_planning: "GDPval / Anthropic Economic Index",
+  tutoring: "GDPval / Anthropic Economic Index",
+};
+
+const compareTeaserPairs = [
+  {
+    label: "Counseling · GPT-4.1 vs DeepSeek",
+    task: "counselling",
+    a: {
+      name: "GPT-4.1",
+      body: "<ul><li>Validate burnout without diagnosing.</li><li>Offer one CBT reframe and one values check.</li><li>End with two concrete next-day actions.</li></ul>",
+    },
+    b: {
+      name: "DeepSeek-V3.1",
+      body: "<ul><li>Broad wellness advice with fewer task constraints.</li><li>Less structure for session pacing.</li><li>Weaker match to counseling rubric cues.</li></ul>",
+    },
+  },
+  {
+    label: "Menu Planning · GPT-5-Mini vs plain",
+    task: "meal_plan",
+    a: {
+      name: "GPT-5-Mini",
+      body: "<ul><li>Allergy checklist before drafting meals.</li><li>Day-by-day variety with grocery grouping.</li><li>Self-review for shellfish, gluten, lactose, onion.</li></ul>",
+    },
+    b: {
+      name: "GPT-3.5-Turbo (plain)",
+      body: "<ul><li>Unaided worker baseline — no assistance text.</li><li>Useful contrast for whether coaching helps.</li><li>Same worker model as assisted conditions.</li></ul>",
+    },
+  },
+  {
+    label: "Tax Prep · assistants vs unaided",
+    task: "tax_prep",
+    a: {
+      name: "Assisted conditions",
+      body: "<ul><li>Process guidance for discrepancy spotting.</li><li>Federal/CA rule reminders and form checks.</li><li>On this task, assistance often underperforms.</li></ul>",
+    },
+    b: {
+      name: "GPT-3.5-Turbo (plain)",
+      body: "<ul><li>Unaided worker ranks first in augmentation.</li><li>Shows assistance is not automatically helpful.</li><li>Open Compare for full deliverables.</li></ul>",
+    },
+  },
+];
 
 const glossary = {
   automation: "The model completes the task end-to-end on its own and produces the deliverable.",
@@ -1371,7 +1424,7 @@ function isBaselineModel(model) {
   return model === "plain" || model === "GPT-3.5-Turbo" || model === "gpt-3.5-turbo";
 }
 
-function taskWinnerStats(mode) {
+function taskPodiumStats(mode) {
   const rows = replicateRankRows(mode, "aggregate");
   return taskOrder.map(task => {
     const byModel = new Map();
@@ -1387,8 +1440,29 @@ function taskWinnerStats(mode) {
       se: sem(vals),
       n: vals.length,
     })).sort((a, b) => a.mean - b.mean || a.model.localeCompare(b.model));
-    return candidates[0];
-  }).filter(Boolean);
+    return {
+      task,
+      first: candidates[0] || null,
+      second: candidates[1] || null,
+    };
+  });
+}
+
+function taskWinnerStats(mode) {
+  return taskPodiumStats(mode).map(d => d.first).filter(Boolean);
+}
+
+function taskMetaBySlug(slug) {
+  return (state.data?.tasks || []).find(t => t.slug === slug) || null;
+}
+
+function taskSourceLabel(slug) {
+  const meta = taskMetaBySlug(slug);
+  const title = meta?.title || "";
+  if (/anthropic/i.test(title)) return "Anthropic Economic Index";
+  if (/gdpval/i.test(title)) return "GDPval-style";
+  if (slug === "tax_prep") return "Author-designed (rule-based professional task)";
+  return taskSourceHints[slug] || "GDPval / Anthropic Economic Index";
 }
 
 function judgeCoverageStats() {
@@ -1429,10 +1503,139 @@ function renderHeroStatBand() {
   if (!el || !state.data) return;
   const { differ, plainWins, total } = countRegimeDivergence();
   el.innerHTML = [
-    { value: `${plainWins}/${total}`, label: "tasks where unaided worker beats every assisted condition" },
     { value: `${differ}/${total}`, label: "tasks where automation and augmentation winners differ" },
+    { value: `${plainWins}/${total}`, label: "tasks where the unaided worker beats every assisted condition" },
     { value: "10", label: "independent replications in paper figures (±SE = SD/√10)" },
   ].map(s => `<div class="hero-stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("");
+}
+
+function renderOverviewTakeaways() {
+  const el = document.getElementById("overviewTakeaways");
+  if (!el || !state.data) return;
+  const { differ, plainWins, total } = countRegimeDivergence();
+  const augByTask = new Map(taskWinnerStats("augmentation").map(w => [w.task, w.model]));
+  const autoByTask = new Map(taskWinnerStats("automation").map(w => [w.task, w.model]));
+  const shared = taskOrder.filter(task => augByTask.get(task) && augByTask.get(task) === autoByTask.get(task)).map(cleanTaskTitle);
+  el.innerHTML = [
+    {
+      value: `${differ} of ${total} tasks`,
+      text: "The best model in automation is not the best model in augmentation.",
+    },
+    {
+      value: `${plainWins} of ${total} tasks`,
+      text: "The unaided worker beats every assisted condition — poor assistance can hurt.",
+    },
+    {
+      value: shared.length ? shared.join(" & ") : "Task-specific",
+      text: shared.length
+        ? `GPT-5-Mini wins both regimes on ${shared.join(" and ")}; other tasks diverge by role.`
+        : "Augmentation rankings are task-specific; no single assistant dominates.",
+    },
+  ].map(card => `<div class="takeaway-card"><b>${esc(card.value)}</b><p>${esc(card.text)}</p></div>`).join("");
+}
+
+function renderOverviewTasks() {
+  const list = document.getElementById("overviewTaskList");
+  const detail = document.getElementById("overviewTaskDetail");
+  if (!list || !detail || !state.data?.tasks?.length) return;
+  if (!taskOrder.includes(state.overviewTask)) state.overviewTask = taskOrder[0];
+  const tasks = taskOrder.map(slug => taskMetaBySlug(slug)).filter(Boolean);
+  list.innerHTML = tasks.map((t, i) => {
+    const active = t.slug === state.overviewTask;
+    return `<button type="button" class="overview-task-btn ${active ? "active" : ""}" role="option" aria-selected="${active ? "true" : "false"}" data-overview-task="${esc(t.slug)}"><span class="task-idx">${i + 1}</span><b>${esc(t.label || cleanTaskTitle(t.slug))}</b><small>${esc(t.type || "Professional task")}</small></button>`;
+  }).join("");
+  const meta = taskMetaBySlug(state.overviewTask);
+  if (!meta) {
+    detail.innerHTML = `<p class="chart-note">Task details unavailable.</p>`;
+    return;
+  }
+  const prompt = (meta.task_prompt || "").trim();
+  detail.innerHTML = `
+    <span class="task-type-pill">${esc(meta.type || "Task")}</span>
+    <h4>${esc(meta.label || cleanTaskTitle(meta.slug))}</h4>
+    <p class="task-source">${esc(meta.title || cleanTaskTitle(meta.slug))} · Source: ${esc(taskSourceLabel(meta.slug))}</p>
+    <p class="task-prompt-label">Task prompt</p>
+    <pre class="task-prompt">${esc(prompt || "Prompt not available in metadata.")}</pre>`;
+  list.querySelectorAll("[data-overview-task]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.overviewTask = btn.dataset.overviewTask;
+      renderOverviewTasks();
+    });
+  });
+}
+
+function medalHtml(entry, mode, place) {
+  if (!entry) return `<div class="medal medal-${place}"><span class="medal-rank">${place === "gold" ? "1st" : "2nd"}</span><span class="medal-model">—</span></div>`;
+  return `<div class="medal medal-${place}"><span class="medal-rank">${place === "gold" ? "Gold" : "Silver"}</span><span class="medal-model">${esc(displayModel(entry.model, mode))}</span><span class="medal-mean">mean rank ${entry.mean.toFixed(2)}</span></div>`;
+}
+
+function renderOverviewPodium() {
+  const el = document.getElementById("overviewPodium");
+  if (!el || !state.data) return;
+  const aug = taskPodiumStats("augmentation");
+  const auto = taskPodiumStats("automation");
+  const panel = (title, rows, mode) => `
+    <div class="podium-panel">
+      <h4>${esc(title)}</h4>
+      ${rows.map(r => `
+        <div class="podium-row">
+          <div class="podium-task">${esc(cleanTaskTitle(r.task))}</div>
+          ${medalHtml(r.first, mode, "gold")}
+          ${medalHtml(r.second, mode, "silver")}
+        </div>`).join("")}
+    </div>`;
+  el.innerHTML = panel("Augmentation · 1st & 2nd by task", aug, "augmentation")
+    + panel("Automation · 1st & 2nd by task", auto, "automation");
+}
+
+function renderOverviewHeatmaps() {
+  renderReplicateHeatmap(document.getElementById("overviewHeatAug"), "augmentation");
+  renderReplicateHeatmap(document.getElementById("overviewHeatAuto"), "automation");
+}
+
+function renderOverviewCompareTeaser() {
+  const root = document.getElementById("overviewCompareTeaser");
+  if (!root) return;
+  const pair = compareTeaserPairs[state.compareTeaserPair] || compareTeaserPairs[0];
+  root.querySelectorAll("[data-teaser-pair]").forEach(btn => {
+    const idx = Number(btn.dataset.teaserPair);
+    btn.classList.toggle("active", idx === state.compareTeaserPair);
+  });
+  const titleA = document.getElementById("teaserTitleA");
+  const titleB = document.getElementById("teaserTitleB");
+  const bodyA = document.getElementById("teaserBodyA");
+  const bodyB = document.getElementById("teaserBodyB");
+  if (titleA) titleA.textContent = pair.a.name;
+  if (titleB) titleB.textContent = pair.b.name;
+  if (bodyA) bodyA.innerHTML = pair.a.body;
+  if (bodyB) bodyB.innerHTML = pair.b.body;
+}
+
+function bindOverviewInteractions() {
+  const teaser = document.getElementById("overviewCompareTeaser");
+  if (!teaser || teaser.dataset.bound) return;
+  teaser.dataset.bound = "1";
+  teaser.querySelectorAll("[data-teaser-pair]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.compareTeaserPair = Number(btn.dataset.teaserPair) || 0;
+      const pair = compareTeaserPairs[state.compareTeaserPair];
+      if (pair?.task) {
+        state.compare.task = pair.task;
+        state.compare.mode = "augmentation";
+      }
+      renderOverviewCompareTeaser();
+    });
+  });
+}
+
+function renderOverviewLanding() {
+  renderHeroStatBand();
+  renderOverviewTakeaways();
+  renderOverviewTasks();
+  renderOverviewPodium();
+  renderOverviewHeatmaps();
+  renderOverviewCompareTeaser();
+  bindOverviewInteractions();
 }
 
 function renderFindingsSnapshot() {
@@ -1921,9 +2124,15 @@ function closeGlossaryModal() {
 }
 
 function bindChrome() {
-  document.querySelectorAll("[data-gotab]").forEach(btn => {
-    btn.addEventListener("click", () => goTab(btn.dataset.gotab));
-  });
+  if (!document.body.dataset.gotabBound) {
+    document.body.dataset.gotabBound = "1";
+    document.body.addEventListener("click", e => {
+      const btn = e.target.closest("[data-gotab]");
+      if (!btn) return;
+      e.preventDefault();
+      goTab(btn.dataset.gotab);
+    });
+  }
   document.querySelectorAll("[data-glossary-open]").forEach(btn => {
     btn.addEventListener("click", openGlossaryModal);
   });
@@ -2409,6 +2618,220 @@ function renderComparePane(side) {
   textEl.innerHTML = renderCompareRichText(deliverable, { kind: "deliverable" });
 }
 
+function compareRubricDimName(dim) {
+  return rubricLabels[state.compare.task]?.[dim] || generalRubricLabels[dim] || dim;
+}
+
+function shortCompareRubricLabel(dim) {
+  const full = compareRubricDimName(dim).replace(/^General:\s*/i, "");
+  if (full.length <= 24) return full;
+  return `${full.slice(0, 22).trimEnd()}…`;
+}
+
+function compareRadarAxisScale(values) {
+  const finite = values.filter(Number.isFinite);
+  if (!finite.length) return { min: 0, max: 10 };
+  let min = Math.min(...finite);
+  let max = Math.max(...finite);
+  if (max - min < 0.25) {
+    min = Math.max(0, min - 0.5);
+    max = Math.min(10, max + 0.5);
+  }
+  if (min === max) {
+    min = Math.max(0, min - 1);
+    max = Math.min(10, max + 1);
+  }
+  return { min, max };
+}
+
+function buildCompareRadarSvg(axes, series) {
+  const n = axes.length;
+  if (!n) return `<p class="chart-note">No rubric scores found for this selection.</p>`;
+
+  const size = 420;
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = 132;
+  const levels = 4;
+  const angleAt = i => -Math.PI / 2 + (i / n) * Math.PI * 2;
+  const pointAt = (i, t) => {
+    const a = angleAt(i);
+    const r = radius * Math.max(0, Math.min(1, t));
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  };
+  const polyPoints = vals => vals.map((t, i) => pointAt(i, t).join(",")).join(" ");
+
+  const rings = Array.from({ length: levels }, (_, li) => {
+    const t = (li + 1) / levels;
+    const pts = Array.from({ length: n }, (__, i) => pointAt(i, t).join(",")).join(" ");
+    return `<polygon class="compare-radar-ring" points="${pts}" />`;
+  }).join("");
+
+  const spokes = axes.map((_, i) => {
+    const [x, y] = pointAt(i, 1);
+    return `<line class="compare-radar-spoke" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" />`;
+  }).join("");
+
+  const labels = axes.map((axis, i) => {
+    const [x, y] = pointAt(i, 1.22);
+    const anchor = Math.abs(x - cx) < 8 ? "middle" : (x > cx ? "start" : "end");
+    return `<text class="compare-radar-axis-label" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle"><title>${esc(axis.full)}</title>${esc(axis.short)}</text>`;
+  }).join("");
+
+  const paths = series.map(s => {
+    const norms = axes.map(axis => {
+      const v = axis.values[s.key];
+      if (!Number.isFinite(v)) return 0;
+      const span = axis.max - axis.min || 1;
+      return (v - axis.min) / span;
+    });
+    const dash = s.style === "dashed" ? 'stroke-dasharray="8 5"' : (s.style === "dotted" ? 'stroke-dasharray="2 4"' : "");
+    const hidden = s.visible ? "" : "is-hidden";
+    return `<g class="compare-radar-series ${hidden}" data-radar-series="${esc(s.key)}">
+      <polygon class="compare-radar-area" points="${polyPoints(norms)}" fill="${s.color}" />
+      <polygon class="compare-radar-line" points="${polyPoints(norms)}" stroke="${s.color}" ${dash} />
+      ${norms.map((t, i) => {
+        const [x, y] = pointAt(i, t);
+        return `<circle class="compare-radar-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="${s.color}" />`;
+      }).join("")}
+    </g>`;
+  }).join("");
+
+  return `<svg class="compare-radar-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="Rubric score radar chart">${rings}${spokes}${paths}${labels}</svg>`;
+}
+
+function renderCompareRadarMarkup(dims, mapA, mapRight, labelA, labelRight, vsAvg) {
+  const showA = state.compare.radarShowA !== false;
+  const showB = state.compare.radarShowB !== false;
+  const seriesMeta = [
+    {
+      key: "a",
+      label: labelA,
+      color: "#1f5fbf",
+      style: "solid",
+      visible: showA,
+      pillClass: "a",
+    },
+    {
+      key: "b",
+      label: labelRight,
+      color: vsAvg ? "#7a8799" : "#c45a1a",
+      style: vsAvg ? "dotted" : "dashed",
+      visible: showB,
+      pillClass: vsAvg ? "avg" : "b",
+    },
+  ];
+
+  const axes = dims.map(dim => {
+    const a = mapA.get(dim);
+    const b = mapRight.get(dim);
+    const scaleVals = [];
+    if (showA && Number.isFinite(a)) scaleVals.push(a);
+    if (showB && Number.isFinite(b)) scaleVals.push(b);
+    if (!scaleVals.length) {
+      if (Number.isFinite(a)) scaleVals.push(a);
+      if (Number.isFinite(b)) scaleVals.push(b);
+    }
+    const { min, max } = compareRadarAxisScale(scaleVals);
+    return {
+      dim,
+      full: compareRubricDimName(dim),
+      short: shortCompareRubricLabel(dim),
+      min,
+      max,
+      values: { a, b },
+    };
+  }).filter(axis => Number.isFinite(axis.values.a) || Number.isFinite(axis.values.b));
+
+  const legendItems = seriesMeta.map(s => {
+    const lineClass = s.style === "dashed" ? "dashed" : (s.style === "dotted" ? "dotted" : "solid");
+    return `<button type="button" class="compare-radar-legend-item ${s.visible ? "" : "is-off"}" data-radar-hover="${esc(s.key)}" data-radar-series="${esc(s.key)}">
+      <span class="compare-radar-swatch ${lineClass}" style="--swatch:${s.color}"></span>${esc(s.label)}
+    </button>`;
+  }).join("");
+
+  const pills = seriesMeta.map(s => `
+    <button type="button" class="compare-radar-pill ${s.pillClass} ${s.visible ? "active" : ""}" data-radar-toggle="${esc(s.key)}" aria-pressed="${s.visible ? "true" : "false"}">${esc(s.label)}</button>
+  `).join("");
+
+  return `
+    <div class="compare-radar" id="compareRadar">
+      <div class="compare-radar-copy">
+        <h3>Rubric fingerprint</h3>
+        <p>Selection-rate style radar for rubric scores — same values as the attribute spine.</p>
+      </div>
+      <div class="compare-radar-toggles" role="group" aria-label="Toggle radar series">${pills}</div>
+      <div class="compare-radar-legend">${legendItems}</div>
+      <p class="compare-radar-hint">Each axis is independently scaled (min–max across visible series). Hover legend to highlight &amp; see values.</p>
+      <div class="compare-radar-stage">
+        ${buildCompareRadarSvg(axes, seriesMeta)}
+        <div class="compare-radar-values" id="compareRadarValues" hidden></div>
+      </div>
+    </div>`;
+}
+
+function bindCompareRadarInteractions(root, axesPayload, seriesMeta) {
+  const radar = root.querySelector("#compareRadar");
+  if (!radar) return;
+  const valuesEl = radar.querySelector("#compareRadarValues");
+
+  const setHighlight = key => {
+    radar.querySelectorAll(".compare-radar-series").forEach(g => {
+      const match = !key || g.dataset.radarSeries === key;
+      g.classList.toggle("is-dimmed", Boolean(key) && !match);
+      g.classList.toggle("is-focus", Boolean(key) && match);
+    });
+    radar.querySelectorAll(".compare-radar-legend-item").forEach(item => {
+      const match = !key || item.dataset.radarSeries === key;
+      item.classList.toggle("is-dimmed", Boolean(key) && !match);
+      item.classList.toggle("is-focus", Boolean(key) && match);
+    });
+    if (!valuesEl) return;
+    if (!key) {
+      valuesEl.hidden = true;
+      valuesEl.innerHTML = "";
+      return;
+    }
+    const series = seriesMeta.find(s => s.key === key);
+    if (!series || !series.visible) {
+      valuesEl.hidden = true;
+      return;
+    }
+    const rows = axesPayload.map(axis => {
+      const v = axis.values[key];
+      return `<div><span>${esc(axis.short)}</span><b>${Number.isFinite(v) ? v.toFixed(2) : "—"}</b></div>`;
+    }).join("");
+    valuesEl.hidden = false;
+    valuesEl.innerHTML = `<div class="compare-radar-values-title" style="color:${series.color}">${esc(series.label)}</div>${rows}`;
+  };
+
+  radar.querySelectorAll("[data-radar-toggle]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.radarToggle;
+      if (key === "a") {
+        if (state.compare.radarShowA && !state.compare.radarShowB) return;
+        state.compare.radarShowA = !state.compare.radarShowA;
+      } else {
+        if (state.compare.radarShowB && !state.compare.radarShowA) return;
+        state.compare.radarShowB = !state.compare.radarShowB;
+      }
+      renderCompareRubric();
+    });
+  });
+
+  radar.querySelectorAll("[data-radar-hover]").forEach(item => {
+    item.addEventListener("mouseenter", () => setHighlight(item.dataset.radarHover));
+    item.addEventListener("mouseleave", () => setHighlight(null));
+    item.addEventListener("focus", () => setHighlight(item.dataset.radarHover));
+    item.addEventListener("blur", () => setHighlight(null));
+  });
+
+  radar.querySelectorAll(".compare-radar-series").forEach(g => {
+    g.addEventListener("mouseenter", () => setHighlight(g.dataset.radarSeries));
+    g.addEventListener("mouseleave", () => setHighlight(null));
+  });
+}
+
 function renderCompareRubric() {
   const el = document.getElementById("compareRubric");
   if (!el) return;
@@ -2446,8 +2869,10 @@ function renderCompareRubric() {
   const mapB = new Map(rowsB.map(r => [r.dimension, r.mean]));
   const mapAvg = new Map(avgRows.map(r => [r.dimension, r.mean]));
   const vsAvg = state.compare.rubricView === "avg";
+  const mapRight = vsAvg ? mapAvg : mapB;
   const labelA = displayModel(state.compare.modelA, state.compare.mode);
   const labelB = displayModel(state.compare.modelB, state.compare.mode);
+  const labelRight = vsAvg ? "Task average" : labelB;
   const h2h = compareHeadToHeadStats(outA, outB);
   h2h.rowsA = rowsA;
   h2h.rowsB = rowsB;
@@ -2466,11 +2891,11 @@ function renderCompareRubric() {
 
   const rows = dims.map(dim => {
     const left = mapA.get(dim);
-    const right = vsAvg ? mapAvg.get(dim) : mapB.get(dim);
+    const right = mapRight.get(dim);
     const aBetter = Number.isFinite(left) && Number.isFinite(right) && left > right + 0.05;
     const bBetter = Number.isFinite(left) && Number.isFinite(right) && right > left + 0.05;
     return `<div class="compare-rubric-row">
-      <div class="compare-rubric-dim">${esc(rubricName(dim))}</div>
+      <div class="compare-rubric-dim">${esc(compareRubricDimName(dim))}</div>
       <div class="compare-rubric-cell" data-side="A · ${esc(labelA)}" title="${esc(labelA)}">
         <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%;background:var(--compare-a)"></div></div>
         <span class="compare-rubric-val ${aBetter ? "is-better" : ""}">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
@@ -2487,6 +2912,21 @@ function renderCompareRubric() {
     ...judgeOpts.map(j => `<button type="button" class="compare-judge-chip ${state.compare.rubricJudge === j.model ? "active" : ""}" data-compare-judge="${esc(j.model)}">${esc(j.label)}</button>`),
   ].join("");
 
+  const radarHtml = renderCompareRadarMarkup(dims, mapA, mapRight, labelA, labelRight, vsAvg);
+  const seriesMeta = [
+    { key: "a", label: labelA, color: "#1f5fbf", visible: state.compare.radarShowA !== false },
+    {
+      key: "b",
+      label: labelRight,
+      color: vsAvg ? "#7a8799" : "#c45a1a",
+      visible: state.compare.radarShowB !== false,
+    },
+  ];
+  const axesPayload = dims.map(dim => ({
+    short: shortCompareRubricLabel(dim),
+    values: { a: mapA.get(dim), b: mapRight.get(dim) },
+  })).filter(axis => Number.isFinite(axis.values.a) || Number.isFinite(axis.values.b));
+
   el.innerHTML = `
     <div class="section-heading compact">
       <h2>Rubric attributes</h2>
@@ -2496,17 +2936,22 @@ function renderCompareRubric() {
       <span class="compare-judge-bar-label">Scores from</span>
       <div class="compare-judge-chips">${judgeButtons}</div>
     </div>
-    <div class="compare-rubric-legend">
-      <span><span class="dot a"></span>${esc(labelA)}</span>
-      <span><span class="dot b"></span>${vsAvg ? "Task average" : esc(labelB)}</span>
-      <span class="compare-rubric-scope">${esc(scopeNote)}</span>
-    </div>
-    <div class="compare-rubric-head" aria-hidden="true">
-      <span class="col-dim">Dimension</span>
-      <span class="col-a">A</span>
-      <span class="col-b">${vsAvg ? "Avg" : "B"}</span>
-    </div>
-    ${rows || `<p class="chart-note">No rubric scores found for this selection.</p>`}`;
+    <div class="compare-rubric-viz">
+      ${radarHtml}
+      <div class="compare-rubric-spine">
+        <div class="compare-rubric-legend">
+          <span><span class="dot a"></span>${esc(labelA)}</span>
+          <span><span class="dot b" ${vsAvg ? 'style="background:var(--compare-avg)"' : ""}></span>${esc(labelRight)}</span>
+          <span class="compare-rubric-scope">${esc(scopeNote)}</span>
+        </div>
+        <div class="compare-rubric-head" aria-hidden="true">
+          <span class="col-dim">Dimension</span>
+          <span class="col-a">A</span>
+          <span class="col-b">${vsAvg ? "Avg" : "B"}</span>
+        </div>
+        ${rows || `<p class="chart-note">No rubric scores found for this selection.</p>`}
+      </div>
+    </div>`;
 
   el.querySelectorAll("[data-compare-judge]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -2514,6 +2959,7 @@ function renderCompareRubric() {
       renderCompareRubric();
     });
   });
+  bindCompareRadarInteractions(el, axesPayload, seriesMeta);
 }
 
 function renderCompareRationales() {
@@ -2617,7 +3063,7 @@ function renderAll() {
     updateControlBandVisibility();
     renderModelRoster();
     renderProjectStats();
-    renderHeroStatBand();
+    renderOverviewLanding();
     renderFindingsSnapshot();
     renderMetrics();
     renderHeatmap(document.getElementById("heatAug"), "augmentation");
