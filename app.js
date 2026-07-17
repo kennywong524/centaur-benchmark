@@ -2330,7 +2330,7 @@ const methodologyDetails = {
   results: {
     title: "Results aggregation",
     body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank heat maps and role-swap scatter — so every model can be compared as a direct solver versus as an augmenting assistant.",
-    action: { label: "View 10-run Result", run: () => goTab("replicates") },
+    action: { label: "View 10-Run Result", run: () => goTab("replicates") },
   },
 };
 

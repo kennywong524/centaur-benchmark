@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717z" />
+    <link rel="stylesheet" href="styles.css?v=20260718b" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -252,48 +252,80 @@
       </section>
 
       <section id="replicates" class="panel">
-        <div class="section-heading">
-          <h2>10-run Result</h2>
+        <div class="section-heading replicates-heading">
+          <h2>10-Run Result</h2>
           <p>Browse aggregate results across 10 runs. Lower rank is better; error bars show standard error. Use the <span class="term-inline" data-term="model pool">model pool</span> filter above to include or exclude baseline models.</p>
         </div>
-        <div class="viz-card findings-card">
-          <div class="section-heading compact">
-            <h2>Main Findings Across 10 Runs</h2>
-            <p>These summaries aggregate <span class="term-inline" data-term="rank-of-ranks">rank-of-ranks</span> across the full ten-run panel.</p>
-          </div>
-          <div id="tenRunFindings"></div>
+        <article class="replicates-panel replicates-panel--findings findings-card">
+          <header class="replicates-panel-head">
+            <div class="replicates-panel-kicker">
+              <span class="replicates-side-badge findings">10×</span>
+              <span class="replicates-panel-role">Panel findings</span>
+            </div>
+            <h3>Main Findings Across 10 Runs</h3>
+            <p class="replicates-panel-sub">These summaries aggregate <span class="term-inline" data-term="rank-of-ranks">rank-of-ranks</span> across the full ten-run panel.</p>
+          </header>
+          <div class="replicates-panel-body" id="tenRunFindings"></div>
+        </article>
+        <div class="metric-row replicates-metrics" id="replicateMetrics"></div>
+        <div class="replicates-layout">
+          <article class="replicates-panel replicates-panel--aug">
+            <header class="replicates-panel-head">
+              <div class="replicates-panel-kicker">
+                <span class="replicates-side-badge aug">AUG</span>
+                <span class="replicates-panel-role">Usage regime</span>
+              </div>
+              <h3>Augmentation · Mean Rank Across Runs</h3>
+              <p class="replicates-panel-sub">Ten-run panel average · lower rank is better · ± SE</p>
+            </header>
+            <div class="replicates-panel-body" id="repHeatAug"></div>
+          </article>
+          <article class="replicates-panel replicates-panel--auto">
+            <header class="replicates-panel-head">
+              <div class="replicates-panel-kicker">
+                <span class="replicates-side-badge auto">AUTO</span>
+                <span class="replicates-panel-role">Usage regime</span>
+              </div>
+              <h3>Automation · Mean Rank Across Runs</h3>
+              <p class="replicates-panel-sub">Ten-run panel average · lower rank is better · ± SE</p>
+            </header>
+            <div class="replicates-panel-body" id="repHeatAuto"></div>
+          </article>
         </div>
-        <div class="metric-row" id="replicateMetrics"></div>
-        <div class="replicates-stack">
-          <div class="viz-card heat-viz-card">
-            <h3>Augmentation · Mean Rank Across Runs</h3>
-            <div id="repHeatAug"></div>
-          </div>
-          <div class="viz-card heat-viz-card">
-            <h3>Automation · Mean Rank Across Runs</h3>
-            <div id="repHeatAuto"></div>
-          </div>
-        </div>
-        <div class="section-heading">
+        <div class="section-heading replicates-heading replicates-heading-sub">
           <h2>Run-to-Run Stability</h2>
           <p>Model averages summarize rank-of-ranks across all seven tasks for each replicate. Click a row for per-run detail.</p>
         </div>
-        <div class="replicates-stack">
-          <div class="viz-card">
-            <h3>Augmentation Stability</h3>
-            <div id="repStabilityAug"></div>
-          </div>
-          <div class="viz-card">
-            <h3>Automation Stability</h3>
-            <div id="repStabilityAuto"></div>
-          </div>
+        <div class="replicates-layout">
+          <article class="replicates-panel replicates-panel--aug">
+            <header class="replicates-panel-head">
+              <div class="replicates-panel-kicker">
+                <span class="replicates-side-badge aug">AUG</span>
+                <span class="replicates-panel-role">Stability</span>
+              </div>
+              <h3>Augmentation Stability</h3>
+              <p class="replicates-panel-sub">Per-model mean rank across runs · click a row for detail</p>
+            </header>
+            <div class="replicates-panel-body" id="repStabilityAug"></div>
+          </article>
+          <article class="replicates-panel replicates-panel--auto">
+            <header class="replicates-panel-head">
+              <div class="replicates-panel-kicker">
+                <span class="replicates-side-badge auto">AUTO</span>
+                <span class="replicates-panel-role">Stability</span>
+              </div>
+              <h3>Automation Stability</h3>
+              <p class="replicates-panel-sub">Per-model mean rank across runs · click a row for detail</p>
+            </header>
+            <div class="replicates-panel-body" id="repStabilityAuto"></div>
+          </article>
         </div>
       </section>
 
       <section id="overview" class="panel">
         <div class="section-heading heatmaps-heading">
           <h2>Single-run Result</h2>
-          <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-run Result</button>.</p>
+          <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Result</button>.</p>
         </div>
         <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run Result judge filter"></div>
         <div class="metric-row heatmaps-metrics" id="metricRow"></div>
@@ -536,6 +568,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717z"></script>
+    <script src="app.js?v=20260718a"></script>
   </body>
 </html>
