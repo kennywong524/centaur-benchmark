@@ -203,11 +203,11 @@ const state = {
   rubricFocus: null,
   overviewTask: "counselling",
   compareTeaserPair: 0,
-  /** Scoreboard-only judge filter — independent of Single-run result / Qualitative. */
+  /** Scoreboard-only judge filter — independent of Single-run Result / Qualitative. */
   rankings: {
     judgeFilter: "aggregate",
   },
-  /** Single-run result judge filter — never share with Scoreboard or Qualitative. */
+  /** Single-run Result judge filter — never share with Scoreboard or Qualitative. */
   heatmaps: {
     judgeFilter: "aggregate",
   },
@@ -1055,7 +1055,7 @@ function heatmapsJudge() {
   return state.heatmaps?.judgeFilter || "aggregate";
 }
 
-/** Judges available for Single-run result (full panel; leave-family-out applied per cell). */
+/** Judges available for Single-run Result (full panel; leave-family-out applied per cell). */
 function heatmapJudgeOptions() {
   const bundle = activeData();
   const seen = new Map();
@@ -1099,7 +1099,7 @@ function renderHeatJudgeBar() {
 function renderHeatmap(el, mode) {
   if (!el) return;
   const judge = heatmapsJudge();
-  /** Single-run result always uses the full candidate pool (same as Task-Usage Scoreboard). */
+  /** Single-run Result always uses the full candidate pool (same as Task-Usage Scoreboard). */
   const rows = rankOfRanks(mode, judge, state.runId, { allModels: true });
   const models = [...new Set(rows.map(d => d.model_label))].sort((a, b) => {
     const avs = rows.filter(d => d.model_label === a).map(d => d.display_rank);
@@ -2330,7 +2330,7 @@ const methodologyDetails = {
   results: {
     title: "Results aggregation",
     body: "Pairwise wins become win rates per model, task, and regime. Win rates rank models within each task, and per-task ranks roll up into the rank heat maps and role-swap scatter — so every model can be compared as a direct solver versus as an augmenting assistant.",
-    action: { label: "View 10-run summary", run: () => goTab("replicates") },
+    action: { label: "View 10-run Result", run: () => goTab("replicates") },
   },
 };
 

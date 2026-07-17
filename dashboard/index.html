@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717y" />
+    <link rel="stylesheet" href="styles.css?v=20260717z" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -25,8 +25,8 @@
           <button class="tab active" data-tab="project" role="tab" aria-selected="true" aria-controls="project">Overview</button>
           <button class="tab" data-tab="compare" role="tab" aria-selected="false" aria-controls="compare">Compare</button>
           <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Task-Usage Scoreboard</button>
-          <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Single-run result</button>
-          <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-Run Summary</button>
+          <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Single-run Result</button>
+          <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-run Result</button>
           <button class="tab" data-tab="qualitative" role="tab" aria-selected="false" aria-controls="qualitative">Qualitative</button>
           <button class="tab" data-tab="judges" role="tab" aria-selected="false" aria-controls="judges">Judges</button>
           <button class="tab" data-tab="validation" role="tab" aria-selected="false" aria-controls="validation">Validation</button>
@@ -176,8 +176,8 @@
               </div>
             </div>
             <div class="landing-cta-row">
-              <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Open 10-Run Summary →</button>
-              <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run result →</button>
+              <button class="cta-btn cta-primary" type="button" data-gotab="replicates">Open 10-run Result →</button>
+              <button class="cta-btn cta-secondary" type="button" data-gotab="overview">Single-run Result →</button>
             </div>
           </div>
 
@@ -253,7 +253,7 @@
 
       <section id="replicates" class="panel">
         <div class="section-heading">
-          <h2>10-Run Summary</h2>
+          <h2>10-run Result</h2>
           <p>Browse aggregate results across 10 runs. Lower rank is better; error bars show standard error. Use the <span class="term-inline" data-term="model pool">model pool</span> filter above to include or exclude baseline models.</p>
         </div>
         <div class="viz-card findings-card">
@@ -292,10 +292,10 @@
 
       <section id="overview" class="panel">
         <div class="section-heading heatmaps-heading">
-          <h2>Single-run result</h2>
-          <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-Run Summary</button>.</p>
+          <h2>Single-run Result</h2>
+          <p>Single-run snapshot of model ranks across tasks (all candidates). Use the <b>Run</b> filter above; pick Average or an individual judge below. Lower cell = better rank. For paper-level aggregates see <button class="inline-link" type="button" data-gotab="replicates">10-run Result</button>.</p>
         </div>
-        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run result judge filter"></div>
+        <div class="heatmaps-judge-bar" id="heatJudgeBar" role="tablist" aria-label="Single-run Result judge filter"></div>
         <div class="metric-row heatmaps-metrics" id="metricRow"></div>
         <div class="heatmaps-layout">
           <article class="heatmaps-panel heatmaps-panel--aug">
@@ -536,6 +536,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717y"></script>
+    <script src="app.js?v=20260717z"></script>
   </body>
 </html>
