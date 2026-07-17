@@ -2675,7 +2675,7 @@ function buildCompareRadarSvg(axes, series) {
   const labels = axes.map((axis, i) => {
     const [x, y] = pointAt(i, 1.22);
     const anchor = Math.abs(x - cx) < 8 ? "middle" : (x > cx ? "start" : "end");
-    return `<text class="compare-radar-axis-label" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle" title="${esc(axis.full)}">${esc(axis.short)}</text>`;
+    return `<text class="compare-radar-axis-label" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle"><title>${esc(axis.full)}</title>${esc(axis.short)}</text>`;
   }).join("");
 
   const paths = series.map(s => {
