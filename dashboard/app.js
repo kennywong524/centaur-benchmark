@@ -197,7 +197,6 @@ const state = {
   modelSet: "all",
   task: "tax_prep",
   mode: "augmentation",
-  judge: "aggregate",
   selectedModel: null,
   textTab: "output",
   rubricFocus: null,
@@ -351,7 +350,7 @@ function renderQualQuickPicks(ranked) {
   if (!el) return;
   const top = ranked.slice().sort((a, b) => a.display_rank - b.display_rank).slice(0, 3);
   if (!top.length) {
-    el.innerHTML = `<div class="qual-empty-state">No ranked models for ${esc(cleanTaskTitle(state.task))} · ${esc(modeLabels[state.mode])} under the current judge filter. Try another task or judge.</div>`;
+    el.innerHTML = `<div class="qual-empty-state">No ranked models for ${esc(cleanTaskTitle(state.task))} · ${esc(modeLabels[state.mode])}. Try another task or usage regime.</div>`;
     return;
   }
   el.innerHTML = `<span class="qual-quick-label">Top ranked:</span>${top.map(d => `<button type="button" class="qual-quick-chip ${state.selectedModel === d.model_label ? "active" : ""}" data-quickmodel="${esc(d.model_label)}"><span class="rank-badge ${Number(d.display_rank) <= 3 ? "top" : ""}">${d.display_rank}</span>${esc(displayModel(d.model_label, state.mode))}</button>`).join("")}`;
@@ -370,7 +369,7 @@ const controlsByTab = {
   overview: ["run"],
   rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
-  qualitative: ["run", "task", "mode", "judge"],
+  qualitative: ["run", "task", "mode"],
   validation: ["task"],
 };
 
@@ -2413,8 +2412,8 @@ function renderQualitative() {
     return;
   }
   const run = currentRun();
-  // Control-band judge ranks the model rail only; pairwise panel uses state.qual.
-  const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  // Model rail uses panel-aggregate ranks; pairwise panel uses state.qual.judgeFilter chips.
+  const ranked = rankOfRanks(state.mode, "aggregate").filter(d => d.task_slug === state.task);
   renderQualQuickPicks(ranked);
   const allowed = new Set(ranked.map(d => d.model_label));
   const outputs = (run?.outputs || []).filter(o => allowed.has(o.model_label));
@@ -2627,10 +2626,6 @@ function populateControls() {
   document.getElementById("taskSelect").innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
   document.getElementById("taskSelect").value = state.task;
   document.getElementById("modeSelect").value = state.mode;
-  const judges = ["aggregate", ...new Set((activeData().by_judge || []).map(d => d.judge_model))];
-  document.getElementById("judgeSelect").innerHTML = judges.map(j => `<option value="${j}">${judgeLabels[j] || j}</option>`).join("");
-  if (!judges.includes(state.judge)) state.judge = "aggregate";
-  document.getElementById("judgeSelect").value = state.judge;
 }
 
 const methodologyDetails = {
@@ -2860,12 +2855,6 @@ function bind() {
     ensureQualPairState();
     state.qual.pairModel = null;
     state.qual.judgeFilter = null;
-    renderAll();
-  });
-  document.getElementById("judgeSelect").addEventListener("change", e => {
-    // Control-band judge ranks the Qualitative model rail only — not the pairwise panel.
-    state.judge = e.target.value;
-    state.rubricFocus = null;
     renderAll();
   });
   document.querySelectorAll("[data-texttab]").forEach(b => b.addEventListener("click", () => {
