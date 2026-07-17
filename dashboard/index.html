@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260718f" />
+    <link rel="stylesheet" href="styles.css?v=20260718g" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -185,30 +185,34 @@
             <div class="landing-section-head">
               <p class="ace-kicker">Compare</p>
               <h3>A/B any two models on the same task</h3>
-              <p>Side-by-side deliverables, assistance text, rubric spines, and judge rationales — flip between models without leaving the page.</p>
+              <p>Three example task × usage-regime presets with real assistance text or deliverables, rubric spines, and judge rationales. Open Compare to customize models and regimes.</p>
             </div>
             <div class="compare-teaser" id="overviewCompareTeaser" aria-label="Compare preview">
-              <div class="compare-teaser-controls">
-                <button type="button" class="compare-teaser-chip active" data-teaser-pair="0">Counseling · GPT-4.1 vs DeepSeek</button>
-                <button type="button" class="compare-teaser-chip" data-teaser-pair="1">Menu Planning · GPT-5-Mini vs plain</button>
-                <button type="button" class="compare-teaser-chip" data-teaser-pair="2">Tax Prep · assistants vs unaided</button>
+              <div class="compare-teaser-controls" role="tablist" aria-label="Compare example presets">
+                <button type="button" class="compare-teaser-chip active" data-teaser-pair="0" role="tab" aria-selected="true">Counseling · GPT-4.1 vs DeepSeek</button>
+                <button type="button" class="compare-teaser-chip" data-teaser-pair="1" role="tab" aria-selected="false">Menu Planning · GPT-5-Mini vs plain</button>
+                <button type="button" class="compare-teaser-chip" data-teaser-pair="2" role="tab" aria-selected="false">Tax Prep · GPT-4.1 vs plain</button>
               </div>
               <div class="compare-teaser-arena">
                 <article class="compare-teaser-panel a">
                   <header><span class="compare-side-badge a">A</span><h4 id="teaserTitleA">Model A</h4></header>
-                  <p class="compare-teaser-mode">Augmentation · assistance text</p>
-                  <div class="compare-teaser-body" id="teaserBodyA"></div>
+                  <p class="compare-teaser-mode" id="teaserModeA">Augmentation · assistance text</p>
+                  <div class="compare-teaser-excerpt" id="teaserBodyA"></div>
+                  <div class="compare-teaser-mean" id="teaserMeanA"></div>
                 </article>
                 <div class="compare-teaser-vs" aria-hidden="true">vs</div>
                 <article class="compare-teaser-panel b">
                   <header><span class="compare-side-badge b">B</span><h4 id="teaserTitleB">Model B</h4></header>
-                  <p class="compare-teaser-mode">Augmentation · assistance text</p>
-                  <div class="compare-teaser-body" id="teaserBodyB"></div>
+                  <p class="compare-teaser-mode" id="teaserModeB">Augmentation · assistance text</p>
+                  <div class="compare-teaser-excerpt" id="teaserBodyB"></div>
+                  <div class="compare-teaser-mean" id="teaserMeanB"></div>
                 </article>
               </div>
+              <div class="compare-teaser-evidence" id="teaserEvidence"></div>
+              <p class="compare-teaser-note">Preview uses the active run’s saved qualitative bundle. In Compare you can swap models, switch automation vs augmentation, and browse full deliverables.</p>
             </div>
             <div class="landing-cta-row">
-              <button class="cta-btn cta-primary" type="button" data-gotab="compare">Open Compare →</button>
+              <button class="cta-btn cta-primary" type="button" id="overviewOpenCompare">Open Compare →</button>
             </div>
           </div>
 
@@ -568,6 +572,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260718f"></script>
+    <script src="app.js?v=20260718g"></script>
   </body>
 </html>
