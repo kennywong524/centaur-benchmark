@@ -75,8 +75,8 @@
         <label data-control="mode">
           Mode
           <select id="modeSelect">
-            <option value="augmentation">Coaches a worker</option>
-            <option value="automation">Works alone</option>
+            <option value="augmentation">Augmentation</option>
+            <option value="automation">Automation</option>
           </select>
         </label>
         <label data-control="judge">
@@ -90,14 +90,24 @@
           <div class="landing-hero">
             <p class="landing-kicker">CentaurBench</p>
             <h2 class="landing-headline">The best player is not always the best coach.</h2>
-            <p class="landing-lede">Most benchmarks ask which model works best <b>alone</b>. At work, models often <b>coach</b> another worker. Those are different skills — and they produce different rankings.</p>
+            <p class="landing-lede">Most benchmarks ask which model works best <b>alone</b>. At work, models often <b>help</b> another worker. Those are different skills — and they produce different rankings.</p>
             <p class="landing-lede-sub">Wrong question: “Which model is best?” · Right question: “Best for which role, on which task?”</p>
+            <div class="regime-defs">
+              <div class="regime-def">
+                <b>Automation</b>
+                <span>The model completes the task end-to-end on its own.</span>
+              </div>
+              <div class="regime-def">
+                <b>Augmentation</b>
+                <span>The model writes assistance text for a fixed GPT-3.5-Turbo worker, which produces the deliverable.</span>
+              </div>
+            </div>
           </div>
 
           <div class="landing-section">
             <div class="landing-section-head">
-              <h3>Solo performer vs coach</h3>
-              <p>Each point is a model. Axes show average performance across seven tasks (higher = better). Points above the diagonal are better coaches than solo performers.</p>
+              <h3>Automation vs augmentation</h3>
+              <p>Each point is a model. Axes show average performance across seven tasks (higher = better). Points above the diagonal are stronger in <span class="term-inline" data-term="augmentation">augmentation</span> than in <span class="term-inline" data-term="automation">automation</span>.</p>
             </div>
             <div class="viz-card role-swap-card landing-scatter-card">
               <div id="roleScatter"></div>
@@ -111,15 +121,15 @@
             <div class="takeaway-grid">
               <div class="takeaway-card">
                 <b>5 of 7 tasks</b>
-                <p>The best solo performer is not the best coach.</p>
+                <p>The best model in automation is not the best model in augmentation.</p>
               </div>
               <div class="takeaway-card">
                 <b>3 of 7 tasks</b>
-                <p>The unaided worker beats every coached condition — bad coaching can hurt.</p>
+                <p>The unaided worker beats every assisted condition — poor assistance can hurt.</p>
               </div>
               <div class="takeaway-card">
-                <b>No single coach wins all</b>
-                <p>Augmentation rankings are task-specific. GPT-5-Mini wins both roles only on menu planning and tutoring.</p>
+                <b>No single assistant wins all</b>
+                <p>Augmentation rankings are task-specific. GPT-5-Mini wins both regimes only on menu planning and tutoring.</p>
               </div>
             </div>
           </div>
@@ -127,7 +137,7 @@
           <div class="landing-section">
             <div class="landing-section-head">
               <h3>How it works</h3>
-              <p><b>Works alone</b> (automation): the model finishes the task itself. <b>Coaches a worker</b> (augmentation): the model writes assistance text for a fixed GPT-3.5-Turbo worker. Blind pairwise judges score the deliverables.</p>
+              <p><b>Automation:</b> the model finishes the task itself. <b>Augmentation:</b> the model writes assistance text for a fixed GPT-3.5-Turbo worker. Blind pairwise judges score the deliverables.</p>
             </div>
             <figure class="method-figure">
               <img src="assets/methodology-pipeline.png" alt="Experiment and evaluation pipeline: automation vs augmentation paths, blind pairwise evaluation, and aggregate rankings" loading="lazy" />
@@ -212,11 +222,11 @@
         </div>
         <div class="replicates-stack">
           <div class="viz-card heat-viz-card">
-            <h3>Coaches a worker (augmentation)</h3>
+            <h3>Augmentation</h3>
             <div id="heatAug"></div>
           </div>
           <div class="viz-card heat-viz-card">
-            <h3>Works alone (automation)</h3>
+            <h3>Automation</h3>
             <div id="heatAuto"></div>
           </div>
         </div>
@@ -225,16 +235,16 @@
       <section id="compare" class="panel">
         <div class="section-heading">
           <h2>Compare models</h2>
-          <p>Pick any two models on the same task and role. Rubric scores lead; deliverables and coaching notes sit side-by-side.</p>
+          <p>Pick any two models on the same task and mode. Rubric scores lead; deliverables and assistance text sit side-by-side.</p>
         </div>
         <div class="compare-controls" id="compareControls">
           <label>Task
             <select id="compareTask"></select>
           </label>
-          <label>Role
+          <label>Mode
             <select id="compareMode">
-              <option value="augmentation">Coaches a worker</option>
-              <option value="automation">Works alone</option>
+              <option value="augmentation">Augmentation</option>
+              <option value="automation">Automation</option>
             </select>
           </label>
           <label>Run
@@ -260,7 +270,7 @@
             <h3 id="compareTitleA">Model A</h3>
             <div class="compare-tabs" data-compare-side="a">
               <button type="button" class="pill active" data-compare-pane="output">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold">Coaching notes</button>
+              <button type="button" class="pill" data-compare-pane="scaffold">Assistance text</button>
             </div>
             <div class="compare-text" id="compareTextA"></div>
           </div>
@@ -268,7 +278,7 @@
             <h3 id="compareTitleB">Model B</h3>
             <div class="compare-tabs" data-compare-side="b">
               <button type="button" class="pill active" data-compare-pane="output">Deliverable</button>
-              <button type="button" class="pill" data-compare-pane="scaffold">Coaching notes</button>
+              <button type="button" class="pill" data-compare-pane="scaffold">Assistance text</button>
             </div>
             <div class="compare-text" id="compareTextB"></div>
           </div>
