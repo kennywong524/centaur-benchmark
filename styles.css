@@ -737,7 +737,28 @@ label[data-control].hidden { display: none !important; }
   line-height: 1.45;
   border-bottom: 1px solid var(--line);
 }
-.role-point { cursor: help; outline: none; }
+.role-point { cursor: pointer; outline: none; }
+.role-point .role-dot,
+.role-point .role-halo,
+.role-point .role-label {
+  transition: transform .16s ease, opacity .16s ease, r .16s ease;
+}
+.role-point:hover .role-dot,
+.role-point.is-active .role-dot,
+.role-point:focus-visible .role-dot {
+  stroke-width: 2.4;
+}
+.role-point:hover .role-halo,
+.role-point.is-active .role-halo,
+.role-point:focus-visible .role-halo {
+  opacity: 0.34;
+}
+.role-scatter-has-focus .role-point:not(.is-active) {
+  opacity: 0.28;
+}
+.role-scatter-has-focus .role-point.is-active .role-label {
+  fill: #0f1728;
+}
 
 .compact-heat td b { font-size: 11px; }
 .compact-heat td small { font-size: 9px; margin-top: 1px; }
@@ -1241,7 +1262,7 @@ select {
 
 .role-swap-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 360px);
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 340px);
   gap: 22px;
   align-items: start;
 }
@@ -1250,71 +1271,130 @@ select {
 .role-swap-right { min-width: 0; }
 .role-info {
   border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fbfcfe;
-  padding: 14px;
-  max-height: 560px;
-  overflow: auto;
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(47, 111, 203, 0.04), transparent 48%),
+    #fbfcfe;
+  padding: 14px 12px 12px;
 }
 .role-info-head {
   font-size: 12px;
   font-weight: 800;
+  letter-spacing: .04em;
   text-transform: uppercase;
-  letter-spacing: .05em;
   color: var(--ink);
 }
-.role-info-sub { margin: 4px 0 12px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
-.role-info-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  padding: 10px 12px;
-  margin-bottom: 8px;
+.role-info-sub {
+  margin: 4px 0 12px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
 }
-.role-info-card:last-child { margin-bottom: 0; }
-.role-info-name {
+.role-model-list {
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 480px;
+  overflow: auto;
+  padding-right: 2px;
+  scroll-behavior: smooth;
+}
+.role-model-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--ink);
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  transition: background .14s ease, border-color .14s ease, box-shadow .14s ease;
 }
-.role-tag {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .03em;
-  padding: 2px 7px;
-  border-radius: 999px;
+.role-model-row:hover,
+.role-model-row.is-active,
+.role-model-row:focus-visible {
+  background: #fff;
+  border-color: #d5dce8;
+  box-shadow: 0 4px 14px rgba(23, 31, 48, 0.06);
+  outline: none;
 }
-.role-tag.tag-aug { background: #f1ecfe; color: #5b3fd0; }
-.role-tag.tag-auto { background: #eef5ff; color: #2156a8; }
-.role-tag.tag-bal { background: #eef1f5; color: #5a6577; }
-.role-info-line { margin: 6px 0 9px; font-size: 12px; color: #4a5566; line-height: 1.45; }
-.role-info-line b { color: var(--ink); }
-.role-info-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.role-stat {
-  border-radius: 7px;
-  padding: 7px 9px;
+.role-model-row.lean-aug.is-active,
+.role-model-row.lean-aug:hover {
+  border-color: rgba(47, 111, 203, 0.35);
+  background: linear-gradient(90deg, rgba(47, 111, 203, 0.08), #fff 55%);
+}
+.role-model-row.lean-auto.is-active,
+.role-model-row.lean-auto:hover {
+  border-color: rgba(217, 111, 49, 0.35);
+  background: linear-gradient(90deg, rgba(217, 111, 49, 0.1), #fff 55%);
+}
+.role-model-main {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
-.role-stat-auto { background: #eef5ff; }
-.role-stat-aug { background: #f4f0fe; }
-.role-stat-label {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .03em;
+.role-model-name {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.role-model-lean {
+  font-size: 11px;
   color: var(--muted);
 }
-.role-stat-val { font-size: 18px; font-weight: 800; color: var(--ink); }
+.role-model-row.lean-aug .role-model-lean { color: #2a5fad; }
+.role-model-row.lean-auto .role-model-lean { color: #b85a22; }
+.role-model-scores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.role-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  min-width: 42px;
+}
+.role-score em {
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.role-score b {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.role-score-auto b { color: #b85a22; }
+.role-score-aug b { color: #2a5fad; }
+
+.role-quadrants .q-aug { fill: rgba(47, 111, 203, 0.07); }
+.role-quadrants .q-auto { fill: rgba(217, 111, 49, 0.08); }
+.role-quadrants .q-both { fill: rgba(37, 127, 99, 0.06); }
+.role-quadrants .q-weak { fill: rgba(90, 107, 130, 0.05); }
+.role-q-label { fill: #6b7587; }
+.role-q-label.q-aug-label { fill: #3a6fbf; }
+.role-q-label.q-auto-label { fill: #c2662a; }
+.role-q-label.q-both-label { fill: #2f7a5f; }
+.role-q-label.q-weak-label { fill: #6b7587; }
+
 @media (max-width: 900px) {
   .role-swap-layout { grid-template-columns: 1fr; }
-  .role-info { max-height: none; }
+  .role-model-list { max-height: 320px; }
 }
 
 .heat-table {
@@ -1535,15 +1615,8 @@ select {
   font-size: 12px;
 }
 .role-legend {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px 12px;
-  max-width: 720px;
-  margin: 8px auto 0;
-  color: var(--muted);
-  font-size: 11px;
+  display: none;
 }
-.role-legend b { color: var(--ink); }
 .chart-note {
   margin: 4px 0 10px;
   text-align: center;
@@ -3179,13 +3252,14 @@ main {
   border: 1px solid #d5dbe5;
 }
 .medal .medal-rank {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: #7a6a3d;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.1;
+  color: inherit;
 }
-.medal-silver .medal-rank { color: #5f6b7c; }
+.medal-silver .medal-rank { color: inherit; }
 .medal .medal-model {
   font-size: 12px;
   font-weight: 700;
