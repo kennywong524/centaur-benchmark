@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260718g" />
+    <link rel="stylesheet" href="styles.css?v=20260718h" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -510,17 +510,34 @@
 
       <section id="qualitative" class="panel" role="tabpanel" aria-labelledby="qualitative-tab">
         <div class="qual-loading-note hidden" id="qualLoadingNote" aria-live="polite">Loading qualitative bundle (outputs, assistance text, rationales)…</div>
-        <div class="section-heading">
+        <div class="section-heading qual-heading">
           <h2>Qualitative Browser</h2>
           <p>Read the exact assistance text, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
         </div>
         <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Task-Usage Scoreboard</button>
         <div id="qualQuickPicks" class="qual-quick-picks"></div>
         <div class="qual-grid">
-          <aside class="model-list" id="modelList"></aside>
-          <article class="text-pane">
-            <div class="text-toolbar">
+          <aside class="qual-panel qual-panel--models" aria-label="Models">
+            <header class="qual-panel-head">
+              <div class="qual-panel-kicker">
+                <span class="qual-side-badge models">MD</span>
+                <span class="qual-panel-role">Models</span>
+              </div>
+              <h3>Focal model</h3>
+              <p class="qual-panel-sub">Pick a cell to browse deliverables and pairwise judgments</p>
+            </header>
+            <div class="qual-panel-body model-list" id="modelList"></div>
+          </aside>
+          <article class="qual-panel qual-panel--text text-pane" aria-labelledby="qualTitle">
+            <header class="qual-panel-head">
+              <div class="qual-panel-kicker">
+                <span class="qual-side-badge text">TX</span>
+                <span class="qual-panel-role">Evidence</span>
+              </div>
               <h3 id="qualTitle">Select a model</h3>
+              <p class="qual-panel-sub" id="qualTabDesc"></p>
+            </header>
+            <div class="text-toolbar">
               <div class="content-tabs">
                 <button class="content-tab active" data-texttab="output">
                   <span>Worker model</span>
@@ -540,13 +557,22 @@
                 </button>
               </div>
             </div>
-            <p class="qual-tab-desc" id="qualTabDesc"></p>
             <div class="role-strip" id="roleStrip"></div>
             <div id="qualText"></div>
           </article>
-          <aside class="rationale-list">
-            <h3>Pairwise Judge Rationales</h3>
-            <div id="rationales"></div>
+          <aside class="qual-panel qual-panel--rationales rationale-list" aria-label="Pairwise judge rationales">
+            <header class="qual-panel-head">
+              <div class="qual-panel-kicker">
+                <span class="qual-side-badge rationales">JR</span>
+                <span class="qual-panel-role">Judgments</span>
+              </div>
+              <h3>Pairwise Judge Rationales</h3>
+              <p class="qual-panel-sub">Choose a leave-family-out eligible judge and opponent for this focal model</p>
+            </header>
+            <div class="qual-panel-body">
+              <div class="qual-pair-controls" id="qualPairControls"></div>
+              <div id="rationales"></div>
+            </div>
           </aside>
         </div>
       </section>
@@ -572,6 +598,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260718g"></script>
+    <script src="app.js?v=20260718h"></script>
   </body>
 </html>
