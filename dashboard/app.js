@@ -208,6 +208,7 @@ const state = {
     modelA: null,
     modelB: null,
     rubricView: "pair",
+    rubricJudge: "average",
     paneA: "output",
     paneB: "output",
   },
@@ -2035,13 +2036,15 @@ function isUnaidedBaseline(out) {
   return label === "plain" || label === "gpt-3.5-turbo" || out.condition === "plain";
 }
 
-function rubricMeansForOutput(output, judgments, task) {
+function rubricMeansForOutput(output, judgments, task, opts = {}) {
   const dims = [
     ...Object.keys(rubricLabels[task] || {}),
     ...Object.keys(generalRubricLabels),
   ];
+  const judgeFilter = opts.judgeModel || null;
   const grouped = new Map();
   judgments.forEach(j => {
+    if (judgeFilter && j.judge_model !== judgeFilter) return;
     const scores = Number(j.left_idx) === Number(output.idx)
       ? j.option_1_scores
       : (Number(j.right_idx) === Number(output.idx) ? j.option_2_scores : null);
@@ -2058,16 +2061,28 @@ function rubricMeansForOutput(output, judgments, task) {
     .map(d => ({ dimension: d, mean: avg(grouped.get(d)), n: grouped.get(d).length }));
 }
 
-function taskAverageRubric(outputs, judgments, task) {
+function taskAverageRubric(outputs, judgments, task, opts = {}) {
   const byDim = new Map();
   outputs.forEach(out => {
-    rubricMeansForOutput(out, judgments, task).forEach(row => {
+    rubricMeansForOutput(out, judgments, task, opts).forEach(row => {
       const arr = byDim.get(row.dimension) || [];
       arr.push(row.mean);
       byDim.set(row.dimension, arr);
     });
   });
   return [...byDim.entries()].map(([dimension, vals]) => ({ dimension, mean: avg(vals) }));
+}
+
+function compareRubricJudgeOptions(judgments) {
+  const seen = new Map();
+  judgments.forEach(j => {
+    const key = j.judge_model;
+    if (!key || seen.has(key)) return;
+    seen.set(key, j.judge_label || judgeDisplay(j.judge_model));
+  });
+  return [...seen.entries()]
+    .map(([model, label]) => ({ model, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 }
 
 function populateCompareControls() {
@@ -2081,6 +2096,7 @@ function populateCompareControls() {
 
   if (!state.compare.runId) state.compare.runId = state.runId;
   if (!taskOrder.includes(state.compare.task)) state.compare.task = state.task;
+  if (!state.compare.rubricJudge) state.compare.rubricJudge = "average";
 
   taskEl.innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
   taskEl.value = state.compare.task;
@@ -2185,21 +2201,27 @@ function formatCompareInline(escaped) {
     .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
 }
 
-function formatCompareBlocks(raw) {
+function splitInlineBulletText(text) {
+  const raw = String(text || "").trim();
+  if (!raw) return null;
+  // Split paragraphs that use mid-dot / bullet separators into list items.
+  const parts = raw.split(/\s*[•·∙]\s+/).map(s => s.trim()).filter(Boolean);
+  if (parts.length < 2) return null;
+  return parts;
+}
+
+function parseCompareTokens(raw) {
   const text = String(raw || "").replace(/\r\n/g, "\n").trim();
-  if (!text) return "";
-
+  if (!text) return [];
+  const tokens = [];
   const fenceParts = text.split(/(```[\s\S]*?```)/g);
-  const out = [];
-
   fenceParts.forEach(part => {
     if (!part) return;
     if (part.startsWith("```") && part.endsWith("```")) {
       const inner = part.slice(3, -3).replace(/^\w*\n/, "");
-      out.push(`<pre class="compare-code"><code>${esc(inner.trimEnd())}</code></pre>`);
+      tokens.push({ type: "code", text: inner.trimEnd() });
       return;
     }
-
     const lines = part.split("\n");
     let i = 0;
     while (i < lines.length) {
@@ -2208,74 +2230,136 @@ function formatCompareBlocks(raw) {
 
       const heading = line.match(/^(#{1,3})\s+(.+)$/);
       if (heading) {
-        const level = Math.min(heading[1].length + 2, 5); // h3–h5
-        out.push(`<h${level} class="compare-md-h">${formatCompareInline(esc(heading[2].trim()))}</h${level}>`);
+        tokens.push({ type: "heading", text: heading[2].trim(), level: heading[1].length });
         i += 1;
         continue;
       }
 
-      // Bold-only title line used by many model outputs
       const boldTitle = line.match(/^\*\*([^*]+)\*\*\s*$/);
       if (boldTitle) {
-        out.push(`<h3 class="compare-md-h">${esc(boldTitle[1].trim())}</h3>`);
+        tokens.push({ type: "heading", text: boldTitle[1].trim(), level: 1 });
         i += 1;
         continue;
       }
 
-      if (/^\d+[.)]\s+/.test(line)) {
-        const items = [];
-        while (i < lines.length && /^\d+[.)]\s+/.test(lines[i])) {
-          items.push(`<li>${formatCompareInline(esc(lines[i].replace(/^\d+[.)]\s+/, "")))}</li>`);
-          i += 1;
-          // continuation lines indented under a numbered item
-          while (i < lines.length && lines[i] && !/^\d+[.)]\s+/.test(lines[i]) && !/^[-*•]\s+/.test(lines[i]) && !/^#{1,3}\s+/.test(lines[i]) && lines[i].startsWith("  ")) {
-            items[items.length - 1] = items[items.length - 1].replace(/<\/li>$/, ` ${formatCompareInline(esc(lines[i].trim()))}</li>`);
-            i += 1;
-          }
-        }
-        out.push(`<ol class="compare-md-list">${items.join("")}</ol>`);
+      const numbered = line.match(/^(\d+)[.)]\s+(.+)$/);
+      if (numbered) {
+        tokens.push({ type: "section", text: numbered[2].trim(), n: Number(numbered[1]) });
+        i += 1;
         continue;
       }
 
-      if (/^[-*•]\s+/.test(line)) {
+      if (/^[-*•·∙]\s+/.test(line)) {
         const items = [];
-        while (i < lines.length && /^[-*•]\s+/.test(lines[i])) {
-          items.push(`<li>${formatCompareInline(esc(lines[i].replace(/^[-*•]\s+/, "")))}</li>`);
+        while (i < lines.length && /^[-*•·∙]\s+/.test(lines[i])) {
+          const itemText = lines[i].replace(/^[-*•·∙]\s+/, "").trim();
+          const inline = splitInlineBulletText(itemText);
+          if (inline && inline.length > 1) items.push(...inline);
+          else items.push(itemText);
           i += 1;
         }
-        out.push(`<ul class="compare-md-list">${items.join("")}</ul>`);
+        tokens.push({ type: "bullets", items });
         continue;
       }
 
-      const para = [];
+      const paraLines = [];
       while (i < lines.length && lines[i].trim()
         && !/^\d+[.)]\s+/.test(lines[i])
-        && !/^[-*•]\s+/.test(lines[i])
+        && !/^[-*•·∙]\s+/.test(lines[i])
         && !/^#{1,3}\s+/.test(lines[i])
         && !/^\*\*[^*]+\*\*\s*$/.test(lines[i])
         && !(lines[i].startsWith("```"))) {
-        para.push(lines[i]);
+        paraLines.push(lines[i].trim());
         i += 1;
       }
-      if (para.length) {
-        out.push(`<p class="compare-md-p">${formatCompareInline(esc(para.join(" ")))}</p>`);
+      if (paraLines.length) {
+        const joined = paraLines.join(" ");
+        const inline = splitInlineBulletText(joined);
+        if (inline) tokens.push({ type: "bullets", items: inline });
+        else tokens.push({ type: "para", text: joined });
       }
     }
   });
-
-  return out.join("") || `<p class="compare-md-p">${formatCompareInline(esc(text))}</p>`;
+  return tokens;
 }
 
-function renderCompareRichText(raw, { kind = "deliverable", side = "a" } = {}) {
-  const body = formatCompareBlocks(raw);
-  if (kind === "scaffold") {
-    return `<div class="compare-doc compare-doc--assist compare-doc--${side}">
-      <div class="compare-doc-label">Assistance text</div>
-      <div class="compare-doc-body">${body}</div>
-    </div>`;
+function renderCompareBodyHtml(tokens) {
+  if (!tokens.length) return "";
+  const out = [];
+  let i = 0;
+  let sectionNum = 0;
+  let usedTitle = false;
+
+  // Leading title: first heading before any section.
+  if (tokens[0]?.type === "heading") {
+    out.push(`<h3 class="compare-doc-title">${formatCompareInline(esc(tokens[0].text))}</h3>`);
+    usedTitle = true;
+    i = 1;
   }
-  return `<div class="compare-doc compare-doc--deliverable compare-doc--${side}">
-    <div class="compare-doc-label">Deliverable</div>
+
+  const flushLoose = (start, end) => {
+    const chunk = [];
+    for (let k = start; k < end; k += 1) {
+      const t = tokens[k];
+      if (t.type === "heading") {
+        chunk.push(`<h4 class="compare-md-h">${formatCompareInline(esc(t.text))}</h4>`);
+      } else if (t.type === "para") {
+        chunk.push(`<p class="compare-md-p">${formatCompareInline(esc(t.text))}</p>`);
+      } else if (t.type === "bullets") {
+        chunk.push(`<ul class="compare-bullets">${t.items.map(it => `<li>${formatCompareInline(esc(it))}</li>`).join("")}</ul>`);
+      } else if (t.type === "code") {
+        chunk.push(`<pre class="compare-code"><code>${esc(t.text)}</code></pre>`);
+      } else if (t.type === "section") {
+        // Nested numbered line outside a card — treat as a mini heading + continue
+        chunk.push(`<p class="compare-md-p"><strong>${formatCompareInline(esc(t.text))}</strong></p>`);
+      }
+    }
+    return chunk.join("");
+  };
+
+  while (i < tokens.length) {
+    const t = tokens[i];
+    if (t.type === "section") {
+      sectionNum += 1;
+      const title = t.text;
+      i += 1;
+      const bodyStart = i;
+      while (i < tokens.length && tokens[i].type !== "section") i += 1;
+      const bodyHtml = flushLoose(bodyStart, i);
+      out.push(`<section class="compare-section">
+        <div class="compare-section-head">
+          <span class="compare-section-num" aria-hidden="true">${sectionNum}</span>
+          <h4 class="compare-section-title">${formatCompareInline(esc(title))}</h4>
+        </div>
+        <div class="compare-section-body">${bodyHtml || `<p class="compare-md-p compare-md-muted">No details under this step.</p>`}</div>
+      </section>`);
+      continue;
+    }
+
+    // Loose content before the first section (or between non-section docs).
+    const looseStart = i;
+    while (i < tokens.length && tokens[i].type !== "section") i += 1;
+    const loose = flushLoose(looseStart, i);
+    if (loose) {
+      // If we already used a title and this loose block starts with a duplicate heading, skip that heading.
+      out.push(loose);
+    }
+  }
+
+  if (!out.length && usedTitle) return out.join("");
+  return out.join("") || `<p class="compare-md-p">${formatCompareInline(esc(tokens.map(t => t.text || (t.items || []).join(" ")).join(" ")))}</p>`;
+}
+
+function formatCompareBlocks(raw) {
+  return renderCompareBodyHtml(parseCompareTokens(raw));
+}
+
+function renderCompareRichText(raw, { kind = "deliverable" } = {}) {
+  const body = formatCompareBlocks(raw);
+  const label = kind === "scaffold" ? "Assistance text" : "Deliverable";
+  const kindClass = kind === "scaffold" ? "compare-doc--assist" : "compare-doc--deliverable";
+  return `<div class="compare-doc ${kindClass}">
+    <div class="compare-doc-label">${label}</div>
     <div class="compare-doc-body">${body}</div>
   </div>`;
 }
@@ -2318,11 +2402,11 @@ function renderComparePane(side) {
       textEl.innerHTML = `<p class="qual-empty-state">${esc(msg)}</p>`;
       return;
     }
-    textEl.innerHTML = renderCompareRichText(scaffoldText, { kind: "scaffold", side });
+    textEl.innerHTML = renderCompareRichText(scaffoldText, { kind: "scaffold" });
     return;
   }
   const deliverable = out.output || "No deliverable saved.";
-  textEl.innerHTML = renderCompareRichText(deliverable, { kind: "deliverable", side });
+  textEl.innerHTML = renderCompareRichText(deliverable, { kind: "deliverable" });
 }
 
 function renderCompareRubric() {
@@ -2338,10 +2422,26 @@ function renderCompareRubric() {
     renderCompareScoreSummary("b", [], { winsA: 0, winsB: 0, n: 0, rowsA: [], rowsB: [] }, false);
     return;
   }
-  const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task);
-  const rowsB = rubricMeansForOutput(outB, judgments, state.compare.task);
-  const avgRows = taskAverageRubric(outputs, judgments, state.compare.task);
-  const dims = [...new Set([...rowsA, ...rowsB, ...avgRows].map(r => r.dimension))];
+
+  const judgeOpts = compareRubricJudgeOptions(judgments);
+  if (state.compare.rubricJudge !== "average"
+    && !judgeOpts.some(j => j.model === state.compare.rubricJudge)) {
+    state.compare.rubricJudge = "average";
+  }
+  const judgeModel = state.compare.rubricJudge === "average" ? null : state.compare.rubricJudge;
+  const rubricOpts = judgeModel ? { judgeModel } : {};
+  const judgeLabel = judgeModel
+    ? (judgeOpts.find(j => j.model === judgeModel)?.label || judgeDisplay(judgeModel))
+    : "Average";
+
+  const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task, rubricOpts);
+  const rowsB = rubricMeansForOutput(outB, judgments, state.compare.task, rubricOpts);
+  const avgRows = taskAverageRubric(outputs, judgments, state.compare.task, rubricOpts);
+  const dims = [...new Set([
+    ...Object.keys(rubricLabels[state.compare.task] || {}),
+    ...Object.keys(generalRubricLabels),
+    ...rowsA, ...rowsB, ...avgRows,
+  ].map(r => (typeof r === "string" ? r : r.dimension)))];
   const mapA = new Map(rowsA.map(r => [r.dimension, r.mean]));
   const mapB = new Map(rowsB.map(r => [r.dimension, r.mean]));
   const mapAvg = new Map(avgRows.map(r => [r.dimension, r.mean]));
@@ -2354,20 +2454,19 @@ function renderCompareRubric() {
   renderCompareScoreSummary("a", rowsA, h2h, vsAvg);
   renderCompareScoreSummary("b", rowsB, h2h, vsAvg);
 
-  if (!dims.length) {
-    el.innerHTML = `<p class="chart-note">No rubric scores found for this cell. Try another run or open Qualitative.</p>`;
-    return;
-  }
-
   const rightColor = vsAvg ? "var(--compare-avg)" : "var(--compare-b)";
   const max = 10;
+  const scopeNote = judgeModel
+    ? (vsAvg
+      ? `${judgeLabel} scores · A vs task average under this judge`
+      : `${judgeLabel} scores · A vs B`)
+    : (vsAvg
+      ? "Average across judges · A vs task average"
+      : "Average across judges · A vs B");
 
   const rows = dims.map(dim => {
-    const a = mapA.get(dim);
-    const b = mapB.get(dim);
-    const tavg = mapAvg.get(dim);
-    const left = a;
-    const right = vsAvg ? tavg : b;
+    const left = mapA.get(dim);
+    const right = vsAvg ? mapAvg.get(dim) : mapB.get(dim);
     const aBetter = Number.isFinite(left) && Number.isFinite(right) && left > right + 0.05;
     const bBetter = Number.isFinite(left) && Number.isFinite(right) && right > left + 0.05;
     return `<div class="compare-rubric-row">
@@ -2383,21 +2482,38 @@ function renderCompareRubric() {
     </div>`;
   }).join("");
 
+  const judgeButtons = [
+    `<button type="button" class="compare-judge-chip ${state.compare.rubricJudge === "average" ? "active" : ""}" data-compare-judge="average">Average</button>`,
+    ...judgeOpts.map(j => `<button type="button" class="compare-judge-chip ${state.compare.rubricJudge === j.model ? "active" : ""}" data-compare-judge="${esc(j.model)}">${esc(j.label)}</button>`),
+  ].join("");
+
   el.innerHTML = `
     <div class="section-heading compact">
       <h2>Rubric attributes</h2>
       <p>${esc(labelA)} vs ${vsAvg ? "task average" : esc(labelB)} · ${esc(cleanTaskTitle(state.compare.task))} · ${esc(modeLabels[state.compare.mode])}</p>
     </div>
+    <div class="compare-judge-bar" role="tablist" aria-label="Rubric judge filter">
+      <span class="compare-judge-bar-label">Scores from</span>
+      <div class="compare-judge-chips">${judgeButtons}</div>
+    </div>
     <div class="compare-rubric-legend">
       <span><span class="dot a"></span>${esc(labelA)}</span>
       <span><span class="dot b"></span>${vsAvg ? "Task average" : esc(labelB)}</span>
+      <span class="compare-rubric-scope">${esc(scopeNote)}</span>
     </div>
     <div class="compare-rubric-head" aria-hidden="true">
       <span class="col-dim">Dimension</span>
       <span class="col-a">A</span>
       <span class="col-b">${vsAvg ? "Avg" : "B"}</span>
     </div>
-    ${rows}`;
+    ${rows || `<p class="chart-note">No rubric scores found for this selection.</p>`}`;
+
+  el.querySelectorAll("[data-compare-judge]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.compare.rubricJudge = btn.dataset.compareJudge;
+      renderCompareRubric();
+    });
+  });
 }
 
 function renderCompareRationales() {
