@@ -3023,8 +3023,6 @@ a.task-attr-inline:hover {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 420px;
-  overflow: auto;
   padding-right: 2px;
 }
 .overview-task-btn {
@@ -3490,7 +3488,6 @@ a.task-source-badge:hover {
 @media (max-width: 900px) {
   .overview-task-browser { grid-template-columns: 1fr; }
   .overview-task-list {
-    max-height: none;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
