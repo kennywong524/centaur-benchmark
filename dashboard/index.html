@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260717u" />
+    <link rel="stylesheet" href="styles.css?v=20260717v" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -24,7 +24,7 @@
         <nav class="tabs" aria-label="Dashboard sections" role="tablist">
           <button class="tab active" data-tab="project" role="tab" aria-selected="true" aria-controls="project">Overview</button>
           <button class="tab" data-tab="compare" role="tab" aria-selected="false" aria-controls="compare">Compare</button>
-          <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Rankings</button>
+          <button class="tab" data-tab="rankings" role="tab" aria-selected="false" aria-controls="rankings">Task-Usage Rankings</button>
           <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Heatmaps</button>
           <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-Run Summary</button>
           <button class="tab" data-tab="qualitative" role="tab" aria-selected="false" aria-controls="qualitative">Qualitative</button>
@@ -215,15 +215,15 @@
           <div class="landing-section ace-section" id="overview-explore">
             <div class="landing-section-head">
               <p class="ace-kicker">Go deeper</p>
-              <h3>Task-level rankings, rubrics, and qualitative evidence</h3>
-              <p>Drill into per-task leaderboards and rubric dimensions, then open the Qualitative browser for full prompts, assistance text, outputs, and judge rationales.</p>
+              <h3>Task-usage rankings, rubrics, and qualitative evidence</h3>
+              <p>Drill into per-task × usage-regime leaderboards and rubric dimensions, then open the Qualitative browser for full prompts, assistance text, outputs, and judge rationales.</p>
             </div>
             <div class="explore-card-grid">
               <button class="explore-card" type="button" data-gotab="rankings">
-                <span class="explore-card-kicker">Rankings</span>
-                <b>Task-level leaderboards</b>
-                <p>General and task-specific rubric scores for every model × regime cell.</p>
-                <span class="explore-card-cta">Open Rankings →</span>
+                <span class="explore-card-kicker">Task-Usage Rankings</span>
+                <b>Task × usage-regime leaderboards</b>
+                <p>Average and per-judge rankings plus what each rubric dimension means for the task.</p>
+                <span class="explore-card-cta">Open Task-Usage Rankings →</span>
               </button>
               <button class="explore-card" type="button" data-gotab="qualitative">
                 <span class="explore-card-kicker">Qualitative</span>
@@ -389,19 +389,34 @@
       </section>
 
       <section id="rankings" class="panel">
-        <div class="section-heading">
-          <h2>Task-Level Rankings</h2>
-          <p>Use the filters above to pick a task and regime. Click any model row to inspect its worker output, assistance text, and judge rationales in <button class="inline-link" type="button" data-gotab="qualitative">Qualitative</button>.</p>
+        <div class="section-heading rank-heading">
+          <h2>Task-Usage Rankings</h2>
+          <p>For readers who want a deeper read on <b>what each rubric dimension means for each task</b>, plus <b>task × usage-regime rankings</b> under Average or individual judges. Select a model on the left to load its dimension scores on the right. Automation vs augmentation use the same filters above; assistance text terminology is unchanged.</p>
         </div>
-        <div class="two-col">
-          <div class="viz-card">
-            <h3 id="rankTitle">Aggregate Leaderboard</h3>
-            <div id="leaderboard"></div>
-          </div>
-          <div class="viz-card">
-            <h3>Rubric Dimension Scores</h3>
-            <div id="rubricChart"></div>
-          </div>
+        <div class="rank-judge-bar" id="rankJudgeBar" role="tablist" aria-label="Ranking judge filter"></div>
+        <div class="rank-layout">
+          <article class="rank-panel rank-panel--board">
+            <header class="rank-panel-head">
+              <div class="rank-panel-kicker">
+                <span class="rank-side-badge board">LB</span>
+                <span class="rank-panel-role">Leaderboard</span>
+              </div>
+              <h3 id="rankTitle">Task × usage-regime rankings</h3>
+              <p class="rank-panel-sub" id="rankSubtitle">Select a model to update rubric scores</p>
+            </header>
+            <div class="rank-panel-body" id="leaderboard"></div>
+          </article>
+          <article class="rank-panel rank-panel--rubric">
+            <header class="rank-panel-head">
+              <div class="rank-panel-kicker">
+                <span class="rank-side-badge rubric">RD</span>
+                <span class="rank-panel-role">Rubric dimensions</span>
+              </div>
+              <h3 id="rubricPanelTitle">Dimension scores &amp; meanings</h3>
+              <p class="rank-panel-sub">Task-specific and general rubric attributes for the selected model</p>
+            </header>
+            <div class="rank-panel-body" id="rubricChart"></div>
+          </article>
         </div>
       </section>
 
@@ -448,7 +463,7 @@
           <h2>Qualitative Browser</h2>
           <p>Read the exact assistance text, worker output, rubric scores, and judge rationales for any task-model-regime cell.</p>
         </div>
-        <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Rankings</button>
+        <button class="qual-back-link" type="button" data-gotab="rankings">← Back to Task-Usage Rankings</button>
         <div id="qualQuickPicks" class="qual-quick-picks"></div>
         <div class="qual-grid">
           <aside class="model-list" id="modelList"></aside>
@@ -506,6 +521,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260717u"></script>
+    <script src="app.js?v=20260717v"></script>
   </body>
 </html>

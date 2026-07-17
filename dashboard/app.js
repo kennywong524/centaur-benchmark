@@ -203,6 +203,10 @@ const state = {
   rubricFocus: null,
   overviewTask: "counselling",
   compareTeaserPair: 0,
+  /** Rankings-only filters — never share with Heatmaps (`state.judge`). */
+  rankings: {
+    judgeFilter: "aggregate",
+  },
   compare: {
     task: "tax_prep",
     mode: "augmentation",
@@ -363,7 +367,7 @@ const controlsByTab = {
   compare: [],
   replicates: ["modelSet"],
   overview: ["run", "modelSet", "judge"],
-  rankings: ["run", "modelSet", "task", "mode", "judge"],
+  rankings: ["run", "task", "mode"],
   judges: ["modelSet", "task", "mode"],
   qualitative: ["run", "task", "mode", "judge"],
   validation: ["task"],
@@ -633,11 +637,12 @@ function ensureQualitativeData() {
     .then(data => {
       mergeQualitativeData(data);
       setQualLoading(false);
-      renderRubric();
+      renderRankings();
       renderQualitative();
       renderCompare();
       applyTermTooltips(document.getElementById("qualitative"));
       applyTermTooltips(document.getElementById("compare"));
+      applyTermTooltips(document.getElementById("rankings"));
     })
     .catch(err => {
       setQualLoading(false);
@@ -818,27 +823,86 @@ function scoreColor(score) {
   return `rgb(${r},${g},${b})`;
 }
 
-function records(mode, judge = "aggregate", runId = state.runId) {
+function records(mode, judge = "aggregate", runId = state.runId, opts = {}) {
   const bundle = activeData(runId);
   const source = judge === "aggregate" ? bundle?.aggregate : bundle?.by_judge;
   if (!Array.isArray(source)) return [];
+  const allow = opts.allModels ? () => true : modelAllowed;
   return source.filter(d =>
     d.mode === mode &&
-    modelAllowed(d.model_label) &&
+    allow(d.model_label) &&
     (judge === "aggregate" || d.judge_model === judge) &&
     !isOwnFamily(judge, d.model_label)
   );
 }
 
-function rankOfRanks(mode, judge = "aggregate", runId = state.runId) {
+function rankOfRanks(mode, judge = "aggregate", runId = state.runId, opts = {}) {
   const rows = [];
   for (const task of taskOrder) {
-    const sub = records(mode, judge, runId)
+    const sub = records(mode, judge, runId, opts)
       .filter(d => d.task_slug === task)
       .sort((a, b) => num(a.rank_value) - num(b.rank_value) || num(b.score) - num(a.score) || a.model_label.localeCompare(b.model_label));
     sub.forEach((d, i) => rows.push({ ...d, display_rank: i + 1 }));
   }
   return rows;
+}
+
+function rankingsJudge() {
+  return state.rankings?.judgeFilter || "aggregate";
+}
+
+/** Task-Usage Rankings always uses the full candidate pool (no model-pool filter). */
+function rankingRows(mode = state.mode, judge = rankingsJudge(), runId = state.runId) {
+  return rankOfRanks(mode, judge, runId, { allModels: true }).filter(d => d.task_slug === state.task);
+}
+
+/** Judges with ranking rows for the current task × mode (leave-family-out already in records). */
+function rankingJudgeOptions() {
+  const bundle = activeData();
+  const seen = new Map();
+  (bundle?.by_judge || []).forEach(d => {
+    if (d.mode !== state.mode || d.task_slug !== state.task || !d.judge_model) return;
+    if (isOwnFamily(d.judge_model, d.model_label)) return;
+    if (!seen.has(d.judge_model)) seen.set(d.judge_model, judgeDisplay(d.judge_model));
+  });
+  return [...seen.entries()]
+    .map(([model, label]) => ({ model, label }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+}
+
+function renderRankJudgeBar() {
+  const el = document.getElementById("rankJudgeBar");
+  if (!el) return;
+  if (!state.rankings) state.rankings = { judgeFilter: "aggregate" };
+  const judgeOpts = rankingJudgeOptions();
+  const active = rankingsJudge();
+  if (active !== "aggregate" && !judgeOpts.some(j => j.model === active)) {
+    state.rankings.judgeFilter = "aggregate";
+  }
+  const judge = rankingsJudge();
+  const buttons = [
+    `<button type="button" class="compare-judge-chip ${judge === "aggregate" ? "active" : ""}" data-rank-judge="aggregate">Average</button>`,
+    ...judgeOpts.map(j =>
+      `<button type="button" class="compare-judge-chip ${judge === j.model ? "active" : ""}" data-rank-judge="${esc(j.model)}">${esc(j.label)}</button>`
+    ),
+  ].join("");
+  el.innerHTML = `
+    <span class="compare-judge-bar-label">Scores from</span>
+    <div class="compare-judge-chips">${buttons}</div>
+    <span class="compare-rubric-scope">Average = panel aggregate · per-judge respects leave-family-out</span>`;
+  el.querySelectorAll("[data-rank-judge]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.rankings.judgeFilter = btn.dataset.rankJudge;
+      state.rubricFocus = null;
+      renderRankings();
+    });
+  });
+}
+
+function renderRankings() {
+  renderRankJudgeBar();
+  renderLeaderboard();
+  renderRubric();
 }
 
 function averageRanks(judge = "aggregate", runId = state.runId) {
@@ -1230,90 +1294,129 @@ function renderMetrics() {
 
 function renderLeaderboard() {
   const titleEl = document.getElementById("rankTitle");
+  const subEl = document.getElementById("rankSubtitle");
   const board = document.getElementById("leaderboard");
   if (!titleEl || !board) return;
-  const rows = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
-  titleEl.textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]} Leaderboard`;
+  const judge = rankingsJudge();
+  const judgeLabel = judge === "aggregate" ? "Average" : (judgeLabels[judge] || judgeDisplay(judge));
+  const rows = rankingRows().sort((a, b) => a.display_rank - b.display_rank);
+  titleEl.textContent = `${cleanTaskTitle(state.task)} · ${modeLabels[state.mode]}`;
+  if (subEl) {
+    subEl.textContent = `${judgeLabel} · click a model to load its rubric dimension scores`;
+  }
   if (!rows.length) {
-    board.innerHTML = `<div class="rank-empty-state"><p>No ranked models for this task under the current judge filter.</p><p class="rank-empty-hint">Try <b>Aggregate</b> judge, another task, or switch mode.</p></div>`;
+    board.innerHTML = `<div class="rank-empty-state"><p>No ranked models for this task under the current judge filter.</p><p class="rank-empty-hint">Try <b>Average</b>, another task, or switch usage regime.</p></div>`;
     return;
   }
+  const models = rows.map(d => d.model_label);
+  if (!state.selectedModel || !models.includes(state.selectedModel)) {
+    state.selectedModel = models[0];
+  }
   const maxScore = Math.max(...rows.map(d => Number(d.score)), 1);
-  board.innerHTML = `<p class="leaderboard-hint">Open Qualitative for full audit, or add models to Compare.</p>` + rows
-    .sort((a, b) => a.display_rank - b.display_rank)
+  board.innerHTML = `<p class="leaderboard-hint">All candidates · pairwise win rate. Selecting a model updates rubric scores on the right.</p>` + rows
     .map(d => {
       const rank = Number(d.display_rank);
       const win = Number(d.score);
       const rawRank = num(d.rank_value);
-      return `<div class="bar-row"><div><button class="${state.selectedModel === d.model_label ? "active" : ""}" data-rankmodel="${d.model_label}"><span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span><span>${displayModel(d.model_label, state.mode)}<span class="leader-meta">${modeLabels[state.mode]} · ${cleanTaskTitle(state.task)} · ${state.judge === "aggregate" ? "panel aggregate" : judgeLabels[state.judge] || state.judge}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span></span><span class="row-chevron" aria-hidden="true">›</span></button></div><div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div><div class="leader-actions"><span title="Pairwise win rate">${win.toFixed(2)}</span><button type="button" class="compare-add-btn" data-compare-add="${esc(d.model_label)}">Compare</button></div></div>`;
+      const active = state.selectedModel === d.model_label;
+      return `<div class="rank-row ${active ? "is-selected" : ""}">
+        <button type="button" class="rank-model-btn ${active ? "active" : ""}" data-rankmodel="${esc(d.model_label)}" aria-pressed="${active ? "true" : "false"}">
+          <span class="rank-badge ${rank <= 3 ? "top" : ""}">${rank}</span>
+          <span class="rank-model-copy">
+            <span class="rank-model-name">${esc(displayModel(d.model_label, state.mode))}</span>
+            <span class="leader-meta">${esc(judgeLabel)}${Number.isFinite(rawRank) ? ` · avg output rank ${rawRank.toFixed(2)}` : ""}</span>
+          </span>
+        </button>
+        <div class="bar-track" title="Pairwise win rate"><div class="bar-fill" style="width:${win / maxScore * 100}%;background:${scoreColor(win * 10)}"></div></div>
+        <span class="rank-win" title="Pairwise win rate">${win.toFixed(2)}</span>
+      </div>`;
     })
     .join("");
   board.querySelectorAll("[data-rankmodel]").forEach(b => b.addEventListener("click", () => {
     state.selectedModel = b.dataset.rankmodel;
-    goTab("qualitative");
-    renderAll();
-  }));
-  board.querySelectorAll("[data-compare-add]").forEach(b => b.addEventListener("click", e => {
-    e.stopPropagation();
-    const model = b.dataset.compareAdd;
-    state.compare.task = state.task;
-    state.compare.mode = state.mode;
-    state.compare.runId = state.runId;
-    if (!state.compare.modelA || state.compare.modelA === model) state.compare.modelA = model;
-    else state.compare.modelB = model;
-    goTab("compare");
+    state.rubricFocus = null;
+    renderLeaderboard();
+    renderRubric();
   }));
 }
 
 function renderRubric() {
   const chart = document.getElementById("rubricChart");
+  const titleEl = document.getElementById("rubricPanelTitle");
   if (!chart) return;
   if (!qualDataReady()) {
-    chart.innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Rankings or Qualitative.</p>`;
+    chart.innerHTML = `<p class="qual-loading-inline">Rubric scores load with the qualitative bundle when you open Task-Usage Rankings or Qualitative.</p>`;
     return;
   }
-  const dims = [
-    ...Object.keys(rubricLabels[state.task] || {}),
-    ...Object.keys(generalRubricLabels),
-  ];
+  const judge = rankingsJudge();
   const run = currentRun();
-  const ranked = rankOfRanks(state.mode, state.judge).filter(d => d.task_slug === state.task);
+  const ranked = rankingRows();
   const allowed = new Set(ranked.map(d => d.model_label));
   const outputs = (run?.outputs || []).filter(o => allowed.has(o.model_label));
   const models = [...new Set(outputs.map(d => d.model_label))];
-  const model = state.selectedModel && models.includes(state.selectedModel) ? state.selectedModel : models[0];
-  const output = outputs.find(o => o.model_label === model);
-  const grouped = new Map();
-  if (output) {
-    (run?.judgments || [])
-      .filter(j => state.judge === "aggregate" || j.judge_model === state.judge)
-      .forEach(j => {
-        const scores = j.left_idx === output.idx ? j.option_1_scores : (j.right_idx === output.idx ? j.option_2_scores : null);
-        if (!scores) return;
-        dims.forEach(dim => {
-          if (scores[dim] === undefined || scores[dim] === null) return;
-          const arr = grouped.get(dim) || [];
-          arr.push(Number(scores[dim]));
-          grouped.set(dim, arr);
-        });
-      });
+  if (!models.length && ranked.length) {
+    // Rankings exist but qualitative outputs not yet keyed — still pick a model label.
+    ranked.forEach(d => models.push(d.model_label));
   }
-  const sub = dims
-    .filter(d => grouped.has(d))
-    .map(d => ({ dimension: d, mean_score: avg(grouped.get(d)) }));
+  const uniqueModels = [...new Set(models)];
+  const model = state.selectedModel && uniqueModels.includes(state.selectedModel)
+    ? state.selectedModel
+    : uniqueModels[0];
+  if (model) state.selectedModel = model;
+  if (titleEl) {
+    titleEl.textContent = model
+      ? `${displayModel(model, state.mode)} · dimension scores`
+      : "Dimension scores & meanings";
+  }
+  const output = outputs.find(o => o.model_label === model);
+  const judgments = run?.judgments || [];
+  const activeJudge = judge === "aggregate" ? null : judge;
+  if (activeJudge && output && isOwnFamily(activeJudge, output.model_label)) {
+    chart.innerHTML = `<div class="rank-empty-state"><p><b>${esc(displayModel(model, state.mode))}</b> is leave-family-out for <b>${esc(judgeDisplay(activeJudge))}</b>.</p><p class="rank-empty-hint">Switch to Average or another judge that scored this model.</p></div>`;
+    return;
+  }
+  const rubricOpts = activeJudge ? { judgeModel: activeJudge } : {};
+  const sub = output
+    ? rubricMeansForOutput(output, judgments, state.task, rubricOpts).map(r => ({
+      dimension: r.dimension,
+      mean_score: r.mean,
+      n: r.n,
+    }))
+    : [];
   const max = 10;
-  const nScores = grouped.size && sub.length ? grouped.get(sub[0].dimension)?.length || 0 : 0;
-  const intro = `<h3>${displayModel(model || "", state.mode)}</h3><p style="color:var(--muted);font-size:12px;margin:6px 0 12px">Click any leaderboard model to inspect that selected response's rubric profile. Values average its pairwise appearances across ${state.judge === "aggregate" ? "included judges" : judgeLabels[state.judge] || state.judge}${nScores ? ` (n=${nScores})` : ""}.</p>`;
+  const nScores = sub[0]?.n || 0;
+  const judgeLabel = activeJudge
+    ? (judgeLabels[activeJudge] || judgeDisplay(activeJudge))
+    : "Average (leave-family-out eligible judges)";
+  const intro = `<p class="rank-rubric-intro">Select a model on the left. Hover or click a dimension for what it means on <b>${esc(cleanTaskTitle(state.task))}</b>. Scores average pairwise appearances under <b>${esc(judgeLabel)}</b>${nScores ? ` (n=${nScores})` : ""}.</p>`;
   const body = sub.length
-    ? sub.map(d => `<div class="bar-row" data-rubricdim="${d.dimension}"><div><span class="rubric-label">${esc(rubricName(d.dimension))}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Number(d.mean_score) / max * 100}%;background:${scoreColor(d.mean_score)}"></div></div><div>${Number(d.mean_score).toFixed(1)}</div></div>`).join("")
-    : `<p style="color:var(--muted);font-size:13px">No rubric-score rows found for this response under the current judge filter. Try Aggregate or another judge.</p>`;
-  const focus = state.rubricFocus && sub.some(d => d.dimension === state.rubricFocus) ? state.rubricFocus : sub[0]?.dimension;
-  chart.innerHTML = intro + body + (focus ? `<div class="rubric-detail"><b>${esc(rubricName(focus))}</b><p>${esc(rubricTip(focus))}</p></div>` : "");
+    ? sub.map(d => {
+      const focused = state.rubricFocus === d.dimension;
+      return `<div class="rank-rubric-row bar-row ${focused ? "is-focus" : ""}" data-rubricdim="${esc(d.dimension)}">
+        <div><span class="rubric-label">${esc(rubricName(d.dimension))}</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Number(d.mean_score) / max * 100}%;background:${scoreColor(d.mean_score)}"></div></div>
+        <div class="rank-rubric-val">${Number(d.mean_score).toFixed(1)}</div>
+      </div>`;
+    }).join("")
+    : `<p class="chart-note">No rubric-score rows found for this response under the current judge filter. Try Average or another judge.</p>`;
+  const focus = state.rubricFocus && sub.some(d => d.dimension === state.rubricFocus)
+    ? state.rubricFocus
+    : sub[0]?.dimension;
+  if (focus) state.rubricFocus = focus;
+  const detail = focus
+    ? `<div class="rubric-detail rank-rubric-detail"><span class="rank-rubric-detail-kicker">What this dimension means</span><b>${esc(rubricName(focus))}</b><p>${esc(rubricTip(focus))}</p></div>`
+    : "";
+  chart.innerHTML = intro + body + detail;
   chart.querySelectorAll("[data-rubricdim]").forEach(el => {
     const setFocus = () => {
       state.rubricFocus = el.dataset.rubricdim;
-      const detail = chart.querySelector(".rubric-detail");
-      if (detail) detail.innerHTML = `<b>${esc(rubricName(state.rubricFocus))}</b><p>${esc(rubricTip(state.rubricFocus))}</p>`;
+      chart.querySelectorAll("[data-rubricdim]").forEach(row => {
+        row.classList.toggle("is-focus", row.dataset.rubricdim === state.rubricFocus);
+      });
+      const detailEl = chart.querySelector(".rubric-detail");
+      if (detailEl) {
+        detailEl.innerHTML = `<span class="rank-rubric-detail-kicker">What this dimension means</span><b>${esc(rubricName(state.rubricFocus))}</b><p>${esc(rubricTip(state.rubricFocus))}</p>`;
+      }
     };
     el.addEventListener("mouseenter", setFocus);
     el.addEventListener("click", setFocus);
@@ -2154,12 +2257,12 @@ const methodologyDetails = {
   automation: {
     title: "Automation regime: the model solves alone",
     body: "Each focal model receives the task prompt directly and produces the deliverable end-to-end. This measures innate capability: no assistance text, no intermediary. These outputs then compete against each other in the automation tournament.",
-    action: { label: "View automation rankings", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
+    action: { label: "View automation task-usage rankings", run: () => { setMode("automation"); goTab("rankings"); renderAll(); } },
   },
   augmentation: {
     title: "Augmentation regime: the model guides a fixed worker",
     body: "The focal model acts as an assistant by providing process-focused assistance text to the fixed GPT-3.5-Turbo worker model alongside the client task. The worker model's deliverable is what gets judged, so a model succeeds in this regime by helping its worker perform better — mirroring how AI assistance can augment a human professional.",
-    action: { label: "View augmentation rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
+    action: { label: "View augmentation task-usage rankings", run: () => { setMode("augmentation"); goTab("rankings"); renderAll(); } },
   },
   evaluator: {
     title: "Evaluator panel: blind pairwise judging",
@@ -3255,8 +3358,7 @@ function renderAll() {
     renderRoleScatter();
     renderReplicateSummary();
     renderValidation();
-    renderLeaderboard();
-    renderRubric();
+    renderRankings();
     renderJudgeScatter();
     renderQualitative();
     renderCompare();
