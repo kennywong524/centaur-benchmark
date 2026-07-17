@@ -228,6 +228,34 @@ const taskSourceHints = {
   tutoring: "GDPval / Anthropic Economic Index",
 };
 
+const taskTypeTone = {
+  "Professional / analytical": "analytical",
+  "Structured planning": "planning",
+  "Human-facing interactive": "interactive",
+};
+
+function taskTypeClass(type) {
+  return taskTypeTone[type] || "default";
+}
+
+function taskSourceBadgesHtml(slug) {
+  const label = taskSourceLabel(slug);
+  const badges = [];
+  if (/gdpval/i.test(label)) {
+    badges.push(`<span class="task-source-badge"><img class="task-source-logo openai" src="assets/openai-logo.png?v=20260717q" alt="" width="18" height="18" /><span>GDPval</span></span>`);
+  }
+  if (/anthropic/i.test(label)) {
+    badges.push(`<span class="task-source-badge"><img class="task-source-logo anthropic" src="assets/anthropic-logo.png?v=20260717q" alt="" width="18" height="18" /><span>Anthropic Economic Index</span></span>`);
+  }
+  if (/author/i.test(label)) {
+    badges.push(`<span class="task-source-badge task-source-badge-plain"><span>Author-designed</span></span>`);
+  }
+  if (!badges.length) {
+    badges.push(`<span class="task-source-badge task-source-badge-plain"><span>${esc(label)}</span></span>`);
+  }
+  return badges.join("");
+}
+
 const compareTeaserPairs = [
   {
     label: "Counseling · GPT-4.1 vs DeepSeek",
@@ -1542,7 +1570,8 @@ function renderOverviewTasks() {
   const tasks = taskOrder.map(slug => taskMetaBySlug(slug)).filter(Boolean);
   list.innerHTML = tasks.map((t, i) => {
     const active = t.slug === state.overviewTask;
-    return `<button type="button" class="overview-task-btn ${active ? "active" : ""}" role="option" aria-selected="${active ? "true" : "false"}" data-overview-task="${esc(t.slug)}"><span class="task-idx">${i + 1}</span><b>${esc(t.label || cleanTaskTitle(t.slug))}</b><small>${esc(t.type || "Professional task")}</small></button>`;
+    const tone = taskTypeClass(t.type);
+    return `<button type="button" class="overview-task-btn tone-${tone} ${active ? "active" : ""}" role="option" aria-selected="${active ? "true" : "false"}" data-overview-task="${esc(t.slug)}"><span class="task-idx">${i + 1}</span><b>${esc(t.label || cleanTaskTitle(t.slug))}</b><small>${esc(t.type || "Professional task")}</small></button>`;
   }).join("");
   const meta = taskMetaBySlug(state.overviewTask);
   if (!meta) {
@@ -1550,10 +1579,14 @@ function renderOverviewTasks() {
     return;
   }
   const prompt = (meta.task_prompt || "").trim();
+  const tone = taskTypeClass(meta.type);
   detail.innerHTML = `
-    <span class="task-type-pill">${esc(meta.type || "Task")}</span>
-    <h4>${esc(meta.label || cleanTaskTitle(meta.slug))}</h4>
-    <p class="task-source">${esc(meta.title || cleanTaskTitle(meta.slug))} · Source: ${esc(taskSourceLabel(meta.slug))}</p>
+    <div class="overview-task-detail-head tone-${tone}">
+      <span class="task-type-pill">${esc(meta.type || "Task")}</span>
+      <h4>${esc(meta.label || cleanTaskTitle(meta.slug))}</h4>
+      <p class="task-source-line">${esc(meta.title || cleanTaskTitle(meta.slug))}</p>
+      <div class="task-source-row" aria-label="Task source">${taskSourceBadgesHtml(meta.slug)}</div>
+    </div>
     <p class="task-prompt-label">Task prompt</p>
     <pre class="task-prompt">${esc(prompt || "Prompt not available in metadata.")}</pre>`;
   list.querySelectorAll("[data-overview-task]").forEach(btn => {
