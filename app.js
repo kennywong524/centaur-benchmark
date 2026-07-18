@@ -2,12 +2,31 @@ const LAYOUT_STORAGE_KEY = "centaur-layout-v1";
 
 const layoutPrefs = loadLayoutPrefs();
 
+function isLowPowerClient() {
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  const narrow = window.matchMedia("(max-width: 900px)").matches;
+  const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return coarse || narrow || iOS;
+}
+
 function initAmbientCanvas() {
   const canvas = document.getElementById("ambientCanvas");
-  const ctx = canvas?.getContext("2d");
+  const ctx = canvas?.getContext("2d", { alpha: true });
   if (!canvas || !ctx) return;
 
+  // Safari iOS repeatedly crashes under full-screen animated canvases + large JSON.
+  // Keep a static wash on phones/tablets; animate only on desktop.
+  const lowPower = isLowPowerClient();
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (lowPower || reducedMotion.matches) {
+    canvas.width = 1;
+    canvas.height = 1;
+    canvas.style.display = "none";
+    document.body.classList.add("ambient-static");
+    return;
+  }
+
   let width = 0;
   let height = 0;
   let particles = [];
@@ -15,74 +34,61 @@ function initAmbientCanvas() {
   let pointerX = 0.76;
   let pointerY = 0.34;
   let pointerActive = false;
+  let lastPaint = 0;
 
   const seedParticles = () => {
-    const count = Math.min(74, Math.max(28, Math.round((width * height) / 11000)));
+    const count = Math.min(36, Math.max(16, Math.round((width * height) / 28000)));
     particles = Array.from({ length: count }, (_, index) => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.11,
-      vy: (Math.random() - 0.5) * 0.07,
-      radius: index % 9 === 0 ? 1.7 : 0.75 + Math.random() * 0.8,
+      vx: (Math.random() - 0.5) * 0.09,
+      vy: (Math.random() - 0.5) * 0.06,
+      radius: index % 9 === 0 ? 1.5 : 0.7 + Math.random() * 0.7,
       phase: Math.random() * Math.PI * 2,
     }));
   };
 
   const paint = time => {
-    if (!canvas.isConnected) return;
+    if (!canvas.isConnected || document.hidden) return;
+    // Cap ~30fps to cut Safari/GPU load.
+    if (time - lastPaint < 32) {
+      frameId = requestAnimationFrame(paint);
+      return;
+    }
+    lastPaint = time;
     ctx.clearRect(0, 0, width, height);
 
     const focusX = pointerX * width;
     const focusY = pointerY * height;
-    const glow = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(width, height) * 0.48);
-    glow.addColorStop(0, pointerActive ? "rgba(47, 111, 203, .10)" : "rgba(47, 111, 203, .07)");
+    const glow = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(width, height) * 0.42);
+    glow.addColorStop(0, pointerActive ? "rgba(47, 111, 203, .08)" : "rgba(47, 111, 203, .05)");
     glow.addColorStop(1, "rgba(47, 111, 203, 0)");
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, width, height);
 
-    if (!reducedMotion.matches) {
-      particles.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        if (particle.x < -8) particle.x = width + 8;
-        if (particle.x > width + 8) particle.x = -8;
-        if (particle.y < -8) particle.y = height + 8;
-        if (particle.y > height + 8) particle.y = -8;
-      });
-    }
+    particles.forEach(particle => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+      if (particle.x < -8) particle.x = width + 8;
+      if (particle.x > width + 8) particle.x = -8;
+      if (particle.y < -8) particle.y = height + 8;
+      if (particle.y > height + 8) particle.y = -8;
+    });
 
-    const connectionDistance = Math.min(150, Math.max(100, width / 10));
-    for (let i = 0; i < particles.length; i += 1) {
-      for (let j = i + 1; j < particles.length; j += 1) {
-        const a = particles[i];
-        const b = particles[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const distance = Math.hypot(dx, dy);
-        if (distance >= connectionDistance) continue;
-        const alpha = (1 - distance / connectionDistance) * 0.24;
-        ctx.strokeStyle = `rgba(47, 111, 203, ${alpha})`;
-        ctx.lineWidth = 0.65;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-    }
-
+    // Skip O(n²) connection lines — they were the main mobile crash driver.
     particles.forEach(particle => {
       const pulse = 0.72 + Math.sin(time * 0.001 + particle.phase) * 0.24;
-      ctx.fillStyle = `rgba(47, 111, 203, ${pulse * 0.72})`;
+      ctx.fillStyle = `rgba(47, 111, 203, ${pulse * 0.65})`;
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    if (!reducedMotion.matches && !document.hidden) frameId = requestAnimationFrame(paint);
+    frameId = requestAnimationFrame(paint);
   };
 
   const resize = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     width = Math.max(1, Math.round(window.innerWidth));
     height = Math.max(1, Math.round(window.innerHeight));
     canvas.width = Math.round(width * dpr);
@@ -91,25 +97,23 @@ function initAmbientCanvas() {
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     seedParticles();
-    if (reducedMotion.matches) paint(0);
   };
 
   window.addEventListener("pointermove", event => {
-    pointerX = event.clientX / width;
-    pointerY = event.clientY / height;
+    pointerX = event.clientX / Math.max(width, 1);
+    pointerY = event.clientY / Math.max(height, 1);
     pointerActive = true;
-    if (reducedMotion.matches) paint(0);
   }, { passive: true });
   window.addEventListener("blur", () => { pointerActive = false; });
 
   window.addEventListener("resize", resize, { passive: true });
   document.addEventListener("visibilitychange", () => {
     cancelAnimationFrame(frameId);
-    if (!document.hidden && !reducedMotion.matches) frameId = requestAnimationFrame(paint);
+    if (!document.hidden) frameId = requestAnimationFrame(paint);
   });
 
   resize();
-  if (!reducedMotion.matches) frameId = requestAnimationFrame(paint);
+  frameId = requestAnimationFrame(paint);
 }
 
 function loadLayoutPrefs() {
@@ -2010,16 +2014,27 @@ function renderOverviewCompareTeaser() {
   if (modeB) modeB.textContent = teaserPaneLabel(pair.paneB, pair.mode);
 
   if (!state.qualLoaded) {
-    if (bodyA) bodyA.innerHTML = `<p class="qual-empty-state">Loading qualitative evidence…</p>`;
-    if (bodyB) bodyB.innerHTML = `<p class="qual-empty-state">Loading qualitative evidence…</p>`;
+    // Do not auto-fetch the ~27MB qualitative bundle on every Overview visit —
+    // that OOMs Safari on iPhone ("A problem repeatedly occurred…").
+    const lowPower = isLowPowerClient();
+    if (bodyA) {
+      bodyA.innerHTML = lowPower
+        ? `<p class="qual-empty-state">Preview available in Compare — tap below to open the full A/B view.</p>`
+        : `<p class="qual-empty-state">Evidence loads when this section is on screen…</p>`;
+    }
+    if (bodyB) {
+      bodyB.innerHTML = lowPower
+        ? `<p class="qual-empty-state">Open Compare to browse assistance text, rubrics, and rationales.</p>`
+        : `<p class="qual-empty-state">Evidence loads when this section is on screen…</p>`;
+    }
     if (meanA) meanA.innerHTML = "";
     if (meanB) meanB.innerHTML = "";
-    if (evidence) evidence.innerHTML = `<p class="chart-note">Loading rubric spines and judge rationales…</p>`;
-    ensureQualitativeData().then(() => renderOverviewCompareTeaser()).catch(() => {
-      if (evidence) {
-        evidence.innerHTML = `<p class="chart-note">Qualitative bundle failed to load. Open Compare after the page finishes loading.</p>`;
-      }
-    });
+    if (evidence) {
+      evidence.innerHTML = lowPower
+        ? `<p class="chart-note">On phones we skip the large preview download so the page stays stable. Use <b>Open Compare</b> for the full experience.</p>`
+        : `<p class="chart-note">Loading rubric spines and judge rationales…</p>`;
+    }
+    if (!lowPower) scheduleOverviewQualLoad();
     return;
   }
 
@@ -2120,11 +2135,35 @@ function bindOverviewInteractions() {
   }
 }
 
+let overviewQualObserver = null;
+function scheduleOverviewQualLoad() {
+  if (state.qualLoaded || state.qualLoading || isLowPowerClient()) return;
+  const root = document.getElementById("overviewCompareTeaser");
+  if (!root) return;
+  if (overviewQualObserver || typeof IntersectionObserver === "undefined") {
+    ensureQualitativeData().then(() => renderOverviewCompareTeaser()).catch(() => {});
+    return;
+  }
+  overviewQualObserver = new IntersectionObserver(entries => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    overviewQualObserver.disconnect();
+    overviewQualObserver = null;
+    ensureQualitativeData().then(() => renderOverviewCompareTeaser()).catch(() => {
+      const evidence = document.getElementById("teaserEvidence");
+      if (evidence) {
+        evidence.innerHTML = `<p class="chart-note">Qualitative bundle failed to load. Open Compare after the page finishes loading.</p>`;
+      }
+    });
+  }, { rootMargin: "200px 0px", threshold: 0.05 });
+  overviewQualObserver.observe(root);
+}
+
 function renderOverviewLanding() {
   renderHeroStatBand();
   renderOverviewTakeaways();
   renderOverviewTasks();
   renderOverviewPodium();
+  renderRoleScatter();
   renderOverviewHeatmaps();
   renderOverviewCompareTeaser();
   bindOverviewInteractions();
@@ -3781,16 +3820,18 @@ function renderAll() {
     updateControlBandVisibility();
     renderModelRoster();
     renderProjectStats();
-    renderOverviewLanding();
-    renderFindingsSnapshot();
-    renderHeatmaps();
-    renderRoleScatter();
-    renderReplicateSummary();
-    renderValidation();
-    renderRankings();
-    renderJudgeScatter();
-    renderQualitative();
-    renderCompare();
+    // Only paint the active public tab (+ Overview always, since it's the landing shell).
+    const tab = state.tab || "project";
+    if (tab === "project") renderOverviewLanding();
+    if (tab === "replicates") {
+      renderFindingsSnapshot();
+      renderReplicateSummary();
+    }
+    if (tab === "overview") renderHeatmaps();
+    if (tab === "rankings") renderRankings();
+    if (tab === "qualitative") renderQualitative();
+    if (tab === "compare") renderCompare();
+    // Judges / Validation stay out of the public render path (hidden diagnostics).
     applyTermTooltips();
   } catch (err) {
     console.error("Dashboard render failed:", err);
