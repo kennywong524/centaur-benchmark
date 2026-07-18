@@ -5836,3 +5836,272 @@ a.task-source-badge:hover {
   #qualitative .qual-grid { grid-template-columns: 1fr; }
   #qualitative .qual-panel { max-height: none; }
 }
+
+/* —— Mobile / tablet: keep desktop chrome, tighten layouts —— */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  overflow-x: clip;
+}
+
+@media (max-width: 1100px) {
+  main {
+    width: 100%;
+    padding: 22px 16px 56px;
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .tabs {
+    gap: 0;
+    scroll-snap-type: x proximity;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: auto;
+    min-height: 48px;
+    padding: 12px 14px;
+    font-size: 14px;
+    scroll-snap-align: start;
+  }
+
+  .paper-title {
+    font-size: clamp(18px, 4.2vw, 24px);
+  }
+
+  .authors {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .paper-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .control-band,
+  .control-band.control-band--editorial {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px 12px;
+    top: 48px;
+  }
+
+  .control-band label {
+    min-width: 0;
+  }
+
+  .control-band select {
+    width: 100%;
+    min-height: 40px;
+    font-size: 16px; /* avoid iOS zoom */
+  }
+
+  .landing-hero-frame,
+  .ace-band,
+  .landing-section {
+    min-width: 0;
+  }
+
+  .landing-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .landing-cta-row .cta-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .role-swap-layout,
+  .compare-teaser-arena,
+  .rank-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .findings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .finding-metric--split {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .table-scroll,
+  .table-scroll-wrap,
+  .replicates-panel-body,
+  .heatmaps-panel-body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .heat-table th,
+  .heat-table td {
+    padding: 8px 8px;
+    font-size: 12px;
+  }
+
+  .compare-judge-bar,
+  .rank-judge-bar,
+  .heatmaps-judge-bar,
+  #qualitative .qual-pair-controls {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .compare-judge-chips,
+  #qualitative .qual-pair-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .compare-judge-chip {
+    min-height: 36px;
+  }
+
+  .compare-radar-stage {
+    max-width: 100%;
+  }
+
+  .compare-panel,
+  .rank-panel,
+  .heatmaps-panel,
+  .replicates-panel {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  main {
+    padding: 16px 12px 48px;
+  }
+
+  .topbar-details {
+    padding: 12px 0 14px;
+  }
+
+  .tab {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .control-band,
+  .control-band.control-band--editorial {
+    grid-template-columns: 1fr !important;
+    position: static;
+    top: auto;
+    margin-bottom: 14px;
+    padding: 12px;
+  }
+
+  .findings-grid,
+  .takeaway-grid,
+  .hero-stat-band,
+  .explore-card-grid,
+  .metric-row,
+  .overview-task-list {
+    grid-template-columns: 1fr;
+  }
+
+  .finding-summary-card {
+    min-height: 0;
+  }
+
+  .finding-metric-num {
+    font-size: 36px;
+  }
+
+  .landing-hero {
+    padding: 18px 14px 16px;
+  }
+
+  .landing-headline {
+    font-size: clamp(26px, 8vw, 36px);
+    line-height: 1.08;
+  }
+
+  .landing-hero-band {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .landing-hero-logos {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .landing-hero-logos .logo-dial {
+    width: 88px;
+    height: 88px;
+  }
+
+  .landing-hero-logos .logo-haas {
+    width: 100px;
+    height: 100px;
+  }
+
+  .overview-task-detail,
+  .compare-pane-body,
+  .text-pane {
+    max-height: none;
+  }
+
+  .compare-controls {
+    grid-template-columns: 1fr;
+    position: static;
+  }
+
+  .compare-arena {
+    grid-template-columns: 1fr;
+  }
+
+  .ace-band.overview-engage {
+    padding: 24px 16px;
+  }
+
+  .engage-contact {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-heading h2,
+  .replicates-heading h2 {
+    font-size: 22px;
+  }
+
+  .viz-card {
+    padding: 14px;
+  }
+
+  /* Soften hard shadows a bit on narrow screens so cards don’t feel heavy */
+  .finding-summary-card,
+  .compare-panel,
+  .replicates-panel,
+  .rank-panel,
+  .heatmaps-panel {
+    box-shadow: 3px 3px 0 rgba(26, 34, 51, 0.06);
+  }
+}
+
+@media (max-width: 420px) {
+  .tab {
+    padding: 10px 10px;
+    font-size: 12.5px;
+  }
+
+  .finding-metric--split {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-bar-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
