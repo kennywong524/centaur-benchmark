@@ -2840,6 +2840,9 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .landing-hero-wash { animation: none; }
 }
+@media (max-width: 900px), (pointer: coarse) {
+  .landing-hero-wash { animation: none; }
+}
 .landing-hero {
   position: relative;
   z-index: 1;
@@ -5844,6 +5847,14 @@ html {
 }
 body {
   overflow-x: clip;
+}
+body.ambient-static {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 0%, rgba(47, 111, 203, 0.08), transparent 55%),
+    #eef2f6;
+}
+.ambient-canvas {
+  pointer-events: none;
 }
 
 @media (max-width: 1100px) {
