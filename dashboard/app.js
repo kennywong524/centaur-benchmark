@@ -2142,22 +2142,37 @@ function renderFindingsSnapshot() {
   const augWinningAssistants = augWinners.filter(w => !isBaselineModel(w.model));
   const augWinnerCount = new Set(augWinningAssistants.map(w => w.model)).size;
   const plainTaskWins = augWinners.filter(w => isBaselineModel(w.model)).length;
+  const autoMean = Number.isFinite(topAuto?.mean) ? topAuto.mean.toFixed(2) : "—";
+  const augMean = Number.isFinite(topAugAssistant?.mean) ? topAugAssistant.mean.toFixed(2) : "—";
   const html = `<div class="findings-grid">
-    <div class="finding-summary-card">
+    <article class="finding-summary-card finding-card--auto">
       <span class="summary-kicker">Best average automator</span>
-      <b>${esc(displayModel(topAuto?.model || "", "automation"))}</b>
-      <p>mean rank ${topAuto?.mean.toFixed(2)} across ten runs and seven tasks; automation winners are relatively concentrated.</p>
-    </div>
-    <div class="finding-summary-card">
+      <h4 class="finding-headline">${esc(displayModel(topAuto?.model || "", "automation"))}</h4>
+      <div class="finding-metric" aria-label="Mean rank ${autoMean}">
+        <span class="finding-metric-num">${esc(autoMean)}</span>
+        <span class="finding-metric-label">mean rank<br>across 10 runs · 7 tasks</span>
+      </div>
+      <p>Automation winners are relatively concentrated.</p>
+    </article>
+    <article class="finding-summary-card finding-card--aug">
       <span class="summary-kicker">Best average assistant</span>
-      <b>${esc(displayModel(topAugAssistant?.model || "", "augmentation"))}</b>
-      <p>mean rank ${topAugAssistant?.mean.toFixed(2)} among assistant models. Overall augmentation leader: ${esc(displayModel(topAugOverall?.model || "", "augmentation"))}.</p>
-    </div>
-    <div class="finding-summary-card">
+      <h4 class="finding-headline">${esc(displayModel(topAugAssistant?.model || "", "augmentation"))}</h4>
+      <div class="finding-metric" aria-label="Mean rank ${augMean}">
+        <span class="finding-metric-num">${esc(augMean)}</span>
+        <span class="finding-metric-label">mean rank<br>among assistants</span>
+      </div>
+      <p>Overall augmentation leader: <strong>${esc(displayModel(topAugOverall?.model || "", "augmentation"))}</strong>.</p>
+    </article>
+    <article class="finding-summary-card finding-card--spec">
       <span class="summary-kicker">Task specificity</span>
-      <b>${augWinnerCount} assistant winners</b>
-      <p>win at least one augmentation task; the unaided worker wins ${plainTaskWins} task${plainTaskWins === 1 ? "" : "s"}. Automation has ${autoWinnerCount} distinct winners.</p>
-    </div>
+      <h4 class="finding-headline">${augWinnerCount} assistant winners</h4>
+      <div class="finding-metric finding-metric--split" aria-label="${augWinnerCount} assistant winners, ${plainTaskWins} unaided wins, ${autoWinnerCount} automation winners">
+        <span class="finding-chip"><b>${augWinnerCount}</b><em>aug winners</em></span>
+        <span class="finding-chip"><b>${plainTaskWins}</b><em>unaided wins</em></span>
+        <span class="finding-chip"><b>${autoWinnerCount}</b><em>auto winners</em></span>
+      </div>
+      <p>Win at least one augmentation task; automation has ${autoWinnerCount} distinct winners.</p>
+    </article>
   </div>
   <div class="winner-block">
     <h3>Augmentation winners by task</h3>
