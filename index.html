@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260718m" />
+    <link rel="stylesheet" href="styles.css?v=20260718n" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -28,8 +28,6 @@
           <button class="tab" data-tab="overview" role="tab" aria-selected="false" aria-controls="overview">Single-run Result</button>
           <button class="tab" data-tab="replicates" role="tab" aria-selected="false" aria-controls="replicates">10-Run Result</button>
           <button class="tab" data-tab="qualitative" role="tab" aria-selected="false" aria-controls="qualitative">Qualitative</button>
-          <button class="tab" data-tab="judges" role="tab" aria-selected="false" aria-controls="judges">Judges</button>
-          <button class="tab" data-tab="validation" role="tab" aria-selected="false" aria-controls="validation">Validation</button>
         </nav>
       </div>
       <div class="topbar-details" id="topbarDetails">
@@ -230,12 +228,6 @@
                 <b>Read the evidence</b>
                 <p>Browse assistance text, worker deliverables, prompts, and pairwise rationales.</p>
                 <span class="explore-card-cta">Open Qualitative →</span>
-              </button>
-              <button class="explore-card" type="button" data-gotab="judges">
-                <span class="explore-card-kicker">Judges</span>
-                <b>Agreement diagnostics</b>
-                <p>Leave-family-out correlations and rank-gap checks across the judge panel.</p>
-                <span class="explore-card-cta">Open Judges →</span>
               </button>
             </div>
           </div>
@@ -467,7 +459,7 @@
         </div>
       </section>
 
-      <section id="validation" class="panel">
+      <section id="validation" class="panel" hidden aria-hidden="true">
         <div class="section-heading">
           <h2>Criterion-Validity Checks</h2>
           <p>These checks reuse the existing automation outputs. They ask whether held-out cross-family judges recover expected within-family capability gradients.</p>
@@ -489,7 +481,7 @@
         <div id="validationChecks"></div>
       </section>
 
-      <section id="judges" class="panel">
+      <section id="judges" class="panel" hidden aria-hidden="true">
         <div class="section-heading">
           <h2>Judge Agreement</h2>
           <p>These diagnostics ask whether evaluator models produce broadly similar rankings after <span class="term-inline" data-term="leave-family-out">leave-family-out</span> masking. Spearman measures rank correlation; “within one rank” shows how often judges place an entry no more than one position apart; mean gap is the average absolute rank difference.</p>
@@ -594,6 +586,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260718m"></script>
+    <script src="app.js?v=20260718n"></script>
   </body>
 </html>

@@ -2672,7 +2672,7 @@ const methodologyDetails = {
   evaluator: {
     title: "Evaluator panel: blind pairwise judging",
     body: "A panel of LLM judges (GPT-4.1, Claude-Opus-4.8, DeepSeek-V3.1, and Gemini-3.1-Pro) compares outputs two at a time, blind to which model produced them and with option order randomized. Judges never score outputs from their own model family (leave-one-family-out). Each judgment returns a pairwise choice, a short rationale, and per-dimension rubric scores against the task-specific rubric.",
-    action: { label: "Inspect judge agreement", run: () => goTab("judges") },
+    action: { label: "Browse pairwise rationales", run: () => goTab("qualitative") },
   },
   results: {
     title: "Results aggregation",
@@ -2693,6 +2693,8 @@ function syncTextTabs() {
 }
 
 function goTab(tab) {
+  // Judges / Validation are internal diagnostics — keep out of the public nav.
+  if (tab === "judges" || tab === "validation") tab = "project";
   state.tab = tab;
   document.querySelectorAll(".tab").forEach(x => {
     const active = x.dataset.tab === tab;
