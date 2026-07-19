@@ -5557,7 +5557,9 @@ a.task-source-badge:hover {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  max-height: 780px;
+  min-height: 0;
+  height: 100%;
+  max-height: none;
 }
 #qualitative .qual-panel--models {
   border-left: var(--qual-rail) solid var(--qual-a);
@@ -5647,7 +5649,7 @@ a.task-source-badge:hover {
 #qualitative .qual-panel-body {
   padding: 12px 14px 16px;
   overflow: auto;
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
   background: var(--qual-paper);
 }
@@ -5662,7 +5664,9 @@ a.task-source-badge:hover {
   border-radius: 0;
   padding: 0;
   max-height: none;
-  overflow: visible;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
 }
 #qualitative .model-button {
   border: 1.5px solid #c5cedc;
@@ -5684,6 +5688,7 @@ a.task-source-badge:hover {
   border-bottom: 1.5px solid #d7dee9;
   padding: 10px 14px;
   background: #fff;
+  flex: 0 0 auto;
 }
 #qualitative .content-tab.active {
   border-color: var(--qual-b);
@@ -5692,13 +5697,20 @@ a.task-source-badge:hover {
 #qualitative .role-strip {
   background: linear-gradient(180deg, #fffaf4, #fff);
   border-bottom: 1.5px solid #e7d7c8;
+  flex: 0 0 auto;
 }
 #qualitative .role-chip {
   border: 1.5px solid #e0c4b0;
   border-radius: 3px;
   box-shadow: inset 3px 0 0 var(--qual-b);
 }
-#qualitative #qualText { background: #fffdf8; }
+#qualitative #qualText {
+  background: #fffdf8;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow: auto;
+}
 #qualitative .qual-section {
   border-radius: 3px;
   border: 1.5px solid #c5cedc;
@@ -5747,6 +5759,8 @@ a.task-source-badge:hover {
   box-shadow: none;
   max-height: none;
   overflow: hidden;
+  height: 100%;
+  min-height: 0;
 }
 #qualitative .rationale {
   border-top: 1.5px solid #d7dee9;
@@ -5837,7 +5851,11 @@ a.task-source-badge:hover {
 }
 @media (max-width: 1100px) {
   #qualitative .qual-grid { grid-template-columns: 1fr; }
-  #qualitative .qual-panel { max-height: none; }
+  #qualitative .qual-panel,
+  #qualitative .rationale-list {
+    max-height: none;
+    height: auto;
+  }
 }
 
 /* —— Mobile / tablet: keep desktop chrome, tighten layouts —— */
