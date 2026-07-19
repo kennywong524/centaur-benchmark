@@ -813,19 +813,25 @@ function rubricTip(dim) {
   return rubricDetails[state.task]?.[dim] || generalRubricDetails[dim] || rubricName(dim);
 }
 
+/** Editorial score→color for win-rate / rubric bars (shared across scoreboard + qualitative). */
 function scoreColor(score) {
+  // Low muted orange/red → mid orange → high deep blue (site Compare palette).
+  const stops = [
+    [0, [143, 61, 12]],    // #8f3d0c
+    [0.4, [196, 90, 26]],   // #c45a1a
+    [0.55, [217, 111, 49]], // #d96f31
+    [0.72, [47, 111, 203]], // #2f6fcb
+    [1, [22, 63, 132]],     // #163f84
+  ];
   const t = Math.max(0, Math.min(1, Number(score) / 10));
-  if (t < 0.5) {
-    const f = t / 0.5;
-    const r = Math.round(185 + (228 - 185) * f);
-    const g = Math.round(75 + (197 - 75) * f);
-    const b = Math.round(72 + (90 - 72) * f);
-    return `rgb(${r},${g},${b})`;
-  }
-  const f = (t - 0.5) / 0.5;
-  const r = Math.round(228 + (37 - 228) * f);
-  const g = Math.round(197 + (127 - 197) * f);
-  const b = Math.round(90 + (99 - 90) * f);
+  let i = 0;
+  while (i < stops.length - 2 && t > stops[i + 1][0]) i += 1;
+  const [t0, c0] = stops[i];
+  const [t1, c1] = stops[i + 1];
+  const f = t1 === t0 ? 0 : (t - t0) / (t1 - t0);
+  const r = Math.round(c0[0] + (c1[0] - c0[0]) * f);
+  const g = Math.round(c0[1] + (c1[1] - c0[1]) * f);
+  const b = Math.round(c0[2] + (c1[2] - c0[2]) * f);
   return `rgb(${r},${g},${b})`;
 }
 
@@ -3790,7 +3796,8 @@ function bindCompareControls() {
     if (el) el.addEventListener("change", fn);
   };
   bind("compareTask", e => { state.compare.task = e.target.value; renderCompare(); });
-  bind("compareMode", e => { state.compare.mode = e.target.value; state.compare.modelA = null; state.compare.modelB = null; renderCompare(); });
+  // Keep Model A/B when still present in the new mode; populateCompareControls falls back only if missing.
+  bind("compareMode", e => { state.compare.mode = e.target.value; renderCompare(); });
   bind("compareRun", e => { state.compare.runId = e.target.value; renderCompare(); });
   bind("compareModelA", e => { state.compare.modelA = e.target.value; renderCompare(); });
   bind("compareModelB", e => { state.compare.modelB = e.target.value; renderCompare(); });
