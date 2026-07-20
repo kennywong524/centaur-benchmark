@@ -13,6 +13,27 @@ This repo refactors Colab notebooks into:
 
 The [results explorer](https://kennywong524.github.io/centaur-benchmark/) and paper figures aggregate **ten independent full-pipeline replications** (Runs 1–3 from the initial benchmark plus Runs 4–10 from the public-release batch). Standard errors in figures use SE = SD/√10. The repo ships all ten `run_id`s in the dashboard bundle; Runs 1–3 (`20260610_scaffold_strict_v4`, `20260612_fresh_rep1`, `20260612_fresh_rep2`) are the original development replications documented below.
 
+### Reproduce paper-facing robustness analyses
+
+After the ten-run summary and dashboard bundle have been built, regenerate the
+role comparison, automation--augmentation correlations, and rubric-score
+robustness artifacts with:
+
+```bash
+PYTHONPATH=src:scripts .venv/bin/python scripts/make_role_swap_scatter_white.py
+PYTHONPATH=src:scripts .venv/bin/python scripts/make_mode_correlation_analysis.py
+PYTHONPATH=src:scripts .venv/bin/python scripts/make_rubric_score_validation_figures.py
+```
+
+These scripts read committed ten-run summaries from
+`artifacts/cross_task/ten_run_summary/` (and, for the role plot, the static
+dashboard bundle) and write publication-ready PNG/PDF figures, LaTeX fragments,
+and supporting CSV/JSON files under `artifacts/paper_figures/` and
+`artifacts/cross_task/ten_run_summary/`. The correlation script excludes the
+unaided worker because it has no corresponding assistant model in automation;
+with nine shared assistant models, reverse rank is defined as
+`10 - mean_rank`.
+
 ## Requirements
 
 - **Python 3.10+** (EDSL on PyPI targets 3.10–3.12).

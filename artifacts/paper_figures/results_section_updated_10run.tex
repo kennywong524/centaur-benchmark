@@ -50,20 +50,96 @@ Importantly, these ranking differences are unlikely to be driven by models excel
 \subsection{Automation Rankings Differ From Augmentation Rankings}
 \label{sec:role-swap}
 
+To quantify the relationship between the two regimes, let
+$r^{(k)}_{mts}$ denote the within-task rank of assistant model $m$ on task
+$t$, in regime $s\in\{\mathrm{auto},\mathrm{aug}\}$, and independent run
+$k\in\{1,\ldots,10\}$, where lower values indicate better performance. We
+first average over runs,
+\begin{equation}
+    \bar r_{mts}=\frac{1}{10}\sum_{k=1}^{10}r^{(k)}_{mts}.
+\end{equation}
+For each task, we then compute
+\begin{equation}
+    \rho_t=\operatorname{corr}_{\mathrm{S}}
+    \!\left(
+      \{\bar r_{mt,\mathrm{auto}}\}_{m\in\mathcal{M}},
+      \{\bar r_{mt,\mathrm{aug}}\}_{m\in\mathcal{M}}
+    \right),
+    \label{eq:task-mode-correlation}
+\end{equation}
+where $\operatorname{corr}_{\mathrm{S}}$ is Spearman's rank correlation and
+$\mathcal{M}$ contains the nine assistant models evaluated in both regimes.
+The unaided worker is excluded because it has no corresponding assistant model
+in automation. For the model-level comparison, we additionally average
+$\bar r_{mts}$ over the seven tasks before computing the same correlation.
+Because reverse rank is a monotonic transformation of rank, it produces the
+same Spearman correlations.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\linewidth]{paper_figures/figure2b_role_swap_scatter.pdf}
     \caption{
-    Model-level comparison of average automation rank and average augmentation rank (assistant models only).
-    Blue points report augmentation ranks and orange points report automation ranks; horizontal lines show the shift between regimes.
-    Error bars show $\pm 1$ standard error, computed across the ten independent runs after averaging ranks across tasks within each run.
-    Lower rank indicates better performance.
+    \textbf{Model-level comparison of automation and augmentation performance.}
+    Each point represents one assistant model's average rank across seven tasks
+    and ten independent runs. For readability, ranks are inverted so that
+    higher values indicate better performance. With nine assistant models,
+    reverse rank is $10-\bar r$, where $\bar r$ is the corresponding mean
+    rank. Points above the dashed 45-degree line perform relatively better in
+    augmentation; points below it perform relatively better in automation.
+    The unaided worker baseline is excluded.
     }
     \label{fig:role-swap-scatter}
 \end{figure}
 
-Figure~\ref{fig:role-swap-scatter} compares each model's average automation rank and average augmentation rank. Several models move substantially across regimes. GPT-5-Mini is strong in both regimes and has the best average rank among assistant models in augmentation as well as the best average rank in automation. GPT-4.1 is relatively stronger as an assistant than as a direct solver: it ranks near the middle of the augmentation distribution but near the bottom in automation. Conversely, Claude-Opus-4.8, Claude-Sonnet-4.6, Gemini-3.1-Pro, and GPT-O4-Mini are stronger in automation than in augmentation. GPT-OSS-120B sits close to the diagonal, with similar average ranks across modes. The same model is thus not consistently favored when it solves a task directly versus when it assists another worker.
+Figure~\ref{fig:role-swap-scatter} compares each model's average automation
+and augmentation rank. Across the nine shared assistant models, the model-level
+association is moderate ($\rho=0.48$, $p=0.187$). GPT-5-Mini is strong in both
+regimes and has the best average rank among assistant models in augmentation
+as well as the best average rank in automation. GPT-4.1 is relatively stronger
+as an assistant than as a direct solver. Conversely, Claude-Opus-4.8,
+Claude-Sonnet-4.6, Gemini-3.1-Pro, and GPT-O4-Mini are stronger in automation
+than in augmentation. GPT-OSS-120B sits close to the diagonal. Thus,
+automation performance contains some information about augmentation
+performance, but it is an incomplete proxy for it.
+
+The strength of this association varies substantially by task
+(Table~\ref{tab:mode-correlations}). Tax preparation has the strongest
+cross-mode correspondence ($\rho_{\mathrm{tax}}=0.85$), followed by menu
+planning ($\rho_{\mathrm{menu}}=0.64$) and tutoring
+($\rho_{\mathrm{tutor}}=0.50$). The rankings are only weakly associated in
+counseling ($\rho=0.25$), operations research ($\rho=0.17$), and market-trends
+analysis ($\rho=0.10$), and are essentially unrelated in travel planning
+($\rho=-0.04$). Because each coefficient is based on nine models, these
+task-level estimates should be interpreted descriptively. Tax preparation is
+the only task whose association is statistically distinguishable from zero at
+the conventional level ($p=0.004$), including under a Bonferroni correction
+for seven task-level comparisons.
+
+\input{paper_figures/table_mode_correlations.tex}
 
 Table~\ref{tab:best-model-by-task} (Appendix~\ref{app:best-model-table}) makes the divergence concrete. It reports the best-performing model in each task under automation and augmentation, using the lowest mean rank across ten runs. In five of seven tasks, the augmentation winner differs from the automation winner. In counseling, GPT-OSS-120B is the strongest automator while GPT-4.1 is the strongest assistant; in market-trends analysis, Claude-Opus-4.8 automates best but GPT-O4-Mini assists best; and in operations research, Gemini-3.1-Pro automates best while the unaided worker baseline ranks first in augmentation. Menu planning and tutoring are the two exceptions, where GPT-5-Mini ranks first in both regimes.
 
-The table also shows that augmentation winners are not uniformly frontier assistant models. GPT-3.5-Turbo (plain), the unaided worker with no external assistance, ranks first in operations research, tax preparation, and travel planning. We read this not as evidence that guidance is futile, but as evidence that its value is task-contingent and can be negative: poorly matched or overly complex guidance can leave the worker worse off than working alone. The corollary is central to our argument that strong direct solvers do not automatically make strong assistants, and the right model depends jointly on the role it plays and the task it supports. We interpret these qualitative differences in the guidance and final outputs in Section~\ref{sec:analysis}.
+The table also shows that augmentation winners are not uniformly frontier
+assistant models. GPT-3.5-Turbo (plain), the unaided worker with no external
+assistance, ranks first in operations research, tax preparation, and travel
+planning. Averaged across all seven tasks, the plain baseline has a mean rank
+of $3.79$; GPT-5-Mini is the only assisted condition with a better overall mean
+rank ($3.66$). We read this not as evidence that guidance is futile, but as
+evidence that its value is task-contingent and can be negative: poorly matched
+or overly complex guidance can leave the worker worse off than working alone.
+The corollary is central to our argument that strong direct solvers do not
+automatically make strong assistants, and the right model depends jointly on
+the role it plays and the task it supports. We interpret these qualitative
+differences in the guidance and final outputs in
+Section~\ref{sec:analysis}.
+
+Operations research illustrates this divergence especially clearly. Its
+cross-mode correlation is only $\rho=0.17$. Gemini-3.1-Pro has the best mean
+automation rank ($2.75$) but falls to $6.80$ in augmentation. GPT-4.1 shows
+the opposite profile, moving from a mean automation rank of $7.35$ to an
+augmentation rank of $3.80$. Moreover, the unaided worker ranks first at
+$2.90$, ahead of the best assisted condition, GPT-OSS-120B at $3.30$. The
+same task therefore exhibits both role reversal and negative average returns
+to assistance. Section~\ref{sec:analysis} examines the corresponding
+assistance texts and worker outputs to identify the qualitative features that
+may account for these differences.
