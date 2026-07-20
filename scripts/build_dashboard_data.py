@@ -77,7 +77,7 @@ TASK_LABELS = {
     "meal_plan": "Menu Planning",
     "operations_research": "Operations Research",
     "tax_prep": "Tax Prep",
-    "travel_planning": "Travel Agent",
+    "travel_planning": "Travel Planning",
     "tutoring": "Tutoring",
 }
 TASK_TYPES = {

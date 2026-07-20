@@ -384,7 +384,7 @@ const taskLabels = {
   meal_plan: "Menu Planning",
   operations_research: "Operations Research",
   tax_prep: "Tax Prep",
-  travel_planning: "Travel Agent",
+  travel_planning: "Travel Planning",
   tutoring: "Tutoring",
 };
 const modeLabels = { augmentation: "Augmentation", automation: "Automation" };
