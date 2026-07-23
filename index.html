@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="The best player is not always the best coach. Explore automation vs augmentation rankings." />
     <meta name="twitter:image" content="https://kennywong524.github.io/centaur-benchmark/assets/figure1_augmentation_heatmap.png" />
     <link rel="canonical" href="https://kennywong524.github.io/centaur-benchmark/" />
-    <link rel="stylesheet" href="styles.css?v=20260720a" />
+    <link rel="stylesheet" href="styles.css?v=20260722a" />
   </head>
   <body>
     <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
@@ -350,31 +350,38 @@
       <section id="compare" class="panel">
         <div class="section-heading compare-heading">
           <h2>Compare models</h2>
-          <p>Side-by-side panels for two models on the same task and mode — rubric spine, deliverables, and assistance text.</p>
+          <p>Side-by-side panels on a shared task and run — each side picks its own model and usage mode (automation or augmentation), so same-model cross-regime compares are supported. Rubric spine, deliverables, and assistance text.</p>
         </div>
         <div class="compare-controls" id="compareControls">
           <label>Task
             <select id="compareTask"></select>
           </label>
-          <label>Mode
-            <select id="compareMode">
-              <option value="augmentation">Augmentation</option>
-              <option value="automation">Automation</option>
-            </select>
-          </label>
           <label>Run
             <select id="compareRun"></select>
-          </label>
-          <label>Model A
-            <select id="compareModelA"></select>
-          </label>
-          <label>Model B
-            <select id="compareModelB"></select>
           </label>
           <label>Rubric view
             <select id="compareRubricView">
               <option value="pair">A vs B</option>
               <option value="avg">vs task average</option>
+            </select>
+          </label>
+          <span class="compare-controls-hint" aria-hidden="true">Per-side usage mode</span>
+          <label class="compare-ctrl-side compare-ctrl-a">Model A
+            <select id="compareModelA"></select>
+          </label>
+          <label class="compare-ctrl-side compare-ctrl-a">Usage mode A
+            <select id="compareModeA">
+              <option value="augmentation">Augmentation</option>
+              <option value="automation">Automation</option>
+            </select>
+          </label>
+          <label class="compare-ctrl-side compare-ctrl-b">Model B
+            <select id="compareModelB"></select>
+          </label>
+          <label class="compare-ctrl-side compare-ctrl-b">Usage mode B
+            <select id="compareModeB">
+              <option value="augmentation">Augmentation</option>
+              <option value="automation">Automation</option>
             </select>
           </label>
         </div>
@@ -586,6 +593,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=20260720a"></script>
+    <script src="app.js?v=20260722a"></script>
   </body>
 </html>
