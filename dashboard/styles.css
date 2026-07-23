@@ -3849,7 +3849,7 @@ a.task-source-badge:hover {
 
 .compare-controls {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px 14px;
   margin-bottom: 22px;
   padding: 14px 16px;
@@ -3883,6 +3883,40 @@ a.task-source-badge:hover {
   font-weight: 650;
   color: var(--compare-ink);
   background: #fff;
+}
+.compare-controls-hint {
+  grid-column: 1 / -1;
+  margin: 2px 0 -2px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a8799;
+  border-top: 1px dashed #c9d4e4;
+  padding-top: 10px;
+}
+.compare-ctrl-a select {
+  border-color: #9bb6e0;
+  box-shadow: inset 3px 0 0 var(--compare-a);
+}
+.compare-ctrl-b select {
+  border-color: #e0b89a;
+  box-shadow: inset 3px 0 0 var(--compare-b);
+}
+.compare-run-scope {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, rgba(232, 241, 255, 0.55), rgba(255, 240, 228, 0.45));
+  border: 1.5px solid #c9d4e4;
+  border-radius: 3px;
+}
+.compare-run-scope .compare-rubric-scope {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .compare-arena {
@@ -4744,6 +4778,8 @@ a.task-source-badge:hover {
 @media (max-width: 1000px) {
   .takeaway-grid,
   .compare-controls { grid-template-columns: 1fr 1fr; }
+  .compare-controls-hint { grid-column: 1 / -1; }
+  .compare-run-scope { align-items: flex-start; }
   .compare-arena {
     grid-template-columns: 1fr;
     gap: 14px;

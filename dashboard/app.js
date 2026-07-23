@@ -221,11 +221,14 @@ const state = {
   },
   compare: {
     task: "tax_prep",
-    mode: "augmentation",
+    modeA: "augmentation",
+    modeB: "augmentation",
     runId: null,
     modelA: null,
     modelB: null,
     rubricView: "pair",
+    /** "this_run" | "all_runs" — rubric spine/radar scope. */
+    rubricRunScope: "this_run",
     rubricJudge: "average",
     paneA: "output",
     paneB: "output",
@@ -1947,12 +1950,17 @@ function teaserRunCell(pair) {
 function applyCompareTeaserPreset(pair = compareTeaserPairs[state.compareTeaserPair]) {
   if (!pair) return;
   state.compare.task = pair.task;
-  state.compare.mode = pair.mode;
+  // Teaser presets share a regime; map into per-side modeA / modeB.
+  const modeA = pair.modeA || pair.mode || "augmentation";
+  const modeB = pair.modeB || pair.mode || modeA;
+  state.compare.modeA = modeA;
+  state.compare.modeB = modeB;
   state.compare.modelA = pair.modelA;
   state.compare.modelB = pair.modelB;
   state.compare.paneA = pair.paneA;
   state.compare.paneB = pair.paneB;
   state.compare.rubricView = "pair";
+  state.compare.rubricRunScope = "this_run";
   state.compare.rubricJudge = "average";
   if (!state.compare.runId) state.compare.runId = state.runId;
 }
@@ -2935,16 +2943,114 @@ function compareRunBundle() {
   return activeData(runId);
 }
 
-function compareOutputs() {
-  const bundle = compareRunBundle();
-  const key = `${state.compare.task}/${state.compare.mode}`;
-  return bundle?.runs?.[key]?.outputs || [];
+function compareModeForSide(side) {
+  const mode = side === "a" ? state.compare.modeA : state.compare.modeB;
+  return mode === "automation" ? "automation" : "augmentation";
 }
 
-function compareJudgments() {
-  const bundle = compareRunBundle();
-  const key = `${state.compare.task}/${state.compare.mode}`;
-  return bundle?.runs?.[key]?.judgments || [];
+function compareSideKey(side) {
+  return `${state.compare.task}/${compareModeForSide(side)}`;
+}
+
+/** Outputs / judgments for one Compare side (task × that side's usage mode × run). */
+function compareSideCell(side, runId = null) {
+  const bundle = runId ? activeData(runId) : compareRunBundle();
+  const key = compareSideKey(side);
+  const cell = bundle?.runs?.[key];
+  return {
+    key,
+    mode: compareModeForSide(side),
+    outputs: cell?.outputs || [],
+    judgments: cell?.judgments || [],
+  };
+}
+
+function compareOutputs(side = "a") {
+  return compareSideCell(side).outputs;
+}
+
+function compareJudgments(side = "a") {
+  return compareSideCell(side).judgments;
+}
+
+function compareModelForSide(side) {
+  return side === "a" ? state.compare.modelA : state.compare.modelB;
+}
+
+function compareOutputForSide(side, runId = null) {
+  const model = compareModelForSide(side);
+  if (!model) return null;
+  return compareSideCell(side, runId).outputs.find(o => o.model_label === model) || null;
+}
+
+function compareModesDiffer() {
+  return compareModeForSide("a") !== compareModeForSide("b");
+}
+
+/** Display label; appends usage mode when A/B regimes differ. */
+function compareSideLabel(side) {
+  const model = compareModelForSide(side);
+  const mode = compareModeForSide(side);
+  const name = displayModel(model, mode);
+  if (!name) return side === "a" ? "Model A" : "Model B";
+  if (compareModesDiffer()) return `${name} · ${modeLabels[mode]}`;
+  return name;
+}
+
+/**
+ * Mean rubric scores for model × task × mode across the 10-run panel.
+ * Per run: rubricMeansForOutput (respects Average / per-judge + LOO), then equal-weight mean of those run means.
+ */
+function rubricMeansAcrossRuns(model, task, mode, opts = {}) {
+  const byDim = new Map();
+  let nRuns = 0;
+  runList().forEach(r => {
+    const cell = activeData(r.id)?.runs?.[`${task}/${mode}`];
+    if (!cell) return;
+    const out = (cell.outputs || []).find(o => o.model_label === model);
+    if (!out) return;
+    const rows = rubricMeansForOutput(out, cell.judgments || [], task, opts);
+    if (!rows.length) return;
+    nRuns += 1;
+    rows.forEach(row => {
+      const arr = byDim.get(row.dimension) || [];
+      arr.push(row.mean);
+      byDim.set(row.dimension, arr);
+    });
+  });
+  return {
+    rows: [...byDim.entries()].map(([dimension, vals]) => ({
+      dimension,
+      mean: avg(vals),
+      n: vals.length,
+    })),
+    nRuns,
+  };
+}
+
+function taskAverageRubricAcrossRuns(task, mode, opts = {}) {
+  const byDim = new Map();
+  let nRuns = 0;
+  runList().forEach(r => {
+    const cell = activeData(r.id)?.runs?.[`${task}/${mode}`];
+    if (!cell?.outputs?.length) return;
+    const rows = taskAverageRubric(cell.outputs, cell.judgments || [], task, opts);
+    if (!rows.length) return;
+    nRuns += 1;
+    rows.forEach(row => {
+      const arr = byDim.get(row.dimension) || [];
+      arr.push(row.mean);
+      byDim.set(row.dimension, arr);
+    });
+  });
+  return {
+    rows: [...byDim.entries()].map(([dimension, vals]) => ({
+      dimension,
+      mean: avg(vals),
+      n: vals.length,
+    })),
+    nRuns,
+  };
 }
 
 /** Assistance text lives in scaffold_text (Qualitative / qualitative JSON). */
@@ -3028,9 +3134,9 @@ function taskAverageRubric(outputs, judgments, task, opts = {}) {
 }
 
 /** Judge chips for Compare: only judges with real scores for both A and B (LOO excluded). */
-function compareRubricJudgeOptions(judgments, outA, outB) {
-  const forA = judgesWithRubricScoresForOutput(outA, judgments);
-  const forB = judgesWithRubricScoresForOutput(outB, judgments);
+function compareRubricJudgeOptions(judgmentsA, outA, judgmentsB, outB) {
+  const forA = judgesWithRubricScoresForOutput(outA, judgmentsA || []);
+  const forB = judgesWithRubricScoresForOutput(outB, judgmentsB || []);
   // Intersection: a selected judge must be able to populate both sides of the spine/radar.
   const seen = new Map();
   forA.forEach((label, model) => {
@@ -3049,46 +3155,85 @@ function compareRubricJudgeOptions(judgments, outA, outB) {
     .sort((a, b) => a.label.localeCompare(b.label));
 }
 
-function populateCompareControls() {
-  const taskEl = document.getElementById("compareTask");
-  const runEl = document.getElementById("compareRun");
-  const modeEl = document.getElementById("compareMode");
+function populateCompareSideModels(side) {
   const aEl = document.getElementById("compareModelA");
   const bEl = document.getElementById("compareModelB");
-  const viewEl = document.getElementById("compareRubricView");
-  if (!taskEl || !runEl || !aEl || !bEl) return;
-
-  if (!state.compare.runId) state.compare.runId = state.runId;
-  if (!taskOrder.includes(state.compare.task)) state.compare.task = state.task;
-  if (!state.compare.rubricJudge) state.compare.rubricJudge = "average";
-
-  taskEl.innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
-  taskEl.value = state.compare.task;
-  runEl.innerHTML = runList().map(r => `<option value="${r.id}">${r.label}</option>`).join("");
-  runEl.value = state.compare.runId;
-  if (modeEl) modeEl.value = state.compare.mode;
-  if (viewEl) viewEl.value = state.compare.rubricView;
-
-  const outputs = compareOutputs();
-  const models = [...new Set(outputs.map(o => o.model_label))];
+  const el = side === "a" ? aEl : bEl;
+  if (!el) return;
+  const mode = compareModeForSide(side);
+  const models = [...new Set(compareOutputs(side).map(o => o.model_label))];
   // Prefer assisted / focal models over the unaided plain baseline so Compare
   // opens on cells that actually have assistance text.
   const preferred = models.filter(m => m !== "plain" && m !== "GPT-3.5-Turbo");
   const pickDefault = (exclude = null) =>
     preferred.find(m => m !== exclude) || models.find(m => m !== exclude) || models[0] || null;
-  if (!models.includes(state.compare.modelA)) state.compare.modelA = pickDefault();
-  if (!models.includes(state.compare.modelB) || state.compare.modelB === state.compare.modelA) {
-    state.compare.modelB = pickDefault(state.compare.modelA);
+  const key = side === "a" ? "modelA" : "modelB";
+  const otherKey = side === "a" ? "modelB" : "modelA";
+  const otherModel = state.compare[otherKey];
+  // Keep selection when still available after a mode change.
+  if (!models.includes(state.compare[key])) {
+    // Same model across regimes is allowed; only force a different pick when modes match.
+    const exclude = (!compareModesDiffer() && otherModel) ? otherModel : null;
+    state.compare[key] = pickDefault(exclude);
   }
-  aEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
-  bEl.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, state.compare.mode)}</option>`).join("");
-  if (state.compare.modelA) aEl.value = state.compare.modelA;
-  if (state.compare.modelB) bEl.value = state.compare.modelB;
+  el.innerHTML = models.map(m => `<option value="${m}">${displayModel(m, mode)}</option>`).join("");
+  if (state.compare[key]) el.value = state.compare[key];
+}
+
+function populateCompareControls() {
+  const taskEl = document.getElementById("compareTask");
+  const runEl = document.getElementById("compareRun");
+  const modeAEl = document.getElementById("compareModeA");
+  const modeBEl = document.getElementById("compareModeB");
+  const aEl = document.getElementById("compareModelA");
+  const bEl = document.getElementById("compareModelB");
+  const viewEl = document.getElementById("compareRubricView");
+  if (!taskEl || !runEl || !aEl || !bEl) return;
+
+  // Migrate legacy shared `mode` if present in older session state.
+  if (!state.compare.modeA && state.compare.mode) state.compare.modeA = state.compare.mode;
+  if (!state.compare.modeB && state.compare.mode) state.compare.modeB = state.compare.mode;
+  if (!state.compare.modeA) state.compare.modeA = "augmentation";
+  if (!state.compare.modeB) state.compare.modeB = state.compare.modeA;
+  if (!state.compare.runId) state.compare.runId = state.runId;
+  if (!taskOrder.includes(state.compare.task)) state.compare.task = state.task;
+  if (!state.compare.rubricJudge) state.compare.rubricJudge = "average";
+  if (!state.compare.rubricRunScope) state.compare.rubricRunScope = "this_run";
+
+  taskEl.innerHTML = taskOrder.map(t => `<option value="${t}">${cleanTaskTitle(t)}</option>`).join("");
+  taskEl.value = state.compare.task;
+  runEl.innerHTML = runList().map(r => `<option value="${r.id}">${r.label}</option>`).join("");
+  runEl.value = state.compare.runId;
+  if (modeAEl) modeAEl.value = compareModeForSide("a");
+  if (modeBEl) modeBEl.value = compareModeForSide("b");
+  if (viewEl) viewEl.value = state.compare.rubricView;
+
+  populateCompareSideModels("a");
+  populateCompareSideModels("b");
+
+  // Same model + same mode is not a useful compare; nudge B when both match.
+  if (
+    !compareModesDiffer()
+    && state.compare.modelA
+    && state.compare.modelB === state.compare.modelA
+  ) {
+    const modelsB = [...new Set(compareOutputs("b").map(o => o.model_label))];
+    const preferred = modelsB.filter(m => m !== "plain" && m !== "GPT-3.5-Turbo");
+    const alt = preferred.find(m => m !== state.compare.modelA)
+      || modelsB.find(m => m !== state.compare.modelA)
+      || null;
+    if (alt) {
+      state.compare.modelB = alt;
+      bEl.value = alt;
+    }
+  }
 }
 
 function comparePairJudgments(outA, outB) {
   if (!outA || !outB) return [];
-  return compareJudgments().filter(j => {
+  // Pairwise judgments live inside one task/mode cell — not across regimes.
+  if (compareModesDiffer()) return [];
+  return compareJudgments("a").filter(j => {
     const left = Number(j.left_idx);
     const right = Number(j.right_idx);
     const a = Number(outA.idx);
@@ -3122,9 +3267,10 @@ function meanRubricScore(rows) {
   return avg(rows.map(r => r.mean).filter(Number.isFinite));
 }
 
-function renderCompareScoreSummary(side, rows, h2h, vsAvg) {
+function renderCompareScoreSummary(side, rows, h2h, vsAvg, opts = {}) {
   const el = document.getElementById(side === "a" ? "compareScoreA" : "compareScoreB");
   if (!el) return;
+  const allRuns = !!opts.allRuns;
   const mean = meanRubricScore(rows);
   const wins = side === "a" ? h2h.winsA : h2h.winsB;
   const oppWins = side === "a" ? h2h.winsB : h2h.winsA;
@@ -3137,21 +3283,33 @@ function renderCompareScoreSummary(side, rows, h2h, vsAvg) {
 
   const chips = [];
   chips.push(`<div class="compare-score-chip ${leadMean && !vsAvg ? "is-lead" : ""}">
-    <span class="label">Mean rubric</span>
+    <span class="label">${allRuns ? "Mean rubric · 10-run" : "Mean rubric"}</span>
     <span class="value">${Number.isFinite(mean) ? mean.toFixed(1) : "—"}</span>
     <span class="sub">/ 10 across dims</span>
   </div>`);
-  if (!vsAvg) {
+  if (vsAvg) {
+    chips.push(`<div class="compare-score-chip">
+      <span class="label">View</span>
+      <span class="value" style="font-size:13px">vs avg</span>
+      <span class="sub">task baseline</span>
+    </div>`);
+  } else if (!allRuns && !compareModesDiffer()) {
     chips.push(`<div class="compare-score-chip ${leadH2H ? "is-lead" : ""}">
       <span class="label">Head-to-head</span>
       <span class="value">${h2h.n ? `${wins}–${oppWins}` : "—"}</span>
       <span class="sub">${h2h.n ? `${h2h.n} judge${h2h.n === 1 ? "" : "s"}` : "no direct pair"}</span>
     </div>`);
+  } else if (allRuns) {
+    chips.push(`<div class="compare-score-chip">
+      <span class="label">Scope</span>
+      <span class="value" style="font-size:13px">10-run</span>
+      <span class="sub">panel average</span>
+    </div>`);
   } else {
     chips.push(`<div class="compare-score-chip">
-      <span class="label">View</span>
-      <span class="value" style="font-size:13px">vs avg</span>
-      <span class="sub">task baseline</span>
+      <span class="label">Head-to-head</span>
+      <span class="value">—</span>
+      <span class="sub">cross-regime</span>
     </div>`);
   }
   el.innerHTML = chips.join("");
@@ -3355,10 +3513,15 @@ function renderComparePane(side) {
   const textEl = document.getElementById(side === "a" ? "compareTextA" : "compareTextB");
   const titleEl = document.getElementById(side === "a" ? "compareTitleA" : "compareTitleB");
   if (!textEl || !titleEl) return;
-  const model = side === "a" ? state.compare.modelA : state.compare.modelB;
+  const model = compareModelForSide(side);
+  const mode = compareModeForSide(side);
   const pane = side === "a" ? state.compare.paneA : state.compare.paneB;
-  const out = compareOutputs().find(o => o.model_label === model);
-  titleEl.textContent = model ? displayModel(model, state.compare.mode) : `Model ${side.toUpperCase()}`;
+  const out = compareOutputForSide(side);
+  titleEl.textContent = model ? displayModel(model, mode) : `Model ${side.toUpperCase()}`;
+  const roleEl = titleEl.closest(".compare-panel-head")?.querySelector(".compare-panel-role");
+  if (roleEl) {
+    roleEl.textContent = `Model ${side.toUpperCase()} · ${modeLabels[mode]}`;
+  }
 
   const tabs = document.querySelector(`.compare-tabs[data-compare-side="${side}"]`);
   if (tabs) {
@@ -3377,7 +3540,7 @@ function renderComparePane(side) {
     return;
   }
   if (pane === "scaffold") {
-    if (state.compare.mode !== "augmentation") {
+    if (mode !== "augmentation") {
       textEl.innerHTML = `<p class="qual-empty-state">Assistance text applies only in augmentation mode.</p>`;
       return;
     }
@@ -3592,10 +3755,10 @@ function bindCompareRadarInteractions(root, axesPayload, seriesMeta) {
 function renderCompareRubric() {
   const el = document.getElementById("compareRubric");
   if (!el) return;
-  const outputs = compareOutputs();
-  const judgments = compareJudgments();
-  const outA = outputs.find(o => o.model_label === state.compare.modelA);
-  const outB = outputs.find(o => o.model_label === state.compare.modelB);
+  const cellA = compareSideCell("a");
+  const cellB = compareSideCell("b");
+  const outA = compareOutputForSide("a");
+  const outB = compareOutputForSide("b");
   if (!outA || !outB) {
     el.innerHTML = `<p class="chart-note">Pick two models with saved outputs to compare rubric scores.</p>`;
     renderCompareScoreSummary("a", [], { winsA: 0, winsB: 0, n: 0, rowsA: [], rowsB: [] }, false);
@@ -3603,7 +3766,7 @@ function renderCompareRubric() {
     return;
   }
 
-  const judgeOpts = compareRubricJudgeOptions(judgments, outA, outB);
+  const judgeOpts = compareRubricJudgeOptions(cellA.judgments, outA, cellB.judgments, outB);
   if (state.compare.rubricJudge !== "average"
     && !judgeOpts.some(j => j.model === state.compare.rubricJudge)) {
     state.compare.rubricJudge = "average";
@@ -3620,9 +3783,28 @@ function renderCompareRubric() {
     ? (judgeOpts.find(j => j.model === activeJudge)?.label || judgeDisplay(activeJudge))
     : "Average";
 
-  const rowsA = rubricMeansForOutput(outA, judgments, state.compare.task, rubricOpts);
-  const rowsB = rubricMeansForOutput(outB, judgments, state.compare.task, rubricOpts);
-  const avgRows = taskAverageRubric(outputs, judgments, state.compare.task, rubricOpts);
+  const allRuns = state.compare.rubricRunScope === "all_runs";
+  let rowsA;
+  let rowsB;
+  let avgRows;
+  let nRunsA = 1;
+  let nRunsB = 1;
+  if (allRuns) {
+    const acrossA = rubricMeansAcrossRuns(state.compare.modelA, state.compare.task, cellA.mode, rubricOpts);
+    const acrossB = rubricMeansAcrossRuns(state.compare.modelB, state.compare.task, cellB.mode, rubricOpts);
+    // Task-average column uses side A's regime (same as prior shared-mode behavior).
+    const acrossAvg = taskAverageRubricAcrossRuns(state.compare.task, cellA.mode, rubricOpts);
+    rowsA = acrossA.rows;
+    rowsB = acrossB.rows;
+    avgRows = acrossAvg.rows;
+    nRunsA = acrossA.nRuns;
+    nRunsB = acrossB.nRuns;
+  } else {
+    rowsA = rubricMeansForOutput(outA, cellA.judgments, state.compare.task, rubricOpts);
+    rowsB = rubricMeansForOutput(outB, cellB.judgments, state.compare.task, rubricOpts);
+    avgRows = taskAverageRubric(cellA.outputs, cellA.judgments, state.compare.task, rubricOpts);
+  }
+
   const dims = [...new Set([
     ...Object.keys(rubricLabels[state.compare.task] || {}),
     ...Object.keys(generalRubricLabels),
@@ -3633,24 +3815,36 @@ function renderCompareRubric() {
   const mapAvg = new Map(avgRows.map(r => [r.dimension, r.mean]));
   const vsAvg = state.compare.rubricView === "avg";
   const mapRight = vsAvg ? mapAvg : mapB;
-  const labelA = displayModel(state.compare.modelA, state.compare.mode);
-  const labelB = displayModel(state.compare.modelB, state.compare.mode);
-  const labelRight = vsAvg ? "Task average" : labelB;
-  const h2h = compareHeadToHeadStats(outA, outB);
+  const labelA = compareSideLabel("a");
+  const labelB = compareSideLabel("b");
+  const labelRight = vsAvg
+    ? (compareModesDiffer()
+      ? `Task average · ${modeLabels[cellA.mode]}`
+      : "Task average")
+    : labelB;
+  const h2h = allRuns
+    ? { pair: [], winsA: 0, winsB: 0, ties: 0, n: 0 }
+    : compareHeadToHeadStats(outA, outB);
   h2h.rowsA = rowsA;
   h2h.rowsB = rowsB;
-  renderCompareScoreSummary("a", rowsA, h2h, vsAvg);
-  renderCompareScoreSummary("b", rowsB, h2h, vsAvg);
+  renderCompareScoreSummary("a", rowsA, h2h, vsAvg, { allRuns });
+  renderCompareScoreSummary("b", rowsB, h2h, vsAvg, { allRuns });
 
   const rightColor = vsAvg ? "var(--compare-avg)" : "var(--compare-b)";
   const max = 10;
+  const runScopeNote = allRuns
+    ? `10-run average (n=${Math.min(nRunsA, nRunsB) || nRunsA || nRunsB} runs with scores)`
+    : "This run";
   const scopeNote = activeJudge
     ? (vsAvg
-      ? `${judgeLabel} scores · A vs task average under this judge`
-      : `${judgeLabel} scores · A vs B`)
+      ? `${judgeLabel} · ${runScopeNote} · A vs task average`
+      : `${judgeLabel} · ${runScopeNote} · A vs B`)
     : (vsAvg
-      ? "Average across leave-family-out eligible judges · A vs task average"
-      : "Average across leave-family-out eligible judges · A vs B");
+      ? `LOO panel average · ${runScopeNote} · A vs task average`
+      : `LOO panel average · ${runScopeNote} · A vs B`);
+  const modeLine = compareModesDiffer()
+    ? `${modeLabels[cellA.mode]} vs ${modeLabels[cellB.mode]}`
+    : modeLabels[cellA.mode];
 
   const rows = dims.map(dim => {
     const left = mapA.get(dim);
@@ -3663,7 +3857,7 @@ function renderCompareRubric() {
         <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(left) ? left / max * 100 : 0}%;background:var(--compare-a)"></div></div>
         <span class="compare-rubric-val ${aBetter ? "is-better" : ""}">${Number.isFinite(left) ? left.toFixed(1) : "—"}</span>
       </div>
-      <div class="compare-rubric-cell" data-side="${vsAvg ? "Task avg" : `B · ${esc(labelB)}`}" title="${vsAvg ? "Task average" : esc(labelB)}">
+      <div class="compare-rubric-cell" data-side="${vsAvg ? "Task avg" : `B · ${esc(labelB)}`}" title="${vsAvg ? esc(labelRight) : esc(labelB)}">
         <div class="bar-track"><div class="bar-fill" style="width:${Number.isFinite(right) ? right / max * 100 : 0}%;background:${rightColor}"></div></div>
         <span class="compare-rubric-val ${bBetter ? "is-better" : ""}">${Number.isFinite(right) ? right.toFixed(1) : "—"}</span>
       </div>
@@ -3690,14 +3884,30 @@ function renderCompareRubric() {
     values: { a: mapA.get(dim), b: mapRight.get(dim) },
   })).filter(axis => Number.isFinite(axis.values.a) || Number.isFinite(axis.values.b));
 
+  const runScopeButtons = `
+    <div class="compare-run-scope" role="tablist" aria-label="Rubric run scope">
+      <span class="compare-judge-bar-label">Rubric scores</span>
+      <div class="compare-judge-chips">
+        <button type="button" class="compare-judge-chip ${!allRuns ? "active" : ""}" data-rubric-run-scope="this_run" role="tab" aria-selected="${!allRuns ? "true" : "false"}">This run</button>
+        <button type="button" class="compare-judge-chip ${allRuns ? "active" : ""}" data-rubric-run-scope="all_runs" role="tab" aria-selected="${allRuns ? "true" : "false"}">10-run average</button>
+      </div>
+      <span class="compare-rubric-scope">${allRuns
+        ? "Equal-weight mean of per-run rubric means for each model × task × usage mode. Average / per-judge filter is applied within each run (LOO), then averaged across runs."
+        : "Scores from the selected run only. Deliverables and rationales always use this run."}</span>
+    </div>`;
+
   el.innerHTML = `
     <div class="section-heading compact">
       <h2>Rubric attributes</h2>
-      <p>${esc(labelA)} vs ${vsAvg ? "task average" : esc(labelB)} · ${esc(cleanTaskTitle(state.compare.task))} · ${esc(modeLabels[state.compare.mode])}</p>
+      <p>${esc(labelA)} vs ${vsAvg ? esc(labelRight) : esc(labelB)} · ${esc(cleanTaskTitle(state.compare.task))} · ${esc(modeLine)} · ${esc(allRuns ? "10-run average" : "this run")}</p>
     </div>
+    ${runScopeButtons}
     <div class="compare-judge-bar" role="tablist" aria-label="Rubric judge filter">
       <span class="compare-judge-bar-label">Scores from</span>
       <div class="compare-judge-chips">${judgeButtons}</div>
+      <span class="compare-rubric-scope">${allRuns
+        ? "Per-judge chips use that judge within each run, then average across runs · Average = LOO panel aggregate per run"
+        : "Average = panel aggregate · per-judge respects leave-family-out"}</span>
     </div>
     <div class="compare-rubric-viz">
       ${radarHtml}
@@ -3722,17 +3932,26 @@ function renderCompareRubric() {
       renderCompareRubric();
     });
   });
+  el.querySelectorAll("[data-rubric-run-scope]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.compare.rubricRunScope = btn.dataset.rubricRunScope === "all_runs" ? "all_runs" : "this_run";
+      renderCompareRubric();
+    });
+  });
   bindCompareRadarInteractions(el, axesPayload, seriesMeta);
 }
 
 function renderCompareRationales() {
   const el = document.getElementById("compareRationales");
   if (!el) return;
-  const outputs = compareOutputs();
-  const outA = outputs.find(o => o.model_label === state.compare.modelA);
-  const outB = outputs.find(o => o.model_label === state.compare.modelB);
+  const outA = compareOutputForSide("a");
+  const outB = compareOutputForSide("b");
   if (!outA || !outB) {
     el.innerHTML = `<p class="chart-note">No head-to-head judgments for this pair.</p>`;
+    return;
+  }
+  if (compareModesDiffer()) {
+    el.innerHTML = `<p class="chart-note">Head-to-head rationales require the same usage mode on both sides (pairwise judgments are within one task × regime cell). Rubric scores above still compare across regimes.</p>`;
     return;
   }
   const pair = comparePairJudgments(outA, outB);
@@ -3740,14 +3959,15 @@ function renderCompareRationales() {
     el.innerHTML = `<p class="chart-note">No direct pairwise matchup between these two models in this run. Try another run, or browse Qualitative for related rationales.</p>`;
     return;
   }
+  const mode = compareModeForSide("a");
   el.innerHTML = pair.map(j => {
     const aIsLeft = Number(j.left_idx) === Number(outA.idx);
     // Judgments store winner as "option_1" / "option_2" (same as Qualitative).
     let winner = "tie / unclear";
     if (j.winner === "option_1") {
-      winner = displayModel(aIsLeft ? state.compare.modelA : state.compare.modelB, state.compare.mode);
+      winner = displayModel(aIsLeft ? state.compare.modelA : state.compare.modelB, mode);
     } else if (j.winner === "option_2") {
-      winner = displayModel(aIsLeft ? state.compare.modelB : state.compare.modelA, state.compare.mode);
+      winner = displayModel(aIsLeft ? state.compare.modelB : state.compare.modelA, mode);
     }
     const rationale = rationaleTextOf(j);
     return `<div class="compare-rationale-card">
@@ -3767,11 +3987,12 @@ function renderCompare() {
     ensureQualitativeData().then(() => renderCompare());
     return;
   }
-  const run = compareRunBundle()?.runs?.[`${state.compare.task}/${state.compare.mode}`];
-  if (!run?.outputs?.length) {
+  const outsA = compareOutputs("a");
+  const outsB = compareOutputs("b");
+  if (!outsA.length && !outsB.length) {
     if (loading) {
       loading.classList.remove("hidden");
-      loading.textContent = "No outputs found for this task, role, and run.";
+      loading.textContent = "No outputs found for this task, usage mode, and run.";
     }
     document.getElementById("compareRubric").innerHTML = "";
     document.getElementById("compareTextA").innerHTML = "";
@@ -3797,7 +4018,8 @@ function bindCompareControls() {
   };
   bind("compareTask", e => { state.compare.task = e.target.value; renderCompare(); });
   // Keep Model A/B when still present in the new mode; populateCompareControls falls back only if missing.
-  bind("compareMode", e => { state.compare.mode = e.target.value; renderCompare(); });
+  bind("compareModeA", e => { state.compare.modeA = e.target.value; renderCompare(); });
+  bind("compareModeB", e => { state.compare.modeB = e.target.value; renderCompare(); });
   bind("compareRun", e => { state.compare.runId = e.target.value; renderCompare(); });
   bind("compareModelA", e => { state.compare.modelA = e.target.value; renderCompare(); });
   bind("compareModelB", e => { state.compare.modelB = e.target.value; renderCompare(); });
