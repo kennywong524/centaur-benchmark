@@ -1,0 +1,75 @@
+\documentclass{article}
+
+% The technical appendix is submitted as a separate, anonymous supplement.
+\usepackage[submission]{aaai2027}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{multirow}
+\usepackage[round,authoryear]{natbib}
+
+\tcbset{
+  taskprompt/.style={
+    enhanced,
+    colback=gray!4,
+    colframe=gray!55,
+    fonttitle=\bfseries\small,
+    coltitle=black,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+  },
+  rubricbox/.style={
+    enhanced,
+    colback=blue!3,
+    colframe=blue!40!black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+  },
+  outputbox gpt/.style={
+    enhanced, breakable,
+    colback=green!4,
+    colframe=green!45!black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+    title=#1,
+  },
+  outputbox ds/.style={
+    enhanced, breakable,
+    colback=cyan!6!white,
+    colframe=cyan!60!blue,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+    title=#1,
+  },
+}
+
+\title{CentaurBench: Benchmarking LLM Assistance on Real-world Work --- Supplementary Material}
+\author{Anonymous submission}
+\affiliations{}
+
+\begin{document}
+\maketitle
+\input{appendix}
+\end{document}

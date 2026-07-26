@@ -1,0 +1,52 @@
+LLM evaluation has progressed from broad tests of knowledge and reasoning
+\citep{hendrycks2021,srivastava2023,liang2023} to benchmarks built around
+professional and economically valuable work
+\citep{gdpval2025,profbench2025,occubench2026,jobbench2026}. These benchmarks
+measure an important capability: whether a model can produce a strong
+deliverable on its own. In deployed workflows, however, a model may instead
+assist a human or another model by planning, decomposing, checking, or revising
+while the downstream worker produces the final output. Standalone performance
+need not predict performance in such interactive settings
+\citep{collins2024,chang2025}. The model that is the best direct solver may not
+be the best assistant.
+
+Existing work does not provide a general cross-model comparison of these two
+roles. Human--AI field studies establish that assistance can change
+productivity, but typically evaluate one tool in one domain
+\citep{noy2023,peng2023,dellacqua2023,brynjolfsson2025}. Multi-agent and
+tutoring studies examine teaching, planning, or complementarity in narrower
+settings \citep{saha2023,bansal2021,macina2025,gandhi2025}. These studies do
+not rank the same models as both direct solvers and assistants on the same
+tasks. This leaves unanswered a basic evaluation question: does a model's
+automation rank predict the value of its guidance to a fixed downstream
+worker?
+
+We introduce \textsc{CentaurBench}, a controlled benchmark for measuring that
+relationship. We evaluate nine focal LLMs on seven professional tasks under
+two modes. In \emph{automation}, the focal model produces the deliverable
+directly. In \emph{augmentation}, it produces process guidance for a fixed
+GPT-3.5-Turbo worker, which then produces the deliverable. Holding the worker,
+task, and worker prompt fixed isolates variation due to the assistant's
+guidance rather than the executor. Outputs are scored through blinded,
+rubric-guided pairwise comparisons by four LLM judges, with leave-family-out
+masking to prevent a judge from evaluating outputs from its own provider
+family. We repeat the complete generation and evaluation pipeline ten times
+and report task-level and aggregate ranks.
+
+The two modes yield materially different model profiles. Across the nine
+models evaluated in both roles, average automation and augmentation ranks have
+only moderate correlation ($\rho=0.48$), with task-level correlations ranging
+from $-0.04$ to $0.85$. The winning model differs across modes on five of seven
+tasks. Assistance is also not uniformly beneficial: the unaided worker ranks
+first on three tasks, and only one assisted condition beats it on average.
+Large task-level reversals persist across repeated runs; for example,
+Claude-Opus-4.8 leads automation on market-trends analysis but is among the
+weakest assistants on that task.
+
+Our contribution is threefold. First, we operationalize role-aware model
+evaluation as a cross-model, cross-task benchmark. Second, the fixed-worker
+design provides a controlled measure of marginal guidance value. Third, the
+resulting rank matrix shows that assistant quality is task-dependent and not
+recoverable from an automation leaderboard alone. \textsc{CentaurBench}
+therefore complements autonomous benchmarks with an evaluation axis directly
+relevant to human-in-the-loop and multi-agent systems.

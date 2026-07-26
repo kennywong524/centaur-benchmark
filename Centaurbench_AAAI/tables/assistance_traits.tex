@@ -1,0 +1,47 @@
+\begin{table}[htbp]
+\centering
+\definecolor{traitA}{RGB}{224,238,250} % soft blue
+\definecolor{traitB}{RGB}{255,247,222} % soft yellow
+\definecolor{traitC}{RGB}{250,228,228} % soft rose
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{
+    >{\raggedright\arraybackslash}p{1.0cm}
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\raggedright\arraybackslash}X}
+\toprule
+ & \textbf{Task, assistant (rank)} & \textbf{Assistance-text excerpt} \\
+\midrule
+
+% run 4
+\rowcolor{traitA} \multicolumn{3}{l}{\textbf{Trait 1: Specificity beyond the prompt (contingency)}} \\
+\rowcolor{traitA} \textbf{Good} & Market trends, GPT-5-Mini (1) &
+``For each trend, plan 2 to 3 succinct bullets: core observation, primary driver(s), and potential market implication\ldots a short preface about methodology and data vintage.'' \\
+\rowcolor{traitA} \textbf{Bad} & Market trends, GPT-4.1 (9) &
+``Ensure you understand the expectation to discuss how various factors (supply, demand, weather, storage, LNG exports, infrastructure, policy) interact\ldots'' \textit{(restates the prompt's factor list)} \\
+\addlinespace
+
+% run 1
+\rowcolor{traitB} \multicolumn{3}{l}{\textbf{Trait 2: Explicit structure and ordering}} \\
+\rowcolor{traitB} \textbf{Good} & Travel planning, Gemini-3.1-Pro (3) &
+Enforces assumptions and clarifying questions ``\emph{before} the provisional itinerary,'' with named sections in explicit order: Introduction $\to$ Budget Breakdown $\to$ Daily Itinerary $\to$ Conclusion. \\
+\rowcolor{traitB} \textbf{Bad} & Travel planning, GPT-O4-Mini (9) &
+``Determine sequence and hierarchy of information for clarity and flow''; instructs worker to ``populate each section with neutral placeholders\ldots\ \emph{[Day 1: transportation placeholder]}''; no ordering is prescribed. \\
+\addlinespace
+
+% run 2
+\rowcolor{traitC} \multicolumn{3}{l}{\textbf{Trait 3: Not working against the task}} \\
+\rowcolor{traitC} \textbf{Good} & Operations research, Gemini-3.1-Pro (3) &
+``Present two distinct, practical strategies. For each, explicitly state the expected benefits, potential drawbacks, and associated risks.'' \\
+\rowcolor{traitC} \textbf{Bad} & Operations research, GPT-O3-Mini (9) &
+``Establish a workflow for integrating\ldots trade-offs \textbf{without delving into specific solutions or analysis}''; finalize ``\textbf{without\ldots task-specific analytical content}.'' \\
+\addlinespace
+
+\bottomrule
+\end{tabularx}
+\caption{\textbf{Illustrative higher- vs.\ lower-ranked assistance texts for each
+scaffold-quality characteristic.} Rows are color-coded by trait; ranks are the aggregate
+augmentation rank within the task run. Excerpts are drawn from the assistance texts and lightly trimmed.}
+\label{tab:trait-examples}
+\end{table}

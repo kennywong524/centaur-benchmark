@@ -1,0 +1,25 @@
+Automation and augmentation do not produce interchangeable model rankings.
+Direct-solver performance is relatively concentrated, whereas assistant
+performance is more dispersed and task-dependent. The unaided worker winning
+three tasks is especially important: guidance can distract the worker,
+introduce unnecessary constraints, or redirect it away from the requested
+deliverable. Assistant value is therefore conditional, not an automatic
+consequence of greater standalone capability.
+
+For model evaluation, the implication is that an automation-only leaderboard
+omits a capability relevant to human-in-the-loop and multi-agent deployment.
+Benchmarks should distinguish producing a deliverable from improving another
+agent's deliverable, because progress on one axis need not transfer to the
+other. The fixed-worker design provides a controlled way to add this axis:
+holding execution constant makes cross-model differences in guidance
+observable without requiring a separate field experiment for every
+model--task pair.
+
+The same distinction matters for deployment. A model selected to execute a
+task end-to-end may differ from one selected to guide a human, junior model,
+or internal workflow. Our experiment uses GPT-3.5-Turbo as a common worker to
+identify assistant effects, but the protocol is modular: a deployment-specific
+evaluation can substitute the relevant worker while preserving the
+cross-assistant comparison. \textsc{CentaurBench} thus complements autonomous
+benchmarks and workplace experiments by measuring role-specific performance
+under a shared, reproducible protocol.

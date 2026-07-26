@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Task & Spearman $\rho_t$ & $p$-value \\
+        \midrule
+        Tax Preparation & 0.85 & 0.004 \\
+        Menu Planning & 0.64 & 0.066 \\
+        Tutoring Session Planning & 0.50 & 0.166 \\
+        Counseling & 0.25 & 0.516 \\
+        Operations Research Analysis & 0.17 & 0.668 \\
+        Market Trend Analysis & 0.10 & 0.798 \\
+        Travel Planning & -0.04 & 0.915 \\
+        \bottomrule
+    \end{tabular}
+    \caption{\textbf{Task-level correlation between automation and augmentation rankings.} Spearman correlations are computed across the nine assistant models using each model's mean rank over ten runs. Positive values indicate similar cross-mode ordering; values near zero indicate little correspondence. $p$-values are descriptive because each task contains only nine models.}
+    \label{tab:mode-correlations}
+\end{table}

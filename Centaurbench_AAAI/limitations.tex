@@ -1,0 +1,21 @@
+This study is a pilot evaluation rather than a definitive map of model
+capabilities. Its primary limitation is reliance on LLM judges. Task-specific
+rubrics, multiple judges, leave-family-out masking, and repeated runs improve
+auditability but cannot eliminate evaluator bias. Domain-expert validation is
+especially important for counseling, tax preparation, tutoring, and
+operations research, where professional judgment affects what counts as a
+high-quality output.
+
+The augmentation protocol is also intentionally narrow. Each assistant
+provides one process-oriented guidance message to a fixed GPT-3.5-Turbo
+worker. Real workflows may be multi-turn, allow content-bearing help, or pair
+assistants with workers of different capability and model family. Holding the
+worker fixed identifies differences among assistants, but assistant rankings
+may change with the worker or interaction protocol.
+
+Finally, seven tasks cannot represent the full diversity of professional work.
+Although ten independent runs improve stability within this task set, broader
+claims require more domains, risk levels, and deliverable formats. Future
+validation should test whether the observed cross-role reversals persist with
+human workers, domain experts, additional worker models, and authentic
+workplace tasks.

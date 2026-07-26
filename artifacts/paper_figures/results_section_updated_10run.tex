@@ -1,12 +1,45 @@
 \section{Results}
 
-We report two sets of results. First, we examine the \emph{automation} regime, where each model solves the task directly. This serves as a sanity check on the evaluation pipeline before we interpret the more novel augmentation results: if recent frontier models systematically outperform older models on most tasks, that pattern is directionally consistent with conventional capability rankings and increases confidence in the pairwise judging setup. Second, we examine the \emph{augmentation} regime, where each assistant model acts as a coach that supplies a process scaffold to a fixed GPT-3.5-Turbo worker that produces the final output, rather than solving the task itself. We then compare augmentation rankings to automation rankings to test whether strong direct task-solving ability also implies strong assistant ability. Across both analyses, rankings are computed over ten independent runs of the full pipeline. Main-text figures report within-task \emph{rank of ranks} (integer ranks derived from mean ranks across runs); Appendix~\ref{app:rank-tables} reports mean rank with standard error ($\mathrm{SE}=\mathrm{SD}/\sqrt{10}$) for readers who want the underlying magnitudes. All rankings are computed over the full candidate pool, which includes the unaided GPT-3.5-Turbo baseline.
+We report two sets of results. First, we examine the \emph{automation} regime,
+where each model solves the task directly. This provides a within-benchmark
+comparison for the more novel augmentation results; it is not intended as a
+general-purpose capability leaderboard. Second, we examine the
+\emph{augmentation} regime, where each assistant model supplies an assistance
+text to a fixed GPT-3.5-Turbo worker that produces the final output, rather than
+solving the task itself. We then compare augmentation rankings to automation
+rankings to test whether strong direct task-solving ability also implies strong
+assistant ability. Across both analyses, rankings are computed over ten
+independent runs of the full pipeline. Main-text figures report within-task
+\emph{rank of ranks} (integer ranks derived from mean ranks across runs);
+Appendix~\ref{app:rank-tables} reports mean rank with standard error
+($\mathrm{SE}=\mathrm{SD}/\sqrt{10}$) for readers who want the underlying
+magnitudes. All rankings are computed over the full candidate pool, which
+includes the unaided GPT-3.5-Turbo baseline.
 
-Our central result is that model performance is both task-specific and mode-specific. In automation, rankings are concentrated around a small set of strong direct solvers and are broadly aligned with the expected frontier-model ordering. In augmentation, no single assistant model dominates across all tasks: different task domains reward different assistant behaviors, and several tasks are best handled by the unaided worker baseline rather than by an external scaffold. This divergence suggests that standard automation benchmarks do not capture an economically important capability, whether a model can improve another worker's output through planning and decomposition. We use the paper figures to summarize the main patterns; the interactive dashboard provides a more detailed audit trail for readers who wish to inspect individual tasks, models, and judgments.
+Our central result is that model performance is both task-specific and
+mode-specific. Automation performance on these single-turn, bounded written
+deliverables does not reproduce a universal model ordering, and augmentation
+fragments the ranking further: no single assistant model dominates across all
+tasks, and several tasks are best handled by the unaided worker baseline. This
+divergence suggests that broad capability or agentic benchmarks do not capture
+an economically important capability: whether a model can improve another
+worker's output through planning and decomposition. We use the paper figures
+to summarize the main patterns; the interactive dashboard provides a more
+detailed audit trail for readers who wish to inspect individual tasks, models,
+and judgments.
 
-\subsection{Automation Rankings Align With Expected Model Capability}
+\subsection{Automation Performance Is Task-Conditioned}
 
-In automation, rankings are directionally aligned with conventional capability rankings: stronger frontier models tend to perform better as direct task solvers, while weaker or older models fall toward the bottom. Figure~\ref{fig:automation-heatmap} reports these rankings by task. GPT-5-Mini has the best average rank across tasks, followed by Claude-Opus-4.8. GPT-O4-Mini and Claude-Sonnet-4.6 form the next tier, while GPT-3.5-Turbo (plain) ranks last on average, as expected for a low-cost baseline. This is reassuring before we turn to augmentation: the evaluation does not produce arbitrary orderings, and stronger direct solvers are recognized as such across most task domains.
+Figure~\ref{fig:automation-heatmap} reports automation rankings by task.
+GPT-5-Mini has the best average rank across these tasks, followed by
+Claude-Opus-4.8; GPT-O4-Mini and Claude-Sonnet-4.6 form the next tier, while
+GPT-3.5-Turbo ranks last on average. We interpret this ordering narrowly. The
+benchmark evaluates single-turn, bounded professional deliverables without
+tools, whereas public agentic benchmarks often evaluate multi-step tool use,
+planning, and environment interaction. Their model orderings therefore need
+not transfer to this setting. The absence of a monotonic mapping is consistent
+with the paper's broader premise that measured capability is conditional on the
+task and role being evaluated.
 
 \begin{figure}[H]
     \centering
@@ -21,7 +54,20 @@ In automation, rankings are directionally aligned with conventional capability r
     \label{fig:automation-heatmap}
 \end{figure}
 
-The task-level pattern is also concentrated. GPT-5-Mini ranks first in menu planning, tax preparation, travel planning, and tutoring. Claude-Opus-4.8 ranks first in market-trends analysis, GPT-OSS-120B ranks first in counseling, and Gemini-3.1-Pro narrowly leads operations research. A likely reason automation tracks conventional capability more closely is that it places the full burden of task completion on the assistant model. The model must interpret the prompt, track constraints, produce the final deliverable, and avoid errors without help from another system, so general model capability matters more. Augmentation, by contrast, tests whether a model can improve a fixed worker's output through guidance; this depends not only on raw task-solving ability but on whether the guidance is usable by the downstream worker. We examine that regime next.
+The task-level pattern is relatively concentrated. GPT-5-Mini ranks first in
+menu planning, tax preparation, travel planning, and tutoring.
+Claude-Opus-4.8 ranks first in market-trends analysis, GPT-OSS-120B ranks first
+in counseling, and Gemini-3.1-Pro narrowly leads operations research. These
+rankings are also sensitive to output length. Within run--task comparison
+sets, longer outputs tend to receive higher pairwise win rates, especially in
+automation. Because length may reflect either useful completeness or evaluator
+preference for elaboration, we do not interpret this association causally.
+A sensitivity analysis that residualizes win rate on log word count changes
+the exact automation ordering, but the central cross-role result remains: the
+automation--augmentation rank correlation falls from $0.48$ to $0.35$ rather
+than converging toward one. Appendix~\ref{app:length-diagnostic} reports the
+full diagnostic. We therefore treat the raw ordering as performance under the
+stated evaluation protocol, not as a universal ordering of model capability.
 
 \subsection{Model Rankings Are Task-Specific in Augmentation}
 

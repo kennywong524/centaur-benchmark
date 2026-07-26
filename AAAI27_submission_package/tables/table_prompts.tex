@@ -1,0 +1,53 @@
+\footnotesize
+
+\definecolor{taskblue}{RGB}{220,235,252}
+\definecolor{taskblueframe}{RGB}{16,42,94}
+\definecolor{rubricmint}{RGB}{225,245,225}
+\definecolor{rubricmintframe}{RGB}{16,42,94}
+\definecolor{assistpeach}{RGB}{255,242,218}
+\definecolor{assistpeachframe}{RGB}{16,42,94}
+
+
+\scalebox{0.95}{%
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[taskprompt, enhanced, colback=taskblue, colframe=taskblueframe, colbacktitle=taskblueframe, coltitle=white, title=Task Prompt --- Travel Planning]
+Create a 5-day Tokyo itinerary for one traveler next month with a total budget of \$2,500 USD, excluding passport costs. The traveler is departing from San Francisco. Clearly state assumptions and give clarifying questions before the provisional plan. Use realistic estimates, label them as estimates, and keep the plan budget-aware.
+\end{tcolorbox}
+
+\vspace{0.4em}
+
+\begin{tcolorbox}[rubricbox, enhanced, colback=rubricmint, colframe=rubricmintframe, colbacktitle=rubricmintframe, coltitle=white, title=Evaluation Rubric --- Travel Planning]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Completeness: covers questions, costs, hotels, transport, customs/regulations, itinerary, and budget confirmation.
+  \item Cost realism and arithmetic: flights, lodging, transport, food/activities, and total are plausible and correctly summed. Penalize outputs that exceed the budget.
+  \item Hotel and transport practicality: viable hotel options, airport/transit guidance, rail/pass advice.
+  \item Itinerary quality: 5 days with morning/afternoon/evening plans that are geographically sensible and well-optimized for distance and fatigue.
+  \item Travel-agent professionalism: clear, customer-focused, with appropriate caveats around estimates.
+  \item Handling uncertainty: asks clarifying questions for missing information while still providing a useful provisional plan.
+\end{enumerate}
+\end{tcolorbox}
+\end{minipage}}
+
+\vspace{0.4em}
+
+\scalebox{0.95}{%
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[taskprompt, enhanced, fonttitle=\bfseries, colback=assistpeach, colframe=assistpeachframe, colbacktitle=assistpeachframe, coltitle=white, title=Assistance Text Creation Prompt --- Universal (Abridged)]
+Produce a 200--250 word, process-focused assistance text without writing the final deliverable.
+
+Organize the assistance text into three phases:
+\begin{enumerate}
+    \setlength{\itemsep}{1pt}
+    \item \textbf{Requirements Check:} identify the deliverable, audience, tone, constraints, and required components.
+    \item \textbf{Plan and Structure:} recommend a general response structure and explain how to balance completeness, clarity, and tone.
+    \item \textbf{Self-Review and Finalize:} provide a concise checklist for reviewing the response before submission.
+\end{enumerate}
+
+Do not solve the task, provide task-specific content or examples, or write sentences that could be copied into the final answer. Keep the guidance process-focused.
+
+\medskip
+\textit{Abridged for presentation. The full verbatim experimental prompt is provided in the supplementary document.}
+\end{tcolorbox}
+\end{minipage}}

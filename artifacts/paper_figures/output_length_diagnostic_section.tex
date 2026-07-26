@@ -1,0 +1,48 @@
+\section{Output-Length Sensitivity}
+\label{app:length-diagnostic}
+
+Pairwise evaluators may respond to output length as well as substantive
+quality. We therefore test whether response length is associated with pairwise
+performance. For each run $r$, task $t$, and regime $m$, we calculate the
+Spearman correlation between an output's word count and its mean pairwise win
+rate across eligible leave-family-out judges. Correlations are calculated
+within each comparison set before being averaged across the ten runs, thereby
+avoiding comparisons between tasks with different legitimate length demands.
+
+Figure~\ref{fig:output-length-diagnostic} shows a positive association in most
+settings. Averaged across tasks, the mean within-run correlation is $0.52$ in
+automation and $0.27$ in augmentation. As an intuitive cross-check, the longer
+output wins 72.5\% of decisive model-pair majorities in automation and 60.0\%
+in augmentation. The pattern is not universal: the augmentation association is
+weak for travel planning and tutoring and negative for menu planning. These
+estimates are descriptive because model pairs share outputs and judges and are
+therefore not independent observations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{paper_figures/figureA_output_length_diagnostic.pdf}
+    \caption{
+    Output-length sensitivity across ten runs. Panel A reports the mean
+    within-run Spearman correlation between output word count and mean pairwise
+    win rate; error bars show $\pm 1.96$ standard errors across runs. Panel B
+    reports the share of decisive model-pair majorities won by the longer
+    output. The dashed line marks 50\%. Positive associations can reflect
+    useful completeness, evaluator preference for elaboration, or both.
+    }
+    \label{fig:output-length-diagnostic}
+\end{figure}
+
+To assess sensitivity, we regress win rate on log word count separately within
+each run--task--regime comparison set and re-rank the residualized outcomes.
+This adjustment is deliberately conservative: length is partly an outcome of
+model behavior and may mediate genuine completeness, so removing it can also
+remove real quality. Nevertheless, the exercise shows that exact automation
+rankings are length-sensitive. GPT-O4-Mini ranks first after adjustment,
+followed by Claude-Opus-4.8 and GPT-5-Mini; Claude-Sonnet-4.6 falls markedly
+because its automation outputs are substantially longer on average. In
+augmentation, GPT-5-Mini remains the highest-ranked assistant model, while the
+unaided worker becomes first overall. Most importantly for the paper's central
+claim, the model-level correlation between automation and augmentation ranks
+decreases from $\rho=0.48$ to $\rho=0.35$ after adjustment. Thus output length
+affects the precise ordering, but it does not explain away the divergence
+between direct-solving and assistance performance.

@@ -1,0 +1,97 @@
+\begin{figure}[H]
+\centering
+
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tcolorbox}[
+    enhanced,
+    equal height group=or-assistance,
+    colback=green!3,
+    colframe=green!45!black,
+    colbacktitle=green!45!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title={Higher-Ranked Assistance Text},
+    boxrule=0.5pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=5pt,
+    bottom=5pt
+]
+\raggedright
+\small
+\textit{GPT-4.1, Operations Research, Run 2}
+
+\medskip
+\textbf{2.\ Plan and Structure}
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \item Outline a clear structure using logical headings aligned with each
+    requirement.
+    \item Allocate approximate word counts to each section to remain within
+    the limit.
+    \item Identify where to \textbf{highlight trade-offs and risk
+    considerations in the recommendations}.
+\end{itemize}
+
+\textbf{3.\ Draft, Self-Review, and Finalize}
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \item \textbf{Ensure that all requirements are addressed and that the
+    recommendations are balanced and well supported.}
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tcolorbox}[
+    enhanced,
+    equal height group=or-assistance,
+    colback=red!3,
+    colframe=red!45!black,
+    colbacktitle=red!45!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    title={Lower-Ranked Assistance Text},
+    boxrule=0.5pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=5pt,
+    bottom=5pt
+]
+\raggedright
+\small
+\textit{GPT-O3-Mini, Operations Research, Run 2}
+
+\medskip
+\textbf{2.\ Plan and Structure}
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \item Develop a high-level outline that organizes the content logically.
+    \item Decide which headings could improve clarity.
+    \item Integrate trade-offs and risks \textbf{without delving into specific
+    solutions or analysis}.
+\end{itemize}
+
+\textbf{3.\ Draft, Self-Review, and Finalize}
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \item Finalize the document \textbf{without task-specific analytical
+    content}.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+
+\caption{\textbf{Selected assistance-text excerpts for the operations research
+task.} Intervening instructions are omitted for brevity. The higher-ranked
+assistance text (left) directs the worker to address task requirements,
+trade-offs, risks, and recommendations. The lower-ranked assistance text
+(right) instead instructs the worker to avoid task-specific analysis, limiting
+the usefulness of the resulting guidance.}
+\label{fig:assistance-text-comparison}
+\end{figure}

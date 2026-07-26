@@ -23,6 +23,7 @@ robustness artifacts with:
 PYTHONPATH=src:scripts .venv/bin/python scripts/make_role_swap_scatter_white.py
 PYTHONPATH=src:scripts .venv/bin/python scripts/make_mode_correlation_analysis.py
 PYTHONPATH=src:scripts .venv/bin/python scripts/make_rubric_score_validation_figures.py
+PYTHONPATH=src:scripts .venv/bin/python scripts/make_length_bias_diagnostic.py
 ```
 
 These scripts read committed ten-run summaries from

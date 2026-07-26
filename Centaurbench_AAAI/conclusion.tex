@@ -1,0 +1,14 @@
+
+
+These results have implications for how LLMs are developed and evaluated. Many existing benchmarks focus primarily on automation. Our results suggest that gains on those benchmarks may not transfer to augmentation. A model optimized to produce a complete, self-contained answer is not necessarily the best model to assist another worker, and in several tasks the unaided worker outperforms assisted conditions, evidence that poorly matched guidance can be counterproductive.
+
+The implications extend to organizations deploying these systems. For a firm choosing a model, ``which is best?'' is the wrong question; ``best for what role, on what task?'' is the right one. A model that should handle a well-defined task end-to-end is not necessarily the one that should sit beside an analyst, a counselor, or a teacher, or the one that should orchestrate a cheaper worker model in a multi-agent pipeline.
+
+\section*{Data and Code Availability}
+All code, task configurations, and the raw outputs of the three reported runs are
+included in the accompanying code and data supplement.
+The repository contains the full evaluation harness (generation, judging, and
+summarization), the task rubrics, and scripts to reproduce every figure and table
+in this paper. An interactive dashboard with task-level rankings, per-run
+replicate comparisons, judge-level results, rubric scores, and the underlying
+scaffolds and outputs is included in the accompanying supplement.

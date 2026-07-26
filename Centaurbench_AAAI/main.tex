@@ -1,0 +1,169 @@
+\documentclass{article}
+
+% AAAI-27 submission format. The submission option anonymizes the title block
+% and suppresses author metadata for double-blind review.
+\usepackage[submission]{aaai2027}
+
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{multirow}
+
+\tcbset{
+  taskprompt/.style={
+    enhanced,
+    colback=gray!4,
+    colframe=gray!55,
+    fonttitle=\bfseries\small,
+    coltitle=black,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+  },
+  rubricbox/.style={
+    enhanced,
+    colback=blue!3,
+    colframe=blue!40!black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+  },
+  outputbox gpt/.style={
+    enhanced, breakable,
+    colback=green!4,
+    colframe=green!45!black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+    title=#1,
+  },
+    outputbox ds/.style={
+    enhanced, breakable,
+    colback=cyan!6!white,
+    colframe=cyan!60!blue,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    boxrule=0.4pt,
+    arc=2pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=0pt,
+    after skip=0pt,
+    title=#1,
+  },
+}
+
+% -------------------------------------------------
+% Citations
+% -------------------------------------------------
+\usepackage[round,authoryear]{natbib}
+
+% Keep the submission source free of author, affiliation, contact, and date
+% metadata. The AAAI submission style renders the title block anonymously.
+\title{CentaurBench: Benchmarking LLM Assistance on Real-world Work}
+\author{Anonymous submission}
+\affiliations{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Most LLM benchmarks rank models on their ability to automate work tasks. In practice, however, models are often used to assist other (human or LLM) agents. The question that drives model selection is therefore not only which model produces the best output, but which model most improves the work of another (weaker) agent. We introduce a unified framework that evaluates the capability of models to automate and augment another agent's performance. Across seven economically grounded real-world tasks, an assistant model writes assistance text for a standardized lower-capacity worker model, which produces the deliverable. In automation mode, the assistant produces the output directly. Outputs are scored through blind pairwise comparisons by an LLM judge panel with task-specific rubrics, replicated across ten runs. Rankings across the two regimes are only modestly correlated, and the automation winner loses augmentation on five of seven tasks. Assistance is not reliably positive. The unaided worker outranks every assisted condition on three tasks, and only one model's guidance beats no guidance on average.  These results suggest that automation ability is an incomplete proxy for assistance quality, motivating benchmarks that evaluate models according to the roles they play in human-AI and multi-agent systems. 
+
+
+
+%Most LLM benchmarks rank models on their ability to automate work tasks. In practice, however, models are often used to assist other (human or LLM) agents. The question that drives model selection is therefore not only which model produces the best output, but which model most improves the work of another (weaker) agent. We introduce a unified framework that evaluates the capability of models to automate and augment another agent's performance. Across seven economically grounded real-world tasks, an assistant model writes assistance text for a standardized lower-capacity worker model, which produces the deliverable. In automation mode, the assistant produces the output directly. Outputs are scored through blind pairwise comparisons by an LLM judge panel with task-specific rubrics, replicated across ten runs. The two regimes produce vastly different rankings: model-level rank correlation is $\rho = 0.48$, and the automation winner loses augmentation on five of seven tasks. Assistance is not reliably positive. The unaided worker outranks every assisted condition on three tasks, and only one model's guidance beats no guidance on average.  These results suggest that automation ability is an incomplete proxy for assistance quality, motivating benchmarks that evaluate models according to the roles they play in human-AI and multi-agent systems.
+
+% We consider seven economically grounded practical work tasks spanning structured planning, analytical work, and human-facing services. For each task, in augmentation mode, an assistant model produces assistance text that is passed to a standardized lower-capacity worker model that produces the output. In automation  mode, the assistant model also produces the output on the same task without coordinating with another agent. Every output is scored through blind pairwise comparisons by a panel of LLM judges on a customized rubric, with rankings replicated across ten independent runs.
+
+
+
+
+
+
+%% OLD %%
+
+
+
+%Most LLM benchmarks rank models on a single ability: how well a model completes a task on its own. But that is often not how AI is used in practice. Frequently, a stronger model assists another agent, either a human worker or a weaker assistant model by providing guidance on task planning and execution, while the other agent produces the final output. The question that drives model selection is therefore not only which model produces the best output, but which model most improves the work of another agent. These are distinct capabilities, and we understand little about how models compare on the capability to assist another agent. We introduce a unified framework that evaluates the capability of models for automation as well as augmentation for another agent's performance on real world tasks. 
+
+%We consider seven economically grounded practical work tasks spanning structured planning, analytical work, and human-facing services. For each task, in augmentation mode, an assistant model produces assistance text (a plan, checklist, and self-review), that is passed to a standardized lower-capacity worker model that produces the output. In automation  mode, the same model also produces the output on the same task without coordinating with another agent. 
+
+%Every output is scored through blind pairwise comparisons by a panel of LLM judges on a customized rubric, with rankings replicated across ten independent runs. 
+
+%Automation and augmentation produce substantially different rankings: model-level rank correlation between regimes is ρ = 0.48, and the automation winner loses the augmentation regime on five of seven tasks. Assistance is not reliably positive — the unaided worker outranks every assisted condition on three of seven tasks, and only one model's guidance beats no guidance on average. Reversals can be extreme: the best automation model on one task is among the worst assistants on the same task. Direct task-solving ability is an incomplete proxy for assistance value; the relevant question for human-in-the-loop and multi-agent systems is not "which model is best?" but "which model, in which role, on which task?"
+
+
+%Our main result suggests that automation and augmentation produce substantially different rankings. 
+%On five of seven tasks, the model that is dominates in automation mode, does not win in augmentation mode. Further, on three of seven tasks, the worker models output worsens with assistance rather than improving. More generally, while automation rankings are concentrated and consistent with conventional capability orderings, augmentation rankings are more dispersed and task-dependent. No assistant dominates across tasks, and several strong direct solvers perform relatively poorly as assistants. These findings suggest that direct task-solving ability (automation) is an incomplete proxy for assistance quality (augmentation). For human-in-the-loop and multi-agent systems, our framework provides an alternate way to guage model capabilities that take into account the role and tasks at hand.
+\end{abstract}
+
+
+
+\section{Introduction}
+
+    \input{introduction}   
+
+
+    %\subsection{Main Contributions}
+
+    %1. Dual-regime role-swap on the same models
+    %Most benchmarks ask: “Can model X do the task?” You ask: “Is model X better as a direct solver or as an assistant that improves a fixed worker?” That role-swap scatter (automation rank vs augmentation rank for the same model across tasks) is a distinctive empirical object. I haven’t seen another benchmark that systematically runs the same frontier roster through both arms and compares rank profiles.
+    %2. Fixed-worker simulation to isolate assistant value
+    %Your augmentation arm is: focal model writes process-only scaffold → fixed GPT-3.5-Turbo worker produces deliverable. That is a deliberate identification strategy: hold execution constant, vary only the guidance. That is different from: real human-in-the-loop studies (messy, expensive, hard to reproduce) agent scaffolds (ReAct, map-reduce, Claude Code) that change the whole stack “model solves with chain-of-thought” (still one model end-to-end) Haupt \& Brynjolfsson explicitly allow simulated humans as a centaur-eval approximation. Your benchmark is a concrete, reproducible version of that idea for professional deliverables.
+    %3. Multi-domain professional simulation + panel judging
+    %You combine: 7 heterogeneous professional tasks (not just coding) pairwise tournament judging with leave-family-out task-specific rubrics cross-task rank-of-ranks matrices That sits between “one RCT in one workplace” and “one-shot MMLU-style QA.” It is broader than CentaurEval and more operational than the Haupt position paper.
+    %4. Measuring assistant quality, not just team outcome
+    %CentaurEval measures whether human+AI beats human alone and AI alone. You additionally measure whether different assistants produce different worker outcomes when the worker is held fixed — i.e. which model is the better coach/planner, not just the better solver.   
+
+    %We fill this gap by proposing a framework designed to evaluate AI models along two axes simultaneously: usage mode (automation vs. augmentation) and task domain. While prior work has discussed these modes separately, no existing study uses a unified pipeline to profile specific models across both dimensions and across a range of economically meaningful tasks. Our framework is general: it can in principle be applied to any task that produces an evaluable deliverable, and it yields model-specific profiles that constitute a comparative taxonomy not available from current leaderboards.
+
+    %This approach makes three contributions. First, it introduces a simulation-based evaluation protocol for studying human--AI collaboration at scale. Rather than requiring a separate field experiment for every model-task pairing, we instantiate distinct worker, assistant, and evaluator roles with AI models. This allows us to simulate both direct delegation and assisted production in a controlled, repeatable setting, while preserving the conceptual distinction between completing work and improving another worker's output.
+
+    %Second, the framework captures multi-dimensional performance. Rather than asking only whether a model is generally ``good,'' we ask whether it is better suited to replacing human judgment through automation or expanding a worker's effective capability through augmentation. Our results show that these rankings can diverge substantially across tasks, suggesting that automation and augmentation are empirically distinct model capabilities.
+
+    %Third, the framework produces model-specific profiles grounded in economically meaningful work. By anchoring task selection to occupationally relevant activities rather than purely academic benchmarks such as MMLU, our results are more directly relevant to organizations, policymakers, labor economists, and enterprise strategists. The resulting profiles indicate which models are stronger autonomous solvers, which are stronger scaffolders, and where model choice depends on task domain.
+
+\section{Related Literature}
+
+    \input{lit_review}
+
+\section{Methodology}
+\label{sec:methodology}
+
+    \input{methodology}
+    
+\section{Results}
+
+    \input{results}
+
+\section{Discussion}
+
+    \input{discussion}
+    
+\subsection{Limitations and Future Work}
+
+    \input{limitations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+
+\bibliographystyle{aaai2027}
+\bibliography{references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

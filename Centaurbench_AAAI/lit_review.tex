@@ -1,0 +1,39 @@
+\paragraph{Autonomous model evaluation.}
+General benchmarks such as MMLU, BIG-Bench, and HELM standardized broad
+comparisons of model knowledge, reasoning, and robustness
+\citep{hendrycks2021,srivastava2023,liang2023}. Newer evaluations increase
+realism by using industrial workflows, occupational tasks, and professional
+deliverables \citep{sopbench2025,gdpval2025,profbench2025,occubench2026,
+jobbench2026}. This progression makes automation evaluation more relevant to
+deployment, but the model remains responsible for the final output. It does
+not measure how much value the same model creates when another agent executes
+the task.
+
+\paragraph{Interactive assistance.}
+Field experiments show that generative AI can improve writing, programming,
+consulting, and customer-support performance
+\citep{noy2023,peng2023,dellacqua2023,brynjolfsson2025}, while other evidence
+shows that human--AI combinations can underperform the better party alone
+\citep{vaccaro2024}. These results establish that assistance value depends on
+the task, worker, and interaction design. Their goal, however, is usually to
+estimate the effect of access to one system, not to compare several candidate
+assistants while holding the worker and task fixed.
+
+Related multi-agent work studies stronger models teaching weaker models
+\citep{saha2023}, planning for weaker code generators \citep{gandhi2025}, and
+LLM tutoring quality \citep{macina2025}. These studies demonstrate that
+solving and assisting can require different capabilities, but focus on a
+single domain or interaction type. Similarly, HAPI evaluates human involvement
+in paid agent projects, but places the human in the assisting role
+\citep{upwork_hapi2025}. Our setting reverses that direction: the model under
+evaluation supplies guidance to a fixed worker.
+
+\paragraph{Positioning.}
+\citet{haupt2025} call for ``centaur evaluations'' that measure how AI
+improves another party's performance rather than only imitating its output,
+and \citet{fugener2026} formalize why automation and augmentation may have
+different returns. \textsc{CentaurBench} operationalizes this distinction as
+a controlled benchmark: the same model set is evaluated in both roles, on the
+same professional tasks, with the worker held fixed. This design enables the
+cross-mode rank comparison that autonomous benchmarks and single-system field
+experiments do not provide.

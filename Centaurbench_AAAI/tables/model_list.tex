@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Provider} & \textbf{Automation} & \textbf{Augmentation} & \textbf{Judge} \\
+\midrule
+GPT-3.5-Turbo     & OpenAI    & \checkmark & \textit{Worker} & \\
+\midrule
+Claude-Opus-4.8   & Anthropic & \checkmark & \checkmark      & \checkmark \\
+Claude-Sonnet-4.6 & Anthropic & \checkmark & \checkmark      & \\
+\midrule
+DeepSeek-V3.1     & DeepSeek  & \checkmark & \checkmark      & \checkmark \\
+\midrule
+Gemini-3.1-Pro    & Google    & \checkmark & \checkmark      & \checkmark \\
+\midrule
+GPT-4.1           & OpenAI    & \checkmark & \checkmark      & \checkmark \\
+GPT-OSS-120B      & OpenAI    & \checkmark & \checkmark      & \\
+GPT-5-Mini        & OpenAI    & \checkmark & \checkmark      & \\
+GPT-O4-Mini       & OpenAI    & \checkmark & \checkmark      & \\
+GPT-O3-Mini       & OpenAI    & \checkmark & \checkmark      & \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Models used in the evaluation and their assigned roles.} All focal models serve as direct solvers in the automation regime and as planning assistants in the augmentation regime. GPT-3.5-Turbo serves as the fixed worker in augmentation mode rather than as a focal model. Judges follow a leave-family-out constraint: each judge is excluded from evaluating outputs of models from its own provider family.}
+\label{tab:models}
+\end{table}

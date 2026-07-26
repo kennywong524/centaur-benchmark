@@ -1,0 +1,59 @@
+% This study should be read as an initial introduction of the simulation framework and a pilot evaluation, not as a definitive mapping of model capabilities across tasks and usage regimes. The results identify where distinctions between automation and augmentation appear most and provide preliminary model profiles that can guide subsequent empirical validation. Because the current evaluation relies on LLM judges, the findings should be interpreted as scalable simulation evidence rather than definitive human expert judgments. Validating a subset of tasks with domain experts remains a priority, particularly to assess whether assistant advantages observed in simulated settings persist in authentic workplace contexts.
+
+This study introduces a simulation and evaluation framework to measure models' ability to augment and automate tasks across usage modes. We present this as an initial pilot application; it should not be interpreted as a definitive mapping
+of model capabilities across tasks and usage modes. The results identify
+settings in which automation and augmentation rankings diverge and provide
+preliminary model profiles for subsequent validation. More broadly, the study
+motivates the development of assistance-oriented benchmarks rather than
+claiming to provide a comprehensive benchmark itself.
+
+Because the current evaluation relies on LLM judges, the findings constitute
+scalable simulation evidence rather than definitive human or domain-expert
+judgments. Although we use general and task-specific rubrics, multiple judges,
+leave-family-out evaluation, and repeated runs, these procedures cannot eliminate all evaluator bias. Human validation remains a priority, particularly for tasks such as counseling, tax preparation,
+tutoring, and operations research, where domain expertise and professional
+judgment are consequential to assess whether assistant advantages observed in simulated settings persist in authentic workplace contexts.
+
+Several extensions are especially important. First, the present design evaluates augmentation through a single assistance text passed to a fixed worker. Real professional workflows are often iterative: assistants clarify requirements,
+revise plans, and respond to feedback across multiple turns. Extending the
+framework to multi-turn and agentic settings, in which an assistant contributes
+throughout an evolving workflow rather than through one-shot guidance, is a
+natural next step.
+
+Second, all augmentation conditions use the same worker model, GPT-3.5-Turbo. Holding the worker fixed isolates variation in the assistance
+provided, but it also limits generalizability. Guidance that helps one worker may not transfer to another. A stronger or differently aligned worker may need less assistance, while a weaker worker may benefit more from structured
+guidance. Future studies should vary worker capability and model family to test
+whether assistant rankings remain stable across downstream worker models.
+
+Third, the pilot includes seven professional tasks and ten independent
+generation-and-evaluation runs. Replication improves the stability of the
+reported estimates, but the task set remains modest relative to the diversity
+of real-world, occupational tasks. Expanding the evaluation to additional tasks, industries, risk levels, and deliverable formats would provide stronger evidence about the generalizability of role-specific model performance.
+
+
+External validation should combine domain expertise with authentic workplace
+tasks. Upwork's Human+Agent Productivity Index (HAPI) \citep{upwork_hapi2025}, for example, emphasizes verified marketplace
+deliverables and human rubric scoring. Our design instead holds the downstream
+worker fixed to isolate differences in assistance quality across models at
+scale. Future work could combine these strengths by using workplace-grounded
+tasks, validating a preregistered subset with domain experts, and explicitly
+comparing automation and augmentation rankings. This would establish whether
+the preferences of LLM judges correspond to expert assessments of final-output quality, guidance usefulness, and workplace value.
+
+% Equally important is external validation with human experts and, where appropriate, human-subject studies or deployment-oriented case studies. In Upwork's Human+Agent Productivity Index (HAPI) \citep{upwork_hapi2025}, collaboration with human experts on verified marketplace deliverables and human rubric scoring is a highlighted component of the experiment. Our framework instead holds the downstream worker fixed to isolate assistant quality across frontier models at scale. A priority for future work is combining these strengths, from marketplace-grounded tasks, human validation on a subset, and explicit automation-augmentation ranking for model selection. Such validation would help determine whether pairwise LLM-judge rankings align with expert assessments of output quality, guidance usefulness, and real-world utility.
+
+%The best mathematicians are not necessarily the best mathematics teachers, and the highest-ranked tennis players are not necessarily the best coaches. As AI systems increasingly advise humans and coordinate with other models, we need to develop a more robust way to evaluate not only a model's ability to automate tasks, but also its capability to augment them. This study offers an initial framework for making that distinction measurable and motivates a broader evaluation agenda organized around the role a model plays, the worker it supports, and the task they jointly perform. More generally, many have called for a world where AI systems do not automate human work, but instead support human flourishing by augmenting our capabilities to superhuman levels. If this dream is to be achieved, efforts like CentaurBench offer one small step in reframing the conversation on what the future of AI progress should look like. 
+
+The best mathematicians are not necessarily the best mathematics teachers, and the highest-ranked tennis players are not necessarily the best coaches. As AI
+systems increasingly advise humans and coordinate with other models, evaluation
+must measure not only a model's ability to automate tasks, but also its capacity
+to augment the performance of others. This study offers an initial framework
+for making that distinction measurable and motivates a broader evaluation
+agenda organized around the role a model plays, the worker it supports, and the
+task they jointly perform. 
+
+More broadly, realizing the potential of AI to complement human judgment, expand human capability, and support human
+flourishing will require measures of progress that extend beyond autonomous
+task completion. Our framework represents one step towards reframing AI
+progress around not only what systems can accomplish independently, but also
+how effectively they enable humans and other agents to accomplish even more.

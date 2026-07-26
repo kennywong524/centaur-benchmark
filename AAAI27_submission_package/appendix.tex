@@ -1,0 +1,114 @@
+\appendix
+\section{Models and Evaluators}
+\label{app:models}
+Table~\ref{tab:models} lists the assistant models evaluated in automation and augmentation, the fixed worker model used in augmentation, and the LLM-as-judge panel. Model families are grouped to match the leave-one-family-out judging rule described in the main paper's methodology section.
+
+\input{tables/model_list}
+
+\section{Task Prompts and Evaluation Rubrics}
+\label{app:prompts}
+\input{prompts_evals}
+
+\section{Rank Tables With Standard Error}
+\label{app:rank-tables}
+
+\paragraph{Construction of uncertainty estimates.}
+For each task--model cell, we report the mean rank across the ten independent
+runs and its standard error across those ten observations. Specifically, for each model we first average its ranks across the seven tasks within each run, yielding ten run-level average ranks, and then calculate the standard error across those ten values.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/figureA_automation_heatmap_mean_se.png}
+    \caption{Automation mean ranks by task with standard error across ten independent runs.}
+    \label{fig:automation-heatmap-appendix}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/figureA_augmentation_heatmap_mean_se.png}
+    \caption{Augmentation mean ranks by task with standard error across ten independent runs.}
+    \label{fig:augmentation-heatmap-appendix}
+\end{figure}
+
+
+\section{Best Model by Task and Usage Mode}
+\label{app:best-model-table}
+
+\input{tables/table_best_model_by_task}
+
+\section{General Rubric Profiles}
+\label{app:general-rubrics}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.82\linewidth]{figures/figure4_general_rubric_profiles.png}
+    \caption{
+    \textbf{Average general-rubric scores in the augmentation mode, aggregated across tasks and judges.}
+    Scores are shown for instruction following, accuracy and specificity, practical usefulness, organization and readability, and tone/audience fit.
+    Profiles are relatively flat across dimensions for most models, indicating that ranking differences are not driven by specialization on a single general rubric axis.
+    }
+    \label{fig:general-rubric-profiles}
+    
+\end{figure}
+
+\section{Validity of LLM-as-Judge Evaluation}
+\label{app:llm-judge-validity}
+
+A limitation of this study is that final evaluations are conducted by LLM judges rather than by domain experts or crowdworkers. We use LLM judges because the framework is intended as a scalable pilot-stage evaluation pipeline across many models, tasks, and usage modes. We use multiple judges and leave-family-out restrictions to reduce self-preference and model-family bias. A model is not used to judge outputs from its own model family. We then aggregate rankings across eligible judges. This does not eliminate all judge bias, but it reduces the most direct form of self-evaluation and allows judge-level disagreement to be inspected. Therefore, we do not treat LLM judgments as ground truth. Instead, we implement several checks designed to assess whether the judging procedure is internally coherent and directionally valid.
+
+First, all judges use explicit task-specific and general rubrics rather than unconstrained preference judgments. Each pairwise comparison requires the judge to score both responses across micro-rubric dimensions before selecting a winner. This design makes the basis for each judgment auditable and allows us to compare final choices against the underlying rubric scores. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/figureA_pairwise_rubric_validation.png}
+    \caption{
+    \textbf{Validation of the rubric-guided pairwise judging procedure across ten independent runs.} Panel A compares each model--task--mode--judge cell's mean rubric score with its pairwise win rate ($r=0.53$; $n=4{,}200$ cells). Panel B reports, for each judge, the percentage of non-tied comparisons in which the final pairwise choice agrees with the option receiving the higher average rubric score. Agreement ranges from 98.9\% to 100.0\% across judges.}   
+    \label{fig:pairwise-rubric-validation}
+\end{figure}
+
+Second, we test whether pairwise choices align with rubric scores. Across 15,120 non-tied scored comparisons, judges select the option with the higher average rubric score in 99.7\% of cases. Choice–score consistency ranges from 98.9\% to 100.0\% across the four individual judges. At the model--task--mode--judge level, mean rubric scores are positively correlated with pairwise win rates ($r=0.53$ across 4,200 cells). This indicates that the pairwise tournament rankings are directionally consistent with the underlying dimension-level evaluations. 
+
+Third, we separately assess inter-judge reliability on output comparisons evaluated by at least two eligible judges. The leave-family-out design creates a partially crossed panel because a judge is ineligible whenever a comparison contains an output from its own model
+family. We consequently report both raw agreement percentage and Krippendorff's nominal alpha, which accommodates missing judge and adjusts for chance agreement. Before calculation, we map each choice to a canonical output-pair order so that randomized presentation as Option~1 or Option~2 cannot affect agreement. We retain one evaluation per judge and comparison, preventing comparisons with repeated evaluations from receiving additional weight.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/figureA_interjudge_reliability.png}
+    \caption{
+    \textbf{Inter-judge reliability across ten independent runs.} Panel A reports raw agreement and Krippendorff's nominal alpha overall and separately for augmentation and automation. Raw agreement is the share of
+    eligible judge-pair decisions selecting the same winner; alpha adjusts for chance agreement and accommodates missing ratings induced by leave-family-out evaluation. Panel B reports alpha by task and usage mode.
+    Only comparisons evaluated by at least two eligible judges are included.}
+    \label{fig:interjudge-reliability}
+\end{figure}
+
+Across 6,265 output comparisons evaluated by at least two eligible judges, the panel yields 11,257 judge-pair decisions. Judges select the same winner
+in 71.0\% of these decisions, with Krippendorff's nominal
+$\alpha=0.414$. Reliability is higher in automation
+(74.5\%; $\alpha=0.448$) than in augmentation
+(67.8\%; $\alpha=0.354$). Thirty-five comparisons with fewer than two valid ratings are excluded from the reliability calculation.
+
+Task-mode reliability varies substantively. Krippendorff's alpha ranges from 0.231 for operations research augmentation to 0.615 for market-trends automation. Automation produces higher agreement than augmentation overall and in every task shown in Figure~\ref{fig:interjudge-reliability}. These
+results indicate a meaningful but moderate common signal across judges rather than near-consensus. The lower agreement in augmentation also suggests that evaluating the downstream effects of assistance texts is more judge-dependent than evaluating direct task outputs. This finding further motivates the human-expert validation proposed in the limitations section.
+
+Fourth, we conduct criterion-validity checks using automation outputs, where external expectations about model capability are clearer. Figure~\ref{fig:criterion-validity} reports two held-out-judge checks. First, Claude-Opus-4.8 evaluates GPT-family automation outputs from GPT-3.5-Turbo, GPT-O3-Mini, GPT-4.1, GPT-O4-Mini, and GPT-5-Mini. Across ten runs and seven tasks, it recovers the prespecified release-order gradient in 89\% of ordered model-pair comparisons (624 of 700), with GPT-5-Mini receiving the best mean within-family rank. Second, GPT-4.1 evaluates Claude-Sonnet-4.6 and Claude-Opus-4.8. GPT-4.1 prefers Claude-Opus-4.8 in 62.9\% of the 70 task--run
+comparisons, and Opus receives the better mean within-family rank (1.37 versus 1.63). These checks provide an internal directional validation that the judging procedure recovers the prespecified within-family gradients used in this exercise. They, however, do not imply that the complete automation ordering should
+reproduce external benchmark rankings.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/figureA_criterion_validity.png}
+    \caption{\textbf{Criterion-validity checks using automation outputs across ten independent runs.} Panel A reports mean within-family rank for GPT-family models judged by Claude-Opus-4.8; the judge recovers the prespecified release-order gradient in 89\% of ordered comparisons. Panel B reports mean within-family rank for Claude-family models judged by GPT-4.1; Claude-Opus-4.8 is preferred in 62.9\% of task--run comparisons. Error bars show one standard deviation across task--run cells. Lower ranks indicate better performance.
+    }
+    \label{fig:criterion-validity}
+\end{figure}
+
+Finally, we preserve the full evaluation trace: rompts, assistance texts, final outputs, pairwise choices, rubric scores, and judge rationales. This makes the results inspectable and readers can examine whether rankings are supported by the underlying judgments and whether specific task-level outcomes appear substantively reasonable. It is important to stress that even with such robustness checks, they do not substitute for human expert validation. The strongest future validation would compare LLM judge rankings against domain expert rankings for a subset of tasks, especially tax preparation, counseling, tutoring, and operations research. We therefore interpret the current results as a scalable simulation-based benchmark and hypothesis-generation tool, and not as a final human-validated measure of workplace value.
+
+
+\section{Outputs for GPT-4.1 and DeepSeek-V3.1}
+\label{app:eval-examples}
+
+\FloatBarrier
+\input{eval-examples}
+\FloatBarrier

@@ -1,0 +1,446 @@
+
+% Box style: universal / system-level prompts (slate header)
+\tcbset{
+  systemprompt/.style={
+    colback=gray!6!white,
+    colframe=gray!45!black,
+    colbacktitle=gray!45!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    boxrule=0.5pt,
+    arc=3pt,
+    breakable,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt
+  }
+}
+
+% Box style: task prompts (blue header)
+\tcbset{
+  taskprompt/.style={
+    colback=blue!4!white,
+    colframe=blue!35!black,
+    colbacktitle=blue!35!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    boxrule=0.5pt,
+    arc=3pt,
+    breakable,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt
+  }
+}
+
+% Box style: evaluation rubrics (teal header)
+\tcbset{
+  rubricbox/.style={
+    colback=teal!4!white,
+    colframe=teal!40!black,
+    colbacktitle=teal!40!black,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    boxrule=0.5pt,
+    arc=3pt,
+    breakable,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt
+  }
+}
+
+% ---------------------------------------------------------------
+
+All task prompts and rubrics are reproduced in full below.
+Each task is evaluated using the universal judge prompt together
+with the task-specific rubric dimensions listed here.
+The augmentation condition additionally uses the universal
+assistance text prompt to generate planning guidance for the worker model.
+
+% ==============================================================
+\subsection{Universal Assistance Text Prompt}
+\label{appendix:scaffold}
+% ==============================================================
+
+\begin{tcolorbox}[systemprompt, title=Worker Instruction]
+You receive internal assistant guidance plus a client task.
+Use the guidance for planning only; never copy or restate it.
+Complete the client task fully and return only the complete final deliverable.
+\end{tcolorbox}
+
+\vspace{0.5em}
+
+\begin{tcolorbox}[systemprompt, title=Assistance Text Prompt (Assistant $\to$ Worker)]
+You are a planning coach helping another model prepare to complete a task.
+
+Your role is to provide \textbf{process guidance only}, not task content.
+
+Write a short 200--250 word guidance message that gives a three-phase workflow:
+
+\begin{enumerate}
+  \setlength{\itemsep}{2pt}
+  \item \textbf{Requirements Check}
+    \begin{itemize}
+      \setlength{\itemsep}{0pt}
+      \item Identify the deliverable, audience, tone, and constraints.
+      \item Note what a strong answer must include.
+    \end{itemize}
+  \item \textbf{Plan \& Structure}
+    \begin{itemize}
+      \setlength{\itemsep}{0pt}
+      \item Suggest a general response structure or sequence of sections.
+      \item Suggest how to balance completeness, clarity, and tone.
+    \end{itemize}
+  \item \textbf{Draft $\to$ Self-Review $\to$ Finalize}
+    \begin{itemize}
+      \setlength{\itemsep}{0pt}
+      \item Suggest a brief checklist for revising the answer before submission.
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Important rules:}
+\begin{itemize}
+  \setlength{\itemsep}{0pt}
+  \item Do \textbf{not} solve the task.
+  \item Do \textbf{not} provide topic-specific content, examples, or recommendations.
+  \item Do \textbf{not} write sentences that could be copied into the final answer.
+  \item Do \textbf{not} restate the task as a completed outline with filled-in content.
+  \item Keep the guidance generic and process-focused.
+\end{itemize}
+
+Format in Markdown under the heading:
+\texttt{**Assistant Guidance: Three-Phase Workflow**}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Universal Judge Prompt}
+\label{appendix:judge}
+% ==============================================================
+
+\begin{tcolorbox}[systemprompt, title=Universal Judge Prompt]
+You are an expert evaluator comparing two candidate responses to the same task.
+
+First, silently score each option from 1--10 on each rubric dimension below.
+A score of 1 means the response fails that dimension; 10 means it satisfies it
+excellently. Use the task-specific dimensions as primary criteria and the general
+dimensions as tie-breakers.
+
+\textbf{Primary rule:} prefer the response that would be more useful, accurate,
+complete, and reliable for the intended user. Do not reward verbosity unless it
+improves usefulness.
+
+\textbf{Task-specific rubric:} {[insert task-specific rubric below]}
+
+\textbf{General rubric:}
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Instruction following: satisfies all explicit requirements and constraints.
+  \item Accuracy and specificity: avoids false claims, vague filler, and unsupported
+        assumptions.
+  \item Practical usefulness: gives concrete, usable guidance or outputs.
+  \item Organization and readability: clear structure, easy to scan, appropriate
+        formatting.
+  \item Tone and audience fit: matches the role, user need, and professional context.
+\end{enumerate}
+
+After scoring, choose the better option overall based on the average score across all
+rubrics for both options. If both are flawed, choose the one with fewer serious
+errors. If one response violates a hard safety, legal, medical, or dietary constraint,
+strongly prefer the other response unless it has an equally serious issue.
+
+\textbf{Return only:} the final choice (\texttt{Option\_1} or \texttt{Option\_2}),
+the score for each rubric dimension (1--10) for both options, and the average score
+across all rubrics for both options. Structure the output clearly with headings for
+the final choice, all rubric scores, and the average score.
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Counseling}
+\label{appendix:counseling}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Counseling]
+Write a single-session supportive counseling-style response for a client who feels
+emotionally drained, anxious about work, and uncertain about life direction.
+The response must include:
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Empathic validation of the client's feelings without minimizing them.
+  \item A cautious identification of possible patterns such as burnout,
+        perfectionism, avoidance, low self-efficacy, or value-direction mismatch,
+        without diagnosing.
+  \item Evidence-informed framing using CBT, motivational interviewing, and/or
+        positive psychology in plain language.
+  \item Concrete next steps for stress regulation, thought reframing, values
+        clarification, and near-term goal setting.
+  \item A brief safety/limits note encouraging professional support if distress is
+        severe or persistent.
+  \item An encouraging close that reinforces agency and hope.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Counseling]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Empathy and therapeutic tone.
+  \item Appropriate pattern recognition without overdiagnosis.
+  \item Evidence-informed psychological framing.
+  \item Actionable coping and goal-setting recommendations.
+  \item Ethical boundaries and escalation guidance.
+  \item Coherence, warmth, and usefulness as a single-session response.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Travel Planning}
+\label{appendix:travel}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Travel Planning]
+Create a 5-day Tokyo itinerary for one traveler next month with a total budget of
+\$2,500 USD, excluding passport costs. The traveler is departing from San Francisco.
+Clearly state assumptions and give clarifying questions before the provisional plan.
+Use realistic estimates, label them as estimates, and keep the plan budget-aware.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Travel Planning]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Completeness: covers questions, costs, hotels, transport,
+        customs/regulations, itinerary, and budget confirmation.
+  \item Cost realism and arithmetic: flights, lodging, transport, food/activities,
+        and total are plausible and correctly summed. Penalize outputs that exceed
+        the budget.
+  \item Hotel and transport practicality: viable hotel options, airport/transit
+        guidance, rail/pass advice.
+  \item Itinerary quality: 5 days with morning/afternoon/evening plans that are
+        geographically sensible and well-optimized for distance and fatigue.
+  \item Travel-agent professionalism: clear, customer-focused, with appropriate
+        caveats around estimates.
+  \item Handling uncertainty: asks clarifying questions for missing information
+        while still providing a useful provisional plan.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Meal Planning}
+\label{appendix:meal}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Meal Planning]
+Create a cheap, simple 7-day meal plan for a 31-year-old Australian adult with
+shellfish and gluten allergies, lactose and onion intolerance, and preferences for
+meat, potatoes, Mexican, Thai, and Indian flavors. Avoid very salty or very sweet
+foods and account for super-taster sensitivity by using mild, adjustable seasoning.
+Include breakfast, lunch, dinner, and simple snacks for each day, plus a grocery
+list and brief prep notes. Do not include shellfish, gluten-containing ingredients,
+lactose-containing dairy, or onion.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Meal Planning]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Dietary safety: strictly avoids shellfish, gluten, lactose, and onion.
+  \item Preference fit: uses liked cuisines and foods while avoiding very
+        salty/sweet flavors.
+  \item Affordability: grocery list items are readily available at common grocery
+        stores and not excessively expensive.
+  \item Nutritional adequacy and variety: the plan is not overly repetitive and
+        covers proteins, carbohydrates, vegetables, and fruits.
+  \item Simplicity and usability: easy to follow and clearly structured for the
+        target audience.
+  \item Completeness: covers breakfast, lunch, dinner, and snacks for each day,
+        plus a grocery list and prep notes. Penalize any missing components.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Tax Preparation}
+\label{appendix:tax}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Tax Preparation]
+Assume tax year 2025 and state: California. A client brings partially completed federal and California returns. Review the provided data, identify discrepancies, explain the applicable federal/state rules, recalculate key figures using stated assumptions, and explain what forms/schedules need correction. If information is insufficient for an exact tax liability, state what is missing and provide a reasonable estimate or calculation framework.
+
+\medskip
+\textbf{Client-provided facts:}
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \item W-2 wages: \$68,500.
+  \item Freelance/contract income: \$4,200 reported on Form 1099-NEC.
+  \item Business expenses for freelance work: not yet provided.
+  \item Mortgage interest paid on Form 1098: \$9,800.
+  \item California property tax paid: \$4,800.
+  \item California income tax withheld: \$2,900.
+  \item One dependent listed: a 22-year-old full-time college student who lived with the client for 9 months. The student earned \$18,000 from a part-time job; the client says the student used most earnings for savings and personal expenses, and the client paid more than half of household costs and more than half of the student's total support.
+  \item Filing status selected by the client: Single.
+\end{itemize}
+
+\medskip
+\textbf{Pre-filled portions of the client's federal and California returns:}
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \item Form 1040 includes W-2 wages of \$68,500.
+  \item Form 1040 includes freelance income of \$2,400 instead of the \$4,200 shown on the 1099-NEC.
+  \item No Schedule~C has been prepared.
+  \item No Schedule~SE has been prepared, and no self-employment tax appears on Schedule~2.
+  \item Form 1040 Line~12 shows a deduction of \$9,800 labeled as the standard deduction.
+  \item No Schedule~A has been prepared even though mortgage interest, property tax, and state tax withholding are available.
+  \item The dependent is claimed as qualifying for the Child Tax Credit.
+  \item The return does not analyze whether Head of Household filing status is available.
+  \item California Form 540 shows federal AGI carried over as \$62,000.
+  \item California tax was computed using the uncorrected federal income figures.
+\end{itemize}
+
+\medskip
+All calculations were done by the client before coming to you. Do not assume the pre-filled entries are correct.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Tax Preparation]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Rule accuracy: correctly applies federal and California rules regarding
+        self-employment income, dependent rules, mortgage interest, standard
+        deduction, and state/federal differences without seeking loopholes.
+  \item Error detection: there are 10 expected discrepancies/issues. Score according to how many are detected (10 detected $= 10$; 2--9 detected $=$ that number; 0--1 detected $= 1$). Expected issues:
+      \begin{enumerate}
+        \setlength{\itemsep}{0pt}
+        \item[\textit{a.}] Catches the \$2,400 vs.\ \$4,200 freelance income mismatch.
+        \item[\textit{b.}] Identifies missing Schedule~C.
+        \item[\textit{c.}] Identifies missing Schedule~SE\slash self-employment tax.
+        \item[\textit{d.}] Identifies that \$9,800 mortgage interest is not the standard deduction.
+        \item[\textit{e.}] Identifies missing Schedule~A\slash itemization comparison.
+        \item[\textit{f.}] Identifies improper Child Tax Credit treatment for a 22-year-old.
+        \item[\textit{g.}] Analyzes possible Credit for Other Dependents instead.
+        \item[\textit{h.}] Analyzes whether Single should be changed to Head of Household given the dependent and household-cost facts.
+        \item[\textit{i.}] Catches California AGI carryover inconsistency.
+        \item[\textit{j.}] Catches California tax computed from uncorrected federal figures.
+      \end{enumerate}
+  \item Calculation quality: provides income, AGI, deductions, taxable income,
+        self-employment tax, and estimates where possible.
+  \item Form guidance: clear guidance on Schedule~C, Schedule~SE, Schedule~A vs.\
+        standard deduction, and Form~1040 placement.
+  \item Dependent analysis: handles the 22-year-old full-time student with
+        \$18{,}000 income cautiously and correctly.
+  \item Clear communication: translates dense tax rules into plain English so the
+        client understands what they owe and why.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Tutoring}
+\label{appendix:tutoring}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Tutoring]
+Prepare a classroom-ready Grade~3 lesson segment for 8-year-olds on improper
+fractions and mixed numbers. Include a clear learning objective, simple explanation,
+analogy, worked examples, common misconceptions, interactive activity, checks for
+understanding, and a short wrap-up. Use age-appropriate language and avoid abstract
+notation without visual support.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Tutoring]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Mathematical correctness: accurate representation of concepts with no
+        errors. Penalize any incorrect examples or inaccurate concepts.
+  \item Age-appropriate explanation and pacing: clear, concise, logically ordered,
+        and avoids abstract notation unsuitable for 8-year-olds.
+  \item Analogy quality: appropriate and accessible analogy, not too abstract for
+        the target age group.
+  \item Misconception handling: clearly identifies common errors, debunks them
+        effectively, and provides easy-to-remember strategies for students.
+  \item Classroom practicality and engagement: designed for immediate classroom
+        use with interactive elements that maintain student interest.
+  \item Assessment and checks for understanding: includes formative assessment
+        techniques such as thumbs up/down, exit tickets with a visual fraction
+        problem, or think-pair-share.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Operations Research}
+\label{appendix:or}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Operations Research]
+You are an Operations Research Analyst at a national logistics firm that manages
+inventory and delivery for hundreds of retail stores. Delivery delays and rising
+fuel costs are worrying senior management. They have asked you to identify the key
+operational bottlenecks and propose data-driven strategies to improve overall
+efficiency.
+
+Your deliverable is a concise internal report (300--400 words) for executives that:
+\begin{itemize}
+  \setlength{\itemsep}{0pt}
+  \item Defines the data to collect and how you would validate it.
+  \item Outlines an analytical/optimization framework to evaluate alternate
+        delivery schedules or warehouse allocations.
+  \item Recommends at least two practical solutions that balance cost, service
+        levels, and resource constraints, with trade-offs and risks stated.
+  \item Specifies KPIs to monitor and explains how results would be communicated
+        to management.
+\end{itemize}
+Write clearly, with headings and bullet points where useful.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Operations Research]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Data and validation: identifies route, demand, fleet, warehouse, service,
+        and cost data; explains collection techniques and validation methods.
+  \item Analytical framework: proposes suitable OR methods such as MILP,
+        simulation, scenario analysis, or routing optimization, formulated clearly
+        enough to be tractable.
+  \item Recommendations: at least two practical solutions addressing bottlenecks,
+        with clear lines of action.
+  \item Trade-offs and risks: acknowledges pitfalls and states cost, service, and
+        resource implications explicitly without overconfidence.
+  \item KPIs and communication: clear metrics and an executive reporting plan
+        accessible to both technical and non-technical stakeholders.
+  \item Executive memo quality: concise, within the 300--400 word limit,
+        well-structured, self-contained, and professionally toned.
+\end{enumerate}
+\end{tcolorbox}
+
+% ==============================================================
+\subsection{Market Trends Analysis}
+\label{appendix:market}
+% ==============================================================
+
+\begin{tcolorbox}[taskprompt, title=Task Prompt — Market Trends Analysis]
+Imagine you are briefing a client on the U.S.\ energy market in 2026. Identify
+exactly three positive or bullish trends and exactly three negative or bearish trends
+likely to influence natural gas prices this year. Discuss briefly how factors like
+supply, demand, weather, storage, LNG exports, infrastructure, and policy interact
+to shape these trends. Conclude with 2--3 sentences summarizing the overall outlook
+for investors or companies in the energy sector.
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title=Evaluation Rubric — Market Trends Analysis]
+Score each dimension from 1 (lowest) to 10 (highest):
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \item Trend completeness and balance: identifies exactly three bullish and
+        exactly three bearish trends. Penalize missing, extra, or poorly
+        categorized trends.
+  \item Economic and market accuracy: correctly explains natural gas market
+        drivers including supply, demand, storage, LNG exports, weather,
+        infrastructure, and policy. Penalize fabricated statistics or
+        implausible causal logic.
+  \item Causal reasoning and interaction effects: explains how drivers interact
+        rather than listing trends in isolation.
+  \item Client usefulness and actionability: provides insights useful to investors
+        or energy-sector firms, including practical implications and risks.
+  \item Specificity without overclaiming: gives grounded analysis while
+        appropriately caveating uncertainty. Penalize vague filler or confident
+        forecasts without basis.
+  \item Conclusion quality: ends with a clear 2--3 sentence outlook that
+        synthesizes bullish and bearish pressures for the intended audience.
+\end{enumerate}
+\end{tcolorbox}

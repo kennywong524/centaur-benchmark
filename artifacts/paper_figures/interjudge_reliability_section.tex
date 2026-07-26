@@ -1,0 +1,55 @@
+\subsection{Inter-Judge Reliability}
+\label{app:interjudge-reliability}
+
+The choice--score consistency reported above is an internal-consistency
+measure: it asks whether a judge's selected winner is also the response to
+which that judge assigned the higher mean rubric score. It does not establish
+that different judges select the same winner. We therefore separately assess
+inter-judge reliability on output comparisons evaluated by at least two
+eligible judges.
+
+The leave-family-out design creates a partially crossed panel because a judge
+is ineligible whenever a comparison contains an output from its own model
+family. We consequently report both raw agreement and Krippendorff's nominal
+alpha, which accommodates missing judge--comparison cells and adjusts for
+chance agreement. Before calculation, we map each choice to a canonical
+output-pair order so that randomized presentation as Option~1 or Option~2
+cannot affect agreement. We retain one evaluation per judge and comparison,
+preventing comparisons with repeated evaluations from receiving additional
+weight.
+
+Across 6,265 output comparisons evaluated by at least two eligible judges,
+the panel generates 11,257 judge-pair decisions. Judges select the same winner
+in 71.0\% of these decisions, with Krippendorff's nominal
+$\alpha=0.414$. Reliability is higher in automation
+(74.5\%; $\alpha=0.448$) than in augmentation
+(67.8\%; $\alpha=0.354$). Thirty-five comparisons with fewer than two valid
+ratings are excluded from the reliability calculation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]
+    {paper_figures/figureA_interjudge_reliability.pdf}
+    \caption{
+    \textbf{Inter-judge reliability across ten independent runs.}
+    Panel A reports raw agreement and Krippendorff's nominal alpha overall and
+    separately for augmentation and automation. Raw agreement is the share of
+    eligible judge-pair decisions selecting the same canonical winner; alpha
+    adjusts for chance agreement and accommodates missing ratings induced by
+    leave-family-out evaluation. Panel B reports alpha by task and usage mode.
+    Only comparisons evaluated by at least two eligible judges are included.
+    }
+    \label{fig:interjudge-reliability}
+\end{figure}
+
+Task--mode reliability varies substantively. Krippendorff's alpha ranges from
+0.231 for operations-research augmentation to 0.615 for market-trends
+automation. Automation produces higher agreement than augmentation overall
+and in every task shown in Figure~\ref{fig:interjudge-reliability}. These
+results indicate a meaningful but moderate common signal across judges rather
+than near-consensus. The lower agreement in augmentation also suggests that
+evaluating the downstream effects of assistance texts is more
+judge-dependent than evaluating direct task outputs. We therefore interpret
+aggregated rankings as panel estimates that reduce idiosyncratic judge effects,
+not as ground-truth labels. This finding further motivates the human-expert
+validation proposed in the limitations section.

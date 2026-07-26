@@ -1,0 +1,49 @@
+{
+  "method": {
+    "agreement": "Share of all eligible judge-pair decisions that select the same canonical winner on the same output comparison.",
+    "alpha": "Krippendorff's alpha with nominal distance, calculated on the partially crossed leave-family-out panel.",
+    "repeat_handling": "Only replicate_id=0 is retained so the initial meal-plan n_evals=3 artifact does not receive extra weight."
+  },
+  "audit": {
+    "raw_judgment_rows": 16604,
+    "parse_failures": 62,
+    "nonprimary_repeated_evaluations_excluded": 1484,
+    "duplicate_judge_item_rows": 0,
+    "usable_primary_ratings": 15061
+  },
+  "summary": [
+    {
+      "scope": "overall",
+      "mode": "all",
+      "items_with_overlap": 6265,
+      "single_rated_items_excluded": 35,
+      "judge_pair_decisions": 11257,
+      "agreement_rate": 0.7098694145864796,
+      "unanimous_item_rate": 0.6422984836392658,
+      "krippendorff_alpha_nominal": 0.4136664972984173,
+      "ratings_in_alpha": 15026
+    },
+    {
+      "scope": "augmentation",
+      "mode": "augmentation",
+      "items_with_overlap": 3142,
+      "single_rated_items_excluded": 8,
+      "judge_pair_decisions": 5928,
+      "agreement_rate": 0.6784750337381916,
+      "unanimous_item_rate": 0.6059834500318269,
+      "krippendorff_alpha_nominal": 0.35443598013484867,
+      "ratings_in_alpha": 7677
+    },
+    {
+      "scope": "automation",
+      "mode": "automation",
+      "items_with_overlap": 3123,
+      "single_rated_items_excluded": 27,
+      "judge_pair_decisions": 5329,
+      "agreement_rate": 0.744792644023269,
+      "unanimous_item_rate": 0.6788344540505924,
+      "krippendorff_alpha_nominal": 0.4479012399618785,
+      "ratings_in_alpha": 7349
+    }
+  ]
+}
