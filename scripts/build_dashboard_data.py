@@ -9,57 +9,67 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_RUN_ID = "20260629_public_rep10"
+DEFAULT_RUN_ID = "run-10"
 RUNS = [
     {
-        "id": "20260610_scaffold_strict_v4",
+        "id": "run-01",
+        "source_id": "20260610_scaffold_strict_v4",
         "label": "Run 1",
-        "description": "Independent run of the full pipeline.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260612_fresh_rep1",
+        "id": "run-02",
+        "source_id": "20260612_fresh_rep1",
         "label": "Run 2",
-        "description": "Independent run of the full pipeline.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260612_fresh_rep2",
+        "id": "run-03",
+        "source_id": "20260612_fresh_rep2",
         "label": "Run 3",
-        "description": "Independent run of the full pipeline.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep4",
+        "id": "run-04",
+        "source_id": "20260629_public_rep4",
         "label": "Run 4",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep5",
+        "id": "run-05",
+        "source_id": "20260629_public_rep5",
         "label": "Run 5",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep6",
+        "id": "run-06",
+        "source_id": "20260629_public_rep6",
         "label": "Run 6",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep7",
+        "id": "run-07",
+        "source_id": "20260629_public_rep7",
         "label": "Run 7",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep8",
+        "id": "run-08",
+        "source_id": "20260629_public_rep8",
         "label": "Run 8",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep9",
+        "id": "run-09",
+        "source_id": "20260629_public_rep9",
         "label": "Run 9",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
     {
-        "id": "20260629_public_rep10",
+        "id": "run-10",
+        "source_id": "20260629_public_rep10",
         "label": "Run 10",
-        "description": "Public-release replication run.",
+        "description": "Independent benchmark replication.",
     },
 ]
 TASKS = [
@@ -281,7 +291,7 @@ def qual_run_bundle(bundle: dict) -> dict:
 def main() -> None:
     dashboard = ROOT / "dashboard"
     dashboard.mkdir(exist_ok=True)
-    runs_by_id_full = {run["id"]: load_run_bundle(run["id"]) for run in RUNS}
+    runs_by_id_full = {run["id"]: load_run_bundle(run["source_id"]) for run in RUNS}
     default_bundle = runs_by_id_full[DEFAULT_RUN_ID]
     stats_by_run = {run_id: run_stats(bundle) for run_id, bundle in runs_by_id_full.items()}
     runs_by_id_meta = {run_id: meta_run_bundle(bundle) for run_id, bundle in runs_by_id_full.items()}
@@ -291,7 +301,10 @@ def main() -> None:
         "meta": {
             "run_id": DEFAULT_RUN_ID,
             "default_run_id": DEFAULT_RUN_ID,
-            "replicate_runs": RUNS,
+            "replicate_runs": [
+                {key: value for key, value in run.items() if key != "source_id"}
+                for run in RUNS
+            ],
             "run_stats": stats_by_run,
             "generated_from": str(ROOT),
             "notes": "Static dashboard meta bundle (rankings, heatmaps, judge diagnostics). Qualitative outputs lazy-load separately.",
