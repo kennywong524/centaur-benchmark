@@ -1,0 +1,21 @@
+{
+  "policy": "A judge is excluded when its provider family matches the worker or assistant family of either candidate.",
+  "worker_family": "openai",
+  "excluded_judge": "gpt-4.1",
+  "eligible_judges": [
+    "Claude-Opus-4.8",
+    "DeepSeek-V3.1",
+    "Gemini-3.1-Pro"
+  ],
+  "judgments_kept": 100,
+  "judgments_excluded": 10,
+  "eligible_pair_counts": {
+    "anthropic/claude-opus-4-8": 28,
+    "deepseek-ai/DeepSeek-V3.1": 36,
+    "google/gemini-3.1-pro": 36
+  },
+  "ranking_basis": "Mean of eligible judge-specific candidate ranks; lower is better.",
+  "computed_at": "2026-09-25T18:06:58.861576+00:00",
+  "prior_derived_files": "/Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/travel_planning/20260924_gpt41_worker_pilot/augmentation/before_strict_leave_family_out",
+  "raw_excluded_judgments_retained_at": "/Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/travel_planning/20260924_gpt41_worker_pilot/augmentation/pairwise_judgments_GPT-4.1.csv"
+}

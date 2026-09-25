@@ -1,0 +1,53 @@
+{
+  "worker": "gpt-4.1",
+  "source": "/Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/travel_planning/20260610_scaffold_strict_v4/augmentation/scaffolds",
+  "date_context_added": false,
+  "task_prompt": "Create a 5-day Tokyo itinerary for one traveler next month with a total budget of $2,500 USD, excluding passport costs. The traveler is departing from San Francisco. Clearly state assumptions and give clarifying questions before the provisional plan. Use realistic estimates, label them as estimates, and keep the plan budget-aware.",
+  "worker_max_tokens": 8192,
+  "replicates": 1,
+  "edsl_version": "1.0.8",
+  "judges": {
+    "gpt-4.1": "GPT-4.1",
+    "anthropic/claude-opus-4-8": "Claude-Opus-4.8",
+    "google/gemini-3.1-pro": "Gemini-3.1-Pro",
+    "deepseek-ai/DeepSeek-V3.1": "DeepSeek-V3.1"
+  },
+  "started": "2026-09-24T18:08:39.458456+00:00",
+  "balance_before": {
+    "credits": 7898.05,
+    "usd": 78.98
+  },
+  "actual_routes": {
+    "worker_gpt41": "configured OpenAI provider key via EDSL 1.0.8",
+    "judge_gpt41": "configured OpenAI provider key via EDSL 1.0.8",
+    "judge_claude": "configured Anthropic provider key via EDSL 1.0.8",
+    "judge_gemini": "explicit Expected Parrot /execute, deep_infra",
+    "judge_deepseek": "explicit Expected Parrot /execute, deep_infra"
+  },
+  "balance_after": {
+    "credits": 7849.03,
+    "usd": 78.49
+  },
+  "completed": "2026-09-25T15:27:39.227363+00:00",
+  "strict_leave_family_out": {
+    "policy": "A judge is excluded when its provider family matches the worker or assistant family of either candidate.",
+    "worker_family": "openai",
+    "excluded_judge": "gpt-4.1",
+    "eligible_judges": [
+      "Claude-Opus-4.8",
+      "DeepSeek-V3.1",
+      "Gemini-3.1-Pro"
+    ],
+    "judgments_kept": 100,
+    "judgments_excluded": 10,
+    "eligible_pair_counts": {
+      "anthropic/claude-opus-4-8": 28,
+      "deepseek-ai/DeepSeek-V3.1": 36,
+      "google/gemini-3.1-pro": 36
+    },
+    "ranking_basis": "Mean of eligible judge-specific candidate ranks; lower is better.",
+    "computed_at": "2026-09-25T18:06:58.861576+00:00",
+    "prior_derived_files": "/Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/travel_planning/20260924_gpt41_worker_pilot/augmentation/before_strict_leave_family_out",
+    "raw_excluded_judgments_retained_at": "/Users/kennywongchamcharoen/Downloads/centaur-benchmark-code/results/travel_planning/20260924_gpt41_worker_pilot/augmentation/pairwise_judgments_GPT-4.1.csv"
+  }
+}
