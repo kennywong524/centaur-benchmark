@@ -1,0 +1,897 @@
+left_idx,right_idx,replicate_id,judgment,winner,short_rationale,option_1_scores_json,option_2_scores_json,option_1_average,option_2_average,parse_ok,judge_model,judge_label
+1,0,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more strictly adheres to the allergy/intolerance constraints (no hidden gluten or onion-risk items), while Option 2 introduces multiple problematic ingredients: 'popcorn' repeatedly, garam masala and curry powder/paste that commonly contain onion/garlic, dairy-free mayo and hummus flagged only vaguely, and celery, plus it recommends salt-and-lemon cucumber only in Option 1. Option 2 has more variety but violates the mild-seasoning and onion-free intent through curry pastes/powders and salty deli turkey."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 5,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 6.3
+}",option_1,"Option 1 more strictly adheres to the allergy/intolerance constraints (no hidden gluten or onion-risk items), while Option 2 introduces multiple problematic ingredients: 'popcorn' repeatedly, garam masala and curry powder/paste that commonly contain onion/garlic, dairy-free mayo and hummus flagged only vaguely, and celery, plus it recommends salt-and-lemon cucumber only in Option 1. Option 2 has more variety but violates the mild-seasoning and onion-free intent through curry pastes/powders and salty deli turkey.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 5, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",7.5,6.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,0,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans respect the core allergy/intolerance constraints and flavor preferences, but Option 2 offers more variety, cuisine coverage (Thai, Indian, Mexican more distinctly represented), realistic portion-sized proteins, and a snack for every day plus every meal slot; Option 1 has slightly better label-check warnings but includes potential onion pitfalls (Mexican spice/tikka blends, hummus) and less variety. Option 2's specificity of named spices and consistent snack coverage give it a small edge."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.1,
+  ""option_2_average"": 7.7
+}",option_2,"Both plans respect the core allergy/intolerance constraints and flavor preferences, but Option 2 offers more variety, cuisine coverage (Thai, Indian, Mexican more distinctly represented), realistic portion-sized proteins, and a snack for every day plus every meal slot; Option 1 has slightly better label-check warnings but includes potential onion pitfalls (Mexican spice/tikka blends, hummus) and less variety. Option 2's specificity of named spices and consistent snack coverage give it a small edge.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",7.1,7.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more reliably honors the hard constraints (all wraps/breads explicitly gluten-free, coconut milk used for creaminess, no lactose-containing dairy), while Option 2 includes coconut yogurt correctly but risks gluten via unlabeled deli turkey and includes salty/potentially problematic items; Option 1 also better emphasizes onion-checks and mild seasoning. Both are strong, but Option 1 is safer and more complete."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 7.4
+}",option_1,"Option 1 more reliably honors the hard constraints (all wraps/breads explicitly gluten-free, coconut milk used for creaminess, no lactose-containing dairy), while Option 2 includes coconut yogurt correctly but risks gluten via unlabeled deli turkey and includes salty/potentially problematic items; Option 1 also better emphasizes onion-checks and mild seasoning. Both are strong, but Option 1 is safer and more complete.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.3,7.4,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,4,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 fully respects the constraints by avoiding onion and garlic entirely and never using sweet chili sauce, while Option 2 repeatedly violates the requirements by including garlic in multiple meals, sweet chili dipping sauce, gluten-free muesli/oat bars, and higher-sugar items like dates and cocoa bliss balls that clash with the 'avoid very sweet' and no-onion-family instructions."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 5.9
+}",option_1,"Option 1 fully respects the constraints by avoiding onion and garlic entirely and never using sweet chili sauce, while Option 2 repeatedly violates the requirements by including garlic in multiple meals, sweet chili dipping sauce, gluten-free muesli/oat bars, and higher-sugar items like dates and cocoa bliss balls that clash with the 'avoid very sweet' and no-onion-family instructions.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.2,5.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+5,0,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans are strong and allergen-aware, but Option 2 better honors the stated flavor preferences (distinct Mexican, Thai, and Indian dishes with garam masala, curry paste, lime, rice paper rolls), offers more variety, and provides clearer allergen-check reminders. Option 1 repeatedly lists 'garlic' in stir-fries without caution, which is a minor accuracy lapse given the onion-family sensitivity, though it is not strictly prohibited."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 9,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 8.3
+}",option_2,"Both plans are strong and allergen-aware, but Option 2 better honors the stated flavor preferences (distinct Mexican, Thai, and Indian dishes with garam masala, curry paste, lime, rice paper rolls), offers more variety, and provides clearer allergen-check reminders. Option 1 repeatedly lists 'garlic' in stir-fries without caution, which is a minor accuracy lapse given the onion-family sensitivity, though it is not strictly prohibited.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 9, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.5,8.3,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,6,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 strictly honors the constraints by using lactose-free/plant-based dairy throughout, whereas Option 2 repeatedly specifies 'lactose-free milk' but also violates the 'no very salty/sweet' and mild-seasoning constraints less, yet critically introduces smoothie bowls and muesli that lean sweet and adds beans/lentils/tofu that stray from the stated meat-and-potato preferences; Option 1 also has a more complete grocery list with quantities and better-tailored flavor profiles."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.7
+}",option_1,"Option 1 strictly honors the constraints by using lactose-free/plant-based dairy throughout, whereas Option 2 repeatedly specifies 'lactose-free milk' but also violates the 'no very salty/sweet' and mild-seasoning constraints less, yet critically introduces smoothie bowls and muesli that lean sweet and adds beans/lentils/tofu that stray from the stated meat-and-potato preferences; Option 1 also has a more complete grocery list with quantities and better-tailored flavor profiles.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.2,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+0,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 fully complies with all restrictions, while Option 2 violates the onion-intolerance constraint by including garlic in the drumsticks and dip recipe context, includes maple syrup despite the 'avoid very sweet' preference, and adds garlic to the grocery list. Option 1 is more consistently allergy-safe and adheres better to the mild/adjustable seasoning and no-sweet requirements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.6
+}",option_1,"Option 1 fully complies with all restrictions, while Option 2 violates the onion-intolerance constraint by including garlic in the drumsticks and dip recipe context, includes maple syrup despite the 'avoid very sweet' preference, and adds garlic to the grocery list. Option 1 is more consistently allergy-safe and adheres better to the mild/adjustable seasoning and no-sweet requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.2,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans meet the core allergy/intolerance constraints, but Option 2 more rigorously avoids hidden onion by omitting pre-made spice blends and building flavor from individual spices, ginger, and garlic, which better serves the super-taster and onion-intolerance requirements. Option 1 relies on pre-made tikka masala, Thai curry paste, Mexican blends, and coconut yogurt that commonly contain onion or trace lactose, creating higher allergen risk despite its slightly broader variety."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.4,
+  ""option_2_average"": 8.0
+}",option_2,"Both plans meet the core allergy/intolerance constraints, but Option 2 more rigorously avoids hidden onion by omitting pre-made spice blends and building flavor from individual spices, ginger, and garlic, which better serves the super-taster and onion-intolerance requirements. Option 1 relies on pre-made tikka masala, Thai curry paste, Mexican blends, and coconut yogurt that commonly contain onion or trace lactose, creating higher allergen risk despite its slightly broader variety.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.4,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,1,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 strictly respects all constraints including onion intolerance (uses onion-free hummus and no garlic), while Option 2 repeatedly includes garlic and 'sliced cucumber with salt and lemon' which conflicts with the onion-family avoidance and salt-minimization goals. Option 1 also offers greater variety across Mexican, Thai, and Indian flavors with clearer mild-seasoning guidance."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.1
+}",option_1,"Option 1 strictly respects all constraints including onion intolerance (uses onion-free hummus and no garlic), while Option 2 repeatedly includes garlic and 'sliced cucumber with salt and lemon' which conflicts with the onion-family avoidance and salt-minimization goals. Option 1 also offers greater variety across Mexican, Thai, and Indian flavors with clearer mild-seasoning guidance.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.2,6.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans meet the core dietary constraints well, but Option 2 more rigorously avoids allergen risks (no sweet chili sauce, tamari, or hidden-onion pre-made pastes flagged in Option 1), emphasizes fresh herbs and adjustable-at-table seasoning for the super-taster, and better exploits leftovers for cost and simplicity. Option 1 offers more variety but includes several higher-risk items (sweet chili sauce, muesli, oat bars, hummus) and some sweeter foods that partly conflict with the avoid-very-sweet and mild-flavor constraints."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.2,
+  ""option_2_average"": 8.0
+}",option_2,"Both plans meet the core dietary constraints well, but Option 2 more rigorously avoids allergen risks (no sweet chili sauce, tamari, or hidden-onion pre-made pastes flagged in Option 1), emphasizes fresh herbs and adjustable-at-table seasoning for the super-taster, and better exploits leftovers for cost and simplicity. Option 1 offers more variety but includes several higher-risk items (sweet chili sauce, muesli, oat bars, hummus) and some sweeter foods that partly conflict with the avoid-very-sweet and mild-flavor constraints.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.2,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+1,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 strictly respects all hard constraints (no gluten, lactose, onion, shellfish) and keeps flavors mild and adjustable, whereas Option 2 repeatedly violates constraints with lactose-free milk that still contains milk protein, gluten-free soy sauce presence questions, balsamic/mustard risk, and includes onion-derived flavor bases in multiple items, plus stronger seasonings."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.1
+}",option_1,"Option 1 strictly respects all hard constraints (no gluten, lactose, onion, shellfish) and keeps flavors mild and adjustable, whereas Option 2 repeatedly violates constraints with lactose-free milk that still contains milk protein, gluten-free soy sauce presence questions, balsamic/mustard risk, and includes onion-derived flavor bases in multiple items, plus stronger seasonings.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.2,6.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans are well-organized and audience-appropriate, but Option 1 contains allergen-safety errors (uses gluten-containing standard oats/muesli phrasing loosely and includes onion-risk hummus/curry paste while also using celery which is fine, but critically Option 1's overnight oats and muesli plus green curry paste raise onion/gluten risk without emphasis). Option 2 more consistently avoids onion, better matches the stated flavor preferences (Mexican/Thai/Indian appear more frequently and deliberately), leverages leftovers for budget/simplicity, and gives clearer adjustable-seasoning guidance for the super-taster. Option 2 edges ahead on constraint fidelity and practical usefulness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 7.8
+}",option_2,"Both plans are well-organized and audience-appropriate, but Option 1 contains allergen-safety errors (uses gluten-containing standard oats/muesli phrasing loosely and includes onion-risk hummus/curry paste while also using celery which is fine, but critically Option 1's overnight oats and muesli plus green curry paste raise onion/gluten risk without emphasis). Option 2 more consistently avoids onion, better matches the stated flavor preferences (Mexican/Thai/Indian appear more frequently and deliberately), leverages leftovers for budget/simplicity, and gives clearer adjustable-seasoning guidance for the super-taster. Option 2 edges ahead on constraint fidelity and practical usefulness.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}",7.0,7.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,1,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans are strong, but Option 2 more rigorously honors the constraints: it avoids gluten-containing soy sauce and maple syrup (found in Option 1), better respects the no-sweet preference, and includes quantified grocery amounts. Option 1 violates the gluten-free rule with GF soy sauce that must be verified and adds maple syrup/sweet elements, plus uses garlic freely despite onion intolerance being a related allium concern; however Option 2 also uses garlic, so scoring reflects near-parity with Option 2 edging ahead on constraint fidelity and specificity."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 6.9,
+  ""option_2_average"": 7.5
+}",option_2,"Both plans are strong, but Option 2 more rigorously honors the constraints: it avoids gluten-containing soy sauce and maple syrup (found in Option 1), better respects the no-sweet preference, and includes quantified grocery amounts. Option 1 violates the gluten-free rule with GF soy sauce that must be verified and adds maple syrup/sweet elements, plus uses garlic freely despite onion intolerance being a related allium concern; however Option 2 also uses garlic, so scoring reflects near-parity with Option 2 edging ahead on constraint fidelity and specificity.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 6, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",6.9,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,2,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more reliably respects all constraints (avoids onion including garlic, keeps seasonings genuinely mild, and does not violate the no-very-salty rule), whereas Option 2 introduces garlic in two dishes, suggests salting cucumber, and relies more on packaged spice blends that risk hidden onion/gluten. Both are well-organized and budget-conscious, but Option 1 is safer and better tailored to the allergy and super-taster requirements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 more reliably respects all constraints (avoids onion including garlic, keeps seasonings genuinely mild, and does not violate the no-very-salty rule), whereas Option 2 introduces garlic in two dishes, suggests salting cucumber, and relies more on packaged spice blends that risk hidden onion/gluten. Both are well-organized and budget-conscious, but Option 1 is safer and better tailored to the allergy and super-taster requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 8}",8.2,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,2,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans cover the cuisine preferences and structure well, but Option 1 includes clear allergen violations (sweet chili sauce and hummus which commonly contain onion/garlic and can be high sugar; peanut butter for breakfast is fine, but 'sweet chili dipping sauce' contradicts the no-onion/low-sugar rules), while Option 2 more consistently flags onion-free products, uses leftovers for budget/prep efficiency, and adds detailed label-checking guidance. Option 2 does have a minor 'seafood' heading label slip, but overall adheres more carefully to the restrictions and practicality goals."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.0,
+  ""option_2_average"": 7.6
+}",option_2,"Both plans cover the cuisine preferences and structure well, but Option 1 includes clear allergen violations (sweet chili sauce and hummus which commonly contain onion/garlic and can be high sugar; peanut butter for breakfast is fine, but 'sweet chili dipping sauce' contradicts the no-onion/low-sugar rules), while Option 2 more consistently flags onion-free products, uses leftovers for budget/prep efficiency, and adds detailed label-checking guidance. Option 2 does have a minor 'seafood' heading label slip, but overall adheres more carefully to the restrictions and practicality goals.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.0,7.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more reliably respects the constraints (onion-free hummus explicitly noted, coconut/almond substitutes for lactose, gluten-free breadcrumbs), covers all preferred cuisines, and offers stronger leftover integration and label-check guidance. Option 2 introduces mild risks (garlic-heavy stir-fries, less explicit onion caution in more items) and slightly less coherent flavor coverage, though it is still solid."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 7.0
+}",option_1,"Option 1 more reliably respects the constraints (onion-free hummus explicitly noted, coconut/almond substitutes for lactose, gluten-free breadcrumbs), covers all preferred cuisines, and offers stronger leftover integration and label-check guidance. Option 2 introduces mild risks (garlic-heavy stir-fries, less explicit onion caution in more items) and slightly less coherent flavor coverage, though it is still solid.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.2,7.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,6,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both plans are safe and well-structured, but Option 1 better satisfies the constraints: it consistently provides breakfast, lunch, dinner, AND snacks for all 7 days, includes quantities in the grocery list, and leans harder into the requested meat/potato/Mexican/Thai/Indian flavors. Option 2 introduces more non-preferred proteins (tofu, lentils, quinoa) and, critically, uses lactose-free cow's milk on Day 1 which conflicts with a stated lactose intolerance's safest handling, and its grocery list lacks quantities."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.7
+}",option_1,"Both plans are safe and well-structured, but Option 1 better satisfies the constraints: it consistently provides breakfast, lunch, dinner, AND snacks for all 7 days, includes quantities in the grocery list, and leans harder into the requested meat/potato/Mexican/Thai/Indian flavors. Option 2 introduces more non-preferred proteins (tofu, lentils, quinoa) and, critically, uses lactose-free cow's milk on Day 1 which conflicts with a stated lactose intolerance's safest handling, and its grocery list lacks quantities.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 7, ""task_dimension_6"": 7}",8.2,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+2,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 more consistently respects the 'avoid very sweet' constraint and mild-seasoning goal, while Option 2 introduces maple syrup, garlic as a standard ingredient, and salty items like corn chips/popcorn that clash with the super-taster and low-salt requirements. Both are solid and cuisine-aligned, but Option 1 is slightly more compliant and better organized around leftovers."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.7,
+  ""option_2_average"": 6.8
+}",option_1,"Option 1 more consistently respects the 'avoid very sweet' constraint and mild-seasoning goal, while Option 2 introduces maple syrup, garlic as a standard ingredient, and salty items like corn chips/popcorn that clash with the super-taster and low-salt requirements. Both are solid and cuisine-aligned, but Option 1 is slightly more compliant and better organized around leftovers.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 7, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",7.7,6.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans meet the core allergen constraints well, but Option 2 better honors the super-taster/low-salt request by using explicit spices with quantity guidance and avoiding salty items like sweet chili sauce and tamari, while also better respecting the no-added-salt/sugar preference. Option 1 includes riskier items (sweet chili sauce, salty tamari, oat bars) that conflict with the low-salt/low-sugar and mild-seasoning requirements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.4,
+  ""option_2_average"": 8.1
+}",option_2,"Both plans meet the core allergen constraints well, but Option 2 better honors the super-taster/low-salt request by using explicit spices with quantity guidance and avoiding salty items like sweet chili sauce and tamari, while also better respecting the no-added-salt/sugar preference. Option 1 includes riskier items (sweet chili sauce, salty tamari, oat bars) that conflict with the low-salt/low-sugar and mild-seasoning requirements.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}",7.4,8.1,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+3,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 strictly honors the constraints, avoiding onion and garlic entirely and keeping dairy lactose-free via coconut yogurt/plant milk. Option 2 repeatedly violates hard constraints by including garlic, 'lactose-free milk' (still dairy), and gluten-free wraps without ensuring flavor prefs, undermining allergy/intolerance safety."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 4,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 4,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.2,
+  ""option_2_average"": 6.0
+}",option_1,"Option 1 strictly honors the constraints, avoiding onion and garlic entirely and keeping dairy lactose-free via coconut yogurt/plant milk. Option 2 repeatedly violates hard constraints by including garlic, 'lactose-free milk' (still dairy), and gluten-free wraps without ensuring flavor prefs, undermining allergy/intolerance safety.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 4, ""general_organization_readability"": 8, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 4, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",8.2,6.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,3,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 2 better honors the flavor preferences (distinct Mexican, Thai, and Indian dishes like fajitas, tikka masala, and stir-fries) and has cleaner allergen compliance, while Option 1 includes a likely gluten-containing tuna patty binder ambiguity and less flavor variety. Both are budget-friendly and mild, but Option 2 is more specific and preference-aligned."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.2,
+  ""option_2_average"": 8.0
+}",option_2,"Option 2 better honors the flavor preferences (distinct Mexican, Thai, and Indian dishes like fajitas, tikka masala, and stir-fries) and has cleaner allergen compliance, while Option 1 includes a likely gluten-containing tuna patty binder ambiguity and less flavor variety. Both are budget-friendly and mild, but Option 2 is more specific and preference-aligned.","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 8, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.2,8.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,3,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both plans meet the cuisine preferences and structure, but Option 1 is more consistently compliant with the allergen constraints, while Option 2 introduces multiple violations (garlic in guacamole/tikka, coconut yogurt as questionable, celery, and notably peanut butter which is unrelated but the tikka masala uses garam masala with typical onion/garlic bases). Option 1 keeps garlic use minimal and flags allergen checks more carefully."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.8,
+  ""option_2_average"": 6.7
+}",option_1,"Both plans meet the cuisine preferences and structure, but Option 1 is more consistently compliant with the allergen constraints, while Option 2 introduces multiple violations (garlic in guacamole/tikka, coconut yogurt as questionable, celery, and notably peanut butter which is unrelated but the tikka masala uses garam masala with typical onion/garlic bases). Option 1 keeps garlic use minimal and flags allergen checks more carefully.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",7.8,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both plans are well-organized and audience-appropriate, but Option 1 more strictly honors the constraints: it consistently uses lactose-free plant milks and coconut milk, avoids onion throughout, and includes gluten-free bread. Option 2 introduces several risky items (mustard, hummus, balsamic vinegar, gluten-free wraps, Thai/Mexican seasonings that commonly contain onion) with only cursory label-check notes, and includes salt in breakfasts despite the low-salt requirement."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 9,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 7,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 8.3,
+  ""option_2_average"": 7.0
+}",option_1,"Both plans are well-organized and audience-appropriate, but Option 1 more strictly honors the constraints: it consistently uses lactose-free plant milks and coconut milk, avoids onion throughout, and includes gluten-free bread. Option 2 introduces several risky items (mustard, hummus, balsamic vinegar, gluten-free wraps, Thai/Mexican seasonings that commonly contain onion) with only cursory label-check notes, and includes salt in breakfasts despite the low-salt requirement.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 9, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 7, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 7, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.3,7.0,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,6,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Option 1 violates the low-lactose constraint by including hummus (fine) but critically uses no lactose dairy, yet its main flaw is minor; however Option 2 better honors the dietary constraints by explicitly using lactose-free/plant-based milk and adds prep notes per meal, better flavor-profile variety (Mexican, Thai, Indian), and more consistent constraint checking. Option 1's Day 4 'sweet chili dipping sauce' risks the avoid-very-sweet and onion constraints, and its snacks lean sweet, while Option 2's inline prep and safer choices give it a slight edge in constraint adherence and usefulness."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 7.5,
+  ""option_2_average"": 7.9
+}",option_2,"Option 1 violates the low-lactose constraint by including hummus (fine) but critically uses no lactose dairy, yet its main flaw is minor; however Option 2 better honors the dietary constraints by explicitly using lactose-free/plant-based milk and adds prep notes per meal, better flavor-profile variety (Mexican, Thai, Indian), and more consistent constraint checking. Option 1's Day 4 'sweet chili dipping sauce' risks the avoid-very-sweet and onion constraints, and its snacks lean sweet, while Option 2's inline prep and safer choices give it a slight edge in constraint adherence and usefulness.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 6, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",7.5,7.9,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+4,9,0,"{
+  ""final_choice"": ""option_2"",
+  ""short_rationale"": ""Both plans are strong, but Option 1 has a critical constraint violation (garlic in multiple stir-fries and the Indian drumstick recipe risks, plus sweet chili sauce which is typically high-sugar and often contains onion), while Option 2 more consistently honors the low-sugar/mild requirement and explicitly flags onion-free hummus and sugar-free muesli. Option 1 uses garlic heavily which is closely related to onion and often problematic for onion-intolerant super-tasters, and its sweet chili and oat bar conflict with the avoid-very-sweet rule."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 7,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_1_average"": 6.7,
+  ""option_2_average"": 7.5
+}",option_2,"Both plans are strong, but Option 1 has a critical constraint violation (garlic in multiple stir-fries and the Indian drumstick recipe risks, plus sweet chili sauce which is typically high-sugar and often contains onion), while Option 2 more consistently honors the low-sugar/mild requirement and explicitly flags onion-free hummus and sugar-free muesli. Option 1 uses garlic heavily which is closely related to onion and often problematic for onion-intolerant super-tasters, and its sweet chili and oat bar conflict with the avoid-very-sweet rule.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 7, ""task_dimension_2"": 6, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 5, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 7, ""task_dimension_3"": 7, ""task_dimension_4"": 7, ""task_dimension_5"": 7, ""task_dimension_6"": 8}",6.7,7.5,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both plans are well-organized and hit the flavor preferences, but Option 2 repeatedly violates the explicit onion/allergen constraint by listing garlic and ginger in stir-fries and 'mild Mexican/Thai seasoning' (which commonly contains onion), undermining allergy safety. Option 1 stays strictly onion-free, consistently flags checking packaged items, and better honors the mild super-taster requirement."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 9,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 7,
+    ""task_dimension_6"": 8,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 7,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 6,
+    ""task_dimension_5"": 6,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 8.1,
+  ""option_2_average"": 6.6
+}",option_1,"Both plans are well-organized and hit the flavor preferences, but Option 2 repeatedly violates the explicit onion/allergen constraint by listing garlic and ginger in stir-fries and 'mild Mexican/Thai seasoning' (which commonly contains onion), undermining allergy safety. Option 1 stays strictly onion-free, consistently flags checking packaged items, and better honors the mild super-taster requirement.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 9, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 7, ""task_dimension_6"": 8}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 5, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 5, ""task_dimension_2"": 7, ""task_dimension_3"": 8, ""task_dimension_4"": 6, ""task_dimension_5"": 6, ""task_dimension_6"": 7}",8.1,6.6,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+9,5,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Option 1 fully honors the constraints (garlic minimized/onion-free, lactose-free with almond milk, no salty/sweet snacks) while covering all requested cuisines, whereas Option 2 repeatedly includes garlic, onion-risk items (mustard, hummus), sweet fruits like grapes, and salted crackers that conflict with the very-salty/sweet and onion-intolerance requirements."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 8,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 9,
+    ""general_accuracy_specificity"": 8,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 5,
+    ""task_dimension_2"": 6,
+    ""task_dimension_3"": 7,
+    ""task_dimension_4"": 5,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 6,
+    ""general_instruction_following"": 5,
+    ""general_accuracy_specificity"": 6,
+    ""general_practical_usefulness"": 6,
+    ""general_organization_readability"": 7,
+    ""general_tone_audience_fit"": 6
+  },
+  ""option_1_average"": 8.0,
+  ""option_2_average"": 5.8
+}",option_1,"Option 1 fully honors the constraints (garlic minimized/onion-free, lactose-free with almond milk, no salty/sweet snacks) while covering all requested cuisines, whereas Option 2 repeatedly includes garlic, onion-risk items (mustard, hummus), sweet fruits like grapes, and salted crackers that conflict with the very-salty/sweet and onion-intolerance requirements.","{""general_accuracy_specificity"": 8, ""general_instruction_following"": 9, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 8, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 6, ""general_instruction_following"": 5, ""general_organization_readability"": 7, ""general_practical_usefulness"": 6, ""general_tone_audience_fit"": 6, ""task_dimension_1"": 5, ""task_dimension_2"": 6, ""task_dimension_3"": 7, ""task_dimension_4"": 5, ""task_dimension_5"": 5, ""task_dimension_6"": 6}",8.0,5.8,True,anthropic/claude-opus-4-8,Claude-Opus-4.8
+6,9,0,"{
+  ""final_choice"": ""option_1"",
+  ""short_rationale"": ""Both plans are well-organized and cuisine-aligned, but Option 2 repeatedly violates the explicit onion-intolerance constraint by including garlic-heavy Indian dishes and lists garlic as a staple, and adds maple syrup/sweet elements against the 'avoid very sweet' guideline. Option 1 more strictly honors the allergy and mild-seasoning constraints, making it safer and more compliant."",
+  ""option_1_scores"": {
+    ""task_dimension_1"": 8,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 8,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 8,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 8,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 8,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 8
+  },
+  ""option_2_scores"": {
+    ""task_dimension_1"": 6,
+    ""task_dimension_2"": 8,
+    ""task_dimension_3"": 6,
+    ""task_dimension_4"": 7,
+    ""task_dimension_5"": 5,
+    ""task_dimension_6"": 7,
+    ""general_instruction_following"": 6,
+    ""general_accuracy_specificity"": 7,
+    ""general_practical_usefulness"": 7,
+    ""general_organization_readability"": 8,
+    ""general_tone_audience_fit"": 7
+  },
+  ""option_1_average"": 7.7,
+  ""option_2_average"": 6.7
+}",option_1,"Both plans are well-organized and cuisine-aligned, but Option 2 repeatedly violates the explicit onion-intolerance constraint by including garlic-heavy Indian dishes and lists garlic as a staple, and adds maple syrup/sweet elements against the 'avoid very sweet' guideline. Option 1 more strictly honors the allergy and mild-seasoning constraints, making it safer and more compliant.","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 8, ""general_organization_readability"": 8, ""general_practical_usefulness"": 8, ""general_tone_audience_fit"": 8, ""task_dimension_1"": 8, ""task_dimension_2"": 8, ""task_dimension_3"": 8, ""task_dimension_4"": 7, ""task_dimension_5"": 8, ""task_dimension_6"": 7}","{""general_accuracy_specificity"": 7, ""general_instruction_following"": 6, ""general_organization_readability"": 8, ""general_practical_usefulness"": 7, ""general_tone_audience_fit"": 7, ""task_dimension_1"": 6, ""task_dimension_2"": 8, ""task_dimension_3"": 6, ""task_dimension_4"": 7, ""task_dimension_5"": 5, ""task_dimension_6"": 7}",7.7,6.7,True,anthropic/claude-opus-4-8,Claude-Opus-4.8

@@ -1,5 +1,11 @@
 # Results (raw runs)
 
+## GPT-4.1 worker experiment: published evaluation protocol
+
+The new September worker experiment is stored under `results/<task>/20260928_gpt41_worker_paper_protocol/` for all seven tasks. It reuses saved assistant guidance and the GPT-4.1 pilot deliverables, with one run per task. Evaluation matches the original GPT-3.5 Turbo augmentation implementation: a four-judge panel and assistant-family-only masking, without masking the fixed worker's family. The existing automation results are reused.
+
+See [`artifacts/gpt41_worker_paper_protocol/README.md`](../artifacts/gpt41_worker_paper_protocol/README.md) for the protocol, source runs, ranking calculation, automation/augmentation comparison, and reproduction instructions. The earlier strict-worker-family-mask pilot is a separate sensitivity analysis.
+
 This directory is **gitignored by default** except the published reference/current runs below, which are force-tracked for reproducibility.
 
 ## Current clean run: `20260610_scaffold_strict_v4`

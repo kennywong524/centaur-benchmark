@@ -20,7 +20,7 @@ from centaur_benchmark.judge_pairwise import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-RUN = ROOT / "results/travel_planning/20260924_gpt41_worker_pilot"
+RUN = Path(globals().get("PILOT_RUN", ROOT / "results/travel_planning/20260924_gpt41_worker_pilot"))
 OUT = RUN / "augmentation"
 BACKUP = OUT / "before_strict_leave_family_out"
 

@@ -1,0 +1,40 @@
+{
+  "protocol": "assistant-family-only, matching published GPT-3.5 Turbo augmentation implementation",
+  "worker_family_masked": false,
+  "judgments": 110,
+  "judges": {
+    "anthropic/claude-opus-4-8": {
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 28,
+      "n_passing": 28,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": ""
+    },
+    "deepseek-ai/DeepSeek-V3.1": {
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 36,
+      "n_passing": 36,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": ""
+    },
+    "google/gemini-3.1-pro": {
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 36,
+      "n_passing": 36,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": ""
+    },
+    "gpt-4.1": {
+      "batch_ok": true,
+      "row_pass_rate": 1.0,
+      "n_rows": 10,
+      "n_passing": 10,
+      "suspicious_all_ones_rate": 0.0,
+      "exclude_reason": ""
+    }
+  },
+  "aggregation": "rank average eligible-judge win rates, matching published pipeline"
+}

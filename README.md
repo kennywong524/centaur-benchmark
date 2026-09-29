@@ -9,6 +9,12 @@ This repo refactors Colab notebooks into:
 - **One CLI** (`centaur-benchmark`) for single-task runs.
 - **Clean directories**: raw runs → `results/` (gitignored); summary CSVs + heatmaps → [`artifacts/`](artifacts/) (committed when exported).
 
+## New experiment: GPT-4.1 as the augmentation worker (September 2026)
+
+The [`20260928_gpt41_worker_paper_protocol` experiment](artifacts/gpt41_worker_paper_protocol/README.md) evaluates all seven tasks with GPT-4.1 as the fixed worker, using one run per task and saved assistance from the original benchmark. It matches the published GPT-3.5 Turbo augmentation implementation: four judges, assistant-family-only masking, and the original leaderboard calculation. Its figures compare the new augmentation results with the existing published ten-run automation rankings.
+
+The linked experiment README documents the precise masking rule, source runs, raw judgments, rankings, heatmaps, and reproduction command. Earlier results that also masked the fixed worker's family remain a separately labeled sensitivity analysis.
+
 ## Published results (10-run panel)
 
 The [results explorer](https://kennywong524.github.io/centaur-benchmark/) and paper figures aggregate **ten independent full-pipeline replications** (Runs 1–3 from the initial benchmark plus Runs 4–10 from the public-release batch). Standard errors in figures use SE = SD/√10. The repo ships all ten `run_id`s in the dashboard bundle; Runs 1–3 (`20260610_scaffold_strict_v4`, `20260612_fresh_rep1`, `20260612_fresh_rep2`) are the original development replications documented below.
